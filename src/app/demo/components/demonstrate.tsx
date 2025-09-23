@@ -410,7 +410,7 @@ const Demonstrate: React.FC = () => {
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.4, delay: index * 0.1 }}
-                              className="group overflow-hidden rounded-none border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-blue-100/50"
+                              className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-white border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:bg-gray-800 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]"
                             >
                               {/* 演示站点标题栏 - 简约现代设计 */}
                               <header className="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 px-4 py-3">
