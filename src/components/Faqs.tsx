@@ -212,19 +212,21 @@ export function Faqs() {
               selectedIndex={selectedCategory}
               onChange={setSelectedCategory}
             >
-              <TabList className="flex max-w-full flex-wrap justify-center gap-2 sm:gap-4">
+              <TabList className="flex max-w-full flex-wrap justify-center gap-3 sm:gap-6">
                 {faqCategories.map((category, index) => {
                   const IconComponent = category.icon
                   return (
                     <Tab
                       key={category.name}
-                      className="group relative min-w-0 flex-1 overflow-hidden border border-gray-200 bg-white px-2 py-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:outline-none data-[selected]:bg-gray-100 data-[selected]:text-black sm:px-6"
+                      className="group relative min-w-0 flex-1 overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[4px_4px_12px_0_rgba(55,99,170,0.1)] px-2 py-4 text-center text-sm font-medium transition-all duration-300 hover:shadow-[4px_4px_16px_0_rgba(55,99,170,0.15)] hover:-translate-y-0.5 focus:z-10 focus:outline-none data-[selected]:bg-gradient-to-b data-[selected]:from-blue-50 data-[selected]:to-blue-100 data-[selected]:text-blue-600 data-[selected]:shadow-[4px_4px_16px_0_rgba(55,99,170,0.2)] sm:px-6"
                     >
                       <div className="mx-auto flex items-center justify-center">
-                        <IconComponent
-                          className="h-5 w-5 flex-shrink-0"
-                          aria-hidden="true"
-                        />
+                        <div className="mr-2 flex h-8 w-8 items-center justify-center rounded-md bg-gray-100 group-data-[selected]:bg-blue-100">
+                          <IconComponent
+                            className="h-4 w-4 flex-shrink-0 text-gray-600 group-data-[selected]:text-blue-600"
+                            aria-hidden="true"
+                          />
+                        </div>
                         <span className="hidden truncate sm:ml-2 sm:inline">
                           {category.name}
                         </span>
@@ -264,10 +266,10 @@ export function Faqs() {
                             <Disclosure
                               key={`${categoryIndex}-${faqIndex}`}
                               as="div"
-                              className="border border-gray-200 bg-white"
+                              className="group transform overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]"
                             >
                               <dt>
-                                <DisclosureButton className="group flex w-full items-start justify-between p-6 text-left hover:bg-gray-50 focus:outline-none">
+                                <DisclosureButton className="group flex w-full items-start justify-between p-6 text-left hover:bg-gradient-to-r hover:from-gray-50 hover:to-white focus:outline-none transition-all duration-200">
                                   <span className="pr-6 text-base font-semibold text-black">
                                     {faq.question}
                                   </span>
@@ -305,7 +307,7 @@ export function Faqs() {
 
           {/* 联系支持 */}
           <div className="mt-16">
-            <div className="border border-gray-200 bg-white p-8">
+            <div className="transform overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] p-8 transition-all duration-300 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]">
               <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                 <div className="text-center lg:text-left">
                   <h3 className="mb-2 text-lg font-semibold text-black">
@@ -317,12 +319,12 @@ export function Faqs() {
                 </div>
                 <div className="flex flex-shrink-0 flex-col justify-center gap-4 sm:flex-row lg:justify-end">
                   <button
-                    className="inline-flex items-center border border-transparent px-6 py-3 text-base font-medium text-white shadow-sm transition-colors duration-200 hover:opacity-90 focus:outline-none"
+                    className="inline-flex items-center border border-transparent px-6 py-3 text-base font-medium text-white shadow-[4px_4px_12px_0_rgba(55,99,170,0.2)] transition-all duration-200 hover:opacity-90 hover:shadow-[4px_4px_16px_0_rgba(55,99,170,0.3)] hover:-translate-y-0.5 focus:outline-none rounded-md"
                     style={{ backgroundColor: '#05f' }}
                   >
                     联系客服
                   </button>
-                  <button className="inline-flex items-center border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-50 focus:outline-none">
+                  <button className="inline-flex items-center border-2 border-gray-200 bg-gradient-to-b from-white to-gray-50 px-6 py-3 text-base font-medium text-black shadow-[4px_4px_12px_0_rgba(55,99,170,0.1)] transition-all duration-200 hover:shadow-[4px_4px_16px_0_rgba(55,99,170,0.15)] hover:-translate-y-0.5 focus:outline-none rounded-md">
                     提交工单
                   </button>
                 </div>

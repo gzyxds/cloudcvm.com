@@ -88,8 +88,6 @@ export default function ProductPage() {
         <Header /> {/* 导航栏 */}
         <VideoHero /> {/* Hero 区域 */}
         <Cardprice /> {/* 价格展示区域 */}
-
-        <Solution /> {/* 解决方案 */}
         <Accordion /> {/* 云计算功能特性展示 */}
         <ProductTraits /> {/* 产品特性展示 */}
         <Superiority /> {/* 产品优势展示 */}

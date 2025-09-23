@@ -152,13 +152,15 @@ export function ProductTraits({
             {productTraits.map((trait) => (
               <div
                 key={trait.id}
-                className="flex flex-col rounded-none border border-gray-200 bg-white p-6 transition-all duration-200 hover:border-gray-300"
+                className="group flex flex-col transform overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] p-6"
               >
                 <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900">
-                  <trait.icon
-                    aria-hidden="true"
-                    className="h-5 w-5 flex-none text-indigo-600"
-                  />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100">
+                    <trait.icon
+                      aria-hidden="true"
+                      className="h-6 w-6 text-blue-600"
+                    />
+                  </div>
                   {trait.name}
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">

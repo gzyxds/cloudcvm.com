@@ -729,7 +729,7 @@ export default function BareMetalPage() {
         <div className="min-h-screen bg-gray-50">
           {/* 页面标题 */}
           <div className="border-b border-gray-200 bg-white">
-            <div className="mx-auto max-w-[1800px] px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-[1800px] px-4 pt-24 pb-6 sm:px-6 lg:px-8">
               <h1 className="text-2xl font-bold text-gray-900">
                 独立物理服务器专区
               </h1>

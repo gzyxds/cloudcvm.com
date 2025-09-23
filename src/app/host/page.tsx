@@ -301,11 +301,11 @@ function FeaturesSection() {
             {hostingFeatures.map((feature, index) => (
               <li
                 key={feature.name}
-                className="group overflow-hidden outline outline-gray-200 transition-all duration-300 hover:outline-blue-300 dark:-outline-offset-1 dark:outline-white/10"
+                className="group flex h-full transform flex-col overflow-hidden bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]"
               >
                 {/* 顶部图标和标题区域 */}
                 <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6 transition-colors duration-300 group-hover:bg-blue-50 dark:border-white/10 dark:bg-gray-800/50">
-                  <div className="flex h-12 w-12 items-center justify-center bg-blue-600 ring-1 ring-gray-900/10 transition-colors duration-300 group-hover:bg-blue-700 dark:bg-blue-500 dark:ring-white/10">
+                  <div className="flex h-12 w-12 items-center justify-center bg-blue-600 transition-colors duration-300 group-hover:bg-blue-700 dark:bg-blue-500">
                     <feature.icon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
@@ -458,46 +458,54 @@ function PricingSection() {
           官方自营 超高性价比！
         </p>
         <div className="mt-20 flow-root">
-          <div className="isolate -mt-16 grid max-w-sm grid-cols-1 gap-y-16 divide-y divide-gray-100 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4 dark:divide-white/10">
+          <div className="isolate -mt-16 grid max-w-sm grid-cols-1 gap-8 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 xl:-mx-4">
             {hostingPlans.map((plan) => (
-              <div key={plan.name} className="pt-16 lg:px-8 lg:pt-0 xl:px-14">
-                <h3 className="text-base/7 font-semibold text-gray-900 dark:text-white">
-                  {plan.name}
-                </h3>
-                <p className="mt-6 flex items-baseline gap-x-1">
-                  <span className="text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                    {plan.price}
-                  </span>
-                  <span className="text-sm/6 font-semibold text-gray-600 dark:text-gray-400">
-                    {plan.period}
-                  </span>
-                </p>
-                <p className="mt-3 text-sm/6 text-gray-500 dark:text-gray-400">
-                  {plan.description}
-                </p>
-                <a
-                  href={plan.href}
-                  className="mt-10 block bg-indigo-600 px-3 py-2 text-center text-sm/6 font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-400"
-                >
-                  立即购买
-                </a>
+              <div key={plan.name} className="group transform flex flex-col overflow-hidden bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] pt-8 px-8 pb-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    {plan.name}
+                  </h3>
+                  <div className="flex items-baseline justify-center gap-x-1 mb-3">
+                    <span className="text-4xl font-bold tracking-tight text-blue-600 dark:text-blue-400">
+                      {plan.price}
+                    </span>
+                    <span className="text-lg font-semibold text-gray-500 dark:text-gray-400">
+                      {plan.period}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    {plan.description}
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <a
+                    href={plan.href}
+                    className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 text-center transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                  >
+                    立即购买
+                  </a>
+                </div>
                 <p className="mt-10 text-sm/6 font-semibold text-gray-900 dark:text-white">
                   套餐详情
                 </p>
-                <ul
-                  role="list"
-                  className="mt-6 space-y-3 text-sm/6 text-gray-600 dark:text-gray-300"
-                >
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex gap-x-3">
-                      <CheckCircleIcon
-                        aria-hidden="true"
-                        className="h-6 w-5 flex-none text-indigo-600 dark:text-indigo-400"
-                      />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex-1">
+                  <ul
+                    role="list"
+                    className="mt-6 space-y-4 text-sm text-gray-600 dark:text-gray-300"
+                  >
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-x-3">
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center mt-0.5">
+                          <CheckCircleIcon
+                            aria-hidden="true"
+                            className="h-3 w-3 text-green-600 dark:text-green-400"
+                          />
+                        </div>
+                        <span className="flex-1">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
@@ -528,7 +536,7 @@ function AdvantagesSection() {
             {productAdvantages.map((advantage, index) => (
               <li
                 key={advantage.name}
-                className="group col-span-1 divide-y divide-gray-200 border border-gray-200 bg-white transition-all duration-300 hover:border-blue-300 dark:divide-white/10 dark:bg-gray-800/50 dark:outline dark:-outline-offset-1 dark:outline-white/10"
+                className="group col-span-1 divide-y divide-gray-200 transform flex flex-col overflow-hidden bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] dark:divide-white/10"
               >
                 {/* 顶部标题和图标区域 */}
                 <div className="flex w-full items-center justify-between space-x-6 p-6">
@@ -631,20 +639,26 @@ function BottomFeaturesSection() {
             优刻云虚拟主机为您提供完整的网站托管解决方案，从基础设施到高级功能，一应俱全。
           </p>
         </div>
-        <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base/7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-16">
+        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8">
           {bottomFeatures.map((feature) => (
-            <div key={feature.name} className="relative pl-9">
-              <dt className="inline font-semibold text-gray-900">
-                <feature.icon
-                  aria-hidden="true"
-                  className="absolute top-1 left-1 size-5 text-indigo-600"
-                />
-                {feature.name}
-              </dt>{' '}
-              <dd className="inline">{feature.description}</dd>
+            <div key={feature.name} className="group transform flex flex-col overflow-hidden bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+              <div className="flex items-center mb-4">
+                <div className="flex h-10 w-10 items-center justify-center bg-indigo-600 transition-colors duration-300 group-hover:bg-indigo-700 dark:bg-indigo-500">
+                  <feature.icon
+                    aria-hidden="true"
+                    className="h-5 w-5 text-white"
+                  />
+                </div>
+                <h3 className="ml-3 text-lg font-semibold text-gray-900 transition-colors duration-300 group-hover:text-indigo-600 dark:text-white">
+                  {feature.name}
+                </h3>
+              </div>
+              <p className="text-base text-gray-600 transition-colors duration-300 group-hover:text-gray-700 dark:text-gray-300 dark:group-hover:text-gray-200">
+                {feature.description}
+              </p>
             </div>
           ))}
-        </dl>
+        </div>
       </Container>
     </div>
   )

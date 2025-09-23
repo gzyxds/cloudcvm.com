@@ -118,11 +118,10 @@ function ServiceCard({
   return (
     <div
       className={clsx(
-        'group cursor-pointer border bg-white transition-all duration-300',
-        'hover:border-gray-200 hover:shadow-lg active:scale-[0.98]',
+        'group cursor-pointer overflow-hidden rounded-lg bg-white border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] active:scale-[0.98] dark:bg-gray-800 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]',
         isActive
-          ? 'border-gray-200 shadow-lg'
-          : 'border-gray-200 hover:border-gray-200',
+          ? 'shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]'
+          : '',
       )}
       onClick={onClick}
     >
@@ -224,7 +223,7 @@ function ServiceCard({
  */
 function DataPanel({ activeCard }: { activeCard: ServiceCard | null }) {
   return (
-    <div className="flex h-full flex-col overflow-hidden border border-gray-200 bg-white">
+    <div className="flex h-full flex-col overflow-hidden rounded-lg bg-white border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] dark:bg-gray-800 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]">
       {/* 面板头部 */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-4 sm:px-6 sm:py-6 md:px-8">
         <div className="mb-2 flex items-center gap-2 sm:mb-3 sm:gap-3">
@@ -390,7 +389,7 @@ export function Scenario() {
 
         {/* 底部行动号召区域 */}
         <div className="mt-12 text-center md:mt-16 lg:mt-20">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-8 sm:px-8 sm:py-12 lg:py-16">
+          <div className="rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] px-6 py-8 sm:px-8 sm:py-12 lg:py-16">
             <div className="mx-auto max-w-3xl">
               <h3 className="mb-3 px-2 text-xl font-bold text-white sm:mb-4 sm:text-2xl lg:text-3xl">
                 准备好开始您的 AI 之旅了吗？

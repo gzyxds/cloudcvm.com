@@ -139,10 +139,10 @@ function FeaturesMobile() {
             })}
           </dl>
         </div>
-        <div className="mt-16 sm:mt-20">
-          <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+        <div className="mt-12 sm:mt-16">
+          <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
             {/* 移动端模拟界面头部 */}
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 rounded-full bg-red-400"></div>
                 <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
@@ -154,8 +154,8 @@ function FeaturesMobile() {
             </div>
 
             {/* 移动端模拟界面标题栏 */}
-            <div className="mb-3 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-              <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
+            <div className="mb-2 border border-gray-200/50 bg-gray-50/80 p-2 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+              <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
                 资源管理中心
               </h3>
               <p className="text-xs text-gray-600 dark:text-gray-400">
@@ -164,18 +164,18 @@ function FeaturesMobile() {
             </div>
 
             {/* 移动端模拟功能模块 */}
-            <div className="mb-3 space-y-3">
+            <div className="mb-2 space-y-2">
               {features.slice(0, 3).map((feature, index) => {
                 const IconComponent = feature.icon
                 return (
                   <div
                     key={feature.name}
-                    className="border border-gray-200/30 bg-gray-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    className="border border-gray-200/30 bg-gray-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
                         <svg
-                          className="h-4 w-4 text-blue-600 dark:text-blue-400"
+                          className="h-3 w-3 text-blue-600 dark:text-blue-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -184,7 +184,7 @@ function FeaturesMobile() {
                         </svg>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                        <h4 className="truncate text-xs font-medium text-gray-900 dark:text-white">
                           {feature.name}
                         </h4>
                         <div className="mt-1">
@@ -263,9 +263,9 @@ function FeaturesDesktop() {
           </div>
         </div>
         <div className="sm:px-6 lg:px-0">
-          <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+          <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
             {/* 模拟界面头部 */}
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="h-3 w-3 rounded-full bg-red-400"></div>
                 <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
@@ -277,8 +277,8 @@ function FeaturesDesktop() {
             </div>
 
             {/* 模拟界面标题栏 */}
-            <div className="mb-4 border border-gray-200/50 bg-gray-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-              <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+            <div className="mb-3 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+              <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
                 资源管理中心
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -287,19 +287,19 @@ function FeaturesDesktop() {
             </div>
 
             {/* 模拟功能模块 */}
-            <div className="mb-4 grid grid-cols-1 gap-4">
-              {features.slice(0, 4).map((feature, index) => {
+            <div className="mb-3 grid grid-cols-1 gap-3">
+              {features.slice(0, 3).map((feature, index) => {
                 const IconComponent = feature.icon
                 return (
                   <div
                     key={feature.name}
-                    className="group border border-gray-200/30 bg-gray-50/60 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    className="group border border-gray-200/30 bg-gray-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                   >
                     <div className="flex items-start space-x-3">
                       <div className="flex-shrink-0">
-                        <div className="flex h-8 w-8 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
                           <svg
-                            className="h-5 w-5 text-blue-600 dark:text-blue-400"
+                            className="h-4 w-4 text-blue-600 dark:text-blue-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -316,9 +316,9 @@ function FeaturesDesktop() {
                           {feature.summary}
                         </p>
                         <div className="mt-2">
-                          <div className="h-1.5 w-full bg-gray-200/60 dark:bg-gray-700/60">
+                          <div className="h-1 w-full bg-gray-200/60 dark:bg-gray-700/60">
                             <div
-                              className="h-1.5 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                              className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
                               style={{ width: `${60 + index * 10}%` }}
                             ></div>
                           </div>
@@ -331,7 +331,7 @@ function FeaturesDesktop() {
             </div>
 
             {/* 模拟状态栏 */}
-            <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-3 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+            <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
               <div className="flex items-center space-x-4">
                 <span className="flex items-center space-x-1">
                   <div className="h-2 w-2 rounded-full bg-green-400"></div>

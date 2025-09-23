@@ -724,24 +724,29 @@ export default function EcommercePage() {
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
               {primaryFeatures.map((feature) => (
-                <div key={feature.name} className="flex flex-col">
-                  <dt className="text-base/7 font-semibold text-gray-900 dark:text-white">
-                    <div className="mb-6 flex size-10 items-center justify-center rounded-lg bg-indigo-600 dark:bg-indigo-500">
-                      <feature.icon aria-hidden="true" className="size-6 text-white" />
+                <div key={feature.name} className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-white border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:bg-gray-800 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]">
+                  <div className="p-5">
+                    <div className="mb-3 flex items-center">
+                      <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600 dark:bg-indigo-500">
+                        <feature.icon aria-hidden="true" className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                        {feature.name}
+                      </h3>
                     </div>
-                    {feature.name}
-                  </dt>
-                  <dd className="mt-1 flex flex-auto flex-col text-base/7 text-gray-600 dark:text-gray-400">
-                    <p className="flex-auto">{feature.description}</p>
-                    <p className="mt-6">
-                      <a
-                        href={feature.href}
-                        className="text-sm/6 font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
-                      >
-                        了解更多 <span aria-hidden="true">→</span>
-                      </a>
+                    <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      {feature.description}
                     </p>
-                  </dd>
+                    <a
+                      href={feature.href}
+                      className="group inline-flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400"
+                    >
+                      <span className="transition-all duration-300 group-hover:mr-1">
+                        了解更多
+                      </span>
+                      <span className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+                    </a>
+                  </div>
                 </div>
               ))}
             </dl>
@@ -893,15 +898,23 @@ export default function EcommercePage() {
           <Container className="mt-16 sm:mt-20 md:mt-24">
             <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base/7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16 dark:text-gray-400">
               {secondaryFeatures.map((feature) => (
-                <div key={feature.name} className="relative pl-9">
-                  <dt className="inline font-semibold text-gray-900 dark:text-white">
-                    <feature.icon
-                      aria-hidden="true"
-                      className="absolute top-1 left-1 size-5 text-indigo-600 dark:text-indigo-400"
-                    />
-                    {feature.name}
-                  </dt>{' '}
-                  <dd className="inline">{feature.description}</dd>
+                <div key={feature.name} className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-white border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:bg-gray-800 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]">
+                  <div className="p-5">
+                    <div className="mb-3 flex items-center">
+                      <div className="mr-3 flex h-10 w-10 items-center justify-center bg-gray-100 dark:bg-gray-700">
+                        <feature.icon
+                          className="h-6 w-6 text-blue-600 dark:text-blue-400"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                        {feature.name}
+                      </h3>
+                    </div>
+                    <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </dl>

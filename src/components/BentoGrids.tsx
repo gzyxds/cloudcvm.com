@@ -115,27 +115,31 @@ function AccordionFeatureCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden shadow-lg transition-all duration-500 ease-in-out',
+        'group relative cursor-pointer overflow-hidden transition-all duration-500 ease-in-out',
         isExpanded ? 'flex-[2.5]' : 'flex-[1.2]',
       )}
+      style={{
+        background: 'rgba(255, 255, 255, 0.3)',
+        borderRadius: '4px',
+        border: '2px solid #fff',
+        boxShadow: '0 2px 8px rgba(55,99,170,.08), 0 1px 2px rgba(0,0,0,.05)',
+        transition: 'all 0.5s ease-in-out, box-shadow .3s ease-in-out',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale'
+      }}
       onMouseEnter={onToggle}
     >
-      {/* 背景图片 */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${feature.bgImage})`,
-          backgroundColor: '#05f',
-          backgroundBlendMode: 'overlay',
-        }}
-      />
+
 
       {/* 内容区域 */}
       <div className="relative flex h-full flex-col p-6">
         {/* 标题区域 - 始终可见，与箭头按钮对齐 */}
         <div className="mb-12 flex items-center justify-between">
           <h3
-            className="py-2 text-xl font-bold text-white transition-all duration-300"
+            className={clsx(
+              'py-2 text-xl font-bold transition-all duration-300',
+              isExpanded ? 'text-blue-600' : 'text-gray-900'
+            )}
             style={{
               writingMode: 'horizontal-tb',
               textOrientation: 'mixed',
@@ -154,46 +158,41 @@ function AccordionFeatureCard({
                 : 'translate-x-2 opacity-80',
             )}
           >
-            <div className="p-2 transition-colors duration-200 hover:bg-white/10">
-              <ArrowRightIcon className="h-4 w-4 text-white" />
+            <div className="p-2 transition-colors duration-200 hover:bg-gray-100/50">
+              <ArrowRightIcon className="h-4 w-4 text-gray-700" />
             </div>
           </div>
         </div>
 
-        {/* 展开内容 */}
-        <div
-          className={clsx(
-            'flex-1 transition-all delay-100 duration-500',
-            isExpanded ? 'opacity-100' : 'opacity-0',
-          )}
-        >
+        {/* 内容区域 - 始终显示 */}
+        <div className="flex-1 transition-all delay-100 duration-500">
           {/* 分类标签 */}
           <div className="mb-4">
-            <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-sm font-medium text-white">
+            <span className="inline-block rounded-full bg-gray-100/80 px-3 py-1 text-sm font-medium text-gray-700">
               {feature.category}
             </span>
           </div>
 
           {/* 描述文本 */}
-          <p className="mb-6 text-base leading-relaxed text-white/90">
+          <p className={clsx(
+            'mb-6 text-base leading-relaxed text-gray-700 transition-all duration-300',
+            isExpanded ? 'line-clamp-none' : 'line-clamp-3'
+          )}>
             {feature.description}
           </p>
 
           {/* 核心功能列表 */}
           <div className="space-y-3">
-            <h4 className="mb-3 text-base font-semibold text-white">
+            <h4 className="mb-3 text-base font-semibold text-gray-900">
               核心功能
             </h4>
             {feature.features.map((featureItem, featureIndex) => (
               <div
                 key={featureIndex}
-                className={clsx(
-                  'flex items-center text-base text-white/80 transition-transform duration-300',
-                  isExpanded ? 'translate-x-0' : 'translate-x-4',
-                )}
+                className="flex items-center text-base text-gray-600 transition-transform duration-300"
                 style={{ transitionDelay: `${featureIndex * 100 + 200}ms` }}
               >
-                <div className="mr-3 h-2 w-2 rounded-full bg-white/60" />
+                <div className="mr-3 h-2 w-2 rounded-full bg-gray-400" />
                 {featureItem}
               </div>
             ))}
@@ -204,7 +203,7 @@ function AccordionFeatureCard({
         <div className="absolute bottom-4 left-4">
           <IconComponent
             className={clsx(
-              'h-6 w-6 text-white transition-opacity duration-300',
+              'h-6 w-6 text-gray-600 transition-opacity duration-300',
               isExpanded ? 'opacity-100' : 'opacity-60',
             )}
           />
@@ -242,58 +241,58 @@ function MobileFeatureCard({
   const IconComponent = feature.icon
 
   return (
-    <div className="xs:h-[220px] group relative h-[180px] overflow-hidden shadow-lg sm:h-[280px]">
-      {/* 背景图片 */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${feature.bgImage})`,
-          backgroundColor: '#05f',
-          backgroundBlendMode: 'overlay',
-        }}
-      />
+    <div
+      className="xs:h-[220px] group relative h-[180px] overflow-hidden sm:h-[280px]"
+      style={{
+        background: 'rgba(255, 255, 255, 0.3)',
+        borderRadius: '4px',
+        border: '2px solid #fff',
+        boxShadow: '0 2px 8px rgba(55,99,170,.08), 0 1px 2px rgba(0,0,0,.05)',
+        transition: 'box-shadow .3s ease-in-out',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale'
+      }}
+    >
 
-      {/* 渐变遮罩 */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
       {/* 内容区域 */}
       <div className="relative flex h-full flex-col p-3 sm:p-4">
         {/* 标题和图标 */}
         <div className="mb-2 flex items-center justify-between sm:mb-3">
-          <h3 className="text-base font-bold text-white sm:text-lg">
+          <h3 className="text-base font-bold text-gray-900 sm:text-lg">
             {feature.title}
           </h3>
-          <IconComponent className="h-4 w-4 text-white/80 sm:h-5 sm:w-5" />
+          <IconComponent className="h-4 w-4 text-gray-600 sm:h-5 sm:w-5" />
         </div>
 
         {/* 分类标签 */}
         <div className="mb-2">
-          <span className="inline-block rounded-full bg-white/20 px-2 py-0.5 text-xs font-medium text-white sm:text-sm">
+          <span className="inline-block rounded-full bg-gray-100/80 px-2 py-0.5 text-xs font-medium text-gray-700 sm:text-sm">
             {feature.category}
           </span>
         </div>
 
         {/* 描述文本 */}
-        <p className="mb-2 line-clamp-2 flex-1 text-xs leading-relaxed text-white/90 sm:mb-4 sm:line-clamp-3 sm:text-sm">
+        <p className="mb-2 line-clamp-2 flex-1 text-xs leading-relaxed text-gray-700 sm:mb-4 sm:line-clamp-3 sm:text-sm">
           {feature.description}
         </p>
 
         {/* 核心功能列表 */}
         <div className="space-y-1 sm:space-y-2">
-          <h4 className="text-xs font-semibold text-white sm:text-sm">
+          <h4 className="text-xs font-semibold text-gray-900 sm:text-sm">
             核心功能
           </h4>
           {feature.features.slice(0, 2).map((featureItem, featureIndex) => (
             <div
               key={featureIndex}
-              className="flex items-center text-xs text-white/80 sm:text-sm"
+              className="flex items-center text-xs text-gray-600 sm:text-sm"
             >
-              <div className="mr-1.5 h-1 w-1 rounded-full bg-white/60 sm:mr-2 sm:h-1.5 sm:w-1.5" />
+              <div className="mr-1.5 h-1 w-1 rounded-full bg-gray-400 sm:mr-2 sm:h-1.5 sm:w-1.5" />
               {featureItem}
             </div>
           ))}
           {feature.features.length > 2 && (
-            <div className="text-xs text-white/60 sm:text-sm">...</div>
+            <div className="text-xs text-gray-500 sm:text-sm">...</div>
           )}
         </div>
       </div>
@@ -327,7 +326,7 @@ export default function BentoGrids() {
       style={{
         fontFamily:
           'pingfang SC, helvetica neue, arial, hiragino sans gb, microsoft yahei ui, microsoft yahei, simsun, sans-serif',
-        background: '#ffffff',
+        background: '#f0f4f8',
       }}
     >
       <div

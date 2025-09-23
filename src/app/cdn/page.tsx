@@ -700,23 +700,20 @@ export default function CDNPage() {
 
         {/* CDN加速专区 - 直接嵌入的代码 */}
         <div className="min-h-screen bg-gray-50">
-          {/* 页面标题 */}
-          <div className="border-b border-gray-200 bg-white">
-            <div className="mx-auto max-w-[1800px] px-4 py-6 sm:px-6 lg:px-8">
-              <h1 className="text-2xl font-bold text-gray-900">CDN加速专区</h1>
-              <p className="mt-2 text-sm text-gray-600">
-                <span className="font-medium text-orange-500">全球加速</span>
-                ，新用户低至
-                <span className="font-medium text-orange-500">79元/年</span>
-                <span className="ml-2 cursor-pointer text-blue-600 underline">
-                  活动规则&gt;
-                </span>
-              </p>
-            </div>
-          </div>
-
           {/* 产品网格 */}
           <div className="mx-auto max-w-[1800px] px-4 py-8 sm:px-6 lg:px-8">
+            {/* 页面标题 */}
+             <div className="mb-4 text-left pt-16 pb-8">
+                <h1 className="text-3xl font-bold text-gray-900 mb-6">CDN加速专区</h1>
+                <p className="text-lg text-gray-600">
+                  <span className="font-medium text-orange-500">全球加速</span>
+                  ，新用户低至
+                  <span className="font-medium text-orange-500">79元/年</span>
+                  <span className="ml-2 cursor-pointer text-blue-600 underline hover:text-blue-800">
+                    活动规则&gt;
+                  </span>
+                </p>
+              </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {cdnProducts.map((product) => (
                 <div

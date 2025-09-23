@@ -935,7 +935,7 @@ export default function ECSPage() {
         <ECSVideoHero />
 
         {/* 轻量应用服务器专区 - 直接嵌入的代码 */}
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 pt-24">
           {/* 页面标题 */}
           <div className="border-b border-gray-200 bg-white">
             <div className="mx-auto max-w-[1800px] px-4 py-6 sm:px-6 lg:px-8">
@@ -959,7 +959,7 @@ export default function ECSPage() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+                  className="group flex h-full transform flex-col overflow-hidden bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]"
                 >
                   {/* 产品标题和标签 */}
                   <div className="border-b border-gray-100 p-4">
@@ -1130,75 +1130,75 @@ export default function ECSPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   灵活和弹性
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   根据业务的发展趋势，您可随时对云资源进行横向和纵向的伸缩，杜绝资源浪费
                 </p>
               </div>
 
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   稳定和可靠
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   采用RAID和分布式三副本容灾进行数据保护，承诺99.95%的服务可用性，数据可靠性不低于99.9999%
                 </p>
               </div>
 
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   高性能
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   全SSD部署，吞吐量达千兆每秒，随机读写2万IOPS，完美支持大文件高吞吐高IO并发
                 </p>
               </div>
 
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   安全保障
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   免费提供5G
                   DDoS攻击防护，可增值服务抵御数百Gbps级流量攻击，免费提供云防火墙
                 </p>
               </div>
 
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   简单易用
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   自主研发的云服务器管理系统，简单易用，管理云服务器就像管理您的计算机一样简单方便
                 </p>
               </div>
 
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   节省成本
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   云服务器部署在云端，极大节省了您前期搭建基础网络设施的成本，和后期的维护成本
                 </p>
               </div>
 
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   免费备案
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   便捷备案服务，备案最快一天审核，让您免除后顾之忧
                 </p>
               </div>
 
-              <div className="border border-gray-200 bg-white p-6 transition-colors duration-200 hover:border-blue-300">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+              <div className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
                   服务无忧
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   7×24小时在线服务，5天无理由退款，百倍故障赔偿，让您随时随地服务放心，用的安心
                 </p>
               </div>

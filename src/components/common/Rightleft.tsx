@@ -70,9 +70,9 @@ function Example() {
             </div>
           </div>
           <div className="flex items-start justify-center lg:order-first lg:justify-end">
-            <div className="relative w-full max-w-lg overflow-hidden border border-white/30 bg-white/20 p-4 shadow-lg backdrop-blur-xl sm:max-w-xl sm:p-6 lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
+            <div className="relative w-full max-w-lg overflow-hidden border border-white/30 bg-white/20 p-3 shadow-lg backdrop-blur-xl sm:max-w-xl sm:p-4 lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
               {/* 模拟界面头部 */}
-              <div className="mb-4 flex items-center justify-between sm:mb-6">
+              <div className="mb-3 flex items-center justify-between sm:mb-4">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
                   <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
@@ -84,39 +84,39 @@ function Example() {
               </div>
 
               {/* 模拟界面标题栏 */}
-              <div className="mb-3 border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
-                <h3 className="mb-1 text-base font-semibold text-gray-800 sm:mb-2 sm:text-lg dark:text-white">
+              <div className="mb-2 border border-white/20 bg-white/30 p-2 backdrop-blur-sm sm:mb-3 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30">
+                <h3 className="mb-1 text-sm font-semibold text-gray-800 sm:text-base dark:text-white">
                   资源管理中心
                 </h3>
-                <p className="text-xs text-gray-600 sm:text-sm dark:text-gray-300">
+                <p className="text-xs text-gray-600 dark:text-gray-300">
                   实时监控和管理您的云计算资源
                 </p>
               </div>
 
               {/* 模拟功能模块 */}
-              <div className="mb-3 grid grid-cols-1 gap-3 sm:mb-4 sm:gap-4">
-                {features.slice(0, 4).map((feature, index) => (
+              <div className="mb-2 grid grid-cols-1 gap-2 sm:mb-3 sm:gap-3">
+                {features.slice(0, 3).map((feature, index) => (
                   <div
                     key={feature.name}
-                    className="group border border-white/10 bg-white/20 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-white/30 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                    className="group border border-white/10 bg-white/20 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/30 sm:p-3 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
                   >
-                    <div className="flex items-start space-x-2 sm:space-x-3">
+                    <div className="flex items-start space-x-2">
                       <div className="flex-shrink-0">
-                        <div className="flex h-6 w-6 items-center justify-center bg-blue-500/80 backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
-                          <feature.icon className="h-3 w-3 text-white sm:h-5 sm:w-5" />
+                        <div className="flex h-5 w-5 items-center justify-center bg-blue-500/80 backdrop-blur-sm sm:h-6 sm:w-6 dark:bg-blue-600/80">
+                          <feature.icon className="h-3 w-3 text-white sm:h-4 sm:w-4" />
                         </div>
                       </div>
                       <div className="min-w-0 flex-1">
                         <h4 className="truncate text-xs font-medium text-gray-800 sm:text-sm dark:text-white">
                           {feature.name}
                         </h4>
-                        <p className="mt-0.5 truncate text-xs text-gray-600 sm:mt-1 dark:text-gray-300">
-                          {feature.description.slice(0, 25)}...
+                        <p className="mt-0.5 truncate text-xs text-gray-600 dark:text-gray-300">
+                          {feature.description.slice(0, 20)}...
                         </p>
-                        <div className="mt-1.5 sm:mt-2">
-                          <div className="h-1 w-full bg-gray-300/50 sm:h-1.5 dark:bg-gray-600/50">
+                        <div className="mt-1">
+                          <div className="h-1 w-full bg-gray-300/50 dark:bg-gray-600/50">
                             <div
-                              className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
+                              className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
                               style={{ width: `${60 + index * 10}%` }}
                             ></div>
                           </div>
@@ -128,7 +128,7 @@ function Example() {
               </div>
 
               {/* 模拟状态栏 */}
-              <div className="flex flex-col space-y-2 border border-white/20 bg-white/30 p-2 text-xs text-gray-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+              <div className="flex flex-col space-y-2 border border-white/20 bg-white/30 p-2 text-xs text-gray-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
                 <div className="flex items-center space-x-2 sm:space-x-4">
                   <span className="flex items-center space-x-1">
                     <div className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2"></div>

@@ -485,7 +485,7 @@ export default function Cardprice() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 热门活动精选区域 */}
-      <div className="mx-auto max-w-[1800px] px-4 py-8 pt-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1800px] px-4 py-8 pt-24 sm:px-6 lg:px-8">
       {/* 热门活动精选卡片 - 完全按照参考图片设计：左侧1个大卡片，右侧4个小卡片(2x2布局) */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* 左侧大卡片 - 精选特惠 新老同享 */}

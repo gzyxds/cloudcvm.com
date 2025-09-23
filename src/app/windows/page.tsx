@@ -792,7 +792,7 @@ export default function ECSPage() {
         <div className="min-h-screen bg-gray-50">
           {/* 页面标题 */}
           <div className="border-b border-gray-200 bg-white">
-            <div className="mx-auto max-w-[1800px] px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-[1800px] px-4 pt-28 pb-6 sm:px-6 lg:px-8">
               <h1 className="text-2xl font-bold text-gray-900">云电脑专区</h1>
               <p className="mt-2 text-sm text-gray-600">
                 <span className="font-medium text-orange-500">4核4G起步</span>
@@ -811,7 +811,7 @@ export default function ECSPage() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+                  className="group flex h-full transform flex-col overflow-hidden bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]"
                 >
                   {/* 产品标题和标签 */}
                   <div className="border-b border-gray-100 p-4">
