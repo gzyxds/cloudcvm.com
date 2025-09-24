@@ -68,9 +68,9 @@ const defaultSlides: CarouselSlide[] = [
     imagePath: '/images/screenshots/carousel -2.jpg',
     imageAlt: '全方位支付解决方案',
     primaryButtonText: '立即领取',
-    primaryButtonHref: '#',
+    primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
     secondaryButtonText: '联系客服',
-    secondaryButtonHref: '#'
+    secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 2,
@@ -80,10 +80,10 @@ const defaultSlides: CarouselSlide[] = [
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
     imagePath: '/images/screenshots/carousel -5.jpg',
     imageAlt: '云计算解决方案',
-    primaryButtonText: '立即领取',
-    primaryButtonHref: '#',
+    primaryButtonText: '立即查看',
+    primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
     secondaryButtonText: '联系客服',
-    secondaryButtonHref: '#'
+    secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 3,
@@ -93,10 +93,10 @@ const defaultSlides: CarouselSlide[] = [
     description: '提供强大 GPU 算力的弹性计算服务，具有超强并行计算能力，专为深度学习训练、科学计算、图形渲染等场景优化',
     imagePath: '/images/screenshots/carousel -7.png',
     imageAlt: 'GPU云服务器平台',
-    primaryButtonText: '立即咨询',
-    primaryButtonHref: '#',
+    primaryButtonText: '立即查看',
+    primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
     secondaryButtonText: '联系客服',
-    secondaryButtonHref: '#'
+    secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 4,
@@ -106,10 +106,10 @@ const defaultSlides: CarouselSlide[] = [
     description: '智能化、自动化的计算资源管理策略，具备计划性调度和高容错性，为您提供低成本、高效率的云端解决方案',
     imagePath: '/images/screenshots/carousel -9.jpg',
     imageAlt: '全球化部署解决方案',
-    primaryButtonText: '立即咨询',
-    primaryButtonHref: '#',
+    primaryButtonText: '立即查看',
+    primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
     secondaryButtonText: '联系客服',
-    secondaryButtonHref: '#'
+    secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   }
 ]
 
@@ -467,8 +467,35 @@ const Carousel = memo(function Carousel({
                 {currentSlide.description}
               </p>
 
-              {/* 双二维码按钮组 */}
-              <DualQRCodeButtonGroup
+              {/* 普通链接按钮 - 使用自定义的primaryButtonHref */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <a
+                  href={currentSlide.primaryButtonHref || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base inline-flex items-center justify-center"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                  </svg>
+                  {currentSlide.primaryButtonText}
+                </a>
+                
+                <a
+                  href={currentSlide.secondaryButtonHref || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-white/90 backdrop-blur-sm text-black font-medium rounded-lg border border-gray-300 hover:bg-white hover:border-gray-400 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base inline-flex items-center justify-center"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  {currentSlide.secondaryButtonText || '联系客服'}
+                </a>
+              </div>
+
+              {/* 原双二维码按钮组 - 已注释 */}
+              {/* <DualQRCodeButtonGroup
                 leftButton={{
                   text: currentSlide.primaryButtonText,
                   className: "px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base",
@@ -500,7 +527,7 @@ const Carousel = memo(function Carousel({
                 title="扫码联系我们"
                 description="选择下方二维码进行联系，为您提供专业的支付解决方案"
                 containerClassName="flex-row gap-3 sm:gap-4"
-              />
+              /> */}
             </div>
           </div>
         </div>
