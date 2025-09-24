@@ -156,20 +156,24 @@ export function CloudFeatureTabs() {
                       e.stopPropagation()
                       setActiveTab(feature.id)
                     }}
-                    className={`group flex-shrink-0 px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg border-2 transform hover:-translate-y-0.5 ${
-                      activeTab === feature.id
-                        ? 'border-blue-600 bg-gradient-to-b from-blue-600 to-blue-700 text-white shadow-[4px_4px_15px_0_rgba(55,99,170,0.25)]'
-                        : 'border-white bg-gradient-to-b from-white to-gray-50 text-gray-700 shadow-[4px_4px_12px_0_rgba(55,99,170,0.1)] hover:shadow-[4px_4px_18px_0_rgba(55,99,170,0.15)]'
-                    }`}
+                    className="group flex-shrink-0 px-4 py-2 text-sm font-medium transition-all duration-300 transform hover:-translate-y-0.5"
                     style={{
                       WebkitTapHighlightColor: 'transparent',
                       userSelect: 'none',
+                      background: activeTab === feature.id ? '#05f' : 'linear-gradient(180deg,#f3f5f8,#fff)',
+                      border: '2px solid #fff',
+                      borderRadius: '2px',
+                      boxShadow: '0 6px 20px #dce0e8',
+                      color: activeTab === feature.id ? 'white' : 'black',
                     }}
                   >
                     <div className="flex items-center gap-2">
-                      <div className={`flex h-6 w-6 items-center justify-center rounded ${
-                        activeTab === feature.id ? 'bg-white/20' : 'bg-gray-100'
-                      }`}>
+                      <div className="flex h-6 w-6 items-center justify-center"
+                           style={{
+                             background: activeTab === feature.id ? 'rgba(255,255,255,0.2)' : '#f3f5f8',
+                             border: '2px solid #fff',
+                             borderRadius: '2px',
+                           }}>
                         <IconComponent className={`h-3 w-3 ${
                           activeTab === feature.id ? 'text-white' : 'text-blue-600'
                         }`} />
@@ -191,15 +195,21 @@ export function CloudFeatureTabs() {
                   key={feature.id}
                   type="button"
                   onClick={() => setActiveTab(feature.id)}
-                  className={`group flex-1 px-4 py-3 text-sm font-medium transition-all duration-300 md:px-6 md:py-4 flex items-center justify-center gap-2 md:gap-3 rounded-lg border-2 transform hover:-translate-y-1 ${
-                    activeTab === feature.id
-                      ? 'border-blue-600 bg-gradient-to-b from-blue-600 to-blue-700 text-white shadow-[8px_8px_25px_0_rgba(55,99,170,0.25)]'
-                      : 'border-white bg-gradient-to-b from-white to-gray-50 text-slate-700 shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]'
-                  }`}
+                  className="group flex-1 px-4 py-3 text-sm font-medium transition-all duration-300 md:px-6 md:py-4 flex items-center justify-center gap-2 md:gap-3 transform hover:-translate-y-1"
+                  style={{
+                    background: activeTab === feature.id ? '#05f' : 'linear-gradient(180deg,#f3f5f8,#fff)',
+                    border: '2px solid #fff',
+                    borderRadius: '2px',
+                    boxShadow: '0 6px 20px #dce0e8',
+                    color: activeTab === feature.id ? 'white' : 'black',
+                  }}
                 >
-                  <div className={`mr-2 flex h-8 w-8 items-center justify-center rounded-lg ${
-                    activeTab === feature.id ? 'bg-white/20' : 'bg-gray-100'
-                  }`}>
+                  <div className="mr-2 flex h-8 w-8 items-center justify-center"
+                     style={{
+                       background: activeTab === feature.id ? 'rgba(255,255,255,0.2)' : '#f3f5f8',
+                       border: '2px solid #fff',
+                       borderRadius: '2px',
+                     }}>
                     <IconComponent className={`h-4 w-4 flex-shrink-0 md:h-5 md:w-5 ${
                       activeTab === feature.id ? 'text-white' : 'text-blue-600'
                     }`} />
@@ -215,7 +225,13 @@ export function CloudFeatureTabs() {
         <div className="grid grid-cols-1 gap-4">
           <div className="transition-all duration-300 ease-out">
             <div
-              className="group flex min-h-[300px] flex-col items-center gap-6 bg-gradient-to-b from-white to-gray-50 p-4 sm:min-h-[400px] sm:p-6 md:min-h-[500px] md:gap-8 md:p-8 lg:min-h-[600px] lg:flex-row lg:gap-12 lg:p-12 xl:gap-20 rounded-lg border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]"
+              className="group flex min-h-[300px] flex-col items-center gap-6 p-4 sm:min-h-[400px] sm:p-6 md:min-h-[500px] md:gap-8 md:p-8 lg:min-h-[600px] lg:flex-row lg:gap-12 lg:p-12 xl:gap-20"
+              style={{
+                background: 'linear-gradient(180deg,#f3f5f8,#fff)',
+                border: '2px solid #fff',
+                borderRadius: '2px',
+                boxShadow: '0 6px 20px #dce0e8',
+              }}
             >
               {/* 左侧文字内容 */}
               <div className="order-2 flex w-full flex-col justify-center space-y-6 sm:space-y-8 md:space-y-10 lg:order-1 lg:w-2/5">
@@ -242,7 +258,7 @@ export function CloudFeatureTabs() {
                       key={index}
                       className="group flex items-start gap-3 sm:gap-4"
                     >
-                      <div className="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#0052D9] transition-transform duration-200 group-hover:scale-110"></div>
+                      <div className="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#05f] transition-transform duration-200 group-hover:scale-110"></div>
                       <div className="flex-1 space-y-1">
                         <div
                           className="text-base font-semibold sm:text-lg md:text-xl"
@@ -279,7 +295,13 @@ export function CloudFeatureTabs() {
                 <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                   <button
                     type="button"
-                    className="group inline-flex items-center justify-center rounded-lg border-2 border-white bg-gradient-to-b from-white to-gray-50 px-4 py-2 text-sm font-medium text-gray-700 shadow-[4px_4px_12px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_18px_0_rgba(55,99,170,0.15)] sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
+                    className="group inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-300 hover:-translate-y-0.5 sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
+                    style={{
+                      background: 'linear-gradient(180deg,#f3f5f8,#fff)',
+                      border: '2px solid #fff',
+                      borderRadius: '2px',
+                      boxShadow: '0 6px 20px #dce0e8',
+                    }}
                   >
                     <span className="transition-all duration-300 group-hover:mr-1">
                       查看详情
@@ -300,7 +322,13 @@ export function CloudFeatureTabs() {
                   </button>
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-lg bg-gradient-to-b from-[#0052D9] to-[#003db8] px-4 py-2 text-sm font-medium text-white shadow-[4px_4px_15px_0_rgba(55,99,170,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_20px_0_rgba(55,99,170,0.3)] sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
+                    className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
+                    style={{
+                      background: '#05f',
+                      border: '2px solid #fff',
+                      borderRadius: '2px',
+                      boxShadow: '0 6px 20px #dce0e8',
+                    }}
                   >
                     立即体验
                     <svg
@@ -321,7 +349,14 @@ export function CloudFeatureTabs() {
               </div>
               {/* 右侧模拟界面展示 */}
               <div className="order-1 mt-6 hidden w-full items-center justify-center px-4 sm:px-0 lg:order-2 lg:mt-0 lg:flex lg:w-3/5 lg:justify-end">
-                <div className="h-48 w-full max-w-xs overflow-hidden rounded-lg border-2 border-white bg-gradient-to-b from-white to-gray-50 p-3 shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] backdrop-blur-sm transition-all duration-300 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] sm:h-60 sm:max-w-md sm:p-4 md:h-80 md:max-w-xl md:p-6 lg:h-[28rem] lg:max-w-2xl lg:p-8 xl:h-[32rem] xl:max-w-3xl xl:p-10">
+                <div className="h-48 w-full max-w-xs overflow-hidden p-3 sm:h-60 sm:max-w-md sm:p-4 md:h-80 md:max-w-xl md:p-6 lg:h-[28rem] lg:max-w-2xl lg:p-8 xl:h-[32rem] xl:max-w-3xl xl:p-10"
+                  style={{
+                    background: 'linear-gradient(180deg,#f3f5f8,#fff)',
+                    border: '2px solid #fff',
+                    borderRadius: '2px',
+                    boxShadow: '0 6px 20px #dce0e8',
+                  }}
+                >
                   {/* 模拟界面头部 */}
                   <div className="mb-2 flex items-center justify-between sm:mb-3 md:mb-4 lg:mb-6">
                     <div className="flex items-center gap-1 sm:gap-2">
@@ -338,7 +373,7 @@ export function CloudFeatureTabs() {
                   <div className="h-full space-y-2 overflow-hidden sm:space-y-3 md:space-y-4 lg:space-y-6">
                     {/* 标题栏 */}
                     <div className="mb-2 flex items-center gap-1 sm:mb-3 sm:gap-2 md:mb-4 md:gap-3">
-                      <currentFeature.icon className="h-4 w-4 flex-shrink-0 text-[#0052D9] sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8" />
+                      <currentFeature.icon className="h-4 w-4 flex-shrink-0 text-[#05f] sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8" />
                       <div className="truncate text-xs font-bold text-gray-800 sm:text-sm md:text-base lg:text-lg xl:text-xl">
                         {currentFeature.name}控制台
                       </div>
@@ -351,11 +386,17 @@ export function CloudFeatureTabs() {
                         .map((item, index) => (
                           <div
                             key={index}
-                            className="group overflow-hidden rounded-lg border-2 border-white bg-gradient-to-b from-white to-gray-50 p-2 shadow-[4px_4px_12px_0_rgba(55,99,170,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[4px_4px_18px_0_rgba(55,99,170,0.12)] sm:p-3 md:p-4"
+                            className="group overflow-hidden p-2 sm:p-3 md:p-4 transition-all duration-300 hover:-translate-y-0.5"
+                            style={{
+                              background: 'linear-gradient(180deg,#f3f5f8,#fff)',
+                              border: '2px solid #fff',
+                              borderRadius: '2px',
+                              boxShadow: '0 6px 20px #dce0e8',
+                            }}
                           >
                             <div className="flex items-center justify-between">
                               <div className="flex min-w-0 flex-1 items-center gap-1 sm:gap-2">
-                                <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#0052D9] transition-transform duration-200 group-hover:scale-110 sm:h-2 sm:w-2"></div>
+                                <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#05f] transition-transform duration-200 group-hover:scale-110 sm:h-2 sm:w-2"></div>
                                 <span className="truncate text-xs font-medium text-gray-700 sm:text-sm">
                                   {item.name}
                                 </span>
@@ -374,7 +415,7 @@ export function CloudFeatureTabs() {
                             <div className="mt-1 sm:mt-2">
                               <div className="h-0.5 w-full bg-gray-200 sm:h-1">
                                 <div
-                                  className="h-0.5 bg-[#0052D9] transition-all duration-1000 ease-out sm:h-1"
+                                  className="h-0.5 bg-[#05f] transition-all duration-1000 ease-out sm:h-1"
                                   style={{ width: `${75 + index * 8}%` }}
                                 ></div>
                               </div>
