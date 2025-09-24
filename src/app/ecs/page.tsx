@@ -321,7 +321,7 @@ function ECSLeftrightSection() {
               更快部署
             </h2>
             <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
-              云计算让业务更简单
+              云计算让业务更高效
             </p>
             <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
               借助云计算技术，轻松实现业务创新与数字化转型，提升企业竞争力。
@@ -350,43 +350,43 @@ function ECSLeftrightSection() {
               })}
             </dl>
           </div>
-          <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+          <div className="mt-12 sm:mt-16">
+            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
-              <div className="mb-4 flex items-center justify-between">
+              <div className="mb-3 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <div className="h-2 w-2 rounded-full bg-red-400"></div>
                   <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
                   <div className="h-2 w-2 rounded-full bg-green-400"></div>
                 </div>
                 <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                  ECS 控制台
+                  云计算控制台
                 </div>
               </div>
 
               {/* 移动端模拟界面标题栏 */}
-              <div className="mb-3 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
-                  ECS 实例管理
+              <div className="mb-2 border border-gray-200/50 bg-gray-50/80 p-2 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+                <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                  资源管理中心
                 </h3>
                 <p className="text-xs text-gray-600 dark:text-gray-400">
-                  实时监控云服务器状态
+                  实时监控云计算资源
                 </p>
               </div>
 
               {/* 移动端模拟功能模块 */}
-              <div className="mb-3 space-y-3">
+              <div className="mb-2 space-y-2">
                 {leftRightFeatures.slice(0, 3).map((feature, index) => {
                   const IconComponent = feature.icon
                   return (
                     <div
                       key={feature.name}
-                      className="border border-gray-200/30 bg-gray-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="border border-gray-200/30 bg-gray-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
                           <svg
-                            className="h-4 w-4 text-blue-600 dark:text-blue-400"
+                            className="h-3 w-3 text-blue-600 dark:text-blue-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -395,7 +395,7 @@ function ECSLeftrightSection() {
                           </svg>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                          <h4 className="truncate text-xs font-medium text-gray-900 dark:text-white">
                             {feature.name}
                           </h4>
                           <div className="mt-1">
@@ -432,14 +432,14 @@ function ECSLeftrightSection() {
   function FeaturesDesktop() {
     return (
       <div className="hidden lg:block">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-12 sm:gap-x-8 sm:gap-y-16 md:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start">
-          <div className="sm:px-6 lg:px-0 lg:pt-4 lg:pr-4">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+          <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
               <h2 className="text-base/7 font-semibold text-blue-600 dark:text-blue-400">
                 更快部署
               </h2>
               <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
-                云计算让业务更简单
+                云计算助力业务腾飞
               </p>
               <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
                 借助云计算技术，轻松实现业务创新与数字化转型，提升企业竞争力。
@@ -470,43 +470,43 @@ function ECSLeftrightSection() {
             </div>
           </div>
           <div className="sm:px-6 lg:px-0">
-            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
               {/* 模拟界面头部 */}
-              <div className="mb-6 flex items-center justify-between">
+              <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="h-3 w-3 rounded-full bg-red-400"></div>
                   <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
                   <div className="h-3 w-3 rounded-full bg-green-400"></div>
                 </div>
                 <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  ECS 控制台
+                  云计算控制台
                 </div>
               </div>
 
               {/* 模拟界面标题栏 */}
-              <div className="mb-4 border border-gray-200/50 bg-gray-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                  ECS 实例管理中心
+              <div className="mb-3 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+                <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
+                  资源管理中心
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  实时监控和管理您的云服务器实例
+                  实时监控和管理您的云计算资源
                 </p>
               </div>
 
               {/* 模拟功能模块 */}
-              <div className="mb-4 grid grid-cols-1 gap-4">
-                {leftRightFeatures.slice(0, 4).map((feature, index) => {
+              <div className="mb-3 grid grid-cols-1 gap-3">
+                {leftRightFeatures.slice(0, 3).map((feature, index) => {
                   const IconComponent = feature.icon
                   return (
                     <div
                       key={feature.name}
-                      className="group border border-gray-200/30 bg-gray-50/60 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="group border border-gray-200/30 bg-gray-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                     >
                       <div className="flex items-start space-x-3">
                         <div className="flex-shrink-0">
-                          <div className="flex h-8 w-8 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                          <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
                             <svg
-                              className="h-5 w-5 text-blue-600 dark:text-blue-400"
+                              className="h-4 w-4 text-blue-600 dark:text-blue-400"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -523,9 +523,9 @@ function ECSLeftrightSection() {
                             {feature.summary}
                           </p>
                           <div className="mt-2">
-                            <div className="h-1.5 w-full bg-gray-200/60 dark:bg-gray-700/60">
+                            <div className="h-1 w-full bg-gray-200/60 dark:bg-gray-700/60">
                               <div
-                                className="h-1.5 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                                className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
                                 style={{ width: `${60 + index * 10}%` }}
                               ></div>
                             </div>
@@ -538,7 +538,7 @@ function ECSLeftrightSection() {
               </div>
 
               {/* 模拟状态栏 */}
-              <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-3 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                 <div className="flex items-center space-x-4">
                   <span className="flex items-center space-x-1">
                     <div className="h-2 w-2 rounded-full bg-green-400"></div>
@@ -564,7 +564,7 @@ function ECSLeftrightSection() {
       aria-label="Features for simplifying everyday business tasks"
       className="overflow-hidden bg-white py-24 sm:py-32 dark:bg-gray-900"
     >
-      <Container>
+      <Container className="md:px-6 lg:px-8">
         <FeaturesMobile />
         <FeaturesDesktop />
       </Container>
@@ -581,14 +581,14 @@ function ECSRightleftSection() {
         <div className="mx-auto max-w-2xl">
           {/* 移动端文本内容 */}
           <div className="text-center">
-            <h2 className="text-base/7 font-semibold text-blue-600 dark:text-blue-400">
-              高效管理
+            <h2 className="text-sm font-semibold text-indigo-600 sm:text-base/7 dark:text-indigo-400">
+              更快部署
             </h2>
             <p className="mt-2 text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-3xl md:text-4xl dark:text-white">
-              智能运维，轻松管理
+              云计算为您的业务赋能
             </p>
-            <p className="mt-4 text-base/7 text-gray-600 sm:text-lg/8 dark:text-gray-300">
-              通过智能化运维工具，实现云资源的高效管理和自动化运维。
+            <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg/8 dark:text-gray-300">
+              借助先进的云计算技术，轻松实现业务创新与数字化转型，大幅提升企业竞争力和运营效率。
             </p>
           </div>
 
@@ -602,7 +602,7 @@ function ECSRightleftSection() {
                     <dt className="inline font-semibold text-gray-900 dark:text-white">
                       <IconComponent
                         aria-hidden="true"
-                        className="absolute top-1 left-1 h-4 w-4 text-blue-600 sm:h-5 sm:w-5 dark:text-blue-400"
+                        className="absolute top-0.5 left-0.5 size-4 text-indigo-600 sm:top-1 sm:left-1 sm:size-5 dark:text-indigo-400"
                       />
                       {feature.name}
                     </dt>{' '}
@@ -615,51 +615,56 @@ function ECSRightleftSection() {
 
           {/* 移动端模拟界面 */}
           <div className="mt-8 sm:mt-12">
-            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-3 shadow-xl backdrop-blur-lg sm:p-4 dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-white/30 bg-white/20 p-3 shadow-lg backdrop-blur-xl sm:p-4 dark:border-gray-700/30 dark:bg-gray-900/20">
               {/* 移动端模拟界面头部 */}
-              <div className="mb-3 flex items-center justify-between">
+              <div className="mb-3 flex items-center justify-between sm:mb-4">
                 <div className="flex items-center space-x-1.5 sm:space-x-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-red-400 sm:h-2 sm:w-2"></div>
-                  <div className="h-1.5 w-1.5 rounded-full bg-yellow-400 sm:h-2 sm:w-2"></div>
-                  <div className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-red-400 sm:h-2.5 sm:w-2.5"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-yellow-400 sm:h-2.5 sm:w-2.5"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2.5 sm:w-2.5"></div>
                 </div>
-                <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                  运维管理
+                <div className="text-xs font-medium text-gray-800 sm:text-sm dark:text-white">
+                  云计算控制台
                 </div>
               </div>
 
               {/* 移动端模拟界面标题栏 */}
-              <div className="mb-2 rounded border border-gray-200/50 bg-gray-50/80 p-2 backdrop-blur-sm sm:p-3 dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-1 text-sm font-semibold text-gray-900 sm:text-base dark:text-white">
-                  智能运维中心
+              <div className="mb-2 border border-white/20 bg-white/30 p-2 backdrop-blur-sm sm:mb-3 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30">
+                <h3 className="mb-1 text-sm font-semibold text-gray-800 sm:text-base dark:text-white">
+                  资源管理中心
                 </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
-                  自动化运维管理平台
+                <p className="text-xs text-gray-600 dark:text-gray-300">
+                  实时监控和管理您的云计算资源
                 </p>
               </div>
 
               {/* 移动端模拟功能模块 */}
-              <div className="mb-2 space-y-1.5 sm:space-y-2">
+              <div className="mb-2 grid grid-cols-1 gap-2 sm:mb-3 sm:gap-3">
                 {rightLeftFeatures.slice(0, 3).map((feature, index) => {
                   const IconComponent = feature.icon
                   return (
                     <div
                       key={feature.name}
-                      className="rounded border border-gray-200/30 bg-gray-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 sm:p-2.5 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="group border border-white/10 bg-white/20 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/30 sm:p-3 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
                     >
-                      <div className="flex items-center space-x-2 sm:space-x-3">
-                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border border-blue-200/50 bg-blue-100/80 sm:h-6 sm:w-6 dark:border-blue-800/50 dark:bg-blue-900/50">
-                          <IconComponent className="h-3 w-3 text-blue-600 sm:h-4 sm:w-4 dark:text-blue-400" />
+                      <div className="flex items-start space-x-2">
+                        <div className="flex-shrink-0">
+                          <div className="flex h-5 w-5 items-center justify-center bg-blue-500/80 backdrop-blur-sm sm:h-6 sm:w-6 dark:bg-blue-600/80">
+                            <IconComponent className="h-3 w-3 text-white sm:h-4 sm:w-4" />
+                          </div>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-xs font-medium text-gray-900 sm:text-sm dark:text-white">
+                          <h4 className="truncate text-xs font-medium text-gray-800 sm:text-sm dark:text-white">
                             {feature.name}
                           </h4>
+                          <p className="mt-0.5 truncate text-xs text-gray-600 dark:text-gray-300">
+                            {feature.description.slice(0, 20)}...
+                          </p>
                           <div className="mt-1">
-                            <div className="h-0.5 w-full rounded-full bg-gray-200/60 sm:h-1 dark:bg-gray-700/60">
+                            <div className="h-1 w-full bg-gray-300/50 dark:bg-gray-600/50">
                               <div
-                                className="h-0.5 rounded-full bg-blue-500 transition-all duration-1000 sm:h-1 dark:bg-blue-400"
-                                style={{ width: `${70 + index * 10}%` }}
+                                className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                                style={{ width: `${60 + index * 10}%` }}
                               ></div>
                             </div>
                           </div>
@@ -671,12 +676,22 @@ function ECSRightleftSection() {
               </div>
 
               {/* 移动端模拟状态栏 */}
-              <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-1.5 text-xs text-gray-600 backdrop-blur-sm sm:p-2 dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                <div className="flex items-center space-x-1.5">
-                  <div className="h-1 w-1 bg-blue-400 sm:h-1.5 sm:w-1.5"></div>
-                  <span className="text-xs">运维正常</span>
+              <div className="flex flex-col space-y-2 border border-white/20 bg-white/30 p-2 text-xs text-gray-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+                <div className="flex items-center space-x-2 sm:space-x-4">
+                  <span className="flex items-center space-x-1">
+                    <div className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2"></div>
+                    <span>系统正常</span>
+                  </span>
+                  <span className="hidden sm:inline">CPU: 45%</span>
+                  <span className="hidden sm:inline">内存: 62%</span>
                 </div>
-                <span className="text-xs">自动化运行中</span>
+                <div className="flex items-center justify-between sm:block">
+                  <div className="flex space-x-2 sm:hidden">
+                    <span>CPU: 45%</span>
+                    <span>内存: 62%</span>
+                  </div>
+                  <span className="text-right">最后更新: 刚刚</span>
+                </div>
               </div>
             </div>
           </div>
@@ -693,24 +708,24 @@ function ECSRightleftSection() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
             {/* 平板端文本内容 */}
             <div className="order-2 md:order-1">
-              <h2 className="text-base/7 font-semibold text-blue-600 dark:text-blue-400">
-                高效管理
+              <h2 className="text-sm font-semibold text-indigo-600 sm:text-base/7 dark:text-indigo-400">
+                更快部署
               </h2>
               <p className="mt-2 text-3xl font-semibold tracking-tight text-pretty text-gray-900 md:text-4xl dark:text-white">
-                智能运维，轻松管理
+                云计算为您的业务赋能
               </p>
               <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
-                通过智能化运维工具，实现云资源的高效管理和自动化运维。
+                借助先进的云计算技术，轻松实现业务创新与数字化转型，大幅提升企业竞争力和运营效率。
               </p>
               <dl className="mt-8 space-y-6 text-base/7 text-gray-600 dark:text-gray-400">
                 {rightLeftFeatures.map((feature) => {
                   const IconComponent = feature.icon
                   return (
-                    <div key={feature.name} className="relative pl-9">
+                    <div key={feature.name} className="relative pl-8 sm:pl-9">
                       <dt className="inline font-semibold text-gray-900 dark:text-white">
                         <IconComponent
                           aria-hidden="true"
-                          className="absolute top-1 left-1 h-5 w-5 text-blue-600 dark:text-blue-400"
+                          className="absolute top-0.5 left-0.5 size-4 text-indigo-600 sm:top-1 sm:left-1 sm:size-5 dark:text-indigo-400"
                         />
                         {feature.name}
                       </dt>{' '}
@@ -723,51 +738,56 @@ function ECSRightleftSection() {
 
             {/* 平板端模拟界面 */}
             <div className="order-1 md:order-2">
-              <div className="relative overflow-hidden rounded-lg border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+              <div className="relative overflow-hidden border border-white/30 bg-white/20 p-4 shadow-lg backdrop-blur-xl dark:border-gray-700/30 dark:bg-gray-900/20">
                 {/* 平板端模拟界面头部 */}
-                <div className="mb-3 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <div className="h-2.5 w-2.5 bg-red-400"></div>
-                    <div className="h-2.5 w-2.5 bg-yellow-400"></div>
-                    <div className="h-2.5 w-2.5 bg-green-400"></div>
+                <div className="mb-3 flex items-center justify-between sm:mb-4">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
+                    <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
+                    <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
                   </div>
-                  <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    运维管理中心
+                  <div className="text-sm font-medium text-gray-800 dark:text-white">
+                    云计算控制台
                   </div>
                 </div>
 
                 {/* 平板端模拟界面标题栏 */}
-                <div className="mb-2 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                  <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
-                    智能运维管理平台
+                <div className="mb-2 border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-3 dark:border-gray-600/20 dark:bg-gray-800/30">
+                  <h3 className="mb-1 text-base font-semibold text-gray-800 sm:text-lg dark:text-white">
+                    资源管理中心
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    自动化运维和智能监控系统
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    实时监控和管理您的云计算资源
                   </p>
                 </div>
 
                 {/* 平板端模拟功能模块 */}
-                <div className="mb-2 space-y-1.5">
+                <div className="mb-2 grid grid-cols-1 gap-2 sm:mb-3 sm:gap-3">
                   {rightLeftFeatures.slice(0, 4).map((feature, index) => {
                     const IconComponent = feature.icon
                     return (
                       <div
                         key={feature.name}
-                        className="group border border-gray-200/30 bg-gray-50/60 p-2.5 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                        className="group border border-white/10 bg-white/20 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-white/30 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
                       >
-                        <div className="flex items-center space-x-3">
-                          <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
-                            <IconComponent className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                        <div className="flex items-start space-x-3">
+                          <div className="flex-shrink-0">
+                            <div className="flex h-6 w-6 items-center justify-center bg-blue-500/80 backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
+                              <IconComponent className="h-4 w-4 text-white sm:h-5 sm:w-5" />
+                            </div>
                           </div>
                           <div className="min-w-0 flex-1">
-                            <h4 className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                            <h4 className="truncate text-sm font-medium text-gray-800 sm:text-base dark:text-white">
                               {feature.name}
                             </h4>
+                            <p className="mt-0.5 truncate text-xs text-gray-600 dark:text-gray-300">
+                              {feature.description.slice(0, 30)}...
+                            </p>
                             <div className="mt-1">
-                              <div className="h-1 w-full bg-gray-200/60 dark:bg-gray-700/60">
+                              <div className="h-1 w-full bg-gray-300/50 dark:bg-gray-600/50">
                                 <div
                                   className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
-                                  style={{ width: `${75 + index * 5}%` }}
+                                  style={{ width: `${60 + index * 10}%` }}
                                 ></div>
                               </div>
                             </div>
@@ -779,16 +799,17 @@ function ECSRightleftSection() {
                 </div>
 
                 {/* 平板端模拟状态栏 */}
-                <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                  <div className="flex items-center space-x-3">
+                <div className="flex flex-col space-y-2 border border-white/20 bg-white/30 p-2 text-xs text-gray-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+                  <div className="flex items-center space-x-2 sm:space-x-4">
                     <span className="flex items-center space-x-1">
-                      <div className="h-1.5 w-1.5 bg-blue-400"></div>
-                      <span>运维正常</span>
+                      <div className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2"></div>
+                      <span>系统正常</span>
                     </span>
-                    <span>自动化: 启用</span>
+                    <span>CPU: 45%</span>
+                    <span>内存: 62%</span>
                   </div>
                   <div className="text-right">
-                    <span>运行时间: 99.9%</span>
+                    <span>最后更新: 刚刚</span>
                   </div>
                 </div>
               </div>
@@ -803,102 +824,25 @@ function ECSRightleftSection() {
   function FeaturesDesktop() {
     return (
       <div className="hidden lg:block">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-5 xl:gap-x-12">
-          <div className="flex items-start justify-end lg:order-first lg:col-span-3">
-            <div className="relative w-full overflow-hidden border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg xl:p-5 dark:border-gray-700/50 dark:bg-white/10">
-               {/* 桌面端模拟界面头部 */}
-               <div className="mb-3 flex items-center justify-between xl:mb-4">
-                 <div className="flex items-center space-x-3">
-                   <div className="h-3 w-3 bg-red-400"></div>
-                   <div className="h-3 w-3 bg-yellow-400"></div>
-                   <div className="h-3 w-3 bg-green-400"></div>
-                 </div>
-                 <div className="text-sm font-medium text-gray-700 xl:text-base dark:text-gray-300">
-                   运维管理中心
-                 </div>
-               </div>
-
-               {/* 桌面端模拟界面标题栏 */}
-               <div className="mb-3 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm xl:mb-4 xl:p-4 dark:border-gray-700/50 dark:bg-gray-800/50">
-                 <h3 className="mb-1 text-lg font-semibold text-gray-900 xl:text-xl dark:text-white">
-                   智能运维管理平台
-                 </h3>
-                 <p className="text-sm text-gray-600 xl:text-base dark:text-gray-400">
-                   自动化运维和智能监控系统
-                 </p>
-               </div>
-
-               {/* 桌面端模拟功能模块 */}
-               <div className="mb-3 grid grid-cols-1 gap-2 xl:mb-4 xl:gap-3">
-                 {rightLeftFeatures.map((feature, index) => {
-                   const IconComponent = feature.icon
-                   return (
-                     <div
-                       key={feature.name}
-                       className="group border border-gray-200/30 bg-gray-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 hover:shadow-md xl:p-4 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
-                     >
-                       <div className="flex items-start space-x-3 xl:space-x-4">
-                         <div className="flex-shrink-0">
-                           <div className="flex h-8 w-8 items-center justify-center border border-blue-200/50 bg-blue-100/80 xl:h-10 xl:w-10 dark:border-blue-800/50 dark:bg-blue-900/50">
-                             <IconComponent className="h-5 w-5 text-blue-600 xl:h-6 xl:w-6 dark:text-blue-400" />
-                           </div>
-                         </div>
-                         <div className="min-w-0 flex-1">
-                           <h4 className="text-sm font-medium text-gray-900 xl:text-base dark:text-white">
-                             {feature.name}
-                           </h4>
-                           <p className="mt-1 text-xs text-gray-600 xl:text-sm dark:text-gray-400">
-                             {feature.description}
-                           </p>
-                           <div className="mt-2 xl:mt-3">
-                             <div className="h-1.5 w-full bg-gray-200/60 xl:h-2 dark:bg-gray-700/60">
-                               <div
-                                 className="h-1.5 bg-blue-500 transition-all duration-1000 group-hover:w-full xl:h-2 dark:bg-blue-400"
-                                 style={{ width: `${75 + index * 5}%` }}
-                               ></div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   )
-                 })}
-               </div>
-
-               {/* 桌面端模拟状态栏 */}
-               <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2.5 text-xs text-gray-600 backdrop-blur-sm xl:p-3 xl:text-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                <div className="flex items-center space-x-4">
-                  <span className="flex items-center space-x-1">
-                    <div className="h-2 w-2 rounded-full bg-blue-400"></div>
-                    <span>运维正常</span>
-                  </span>
-                  <span>自动化: 启用</span>
-                  <span>监控: 活跃</span>
-                </div>
-                <div className="text-right">
-                  <span>运行时间: 99.9%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-2 lg:ml-auto lg:pt-4 lg:pl-4 xl:pt-6 xl:pl-6">
-            <div className="lg:max-w-lg xl:max-w-xl">
-              <h2 className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-12 sm:gap-x-8 sm:gap-y-16 md:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:ml-auto lg:pt-4 lg:pl-4">
+            <div className="lg:max-w-lg">
+              <h2 className="text-sm font-semibold text-indigo-600 sm:text-base/7 dark:text-indigo-400">
                 更快部署
               </h2>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-pretty text-gray-900 lg:text-4xl xl:text-5xl dark:text-white">
-                云计算让业务更简单
+              <p className="mt-2 text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-3xl md:text-4xl lg:text-5xl dark:text-white">
+                云计算为您的业务赋能
               </p>
-              <p className="mt-6 text-lg/8 text-gray-600 xl:text-xl/9 dark:text-gray-300">
+              <p className="mt-4 text-base leading-7 text-gray-600 sm:mt-6 sm:text-lg/8 dark:text-gray-300">
                 借助先进的云计算技术，轻松实现业务创新与数字化转型，大幅提升企业竞争力和运营效率。
               </p>
-              <dl className="mt-10 space-y-8 text-base/7 text-gray-600 xl:space-y-10 xl:text-lg/8 dark:text-gray-400">
+              <dl className="mt-8 max-w-xl space-y-6 text-sm leading-6 text-gray-600 sm:mt-10 sm:space-y-8 sm:text-base/7 lg:max-w-none dark:text-gray-400">
                 {rightLeftFeatures.map((feature) => (
-                  <div key={feature.name} className="relative pl-9 xl:pl-11">
+                  <div key={feature.name} className="relative pl-8 sm:pl-9">
                     <dt className="inline font-semibold text-gray-900 dark:text-white">
                       <feature.icon
                         aria-hidden="true"
-                        className="absolute top-1 left-1 h-5 w-5 text-indigo-600 xl:h-6 xl:w-6 dark:text-indigo-400"
+                        className="absolute top-0.5 left-0.5 size-4 text-indigo-600 sm:top-1 sm:left-1 sm:size-5 dark:text-indigo-400"
                       />
                       {feature.name}
                     </dt>{' '}
@@ -908,6 +852,84 @@ function ECSRightleftSection() {
               </dl>
             </div>
           </div>
+          <div className="flex items-start justify-center lg:order-first lg:justify-end">
+            <div className="relative w-full max-w-lg overflow-hidden border border-white/30 bg-white/20 p-3 shadow-lg backdrop-blur-xl sm:max-w-xl sm:p-4 lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
+              {/* 桌面端模拟界面头部 */}
+              <div className="mb-3 flex items-center justify-between sm:mb-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
+                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
+                  <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
+                </div>
+                <div className="text-xs font-medium text-gray-800 sm:text-sm dark:text-white">
+                  云计算控制台
+                </div>
+              </div>
+
+              {/* 桌面端模拟界面标题栏 */}
+              <div className="mb-2 border border-white/20 bg-white/30 p-2 backdrop-blur-sm sm:mb-3 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30">
+                <h3 className="mb-1 text-sm font-semibold text-gray-800 sm:text-base dark:text-white">
+                  资源管理中心
+                </h3>
+                <p className="text-xs text-gray-600 dark:text-gray-300">
+                  实时监控和管理您的云计算资源
+                </p>
+              </div>
+
+              {/* 桌面端模拟功能模块 */}
+              <div className="mb-2 grid grid-cols-1 gap-2 sm:mb-3 sm:gap-3">
+                {rightLeftFeatures.slice(0, 3).map((feature, index) => (
+                  <div
+                    key={feature.name}
+                    className="group border border-white/10 bg-white/20 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/30 sm:p-3 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                  >
+                    <div className="flex items-start space-x-2">
+                      <div className="flex-shrink-0">
+                        <div className="flex h-5 w-5 items-center justify-center bg-blue-500/80 backdrop-blur-sm sm:h-6 sm:w-6 dark:bg-blue-600/80">
+                          <feature.icon className="h-3 w-3 text-white sm:h-4 sm:w-4" />
+                        </div>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="truncate text-xs font-medium text-gray-800 sm:text-sm dark:text-white">
+                          {feature.name}
+                        </h4>
+                        <p className="mt-0.5 truncate text-xs text-gray-600 dark:text-gray-300">
+                          {feature.description.slice(0, 20)}...
+                        </p>
+                        <div className="mt-1">
+                          <div className="h-1 w-full bg-gray-300/50 dark:bg-gray-600/50">
+                            <div
+                              className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                              style={{ width: `${60 + index * 10}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 桌面端模拟状态栏 */}
+              <div className="flex flex-col space-y-2 border border-white/20 bg-white/30 p-2 text-xs text-gray-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+                <div className="flex items-center space-x-2 sm:space-x-4">
+                  <span className="flex items-center space-x-1">
+                    <div className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2"></div>
+                    <span>系统正常</span>
+                  </span>
+                  <span className="hidden sm:inline">CPU: 45%</span>
+                  <span className="hidden sm:inline">内存: 62%</span>
+                </div>
+                <div className="flex items-center justify-between sm:block">
+                  <div className="flex space-x-2 sm:hidden">
+                    <span>CPU: 45%</span>
+                    <span>内存: 62%</span>
+                  </div>
+                  <span className="text-right">最后更新: 刚刚</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -915,7 +937,7 @@ function ECSRightleftSection() {
 
   return (
     <section id="rightleft-features" aria-label="云计算功能特性展示">
-      <div className="overflow-hidden bg-gray-50 py-16 sm:py-20 md:py-24 lg:py-32 dark:bg-gray-800">
+      <div className="overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-32 dark:bg-gray-900">
         <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
           <FeaturesMobile />
           <FeaturesTablet />

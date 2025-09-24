@@ -33,7 +33,7 @@ export default function CatSections() {
         {/* 服务卡片网格 - 移动端两行两列优化 */}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {/* 联系咨询 */}
-          <div className="bg-[#f3f5f8] border-2 border-white rounded p-3 transition-all duration-300 hover:shadow-[8px_8px_20px_rgba(55,99,170,0.1),-8px_-8px_20px_#fff] sm:p-6" style={{boxShadow: '8px 8px 20px rgba(55,99,170,0.1), -8px -8px 20px #fff'}}>
+          <div className="bg-[#f3f5f8] border-2 border-white rounded-[2px] p-3 transition-all duration-300 hover:shadow-[0_6px_20px_#dce0e8] sm:p-6" style={{background: 'linear-gradient(180deg,#f3f5f8,#fff)', boxShadow: '0 6px 20px #dce0e8'}}>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
               <div className="flex-1">
                 <h3 className="text-base font-semibold text-gray-900 sm:text-lg lg:text-xl">
@@ -53,7 +53,7 @@ export default function CatSections() {
           </div>
 
           {/* 产品服务 */}
-          <div className="bg-[#f3f5f8] border-2 border-white rounded p-3 transition-all duration-300 hover:shadow-[8px_8px_20px_rgba(55,99,170,0.1),-8px_-8px_20px_#fff] sm:p-6" style={{boxShadow: '8px 8px 20px rgba(55,99,170,0.1), -8px -8px 20px #fff'}}>
+          <div className="bg-[#f3f5f8] border-2 border-white rounded-[2px] p-3 transition-all duration-300 hover:shadow-[0_6px_20px_#dce0e8] sm:p-6" style={{background: 'linear-gradient(180deg,#f3f5f8,#fff)', boxShadow: '0 6px 20px #dce0e8'}}>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
               <div className="flex-1">
                 <h3 className="text-base font-semibold text-gray-900 sm:text-lg lg:text-xl">
@@ -73,7 +73,7 @@ export default function CatSections() {
           </div>
 
           {/* 合作伙伴 */}
-          <div className="col-span-2 bg-[#f3f5f8] border-2 border-white rounded p-3 transition-all duration-300 hover:shadow-[8px_8px_20px_rgba(55,99,170,0.1),-8px_-8px_20px_#fff] sm:col-span-1 sm:p-6 lg:col-span-1" style={{boxShadow: '8px 8px 20px rgba(55,99,170,0.1), -8px -8px 20px #fff'}}>
+          <div className="col-span-2 bg-[#f3f5f8] border-2 border-white rounded-[2px] p-3 transition-all duration-300 hover:shadow-[0_6px_20px_#dce0e8] sm:col-span-1 sm:p-6 lg:col-span-1" style={{background: 'linear-gradient(180deg,#f3f5f8,#fff)', boxShadow: '0 6px 20px #dce0e8'}}>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
               <div className="flex-1">
                 <h3 className="text-base font-semibold text-gray-900 sm:text-lg lg:text-xl">
@@ -94,7 +94,7 @@ export default function CatSections() {
 
           {/* 免费开始体验 - 移动端占据整行 */}
           <div
-            className="group col-span-2 transform overflow-hidden rounded-lg border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] p-4 sm:col-span-2 sm:p-6 lg:col-span-3 lg:p-8"
+            className="group col-span-2 transform overflow-hidden rounded-[2px] border-2 border-white shadow-[0_6px_20px_#dce0e8] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_25px_#dce0e8] p-4 sm:col-span-2 sm:p-6 lg:col-span-3 lg:p-8"
             style={{
               backgroundImage: 'linear-gradient(135deg, #f3f5f8 50%, #0052d9 50%)',
               WebkitFontSmoothing: 'antialiased',

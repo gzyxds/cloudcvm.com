@@ -174,10 +174,10 @@ const styles = {
   section: 'relative w-full overflow-hidden touch-pan-y',
   imageContainer: 'absolute inset-0 transition-opacity duration-1000 ease-in-out',
   image: 'object-cover will-change-transform',
-  titleButton: 'group relative text-left transition-all duration-300 cursor-pointer bg-gradient-to-b from-white to-gray-50 rounded-lg p-3 sm:p-4 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] hover:-translate-y-1 max-w-[200px] sm:max-w-[250px]',
+  titleButton: 'group relative text-left transition-all duration-300 cursor-pointer bg-gradient-to-b from-white to-gray-50 p-3 sm:p-4 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] hover:-translate-y-1 max-w-[200px] sm:max-w-[250px]',
   titleButtonActive: 'bg-gradient-to-b from-white to-gray-50 border-blue-300 -translate-y-1 shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]',
   content: 'absolute inset-0 z-10 flex items-center',
-  indicator: 'h-2 rounded-full transition-all duration-300'
+  indicator: 'h-2 transition-all duration-300'
 }
 
 /**
@@ -186,7 +186,7 @@ const styles = {
 const cardBaseStyle = {
   display: 'block',
   marginRight: '20px',
-  borderRadius: '4px',
+  borderRadius: '0',
   boxSizing: 'border-box' as const,
   width: '1px',
   height: 'auto',
@@ -255,7 +255,7 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
       aria-label={`切换到 ${slideItem.title}`}
     >
       <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10">
-        <span className={`inline-flex items-center justify-center w-7 h-7 text-xs font-bold rounded-full transition-all duration-300 ${
+        <span className={`inline-flex items-center justify-center w-7 h-7 text-xs font-bold transition-all duration-300 rounded-none ${
           isActive
             ? 'bg-blue-600 text-white shadow-md'
             : 'bg-gray-100 text-gray-500 border border-gray-200'
@@ -293,7 +293,7 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
         </div>
       )}
 
-      <div className={`absolute right-2 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-500 rounded-full transition-all duration-300 ${
+      <div className={`absolute right-2 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-500 transition-all duration-300 ${
         isActive ? 'opacity-100' : 'opacity-0'
       }`} />
     </button>
@@ -584,7 +584,7 @@ const Carousel = memo(function Carousel({
             <div
               key={card.id}
               className={`transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 border-white ${
-                card.style === 'rounded' ? 'rounded-xl' : 'rounded'
+                card.style === 'rounded' ? '' : ''
               } ${
                 card.style === 'extended' ? 'px-4 pt-2.5 pb-5' : 'p-4'
               }`}
@@ -627,7 +627,7 @@ const Carousel = memo(function Carousel({
             {floatingCards.map((card) => (
               <div
                 key={card.id}
-                className="flex-shrink-0 bg-white rounded-lg border-2 border-white shadow-lg transition-all duration-300 hover:shadow-xl cursor-pointer"
+                className="flex-shrink-0 bg-white border-2 border-white shadow-lg transition-all duration-300 hover:shadow-xl cursor-pointer"
                 style={{
                   backgroundImage: 'linear-gradient(0deg, #fff, #f3f5f8)',
                   boxShadow: '4px 4px 12px 0 rgba(55,99,170,.1)',
