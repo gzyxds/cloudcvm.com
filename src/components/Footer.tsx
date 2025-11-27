@@ -36,7 +36,7 @@ const navigation = {
   friendlyLinks: [
     { name: '艺创AI', href: 'https://www.urlnet.cn' },
     { name: 'AI系统源码', href: 'https://www.artaigc.cn' },
-    { name: 'Payphp', href: 'https://www.payphp.cn' },
+    { name: 'PaYphp', href: 'https://www.payphp.cn' },
     { name: '数字分身', href: 'https://v.cnai.art' },
     { name: '企业知识库', href: 'https://www.cnai.art' },
     { name: '聊天绘画', href: '/' },
