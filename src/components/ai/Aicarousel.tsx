@@ -57,22 +57,10 @@ export type VideoCarouselProps = CarouselProps
  * 默认轮播图数据
  */
 const defaultSlides: CarouselSlide[] = [
+
   {
     id: 1,
     order: 1,
-    title: '用AI为企业赋能',
-    subtitle: '提供行业的AI解决方案',
-    description: 'AI企业解决方案·引领企业实现数字化、智能化转型技术过硬、私有部署、个性化定制、稳定使用',
-    imagePath: '/images/screenshots/carousel -2.jpg',
-    imageAlt: '全方位支付解决方案',
-    primaryButtonText: '立即领取',
-    primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
-    secondaryButtonText: '联系客服',
-    secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
-  },
-  {
-    id: 2,
-    order: 2,
     title: '全能知识库',
     subtitle: '赋能企业知识管理与数字化转型',
     description: '基于先进的AI技术，提供高度拟真的数字人解决方案，赋能企业知识管理与数字化转型， 让智能服务触手可及',
@@ -84,8 +72,8 @@ const defaultSlides: CarouselSlide[] = [
     secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
-    id: 3,
-    order: 3,
+    id: 2,
+    order: 2,
     title: '数字分身',
     subtitle: '基于先进的AI技术，提供高度拟真的数字人解决方案',
     description: '专为企业主、个人博主打造短视频IP系统，支持真人声音+形象克隆，一键合成课程、带货、形象宣传、行业干货等口播视',
@@ -97,8 +85,8 @@ const defaultSlides: CarouselSlide[] = [
     secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
-    id: 4,
-    order: 4,
+    id: 3,
+    order: 3,
     title: '聊天绘画',
     subtitle: '基于前沿AI技术，为企业提供专业可靠的智能化解决方案',
     description: '集成最新GPT-4、DALL-E 3、Midjourney等顶级AI模型，一站式AI创作平台， 让创意无限可能',
@@ -110,8 +98,8 @@ const defaultSlides: CarouselSlide[] = [
     secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
-    id: 5,
-    order: 5,
+    id: 4,
+    order: 4,
     title: '论文创作',
     subtitle: '集成最新AI技术，为您提供全方位的智能参考文案',
     description: '基于先进的AI技术，提供智能化论文写作解决方案，助力学术研究与知识创新',
