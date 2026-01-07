@@ -1,168 +1,162 @@
 'use client'
 
+import { Container } from '@/components/Container'
 import {
-  CloudArrowUpIcon,
-  LockClosedIcon,
-  ServerIcon,
-} from '@heroicons/react/20/solid'
+  CpuChipIcon,
+  AdjustmentsHorizontalIcon,
+  CommandLineIcon,
+  BeakerIcon,
+  BookOpenIcon,
+  Squares2X2Icon
+} from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 /**
- * 云计算功能特性数据模拟界面位于左侧
- * 包含三个核心功能：一键部署、SSL证书管理、数据库备份
+ * 功能特性数据接口定义
+ * @interface FeatureItem
+ * @property {string} name - 功能名称
+ * @property {string} description - 功能详细描述
+ * @property {any} icon - 功能对应的图标组件
  */
-const features = [
+interface FeatureItem {
+  name: string
+  description: string
+  icon: any
+}
+
+/**
+ * 右侧卡片的功能列表数据
+ * 包含6个核心功能模块：智能广场、模型推理、模型定制、PromptPilot、应用实验室、知识库
+ */
+const apiFeatures: FeatureItem[] = [
   {
-    name: '一键部署',
-    description:
-      '通过简单的推送操作即可完成应用部署，大幅提升开发效率，让您专注于业务创新而非运维工作。',
-    icon: CloudArrowUpIcon,
+    name: '智能广场',
+    description: '多种模态模型体验，开箱即用',
+    icon: Squares2X2Icon,
   },
   {
-    name: 'SSL证书管理',
-    description:
-      '自动化SSL证书申请、部署和续期，为您的网站提供全方位的HTTPS安全保护。',
-    icon: LockClosedIcon,
+    name: '模型推理',
+    description: '支持在线和批量推理，灵活适配',
+    icon: CpuChipIcon,
   },
   {
-    name: '数据库备份',
-    description:
-      '智能化数据备份策略，支持定时备份和增量备份，确保您的数据安全无忧。',
-    icon: ServerIcon,
+    name: '模型定制',
+    description: '支持模型精调、模型评测',
+    icon: AdjustmentsHorizontalIcon,
+  },
+  {
+    name: 'PromptPilot',
+    description: '轻松打造精准prompt，高效优化',
+    icon: CommandLineIcon,
+  },
+  {
+    name: '应用实验室',
+    description: '多种开发方式，搭建企业级应用',
+    icon: BeakerIcon,
+  },
+  {
+    name: '知识库',
+    description: '企业级全模态知识问答 RAG 服务',
+    icon: BookOpenIcon,
   },
 ]
+
 /**
- * 左右分栏展示组件 - 采用最新设计风格
- * 展示云计算产品的核心功能特性，支持响应式布局和完整的暗色模式
- * 采用简洁的左右分栏布局，左侧为功能介绍，右侧为产品截图
- * 支持亮色/暗色模式图片自动切换
- * @returns 左右分栏功能特性区块
+ * 极速体验必定AI-BuidAI组件 (VolcanoArkExperience)
+ *
+ * 这是一个双卡片布局组件，参考了"极速体验必定AI-BuidAI"的设计风格。
+ * 布局结构：
+ * - 顶部标题：居中显示的"极速体验必定AI-BuidAI"
+ * - 双列布局：
+ *   - 左侧卡片：极速体验模型 (包含文本、按钮和模拟的聊天界面图)
+ *   - 右侧卡片：API构建应用 (包含文本、按钮和6宫格功能特性列表)
+ *
+ * 设计特点：
+ * - 宽度：使用 System Container (max-w-[1800px])
+ * - 风格：白色卡片背景，细微边框，圆角设计
+ * - 响应式：在移动端自动堆叠为单列
  */
-function Example() {
+export function Rightleft() {
   return (
-    <div className="overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-32 dark:bg-gray-900">
-      <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-12 sm:gap-x-8 sm:gap-y-16 md:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          <div className="lg:ml-auto lg:pt-4 lg:pl-4">
-            <div className="lg:max-w-lg">
-              <h2 className="text-sm font-semibold text-indigo-600 sm:text-base/7 dark:text-indigo-400">
-                更快部署
-              </h2>
-              <p className="mt-2 text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-3xl md:text-4xl lg:text-5xl dark:text-white">
-                云计算为您的业务赋能
+    <section className="bg-[#F7F8FB] py-20 sm:py-24 lg:py-32">
+      <Container>
+        {/* 顶部标题区域 */}
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-[#1d2129] sm:text-4xl">
+            极速体验必定AI-BuidAI
+          </h2>
+        </div>
+
+        {/* 双卡片主要内容区域 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          {/* 左侧卡片：极速体验模型 */}
+          <div className="flex flex-col overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm transition-shadow hover:shadow-md">
+            <div className="p-8 sm:p-10 flex-1 flex flex-col">
+              <h3 className="text-2xl font-bold text-[#1d2129] mb-4">
+                极速体验模型
+              </h3>
+              <p className="text-[#4e5969] text-base leading-relaxed mb-8 flex-grow">
+                体验超全模型，领取超大免费权益，每款豆包大语言提供50万Tokens免费额度，企业用户参与协作计划可获得500万Tokens免费额度
               </p>
-              <p className="mt-4 text-base leading-7 text-gray-600 sm:mt-6 sm:text-lg/8 dark:text-gray-300">
-                借助先进的云计算技术，轻松实现业务创新与数字化转型，大幅提升企业竞争力和运营效率。
-              </p>
-              <dl className="mt-8 max-w-xl space-y-6 text-sm leading-6 text-gray-600 sm:mt-10 sm:space-y-8 sm:text-base/7 lg:max-w-none dark:text-gray-400">
-                {features.map((feature) => (
-                  <div key={feature.name} className="relative pl-8 sm:pl-9">
-                    <dt className="inline font-semibold text-gray-900 dark:text-white">
-                      <feature.icon
-                        aria-hidden="true"
-                        className="absolute top-0.5 left-0.5 size-4 text-indigo-600 sm:top-1 sm:left-1 sm:size-5 dark:text-indigo-400"
-                      />
-                      {feature.name}
-                    </dt>{' '}
-                    <dd className="inline">{feature.description}</dd>
-                  </div>
-                ))}
-              </dl>
+              <div className="mb-8">
+                <button className="bg-[#1664ff] text-white px-8 py-2.5 rounded hover:bg-[#4086ff] transition-colors font-medium text-sm">
+                  立即体验
+                </button>
+              </div>
+
+              {/* 模拟聊天界面截图区域 - 使用真实产品截图 */}
+              <div className="relative w-full h-[300px] sm:h-[400px] bg-[#F7F8FA] rounded-xl border border-slate-100 overflow-hidden mt-auto">
+                <Image
+                  src="https://portal.volccdn.com/obj/volcfe/bee_prod/biz_950/tos_9c738c3983371d4652420bd4110aae53.png"
+                  alt="极速体验模型界面"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
           </div>
-          <div className="flex items-start justify-center lg:order-first lg:justify-end">
-            <div className="relative w-full max-w-lg overflow-hidden border border-white/30 bg-white/20 p-3 shadow-lg backdrop-blur-xl sm:max-w-xl sm:p-4 lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
-              {/* 模拟界面头部 */}
-              <div className="mb-3 flex items-center justify-between sm:mb-4">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
-                </div>
-                <div className="text-xs font-medium text-gray-800 sm:text-sm dark:text-white">
-                  云计算控制台
-                </div>
+
+          {/* 右侧卡片：API构建应用 */}
+          <div className="flex flex-col overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm transition-shadow hover:shadow-md">
+            <div className="p-8 sm:p-10 flex-1 flex flex-col">
+              <h3 className="text-2xl font-bold text-[#1d2129] mb-4">
+                API构建应用
+              </h3>
+              <p className="text-[#4e5969] text-base leading-relaxed mb-8">
+                平台提供模型精调、推理、评测等全方位功能与服务，提供联网内容等丰富插件功能、知识库与智能体集成能力，保障企业级AI应用落地
+              </p>
+              <div className="mb-10">
+                <button className="bg-[#1664ff] text-white px-8 py-2.5 rounded hover:bg-[#4086ff] transition-colors font-medium text-sm">
+                  立即使用
+                </button>
               </div>
 
-              {/* 模拟界面标题栏 */}
-              <div className="mb-2 border border-white/20 bg-white/30 p-2 backdrop-blur-sm sm:mb-3 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30">
-                <h3 className="mb-1 text-sm font-semibold text-gray-800 sm:text-base dark:text-white">
-                  资源管理中心
-                </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-300">
-                  实时监控和管理您的云计算资源
-                </p>
-              </div>
-
-              {/* 模拟功能模块 */}
-              <div className="mb-2 grid grid-cols-1 gap-2 sm:mb-3 sm:gap-3">
-                {features.slice(0, 3).map((feature, index) => (
+              {/* 功能特性网格 - 2x3 布局 */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6 mt-auto">
+                {apiFeatures.map((feature) => (
                   <div
                     key={feature.name}
-                    className="group border border-white/10 bg-white/20 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/30 sm:p-3 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                    className="flex items-start gap-4 p-5 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-[#1664ff]/30 hover:shadow-md transition-all duration-300 group"
                   >
-                    <div className="flex items-start space-x-2">
-                      <div className="flex-shrink-0">
-                        <div className="flex h-5 w-5 items-center justify-center bg-blue-500/80 backdrop-blur-sm sm:h-6 sm:w-6 dark:bg-blue-600/80">
-                          <feature.icon className="h-3 w-3 text-white sm:h-4 sm:w-4" />
-                        </div>
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-xs font-medium text-gray-800 sm:text-sm dark:text-white">
-                          {feature.name}
-                        </h4>
-                        <p className="mt-0.5 truncate text-xs text-gray-600 dark:text-gray-300">
-                          {feature.description.slice(0, 20)}...
-                        </p>
-                        <div className="mt-1">
-                          <div className="h-1 w-full bg-gray-300/50 dark:bg-gray-600/50">
-                            <div
-                              className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
-                              style={{ width: `${60 + index * 10}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="flex-shrink-0 mt-1">
+                      <feature.icon className="h-7 w-7 text-[#1664ff]/80 group-hover:text-[#1664ff] transition-colors" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#1d2129] text-base mb-1.5 group-hover:text-[#1664ff] transition-colors">{feature.name}</h4>
+                      <p className="text-sm text-[#86909c] leading-relaxed">
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
-
-              {/* 模拟状态栏 */}
-              <div className="flex flex-col space-y-2 border border-white/20 bg-white/30 p-2 text-xs text-gray-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
-                <div className="flex items-center space-x-2 sm:space-x-4">
-                  <span className="flex items-center space-x-1">
-                    <div className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2"></div>
-                    <span>系统正常</span>
-                  </span>
-                  <span className="hidden sm:inline">CPU: 45%</span>
-                  <span className="hidden sm:inline">内存: 62%</span>
-                </div>
-                <div className="flex items-center justify-between sm:block">
-                  <div className="flex space-x-2 sm:hidden">
-                    <span>CPU: 45%</span>
-                    <span>内存: 62%</span>
-                  </div>
-                  <span className="text-right">最后更新: 刚刚</span>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
-/**
- * 左右分栏展示组件 - 主导出组件
- * 展示云计算产品的功能特性，支持响应式布局和深色模式
- * 参考 test.tsx 的设计风格，采用简洁的左右分栏布局
- * @returns 左右分栏功能特性区块
- */
-export function Rightleft() {
-  return (
-    <section id="secondary-features" aria-label="云计算功能特性展示">
-      <Example />
+        </div>
+      </Container>
     </section>
   )
 }

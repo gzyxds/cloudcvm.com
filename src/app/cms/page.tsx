@@ -101,11 +101,11 @@ function CMSHeroSection() {
   ]
 
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50 py-16 sm:py-20 md:py-24 lg:py-32">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-slate-50 to-white py-16 sm:py-20 md:py-24 lg:py-32">
       {/* 背景网格图案 */}
       <svg
         aria-hidden="true"
-        className="absolute inset-0 -z-10 size-full stroke-gray-200/50"
+        className="absolute inset-0 -z-10 size-full stroke-slate-200/50 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
       >
         <defs>
           <pattern
@@ -129,8 +129,8 @@ function CMSHeroSection() {
 
       {/* 装饰元素 */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/4 h-64 w-64 bg-blue-400/10 opacity-60 blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/4 h-48 w-48 bg-indigo-400/10 opacity-40 blur-3xl"></div>
+        <div className="absolute top-1/4 right-1/4 h-64 w-64 bg-[#0055ff]/5 opacity-60 blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 h-48 w-48 bg-slate-200/20 opacity-40 blur-3xl"></div>
       </div>
 
       <Container className="relative z-10">
@@ -138,24 +138,24 @@ function CMSHeroSection() {
           {/* 左侧内容区 */}
           <div className="space-y-6 text-center lg:space-y-8 lg:text-left">
             {/* 品牌标识 */}
-            <div className="inline-flex items-center border border-gray-200 bg-gray-50 px-3 py-2 text-xs font-medium text-gray-700 sm:px-4 sm:text-sm">
-              <DocumentTextIcon className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+            <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-sm sm:px-4 sm:text-sm">
+              <DocumentTextIcon className="mr-2 h-3 w-3 text-[#0055ff] sm:h-4 sm:w-4" />
               企业级CMS解决方案
             </div>
 
             {/* 主标题 */}
             <div className="space-y-3 sm:space-y-4">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                <span className="text-[#0055ff]">
                   智能化
                 </span>
                 <br />
                 内容管理系统
               </h1>
-              <p className="mx-auto max-w-2xl text-base leading-7 text-gray-600 sm:text-lg md:text-xl lg:mx-0 lg:leading-8">
+              <p className="mx-auto max-w-2xl text-base leading-7 text-slate-600 sm:text-lg md:text-xl lg:mx-0 lg:leading-8">
                 为企业提供专业的内容创作、管理、发布一体化解决方案
               </p>
-              <p className="mx-auto max-w-xl text-sm leading-6 text-gray-500 sm:text-base lg:mx-0 lg:leading-7">
+              <p className="mx-auto max-w-xl text-sm leading-6 text-slate-500 sm:text-base lg:mx-0 lg:leading-7">
                 支持多站点管理、SEO优化、响应式设计，助力企业数字化转型
               </p>
             </div>
@@ -166,7 +166,7 @@ function CMSHeroSection() {
                 <a
                   key={feature.name}
                   href={feature.href}
-                  className="border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-900 transition-all hover:border-blue-300 hover:bg-blue-50 sm:px-4 sm:py-2 sm:text-sm"
+                  className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition-all hover:border-[#0055ff]/30 hover:bg-[#0055ff]/5 hover:text-[#0055ff] sm:px-4 sm:py-2 sm:text-sm"
                 >
                   {feature.name}
                 </a>
@@ -197,16 +197,16 @@ function CMSHeroSection() {
 
           {/* 右侧展示区 - 现代化CMS仪表板预览 */}
           <div className="relative mt-8 lg:mt-0">
-            <div className="hover:shadow-3xl relative border border-gray-200/80 bg-gradient-to-br from-white to-gray-50 shadow-2xl transition-all duration-500 hover:-translate-y-1">
+            <div className="relative rounded-xl border border-slate-200 bg-white/80 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-slate-200/50">
               {/* 窗口控制栏 */}
-              <div className="border-b border-gray-200 bg-gray-50/80 p-4">
+              <div className="border-b border-slate-200 bg-slate-50/80 px-4 py-3 rounded-t-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-2">
                     <div className="h-3 w-3 rounded-full bg-red-400"></div>
                     <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
                     <div className="h-3 w-3 rounded-full bg-green-400"></div>
                   </div>
-                  <div className="text-sm font-medium text-gray-700">
+                  <div className="text-sm font-medium text-slate-600">
                     CMS Dashboard
                   </div>
                   <div className="w-6"></div>
@@ -217,50 +217,50 @@ function CMSHeroSection() {
               <div className="p-6">
                 {/* 顶部状态栏 */}
                 <div className="mb-6 grid grid-cols-3 gap-4">
-                  <div className="rounded-lg bg-blue-50 p-3 text-center">
-                    <div className="text-lg font-bold text-blue-600">128</div>
-                    <div className="text-xs text-blue-500">文章</div>
+                  <div className="rounded-lg bg-[#eff6ff] p-3 text-center">
+                    <div className="text-lg font-bold text-[#0055ff]">128</div>
+                    <div className="text-xs text-slate-500">文章</div>
                   </div>
                   <div className="rounded-lg bg-green-50 p-3 text-center">
                     <div className="text-lg font-bold text-green-600">45</div>
-                    <div className="text-xs text-green-500">页面</div>
+                    <div className="text-xs text-slate-500">页面</div>
                   </div>
                   <div className="rounded-lg bg-purple-50 p-3 text-center">
                     <div className="text-lg font-bold text-purple-600">89%</div>
-                    <div className="text-xs text-purple-500">SEO评分</div>
+                    <div className="text-xs text-slate-500">SEO评分</div>
                   </div>
                 </div>
 
                 {/* 内容预览区 */}
                 <div className="space-y-4">
                   {/* 文章列表预览 */}
-                  <div className="rounded-lg border border-gray-200 bg-white p-3">
+                  <div className="rounded-lg border border-slate-200 bg-white p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <div className="h-2 w-2 rounded-full bg-blue-400"></div>
-                        <div className="h-2 w-20 rounded bg-gray-200"></div>
+                        <div className="h-2 w-2 rounded-full bg-[#0055ff]"></div>
+                        <div className="h-2 w-20 rounded bg-slate-100"></div>
                       </div>
-                      <div className="h-2 w-8 rounded bg-gray-200"></div>
+                      <div className="h-2 w-8 rounded bg-slate-100"></div>
                     </div>
-                    <div className="mt-2 h-2 w-full rounded bg-gray-200"></div>
-                    <div className="mt-1 h-2 w-3/4 rounded bg-gray-200"></div>
+                    <div className="mt-2 h-2 w-full rounded bg-slate-100"></div>
+                    <div className="mt-1 h-2 w-3/4 rounded bg-slate-100"></div>
                   </div>
 
                   {/* 额外内容区域 - 增加高度 */}
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
+                  <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
                     <div className="flex items-center space-x-2">
                       <div className="h-3 w-3 rounded-full bg-orange-400"></div>
-                      <div className="h-2 w-16 rounded bg-gray-300"></div>
+                      <div className="h-2 w-16 rounded bg-slate-200"></div>
                     </div>
                     <div className="mt-2 grid grid-cols-2 gap-2">
-                      <div className="h-2 rounded bg-gray-300"></div>
-                      <div className="h-2 rounded bg-gray-300"></div>
+                      <div className="h-2 rounded bg-slate-200"></div>
+                      <div className="h-2 rounded bg-slate-200"></div>
                     </div>
                   </div>
 
                   {/* 统计数据预览 */}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 p-2 text-center">
+                    <div className="rounded-lg bg-gradient-to-r from-[#0055ff] to-[#0043cc] p-2 text-center">
                       <div className="text-xs font-medium text-white">
                         浏览量
                       </div>
@@ -276,10 +276,10 @@ function CMSHeroSection() {
 
                   {/* 快速操作按钮 */}
                   <div className="flex space-x-2">
-                    <button className="flex-1 rounded-lg bg-blue-600 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-blue-700">
+                    <button className="flex-1 rounded-lg bg-[#0055ff] px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-[#0043cc]">
                       新建
                     </button>
-                    <button className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50">
+                    <button className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50">
                       发布
                     </button>
                   </div>
@@ -287,8 +287,8 @@ function CMSHeroSection() {
               </div>
 
               {/* 底部状态栏 */}
-              <div className="border-t border-gray-200 bg-gray-50/80 p-3">
-                <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="border-t border-slate-200 bg-slate-50/80 px-4 py-2 rounded-b-xl">
+                <div className="flex items-center justify-between text-xs text-slate-500">
                   <span>已连接</span>
                   <span>v2.1.0</span>
                 </div>
@@ -296,8 +296,8 @@ function CMSHeroSection() {
             </div>
 
             {/* 装饰性光效 */}
-            <div className="absolute -top-4 -right-4 h-24 w-24 bg-blue-400/10 blur-2xl"></div>
-            <div className="absolute -bottom-4 -left-4 h-16 w-16 bg-indigo-400/10 blur-2xl"></div>
+            <div className="absolute -top-4 -right-4 h-24 w-24 bg-[#0055ff]/10 blur-2xl"></div>
+            <div className="absolute -bottom-4 -left-4 h-16 w-16 bg-slate-400/10 blur-2xl"></div>
           </div>
         </div>
       </Container>
@@ -348,84 +348,47 @@ function CMSFeaturesSection() {
     },
   ]
 
-  const getColorClasses = (color: string) => {
-    const colorMap: Record<
-      string,
-      { bg: string; text: string; border: string }
-    > = {
-      blue: {
-        bg: 'bg-gray-100',
-        text: 'text-blue-600',
-        border: 'border-gray-200',
-      },
-      green: {
-        bg: 'bg-gray-100',
-        text: 'text-blue-600',
-        border: 'border-gray-200',
-      },
-      purple: {
-        bg: 'bg-gray-100',
-        text: 'text-blue-600',
-        border: 'border-gray-200',
-      },
-      cyan: {
-        bg: 'bg-gray-100',
-        text: 'text-blue-600',
-        border: 'border-gray-200',
-      },
-      red: {
-        bg: 'bg-gray-100',
-        text: 'text-blue-600',
-        border: 'border-gray-200',
-      },
-      yellow: {
-        bg: 'bg-gray-100',
-        text: 'text-blue-600',
-        border: 'border-gray-200',
-      },
-    }
-    return colorMap[color] || colorMap.blue
-  }
-
   return (
     <section id="features" className="bg-white py-16 sm:py-20 md:py-24">
       <Container>
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
             核心功能特性
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
             全面的CMS功能模块，满足企业各类内容管理需求
           </p>
         </div>
 
         <div className="mt-12 grid gap-6 sm:mt-16 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 xl:gap-10">
           {coreFeatures.map((feature, index) => {
-            const colors = getColorClasses(feature.color)
             return (
               <div
                 key={feature.title}
-                className="group relative overflow-hidden border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-md sm:p-8"
+                className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:p-8"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {/* 选中时的背景渐变 */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                 {/* 内容 */}
                 <div className="relative z-10">
                   <div className="mb-3 flex items-center gap-3">
                     <feature.icon
-                      className={`h-6 w-6 ${colors.text} sm:h-7 sm:w-7`}
+                      className="h-6 w-6 text-[#0055ff] sm:h-7 sm:w-7"
                     />
-                    <h3 className="text-lg font-semibold text-gray-900 sm:text-xl">
+                    <h3 className="text-lg font-semibold text-slate-900 sm:text-xl">
                       {feature.title}
                     </h3>
                   </div>
-                  <p className="text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
+                  <p className="text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
                     {feature.description}
                   </p>
                 </div>
 
                 {/* 悬停效果箭头 */}
                 <div className="absolute right-4 bottom-4 opacity-0 transition-all duration-300 group-hover:opacity-100 sm:right-6 sm:bottom-6">
-                  <ArrowRightIcon className="h-4 w-4 text-gray-400 sm:h-5 sm:w-5" />
+                  <ArrowRightIcon className="h-4 w-4 text-[#0055ff] sm:h-5 sm:w-5" />
                 </div>
               </div>
             )
@@ -437,7 +400,7 @@ function CMSFeaturesSection() {
 }
 
 /**
- * CMS场景解决方案区域组件 - 参考AIscene样式设计
+ * CMS场景解决方案区域组件
  */
 function CMSScenariosSection() {
   const scenarios: ScenarioSolution[] = [
@@ -478,24 +441,19 @@ function CMSScenariosSection() {
 
   return (
     <section
-      className="py-12 sm:py-16 lg:py-24"
-      style={{
-        fontFamily:
-          'pingfang SC, helvetica neue, arial, hiragino sans gb, microsoft yahei ui, microsoft yahei, simsun, sans-serif',
-        background: '#f7f8fb',
-      }}
+      className="py-12 sm:py-16 lg:py-24 bg-slate-50"
     >
       <div
         className="mx-auto px-4 sm:px-6 lg:px-8"
         style={{ maxWidth: '1800px' }}
       >
-        {/* 标题区域 - 参考AIscene样式 */}
-        <div className="mb-4 text-center sm:mb-6 md:mb-10 lg:mb-16">
-          <h2 className="mb-2 text-lg font-bold text-gray-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
+        {/* 标题区域 */}
+        <div className="mb-8 text-center sm:mb-12 md:mb-16">
+          <h2 className="mb-2 text-lg font-bold text-slate-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
             应用场景解决方案
           </h2>
-          <div className="mx-auto mb-4 h-1 w-20 bg-[#015bfe] sm:mb-8"></div>
-          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-gray-600 sm:px-0 sm:text-lg">
+          <div className="mx-auto mb-4 h-1 w-20 bg-[#0055ff] sm:mb-8"></div>
+          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-slate-600 sm:px-0 sm:text-lg">
             针对不同行业和业务场景，提供专业化的CMS解决方案，助力企业实现数字化转型
           </p>
         </div>
@@ -505,39 +463,42 @@ function CMSScenariosSection() {
           {scenarios.map((scenario, index) => (
             <div
               key={scenario.title}
-              className="group relative overflow-hidden border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-md"
+              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
+              {/* 选中时的背景渐变 */}
+              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
               {/* 内容区域 */}
               <div className="relative z-10">
                 {/* 标题和标签 */}
                 <div className="mb-4">
-                  <div className="mb-3 inline-flex items-center bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+                  <div className="mb-3 inline-flex items-center rounded-md bg-[#eff6ff] px-3 py-1 text-xs font-medium text-[#0055ff]">
                     <CheckCircleIcon className="mr-1 h-3 w-3" />
                     专业解决方案
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 sm:text-xl">
+                  <h3 className="text-lg font-semibold text-slate-900 sm:text-xl">
                     {scenario.title}
                   </h3>
                 </div>
 
                 {/* 描述文本 */}
-                <p className="mb-4 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
+                <p className="mb-4 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
                   {scenario.description}
                 </p>
 
                 {/* 核心功能列表 */}
                 <div className="mb-6">
-                  <h4 className="mb-2 text-sm font-semibold text-gray-900">
+                  <h4 className="mb-2 text-sm font-semibold text-slate-900">
                     核心功能
                   </h4>
                   <div className="space-y-2">
                     {scenario.features.map((feature, featureIndex) => (
                       <div
                         key={featureIndex}
-                        className="flex items-center text-sm text-gray-600"
+                        className="flex items-center text-sm text-slate-600"
                       >
-                        <div className="mr-2 h-1.5 w-1.5 rounded-full bg-blue-500" />
+                        <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#0055ff]" />
                         {feature}
                       </div>
                     ))}
@@ -548,11 +509,11 @@ function CMSScenariosSection() {
                 {scenario.stats && (
                   <div className="grid grid-cols-2 gap-4">
                     {scenario.stats.map((stat, statIndex) => (
-                      <div key={statIndex} className="text-center">
-                        <div className="text-lg font-bold text-blue-600">
+                      <div key={statIndex} className="text-center rounded-lg bg-slate-50 p-2 border border-slate-100">
+                        <div className="text-lg font-bold text-[#0055ff]">
                           {stat.value}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-slate-500">
                           {stat.label}
                         </div>
                       </div>
@@ -563,7 +524,7 @@ function CMSScenariosSection() {
 
               {/* 悬停效果箭头 */}
               <div className="absolute right-4 bottom-4 opacity-0 transition-all duration-300 group-hover:opacity-100">
-                <ArrowRightIcon className="h-4 w-4 text-gray-400" />
+                <ArrowRightIcon className="h-4 w-4 text-[#0055ff]" />
               </div>
             </div>
           ))}
@@ -575,7 +536,6 @@ function CMSScenariosSection() {
 
 /**
  * 技术优势数据支撑区域组件
- * 完全复刻AIscene.tsx的设计风格
  */
 function CMSTechAdvantagesSection() {
   const techAdvantages: TechAdvantage[] = [
@@ -607,57 +567,52 @@ function CMSTechAdvantagesSection() {
 
   return (
     <section
-      className="py-12 sm:py-16 lg:py-24"
-      style={{
-        fontFamily:
-          'pingfang SC, helvetica neue, arial, hiragino sans gb, microsoft yahei ui, microsoft yahei, simsun, sans-serif',
-        background: '#f7f8fb',
-      }}
+      className="py-12 sm:py-16 lg:py-24 bg-white"
     >
       <div
         className="mx-auto px-4 sm:px-6 lg:px-8"
         style={{ maxWidth: '1800px' }}
       >
-        {/* 标题区域 - 完全复刻AIscene的设计 */}
-        <div className="mb-4 text-center sm:mb-6 md:mb-10 lg:mb-16">
-          <h2 className="mb-2 text-lg font-bold text-gray-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
+        {/* 标题区域 */}
+        <div className="mb-8 text-center sm:mb-12 md:mb-16">
+          <h2 className="mb-2 text-lg font-bold text-slate-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
             技术优势数据
           </h2>
-          <div className="mx-auto mb-4 h-1 w-20 bg-[#015bfe] sm:mb-8"></div>
-          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-gray-600 sm:px-0 sm:text-lg">
+          <div className="mx-auto mb-4 h-1 w-20 bg-[#0055ff] sm:mb-8"></div>
+          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-slate-600 sm:px-0 sm:text-lg">
             先进的技术架构和可靠的性能表现，为您的业务提供坚实保障
           </p>
         </div>
 
-        {/* 网格布局 - 复刻AIscene的卡片设计 */}
+        {/* 网格布局 */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {techAdvantages.map((advantage, index) => (
             <div
               key={advantage.title}
-              className="group relative overflow-hidden bg-white p-8 transition-all duration-300 hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
             >
-              {/* 数据值 */}
-              <div className="mb-4 text-center text-4xl font-bold text-blue-600">
-                {advantage.value}
+              {/* 背景渐变 */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              <div className="relative z-10">
+                {/* 数据值 */}
+                <div className="mb-4 text-center text-4xl font-bold text-[#0055ff]">
+                  {advantage.value}
+                </div>
+
+                {/* 标题 */}
+                <div className="mb-3 text-center text-xl font-semibold text-slate-900">
+                  {advantage.title}
+                </div>
+
+                {/* 描述 */}
+                <div className="text-center text-sm leading-relaxed text-slate-600">
+                  {advantage.description}
+                </div>
               </div>
 
-              {/* 标题 */}
-              <div className="mb-3 text-center text-xl font-semibold text-gray-900">
-                {advantage.title}
-              </div>
-
-              {/* 描述 */}
-              <div className="text-center text-sm leading-relaxed text-gray-600">
-                {advantage.description}
-              </div>
-
-              {/* 底部装饰线 - 复刻AIscene的装饰元素 */}
-              <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-blue-600 transition-all duration-500 group-hover:w-full"></div>
-
-              {/* 右下角装饰点 - 复刻AIscene的设计 */}
-              <div className="absolute right-4 bottom-4 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                <div className="h-1.5 w-1.5 rounded-full bg-blue-600"></div>
-              </div>
+              {/* 底部装饰线 */}
+              <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#0055ff] transition-all duration-500 group-hover:w-full"></div>
             </div>
           ))}
         </div>
@@ -701,13 +656,13 @@ function CMSTestimonialsSection() {
   ]
 
   return (
-    <section className="bg-white py-16 sm:py-20 md:py-24">
+    <section className="bg-slate-50 py-16 sm:py-20 md:py-24">
       <Container>
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
             客户评价
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
             听听我们的客户怎么说
           </p>
         </div>
@@ -716,7 +671,7 @@ function CMSTestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.name}
-              className="relative overflow-hidden bg-gray-50 p-8 transition-all duration-300 hover:bg-gray-100 hover:shadow-lg"
+              className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="mb-4 flex">
@@ -732,19 +687,19 @@ function CMSTestimonialsSection() {
                 ))}
               </div>
 
-              <blockquote className="mb-6 text-gray-700">
+              <blockquote className="mb-6 text-slate-700">
                 &ldquo;{testimonial.content}&rdquo;
               </blockquote>
 
               <div className="flex items-center">
-                <div className="flex h-12 w-12 items-center justify-center bg-blue-100 text-blue-600">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#eff6ff] text-[#0055ff]">
                   <UserGroupIcon className="h-6 w-6" />
                 </div>
                 <div className="ml-3">
-                  <div className="font-semibold text-gray-900">
+                  <div className="font-semibold text-slate-900">
                     {testimonial.name}
                   </div>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-slate-600">
                     {testimonial.role} · {testimonial.company}
                   </div>
                 </div>
@@ -758,11 +713,11 @@ function CMSTestimonialsSection() {
 }
 
 /**
- * 行动转化CTA区域组件 - 重新设计的按钮样式
+ * 行动转化CTA区域组件
  */
 function CMSCTASection() {
   return (
-    <section className="relative overflow-hidden bg-[#05f] py-16 sm:py-20 md:py-24">
+    <section className="relative overflow-hidden bg-[#0055ff] py-16 sm:py-20 md:py-24">
       {/* 背景装饰 */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
@@ -780,27 +735,23 @@ function CMSCTASection() {
             {/* 主要按钮 - 免费试用 */}
             <a
               href="#demo"
-              className="group relative inline-flex w-full min-w-[160px] items-center justify-center bg-white px-6 py-3 text-base font-semibold text-blue-600 shadow-md transition-all duration-300 hover:shadow-lg focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
+              className="group relative inline-flex w-full min-w-[160px] items-center justify-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-[#0055ff] shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
             >
               <span className="relative z-10 flex items-center">
                 免费试用
                 <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
-              {/* 按钮光效 */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-indigo-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
             </a>
 
             {/* 次要按钮 - 联系销售 */}
             <a
               href="#contact"
-              className="group relative inline-flex w-full min-w-[160px] items-center justify-center border-2 border-white/30 bg-transparent px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/10 hover:shadow-md focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
+              className="group relative inline-flex w-full min-w-[160px] items-center justify-center rounded-lg border border-white/30 bg-transparent px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white hover:-translate-y-0.5 focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
             >
               <span className="relative z-10 flex items-center">
                 联系销售
                 <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
-              {/* 按钮光效 */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
             </a>
           </div>
 
@@ -839,7 +790,7 @@ export default function CMSPage() {
   return (
     <>
       <Header />
-      <main className="pt-10 sm:pt-0">
+      <main className="pt-10 sm:pt-0 bg-white">
         <CMSHeroSection />
         <CMSFeaturesSection />
         <CMSScenariosSection />

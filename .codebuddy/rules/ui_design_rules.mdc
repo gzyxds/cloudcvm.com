@@ -1,0 +1,105 @@
+---
+description: CloudCVM UI 设计规范（Design System Tokens & Usage）
+alwaysApply: true
+enabled: true
+updatedAt: 2026-01-02T00:00:00.000Z
+provider:
+---
+
+# CloudCVM.com UI 设计规范（统一视觉风格）
+
+本规则用于**统一全项目 UI 的颜色、字体、圆角、阴影、动效、图标与组件写法**。项目使用 Tailwind CSS v4 的 CSS-first（`src/styles/tailwind.css` 的 `@theme`）来定义 Token。
+
+## 1) 设计风格定位（当前项目）
+
+- **风格关键词**：现代企业级 SaaS 官网、明亮留白、品牌蓝强调、卡片化布局、柔和阴影、适中动效。
+- **主要交互/动效**：Framer Motion（淡入淡出/位移/spring/layout）。
+- **图标风格**：优先 `@heroicons/react`（outline/solid），必要时才使用 `lucide-react`，保持线宽与尺寸一致。
+
+## 2) 颜色系统（必须遵守）
+
+### 2.1 颜色 Token（来源）
+所有颜色以 `src/styles/tailwind.css` 中 `@theme` 的 CSS 变量为准：
+
+- **品牌色**：
+  - `--color-brand: #3860F4`
+  - `--color-brand-hover: #2b4dd4`
+- **正文色**：
+  - `--color-text-primary: var(--color-navy-900)`
+  - `--color-text-secondary: var(--color-navy-700)`
+- **背景/边框**：
+  - `--color-surface: #ffffff`
+  - `--color-surface-muted: var(--color-section-bg)`
+  - `--color-border: var(--color-blue-100)`
+
+### 2.2 统一策略（解决“蓝色不一致”）
+- 项目中大量存在 `bg-blue-600` / `text-blue-600`。为保证一致性，已在 `@theme` 中将：
+  - `--color-blue-600` 映射为 `#3860F4`
+  - `--color-blue-700` 映射为 `#2b4dd4`
+
+### 2.3 编码规范（Do / Don’t）
+- **Do**：
+  - 业务组件优先使用语义色：`text-[--color-text-primary]`、`text-[--color-text-secondary]`、`bg-blue-600`（已映射品牌色）。
+- **Don’t**：
+  - 不要在组件里新增硬编码 hex（如 `text-[#3860F4]`）。若确实需要新增颜色，先加到 `@theme` 作为 token。
+
+## 3) 字体与排版
+
+- **字体来源**：`src/app/layout.tsx` 注入 `Inter` 与 `Lexend`，并在 `@theme` 中映射：
+  - `--font-sans: var(--font-inter)`
+  - `--font-display: var(--font-lexend)`
+  - 中文优先使用 `--font-chinese`（已在全局 base 层启用）。
+
+- **字号规范**：优先使用 Tailwind 语义字号（`text-sm/base/lg/xl/2xl/3xl/4xl` 等）。
+- **不要滥用** `text-[14px]` / `leading-[25px]` 这类像素硬编码；如必须统一某类排版，提到组件层 class 或 token。
+
+## 4) 圆角系统（Border Radius）
+
+- **统一圆角 token**（来自 `@theme`）：
+  - `--radius-xs/sm/md/md-plus/lg/4xl`
+- **推荐映射**：
+  - 按钮：`rounded-xl` 或 `rounded-[--radius-md-plus]`（禁止全站按钮默认 `rounded-full`）
+  - 卡片：`rounded-[--radius-lg]`（或 `rounded-2xl`，但要统一）
+
+- **规则**：不要随意写 `rounded-[20px]` 这类像素值；若设计确需，先沉淀到 `--radius-*`。
+
+## 5) 阴影系统（Shadows）
+
+- 项目统一阴影 token：
+  - `--shadow-card` / `--shadow-card-hover` / `--shadow-popover` / `--shadow-brand`
+- **规则**：
+  - 卡片优先使用 `.ui-card`（内部用 `--shadow-card`）。
+  - 弹层/下拉优先使用 `--shadow-popover`，不要在组件中写 `style={{ boxShadow: ... }}` 除非必须。
+
+## 6) 动效（Motion）
+
+- **基础动效 token**：
+  - `--motion-fast/base/slow`
+  - `--ease-standard`
+- **规则**：
+  - 组件交互优先用 `transition-colors/transform`，时长遵循 `200/300/500ms`。
+  - 大型布局切换（如卡片展开）用 Framer Motion 的 `layout` + spring，但避免过度弹跳（保持克制）。
+
+## 7) 通用语义组件类（推荐全项目统一入口）
+
+`src/styles/tailwind.css` 已提供：
+- `.ui-card`：统一卡片背景/边框/圆角/阴影
+- `.ui-btn`：统一按钮基础交互
+- `.ui-btn--primary` / `.ui-btn--secondary`
+- `.ui-text-primary` / `.ui-text-secondary`
+
+**规则**：新增页面/组件时，优先复用 `.ui-*` 语义类；复杂组件可在 `@layer components` 扩展（BEM 命名）。
+
+## 8) 图标规范
+
+- **优先**：`@heroicons/react/24/outline`（默认）
+- **尺寸**：常用 `w-4 h-4`（按钮内）、`w-5 h-5`（表单/列表）、`w-6/7`（卡片头部）
+- **规则**：同一容器内图标大小与对齐保持一致；避免混用不同库导致线宽风格突变。
+
+## 9) 快速检查清单（提交前自检）
+
+- 是否出现新的硬编码颜色（`#[0-9a-fA-F]{3,8}`）？如果有，是否应沉淀为 token？
+- `bg-blue-600` 是否用于主 CTA？hover 是否 `bg-blue-700`？
+- 按钮是否避免了 `rounded-full`？
+- 卡片是否统一使用 `.ui-card` 或统一圆角/阴影 token？
+- 动效是否克制（`duration` 合理、无眩晕）？

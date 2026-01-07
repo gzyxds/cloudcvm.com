@@ -11,8 +11,9 @@ import { seoConfig } from '@/config/seo.config'
  * 
  * @returns JSX 元素或 null
  */
-export function Analytics() {
+export default function Analytics() {
   const { baidu, clarity } = seoConfig.analytics
+
 
   // 确保 Hooks 在组件顶层调用，不受条件影响
   useEffect(() => {
@@ -96,11 +97,9 @@ export function Analytics() {
   )
 }
 
-// 默认导出以保持向后兼容性
-export default Analytics
-
 // TypeScript 全局声明
 declare global {
+
   interface Window {
     _hmt: any[]
     clarity: (...args: any[]) => void

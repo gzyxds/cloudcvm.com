@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import clsx from 'clsx'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
 
@@ -53,10 +54,10 @@ export default function Customer() {
       <Container>
         {/* 标题区域 */}
         <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
             客户案例
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-6 text-xl text-gray-500">
             云服务助力全球知名企业数字化转型，赋能业务成功
           </p>
         </div>
@@ -72,11 +73,12 @@ export default function Customer() {
                   <button
                     key={customer.id}
                     onClick={() => setActiveCustomer(customer.id)}
-                    className={`flex-shrink-0 px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                    className={clsx(
+                      'flex-shrink-0 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 border outline-none focus:ring-2 focus:ring-gray-200',
                       activeCustomer === customer.id
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300'
-                    }`}
+                        ? 'border-[#0055ff] bg-[#0055ff] text-white'
+                        : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:bg-gray-50'
+                    )}
                   >
                     {index + 1}. {customer.name}
                   </button>
@@ -85,56 +87,67 @@ export default function Customer() {
             </div>
 
             {/* 移动端：当前选中客户的详细信息 */}
-            <div className="mb-6 block bg-blue-600 p-6 text-white lg:hidden">
+            <div className="mb-6 block rounded-xl border border-gray-200 bg-gray-50 p-6 lg:hidden">
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-xl font-semibold">
+                <h3 className="text-xl font-bold text-gray-900">
                   {currentCustomer.name}
                 </h3>
-                <span className="text-lg font-medium text-blue-200">
+                <span className="text-lg font-medium text-[#0055ff]">
                   {customers.findIndex((c) => c.id === activeCustomer) + 1}
                 </span>
               </div>
-              <p className="text-sm leading-relaxed text-blue-100 sm:text-base">
+              <p className="text-base leading-relaxed text-gray-500">
                 {currentCustomer.description}
               </p>
             </div>
 
             {/* 桌面端：垂直客户列表 */}
-            <div className="hidden min-h-[450px] space-y-1 lg:flex lg:flex-col">
+            <div className="hidden min-h-[450px] space-y-4 lg:flex lg:flex-col">
               {customers.map((customer, index) => (
                 <button
                   key={customer.id}
                   onClick={() => setActiveCustomer(customer.id)}
-                  className={`w-full flex-1 transition-all duration-200 ${
+                  className={clsx(
+                    'group w-full flex-1 rounded-xl border text-left transition-all duration-300 outline-none focus:ring-2 focus:ring-gray-200',
                     activeCustomer === customer.id
-                      ? 'bg-blue-600 p-6 text-left text-white'
-                      : 'flex items-center justify-between bg-gray-100 p-6 text-gray-900 hover:bg-gray-200 active:bg-gray-300'
-                  }`}
-                >
-                  {activeCustomer === customer.id ? (
-                    <div className="w-full">
-                      <div className="mb-3 flex items-center justify-between">
-                        <h3 className="text-xl font-semibold text-white">
-                          {customer.name}
-                        </h3>
-                        <span className="text-lg font-medium text-blue-200">
-                          {index + 1}
-                        </span>
-                      </div>
-                      <p className="leading-relaxed text-blue-100">
-                        {customer.description}
-                      </p>
-                    </div>
-                  ) : (
-                    <>
-                      <h3 className="text-xl font-semibold text-gray-900">
-                        {customer.name}
-                      </h3>
-                      <span className="text-lg font-medium text-gray-500">
-                        {index + 1}
-                      </span>
-                    </>
+                      ? 'border-transparent bg-gray-50 p-8'
+                      : 'border-gray-200 bg-white p-6 hover:border-gray-300 hover:bg-gray-50'
                   )}
+                >
+                  <div className="flex w-full items-center justify-between">
+                    <h3
+                      className={clsx(
+                        'text-xl font-bold transition-colors duration-200',
+                        activeCustomer === customer.id
+                          ? 'text-[#0055ff]'
+                          : 'text-gray-900 group-hover:text-[#0055ff]'
+                      )}
+                    >
+                      {customer.name}
+                    </h3>
+                    <span
+                      className={clsx(
+                        'text-lg font-medium transition-colors duration-200',
+                        activeCustomer === customer.id
+                          ? 'text-[#0055ff]/60'
+                          : 'text-gray-400 group-hover:text-[#0055ff]/40'
+                      )}
+                    >
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <div
+                    className={clsx(
+                      'grid transition-all duration-300 ease-in-out',
+                      activeCustomer === customer.id
+                        ? 'mt-4 grid-rows-[1fr] opacity-100'
+                        : 'mt-0 grid-rows-[0fr] opacity-0'
+                    )}
+                  >
+                    <p className="overflow-hidden text-base leading-relaxed text-gray-500">
+                      {customer.description}
+                    </p>
+                  </div>
                 </button>
               ))}
             </div>
@@ -142,16 +155,18 @@ export default function Customer() {
 
           {/* 右侧：展示图片 */}
           <div className="order-1 w-full lg:order-2">
-            <div className="h-[250px] overflow-hidden bg-gray-100 sm:h-[300px] md:h-[350px] lg:h-[450px]">
-              <Image
-                src={currentCustomer.image}
-                alt={`${currentCustomer.name}案例展示`}
-                width={600}
-                height={450}
-                className="h-full w-full object-cover transition-opacity duration-300"
-                unoptimized
-                priority
-              />
+            <div className="relative h-[250px] overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 sm:h-[300px] md:h-[350px] lg:h-[500px]">
+              <div className="relative h-full w-full overflow-hidden rounded-xl bg-gray-50">
+                <Image
+                  src={currentCustomer.image}
+                  alt={`${currentCustomer.name}案例展示`}
+                  width={600}
+                  height={450}
+                  className="h-full w-full object-cover"
+                  unoptimized
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>

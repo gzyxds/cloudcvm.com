@@ -3,8 +3,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState, memo } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
+import { Container } from '@/components/Container'
 import { CreditCardIcon, DevicePhoneMobileIcon, QrCodeIcon, UserGroupIcon } from '@heroicons/react/20/solid'
-import { DualQRCodeButtonGroup } from '@/components/common/QRCode'
 
 /**
  * 轮播每一项的数据结构
@@ -33,7 +33,6 @@ export interface CarouselProps {
   showIndicators?: boolean
   slides?: CarouselSlide[]
   className?: string
-  // 新增的属性定义
   showProgress?: boolean
   showPlayButton?: boolean
   showNavigation?: boolean
@@ -123,10 +122,6 @@ const floatingCards = [
     title: '新人首单直降',
     description: 'COS标准存储 低至1元',
     icon: CreditCardIcon,
-    bgColor: 'bg-gray-100',
-    iconColor: 'text-blue-600',
-    borderColor: 'border-gray-200',
-    hoverEffect: 'hover:shadow-gray-100',
     style: 'modern'
   },
   {
@@ -135,10 +130,6 @@ const floatingCards = [
     title: '领券有省',
     description: '领大额礼包 新购续费不用愁',
     icon: DevicePhoneMobileIcon,
-    bgColor: 'bg-gray-100',
-    iconColor: 'text-blue-600',
-    borderColor: 'border-gray-200',
-    hoverEffect: 'hover:shadow-gray-100',
     style: 'rounded'
   },
   {
@@ -147,10 +138,6 @@ const floatingCards = [
     title: 'CVM蜂驰型实例',
     description: '算力成本最大降幅 超45%',
     icon: QrCodeIcon,
-    bgColor: 'bg-gray-100',
-    iconColor: 'text-blue-600',
-    borderColor: 'border-gray-200',
-    hoverEffect: 'hover:shadow-gray-100',
     style: 'gradient'
   },
   {
@@ -159,54 +146,24 @@ const floatingCards = [
     title: '会员续费折上折',
     description: '续费折上9.5折起',
     icon: UserGroupIcon,
-    iconColor: 'text-blue-600',
-    bgColor: 'bg-gray-100',
-    borderColor: 'border-gray-200',
-    hoverEffect: 'hover:shadow-gray-100',
     style: 'extended'
   }
 ]
 
 /**
- * 预定义样式类 - 减少重复计算和优化性能
+ * 预定义样式类 - 遵循 Bento Linear Design 风格
+ * 去除圆角 (rounded-none)，使用边框 (border)，去除阴影
  */
 const styles = {
   section: 'relative w-full overflow-hidden touch-pan-y',
-  imageContainer: 'absolute inset-0 transition-opacity duration-1000 ease-in-out',
-  image: 'object-cover will-change-transform',
-  titleButton: 'group relative text-left transition-all duration-300 cursor-pointer bg-gradient-to-b from-white to-gray-50 p-3 sm:p-4 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] hover:-translate-y-1 max-w-[200px] sm:max-w-[250px]',
-  titleButtonActive: 'bg-gradient-to-b from-white to-gray-50 border-blue-300 -translate-y-1 shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]',
+  imageContainer: 'absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out',
+  image: 'object-cover w-full h-full object-center will-change-transform',
+  // Bento 风格：无圆角，边框优先，无阴影，Flex布局，字体优化，右对齐
+  titleButton: 'group relative w-full flex items-center justify-start text-left transition-all duration-300 cursor-pointer py-5 pl-0 pr-2 rounded-none text-[15px] leading-[1.6] text-slate-600 font-sans',
+  titleButtonActive: 'text-[#0055ff] font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
   indicator: 'h-2 transition-all duration-300'
 }
-
-/**
- * 悬浮卡片样式 - 提取为常量避免重复计算
- */
-const cardBaseStyle = {
-  display: 'block',
-  marginRight: '20px',
-  borderRadius: '0',
-  boxSizing: 'border-box' as const,
-  width: '1px',
-  height: 'auto',
-  position: 'relative' as const,
-  pointerEvents: 'auto' as const
-}
-
-const getCardStyle = (card: typeof floatingCards[0]) => ({
-  ...cardBaseStyle,
-  backgroundImage: card.type === 'special'
-    ? 'linear-gradient(rgb(80, 141, 255) 0%, rgba(80, 141, 255, 0.85) 100%)'
-    : 'linear-gradient(0deg, #fff, #f3f5f8)',
-  boxShadow: card.type === 'special'
-    ? 'rgba(80, 141, 255, 0.4) 8px 8px 20px 0px'
-    : '8px 8px 20px 0 rgba(55,99,170,.1)',
-  borderColor: card.type === 'special' ? 'rgba(80, 141, 255, 0.45)' : undefined,
-  flex: card.style === 'extended' ? '2' : '1',
-  maxWidth: card.style === 'extended' ? '420px' : 'none',
-  padding: card.style === 'extended' ? '10px 16px 20px' : '18px'
-})
 
 /**
  * 轮播图片组件 - 使用memo优化性能
@@ -230,6 +187,8 @@ const CarouselImage = memo(({ slide, isActive, index, active }: {
       priority={isActive}
       loading={isActive ? 'eager' : 'lazy'}
     />
+    {/* 添加一个轻微的遮罩，确保文字可读性 */}
+    <div className="absolute inset-0 bg-white/30 dark:bg-black/30" />
   </div>
 ))
 
@@ -237,6 +196,7 @@ CarouselImage.displayName = 'CarouselImage'
 
 /**
  * 标题按钮组件 - 使用memo优化性能
+ * 遵循 Bento 风格：直角，边框，无阴影
  */
 const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, interval, onTitleClick }: {
   slideItem: CarouselSlide
@@ -253,49 +213,34 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
       onClick={() => onTitleClick(index)}
       className={`${styles.titleButton} ${isActive ? styles.titleButtonActive : ''}`}
       aria-label={`切换到 ${slideItem.title}`}
+      style={{
+        fontVariant: 'tabular-nums',
+        fontFeatureSettings: '"tnum"',
+        fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
+      }}
     >
-      <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10">
-        <span className={`inline-flex items-center justify-center w-7 h-7 text-xs font-bold transition-all duration-300 rounded-none ${
-          isActive
-            ? 'bg-blue-600 text-white shadow-md'
-            : 'bg-gray-100 text-gray-500 border border-gray-200'
-        }`}>
-          {String(slideItem.order).padStart(2, '0')}
-        </span>
-      </div>
-
-      <div className="relative pl-12">
-        <h3 className={`text-sm lg:text-base font-bold leading-tight mb-1 transition-colors duration-300 ${
-          isActive ? 'text-gray-900' : 'text-gray-800 group-hover:text-gray-900'
+      {/* 文本内容 - Flex item - 右对齐 */}
+      <div className="flex-grow min-w-0">
+        <h3 className={`transition-colors duration-300 truncate ${
+          isActive ? 'text-[#0055ff]' : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-50'
         }`}>
           {slideItem.title}
         </h3>
-
-        {slideItem.subtitle && (
-          <p className={`text-xs leading-relaxed line-clamp-2 transition-colors duration-300 ${
-            isActive ? 'text-gray-600' : 'text-gray-500 group-hover:text-gray-600'
-          }`}>
-            {slideItem.subtitle}
-          </p>
-        )}
       </div>
 
+      {/* 竖向进度条指示器 - 覆盖在父容器边框上 */}
       {isActive && (
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute right-0 top-0 bottom-0 w-px overflow-hidden">
           <div
             key={progressKey}
-            className="h-px bg-blue-500 transition-all duration-300 ease-out"
+            className="absolute top-0 left-0 w-full bg-[#0055ff]"
             style={{
-              width: isPlaying ? '100%' : '0%',
-              animation: isPlaying ? `progressBar ${interval}ms linear infinite` : 'none'
+              height: isPlaying ? '100%' : '100%',
+              animation: isPlaying ? `verticalProgressBar ${interval}ms linear` : 'none'
             }}
           />
         </div>
       )}
-
-      <div className={`absolute right-2 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-500 transition-all duration-300 ${
-        isActive ? 'opacity-100' : 'opacity-0'
-      }`} />
     </button>
   )
 })
@@ -304,6 +249,7 @@ TitleButton.displayName = 'TitleButton'
 
 /**
  * 优化后的轮播组件
+ * 风格：Bento Linear (直角、边框、简约)
  */
 const Carousel = memo(function Carousel({
   autoPlay = true,
@@ -320,11 +266,15 @@ const Carousel = memo(function Carousel({
 
     const style = document.createElement('style')
     style.id = styleId
-    style.textContent = '@keyframes progressBar{0%{width:0%}100%{width:100%}}'
+    style.textContent = `
+      @keyframes progressBar{0%{width:0%}100%{width:100%}}
+      @keyframes verticalProgressBar{0%{height:0%}100%{height:100%}}
+    `
     document.head.appendChild(style)
 
     return () => document.getElementById(styleId)?.remove()
   }, [])
+
   const slides = useMemo(() => (propSlides || defaultSlides).sort((a, b) => a.order - b.order), [propSlides])
   const [active, setActive] = useState(0)
   const [isPlaying, setIsPlaying] = useState(autoPlay)
@@ -432,10 +382,16 @@ const Carousel = memo(function Carousel({
 
         {/* 轮播内容叠加层 - 响应式优化 */}
         <div className={styles.content}>
-          <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8 w-full flex flex-col lg:flex-row">
+          <Container className="w-full flex flex-col lg:flex-row px-0 sm:px-2 lg:px-4">
             {/* 左侧标题列表 - 移动端隐藏，PC端显示 */}
-            <div className="hidden lg:block w-64 lg:w-72 xl:w-80 flex-shrink-0">
-              <div className="flex flex-col space-y-4">
+            <div className="hidden lg:block w-auto flex-shrink-0">
+              <div className="relative flex flex-col space-y-0 py-6 h-full justify-center min-w-[120px]">
+                <div className="absolute right-0 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800" />
+                <div className="mb-3 pr-4">
+                  <span className="inline-flex items-center border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 px-3 py-1 font-mono text-[11px] tracking-widest text-slate-700 dark:text-slate-300 rounded-full backdrop-blur-sm">
+                    活动分类
+                  </span>
+                </div>
                 {slides.map((slideItem, index) => (
                   <TitleButton
                     key={slideItem.id}
@@ -452,40 +408,42 @@ const Carousel = memo(function Carousel({
             </div>
 
             {/* 轮播内容 - 移动端优化 */}
-            <div className="flex-1 max-w-3xl mt-4 sm:mt-8 lg:mt-12 xl:mt-16 px-2 sm:px-0">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-blue-600 leading-tight mb-3 sm:mb-4">
+            <div className="flex-1 max-w-4xl 2xl:max-w-5xl px-0 lg:ml-12 2xl:ml-16 flex flex-col justify-center py-6 sm:py-8 lg:py-0 gap-5">
+              {currentSlide.subtitle && (
+                <div>
+                  <span className="inline-flex items-center border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-950/50 px-3 py-1 font-mono text-[11px] tracking-widest text-slate-700 dark:text-slate-300 rounded-full backdrop-blur-sm">
+                    {currentSlide.subtitle}
+                  </span>
+                </div>
+              )}
+
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-[#0F172A] dark:text-white leading-[1.05] tracking-tight">
                 {currentSlide.title}
               </h1>
 
-              {currentSlide.subtitle && (
-                <h2 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-black leading-relaxed mb-4 sm:mb-6">
-                  {currentSlide.subtitle}
-                </h2>
-              )}
-
-              <p className="text-sm sm:text-base lg:text-lg text-black leading-relaxed max-w-2xl mb-6 sm:mb-8">
+              <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
                 {currentSlide.description}
               </p>
 
-              {/* 普通链接按钮 - 使用自定义的primaryButtonHref */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              {/* 普通链接按钮 - Bento 风格 */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-1">
                 <a
                   href={currentSlide.primaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base inline-flex items-center justify-center"
+                  className="btn px-5 py-3 sm:px-6 lg:px-8 lg:py-4 text-sm sm:text-base bg-[#0055ff] hover:bg-[#0043cc] text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                   </svg>
                   {currentSlide.primaryButtonText}
                 </a>
-                
+
                 <a
                   href={currentSlide.secondaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-white/90 backdrop-blur-sm text-black font-medium rounded-lg border border-gray-300 hover:bg-white hover:border-gray-400 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base inline-flex items-center justify-center"
+                  className="btn px-5 py-3 sm:px-6 lg:px-8 lg:py-4 bg-transparent text-slate-500 dark:text-slate-400 font-medium border border-slate-200 dark:border-slate-800 hover:text-[#0F172A] dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 rounded-lg flex items-center justify-center text-sm sm:text-base"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -493,177 +451,86 @@ const Carousel = memo(function Carousel({
                   {currentSlide.secondaryButtonText || '联系客服'}
                 </a>
               </div>
-
-              {/* 原双二维码按钮组 - 已注释 */}
-              {/* <DualQRCodeButtonGroup
-                leftButton={{
-                  text: currentSlide.primaryButtonText,
-                  className: "px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base",
-                  icon: (
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                    </svg>
-                  )
-                }}
-                rightButton={{
-                  text: currentSlide.secondaryButtonText || '联系客服',
-                  className: "px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-white/90 backdrop-blur-sm text-black font-medium rounded-lg border border-gray-300 hover:bg-white hover:border-gray-400 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base",
-                  icon: (
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  )
-                }}
-                leftQRCode={{
-                  src: '/images/contact/userhlc.png',
-                  title: '客服咨询',
-                  description: '扫码添加客服微信，获取解决方案'
-                }}
-                rightQRCode={{
-                  src: '/images/contact/gzh.png',
-                  title: '关注公众号',
-                  description: '扫码关注公众号，获取产品信息'
-                }}
-                title="扫码联系我们"
-                description="选择下方二维码进行联系，为您提供专业的支付解决方案"
-                containerClassName="flex-row gap-3 sm:gap-4"
-              /> */}
             </div>
-          </div>
+          </Container>
         </div>
 
-        {/* 移动端底部指示器 - 仅在移动端显示 */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 lg:hidden">
-          <div className="flex space-x-2">
-            {slides.map((_, index) => {
-              const isActive = active === index
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleTitleClick(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    isActive ? 'bg-white w-6' : 'bg-white/50'
-                  }`}
-                  aria-label={`切换到第 ${index + 1} 张图片`}
-                />
-              )
-            })}
-          </div>
-        </div>
-
-        {/* 移动端左右滑动按钮 - 已隐藏 */}
-        <button
-          onClick={() => navigate('prev')}
-          className="hidden"
-          aria-label="上一张"
-        >
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={() => navigate('next')}
-          className="hidden"
-          aria-label="下一张"
-        >
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-
-
-
+        {/* 移动端底部指示器 - 已移除，因为卡片布局遮挡了指示器 */}
       </section>
 
-      {/* 底部悬浮卡片 - 响应式设计，移动端和PC端不同布局 */}
-      <div className="absolute bottom-0 left-0 right-0 z-50 transform translate-y-1/2">
-        {/* PC端：水平排列的4个卡片 - 优化渲染 */}
-        <div className="hidden lg:flex justify-center items-center gap-4 px-4 max-w-[1800px] mx-auto">
-          {floatingCards.map((card) => (
-            <div
-              key={card.id}
-              className={`transition-all duration-300 hover:-translate-y-1 cursor-pointer border-2 border-white ${
-                card.style === 'rounded' ? '' : ''
-              } ${
-                card.style === 'extended' ? 'px-4 pt-2.5 pb-5' : 'p-4'
-              }`}
-              style={getCardStyle(card)}
-            >
-              {card.type === 'special' ? (
-                <div className="flex flex-col items-start">
-                  <h3 className="font-bold text-white flex items-center gap-3 text-lg mb-2 text-left">
-                    {card.icon && React.createElement(card.icon, {
-                      className: 'flex-shrink-0 text-white w-6 h-6'
-                    })}
-                    {card.title}
-                  </h3>
-                  {card.description && (
-                    <p className="text-white/90 text-base leading-relaxed text-left">
-                      {card.description}
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <div className="flex flex-col items-start text-left">
-                  <h3 className="font-bold text-gray-900 flex items-center gap-3 text-base">
-                    {React.createElement(card.icon, {
-                      className: `flex-shrink-0 ${card.iconColor || 'text-blue-600'} w-6 h-6`
-                    })}
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-600 mt-2 text-base">
-                    {card.description}
-                  </p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+      {/* 底部悬浮卡片 - 响应式设计 - 100%复刻参考图布局 (左1右3) */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 transform translate-y-1/2">
+        <Container className="hidden lg:flex justify-center items-stretch gap-6 min-h-[120px] w-full">
 
-        {/* 移动端：可滚动的水平卡片列表 */}
-        <div className="lg:hidden px-4">
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2" style={{ scrollSnapType: 'x mandatory' }}>
+          {/* 左侧大卡片 - 云服务器 */}
+          <div className="relative w-[480px] h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-xl px-8 py-5 shadow-sm overflow-hidden flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
+             {/* 背景装饰 - 调整为更柔和的渐变光晕 */}
+             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+             <div className="flex items-center gap-3 mb-3 relative z-10">
+               <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white tracking-tight font-sans">
+                 云服务器 <span className="text-[#EF4444]">领万元津贴</span>
+                 <span className="text-slate-400 text-xl not-italic ml-1">›</span>
+               </h3>
+             </div>
+
+             <div className="grid grid-cols-3 gap-y-3 gap-x-6 relative z-10">
+                {['新客首购1元', '场景组合2.8折', '云计算热销榜', '高释270元起', 'AI新购1折抢', '大模型培训9折'].map((item, idx) => (
+                  <a key={idx} href="#" className="flex items-center text-sm font-medium text-slate-600 hover:text-[#0055ff] transition-colors group/link">
+                    {item}
+                    <span className="ml-1 text-slate-400 group-hover/link:translate-x-0.5 transition-transform">›</span>
+                  </a>
+                ))}
+             </div>
+          </div>
+
+          {/* 右侧三个特性卡片 - 合并为一个容器，使用 Flex 布局、竖分割线和毛玻璃效果 */}
+          <div className="flex-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-xl flex items-stretch transition-shadow shadow-sm hover:shadow-xl duration-300">
+            {floatingCards.slice(0, 3).map((card, index) => (
+              <div key={card.id} className="relative flex-1 px-8 py-5 flex flex-col justify-center items-start h-full hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer gap-3 first:rounded-l-xl last:rounded-r-xl">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg group-hover:scale-105 transition-transform duration-300">
+                    {React.createElement(card.icon, {
+                      className: "w-6 h-6 text-[#0055ff] transition-colors"
+                    })}
+                  </div>
+                  <h4 className="font-bold text-[#0F172A] dark:text-white text-lg line-clamp-1 group-hover:text-[#0055ff] transition-colors">{card.title}</h4>
+                </div>
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">{card.description}</p>
+
+                {/* 自定义短分割线 - 仅在非最后一个元素显示 */}
+                {index < 2 && (
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-12 w-px bg-slate-200 dark:bg-slate-800"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </Container>
+
+        {/* 移动端：两排两列网格布局 */}
+        <div className="lg:hidden px-4 mt-24">
+          <div className="grid grid-cols-2 gap-3 pb-4">
             {floatingCards.map((card) => (
               <div
                 key={card.id}
-                className="flex-shrink-0 bg-white border-2 border-white shadow-lg transition-all duration-300 hover:shadow-xl cursor-pointer"
-                style={{
-                  backgroundImage: 'linear-gradient(0deg, #fff, #f3f5f8)',
-                  boxShadow: '4px 4px 12px 0 rgba(55,99,170,.1)',
-                  width: card.style === 'extended' ? '200px' : '160px',
-                  minWidth: card.style === 'extended' ? '200px' : '160px',
-                  scrollSnapAlign: 'start'
-                }}
+                className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 transition-colors duration-200 cursor-pointer rounded-xl overflow-hidden shadow-sm"
               >
                 <div className="p-3">
-                  {card.type === 'special' ? (
-                    <div className="flex flex-col items-start">
-                      <h3 className="font-bold text-gray-900 flex items-center gap-2 text-sm mb-1.5 text-left">
-                        {card.icon && React.createElement(card.icon, {
-                          className: `flex-shrink-0 ${card.iconColor || 'text-blue-600'} w-5 h-5`
-                        })}
-                        {card.title}
-                      </h3>
-                      {card.description && (
-                        <p className="text-gray-600 text-xs leading-relaxed text-left line-clamp-2">
-                          {card.description}
-                        </p>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-start text-left">
-                      <h3 className="font-bold text-gray-900 flex items-center gap-2 text-sm mb-1.5">
+                  <div className="flex flex-col items-start text-left gap-2">
+                    <div className="flex items-center gap-2 w-full">
+                      <div className="flex h-8 w-8 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg flex-shrink-0">
                         {React.createElement(card.icon, {
-                          className: `flex-shrink-0 ${card.iconColor || 'text-blue-600'} w-5 h-5`
+                          className: `text-[#0055ff] w-4 h-4`
                         })}
+                      </div>
+                      <h3 className="font-bold text-[#0055ff] dark:text-[#0055ff] text-xs line-clamp-1">
                         {card.title}
                       </h3>
-                      <p className="text-gray-600 text-xs line-clamp-2">
-                        {card.description}
-                      </p>
                     </div>
-                  )}
+                    <p className="text-slate-500 dark:text-slate-400 text-[10px] line-clamp-2 leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

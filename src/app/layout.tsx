@@ -1,5 +1,4 @@
 import { type Metadata } from 'next'
-import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
@@ -16,18 +15,6 @@ export const metadata: Metadata = {
     '【优刻云计算】 云计算云服务器基础设施服务提供商、为数百万中小微企业和开发者降低全球化上云成本、提供优刻云服务器、 弹性云服务器、CVM轻量云服务器、 云主机CVM 、 香港云服务器、云虚拟主机、免备案海外空间、服务器租用一站式服务',
 }
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
-
-const lexend = Lexend({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-lexend',
-})
-
 export default function RootLayout({
   children,
 }: {
@@ -37,9 +24,7 @@ export default function RootLayout({
     <html
       lang="zh-CN"
       className={clsx(
-        'h-full scroll-smooth bg-white antialiased',
-        inter.variable,
-        lexend.variable,
+        'h-full scroll-smooth bg-white antialiased'
       )}
     >
       <head>

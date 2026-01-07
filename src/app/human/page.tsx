@@ -19,6 +19,7 @@ import {
   TvIcon,
   VideoCameraIcon,
   PencilIcon,
+  CreditCardIcon,
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
@@ -27,6 +28,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AIscene } from '@/components/ai/AIscene'
 import { Menu, MenuButton } from '@headlessui/react'
+import PixelBlast from '@/components/common/PixelBlast'
 
 // 产品优势配置数据
 interface Advantage {
@@ -157,8 +159,27 @@ function HeroSection(): JSX.Element {
       description: '高清画质，流畅动作表现',
     },
   ]
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50 py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 dark:from-gray-900 dark:via-gray-900 dark:to-blue-950">
+      {/* PixelBlast 动态背景效果 */}
+      <div className="absolute inset-0 opacity-30">
+        <PixelBlast
+          variant="diamond"
+          pixelSize={3}
+          color="#4b14ff"
+          patternScale={2}
+          patternDensity={1}
+          enableRipples
+          rippleSpeed={0.3}
+          rippleThickness={0.1}
+          rippleIntensityScale={1}
+          speed={0.9}
+          transparent
+          edgeFade={0.25}
+        />
+      </div>
+
       {/* 背景装饰效果 */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 h-48 w-48 bg-[#0055ff]/8 opacity-40 blur-3xl sm:h-64 sm:w-64 md:h-80 md:w-80"></div>
@@ -185,7 +206,7 @@ function HeroSection(): JSX.Element {
 
               {/* 主标题 */}
               <h1 className="text-3xl leading-tight font-bold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                <span className="mb-1 block bg-gradient-to-r from-[#0055ff] to-[#0066ff] bg-clip-text text-[#0055ff] sm:mb-2">
+                <span className="mb-1 block text-[#0055ff] sm:mb-2">
                   数字分身
                 </span>
                 <span className="text-xl leading-tight font-semibold text-gray-900 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl dark:text-white">
@@ -217,7 +238,7 @@ function HeroSection(): JSX.Element {
               ))}
             </div>
 
-{/* 按钮组 - 增强视觉效果和响应式 - 增大按钮尺寸 */}
+            {/* 按钮组 - 增强视觉效果和响应式 - 增大按钮尺寸 */}
             <div className="flex flex-col justify-center gap-4 pt-4 sm:flex-row sm:gap-6 lg:justify-start">
               <Button
                 href="/demo"
@@ -1009,19 +1030,7 @@ function CoreFeaturesSection(): JSX.Element {
                       color="blue"
                       className="flex items-center justify-center gap-2 px-4 py-3"
                     >
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
+                      <BoltIcon className="h-5 w-5" />
                       立即体验
                     </Button>
                     <Button
@@ -1030,19 +1039,7 @@ function CoreFeaturesSection(): JSX.Element {
                       color="slate"
                       className="flex items-center justify-center gap-2 px-4 py-3"
                     >
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                        />
-                      </svg>
+                      <CreditCardIcon className="h-5 w-5" />
                       购买授权
                     </Button>
                     <Button
@@ -1051,19 +1048,7 @@ function CoreFeaturesSection(): JSX.Element {
                       color="slate"
                       className="flex items-center justify-center gap-2 px-4 py-3"
                     >
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+                      <FaceSmileIcon className="h-5 w-5" />
                       体验Demo
                     </Button>
                     <Button
@@ -1072,19 +1057,7 @@ function CoreFeaturesSection(): JSX.Element {
                       color="slate"
                       className="flex items-center justify-center gap-2 px-4 py-3"
                     >
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        />
-                      </svg>
+                      <ChatBubbleLeftRightIcon className="h-5 w-5" />
                       联系客服
                     </Button>
                   </div>

@@ -1,0 +1,210 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+@theme {
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 2rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 2.5rem;
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: 3.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1.1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 1;
+
+  --radius-4xl: 2rem;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-lexend);
+  /* 中文字体栈 */
+  --font-chinese: 'PingFang SC', 'Hiragino Sans GB', '微软雅黑', 'Microsoft Yahei', tahoma, arial, '宋体';
+
+  --container-2xl: 80rem;
+
+  /* UCloud 品牌色系 */
+  --color-brand: #3860F4;
+  --color-brand-hover: #2b4dd4;
+
+  /* 专用深色系 (Navy) - 用于文字和深色背景 */
+  --color-navy-900: #1D273F; /* 主标题/正文 */
+  --color-navy-800: #2A315F; /* Banner 深色背景 */
+  --color-navy-700: #50627F; /* 次级文字/描述 */
+
+  /* 辅助色 */
+  --color-blue-50: #EDF1FF; /* 标签浅色背景 */
+  --color-blue-100: #E6EAF4; /* 分割线/边框 */
+  --color-section-bg: #f6f8fd; /* 页面区块背景 */
+
+  /* 语义色别名：推荐在业务组件中优先使用这些 */
+  --color-text-primary: var(--color-navy-900);
+  --color-text-secondary: var(--color-navy-700);
+  --color-surface: #ffffff;
+  --color-surface-muted: var(--color-section-bg);
+  --color-border: var(--color-blue-100);
+
+  /* 覆盖 Tailwind 默认 blue 为品牌蓝（用于统一全站大量 bg-blue-600/text-blue-600） */
+  --color-blue-500: #3860F4;
+  --color-blue-600: #3860F4;
+  --color-blue-700: #2b4dd4;
+
+  /* 自定义阴影（统一卡片/弹层/品牌晕染） */
+  --shadow-card: 0 10px 30px rgba(29, 39, 63, 0.08);
+  --shadow-card-hover: 0 16px 42px rgba(29, 39, 63, 0.12);
+  --shadow-popover: 0 10px 25px rgba(15, 23, 42, 0.10), 0 4px 10px rgba(15, 23, 42, 0.06);
+  --shadow-brand: 0 18px 46px rgba(56, 96, 244, 0.22);
+  /* 特性卡片专用阴影 (带品牌色倾向) */
+  --shadow-feature-active: 0 25px 50px -12px rgba(56, 96, 244, 0.15);
+  --shadow-feature-button: 0 10px 15px -3px rgba(56, 96, 244, 0.2);
+
+  /* 动效（统一过渡时长/缓动） */
+  --motion-fast: 200ms;
+  --motion-base: 300ms;
+  --motion-slow: 500ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* 自定义圆角 */
+  --radius-xs: 0.25rem;   /* 4px - 紧凑按钮/输入框 */
+  --radius-sm: 0.3125rem; /* 5px - 标准按钮/标签 */
+  --radius-md: 0.625rem;  /* 10px - 内部图片 */
+  --radius-md-plus: 0.75rem; /* 12px - 标签页按钮/通用按钮 */
+  --radius-lg: 1.125rem;  /* 18px - 一般卡片 */
+  --radius-xl: 1.25rem;   /* 20px - 特性卡片(移动端) */
+  --radius-2xl: 1.5rem;   /* 24px - 特性卡片(桌面端) */
+  --radius-4xl: 2rem;
+
+  /* 覆盖默认 indigo 为品牌色 (可选，保持兼容性) */
+  --color-indigo-50: #EDF1FF;
+  --color-indigo-500: #3860F4;
+  --color-indigo-600: #2b4dd4;
+}
+
+/* 隐藏滚动条样式 */
+.scrollbar-hide {
+  /* Firefox */
+  scrollbar-width: none;
+  /* Safari and Chrome */
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  html {
+    color: var(--color-text-primary);
+  }
+
+  body {
+    font-family: var(--font-chinese), var(--font-sans);
+  }
+}
+
+/* ServiceTabs 组件样式 */
+.service-section {
+  background-color: var(--color-section-bg);
+  font-family: var(--font-chinese);
+}
+
+/*
+ * 组件专属样式封装 (BEM Naming)
+ * 提取自 PrimaryFeatures.tsx
+ */
+@layer components {
+  /* Feature Card Component */
+  .feature-card {
+    @apply relative rounded-[--radius-lg] overflow-hidden cursor-pointer transition-all duration-500 ease-in-out;
+  }
+
+  /* Feature Tab Navigation Button */
+  .feature-tab-btn {
+    @apply flex items-center gap-2 px-6 py-2.5 text-base rounded-[--radius-md-plus] transition-all duration-300 font-medium;
+  }
+
+  .feature-tab-btn--active {
+    @apply bg-[--color-brand] text-white shadow-lg shadow-blue-500/30;
+  }
+
+  .feature-tab-btn--inactive {
+    @apply bg-transparent text-[--color-navy-700] hover:text-[--color-brand];
+  }
+
+  /* Feature Action Buttons */
+  .feature-btn {
+    @apply h-[40px] px-6 rounded-[--radius-xs] font-medium text-sm flex items-center transition-all;
+  }
+
+  .feature-btn--primary {
+    @apply bg-[--color-brand] hover:bg-[--color-brand-hover] text-white shadow-blue-600/20;
+  }
+
+  .feature-btn--secondary {
+    @apply bg-white hover:bg-[#f9fafe] text-[--color-navy-700] border border-[--color-blue-100];
+  }
+
+  /* 通用语义组件（推荐全项目统一使用） */
+  .ui-card {
+    @apply bg-white border border-[--color-border] rounded-[--radius-lg];
+    box-shadow: var(--shadow-card);
+  }
+
+  .ui-card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .ui-btn {
+    @apply inline-flex items-center justify-center gap-2 font-bold transition-all;
+    border-radius: var(--radius-md-plus);
+    transition-duration: var(--motion-base);
+    transition-timing-function: var(--ease-standard);
+  }
+
+  .ui-btn--primary {
+    @apply bg-[--color-brand] text-white;
+    box-shadow: var(--shadow-brand);
+  }
+
+  .ui-btn--primary:hover {
+    background-color: var(--color-brand-hover);
+  }
+
+  .ui-btn--secondary {
+    @apply bg-white text-[--color-text-secondary] border border-[--color-border];
+  }
+
+  .ui-text-primary {
+    @apply text-[--color-text-primary];
+  }
+
+  .ui-text-secondary {
+    @apply text-[--color-text-secondary];
+  }
+
+  /* Text Styles */
+  .feature-title {
+    @apply font-medium text-[--color-navy-900];
+  }
+
+  .feature-desc {
+    @apply text-[--color-navy-700] leading-[25px];
+  }
+}

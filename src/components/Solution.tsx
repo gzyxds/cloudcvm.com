@@ -1,7 +1,6 @@
 'use client'
 
-import { useId, useState } from 'react'
-import Image, { type ImageProps } from 'next/image'
+import { useState } from 'react'
 import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import {
@@ -20,15 +19,12 @@ import {
  * @property {string} title - 卡片标题
  * @property {string} description - 功能描述
  * @property {string[]} features - 核心功能特性
- * @property {string} bgColor - 背景渐变色
- * @property {string} accentColor - 强调色
+ * @property {string} bgImage - 背景图片路径
  */
 interface SolutionCard {
   title: string
   description: string
   features: string[]
-  bgColor: string
-  accentColor: string
   bgImage: string
 }
 
@@ -41,8 +37,6 @@ const solutions: SolutionCard[] = [
     description:
       '提供一站式视频解决方案，涵盖点播直播、实时视频通话、短视频等视频服务，广泛应用于在线视频、电商、游戏直播、在线教育等场景',
     features: ['广电级音视频处理', '在线视频点播', '实时音视频通话'],
-    bgColor: 'bg-gradient-to-br from-blue-50 to-blue-100',
-    accentColor: 'text-blue-600',
     bgImage: '/images/screenshots/solution-1.png',
   },
   {
@@ -50,16 +44,12 @@ const solutions: SolutionCard[] = [
     description:
       '覆盖PK连麦直播、派对直播、视频相亲、在线自习室、互动课堂等多种场景，低延时的连麦互动，更优质的直播体验',
     features: ['PK连麦直播', '派对直播', '在线自习室'],
-    bgColor: 'bg-gradient-to-br from-purple-50 to-purple-100',
-    accentColor: 'text-purple-600',
     bgImage: '/images/screenshots/solution-2.png',
   },
   {
     title: '在线教育',
     description: '快速搭建在线课堂平台，提供全面的在线学习解决方案',
     features: ['在线课堂', '互动教学', '学习管理'],
-    bgColor: 'bg-gradient-to-br from-green-50 to-green-100',
-    accentColor: 'text-green-600',
     bgImage: '/images/screenshots/solution-3.png',
   },
   {
@@ -67,8 +57,6 @@ const solutions: SolutionCard[] = [
     description:
       '依托丰富的游戏生态资源和能力，共享海量游戏研发和运营经验，致力于打造高质量、全方位生态的游戏云服务平台',
     features: ['游戏多媒体引擎', '边缘加速平台', '游戏云服务'],
-    bgColor: 'bg-gradient-to-br from-red-50 to-red-100',
-    accentColor: 'text-red-600',
     bgImage: '/images/screenshots/solution-4.png',
   },
   {
@@ -76,8 +64,6 @@ const solutions: SolutionCard[] = [
     description:
       '一站式游戏视频工具包，视频转码、视频摘要提取、视频内容整理、视觉增强',
     features: ['视频转码', '内容整理', '视觉增强'],
-    bgColor: 'bg-gradient-to-br from-orange-50 to-orange-100',
-    accentColor: 'text-orange-600',
     bgImage: '/images/screenshots/solution-5.png',
   },
 ]
@@ -114,56 +100,58 @@ function getIconByTitle(title: string) {
  */
 function SolutionCard({
   solution,
-  index,
   isExpanded,
   onToggle,
 }: {
   solution: SolutionCard
-  index: number
   isExpanded: boolean
   onToggle: () => void
 }) {
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden shadow-lg transition-all duration-500 ease-in-out',
+        'group relative cursor-pointer overflow-hidden rounded-xl border transition-[flex] duration-500 ease-in-out',
+        // 边框样式：默认 slate-200，Hover时变为主题色/30
+        'border-slate-200 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+        // 背景样式：白色
+        'bg-white',
+        // 展开状态下的宽度占比
         isExpanded ? 'flex-[2.5]' : 'flex-[0.8]',
       )}
       onMouseEnter={onToggle}
     >
-      {/* 背景图片 - 完全无遮罩 */}
+      {/* 选中时的背景渐变 */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className={clsx(
+          'absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] transition-opacity duration-300 pointer-events-none',
+          isExpanded ? 'opacity-100' : 'opacity-0',
+        )}
+      />
+
+      {/* 背景图片 - 完整显示 */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 group-hover:scale-105"
         style={{
           backgroundImage: `url(${solution.bgImage})`,
         }}
       />
 
       {/* 内容区域 */}
-      <div className="relative flex h-full flex-col p-6">
+      <div className="relative z-10 flex h-full flex-col p-6">
         {/* 标题区域 - 始终可见，与箭头按钮对齐 */}
         <div className="mb-12 flex items-center justify-between">
-          <h3
-            className="py-2 text-xl font-bold text-white transition-all duration-300"
-            style={{
-              writingMode: 'horizontal-tb',
-              textOrientation: 'mixed',
-              transition: 'writing-mode 0.3s ease-in-out',
-            }}
-          >
+          <h3 className="font-display py-2 text-xl font-bold tracking-tight text-white drop-shadow-md">
             {solution.title}
           </h3>
 
           {/* 箭头按钮图标 - 移动到标题行 */}
           <div
             className={clsx(
-              'transition-all duration-300',
-              isExpanded
-                ? 'translate-x-0 opacity-100'
-                : 'translate-x-2 opacity-80',
+              'transition-opacity duration-300',
+              isExpanded ? 'opacity-100' : 'opacity-80',
             )}
           >
-            <div className="p-2 transition-colors duration-200 hover:bg-white/10">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-white/20 backdrop-blur-sm transition-all duration-200 group-hover:bg-[#0055ff] group-hover:border-[#0055ff] group-hover:text-white">
               <ArrowRightIcon className="h-4 w-4 text-white" />
             </div>
           </div>
@@ -172,30 +160,26 @@ function SolutionCard({
         {/* 展开内容 */}
         <div
           className={clsx(
-            'flex-1 transition-all delay-100 duration-500',
+            'flex-1 transition-opacity delay-100 duration-500',
             isExpanded ? 'opacity-100' : 'opacity-0',
           )}
         >
           {/* 描述文本 */}
-          <p className="mb-6 text-base leading-relaxed text-white/90">
+          <p className="mb-6 text-base leading-relaxed text-white/90 drop-shadow-sm">
             {solution.description}
           </p>
 
           {/* 核心功能列表 */}
           <div className="space-y-3">
-            <h4 className="mb-3 text-base font-semibold text-white">
+            <h4 className="mb-3 text-base font-semibold text-white drop-shadow-md">
               核心功能
             </h4>
             {solution.features.map((feature, featureIndex) => (
               <div
                 key={featureIndex}
-                className={clsx(
-                  'flex items-center text-base text-white/80 transition-transform duration-300',
-                  isExpanded ? 'translate-x-0' : 'translate-x-4',
-                )}
-                style={{ transitionDelay: `${featureIndex * 100 + 200}ms` }}
+                className="flex items-center text-base text-white/90 drop-shadow-sm"
               >
-                <div className="mr-3 h-2 w-2 rounded-full bg-white/60" />
+                <div className="mr-3 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
                 {feature}
               </div>
             ))}
@@ -209,25 +193,12 @@ function SolutionCard({
             return (
               <IconComponent
                 className={clsx(
-                  'h-6 w-6 text-white transition-opacity duration-300',
+                  'h-6 w-6 text-white drop-shadow-md transition-opacity duration-300',
                   isExpanded ? 'opacity-100' : 'opacity-60',
                 )}
               />
             )
           })()}
-        </div>
-
-        {/* 右下角直角装饰元素 - 简约版本 */}
-        <div className="absolute right-4 bottom-4">
-          <div
-            className={clsx(
-              'relative h-6 w-6 transition-all duration-300',
-              isExpanded ? 'scale-100 opacity-100' : 'scale-95 opacity-60',
-            )}
-          >
-            {/* 简约直角边框 */}
-            <div className="absolute right-0 bottom-0 h-4 w-4" />
-          </div>
         </div>
       </div>
     </div>
@@ -242,60 +213,58 @@ function SolutionCard({
  */
 function MobileSolutionCard({
   solution,
-  index,
 }: {
   solution: SolutionCard
-  index: number
 }) {
   return (
-    <div className="xs:h-[220px] group relative h-[180px] overflow-hidden shadow-lg sm:h-[280px]">
-      {/* 背景图片 */}
+    <div className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:h-[280px]">
+      {/* 选中时的背景渐变 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+      {/* 背景图片 - 完整显示 */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 group-hover:scale-105"
         style={{
           backgroundImage: `url(${solution.bgImage})`,
         }}
       />
 
-      {/* 渐变遮罩 */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
       {/* 内容区域 */}
-      <div className="relative flex h-full flex-col p-3 sm:p-4">
+      <div className="relative z-10 flex h-full flex-col p-3 sm:p-4">
         {/* 标题和图标 */}
         <div className="mb-2 flex items-center justify-between sm:mb-3">
-          <h3 className="text-base font-bold text-white sm:text-lg">
+          <h3 className="font-display text-base font-bold text-slate-900 sm:text-lg">
             {solution.title}
           </h3>
           {(() => {
             const IconComponent = getIconByTitle(solution.title)
             return (
-              <IconComponent className="h-4 w-4 text-white/80 sm:h-5 sm:w-5" />
+              <IconComponent className="h-4 w-4 text-[#0055ff] sm:h-5 sm:w-5" />
             )
           })()}
         </div>
 
         {/* 描述文本 */}
-        <p className="mb-2 line-clamp-3 flex-1 text-xs leading-relaxed text-white/90 sm:mb-4 sm:line-clamp-4 sm:text-sm">
+        <p className="mb-2 line-clamp-3 flex-1 text-xs leading-relaxed text-slate-600 sm:mb-4 sm:line-clamp-4 sm:text-sm">
           {solution.description}
         </p>
 
         {/* 核心功能列表 */}
         <div className="space-y-1 sm:space-y-2">
-          <h4 className="text-xs font-semibold text-white sm:text-sm">
+          <h4 className="text-xs font-semibold text-slate-900 sm:text-sm">
             核心功能
           </h4>
           {solution.features.slice(0, 2).map((feature, featureIndex) => (
             <div
               key={featureIndex}
-              className="flex items-center text-xs text-white/80 sm:text-sm"
+              className="flex items-center text-xs text-slate-600 sm:text-sm"
             >
-              <div className="mr-1.5 h-1 w-1 rounded-full bg-white/60 sm:mr-2 sm:h-1.5 sm:w-1.5" />
+              <div className="mr-1.5 h-1 w-1 rounded-full bg-[#0055ff] sm:mr-2 sm:h-1.5 sm:w-1.5" />
               {feature}
             </div>
           ))}
           {solution.features.length > 2 && (
-            <div className="text-xs text-white/60 sm:text-sm">...</div>
+            <div className="text-xs text-slate-400 sm:text-sm">...</div>
           )}
         </div>
       </div>
@@ -325,31 +294,25 @@ export function Solution() {
     <section
       id="solutions"
       aria-label="业务解决方案"
-      className="py-12 sm:py-16 lg:py-24"
-      style={{
-        fontFamily:
-          'pingfang SC, helvetica neue, arial, hiragino sans gb, microsoft yahei ui, microsoft yahei, simsun, sans-serif',
-        background: '#f7f8fb',
-      }}
+      className="relative overflow-hidden bg-slate-50 py-12 sm:py-16 lg:py-24"
     >
-      <div
-        className="mx-auto px-4 sm:px-6 lg:px-8"
-        style={{ maxWidth: '1800px' }}
-      >
+      <Container className="relative">
         {/* 标题区域 */}
         <div className="mb-4 text-left sm:mb-6 md:mb-10 lg:mb-16">
-          <h2 className="mb-2 text-lg font-bold text-gray-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
+          <h2 className="font-display mb-2 text-lg font-bold tracking-tight text-slate-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
             为不同业务场景提供安全且高效的解决方案
           </h2>
+          <p className="max-w-2xl text-base text-slate-600 sm:text-lg">
+            基于优刻云强大的基础设施，为您提供一站式行业解决方案，助力业务快速创新。
+          </p>
         </div>
 
         {/* PC端手风琴布局 - 隐藏在移动端 */}
-        <div className="hidden h-[400px] gap-2 overflow-hidden lg:flex xl:h-[500px]">
+        <div className="hidden h-[400px] gap-4 overflow-hidden lg:flex xl:h-[500px]">
           {solutions.map((solution, index) => (
             <SolutionCard
               key={index}
               solution={solution}
-              index={index}
               isExpanded={expandedIndex === index}
               onToggle={() => handleCardToggle(index)}
             />
@@ -364,7 +327,6 @@ export function Solution() {
               <MobileSolutionCard
                 key={index}
                 solution={solution}
-                index={index}
               />
             ))}
           </div>
@@ -372,7 +334,7 @@ export function Solution() {
           {/* 平板端：剩余的一个卡片单独一行 */}
           {solutions.length > 4 && (
             <div className="hidden sm:block lg:hidden">
-              <MobileSolutionCard solution={solutions[4]} index={4} />
+              <MobileSolutionCard solution={solutions[4]} />
             </div>
           )}
 
@@ -383,13 +345,12 @@ export function Solution() {
                 <MobileSolutionCard
                   key={index}
                   solution={solution}
-                  index={index}
                 />
               ))}
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }

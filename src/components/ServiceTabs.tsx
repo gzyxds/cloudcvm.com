@@ -2,565 +2,622 @@
 
 import { useState } from 'react'
 import clsx from 'clsx'
-import { Container } from '@/components/Container'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Flame,
+  Cloud,
+  Database,
+  BrainCircuit,
+  ShieldCheck,
+  Layers,
+  MessageSquare,
+  ArrowRight
+} from 'lucide-react'
+
+// ==================== 样式组件 (Typography & Layout) ====================
+
+/**
+ * 排版系统组件库 - 基于 Bento Linear Design 规范
+ * 使用 Clash Display / Lexend 作为标题字体 (font-display)
+ * 使用 Inter / Clash Grotesk 作为正文字体 (font-sans)
+ */
+const Typography = {
+  /**
+   * 一级标题组件
+   * @param {React.ReactNode} children - 标题内容
+   * @param {string} [className] - 额外的 CSS 类名
+   */
+  H1: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+    <h2 className={clsx("text-[28px] xs:text-[32px] sm:text-[40px] font-bold leading-[1.4] sm:leading-[1.5] text-[#0F172A] py-2 sm:py-3 tracking-tight", className)}>
+      {children}
+    </h2>
+  ),
+  /**
+   * 二级标题组件
+   * @param {React.ReactNode} children - 标题内容
+   * @param {string} [className] - 额外的 CSS 类名
+   */
+  H2: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+    <div className={clsx("text-[22px] sm:text-[30px] font-semibold leading-[1.4] text-[#0F172A] py-1.5 sm:py-2 tracking-tight", className)}>
+      {children}
+    </div>
+  ),
+  /**
+   * 三级标题组件
+   * @param {React.ReactNode} children - 标题内容
+   * @param {string} [className] - 额外的 CSS 类名
+   */
+  H3: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+    <div className={clsx("font-sans text-[18px] sm:text-[20px] font-medium leading-[1.3] text-[#0F172A] py-1.5 sm:py-2", className)}>
+      {children}
+    </div>
+  ),
+  /**
+   * 四级标题组件
+   * @param {React.ReactNode} children - 标题内容
+   * @param {string} [className] - 额外的 CSS 类名
+   */
+  H4: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+    <div className={clsx("font-sans text-[16px] sm:text-[18px] font-medium leading-[1.2] text-[#0F172A] py-1", className)}>
+      {children}
+    </div>
+  ),
+  /**
+   * 段落文本组件
+   * @param {React.ReactNode} children - 文本内容
+   * @param {string} [className] - 额外的 CSS 类名
+   * @param {boolean} [emphasized] - 是否强调显示
+   */
+  Paragraph: ({ children, className, emphasized }: { children: React.ReactNode; className?: string; emphasized?: boolean }) => (
+    <div className={clsx("text-[15px] sm:text-[17px] md:text-[19px] leading-[1.6] sm:leading-[1.7] text-[#64748B]", emphasized && "bg-[#F8FAFC] p-3 border border-[#E2E8F0]", className)}>
+      {children}
+    </div>
+  )
+}
+
+// ==================== 子组件 ====================
+
+/**
+ * 标签组件 - 统一标签样式 (Bento 风格：直角、边框、单色调)
+ * @param {React.ReactNode} children - 标签内容
+ * @param {string} [className] - 额外的 CSS 类名
+ */
+function Tag({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
+  const baseStyles = 'text-[14px] sm:text-[15px] px-2.5 sm:px-3.5 py-1 leading-6 rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] text-[#64748B] font-medium transition-colors'
+
+  return (
+    <div className={clsx(baseStyles, className)}>
+      {children}
+    </div>
+  )
+}
+
+/**
+ * 带箭头的链接组件 - 统一链接样式
+ * @param {string} href - 链接地址
+ * @param {React.ReactNode} children - 链接文本
+ * @param {string} [className] - 额外的 CSS 类名
+ */
+function LinkWithArrow({
+  href,
+  children,
+  className,
+}: {
+  href: string
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener"
+      className={clsx(
+        'flex items-center text-[15px] sm:text-base font-medium text-[#0F172A] hover:text-[#0055ff] group transition-colors whitespace-nowrap',
+        className,
+      )}
+    >
+      <span>{children}</span>
+      <ArrowRight className="ml-1.5 w-4 h-4 translate-x-0 transition-transform duration-300 group-hover:translate-x-1" />
+    </a>
+  )
+}
+
+/**
+ * 文档/详情链接组件 - Banner 内使用
+ * @param {string} href - 链接地址
+ * @param {React.ReactNode} children - 链接文本
+ */
+function DocLink({
+  href,
+  children,
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener"
+      className="text-[#64748B] hover:text-[#0055ff] transition-colors font-medium flex items-center text-[15px] sm:text-base group"
+    >
+      <span>{children}</span>
+      <ArrowRight className="ml-1 w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+    </a>
+  )
+}
 
 /**
  * 产品数据类型定义 - 企业级服务产品信息结构
+ * @interface Product
  */
 interface Product {
   id: string
   name: string
   description: string
-  storage: string
-  duration: string
-  originalPrice: string
-  currentPrice: string
-  unit: string
-  badge: string
-  badgeType: 'free' | 'hot' | 'new' | 'recommended' | 'secure' | 'smart'
+  tags: string[]
+  link?: string
 }
 
 /**
  * 服务选项卡数据类型定义 - 服务分类信息结构
+ * @interface ServiceTab
  */
 interface ServiceTab {
   id: string
   name: string
-  icon: string
+  icon: React.ElementType // 图标组件
+  banner: {
+    title: string
+    description: string
+    tags: string[]
+    buttonText: string
+    link?: string
+    image?: string // Banner 产品图片 URL
+  }
+  secondaryBanner: {
+    title: string
+    tags: string[]
+    link?: string
+  }
   products: Product[]
 }
 
 /**
- * 徽章样式配置 - 统一的企业级徽章设计系统
- */
-const badgeStyles = {
-  free: 'bg-emerald-500 text-white border-emerald-600',
-  hot: 'bg-orange-500 text-white border-orange-600',
-  new: 'bg-blue-500 text-white border-blue-600',
-  recommended: 'bg-purple-500 text-white border-purple-600',
-  secure: 'bg-slate-600 text-white border-slate-700',
-  smart: 'bg-teal-500 text-white border-teal-600',
-}
-
-/**
  * 服务选项卡数据配置 - 企业级云服务产品矩阵
+ * 数据来源于优刻得官网真实内容 (2024/03)
  */
 const serviceTabs: ServiceTab[] = [
   {
-    id: 'live-entertainment',
-    name: '泛娱乐直播',
-    icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
+    id: 'hot-recommendation',
+    name: '热门推荐',
+    icon: Flame,
+    banner: {
+      title: '快杰云主机特惠',
+      description:
+        '旗舰型云主机搭载新一代CPU，支持高网络带宽和存储性能，覆盖海内外30+节点，适合通用场景。',
+      tags: ['独享带宽', '全球节点', '低至1.5折'],
+      buttonText: '立即购买',
+      link: 'https://console.cloudcvm.com/cart/goodsList.htm',
+      image: 'https://www-s.ucloud.cn/2024/03/77b51f148efa13788aec21109e75f7bf_1710408303510.png',
+    },
+    secondaryBanner: {
+      title: '推荐有礼 返现35%',
+      tags: ['低门槛', '丰厚奖励', '长期获利'],
+      link: 'https://console.cloudcvm.com/cart/goodsList.html',
+    },
     products: [
       {
-        id: 'live-streaming',
-        name: '企业直播体验福包',
-        description: '企业级一体化直播解决方案，一站式满足企业直播需求',
-        storage: '20GB',
-        duration: '3000分钟',
-        originalPrice: '￥600',
-        currentPrice: '￥0.00',
-        unit: '/月',
-        badge: '限时免费',
-        badgeType: 'free',
+        id: 'overseas',
+        name: '出海云产品汇集',
+        description:
+          '汇集海内外云服务器、专线、数据库等产品，海内外业务低成本上云',
+        tags: ['五大洲节点', '出海必备', '低至0.5折'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
       },
       {
-        id: 'video-on-demand',
-        name: '视频点播',
-        description:
-          '为客户提供安全、稳定、高效的点播服务，帮助客户快速搭建点播平台',
-        storage: '100GB',
-        duration: '视频分发加速服务',
-        originalPrice: '￥200',
-        currentPrice: '￥1.00',
-        unit: '/月',
-        badge: '新用户',
-        badgeType: 'new',
+        id: 'hk-cloud',
+        name: '香港钜惠上云',
+        description: '回内地优化线路，BGP智能选路，云服务器全场低至1折',
+        tags: ['直连内地', '新客特惠', '跨境业务'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
       },
       {
-        id: 'live-broadcast',
-        name: '视频直播',
+        id: 'gpu',
+        name: 'GPU云服务器',
+        description: '9.9元/天，一键部署体验DeepSeek等全系列镜像',
+        tags: ['算力狂飙', '国产AI 低至1.4折'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
+      },
+      {
+        id: 'cross-border',
+        name: '跨境电商专区',
+        description: '节点覆盖东南亚、日韩、欧美等全球32个热门地区市场',
+        tags: ['多店铺管理', '防关联', '独立站'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
+      },
+      {
+        id: 'global-network',
+        name: '全球专线服务',
+        description: '全球31个节点组成骨干网，跨境加速业务优选',
+        tags: ['全球一张网', '就近接入', '内网互通'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
+      },
+      {
+        id: 'light-host',
+        name: '轻量应用云主机',
+        description: '入门级云主机，套餐式计费，57元/年起',
+        tags: ['大流量包', '入门级', '开箱即用'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
+      },
+      {
+        id: 'sms',
+        name: '全球短信特惠',
+        description: '文本/视频短信、语音消息、号码认证等',
+        tags: ['快速稳定', '智能调度', '快速接入'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
+      },
+      {
+        id: 'ddos',
+        name: 'DDoS 攻击防护',
         description:
-          '为客户提供专业、稳定、快速的直播接入和分发服务，全面满足超低延迟的直播场景需求',
-        storage: '100GB(100小时)',
-        duration: '流量包5GB起步',
-        originalPrice: '￥100',
-        currentPrice: '￥0.00',
-        unit: '/月',
-        badge: '新用户',
-        badgeType: 'new',
+          '国内5大清洗中心，海外8大节点的Anycast任播网络，优质“近源防护”',
+        tags: ['全球分布', '智能防护', '稳定可靠'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
+      },
+      {
+        id: 'bare-metal',
+        name: '裸金属服务器',
+        description: '超高性能计算灵活部署，9.9元试用',
+        tags: ['分钟级交付', '高性能', '弹性伸缩'],
+        link: 'https://console.cloudcvm.com/cart/goodsList.html',
       },
     ],
   },
   {
-    id: 'enterprise-acceleration',
-    name: '企业建站加速',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-    products: [
-      {
-        id: 'cdn-acceleration',
-        name: 'CDN加速服务',
-        description: '全球节点分发，智能调度路由，提升网站访问速度高达50%以上',
-        storage: '100GB',
-        duration: '全球加速服务',
-        originalPrice: '￥300',
-        currentPrice: '￥199',
-        unit: '/月',
-        badge: '热门',
-        badgeType: 'hot',
-      },
-      {
-        id: 'ssl-service',
-        name: 'SSL证书服务',
-        description: '免费SSL证书，一键部署HTTPS加密，全站保障数据传输安全',
-        storage: '不限',
-        duration: '证书有效期1年',
-        originalPrice: '￥150',
-        currentPrice: '￥0.00',
-        unit: '/年',
-        badge: '免费',
-        badgeType: 'free',
-      },
-      {
-        id: 'ddos-protection',
-        name: 'DDoS防护服务',
-        description:
-          'T级防护能力，多层过滤，智能识别攻击流量，保障业务稳定运行',
-        storage: '不限',
-        duration: '全天候防护',
-        originalPrice: '￥500',
-        currentPrice: '￥299',
-        unit: '/月',
-        badge: '安全',
-        badgeType: 'secure',
-      },
-    ],
+    id: 'basic-cloud',
+    name: '基础云计算',
+    icon: Cloud,
+    banner: {
+      title: '基础云计算特惠',
+      description: '提供稳定、安全、弹性的云计算基础服务，满足企业数字化转型需求',
+      tags: ['弹性伸缩', '安全可靠', '高性能'],
+      buttonText: '查看详情',
+    },
+    secondaryBanner: {
+      title: '新客上云大礼包',
+      tags: ['代金券', '免费试用'],
+    },
+    products: Array(9).fill({
+      id: 'demo',
+      name: '云服务器 UHost',
+      description: '高性能企业级云服务器，秒级启动，弹性扩展',
+      tags: ['热销', '通用型', '高性能'],
+    }),
   },
   {
-    id: 'domain-resolution',
-    name: '域名解析调度',
-    icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9',
-    products: [
-      {
-        id: 'geo-routing',
-        name: '智能地理调度',
-        description: '基于用户地理位置智能调度，自动选择最优节点，降低访问延迟',
-        storage: '不限',
-        duration: '智能路由服务',
-        originalPrice: '￥200',
-        currentPrice: '￥99',
-        unit: '/月',
-        badge: '推荐',
-        badgeType: 'recommended',
-      },
-      {
-        id: 'high-availability',
-        name: '高可用性保障',
-        description: '99.99%服务可用性保障，多区域容灾备份，确保业务连续性',
-        storage: '不限',
-        duration: '全年不间断',
-        originalPrice: '￥350',
-        currentPrice: '￥199',
-        unit: '/月',
-        badge: '稳定',
-        badgeType: 'secure',
-      },
-      {
-        id: 'real-time-monitoring',
-        name: '实时监控分析',
-        description: '7x24小时实时监控服务，多维度数据分析，智能异常检测预警',
-        storage: '30天数据存储',
-        duration: '全天候监控',
-        originalPrice: '￥250',
-        currentPrice: '￥149',
-        unit: '/月',
-        badge: '智能',
-        badgeType: 'smart',
-      },
-    ],
+    id: 'database',
+    name: '数据库与大数据',
+    icon: Database,
+    banner: {
+      title: '云数据库特惠',
+      description: '提供MySQL、Redis、MongoDB等多种数据库服务，免运维，高可用',
+      tags: ['自动备份', '读写分离', '监控告警'],
+      buttonText: '立即试用',
+    },
+    secondaryBanner: {
+      title: '数据库迁移工具',
+      tags: ['一键迁移', '数据同步'],
+    },
+    products: Array(9).fill({
+      id: 'demo-db',
+      name: '云数据库 UDB',
+      description: '稳定可靠的云数据库服务，支持主从热备、自动容灾',
+      tags: ['MySQL', '高可用', '自动备份'],
+    }),
+  },
+  {
+    id: 'ai',
+    name: '人工智能',
+    icon: BrainCircuit,
+    banner: {
+      title: 'AI算力平台',
+      description: '提供高性能GPU算力，支持TensorFlow、PyTorch等主流框架',
+      tags: ['高性能GPU', '预置环境', '弹性计费'],
+      buttonText: '立即体验',
+    },
+    secondaryBanner: {
+      title: 'AI模型市场',
+      tags: ['开箱即用', '丰富模型'],
+    },
+    products: Array(9).fill({
+      id: 'demo-ai',
+      name: 'AI训练服务',
+      description: '一站式AI训练平台，提供从数据处理到模型训练的全流程服务',
+      tags: ['分布式训练', '自动调参', '可视化'],
+    }),
+  },
+  {
+    id: 'security',
+    name: '安全、开发与运维',
+    icon: ShieldCheck,
+    banner: {
+      title: '云安全中心',
+      description: '态势感知、主机安全、漏洞扫描等全方位安全防护',
+      tags: ['等保合规', '实时监控', '威胁阻断'],
+      buttonText: '免费检测',
+    },
+    secondaryBanner: {
+      title: 'SSL证书服务',
+      tags: ['https加密', '数据安全'],
+    },
+    products: Array(9).fill({
+      id: 'demo-sec',
+      name: 'Web应用防火墙',
+      description: '防护OWASP Top 10常见Web攻击，保障网站安全',
+      tags: ['防SQL注入', '防XSS', 'CC防护'],
+    }),
+  },
+  {
+    id: 'hybrid',
+    name: '混合云与私有云',
+    icon: Layers,
+    banner: {
+      title: '混合云解决方案',
+      description: '打通公有云与私有云，实现资源统一管理和弹性调度',
+      tags: ['统一管理', '专线互联', '平滑迁移'],
+      buttonText: '咨询专家',
+    },
+    secondaryBanner: {
+      title: '私有云平台',
+      tags: ['自主可控', '定制开发'],
+    },
+    products: Array(9).fill({
+      id: 'demo-hybrid',
+      name: '托管云服务',
+      description: '提供物理服务器托管服务，独享硬件资源，安全可控',
+      tags: ['独享资源', '定制配置', '专线接入'],
+    }),
+  },
+  {
+    id: 'communication',
+    name: '云通信与企业应用',
+    icon: MessageSquare,
+    banner: {
+      title: '企业通信服务',
+      description: '短信、语音、号码隐私保护等全场景通信服务能力',
+      tags: ['高到达率', '秒级触达', '全球覆盖'],
+      buttonText: '立即开通',
+    },
+    secondaryBanner: {
+      title: '企业邮箱',
+      tags: ['无限容量', '安全反垃圾'],
+    },
+    products: Array(9).fill({
+      id: 'demo-comm',
+      name: '云短信 SMS',
+      description: '验证码、通知、营销短信，三网合一，快速到达',
+      tags: ['验证码', '通知短信', '营销短信'],
+    }),
   },
 ]
 
 /**
- * 企业级服务特性数据 - 核心技术能力展示
- */
-const serviceFeatures = [
-  {
-    title: '毫秒级超低延时',
-    description: '全球部署边缘节点，实现<50ms超低延时体验',
-  },
-  {
-    title: '企业级高可用',
-    description: '99.99%服务可用性，多重容灾保障业务连续性',
-  },
-  {
-    title: '智能弹性扩容',
-    description: '自动识别流量峰值，秒级扩容应对百万并发',
-  },
-  {
-    title: '数据安全合规',
-    description: '端到端加密传输，符合等保三级安全标准',
-  },
-]
-
-/**
- * 企业级产品卡片组件 - 现代蓝白色调设计
+ * 企业级服务选项卡主组件 - Bento Linear Design 风格重构
  *
- * @param product - 产品信息对象，包含服务规格、价格等核心数据
- * @returns 渲染企业级产品卡片的 JSX 元素
- *
- * 设计特性：
- * - 采用蓝白色调的现代企业设计风格
- * - 简洁直角卡片设计，突出专业感
- * - 合理留白，清晰的信息层次
- * - 突出数据展示，符合B端产品调性
- */
-function ProductCard({ product }: { product: Product }) {
-  return (
-    <div className="group relative flex h-full flex-col overflow-hidden border border-slate-200 bg-white transition-all duration-300 ease-out hover:border-gray-200 hover:shadow-xl">
-      {/* 卡片内容区域 - 响应式内边距 */}
-      <div className="flex flex-1 flex-col p-4 sm:p-6">
-        {/* 徽章 - 移动端优化 */}
-        <div
-          className={clsx(
-            'absolute top-3 right-3 px-2 py-1 sm:top-4 sm:right-4 sm:px-3 sm:py-1.5',
-            'text-xs font-semibold tracking-wide uppercase',
-            'z-10 border shadow-sm',
-            badgeStyles[product.badgeType],
-          )}
-        >
-          {product.badge}
-        </div>
-
-        {/* 产品标题 - 响应式字体 */}
-        <h3 className="mb-2 pr-16 text-lg leading-tight font-bold text-slate-900 sm:mb-3 sm:pr-20 sm:text-xl">
-          {product.name}
-        </h3>
-
-        {/* 产品描述 - 移动端优化 */}
-        <p className="mb-4 flex-grow text-xs leading-relaxed text-slate-600 sm:mb-6 sm:text-sm">
-          {product.description}
-        </p>
-
-        {/* 规格信息 - 移动端紧凑布局 */}
-        <div className="mb-4 space-y-2 sm:mb-6 sm:space-y-3">
-          <div className="border border-slate-100 bg-slate-50 p-3 sm:p-4">
-            <div className="mb-1.5 flex items-center justify-between sm:mb-2">
-              <span className="text-xs font-medium tracking-wide text-slate-500 uppercase">
-                存储空间
-              </span>
-              <span className="text-xs font-bold text-slate-900 sm:text-sm">
-                {product.storage}
-              </span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium tracking-wide text-slate-500 uppercase">
-                服务时长
-              </span>
-              <span className="text-xs font-bold text-slate-900 sm:text-sm">
-                {product.duration}
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* 价格信息 - 移动端优化 */}
-        <div className="mb-4 sm:mb-6">
-          <div className="mb-1.5 flex items-center justify-between sm:mb-2">
-            <span className="text-xs text-slate-500 sm:text-sm">企业价格</span>
-            <span className="text-xs text-slate-400 line-through sm:text-sm">
-              {product.originalPrice}
-            </span>
-          </div>
-          <div className="mb-2 flex items-baseline sm:mb-3">
-            <span className="text-2xl font-bold text-blue-600 sm:text-3xl">
-              {product.currentPrice}
-            </span>
-            <span className="ml-2 text-xs text-slate-500 sm:text-sm">
-              {product.unit}
-            </span>
-          </div>
-          <div className="inline-flex items-center border border-blue-200 bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 sm:px-3 sm:py-1.5">
-            <svg
-              className="mr-1 h-3 w-3 flex-shrink-0 sm:mr-1.5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="truncate">
-              限时特惠 · 立省
-              {parseInt(product.originalPrice.replace('￥', '')) -
-                parseInt(product.currentPrice.replace('￥', ''))}
-              元
-            </span>
-          </div>
-        </div>
-
-        {/* 操作按钮 - 移动端优化 */}
-        <div className="mt-auto flex flex-col gap-2 sm:flex-row sm:gap-3">
-          <button className="flex flex-1 items-center justify-center gap-1.5 border border-slate-300 px-3 py-2.5 text-xs font-medium text-slate-700 transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 sm:gap-2 sm:px-4 sm:py-3 sm:text-sm">
-            <svg
-              className="h-3 w-3 flex-shrink-0 sm:h-4 sm:w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="whitespace-nowrap">查看详情</span>
-          </button>
-          <button className="flex flex-1 items-center justify-center gap-1.5 bg-blue-600 px-3 py-2.5 text-xs font-medium text-white transition-all duration-200 hover:bg-blue-700 hover:shadow-lg sm:gap-2 sm:px-4 sm:py-3 sm:text-sm">
-            <svg
-              className="h-3 w-3 flex-shrink-0 sm:h-4 sm:w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              />
-            </svg>
-            <span className="whitespace-nowrap">立即开通</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/**
- * 企业级服务特性组件 - 现代技术能力展示
- *
- * @param feature - 服务特性对象，包含标题和详细描述
- * @returns 渲染企业级服务特性的 JSX 元素
- *
- * 设计特点：
- * - 现代蓝白色调企业设计风格
- * - 突出技术指标和核心能力
- * - 简洁直角设计，专业感强
- * - 清晰的信息层次和数据展示
- */
-function ServiceFeature({
-  feature,
-}: {
-  feature: { title: string; description: string }
-}) {
-  return (
-    <div className="group h-full border border-slate-200 bg-white p-3 transition-all duration-300 ease-out hover:border-gray-200 hover:shadow-md sm:p-4 lg:p-6">
-      {/* 图标区域 - 响应式设计 */}
-      <div className="mb-2 flex h-8 w-8 items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600 transition-all duration-300 group-hover:shadow-lg sm:mb-3 sm:h-10 sm:w-10 lg:mb-4 lg:h-12 lg:w-12">
-        <svg
-          className="h-4 w-4 text-white sm:h-5 sm:w-5 lg:h-6 lg:w-6"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </div>
-
-      {/* 内容区域 - 响应式字体 */}
-      <div>
-        <h4 className="mb-1.5 text-sm leading-tight font-bold text-slate-900 transition-colors duration-300 group-hover:text-blue-900 sm:mb-2 sm:text-base lg:mb-3 lg:text-lg">
-          {feature.title}
-        </h4>
-        <p className="text-xs leading-relaxed text-slate-600 transition-colors duration-300 group-hover:text-slate-700 sm:text-sm">
-          {feature.description}
-        </p>
-      </div>
-
-      {/* 底部装饰线 */}
-      <div className="mt-2 h-0.5 origin-left scale-x-0 transform bg-gradient-to-r from-blue-500 to-transparent transition-transform duration-300 group-hover:scale-x-100 sm:mt-3 lg:mt-4" />
-    </div>
-  )
-}
-
-/**
- * 企业级服务选项卡主组件 - 现代蓝白色调设计
- *
- * @returns 渲染完整的企业级服务选项卡界面
- *
- * 设计特性：
- * - 现代蓝白色调企业设计风格
- * - 简洁直角卡片设计
- * - 清晰的信息层次和数据展示
- * - 响应式布局优化
- * - 符合B端产品专业调性
+ * 核心设计遵循:
+ * 1. Geometry: 直角 (rounded-none), 边框优先 (border-first)
+ * 2. Color: Neutral Foundation + Primary Blue (#2b7fff) Accent
+ * 3. Typography: Tech-focused (Lexend/Inter/Mono)
+ * 4. Micro-interactions: 边框颜色变化，无缩放动画
  */
 export default function ServiceTabs() {
   const [activeTab, setActiveTab] = useState(0)
   const activeService = serviceTabs[activeTab]
+  const { banner, secondaryBanner, products } = activeService
 
   return (
-    <section className="bg-slate-50 py-12 sm:py-16 lg:py-20">
-      <Container>
-        {/* 标题区域 - 多端适配设计 */}
-        <div className="mb-10 text-center sm:mb-12 lg:mb-16">
-          <div className="mb-4 inline-flex items-center border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 sm:mb-6 sm:px-4 sm:py-2 sm:text-sm">
-            <svg
-              className="mr-1.5 h-3 w-3 flex-shrink-0 sm:mr-2 sm:h-4 sm:w-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
+    <section className="py-6 sm:py-8 lg:py-10 bg-gradient-to-b from-[#e0e7ff]/50 to-[#FFFFFF]">
+      <div className="w-full max-w-[1800px] px-3 sm:px-6 lg:px-8 mx-auto">
+        {/* 标题区域 */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 sm:mb-8 lg:mb-10 border-b border-[#E2E8F0] pb-4">
+          <div className="flex-1">
+            <Typography.H1 className="!my-0 mb-1 sm:mb-1.5 !py-1">
+              自主研发，安全可靠的云服务
+            </Typography.H1>
+            <Typography.Paragraph className="!mb-0 !text-xs sm:!text-sm">
+              12年技术沉淀，100+款产品与服务，持续创新
+            </Typography.Paragraph>
+          </div>
+          <div className="hidden lg:flex flex-row gap-6 items-center mt-4 sm:mt-0">
+            <LinkWithArrow href="https://console.cloudcvm.com/cart/goodsList.htm">
+              最新动态
+            </LinkWithArrow>
+            <LinkWithArrow href="https://console.cloudcvm.com/cart/goodsList.htm">
+              定价
+            </LinkWithArrow>
+          </div>
+        </div>
+
+        {/* 顶部 Tab 导航 - Bento 风格 Segmented Control */}
+        <div className="flex justify-start mb-6 sm:mb-8 overflow-x-auto no-scrollbar pb-1">
+          <div className="inline-flex border border-[#E2E8F0] bg-[#F8FAFC] min-w-full sm:min-w-0 rounded-sm">
+            {serviceTabs.map((tab, index) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(index)}
+                className={clsx(
+                  "flex items-center gap-2 px-4 py-2.5 text-sm sm:text-base font-medium transition-all duration-200 whitespace-nowrap outline-none select-none rounded-none border-r border-[#E2E8F0] last:border-r-0 hover:bg-white/50",
+                  activeTab === index
+                    ? "bg-white text-[#0055ff] shadow-sm"
+                    : "text-[#64748B] hover:text-[#0F172A]"
+                )}
+              >
+                <tab.icon
+                  className={clsx(
+                    "w-4 h-4 transition-colors duration-200",
+                    activeTab === index ? "text-[#0055ff]" : "text-[#94A3B8] group-hover:text-[#0055ff]"
+                  )}
+                />
+                {tab.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 内容区域 */}
+        <div className="relative min-h-[300px] sm:min-h-[340px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex flex-col lg:flex-row w-full gap-4"
             >
-              <path
-                fillRule="evenodd"
-                d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span className="whitespace-nowrap">企业级云服务解决方案</span>
-          </div>
-          <h2 className="mb-4 px-4 text-2xl font-bold text-slate-900 sm:mb-6 sm:text-3xl lg:text-4xl">
-            专业云计算服务平台
-          </h2>
-          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl">
-            为不同行业和场景提供专业的云计算服务，助力企业数字化转型升级
-          </p>
-        </div>
+              {/* 左侧区域 */}
+              <div className="w-full lg:w-[320px] xl:w-[360px] flex flex-col gap-4 flex-shrink-0">
+                 {/* 上方 Banner */}
+                <article className="flex-1 min-h-[220px] sm:min-h-[260px] w-full bg-white border border-[#E2E8F0] p-6 flex flex-col justify-between group rounded-sm relative overflow-hidden hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
 
-        {/* 选项卡导航 - 多端适配设计 */}
-        <div className="mb-8 sm:mb-12">
-          {/* 移动端：垂直堆叠布局 */}
-          <div className="space-y-2 sm:hidden">
-            {serviceTabs.map((tab, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveTab(index)}
-                className={clsx(
-                  'w-full px-4 py-3 text-sm font-medium transition-all duration-300',
-                  'flex items-center justify-start gap-3 border',
-                  'hover:shadow-md',
-                  activeTab === index
-                    ? 'border-blue-600 bg-blue-600 text-white shadow-lg'
-                    : 'border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50',
-                )}
-              >
-                <svg
-                  className="h-4 w-4 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d={tab.icon} />
-                </svg>
-                <span className="truncate">{tab.name}</span>
-              </button>
-            ))}
-          </div>
+                   <div className="relative z-10 flex flex-col h-full">
+                      <div className="flex-1">
+                          <div className="flex flex-col gap-3 mb-4">
+                              <Typography.H2 className="!my-0 !text-[20px] sm:!text-[22px] group-hover:text-[#0055ff] transition-colors">
+                                {banner.title}
+                              </Typography.H2>
 
-          {/* 平板端及以上：全屏水平布局 */}
-          <div className="hidden w-full gap-2 sm:flex lg:gap-3">
-            {serviceTabs.map((tab, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveTab(index)}
-                className={clsx(
-                  'flex-1 px-4 py-3 text-sm font-medium transition-all duration-300 sm:px-6 sm:py-4',
-                  'flex items-center justify-center gap-2 border sm:gap-3',
-                  'hover:shadow-md',
-                  activeTab === index
-                    ? 'border-blue-600 bg-blue-600 text-white shadow-lg'
-                    : 'border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50',
-                )}
-              >
-                <svg
-                  className="h-4 w-4 flex-shrink-0 sm:h-5 sm:w-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d={tab.icon} />
-                </svg>
-                <span className="whitespace-nowrap">{tab.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+                              <div className="flex flex-wrap gap-2">
+                            {banner.tags.map((tag, i) => (
+                               <Tag key={i} className="bg-[#F8FAFC] border-[#E2E8F0] text-[#64748B]">
+                                 {tag}
+                               </Tag>
+                             ))}
+                          </div>
+                      </div>
 
-        {/* 内容区域 - 多端适配布局 */}
-        <div className="space-y-8 lg:grid lg:grid-cols-4 lg:gap-8 lg:space-y-0">
-          {/* 产品展示区域 */}
-          <div className="lg:col-span-3">
-            <div className="mb-6 sm:mb-8">
-              <h3 className="mb-3 text-xl font-bold text-slate-900 sm:mb-4 sm:text-2xl">
-                {activeService.name} 产品方案
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-                为{activeService.name}场景提供专业的云计算服务解决方案
-              </p>
-            </div>
+                      <Typography.Paragraph className="pt-4 border-t border-[#E2E8F0] !text-sm sm:!text-base">
+                        {banner.description}
+                      </Typography.Paragraph>
 
-            {/* 产品卡片网格 - 响应式优化 */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-2">
-              {activeService.products.map((product, index) => (
-                <ProductCard key={index} product={product} />
-              ))}
-            </div>
-          </div>
+                      <div className="mt-6 flex items-center gap-4">
+                          <DocLink href="https://docs.ucloud.cn/uhost/introduction/uhost/type_new">
+                              产品文档
+                          </DocLink>
+                          {banner.link && (
+                            <DocLink href={banner.link}>了解详情</DocLink>
+                          )}
+                      </div>
+                  </div>
 
-          {/* 服务特性区域 - 移动端优化 */}
-          <div className="lg:col-span-1">
-            <div className="border border-slate-200 bg-white p-4 sm:p-6">
-              <div className="mb-4 sm:mb-6">
-                <h3 className="mb-2 text-lg font-bold text-slate-900 sm:mb-3 sm:text-xl">
-                  核心技术优势
-                </h3>
-                <p className="text-xs leading-relaxed text-slate-600 sm:text-sm">
-                  基于云原生架构，为企业提供稳定可靠的技术保障
-                </p>
-              </div>
+                  {banner.link && (
+                    <a
+                      href={banner.link}
+                      target="_blank"
+                      rel="noopener"
+                      className="btn btn-primary w-full mt-6 text-center bg-[#0055ff] hover:bg-[#0043cc] text-white py-2 rounded-sm font-medium transition-colors shadow-md hover:shadow-lg hover:shadow-[#0055ff]/20"
+                    >
+                      {banner.buttonText}
+                    </a>
+                  )}
+                  </div>
+               </article>
 
-              {/* 移动端：水平滚动布局 */}
-              <div className="mb-4 sm:hidden">
-                <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2">
-                  {serviceFeatures.map((feature, index) => (
-                    <div key={index} className="w-64 flex-shrink-0">
-                      <ServiceFeature feature={feature} />
+                {/* 下方 Banner */}
+                <article className={clsx(
+                  "min-h-[80px] w-full bg-white border border-[#E2E8F0] rounded-sm group flex flex-col justify-center hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300",
+                  secondaryBanner.link && "cursor-pointer"
+                )}>
+                  {secondaryBanner.link ? (
+                    <a href={secondaryBanner.link} target="_blank" rel="noopener" className="w-full h-full p-6 flex flex-col justify-center relative z-10">
+                        <div className="flex justify-between items-center mb-2">
+                            <Typography.H3 className="!my-0 !text-[16px] sm:!text-[18px] group-hover:text-[#0055ff] transition-colors flex-1 pr-4">
+                              {secondaryBanner.title}
+                            </Typography.H3>
+                            <ArrowRight className="text-[#94A3B8] w-5 h-5 group-hover:text-[#0055ff] transition-colors" />
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            {secondaryBanner.tags.map((tag, i) => (
+                            <Tag key={i} className="bg-transparent border-[#E2E8F0] text-[#64748B]">
+                              {tag}
+                            </Tag>
+                          ))}
+                        </div>
+                    </a>
+                  ) : (
+                    <div className="w-full p-6 flex flex-col justify-center">
+                        <Typography.H3 className="!my-0 mb-2 !text-[16px] sm:!text-[18px]">
+                          {secondaryBanner.title}
+                        </Typography.H3>
+                        <div className="flex flex-wrap gap-2">
+                            {secondaryBanner.tags.map((tag, i) => (
+                             <Tag key={i}>
+                               {tag}
+                             </Tag>
+                           ))}
+                        </div>
                     </div>
-                  ))}
-                </div>
-              </div>
+                  )}
+                </article>
+             </div>
 
-              {/* 平板端及以上：垂直布局 */}
-              <div className="mb-4 hidden grid-cols-1 gap-3 sm:mb-6 sm:grid sm:gap-4">
-                {serviceFeatures.map((feature, index) => (
-                  <ServiceFeature key={index} feature={feature} />
-                ))}
-              </div>
+             {/* 右侧网格区域 */}
+             <div className="flex-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-sm p-4 sm:p-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-full">
+                   {products.map((product, idx) => {
+                     const content = (
+                      <article className="h-full flex flex-col justify-start p-4 group cursor-pointer border border-[#E2E8F0] transition-all duration-300 rounded-sm bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 relative">
+                         <div className="w-full">
+                           <div className="flex items-center justify-between mb-3">
+                            <Typography.H4 className="!my-0 !text-[16px] sm:!text-[18px] !font-bold line-clamp-1 flex-1 group-hover:text-[#0055ff] transition-colors">
+                              {product.name}
+                            </Typography.H4>
+                            <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0055ff] transition-colors opacity-0 group-hover:opacity-100" />
+                          </div>
 
-              <button className="flex w-full items-center justify-center gap-2 bg-blue-600 px-3 py-2.5 text-xs font-medium text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg sm:px-4 sm:py-3 sm:text-sm">
-                <svg
-                  className="h-3 w-3 sm:h-4 sm:w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-                <span className="whitespace-nowrap">了解更多技术详情</span>
-              </button>
-            </div>
-          </div>
+                          <Typography.Paragraph className="!text-sm sm:!text-base line-clamp-2 !mb-4 min-h-[40px] text-[#64748B] group-hover:text-[#0F172A] leading-relaxed">
+                            {product.description}
+                          </Typography.Paragraph>
+
+                           <div className="flex flex-wrap gap-2 mt-auto">
+                             {product.tags.map((tag, tIdx) => (
+                              <span key={tIdx} className="text-[12px] px-1.5 py-0.5 border border-[#E2E8F0] text-[#64748B] bg-[#F8FAFC] group-hover:text-[#0055ff] group-hover:bg-white transition-colors">
+                                {tag}
+                              </span>
+                             ))}
+                           </div>
+                         </div>
+                       </article>
+                     )
+
+                      return product.link ? (
+                        <a
+                          key={idx}
+                          href={product.link}
+                          target="_blank"
+                          rel="noopener"
+                          className="h-full"
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        <div key={idx} className="h-full">{content}</div>
+                      )
+                    })}
+                 </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

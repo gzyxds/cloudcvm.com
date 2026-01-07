@@ -106,6 +106,7 @@ interface SuperiorityProps {
   gridCols?: {
     base?: string
     sm?: string
+    md?: string
     lg?: string
   }
 }
@@ -114,11 +115,12 @@ interface SuperiorityProps {
  * 产品优势展示组件
  *
  * 功能特点：
- * - 响应式网格布局，支持移动端、平板和桌面端适配
+ * - 响应式 Bento Grid 布局，支持移动端、平板和桌面端适配
+ * - Cloud UI 设计规范：Linear 风格、细边框、圆角(rounded-sm)
+ * - 仅支持 Light Mode (移除暗模式)
  * - 使用 Heroicons 图标库提供视觉化图标
  * - 支持自定义标题、描述和样式
- * - 基于项目现有设计规范，保持一致的视觉风格
- * - 展示云服务器的六大核心优势
+ * - 展示云服务器的核心优势
  *
  * @param title - 组件标题，默认为"产品优势"
  * @param subtitle - 组件副标题
@@ -137,64 +139,114 @@ export function Superiority({
   gridCols = {
     base: 'grid-cols-1',
     sm: 'grid-cols-2',
+    md: 'grid-cols-3',
     lg: 'grid-cols-3',
   },
 }: SuperiorityProps = {}) {
+  const bentoLayoutByIndex: Array<{
+    wrapper: string
+  }> = [
+    // Row 1: [Big 2x1] [Small 1x1]
+    { wrapper: 'lg:col-span-2 lg:row-span-1' },
+    { wrapper: 'lg:col-span-1 lg:row-span-1' },
+
+    // Row 2: [Small 1x1] [Big 2x1]
+    { wrapper: 'lg:col-span-1 lg:row-span-1' },
+    { wrapper: 'lg:col-span-2 lg:row-span-1' },
+
+    // Row 3: [Small 1x1] [Small 1x1] [Small 1x1]
+    { wrapper: 'lg:col-span-1 lg:row-span-1' },
+    { wrapper: 'lg:col-span-1 lg:row-span-1' },
+    { wrapper: 'lg:col-span-1 lg:row-span-1' },
+
+    // Row 4: [Big 2x1] [Small 1x1]
+    { wrapper: 'lg:col-span-2 lg:row-span-1' },
+    { wrapper: 'lg:col-span-1 lg:row-span-1' },
+  ]
+
   return (
     <section
       className={clsx(
-        'py-16 sm:py-20 lg:py-24',
-        showBackground && 'bg-gray-50',
+        'relative overflow-hidden py-16 sm:py-20 lg:py-24',
+        showBackground && 'bg-white',
         className,
       )}
     >
-      <Container>
+      <Container className="relative">
         {/* 标题区域 */}
-        <div className="max-w-2xl text-left">
+        <div className="mx-auto max-w-4xl text-center">
           {subtitle && (
-            <h2 className="text-base leading-7 font-semibold text-indigo-600">
+            <h2 className="text-base font-semibold text-[#0055ff] tracking-wide uppercase">
               {subtitle}
             </h2>
           )}
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <p className="mx-auto mt-4 max-w-2xl text-balance font-sans text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl leading-[1.1]">
             {title}
           </p>
           {description && (
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mx-auto mt-6 max-w-2xl text-xl text-[#64748B] leading-relaxed">
               {description}
             </p>
           )}
         </div>
 
         {/* 产品优势网格 */}
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+        <div className="mx-auto mt-10 max-w-2xl sm:mt-12 lg:max-w-none">
           <dl
             className={clsx(
-              'grid max-w-xl gap-x-8 gap-y-16 lg:max-w-none',
+              'grid gap-5 lg:grid-flow-dense lg:auto-rows-[minmax(180px,1fr)]',
               gridCols.base,
               gridCols.sm && `sm:${gridCols.sm}`,
+              gridCols.md && `md:${gridCols.md}`,
               gridCols.lg && `lg:${gridCols.lg}`,
             )}
           >
-            {productAdvantages.map((advantage) => (
+            {productAdvantages.map((advantage, index) => {
+              const bentoLayout = bentoLayoutByIndex[index]
+
+              return (
               <div
                 key={advantage.id}
-                className="group flex flex-col h-full transform overflow-hidden rounded-lg bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)] p-6"
+                className={clsx(
+                  'group relative h-full',
+                  bentoLayout?.wrapper,
+                )}
               >
-                <dt className="flex items-center gap-x-3 text-base leading-7 font-semibold text-gray-900">
-                  <div className="mr-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900">
-                    <advantage.icon
-                      aria-hidden="true"
-                      className="h-6 w-6 text-blue-600 dark:text-blue-400"
-                    />
+                <div
+                  className={clsx(
+                    'absolute inset-px rounded-xl bg-white transition-all duration-300 group-hover:bg-[#eff6ff]/30 group-hover:shadow-lg group-hover:shadow-slate-200/50',
+                  )}
+                />
+                <div
+                  className={clsx(
+                    'relative flex h-full flex-col overflow-hidden rounded-xl p-5 sm:p-6',
+                  )}
+                >
+                  <div className="pointer-events-none absolute -right-8 -bottom-8 opacity-[0.03] text-[#0F172A] group-hover:opacity-[0.05] transition-opacity">
+                    <advantage.icon className="h-40 w-40 sm:h-48 sm:w-48" />
                   </div>
-                  {advantage.name}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{advantage.description}</p>
-                </dd>
+
+                  <dt className="relative flex items-center gap-x-4 text-2xl sm:text-3xl font-bold text-[#0F172A] tracking-tight">
+                    <div className="mr-0 flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#eff6ff] text-[#0055ff] flex-shrink-0">
+                      <advantage.icon
+                        aria-hidden="true"
+                        className="h-6 w-6 sm:h-7 sm:w-7"
+                      />
+                    </div>
+                    {advantage.name}
+                  </dt>
+                  <dd className="relative mt-3 sm:mt-4 flex flex-auto flex-col text-base sm:text-lg leading-relaxed text-[#64748B]">
+                    <p className="flex-auto">{advantage.description}</p>
+                  </dd>
+                </div>
+                <div
+                  className={clsx(
+                    'pointer-events-none absolute inset-px rounded-xl border border-[#E2E8F0] transition-colors duration-300 group-hover:border-[#0055ff]/30',
+                  )}
+                />
               </div>
-            ))}
+              )
+            })}
           </dl>
         </div>
       </Container>

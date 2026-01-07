@@ -853,7 +853,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                 <div className="xs:space-y-4 space-y-3 sm:space-y-6">
                   <h1 className="xs:text-3xl text-2xl leading-tight font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl">
                     <span className="block">艺创AI</span>
-                    <span className="block bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    <span className="block text-blue-600">
                       智能聊天绘画系统
                     </span>
                   </h1>

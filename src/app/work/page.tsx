@@ -867,10 +867,10 @@ export default function KnowledgeBasePage(): JSX.Element {
                 <div className="xs:space-y-4 space-y-3 sm:space-y-6">
                   <h1 className="xs:text-3xl text-2xl leading-tight font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl">
                     <span className="block">企业级AI</span>
-                    <span className="block bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    <span className="block text-blue-600">
                       智能知识库
                     </span>
-                    <span className="block">数字人解决方案</span>
+                    <span className="block">企业AI解决方案</span>
                   </h1>
                   <p className="xs:text-base xs:px-0 mx-auto max-w-2xl px-2 text-sm leading-relaxed text-gray-600 sm:text-lg lg:mx-0 lg:text-xl">
                     融合前沿AI技术与企业实际需求，提供智能问答、知识管理、数字人定制等一站式服务，助力企业数字化转型升级

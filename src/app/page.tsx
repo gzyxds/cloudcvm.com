@@ -60,6 +60,7 @@ export default function Home() {
       <VideoCarousel />
       <main>
         <Hero />
+        <ServiceTabs />
         <PrimaryFeatures />
         <Leftright />
         <Rightleft />
@@ -68,7 +69,7 @@ export default function Home() {
         <Scenario />
         <Accordion />
         <Price />
-        <ServiceTabs />
+
         <CallToAction />
         <Advantage />
         <Testimonials />

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
 
 // ==================== 零售行业页面SEO元数据配置 ====================
 export const metadata: Metadata = {
@@ -32,6 +34,7 @@ export const metadata: Metadata = {
 /**
  * 零售行业页面布局组件
  * 为零售行业解决方案页面提供专用的SEO配置和布局结构
+ * 包含统一的导航栏和页脚
  * @param children - 子组件内容
  */
 export default function RetailLayout({
@@ -39,5 +42,13 @@ export default function RetailLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900">
+      <Header />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+    </div>
+  )
 }

@@ -193,52 +193,48 @@ export function Faqs() {
   const currentCategoryFaqs = faqCategories[selectedCategory].faqs
 
   return (
-    <div style={{ backgroundColor: '#f9faff' }}>
-      <div className="mx-auto max-w-[1800px] px-3 py-24 sm:py-32 lg:px-4 lg:py-40">
+    <div className="bg-[#f9faff]">
+      <div className="mx-auto max-w-[1800px] px-4 py-16 sm:py-32 lg:px-6 lg:py-40">
         <div className="mx-auto max-w-full">
           {/* 页面标题和描述 */}
           <div className="text-left">
-            <h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">
               常见问题
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-700">
+            <p className="mt-4 text-lg leading-8 text-slate-600 sm:mt-6 sm:text-xl">
               快速找到您需要的答案，如果您有其他问题，请随时联系我们的客服团队
             </p>
           </div>
 
           {/* 分类标签页 */}
-          <div className="mt-16">
+          <div className="mt-10 sm:mt-16">
             <TabGroup
               selectedIndex={selectedCategory}
               onChange={setSelectedCategory}
             >
-              <TabList className="flex max-w-full flex-wrap justify-center gap-2 sm:gap-4">
+              <TabList className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
                 {faqCategories.map((category, index) => {
                   const IconComponent = category.icon
                   return (
                     <Tab
                       key={category.name}
-                      className="group relative min-w-0 flex-1 overflow-hidden border border-gray-200 bg-white px-2 py-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10 focus:outline-none data-[selected]:bg-[#05f] data-[selected]:text-white sm:px-6"
+                      className="group relative min-w-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-white px-3 py-3 text-center text-sm font-medium transition-all hover:bg-slate-50 hover:border-slate-300 focus:z-10 focus:outline-none data-[selected]:border-[#0055ff] data-[selected]:bg-[#0055ff] data-[selected]:text-white data-[selected]:shadow-md sm:px-6 sm:py-4 sm:text-base"
                     >
-                      <div className="mx-auto flex items-center justify-center">
+                      <div className="mx-auto flex flex-col items-center justify-center sm:flex-row">
                         <IconComponent
-                          className="h-5 w-5 flex-shrink-0"
+                          className="h-5 w-5 flex-shrink-0 sm:h-6 sm:w-6"
                           aria-hidden="true"
                         />
-                        <span className="hidden truncate sm:ml-2 sm:inline">
+                        <span className="mt-2 truncate sm:ml-2 sm:mt-0 sm:inline">
                           {category.name}
                         </span>
                       </div>
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-x-0 bottom-0 hidden h-0.5 group-data-[selected]:block"
-                      />
                     </Tab>
                   )
                 })}
               </TabList>
 
-              <TabPanels className="mt-8">
+              <TabPanels className="mt-8 sm:mt-10">
                 {faqCategories.map((category, categoryIndex) => {
                   const faqs =
                     categoryIndex === selectedCategory
@@ -250,44 +246,44 @@ export function Faqs() {
                       className="focus:outline-none"
                     >
                       {faqs.length === 0 ? (
-                        <div className="py-12 text-center">
-                          <div className="text-lg text-gray-400">
+                        <div className="py-16 text-center">
+                          <div className="text-xl text-slate-400">
                             没有找到相关问题
                           </div>
-                          <p className="mt-2 text-gray-500">
+                          <p className="mt-3 text-slate-500">
                             请尝试其他搜索词或浏览其他分类
                           </p>
                         </div>
                       ) : (
-                        <dl className="space-y-6">
+                        <dl className="space-y-4 sm:space-y-6">
                           {faqs.map((faq, faqIndex) => (
                             <Disclosure
                               key={`${categoryIndex}-${faqIndex}`}
                               as="div"
-                              className="border border-gray-200 bg-white"
+                              className="rounded-xl border border-slate-200 bg-white transition-all hover:border-slate-300 hover:shadow-sm"
                             >
                               <dt>
-                                <DisclosureButton className="group flex w-full items-start justify-between p-6 text-left hover:bg-gray-50 focus:outline-none">
-                                  <span className="pr-6 text-base font-semibold text-black">
+                                <DisclosureButton className="group flex w-full items-start justify-between px-5 py-4 text-left hover:bg-slate-50 focus:outline-none rounded-xl data-[open]:rounded-b-none sm:px-8 sm:py-6">
+                                  <span className="pr-4 text-base font-semibold text-slate-900 sm:pr-6 sm:text-lg">
                                     {faq.question}
                                   </span>
-                                  <span className="ml-6 flex h-7 flex-shrink-0 items-center">
+                                  <span className="ml-4 flex h-7 flex-shrink-0 items-center sm:ml-6">
                                     <PlusSmallIcon
                                       aria-hidden="true"
-                                      className="h-6 w-6 transition-transform duration-200 group-data-[open]:hidden"
-                                      style={{ color: '#05f' }}
+                                      className="h-5 w-5 transition-transform duration-200 group-data-[open]:hidden sm:h-6 sm:w-6"
+                                      style={{ color: '#0055ff' }}
                                     />
                                     <MinusSmallIcon
                                       aria-hidden="true"
-                                      className="h-6 w-6 transition-transform duration-200 group-not-data-[open]:hidden"
-                                      style={{ color: '#05f' }}
+                                      className="h-5 w-5 transition-transform duration-200 group-not-data-[open]:hidden sm:h-6 sm:w-6"
+                                      style={{ color: '#0055ff' }}
                                     />
                                   </span>
                                 </DisclosureButton>
                               </dt>
-                              <DisclosurePanel as="dd" className="px-6 pb-6">
-                                <div className="border-t border-gray-100 pt-4">
-                                  <p className="text-base leading-7 text-gray-700">
+                              <DisclosurePanel as="dd" className="px-5 pb-5 sm:px-8 sm:pb-8">
+                                <div className="border-t border-slate-100 pt-4 sm:pt-6">
+                                  <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
                                     {faq.answer}
                                   </p>
                                 </div>
@@ -304,25 +300,25 @@ export function Faqs() {
           </div>
 
           {/* 联系支持 */}
-          <div className="mt-16">
-            <div className="border border-gray-200 bg-white p-8">
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-10 sm:mt-16">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
+              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between sm:gap-8">
                 <div className="text-center lg:text-left">
-                  <h3 className="mb-2 text-lg font-semibold text-black">
+                  <h3 className="mb-2 text-xl font-bold text-slate-900 sm:mb-3 sm:text-2xl">
                     没有找到您要的答案？
                   </h3>
-                  <p className="text-gray-700">
+                  <p className="text-base text-slate-600 sm:text-lg">
                     我们的技术支持团队随时为您提供帮助
                   </p>
                 </div>
-                <div className="flex flex-shrink-0 flex-col justify-center gap-4 sm:flex-row lg:justify-end">
+                <div className="flex flex-shrink-0 flex-col justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-end">
                   <button
-                    className="inline-flex items-center border border-transparent px-6 py-3 text-base font-medium text-white shadow-sm transition-colors duration-200 hover:opacity-90 focus:outline-none"
-                    style={{ backgroundColor: '#05f' }}
+                    className="inline-flex items-center justify-center rounded-lg border border-transparent px-6 py-3 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:bg-blue-600 hover:shadow-md focus:outline-none sm:px-8 sm:py-4 sm:text-lg"
+                    style={{ backgroundColor: '#0055ff' }}
                   >
                     联系客服
                   </button>
-                  <button className="inline-flex items-center border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black transition-colors duration-200 hover:bg-gray-50 focus:outline-none">
+                  <button className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:border-slate-300 focus:outline-none sm:px-8 sm:py-4 sm:text-lg">
                     提交工单
                   </button>
                 </div>

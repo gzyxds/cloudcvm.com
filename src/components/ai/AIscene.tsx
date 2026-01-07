@@ -131,7 +131,7 @@ function SolutionCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-none border border-gray-200 bg-white transition-all duration-500 ease-in-out',
+        'group relative cursor-pointer overflow-hidden rounded-sm border border-gray-200 bg-white transition-all duration-500 ease-in-out',
         isExpanded ? 'flex-[2]' : 'flex-[1.2]',
       )}
       onMouseEnter={onToggle}

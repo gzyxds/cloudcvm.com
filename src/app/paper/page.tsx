@@ -282,10 +282,10 @@ function AdvantagesSection(): JSX.Element {
     <section className="bg-white py-20">
       <Container>
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold">产品优势</h2>
+          <h2 className="mb-4 text-3xl font-bold">应用场景</h2>
           <div className="mx-auto mb-4 h-1 w-16 bg-blue-600"></div>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            多维度产品优势，助力企业数字化升级
+            多场景应用，助力学术写作与研究工作
           </p>
         </div>
 
@@ -366,39 +366,39 @@ function AdvantagesSection(): JSX.Element {
             </ul>
           </div>
 
-          {/* 产品卡片3 - AI绘画创作 */}
+          {/* 产品卡片3 - 学生作业 */}
           <div className="group rounded-xl border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
             <div className="mb-6 flex items-center">
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 group-hover:bg-blue-100">
-                <FaceSmileIcon className="h-6 w-6 text-blue-600" />
+                <PencilIcon className="h-6 w-6 text-blue-600" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900">AI绘画创作</h3>
-                <div className="font-medium text-blue-600">智能绘图</div>
+                <h3 className="text-lg font-bold text-gray-900">学生作业</h3>
+                <div className="font-medium text-blue-600">学习辅助</div>
               </div>
             </div>
 
             <p className="mb-4 text-sm text-gray-600">
-              支持多平台绘画模型，快速生成精美作品
+              学生可以利用AI写作系统来获得关于特定主题的论文建议、参考文献和写作指导，提高写作能力和学术水平
             </p>
 
             <ul className="space-y-3">
               <li className="flex items-start">
                 <SparklesIcon className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0 text-blue-600" />
                 <span className="text-sm text-gray-700">
-                  一句话生成精美画作，操作简单高效
+                  提供论文建议和写作指导
                 </span>
               </li>
               <li className="flex items-start">
                 <SparklesIcon className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0 text-blue-600" />
                 <span className="text-sm text-gray-700">
-                  支持多平台模型，生图速度快，无需排队
+                  智能推荐参考文献，节省查找时间
                 </span>
               </li>
               <li className="flex items-start">
                 <SparklesIcon className="mt-0.5 mr-2 h-4 w-4 flex-shrink-0 text-blue-600" />
                 <span className="text-sm text-gray-700">
-                  支持以图生图，创作更自由
+                  提升写作能力和学术水平
                 </span>
               </li>
             </ul>
@@ -455,21 +455,14 @@ function DemoSection(): JSX.Element {
   const demoAccounts: DemoAccount[] = [
     {
       title: 'PC端后台',
-      url: 'https://www.cnai.art',
+      url: 'https://paper.gmlart.cn/',
       username: '自行注册',
       password: '自行注册',
       description: '完整的AI聊天绘画管理后台',
     },
     {
-      title: '代理商后台',
-      url: 'https://www.cnai.art/admin',
-      username: 'demo',
-      password: 'demo',
-      description: '代理商专用管理系统',
-    },
-    {
       title: '移动端',
-      url: 'https://www.cnai.art/mobile',
+      url: 'https://paper.gmlart.cn/mobile',
       username: '暂不提供',
       password: '暂不提供',
       description: 'AI创作服务管理平台',
@@ -492,7 +485,7 @@ function DemoSection(): JSX.Element {
               在线演示
             </div>
             <h2 className="mb-4 text-2xl leading-tight font-bold text-gray-900 sm:mb-6 sm:text-3xl">
-              艺创AI-聊天绘画系统
+              艺创AI-论文创作
               <br className="hidden sm:block" />
               演示中心
             </h2>
@@ -557,14 +550,14 @@ function DemoSection(): JSX.Element {
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
                 className="h-auto min-h-[44px] rounded-none bg-blue-600 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 sm:min-h-[48px] sm:px-8 sm:text-base"
-                href="#"
+                href="https://paper.gmlart.cn/"
               >
                 申请专属演示
               </Button>
               <Button
                 variant="outline"
                 className="h-auto min-h-[44px] rounded-none border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:min-h-[48px] sm:px-8 sm:text-base"
-                href="#"
+                href="https://paper.gmlart.cn/"
               >
                 联系客服
               </Button>
@@ -897,36 +890,36 @@ export default function KnowledgeBasePage(): JSX.Element {
                     <span className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-gradient-to-r from-blue-600 to-blue-500"></span>
                   </span>
                   <br />
-                  <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                  <span className="text-blue-600">
                     艺创AI
                   </span>
                   <br />
                   <span className="text-3xl font-bold text-gray-800 lg:text-4xl">
-                    智能聊天绘画系统
+                    智能论文创作系统
                   </span>
                 </h1>
 
                 {/* 副标题 - 优化描述内容 */}
                 <p className="mx-auto mb-6 max-w-xl text-lg leading-relaxed font-medium text-gray-600 lg:mx-0">
-                  集成最新GPT-4、DALL-E 3、Midjourney等顶级AI模型，
+                  集成最新GPT-4、Claude、文心一言等顶级AI模型，
                   <span className="font-semibold text-blue-600">
-                    打造一站式AI创作平台
+                    打造一站式论文创作平台
                   </span>
                 </p>
 
                 {/* 核心特性标签 */}
                 <div className="mb-8 flex flex-wrap justify-center gap-2 lg:justify-start">
                   <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    智能对话
+                    智能写作
                   </span>
                   <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    AI绘画
+                    文献检索
                   </span>
                   <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    智能创作
+                    格式排版
                   </span>
                   <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    营销变现
+                    查重降重
                   </span>
                 </div>
 
@@ -990,14 +983,14 @@ export default function KnowledgeBasePage(): JSX.Element {
                 {/* 按钮组 - 现代化设计 - 紧凑样式 */}
                 <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
                   <Button
-                    href="#demo"
+                    href="https://paper.gmlart.cn/"
                     className="h-auto rounded-xl bg-blue-600 px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
                   >
                     <PencilIcon className="mr-2 h-4 w-4" />
                     立即开始创作
                   </Button>
                   <Button
-                    href="https://v.cnai.art"
+                    href="https://paper.gmlart.cn/"
                     target="_blank"
                     variant="outline"
                     className="h-auto rounded-xl border-2 border-gray-300 px-8 py-3 text-base font-semibold text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:bg-gray-50"
@@ -1091,10 +1084,10 @@ export default function KnowledgeBasePage(): JSX.Element {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-gray-900">
-                          AI绘画
+                          论文创作
                         </p>
                         <p className="text-xs font-medium text-green-600">
-                          智能创图
+                          AI原创论文写作
                         </p>
                       </div>
                     </div>
@@ -1125,16 +1118,16 @@ export default function KnowledgeBasePage(): JSX.Element {
                 <span className="font-medium">自然语言处理</span>
               </div>
               <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">计算机视觉</span>
+                <span className="font-medium">学术写作</span>
               </div>
               <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">深度学习</span>
+                <span className="font-medium">文献分析</span>
               </div>
               <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">多模态融合</span>
+                <span className="font-medium">智能排版</span>
               </div>
               <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">智能推荐</span>
+                <span className="font-medium">查重降重</span>
               </div>
             </div>
           </Container>

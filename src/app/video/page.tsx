@@ -113,39 +113,30 @@ interface FAQItem {
  * Hero区域组件 - 短剧系统首页英雄区域
  * 采用左文右图的经典分栏结构，以蓝色调为主，统一视觉效果
  * 特点：视觉统一性、层次清晰、交互友好、响应式设计
- *
- * 功能包括：
- * 1. 展示短剧系统的主要标题和简介
- * 2. 提供产品特性标签
- * 3. 提供行动按钮（查看演示、立即购买、系统文档、售前咨询）
- * 4. 右侧展示产品图片
- * 5. 响应式设计，适配不同屏幕尺寸
- *
- * @returns {JSX.Element} Hero区域组件
  */
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-32">
+    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-32 bg-white">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* 左侧内容区 */}
           <div className="lg:col-span-6 xl:col-span-5">
             <div className="space-y-8">
               {/* 产品标签 */}
-              <div className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 ring-1 ring-blue-700/10 dark:bg-blue-900/20 dark:text-blue-300 dark:ring-blue-300/20">
-                <span className="mr-2 h-2 w-2 rounded-full bg-blue-600"></span>
+              <div className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">
+                <span className="mr-2 h-2 w-2 rounded-full bg-[#0055ff]"></span>
                 2024年热门爆火产品
               </div>
 
               <h1
                 className={clsx(
                   'text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl',
-                  'text-gray-900 dark:text-white',
+                  'text-slate-900',
                 )}
               >
                 短剧新纪元！
                 <br />
-                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                <span className="text-[#0055ff]">
                   国内外短剧平台
                 </span>
               </h1>
@@ -153,7 +144,7 @@ function HeroSection() {
               <p
                 className={clsx(
                   'text-xl leading-relaxed',
-                  'text-gray-600 dark:text-gray-300',
+                  'text-slate-600',
                 )}
               >
                 全新升级，精心打造的旗舰版短剧系统。支持完善的投流功能、广告回传功能、自定义充值套餐等多维度营销数据，助力您的短剧事业腾飞。
@@ -161,28 +152,28 @@ function HeroSection() {
 
               {/* 特性亮点 */}
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                <div className="flex items-center text-slate-600">
                   <CheckCircleIcon
                     className="mr-2 h-5 w-5 text-green-500"
                     aria-hidden="true"
                   />
                   750+上线案例
                 </div>
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                <div className="flex items-center text-slate-600">
                   <CheckCircleIcon
                     className="mr-2 h-5 w-5 text-green-500"
                     aria-hidden="true"
                   />
                   开源可二开
                 </div>
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                <div className="flex items-center text-slate-600">
                   <CheckCircleIcon
                     className="mr-2 h-5 w-5 text-green-500"
                     aria-hidden="true"
                   />
                   多端同步
                 </div>
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
+                <div className="flex items-center text-slate-600">
                   <CheckCircleIcon
                     className="mr-2 h-5 w-5 text-green-500"
                     aria-hidden="true"
@@ -252,19 +243,19 @@ function HeroSection() {
               {/* 平板模拟器容器 */}
               <div className="relative mx-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
                 {/* 平板外框 */}
-                <div className="relative rounded-[1rem] border-4 border-blue-200 bg-white p-2 shadow-xl sm:rounded-[1.5rem] sm:border-6 sm:p-3 md:border-8 md:p-4">
+                <div className="relative rounded-[1rem] border-4 border-slate-200 bg-white p-2 shadow-xl sm:rounded-[1.5rem] sm:border-6 sm:p-3 md:border-8 md:p-4">
                   {/* 平板屏幕 */}
-                  <div className="relative h-[300px] w-full overflow-hidden rounded-[0.5rem] bg-gradient-to-b from-blue-50 to-white sm:h-[400px] sm:rounded-[0.75rem] md:h-[450px] md:rounded-[1rem] lg:h-[500px]">
+                  <div className="relative h-[300px] w-full overflow-hidden rounded-[0.5rem] bg-gradient-to-b from-slate-50 to-white sm:h-[400px] sm:rounded-[0.75rem] md:h-[450px] md:rounded-[1rem] lg:h-[500px]">
                     {/* 短剧视频界面 */}
-                    <div className="relative h-full w-full bg-gradient-to-b from-blue-100 to-blue-50">
+                    <div className="relative h-full w-full bg-gradient-to-b from-[#eff6ff] to-white">
                       {/* 视频播放区域 */}
                       <div className="relative h-full w-full">
                         {/* 模拟视频背景 */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 via-blue-300/20 to-blue-100/30"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#eff6ff] via-white to-slate-50"></div>
 
                         {/* 播放按钮 */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="rounded-full bg-blue-600 p-3 shadow-lg sm:p-4 md:p-5 lg:p-6">
+                          <div className="rounded-full bg-[#0055ff] p-3 shadow-lg shadow-[#0055ff]/30 sm:p-4 md:p-5 lg:p-6 animate-pulse">
                             <PlayCircleIcon
                               className="h-8 w-8 text-white sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16"
                               aria-hidden="true"
@@ -273,9 +264,9 @@ function HeroSection() {
                         </div>
 
                         {/* 顶部状态栏 */}
-                        <div className="absolute top-0 right-0 left-0 flex items-center justify-between p-2 text-blue-800 sm:p-3 md:p-4">
+                        <div className="absolute top-0 right-0 left-0 flex items-center justify-between p-2 text-slate-800 sm:p-3 md:p-4">
                           <div className="flex items-center space-x-1 sm:space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-blue-500 sm:h-2 sm:w-2"></div>
+                            <div className="h-1.5 w-1.5 rounded-full bg-[#0055ff] sm:h-2 sm:w-2"></div>
                             <span className="text-[10px] font-medium sm:text-xs">
                               在线播放
                             </span>
@@ -289,7 +280,7 @@ function HeroSection() {
                         <div className="absolute top-1/2 right-2 -translate-y-1/2 space-y-2 sm:right-3 sm:space-y-3 md:right-4 md:space-y-4">
                           {/* 点赞 */}
                           <div className="flex flex-col items-center space-y-0.5 sm:space-y-1">
-                            <div className="rounded-full bg-blue-600 p-1 shadow-md sm:p-1.5 md:p-2">
+                            <div className="rounded-full bg-[#0055ff] p-1 shadow-md sm:p-1.5 md:p-2">
                               <svg
                                 className="h-3 w-3 text-white sm:h-4 sm:w-4 md:h-5 md:w-5"
                                 fill="currentColor"
@@ -298,20 +289,20 @@ function HeroSection() {
                                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                               </svg>
                             </div>
-                            <span className="text-[10px] font-medium text-blue-800 sm:text-xs">
+                            <span className="text-[10px] font-medium text-slate-800 sm:text-xs">
                               8.2k
                             </span>
                           </div>
 
                           {/* 分享 */}
                           <div className="flex flex-col items-center space-y-0.5 sm:space-y-1">
-                            <div className="rounded-full bg-blue-600 p-1 shadow-md sm:p-1.5 md:p-2">
+                            <div className="rounded-full bg-[#0055ff] p-1 shadow-md sm:p-1.5 md:p-2">
                               <ShareIcon
                                 className="h-3 w-3 text-white sm:h-4 sm:w-4 md:h-5 md:w-5"
                                 aria-hidden="true"
                               />
                             </div>
-                            <span className="text-[10px] font-medium text-blue-800 sm:text-xs">
+                            <span className="text-[10px] font-medium text-slate-800 sm:text-xs">
                               分享
                             </span>
                           </div>
@@ -321,18 +312,18 @@ function HeroSection() {
                         <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-white/95 to-transparent p-2 sm:p-3 md:p-4">
                           <div className="space-y-1 sm:space-y-2">
                             <div className="flex items-center space-x-1 sm:space-x-2">
-                              <div className="h-5 w-5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 sm:h-6 sm:w-6 md:h-8 md:w-8"></div>
-                              <span className="text-xs font-medium text-blue-900 sm:text-sm">
+                              <div className="h-5 w-5 rounded-full bg-gradient-to-r from-[#0055ff] to-[#0043cc] sm:h-6 sm:w-6 md:h-8 md:w-8"></div>
+                              <span className="text-xs font-medium text-slate-900 sm:text-sm">
                                 @精彩短剧
                               </span>
-                              <button className="rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-medium text-white sm:px-3 sm:py-1 sm:text-xs">
+                              <button className="rounded-full bg-[#0055ff] px-2 py-0.5 text-[10px] font-medium text-white sm:px-3 sm:py-1 sm:text-xs">
                                 关注
                               </button>
                             </div>
-                            <p className="line-clamp-2 text-xs text-blue-800 sm:text-sm">
+                            <p className="line-clamp-2 text-xs text-slate-800 sm:text-sm">
                               第15集：真相大白！她竟然是失散多年的千金小姐...
                             </p>
-                            <div className="flex items-center space-x-2 text-[10px] text-blue-600 sm:space-x-4 sm:text-xs">
+                            <div className="flex items-center space-x-2 text-[10px] text-slate-600 sm:space-x-4 sm:text-xs">
                               <span>2小时前</span>
                               <span>•</span>
                               <span className="hidden sm:inline">
@@ -344,25 +335,25 @@ function HeroSection() {
                         </div>
 
                         {/* 充值提示弹窗 */}
-                        <div className="absolute top-1/2 left-1/2 max-w-[200px] -translate-x-1/2 -translate-y-1/2 rounded-lg border border-blue-200 bg-white p-3 shadow-xl sm:max-w-none sm:rounded-xl sm:p-4 md:p-6">
+                        <div className="absolute top-1/2 left-1/2 max-w-[200px] -translate-x-1/2 -translate-y-1/2 rounded-xl border border-slate-200 bg-white p-3 shadow-xl sm:max-w-none sm:p-4 md:p-6">
                           <div className="text-center">
-                            <div className="mx-auto mb-2 flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 sm:mb-3 sm:h-8 sm:w-8 md:h-10 md:w-10">
+                            <div className="mx-auto mb-2 flex h-6 w-6 items-center justify-center rounded-full bg-[#eff6ff] sm:mb-3 sm:h-8 sm:w-8 md:h-10 md:w-10">
                               <CurrencyDollarIcon
-                                className="h-3 w-3 text-blue-600 sm:h-4 sm:w-4 md:h-5 md:w-5"
+                                className="h-3 w-3 text-[#0055ff] sm:h-4 sm:w-4 md:h-5 md:w-5"
                                 aria-hidden="true"
                               />
                             </div>
-                            <h3 className="mb-1 text-sm font-semibold text-blue-900 sm:mb-2 sm:text-base">
+                            <h3 className="mb-1 text-sm font-semibold text-slate-900 sm:mb-2 sm:text-base">
                               解锁完整剧集
                             </h3>
-                            <p className="mb-2 text-xs text-blue-700 sm:mb-4 sm:text-sm">
+                            <p className="mb-2 text-xs text-slate-600 sm:mb-4 sm:text-sm">
                               充值会员观看后续精彩内容
                             </p>
                             <div className="space-y-1 sm:space-y-2">
-                              <button className="w-full rounded-md bg-blue-600 py-1.5 text-xs font-medium text-white hover:bg-blue-700 sm:rounded-lg sm:py-2 sm:text-sm">
+                              <button className="w-full rounded-md bg-[#0055ff] py-1.5 text-xs font-medium text-white hover:bg-[#0043cc] sm:rounded-lg sm:py-2 sm:text-sm">
                                 ￥6 解锁本剧
                               </button>
-                              <button className="w-full rounded-md border border-blue-300 py-1.5 text-xs text-blue-700 hover:bg-blue-50 sm:rounded-lg sm:py-2 sm:text-sm">
+                              <button className="w-full rounded-md border border-slate-200 py-1.5 text-xs text-slate-600 hover:bg-slate-50 sm:rounded-lg sm:py-2 sm:text-sm">
                                 ￥30 月度会员
                               </button>
                             </div>
@@ -373,61 +364,61 @@ function HeroSection() {
                   </div>
 
                   {/* 平板Home按钮 */}
-                  <div className="absolute bottom-1 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-blue-300 sm:bottom-2 sm:h-1 sm:w-12 md:w-16"></div>
+                  <div className="absolute bottom-1 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-slate-300 sm:bottom-2 sm:h-1 sm:w-12 md:w-16"></div>
                 </div>
 
                 {/* 浮动数据卡片 */}
-                <div className="absolute top-8 -left-4 rounded-md border border-blue-100 bg-white p-2 shadow-md sm:top-12 sm:-left-6 sm:rounded-lg sm:p-3 md:top-16 md:-left-8">
+                <div className="absolute top-8 -left-4 rounded-xl border border-slate-200 bg-white p-2 shadow-lg sm:top-12 sm:-left-6 sm:p-3 md:top-16 md:-left-8 animate-bounce delay-100">
                   <div className="flex items-center space-x-1 sm:space-x-2">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-blue-600 sm:h-7 sm:w-7 sm:rounded-lg md:h-8 md:w-8">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#0055ff] sm:h-7 sm:w-7 sm:rounded-lg md:h-8 md:w-8">
                       <TrophyIcon
                         className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5 md:h-4 md:w-4"
                         aria-hidden="true"
                       />
                     </div>
                     <div>
-                      <p className="text-[10px] font-medium text-blue-900 sm:text-xs">
+                      <p className="text-[10px] font-medium text-slate-500 sm:text-xs">
                         日活跃
                       </p>
-                      <p className="text-xs font-bold text-blue-600 sm:text-sm">
+                      <p className="text-xs font-bold text-[#0055ff] sm:text-sm">
                         50万+
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute top-16 -right-4 rounded-md border border-blue-100 bg-white p-2 shadow-md sm:top-24 sm:-right-6 sm:rounded-lg sm:p-3 md:top-32 md:-right-8">
+                <div className="absolute top-16 -right-4 rounded-xl border border-slate-200 bg-white p-2 shadow-lg sm:top-24 sm:-right-6 sm:p-3 md:top-32 md:-right-8 animate-bounce delay-300">
                   <div className="flex items-center space-x-1 sm:space-x-2">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-blue-600 sm:h-7 sm:w-7 sm:rounded-lg md:h-8 md:w-8">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#0055ff] sm:h-7 sm:w-7 sm:rounded-lg md:h-8 md:w-8">
                       <FilmIcon
                         className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5 md:h-4 md:w-4"
                         aria-hidden="true"
                       />
                     </div>
                     <div>
-                      <p className="text-[10px] font-medium text-blue-900 sm:text-xs">
+                      <p className="text-[10px] font-medium text-slate-500 sm:text-xs">
                         短剧数量
                       </p>
-                      <p className="text-xs font-bold text-blue-600 sm:text-sm">
+                      <p className="text-xs font-bold text-[#0055ff] sm:text-sm">
                         1000+
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="absolute bottom-8 -left-4 rounded-md border border-blue-100 bg-white p-2 shadow-md sm:bottom-12 sm:-left-6 sm:rounded-lg sm:p-3 md:bottom-16 md:-left-8">
+                <div className="absolute bottom-8 -left-4 rounded-xl border border-slate-200 bg-white p-2 shadow-lg sm:bottom-12 sm:-left-6 sm:p-3 md:bottom-16 md:-left-8 animate-bounce delay-500">
                   <div className="flex items-center space-x-1 sm:space-x-2">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-blue-600 sm:h-7 sm:w-7 sm:rounded-lg md:h-8 md:w-8">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#0055ff] sm:h-7 sm:w-7 sm:rounded-lg md:h-8 md:w-8">
                       <BanknotesIcon
                         className="h-3 w-3 text-white sm:h-3.5 sm:w-3.5 md:h-4 md:w-4"
                         aria-hidden="true"
                       />
                     </div>
                     <div>
-                      <p className="text-[10px] font-medium text-blue-900 sm:text-xs">
+                      <p className="text-[10px] font-medium text-slate-500 sm:text-xs">
                         月收入
                       </p>
-                      <p className="text-xs font-bold text-blue-600 sm:text-sm">
+                      <p className="text-xs font-bold text-[#0055ff] sm:text-sm">
                         100万+
                       </p>
                     </div>
@@ -445,9 +436,6 @@ function HeroSection() {
 /**
  * 产品优势区域组件 - 展示短剧系统的核心优势
  * 采用卡片式网格布局，突出产品特色
- * 特点：视觉统一、信息清晰、响应式设计
- *
- * @returns {JSX.Element} 产品优势区域组件
  */
 function AdvantagesSection() {
   const advantages: AdvantageItem[] = [
@@ -506,22 +494,22 @@ function AdvantagesSection() {
   ]
 
   return (
-    <section className={clsx('py-16', 'bg-gray-50 dark:bg-gray-900')}>
+    <section className={clsx('py-16', 'bg-slate-50')}>
       <Container>
         <div className="text-center">
           <h2
             className={clsx(
               'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-gray-900 dark:text-white',
+              'text-slate-900',
             )}
           >
             <StarIcon
-              className="mr-2 inline h-8 w-8 text-blue-600"
+              className="mr-2 inline h-8 w-8 text-[#0055ff]"
               aria-hidden="true"
             />
             产品优势
             <StarIcon
-              className="ml-2 inline h-8 w-8 text-blue-600"
+              className="ml-2 inline h-8 w-8 text-[#0055ff]"
               aria-hidden="true"
             />
           </h2>
@@ -532,20 +520,22 @@ function AdvantagesSection() {
             <div
               key={index}
               className={clsx(
-                'group border p-6 transition-all duration-300',
-                'border-gray-200 bg-white',
-                'dark:border-gray-700 dark:bg-gray-800',
+                'group relative border p-6 transition-all duration-300 rounded-xl overflow-hidden',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
               )}
             >
-              <div className="text-center">
+              {/* 选中时的背景渐变 */}
+              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              <div className="relative z-10 text-center">
                 <h3
                   className={clsx(
                     'mb-3 flex items-center justify-center text-lg font-semibold',
-                    'text-gray-900 dark:text-white',
+                    'text-slate-900',
                   )}
                 >
                   <advantage.icon
-                    className="mr-2 h-6 w-6 text-blue-600"
+                    className="mr-2 h-6 w-6 text-[#0055ff]"
                     aria-hidden="true"
                   />
                   {advantage.title}
@@ -553,7 +543,7 @@ function AdvantagesSection() {
                 <p
                   className={clsx(
                     'text-sm leading-relaxed',
-                    'text-gray-600 dark:text-gray-300',
+                    'text-slate-600',
                   )}
                 >
                   {advantage.description}
@@ -568,10 +558,6 @@ function AdvantagesSection() {
 }
 /**
  * 产品演示区域组件 - 展示短剧系统的核心功能演示
- * 采用卡片式布局，展示实际使用场景
- * 特点：视觉直观、功能清晰、响应式设计
- *
- * @returns {JSX.Element} 产品演示区域组件
  */
 function DemoSection() {
   const demos: DemoItem[] = [
@@ -596,22 +582,22 @@ function DemoSection() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-white">
       <Container>
         <div className="text-center">
           <h2
             className={clsx(
               'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-gray-900 dark:text-white',
+              'text-slate-900',
             )}
           >
             <ComputerDesktopIcon
-              className="mr-2 inline h-8 w-8 text-blue-600"
+              className="mr-2 inline h-8 w-8 text-[#0055ff]"
               aria-hidden="true"
             />
             产品演示
             <ComputerDesktopIcon
-              className="ml-2 inline h-8 w-8 text-blue-600"
+              className="ml-2 inline h-8 w-8 text-[#0055ff]"
               aria-hidden="true"
             />
           </h2>
@@ -622,15 +608,14 @@ function DemoSection() {
             <div
               key={index}
               className={clsx(
-                'group overflow-hidden border transition-all duration-300',
-                'border-gray-200 bg-white',
-                'dark:border-gray-700 dark:bg-gray-800',
+                'group overflow-hidden border transition-all duration-300 rounded-xl',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
               )}
             >
               <div
                 className={clsx(
                   'relative aspect-video overflow-hidden',
-                  'bg-gray-100 dark:bg-gray-700',
+                  'bg-slate-100',
                 )}
               >
                 <Image
@@ -645,7 +630,7 @@ function DemoSection() {
                 <h3
                   className={clsx(
                     'mb-2 text-lg font-semibold',
-                    'text-gray-900 dark:text-white',
+                    'text-slate-900',
                   )}
                 >
                   {demo.title}
@@ -653,7 +638,7 @@ function DemoSection() {
                 <p
                   className={clsx(
                     'mb-4 text-sm',
-                    'text-gray-600 dark:text-gray-300',
+                    'text-slate-600',
                   )}
                 >
                   {demo.description}
@@ -669,10 +654,10 @@ function DemoSection() {
                       className={clsx(
                         'h-4 w-4',
                         i < Math.floor(demo.rating)
-                          ? 'text-blue-600'
+                          ? 'text-[#0055ff]'
                           : i < demo.rating
-                            ? 'text-blue-600'
-                            : 'text-gray-300',
+                            ? 'text-[#0055ff]'
+                            : 'text-slate-300',
                       )}
                       aria-hidden="true"
                     />
@@ -688,11 +673,7 @@ function DemoSection() {
 }
 
 /**
- * 系统特色功能区域组件 - 展示短剧系统的特色功能
- * 采用网格布局，突出功能特点
- * 特点：功能全面、布局清晰、响应式设计
- *
- * @returns {JSX.Element} 系统特色功能区域组件
+ * 系统特色功能区域组件
  */
 function FeaturesSection() {
   const features: FeatureItem[] = [
@@ -899,22 +880,22 @@ function FeaturesSection() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-slate-50">
       <Container>
         <div className="text-center">
           <h2
             className={clsx(
               'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-gray-900 dark:text-white',
+              'text-slate-900',
             )}
           >
             <CogIcon
-              className="mr-2 inline h-8 w-8 text-blue-600"
+              className="mr-2 inline h-8 w-8 text-[#0055ff]"
               aria-hidden="true"
             />
             系统特色功能
             <CogIcon
-              className="ml-2 inline h-8 w-8 text-blue-600"
+              className="ml-2 inline h-8 w-8 text-[#0055ff]"
               aria-hidden="true"
             />
           </h2>
@@ -925,21 +906,20 @@ function FeaturesSection() {
             <div
               key={index}
               className={clsx(
-                'group border p-6 transition-all duration-300',
-                'border-gray-200 bg-white',
-                'dark:border-gray-700 dark:bg-gray-800',
+                'group relative border p-6 transition-all duration-300 rounded-xl',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
               )}
             >
               <div className="mb-4">
                 <feature.icon
-                  className="h-8 w-8 text-blue-600"
+                  className="h-8 w-8 text-[#0055ff]"
                   aria-hidden="true"
                 />
               </div>
               <h3
                 className={clsx(
                   'mb-2 text-lg font-semibold',
-                  'text-gray-900 dark:text-white',
+                  'text-slate-900',
                 )}
               >
                 {feature.title}
@@ -947,7 +927,7 @@ function FeaturesSection() {
               <p
                 className={clsx(
                   'text-sm leading-relaxed',
-                  'text-gray-600 dark:text-gray-300',
+                  'text-slate-600',
                 )}
               >
                 {feature.description}
@@ -962,10 +942,6 @@ function FeaturesSection() {
 
 /**
  * FAQ区域组件 - 短剧系统常见问题解答
- * 采用手风琴式展开设计，提供清晰的问题分类
- * 特点：交互友好、信息层次清晰、响应式设计
- *
- * @returns {JSX.Element} FAQ区域组件
  */
 function FAQSection() {
   const faqs: FAQItem[] = [
@@ -1002,19 +978,19 @@ function FAQSection() {
   ]
 
   return (
-    <section className={clsx('py-16', 'bg-gray-50 dark:bg-gray-900')}>
+    <section className={clsx('py-16', 'bg-white')}>
       <Container>
         <div className="text-center">
           <h2
             className={clsx(
               'text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-gray-900 dark:text-white',
+              'text-slate-900',
             )}
           >
             常见问题
           </h2>
           <p
-            className={clsx('mt-4 text-lg', 'text-gray-600 dark:text-gray-300')}
+            className={clsx('mt-4 text-lg', 'text-slate-600')}
           >
             解答您关于短剧系统的疑问
           </p>
@@ -1028,21 +1004,20 @@ function FAQSection() {
             <div
               key={index}
               className={clsx(
-                'border p-6',
-                'border-gray-200 bg-white',
-                'dark:border-gray-700 dark:bg-gray-800',
+                'border p-6 rounded-xl transition-all duration-300',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
               )}
               role="listitem"
             >
               <h3
                 className={clsx(
                   'mb-3 text-lg font-semibold',
-                  'text-gray-900 dark:text-white',
+                  'text-slate-900',
                 )}
               >
                 {faq.question}
               </h3>
-              <p className={clsx('text-gray-600 dark:text-gray-300')}>
+              <p className={clsx('text-slate-600')}>
                 {faq.answer}
               </p>
             </div>

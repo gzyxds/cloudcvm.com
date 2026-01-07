@@ -3,9 +3,13 @@ import clsx from 'clsx'
 
 const baseStyles = {
   solid:
-    'group inline-flex items-center justify-center py-2 px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2',
+    'group inline-flex items-center justify-center py-2 px-4 text-sm font-semibold rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2',
   outline:
-    'group inline-flex ring-1 items-center justify-center py-2 px-4 text-sm',
+    'group inline-flex ring-1 items-center justify-center py-2 px-4 text-sm rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2',
+  erlieSolid:
+    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-sm shadow-md hover:shadow-lg transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2',
+  erlieOutline:
+    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-sm border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2',
 }
 
 const variantStyles = {
@@ -23,6 +27,17 @@ const variantStyles = {
     white:
       'ring-slate-700 text-white hover:ring-slate-500 active:ring-slate-700 active:text-slate-400 focus-visible:outline-white',
   },
+  erlieSolid: {
+    blue: 'bg-[#1664ff] text-white shadow-blue-500/20 hover:bg-[#1356db] focus-visible:outline-[#1664ff]',
+    white:
+      'bg-white text-[#1664ff] shadow-slate-200/20 hover:bg-[#eff6ff]/50 focus-visible:outline-white',
+  },
+  erlieOutline: {
+    slate:
+      'bg-white border-[#e5e6eb] text-[#4e5969] hover:border-[#c9cdd4] hover:bg-slate-50 hover:text-[#1d2129] focus-visible:outline-[#1664ff]',
+    white:
+      'bg-transparent border-white/30 text-white hover:bg-white/10 focus-visible:outline-white',
+  },
 }
 
 type ButtonProps = (
@@ -34,6 +49,14 @@ type ButtonProps = (
       variant: 'outline'
       color?: keyof typeof variantStyles.outline
     }
+  | {
+      variant: 'erlieSolid'
+      color?: keyof typeof variantStyles.erlieSolid
+    }
+  | {
+      variant: 'erlieOutline'
+      color?: keyof typeof variantStyles.erlieOutline
+    }
 ) &
   (
     | Omit<React.ComponentPropsWithoutRef<typeof Link>, 'color'>
@@ -42,23 +65,38 @@ type ButtonProps = (
       })
   )
 
-export function Button({ className, ...props }: ButtonProps) {
-  props.variant ??= 'solid'
-  props.color ??= 'slate'
+export function Button({
+  className,
+  variant = 'solid',
+  color,
+  ...props
+}: ButtonProps) {
+  const variantClassName = (() => {
+    switch (variant) {
+      case 'solid': {
+        const resolvedColor = (color ?? 'slate') as keyof typeof variantStyles.solid
+        return variantStyles.solid[resolvedColor]
+      }
+      case 'outline': {
+        const resolvedColor = (color ?? 'slate') as keyof typeof variantStyles.outline
+        return variantStyles.outline[resolvedColor]
+      }
+      case 'erlieSolid': {
+        const resolvedColor = (color ?? 'blue') as keyof typeof variantStyles.erlieSolid
+        return variantStyles.erlieSolid[resolvedColor]
+      }
+      case 'erlieOutline': {
+        const resolvedColor = (color ?? 'slate') as keyof typeof variantStyles.erlieOutline
+        return variantStyles.erlieOutline[resolvedColor]
+      }
+    }
+  })()
 
-  className = clsx(
-    baseStyles[props.variant],
-    props.variant === 'outline'
-      ? variantStyles.outline[props.color]
-      : props.variant === 'solid'
-        ? variantStyles.solid[props.color]
-        : undefined,
-    className,
-  )
+  const composedClassName = clsx(baseStyles[variant], variantClassName, className)
 
   return typeof props.href === 'undefined' ? (
-    <button className={className} {...props} />
+    <button className={composedClassName} {...props} />
   ) : (
-    <Link className={className} {...props} />
+    <Link className={composedClassName} {...props} />
   )
 }

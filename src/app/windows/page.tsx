@@ -29,7 +29,11 @@ import Customer from '@/components/common/Customer' // 客户案例
 import { Faqs } from '@/components/Faqs' // 常见问题
 // === 页面底部 ===
 import CatSections from '@/components/CatSections' // 底部行动区域
-// 云电脑产品接口定义
+
+/**
+ * 云电脑产品接口定义
+ * 定义了云服务器产品的各项属性，包括规格、价格、优惠信息等
+ */
 interface ServerProduct {
   id: number
   name: string
@@ -49,7 +53,10 @@ interface ServerProduct {
   isRecommended?: boolean
 }
 
-// 云电脑产品数据
+/**
+ * 云电脑产品数据列表
+ * 包含不同配置的云服务器产品信息
+ */
 const serverProducts: ServerProduct[] = [
   {
     id: 1,
@@ -182,6 +189,7 @@ const serverProducts: ServerProduct[] = [
     discount: '7折',
   },
 ]
+
 // 页面元数据配置
 export const metadata: Metadata = {
   title: '云电脑_云主机_挂机宝_云计算服务器_弹性云服务器_云电脑_优刻云',
@@ -276,7 +284,10 @@ const rightLeftFeatures = [
   },
 ]
 
-// ECS 图片轮播 Hero 组件 - 展示 ECS 云计算服务的主要图片内容
+/**
+ * ECS 图片轮播 Hero 组件
+ * 展示 ECS 云计算服务的主要图片内容
+ */
 function ECSVideoHero() {
   const ecsVideoSlide = [
     {
@@ -309,7 +320,10 @@ function ECSVideoHero() {
   )
 }
 
-// Leftright 组件 - 模拟界面在右侧
+/**
+ * Leftright 组件 - 模拟界面在右侧
+ * 展示 Windows 云服务器的核心特性，包含模拟的 UI 界面
+ */
 function ECSLeftrightSection() {
   // 移动端功能特性展示组件
   function FeaturesMobile() {
@@ -317,22 +331,22 @@ function ECSLeftrightSection() {
       <div className="lg:hidden">
         <div className="mx-auto max-w-2xl">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-            <h2 className="text-base/7 font-semibold text-blue-600 dark:text-blue-400">
+            <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
               更快部署
             </h2>
-            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
               Windows云服务器
             </p>
-            <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
+            <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
               专业的Windows云服务器解决方案，为您的企业应用提供稳定可靠的运行环境。
             </p>
-            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none dark:text-gray-400">
+            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
               {leftRightFeatures.map((feature) => {
                 const IconComponent = feature.icon
                 return (
                   <div key={feature.name} className="relative pl-9">
-                    <dt className="inline font-semibold text-gray-900 dark:text-white">
-                      <div className="absolute top-1 left-1 h-5 w-5 text-blue-600 dark:text-blue-400">
+                    <dt className="inline font-semibold text-slate-900 dark:text-white">
+                      <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
                         <svg
                           className="h-5 w-5"
                           fill="none"
@@ -351,7 +365,7 @@ function ECSLeftrightSection() {
             </dl>
           </div>
           <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
@@ -359,17 +373,17 @@ function ECSLeftrightSection() {
                   <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
                   <div className="h-2 w-2 rounded-full bg-green-400"></div>
                 </div>
-                <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
                   Windows Server
                 </div>
               </div>
 
               {/* 移动端模拟界面标题栏 */}
-              <div className="mb-2 border border-gray-200/50 bg-gray-50/80 p-2 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+              <div className="mb-2 border border-slate-200/50 bg-slate-50/80 p-2 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
+                <h3 className="mb-1 text-sm font-semibold text-slate-900 dark:text-white">
                   Windows云服务器控制台
                 </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-slate-500 dark:text-gray-400">
                   专业Windows服务器管理平台
                 </p>
               </div>
@@ -381,12 +395,12 @@ function ECSLeftrightSection() {
                   return (
                     <div
                       key={feature.name}
-                      className="border border-gray-200/30 bg-gray-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="border border-slate-200/30 bg-slate-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded dark:border-blue-800/50 dark:bg-blue-900/50">
                           <svg
-                            className="h-3 w-3 text-blue-600 dark:text-blue-400"
+                            className="h-3 w-3 text-[#0055ff] dark:text-blue-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -395,13 +409,13 @@ function ECSLeftrightSection() {
                           </svg>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-xs font-medium text-gray-900 dark:text-white">
+                          <h4 className="truncate text-xs font-medium text-slate-900 dark:text-white">
                             {feature.name}
                           </h4>
                           <div className="mt-1">
-                            <div className="h-1 w-full bg-gray-200/60 dark:bg-gray-700/60">
+                            <div className="h-1 w-full bg-slate-200/60 rounded-full dark:bg-gray-700/60">
                               <div
-                                className="h-1 bg-blue-500 transition-all duration-1000 dark:bg-blue-400"
+                                className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 dark:bg-blue-400"
                                 style={{ width: `${50 + index * 15}%` }}
                               ></div>
                             </div>
@@ -414,9 +428,9 @@ function ECSLeftrightSection() {
               </div>
 
               {/* 移动端模拟状态栏 */}
-              <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#10B981]"></div>
                   <span>服务器运行正常</span>
                 </div>
                 <span>Windows Server 2022</span>
@@ -435,22 +449,22 @@ function ECSLeftrightSection() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
           <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <h2 className="text-base/7 font-semibold text-blue-600 dark:text-blue-400">
+              <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
                 更快部署
               </h2>
-              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
                 Windows云服务器
               </p>
-              <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
+              <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
                 专业的Windows云服务器解决方案，为您的企业应用提供稳定可靠的运行环境。
               </p>
-              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none dark:text-gray-400">
+              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
                 {leftRightFeatures.map((feature) => {
                   const IconComponent = feature.icon
                   return (
                     <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-gray-900 dark:text-white">
-                        <div className="absolute top-1 left-1 h-5 w-5 text-blue-600 dark:text-blue-400">
+                      <dt className="inline font-semibold text-slate-900 dark:text-white">
+                        <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
                           <svg
                             className="h-5 w-5"
                             fill="none"
@@ -471,7 +485,7 @@ function ECSLeftrightSection() {
           </div>
           <div className="sm:px-6 lg:px-0">
             {/* 桌面端模拟界面 */}
-            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
               {/* 桌面端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -479,17 +493,17 @@ function ECSLeftrightSection() {
                   <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
                   <div className="h-3 w-3 rounded-full bg-green-400"></div>
                 </div>
-                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
                   Windows Server 2022 - 控制台
                 </div>
               </div>
 
               {/* 桌面端模拟界面标题栏 */}
-              <div className="mb-3 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
+              <div className="mb-3 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
+                <h3 className="mb-1 text-base font-semibold text-slate-900 dark:text-white">
                   Windows云服务器管理中心
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-slate-500 dark:text-gray-400">
                   企业级Windows服务器解决方案 - 稳定、安全、高效
                 </p>
               </div>
@@ -501,13 +515,13 @@ function ECSLeftrightSection() {
                   return (
                     <div
                       key={feature.name}
-                      className="group border border-gray-200/30 bg-gray-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="group border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                     >
                       <div className="flex items-start space-x-3">
                         <div className="flex-shrink-0">
-                          <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                          <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded dark:border-blue-800/50 dark:bg-blue-900/50">
                             <svg
-                              className="h-4 w-4 text-blue-600 dark:text-blue-400"
+                              className="h-4 w-4 text-[#0055ff] dark:text-blue-400"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -517,16 +531,16 @@ function ECSLeftrightSection() {
                           </div>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                          <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
                             {feature.name}
                           </h4>
-                          <p className="mt-1 truncate text-xs text-gray-600 dark:text-gray-400">
+                          <p className="mt-1 truncate text-xs text-slate-500 dark:text-gray-400">
                             {feature.description.slice(0, 20)}...
                           </p>
                           <div className="mt-2">
-                            <div className="h-1 w-full bg-gray-200/60 dark:bg-gray-700/60">
+                            <div className="h-1 w-full bg-slate-200/60 rounded-full dark:bg-gray-700/60">
                               <div
-                                className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                                className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
                                 style={{ width: `${60 + index * 10}%` }}
                               ></div>
                             </div>
@@ -539,11 +553,11 @@ function ECSLeftrightSection() {
               </div>
 
               {/* 桌面端模拟状态栏 */}
-              <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                 <div className="flex items-center space-x-4">
                   <span className="flex items-center space-x-1">
-                    <div className="h-2 w-2 rounded-full bg-green-400"></div>
-                    <span>服务器运行正常</span>
+                    <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
+                    <span>系统正常</span>
                   </span>
                   <span>CPU: 15%</span>
                   <span>内存: 32%</span>
@@ -573,7 +587,10 @@ function ECSLeftrightSection() {
   )
 }
 
-// Rightleft 组件 - 模拟界面在左侧
+/**
+ * Rightleft 组件 - 模拟界面在左侧
+ * 展示 Windows 运维管理的特性
+ */
 function ECSRightleftSection() {
   // 移动端功能特性展示组件
   function FeaturesMobile() {
@@ -581,22 +598,22 @@ function ECSRightleftSection() {
       <div className="lg:hidden">
         <div className="mx-auto max-w-2xl">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-            <h2 className="text-base/7 font-semibold text-blue-600 dark:text-blue-400">
+            <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
               更快部署
             </h2>
-            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
               Windows云服务器运维
             </p>
-            <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
+            <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
               专业的Windows云服务器运维管理，提供全方位的监控、备份和安全保障服务。
             </p>
-            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none dark:text-gray-400">
+            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
               {rightLeftFeatures.map((feature) => {
                 const IconComponent = feature.icon
                 return (
                   <div key={feature.name} className="relative pl-9">
-                    <dt className="inline font-semibold text-gray-900 dark:text-white">
-                      <div className="absolute top-1 left-1 h-5 w-5 text-blue-600 dark:text-blue-400">
+                    <dt className="inline font-semibold text-slate-900 dark:text-white">
+                      <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
                         <svg
                           className="h-5 w-5"
                           fill="none"
@@ -615,7 +632,7 @@ function ECSRightleftSection() {
             </dl>
           </div>
           <div className="mt-12 sm:mt-16">
-            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
@@ -623,17 +640,17 @@ function ECSRightleftSection() {
                   <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
                   <div className="h-2 w-2 rounded-full bg-green-400"></div>
                 </div>
-                <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
                   Windows运维管理
                 </div>
               </div>
 
               {/* 移动端模拟界面标题栏 */}
-              <div className="mb-2 border border-gray-200/50 bg-gray-50/80 p-2 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+              <div className="mb-2 border border-slate-200/50 bg-slate-50/80 p-2 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
+                <h3 className="mb-1 text-sm font-semibold text-slate-900 dark:text-white">
                   Windows云服务器运维
                 </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400">
+                <p className="text-xs text-slate-500 dark:text-gray-400">
                   专业运维管理平台
                 </p>
               </div>
@@ -645,12 +662,12 @@ function ECSRightleftSection() {
                   return (
                     <div
                       key={feature.name}
-                      className="border border-gray-200/30 bg-gray-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="border border-slate-200/30 bg-slate-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded dark:border-blue-800/50 dark:bg-blue-900/50">
                           <svg
-                            className="h-3 w-3 text-blue-600 dark:text-blue-400"
+                            className="h-3 w-3 text-[#0055ff] dark:text-blue-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -659,13 +676,13 @@ function ECSRightleftSection() {
                           </svg>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-xs font-medium text-gray-900 dark:text-white">
+                          <h4 className="truncate text-xs font-medium text-slate-900 dark:text-white">
                             {feature.name}
                           </h4>
                           <div className="mt-1">
-                            <div className="h-1 w-full bg-gray-200/60 dark:bg-gray-700/60">
+                            <div className="h-1 w-full bg-slate-200/60 rounded-full dark:bg-gray-700/60">
                               <div
-                                className="h-1 bg-blue-500 transition-all duration-1000 dark:bg-blue-400"
+                                className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 dark:bg-blue-400"
                                 style={{ width: `${50 + index * 15}%` }}
                               ></div>
                             </div>
@@ -678,9 +695,9 @@ function ECSRightleftSection() {
               </div>
 
               {/* 移动端模拟状态栏 */}
-              <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#10B981]"></div>
                   <span>系统正常</span>
                 </div>
                 <span>刚刚更新</span>
@@ -699,7 +716,7 @@ function ECSRightleftSection() {
         <div className="grid grid-cols-1 gap-x-16 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
           <div className="sm:px-6 lg:px-0 lg:pt-4 lg:pr-8">
             {/* 桌面端模拟界面 */}
-            <div className="relative overflow-hidden border border-gray-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
               {/* 桌面端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -707,17 +724,17 @@ function ECSRightleftSection() {
                   <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
                   <div className="h-3 w-3 rounded-full bg-green-400"></div>
                 </div>
-                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
                   云计算控制台
                 </div>
               </div>
 
               {/* 桌面端模拟界面标题栏 */}
-              <div className="mb-3 border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">
+              <div className="mb-3 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
+                <h3 className="mb-1 text-base font-semibold text-slate-900 dark:text-white">
                   资源管理中心
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-slate-500 dark:text-gray-400">
                   实时监控和管理您的云计算资源
                 </p>
               </div>
@@ -729,13 +746,13 @@ function ECSRightleftSection() {
                   return (
                     <div
                       key={feature.name}
-                      className="group border border-gray-200/30 bg-gray-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-gray-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="group border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                     >
                       <div className="flex items-start space-x-3">
                         <div className="flex-shrink-0">
-                          <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-blue-100/80 dark:border-blue-800/50 dark:bg-blue-900/50">
+                          <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded dark:border-blue-800/50 dark:bg-blue-900/50">
                             <svg
-                              className="h-4 w-4 text-blue-600 dark:text-blue-400"
+                              className="h-4 w-4 text-[#0055ff] dark:text-blue-400"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -745,16 +762,16 @@ function ECSRightleftSection() {
                           </div>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                          <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
                             {feature.name}
                           </h4>
-                          <p className="mt-1 truncate text-xs text-gray-600 dark:text-gray-400">
+                          <p className="mt-1 truncate text-xs text-slate-500 dark:text-gray-400">
                             {feature.description.slice(0, 20)}...
                           </p>
                           <div className="mt-2">
-                            <div className="h-1 w-full bg-gray-200/60 dark:bg-gray-700/60">
+                            <div className="h-1 w-full bg-slate-200/60 rounded-full dark:bg-gray-700/60">
                               <div
-                                className="h-1 bg-blue-500 transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                                className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
                                 style={{ width: `${60 + index * 10}%` }}
                               ></div>
                             </div>
@@ -767,10 +784,10 @@ function ECSRightleftSection() {
               </div>
 
               {/* 桌面端模拟状态栏 */}
-              <div className="flex items-center justify-between border border-gray-200/30 bg-gray-50/60 p-2 text-xs text-gray-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                 <div className="flex items-center space-x-4">
                   <span className="flex items-center space-x-1">
-                    <div className="h-2 w-2 rounded-full bg-green-400"></div>
+                    <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
                     <span>系统正常</span>
                   </span>
                   <span>CPU: 45%</span>
@@ -784,22 +801,22 @@ function ECSRightleftSection() {
           </div>
           <div className="px-6 lg:px-0 lg:pt-4 lg:pl-8">
             <div className="mx-auto max-w-2xl lg:ml-auto lg:mr-0 lg:max-w-lg">
-              <h2 className="text-base/7 font-semibold text-blue-600 dark:text-blue-400">
+              <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
                 更快部署
               </h2>
-              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
                 Windows云服务器运维
               </p>
-              <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-300">
+              <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
                 专业的Windows云服务器运维管理，提供全方位的监控、备份和安全保障服务。
               </p>
-              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none dark:text-gray-400">
+              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
                 {rightLeftFeatures.map((feature) => {
                   const IconComponent = feature.icon
                   return (
                     <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-gray-900 dark:text-white">
-                        <div className="absolute top-1 left-1 h-5 w-5 text-blue-600 dark:text-blue-400">
+                      <dt className="inline font-semibold text-slate-900 dark:text-white">
+                        <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
                           <svg
                             className="h-5 w-5"
                             fill="none"
@@ -837,7 +854,10 @@ function ECSRightleftSection() {
   )
 }
 
-// ECS 页面主组件
+/**
+ * ECS 页面主组件
+ * 整合所有子组件，构建完整的 Windows 云服务器产品页面
+ */
 export default function ECSPage() {
   return (
     <>
@@ -846,16 +866,16 @@ export default function ECSPage() {
         <ECSVideoHero />
 
         {/* 云电脑专区 - 直接嵌入的代码 */}
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-slate-50">
           {/* 页面标题 */}
-          <div className="border-b border-gray-200 bg-white">
+          <div className="border-b border-slate-200 bg-white">
             <div className="mx-auto max-w-[1800px] px-4 pt-24 pb-6 sm:px-6 lg:px-8">
-              <h1 className="text-2xl font-bold text-gray-900">云电脑专区</h1>
-              <p className="mt-2 text-sm text-gray-600">
-                <span className="font-medium text-orange-500">4核4G起步</span>
+              <h1 className="text-2xl font-bold text-slate-900 tracking-tight">云电脑专区</h1>
+              <p className="mt-2 text-sm text-slate-500">
+                <span className="font-medium text-[#F59E0B]">4核4G起步</span>
                 ，新用户低至
-                <span className="font-medium text-orange-500">79元/年</span>
-                <span className="ml-2 cursor-pointer text-blue-600 underline">
+                <span className="font-medium text-[#F59E0B]">79元/年</span>
+                <span className="ml-2 cursor-pointer text-[#0055ff] hover:text-[#0043cc] underline">
                   活动规则&gt;
                 </span>
               </p>
@@ -868,58 +888,20 @@ export default function ECSPage() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group flex h-full transform flex-col overflow-hidden bg-gradient-to-b from-white to-gray-50 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:from-gray-800 dark:to-gray-900 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]"
+                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
-                  {/* 产品标题和标签 */}
-                  <div className="border-b border-gray-100 p-4">
-                    <div className="mb-2 flex items-center justify-between">
-                      <h3 className="text-lg font-medium text-gray-900">
-                        {product.name}
-                      </h3>
-                      <svg
-                        className="h-5 w-5 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl font-bold text-gray-900">
-                        {product.subtitle}
-                      </span>
-                      {product.isHot && (
-                        <span className="rounded bg-red-500 px-2 py-1 text-xs text-white">
-                          申请特惠
-                        </span>
-                      )}
-                      {product.isRecommended && (
-                        <span className="rounded bg-red-500 px-2 py-1 text-xs text-white">
-                          申请特惠
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-1 text-sm text-gray-600">
-                      建站、Web应用、电商网站等高性价比的选择
-                    </p>
-                  </div>
+                  {/* Hover Gradient Background */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                  {/* 产品规格信息 */}
-                  <div className="space-y-3 p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">规格</span>
-                      <div className="flex items-center gap-1">
-                        <span className="font-medium text-gray-900">
-                          {product.specs.cpu}
-                        </span>
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* 产品标题和标签 */}
+                    <div className="border-b border-slate-100 p-6">
+                      <div className="mb-4 flex items-center justify-between">
+                        <h3 className="text-lg font-medium text-slate-900">
+                          {product.name}
+                        </h3>
                         <svg
-                          className="h-4 w-4 text-gray-400"
+                          className="h-5 w-5 text-slate-400"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -928,93 +910,135 @@ export default function ECSPage() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth={2}
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            d="M9 5l7 7-7 7"
                           />
                         </svg>
                       </div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xl font-bold text-slate-900 tracking-tight">
+                          {product.subtitle}
+                        </span>
+                        {product.isHot && (
+                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                            申请特惠
+                          </span>
+                        )}
+                        {product.isRecommended && (
+                          <span className="rounded bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff] border border-blue-100">
+                            申请特惠
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-slate-500">
+                        建站、Web应用、电商网站等高性价比的选择
+                      </p>
                     </div>
 
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">地域</span>
-                      <span className="text-sm text-gray-900">
-                        {product.regions.join('/')}
-                      </span>
-                    </div>
+                    {/* 产品规格信息 */}
+                    <div className="space-y-4 p-6 flex-grow">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-slate-500">规格</span>
+                        <div className="flex items-center gap-1">
+                          <span className="font-medium text-slate-900 font-mono text-sm">
+                            {product.specs.cpu}
+                          </span>
+                          <svg
+                            className="h-4 w-4 text-slate-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
 
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">时长</span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-900">
-                          {product.duration}
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-slate-500">地域</span>
+                        <span className="text-sm text-slate-900">
+                          {product.regions.join('/')}
                         </span>
-                        <span className="rounded bg-red-100 px-1 py-0.5 text-xs text-red-600">
-                          {product.discount}
-                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-slate-500">时长</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-slate-900">
+                            {product.duration}
+                          </span>
+                          <span className="rounded bg-red-50 px-1.5 py-0.5 text-xs text-red-600 border border-red-100">
+                            {product.discount}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-slate-500">数量</span>
+                        <div className="flex items-center gap-2">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                            −
+                          </button>
+                          <span className="w-8 text-center text-sm text-slate-900">1</span>
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                            +
+                          </button>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">数量</span>
-                      <div className="flex items-center gap-2">
-                        <button className="flex h-6 w-6 items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-50">
-                          −
-                        </button>
-                        <span className="w-8 text-center text-sm">1</span>
-                        <button className="flex h-6 w-6 items-center justify-center rounded border border-gray-300 text-gray-600 hover:bg-gray-50">
-                          +
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                    {/* 价格和折扣信息 */}
+                    <div className="border-t border-slate-100 p-6 bg-slate-50/50">
+                      {product.discount && (
+                        <div className="mb-3 flex items-center gap-2">
+                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                            {product.discount}
+                          </span>
+                          <span className="text-xs text-slate-400">限1个</span>
+                        </div>
+                      )}
 
-                  {/* 价格和折扣信息 */}
-                  <div className="border-t border-gray-100 p-4">
-                    {product.discount && (
-                      <div className="mb-2 flex items-center gap-2">
-                        <span className="rounded bg-red-100 px-2 py-1 text-xs text-red-600">
-                          {product.discount}
-                        </span>
-                        <span className="text-xs text-gray-500">限1个</span>
+                      <div className="mb-4">
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-sm text-slate-500">活动价:</span>
+                          <span className="text-2xl font-bold text-[#EF4444] tracking-tight">
+                            {product.currentPrice}
+                          </span>
+                          <span className="text-sm text-slate-500">元</span>
+                          <span className="text-xs text-slate-400 line-through">
+                            ¥{product.originalPrice.toFixed(2)}/月
+                          </span>
+                        </div>
+                        <div className="mt-1 flex items-center gap-2">
+                          <span className="text-xs text-slate-400">
+                            日常价: {product.originalPrice} 元
+                          </span>
+                        </div>
                       </div>
-                    )}
 
-                    <div className="mb-3">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-sm text-gray-600">活动价:</span>
-                        <span className="text-2xl font-bold text-red-600">
-                          {product.currentPrice}
-                        </span>
-                        <span className="text-sm text-gray-600">元</span>
-                        <span className="text-xs text-gray-500">
-                          ¥{product.originalPrice.toFixed(2)}/月
-                        </span>
+                      {/* 操作按钮 */}
+                      <div className="flex gap-3">
+                        <a
+                          href="https://console.cloudcvm.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-medium text-slate-600 transition-all hover:text-slate-900 hover:border-slate-300 hover:bg-slate-50"
+                        >
+                          加入购物车
+                        </a>
+                        <a
+                          href="https://console.cloudcvm.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 rounded-lg bg-[#0055ff] px-3 py-2 text-center text-sm font-medium text-white transition-all hover:bg-[#0043cc] hover:shadow-md hover:shadow-blue-500/20"
+                        >
+                          立即购买
+                        </a>
                       </div>
-                      <div className="mt-1 flex items-center gap-2">
-                        <span className="text-sm text-gray-600">日常价:</span>
-                        <span className="text-sm text-gray-500">
-                          {product.originalPrice} 元
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* 操作按钮 */}
-                    <div className="flex gap-2">
-                      <a
-                        href="https://console.cloudcvm.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block flex-1 rounded border border-blue-600 px-3 py-2 text-center text-sm text-blue-600 transition-colors hover:bg-blue-50"
-                      >
-                        加入购物车
-                      </a>
-                      <a
-                        href="https://console.cloudcvm.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block flex-1 rounded bg-blue-600 px-3 py-2 text-center text-sm text-white transition-colors hover:bg-blue-700"
-                      >
-                        立即购买
-                      </a>
                     </div>
                   </div>
                 </div>
