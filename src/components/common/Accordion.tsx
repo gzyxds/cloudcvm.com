@@ -109,34 +109,34 @@ function BentoCard({ feature, index }: { feature: CloudFeature; index: number })
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className={clsx(
-        'group relative overflow-hidden rounded-xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-300 border border-[#E2E8F0] bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+        'group relative overflow-hidden rounded-xl p-3 sm:p-4 md:p-8 flex flex-col justify-between transition-all duration-300 border border-[#E2E8F0] bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
         feature.className
       )}
     >
       {/* 装饰性背景图标 */}
-      <div className="absolute -right-12 -bottom-12 opacity-[0.06] text-[#0F172A] pointer-events-none group-hover:opacity-[0.08] transition-opacity">
-        <IconComponent className="h-56 w-56" />
+      <div className="absolute -right-10 -bottom-10 opacity-[0.06] text-[#0F172A] pointer-events-none group-hover:opacity-[0.08] transition-opacity">
+        <IconComponent className="h-48 w-48" />
       </div>
 
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
       <div className="relative z-10">
-        <div className="mb-6 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:bg-[#eff6ff]">
-          <IconComponent className="h-6 w-6 sm:h-7 sm:w-7" />
-        </div>
-
-        <h3 className="text-xl sm:text-3xl font-bold mb-3 tracking-tight text-[#0F172A]">
-          {feature.title}
-        </h3>
-
-        <p className="text-sm sm:text-lg leading-relaxed max-w-[95%] text-[#64748B]">
-          {feature.description}
-        </p>
+        <div className="mb-3 sm:mb-4 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:bg-[#eff6ff]">
+        <IconComponent className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
       </div>
 
-      <div className="relative z-10 mt-6 flex items-center gap-2 text-sm sm:text-base font-semibold transition-opacity opacity-100 lg:opacity-0 lg:group-hover:opacity-100">
+      <h3 className="text-base sm:text-lg md:text-2xl font-bold mb-1.5 sm:mb-2 tracking-tight text-[#0F172A]">
+        {feature.title}
+      </h3>
+
+      <p className="text-xs sm:text-sm md:text-base leading-relaxed max-w-[95%] text-[#64748B]">
+        {feature.description}
+      </p>
+      </div>
+
+      <div className="relative z-10 mt-3 sm:mt-4 flex items-center gap-1.5 text-xs sm:text-sm md:text-base font-semibold transition-opacity opacity-100 lg:opacity-0 lg:group-hover:opacity-100">
         <span className="text-[#0055ff]">了解详情</span>
-        <ArrowRight className="h-5 w-5 text-[#0055ff]" />
+        <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#0055ff]" />
       </div>
     </motion.div>
   )
@@ -158,12 +158,12 @@ export function Accordion() {
     <section className="relative overflow-hidden border-t border-[#E2E8F0] bg-gradient-to-b from-white via-[#eff6ff]/20 to-[#eff6ff] py-12 sm:py-16 lg:py-24" id="cloud-features">
       <Container className="relative z-10">
         {/* Header */}
-        <div className="mb-12 md:mb-16 text-center max-w-4xl mx-auto">
+        <div className="mb-6 sm:mb-8 text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 inline-flex items-center gap-2 border border-[#E2E8F0] bg-white px-4 py-1.5 text-sm font-semibold tracking-[0.18em] text-[#64748B] rounded-full"
+            className="mb-6 inline-flex items-center gap-2 border border-[#E2E8F0] bg-white px-4 py-1.5 text-sm font-semibold tracking-[0.18em] text-[#64748B] rounded-full"
           >
             <Cloud className="h-4 w-4 text-[#0055ff]" />
             <span>CLOUD FEATURES</span>
@@ -174,7 +174,7 @@ export function Accordion() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#0F172A] leading-[1.1] tracking-tight mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0F172A] leading-[1.1] tracking-tight mb-3"
           >
             构建未来的
             <span className="text-[#0055ff] px-3">
@@ -187,7 +187,7 @@ export function Accordion() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-[#64748B] leading-relaxed max-w-2xl mx-auto"
+            className="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto"
           >
             无论您是初创团队还是大型企业，我们提供全栈式云服务能力，
             <br className="hidden sm:block" />
@@ -196,7 +196,7 @@ export function Accordion() {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 auto-rows-[minmax(240px,auto)] sm:auto-rows-[minmax(280px,auto)]">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 auto-rows-[minmax(240px,auto)] sm:auto-rows-[minmax(280px,auto)]">
           {bentoFeatures.map((feature, index) => (
             <BentoCard key={feature.id} feature={feature} index={index} />
           ))}

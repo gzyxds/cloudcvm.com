@@ -127,7 +127,7 @@ const CATEGORIES: SceneCategory[] = [
 
 function ImagePreview({ imageUrl, title }: { imageUrl: string, title: string }) {
   return (
-    <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[560px] rounded-2xl overflow-hidden border border-slate-100 bg-slate-50">
+    <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[560px] rounded-2xl overflow-hidden border border-slate-100 bg-slate-50">
       {/* 骨架屏/背景色 */}
       <div className="absolute inset-0 bg-slate-50 animate-pulse" />
 
@@ -166,16 +166,16 @@ export default function Erlie() {
   }
 
   return (
-    <section className="bg-white py-16 sm:py-24 lg:py-28">
+    <section className="bg-white py-12 sm:py-16 lg:py-28">
       <Container>
 
         {/* 标题 */}
-        <h2 className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold text-[#1d2129] mb-8 sm:mb-12 leading-tight">
+        <h2 className="text-2xl sm:text-4xl lg:text-[48px] font-bold text-[#0055ff] mb-6 sm:mb-8 lg:mb-12 leading-tight">
           多样的大模型应用场景
         </h2>
 
         {/* Tab 导航栏 */}
-        <div className="flex flex-wrap gap-x-6 gap-y-3 mb-10 sm:mb-14 border-b border-slate-100 pb-3">
+        <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-3 mb-8 sm:mb-10 lg:mb-14 border-b border-slate-100 pb-3">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id
             return (
@@ -183,9 +183,9 @@ export default function Erlie() {
                 key={cat.id}
                 onClick={() => handleCategoryChange(cat.id)}
                 className={clsx(
-                  "relative py-2 text-[16px] sm:text-[18px] font-medium transition-colors duration-300",
+                  "relative py-2 text-sm sm:text-[16px] lg:text-[18px] font-medium transition-colors duration-300",
                   isActive
-                    ? "text-[#1d2129] font-bold"
+                    ? "text-[#0055ff] font-bold"
                     : "text-[#86909c] hover:text-[#4e5969]"
                 )}
               >
@@ -193,7 +193,7 @@ export default function Erlie() {
                 {isActive && (
                   <motion.div
                     layoutId="activeTabIndicator"
-                    className="absolute bottom-[-13px] left-0 w-full h-[3px] bg-[#1d2129] rounded-full"
+                    className="absolute bottom-[-13px] left-0 w-full h-[3px] bg-[#0055ff] rounded-full"
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
                 )}
@@ -214,22 +214,22 @@ export default function Erlie() {
                   key={item.id}
                   className={clsx(
                     "border-b border-slate-100 last:border-0 transition-all duration-300",
-                    isOpen ? "pb-6" : "pb-4"
+                    isOpen ? "pb-4 sm:pb-6" : "pb-3 sm:pb-4"
                   )}
                 >
                   <button
                     onClick={() => setActiveItem(item.id)}
-                    className="w-full flex items-center justify-between group text-left py-4 focus:outline-none"
+                    className="w-full flex items-center justify-between group text-left py-3 sm:py-4 focus:outline-none"
                   >
                     <span className={clsx(
-                      "text-[20px] sm:text-[22px] transition-colors duration-300",
-                      isOpen ? "text-[#1d2129] font-bold" : "text-[#4e5969] font-medium group-hover:text-[#1d2129]"
+                      "text-lg sm:text-[20px] lg:text-[22px] transition-colors duration-300",
+                      isOpen ? "text-[#0055ff] font-bold" : "text-[#4e5969] font-medium group-hover:text-[#0055ff]"
                     )}>
                       {item.title}
                     </span>
                     <div className={clsx(
                       "transition-transform duration-300 text-[#86909c]",
-                      isOpen ? "rotate-0 text-[#1d2129]" : "group-hover:text-[#4e5969]"
+                      isOpen ? "rotate-0 text-[#0055ff]" : "group-hover:text-[#4e5969]"
                     )}>
                       {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                     </div>
@@ -244,13 +244,13 @@ export default function Erlie() {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <p className="text-[15px] sm:text-[16px] text-[#4e5969] leading-relaxed mb-6">
+                        <p className="text-sm sm:text-[15px] lg:text-[16px] text-[#4e5969] leading-relaxed mb-4 sm:mb-6">
                           {item.description}
                         </p>
 
                         {/* 移动端显示的按钮组 */}
-                        <div className="flex items-center gap-4 lg:hidden">
-                           <button className="px-6 py-2 bg-[#1664ff] text-white text-sm font-medium rounded-sm shadow-sm hover:bg-[#1356db]">
+                        <div className="flex items-center gap-3 sm:gap-4 lg:hidden">
+                           <button className="px-5 py-2 sm:px-6 bg-[#0055ff] text-white text-xs sm:text-sm font-medium rounded-sm shadow-sm hover:bg-[#0044cc]">
                              立即体验
                            </button>
                         </div>
@@ -263,7 +263,7 @@ export default function Erlie() {
 
             {/* 桌面端按钮组 */}
             <div className="hidden lg:flex items-center gap-4 mt-10">
-              <button className="px-8 py-3 bg-[#1664ff] text-white text-[15px] font-medium rounded-sm hover:bg-[#1356db] transition-all shadow-md hover:shadow-lg shadow-blue-500/20">
+              <button className="px-8 py-3 bg-[#0055ff] text-white text-[15px] font-medium rounded-sm hover:bg-[#0044cc] transition-all shadow-md hover:shadow-lg shadow-blue-500/20">
                 立即体验
               </button>
               <button className="px-8 py-3 bg-white text-[#4e5969] border border-[#e5e6eb] text-[15px] font-medium rounded-sm hover:text-[#1d2129] hover:border-[#c9cdd4] transition-all hover:bg-[#eff6ff]/50">

@@ -217,55 +217,52 @@ function MobileSolutionCard({
   solution: SolutionCard
 }) {
   return (
-    <div className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:h-[280px]">
-      {/* 选中时的背景渐变 */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+    <div className="group relative h-[280px] overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:h-[320px] md:h-[340px]">
+      {/* 背景图片遮罩层 - 提高文字可读性 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/85" />
 
-      {/* 背景图片 - 完整显示 */}
+      {/* 背景图片 - 淡化显示 */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 group-hover:scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 transition-all duration-500 group-hover:scale-105"
         style={{
           backgroundImage: `url(${solution.bgImage})`,
         }}
       />
 
       {/* 内容区域 */}
-      <div className="relative z-10 flex h-full flex-col p-3 sm:p-4">
+      <div className="relative z-10 flex h-full flex-col p-4 sm:p-5">
         {/* 标题和图标 */}
-        <div className="mb-2 flex items-center justify-between sm:mb-3">
-          <h3 className="font-display text-base font-bold text-slate-900 sm:text-lg">
+        <div className="mb-3 flex items-center justify-between sm:mb-4">
+          <h3 className="font-display text-lg font-bold text-slate-900 sm:text-xl md:text-2xl">
             {solution.title}
           </h3>
           {(() => {
             const IconComponent = getIconByTitle(solution.title)
             return (
-              <IconComponent className="h-4 w-4 text-[#0055ff] sm:h-5 sm:w-5" />
+              <IconComponent className="h-5 w-5 text-[#0055ff] sm:h-6 sm:w-6" />
             )
           })()}
         </div>
 
-        {/* 描述文本 */}
-        <p className="mb-2 line-clamp-3 flex-1 text-xs leading-relaxed text-slate-600 sm:mb-4 sm:line-clamp-4 sm:text-sm">
+        {/* 描述文本 - 移除 line-clamp 限制，让内容完整显示 */}
+        <p className="mb-3 text-sm leading-relaxed text-slate-600 sm:mb-4 sm:text-base md:text-base">
           {solution.description}
         </p>
 
         {/* 核心功能列表 */}
-        <div className="space-y-1 sm:space-y-2">
-          <h4 className="text-xs font-semibold text-slate-900 sm:text-sm">
+        <div className="space-y-2 sm:space-y-2.5">
+          <h4 className="text-sm font-semibold text-slate-900 sm:text-base md:text-base">
             核心功能
           </h4>
-          {solution.features.slice(0, 2).map((feature, featureIndex) => (
+          {solution.features.map((feature, featureIndex) => (
             <div
               key={featureIndex}
-              className="flex items-center text-xs text-slate-600 sm:text-sm"
+              className="flex items-center text-sm text-slate-600 sm:text-base md:text-base"
             >
-              <div className="mr-1.5 h-1 w-1 rounded-full bg-[#0055ff] sm:mr-2 sm:h-1.5 sm:w-1.5" />
+              <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#0055ff] sm:mr-2.5 sm:h-1.5 sm:w-1.5" />
               {feature}
             </div>
           ))}
-          {solution.features.length > 2 && (
-            <div className="text-xs text-slate-400 sm:text-sm">...</div>
-          )}
         </div>
       </div>
     </div>
@@ -321,9 +318,9 @@ export function Solution() {
 
         {/* 移动端网格布局 - 隐藏在PC端 */}
         <div className="lg:hidden">
-          {/* 平板端：两行两列 */}
-          <div className="hidden sm:mb-6 sm:grid sm:grid-cols-2 sm:gap-4 lg:hidden">
-            {solutions.slice(0, 4).map((solution, index) => (
+          {/* 平板端：两列布局 */}
+          <div className="hidden sm:grid sm:grid-cols-2 sm:gap-4 lg:hidden">
+            {solutions.map((solution, index) => (
               <MobileSolutionCard
                 key={index}
                 solution={solution}
@@ -331,23 +328,14 @@ export function Solution() {
             ))}
           </div>
 
-          {/* 平板端：剩余的一个卡片单独一行 */}
-          {solutions.length > 4 && (
-            <div className="hidden sm:block lg:hidden">
-              <MobileSolutionCard solution={solutions[4]} />
-            </div>
-          )}
-
           {/* 手机端：单列布局 */}
-          <div className="sm:hidden">
-            <div className="space-y-3">
-              {solutions.map((solution, index) => (
-                <MobileSolutionCard
-                  key={index}
-                  solution={solution}
-                />
-              ))}
-            </div>
+          <div className="space-y-4 sm:hidden">
+            {solutions.map((solution, index) => (
+              <MobileSolutionCard
+                key={index}
+                solution={solution}
+              />
+            ))}
           </div>
         </div>
       </Container>

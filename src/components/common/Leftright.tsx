@@ -211,27 +211,27 @@ export function Leftright() {
   const activeCategory = solutionsData.find(c => c.id === activeTab) || solutionsData[0]
 
   return (
-    <section className="bg-white py-24 sm:py-32 min-h-screen flex flex-col justify-center">
+    <section className="bg-white py-16 sm:py-20 lg:py-24 min-h-screen flex flex-col justify-center">
       <Container>
         {/* 顶部标题 */}
-        <div className="text-center mb-16 sm:mb-24">
-          <h2 className="text-4xl font-bold tracking-tight text-[#0F172A] sm:text-6xl mb-6">
+        <div className="text-center mb-10 sm:mb-16 lg:mb-24">
+          <h2 className="text-2xl font-bold tracking-tight text-[#0F172A] sm:text-4xl lg:text-6xl mb-4 sm:mb-6">
             成熟行业实践，释放云上数字生产力
           </h2>
-          <p className="text-xl text-[#64748B] max-w-3xl mx-auto">
+          <p className="text-base text-[#64748B] max-w-3xl mx-auto sm:text-lg lg:text-xl">
             汇聚各行业数字化转型成功经验，提供场景化解决方案，助力企业降本增效，加速业务创新
           </p>
         </div>
 
         {/* Tab 导航 */}
-        <div className="flex justify-center mb-16 sm:mb-24">
-          <div className="inline-flex space-x-12 border-b border-gray-100">
+        <div className="flex justify-center mb-10 sm:mb-16 lg:mb-24">
+          <div className="inline-flex space-x-6 sm:space-x-12 border-b border-gray-100">
             {solutionsData.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
                 className={clsx(
-                  'pb-5 text-lg font-medium transition-colors relative px-4',
+                  'pb-4 sm:pb-5 text-sm sm:text-base lg:text-lg font-medium transition-colors relative px-2 sm:px-4',
                   activeTab === category.id
                     ? 'text-[#0055ff]'
                     : 'text-[#64748B] hover:text-[#0F172A]'
@@ -252,7 +252,7 @@ export function Leftright() {
       </Container>
 
       {/* 解决方案卡片列表 - 全屏通栏布局 */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12">
+      <div className="w-full px-3 sm:px-6 lg:px-8 2xl:px-12">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -260,16 +260,16 @@ export function Leftright() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6 2xl:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-6 lg:gap-6 2xl:gap-8"
           >
             {activeCategory.items.map((item) => (
               <motion.div
                 key={item.id}
                 variants={itemVariants}
                 className={clsx(
-                  "group relative h-[60vh] min-h-[500px] max-h-[800px] overflow-hidden rounded-2xl cursor-pointer",
-                  "border border-slate-200/60 bg-white", // 基础边框
-                  "hover:border-[#0055ff]/30 hover:shadow-[0_20px_40px_-12px_rgba(0,85,255,0.15)]", // Hover 状态：淡蓝边框 + 柔和发光阴影
+                  "group relative aspect-video sm:aspect-auto sm:h-[50vh] xl:h-[60vh] sm:min-h-[500px] xl:min-h-[500px] sm:max-h-[700px] overflow-hidden rounded-2xl cursor-pointer",
+                  "border border-slate-200/60 bg-white",
+                  "hover:border-[#0055ff]/30 hover:shadow-[0_20px_40px_-12px_rgba(0,85,255,0.15)]",
                   "transition-all duration-500 ease-out"
                 )}
               >
@@ -292,17 +292,17 @@ export function Leftright() {
                 )} />
 
                 {/* 内容区域 */}
-                <div className="absolute inset-0 p-8 sm:p-10 flex flex-col justify-between z-10">
+                <div className="absolute inset-0 p-5 sm:p-8 lg:p-10 flex flex-col z-10">
                   <h3 className={clsx(
-                    "text-3xl font-bold mt-2 transition-transform duration-500 group-hover:-translate-y-2",
+                    "text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 transition-transform duration-500 group-hover:-translate-y-2",
                     "text-white drop-shadow-md tracking-tight"
                   )}>
                     {item.title}
                   </h3>
 
-                  <div className="transform translate-y-4 transition-transform duration-500 group-hover:-translate-y-6">
+                  <div className="flex-1 flex flex-col justify-end transform translate-y-4 transition-transform duration-500 group-hover:-translate-y-6">
                     <p className={clsx(
-                      "text-lg leading-relaxed line-clamp-4 mb-6 opacity-90 font-medium",
+                      "text-sm sm:text-base lg:text-lg leading-relaxed line-clamp-4 mb-4 sm:mb-6 opacity-90 font-medium",
                       "text-white/90 drop-shadow-sm"
                     )}>
                       {item.description}
@@ -310,8 +310,8 @@ export function Leftright() {
 
                     {/* 箭头图标 */}
                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 delay-75">
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-[#0055ff] transition-colors duration-300">
-                        <ChevronRightIcon className="w-5 h-5" />
+                      <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-[#0055ff] transition-colors duration-300">
+                        <ChevronRightIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                     </div>
                   </div>
@@ -327,13 +327,13 @@ export function Leftright() {
 
       <Container>
         {/* 底部链接 */}
-        <div className="mt-20 text-center">
+        <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
           <a
             href="#"
-            className="inline-flex items-center px-10 py-4 rounded-full border border-[#E2E8F0] bg-white text-[#0F172A] hover:border-[#0055ff] hover:text-[#0055ff] transition-all duration-300 shadow-sm hover:shadow-lg text-lg font-medium group"
+            className="inline-flex items-center px-6 py-3 sm:px-10 sm:py-4 rounded-full border border-[#E2E8F0] bg-white text-[#0F172A] hover:border-[#0055ff] hover:text-[#0055ff] transition-all duration-300 shadow-sm hover:shadow-lg text-base sm:text-lg font-medium group"
           >
             查看所有解决方案
-            <ChevronRightIcon className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+            <ChevronRightIcon className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform group-hover:translate-x-1" />
           </a>
         </div>
       </Container>

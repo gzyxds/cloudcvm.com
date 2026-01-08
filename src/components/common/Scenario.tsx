@@ -83,7 +83,7 @@ function ScenarioCard({ card, variant = 'large' }: { card: ServiceCard, variant?
   return (
     <div className={clsx(
       "group relative overflow-hidden bg-white rounded-2xl border border-slate-200 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-1",
-      isLarge ? "flex flex-col h-[600px] lg:h-[680px]" : "flex h-[280px] lg:h-[320px]"
+      isLarge ? "flex flex-col h-[550px] sm:h-[600px] lg:h-[680px]" : "flex h-[280px] sm:h-[280px] lg:h-[320px]"
     )}>
       {/* 顶部/右侧 插图区域 */}
       <div className={clsx(
@@ -102,51 +102,51 @@ function ScenarioCard({ card, variant = 'large' }: { card: ServiceCard, variant?
       {/* 底部/左侧 内容区域 */}
       <div className={clsx(
         "flex flex-col justify-between",
-        isLarge ? "flex-1 order-2 p-10 sm:p-12" : "flex-1 order-1 py-10 px-10 sm:px-12"
+        isLarge ? "flex-1 order-2 p-6 sm:p-8 lg:p-10" : "flex-1 order-1 py-6 px-6 sm:px-8 lg:px-10"
       )}>
         <div>
           {/* 标签 */}
-          <div className="flex items-center gap-2 mb-6">
+          <div className="flex items-center gap-2 mb-4 sm:mb-6">
              {/* 装饰图标 */}
-             {card.icon === 'chat' && <Bot className="w-5 h-5 text-purple-500" />}
-             {card.icon === 'cpu' && <BarChart3 className="w-5 h-5 text-blue-500" />}
-             {card.icon === 'cloud' && <Cloud className="w-5 h-5 text-sky-500" />}
-             {card.icon === 'sparkles' && <Sparkles className="w-5 h-5 text-pink-500" />}
+             {card.icon === 'chat' && <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />}
+             {card.icon === 'cpu' && <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />}
+             {card.icon === 'cloud' && <Cloud className="w-4 h-4 sm:w-5 sm:h-5 text-sky-500" />}
+             {card.icon === 'sparkles' && <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" />}
 
-             <span className="text-sm font-bold tracking-wide text-slate-500 bg-slate-100 px-3 py-1 rounded-md">
+             <span className="text-xs sm:text-sm font-bold tracking-wide text-slate-500 bg-slate-100 px-2 sm:px-3 py-1 rounded-md">
                {card.tag}
              </span>
           </div>
 
           <h3 className={clsx(
-            "font-bold text-slate-900 mb-4",
-            isLarge ? "text-3xl" : "text-2xl"
+            "font-bold text-slate-900 mb-2 sm:mb-3",
+            isLarge ? "text-lg sm:text-xl" : "text-base sm:text-lg"
           )}>
             {card.title}
           </h3>
 
           <p className={clsx(
             "text-slate-500 leading-relaxed",
-            isLarge ? "text-lg line-clamp-3" : "text-base line-clamp-3"
+            isLarge ? "text-xs sm:text-sm line-clamp-3" : "text-xs sm:text-sm line-clamp-3"
           )}>
             {card.description}
           </p>
         </div>
 
         {/* 按钮组 */}
-        <div className="mt-8 flex items-center gap-4">
+        <div className="mt-4 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
           {card.primaryAction && (
-            <button className="px-6 py-3 bg-[#0055ff] text-white text-base font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20">
+            <button className="px-2 sm:px-6 py-2 sm:py-3 bg-[#0055ff] text-white text-xs sm:text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20">
               {card.primaryAction}
             </button>
           )}
           {card.secondaryAction && (
-             <button className="px-6 py-3 bg-white text-slate-600 border border-slate-200 text-base font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors">
+             <button className="px-2 sm:px-6 py-2 sm:py-3 bg-white text-slate-600 border border-slate-200 text-xs sm:text-sm font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors">
                {card.secondaryAction}
              </button>
           )}
           {!card.secondaryAction && isLarge === false && (
-             <button className="px-5 py-2.5 bg-white text-slate-600 border border-slate-200 text-sm font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors">
+             <button className="px-2 sm:px-5 py-2 sm:py-2.5 bg-white text-slate-600 border border-slate-200 text-xs sm:text-sm font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors">
                了解详情
              </button>
           )}
@@ -201,11 +201,11 @@ export function Scenario() {
           </motion.p>
         </div>
 
-        {/* 网格布局 - 调整比例为 30/30/40 */}
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 lg:gap-8">
+        {/* 网格布局 - 响应式设计：移动端单列，平板双列，桌面30/30/40比例 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-6 lg:gap-8">
           {/* 大卡片 1 - 占 3/10 */}
           <motion.div
-            className="lg:col-span-3"
+            className="md:col-span-1 lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -216,7 +216,7 @@ export function Scenario() {
 
           {/* 大卡片 2 - 占 3/10 */}
           <motion.div
-            className="lg:col-span-3"
+            className="md:col-span-1 lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -226,7 +226,7 @@ export function Scenario() {
           </motion.div>
 
           {/* 右侧小卡片堆叠 - 占 4/10，提供更宽展示空间 */}
-          <div className="lg:col-span-4 flex flex-col gap-6 lg:gap-8 justify-between h-full">
+          <div className="md:col-span-2 lg:col-span-4 flex flex-col gap-6 lg:gap-8 justify-between h-full">
             <motion.div
               className="flex-1"
               initial={{ opacity: 0, y: 20 }}

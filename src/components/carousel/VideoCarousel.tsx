@@ -508,26 +508,26 @@ const Carousel = memo(function Carousel({
         </Container>
 
         {/* 移动端：两排两列网格布局 */}
-        <div className="lg:hidden px-4 mt-24">
-          <div className="grid grid-cols-2 gap-3 pb-4">
+        <div className="lg:hidden px-4 mt-10">
+          <div className="grid grid-cols-2 gap-1.5 pb-2">
             {floatingCards.map((card) => (
               <div
                 key={card.id}
                 className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 transition-colors duration-200 cursor-pointer rounded-xl overflow-hidden shadow-sm"
               >
-                <div className="p-3">
-                  <div className="flex flex-col items-start text-left gap-2">
-                    <div className="flex items-center gap-2 w-full">
-                      <div className="flex h-8 w-8 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg flex-shrink-0">
+                <div className="p-1.5">
+                  <div className="flex flex-col items-start text-left gap-1">
+                    <div className="flex items-center gap-1 w-full">
+                      <div className="flex h-6 w-6 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg flex-shrink-0">
                         {React.createElement(card.icon, {
-                          className: `text-[#0055ff] w-4 h-4`
+                          className: `text-[#0055ff] w-3 h-3`
                         })}
                       </div>
-                      <h3 className="font-bold text-[#0055ff] dark:text-[#0055ff] text-xs line-clamp-1">
+                      <h3 className="font-bold text-[#0055ff] dark:text-[#0055ff] text-[9px] line-clamp-1">
                         {card.title}
                       </h3>
                     </div>
-                    <p className="text-slate-500 dark:text-slate-400 text-[10px] line-clamp-2 leading-relaxed">
+                    <p className="text-slate-500 dark:text-slate-400 text-[8px] line-clamp-2 leading-relaxed">
                       {card.description}
                     </p>
                   </div>
