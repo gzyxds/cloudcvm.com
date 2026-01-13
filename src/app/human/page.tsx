@@ -1126,17 +1126,21 @@ export default function DigitalHumanPage(): JSX.Element {
         <AIscene />
 
         {/* 接入流程 Section */}
-        <section className="bg-gray-50 py-24">
+        <section className="bg-[#F8FAFC] py-24">
           <Container>
             <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
               {/* 标题区域 */}
-              <div className="mb-12 text-center">
-                <h2 className="mb-4 text-2xl font-bold">接入流程</h2>
-                <p className="mb-3 text-sm text-gray-600">
-                  为你提供快速、便捷的接入服务
+              <div className="mb-16 text-center">
+                <div className="mb-4 inline-flex items-center rounded-sm border border-[#E2E8F0] bg-[#eff6ff] px-3 py-1">
+                  <span className="text-xs font-semibold text-[#0055ff] font-mono">快速部署</span>
+                </div>
+                <h2 className="mb-4 text-3xl font-bold text-[#0F172A] font-sans">接入流程</h2>
+                <p className="mx-auto mb-8 max-w-2xl text-lg font-medium text-[#64748B] font-sans">
+                  标准化服务流程，助您快速完成数字人系统部署
                 </p>
                 <Button
-                  className="mt-4 rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                  variant="solid"
+                  color="blue"
                   onClick={() => window.open('https://v.cnai.art', '_blank')}
                 >
                   立即接入
@@ -1144,61 +1148,85 @@ export default function DigitalHumanPage(): JSX.Element {
               </div>
 
               {/* 流程步骤 */}
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
                 {/* 步骤1：需求沟通 */}
-                <div className="text-center">
-                  <div className="mb-4 flex items-center justify-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                      <span className="text-sm text-blue-600">01</span>
-                    </div>
+                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
+                  {/* 序号水印 */}
+                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-9xl font-bold text-[#F8FAFC]">
+                    01
                   </div>
-                  <h3 className="mb-2 text-base font-bold">需求沟通</h3>
-                  <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    提供产品信息，沟通数字人类型、使用场景和交付形式
-                  </p>
+                  <div className="relative z-10">
+                    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
+                      <span className="text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
+                        01
+                      </span>
+                    </div>
+                    <h3 className="mb-3 text-xl font-bold text-[#0F172A] font-sans">需求沟通</h3>
+                    <div className="mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
+                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
+                      提供产品信息，沟通数字人类型、使用场景和交付形式
+                    </p>
+                  </div>
                 </div>
 
                 {/* 步骤2：确认合作 */}
-                <div className="text-center">
-                  <div className="mb-4 flex items-center justify-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                      <span className="text-sm text-blue-600">02</span>
-                    </div>
+                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
+                  {/* 序号水印 */}
+                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-9xl font-bold text-[#F8FAFC]">
+                    02
                   </div>
-                  <h3 className="mb-2 text-base font-bold">确认合作</h3>
-                  <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    通过控制台直接下单，或线下沟通商务合作
-                  </p>
+                  <div className="relative z-10">
+                    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
+                      <span className="text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
+                        02
+                      </span>
+                    </div>
+                    <h3 className="mb-3 text-xl font-bold text-[#0F172A] font-sans">确认合作</h3>
+                    <div className="mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
+                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
+                      通过控制台直接下单，或线下沟通商务合作
+                    </p>
+                  </div>
                 </div>
 
                 {/* 步骤3：资产制作 */}
-                <div className="text-center">
-                  <div className="mb-4 flex items-center justify-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                      <span className="text-sm text-blue-600">03</span>
-                    </div>
+                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
+                  {/* 序号水印 */}
+                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-9xl font-bold text-[#F8FAFC]">
+                    03
                   </div>
-                  <h3 className="mb-2 text-base font-bold">资产制作</h3>
-                  <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    采集数据，制作数字人形象和声音资产
-                  </p>
+                  <div className="relative z-10">
+                    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
+                      <span className="text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
+                        03
+                      </span>
+                    </div>
+                    <h3 className="mb-3 text-xl font-bold text-[#0F172A] font-sans">资产制作</h3>
+                    <div className="mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
+                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
+                      采集数据，制作数字人形象和声音资产
+                    </p>
+                  </div>
                 </div>
 
                 {/* 步骤4：正式上线 */}
-                <div className="text-center">
-                  <div className="mb-4 flex items-center justify-center">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100">
-                      <span className="text-sm text-blue-600">04</span>
-                    </div>
+                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
+                  {/* 序号水印 */}
+                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-9xl font-bold text-[#F8FAFC]">
+                    04
                   </div>
-                  <h3 className="mb-2 text-base font-bold">正式上线</h3>
-                  <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    数字人上线，调用接口驱动或通过平台直接使用
-                  </p>
+                  <div className="relative z-10">
+                    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
+                      <span className="text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
+                        04
+                      </span>
+                    </div>
+                    <h3 className="mb-3 text-xl font-bold text-[#0F172A] font-sans">正式上线</h3>
+                    <div className="mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
+                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
+                      数字人上线，调用接口驱动或通过平台直接使用
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
