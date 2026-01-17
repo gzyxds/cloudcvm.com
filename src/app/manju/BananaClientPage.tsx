@@ -21,32 +21,32 @@ import { AIscene } from '@/components/ai/AIscene'
 const features = [
   {
     title: '角色模板视频生成',
-    desc: '上传人物或角色形象作为模板并自动保存至个人角色库，可重复调用，快速生成以该角色为主角的定制化叙事视频�?,
+    desc: '上传人物或角色形象作为模板并自动保存至个人角色库，可重复调用，快速生成以该角色为主角的定制化叙事视频。',
     icon: UserIcon,
   },
   {
-    title: '首尾帧动画生�?,
-    desc: '设定起始与结束画面，智能生成流畅过渡的动态视频，简化动画创作流程，无需专业门槛即可制作高质量动画�?,
+    title: '首尾帧动画生成',
+    desc: '设定起始与结束画面，智能生成流畅过渡的动态视频，简化动画创作流程，无需专业门槛即可制作高质量动画。',
     icon: PhotoIcon,
   },
   {
-    title: '分辨率与时长自定�?,
-    desc: '支持多种分辨率与视频时长选择，适配不同平台发布与使用场景需求，满足各种创作需求�?,
+    title: '分辨率与时长自定义',
+    desc: '支持多种分辨率与视频时长选择，适配不同平台发布与使用场景需求，满足各种创作需求。',
     icon: CubeIcon,
   },
   {
-    title: '专业镜头与光影配�?,
-    desc: '内置运镜轨迹、景别切换及光影效果模板，一键提升视频电影感与表现力，让作品更具专业水准�?,
+    title: '专业镜头与光影配置',
+    desc: '内置运镜轨迹、景别切换及光影效果模板，一键提升视频电影感与表现力，让作品更具专业水准。',
     icon: SparklesIcon,
   },
   {
-    title: '智能提示词优化扩�?,
-    desc: '自动优化用户输入的文本描述，丰富细节并提升AI生成内容的质量与准确性，让创作更加精准高效�?,
+    title: '智能提示词优化扩写',
+    desc: '自动优化用户输入的文本描述，丰富细节并提升 AI 生成内容的质量与准确性，让创作更加精准高效。',
     icon: DocumentTextIcon,
   },
   {
-    title: '多镜头叙�?,
-    desc: '支持多镜头组合叙事，通过智能镜头切换和场景转换，打造更加生动丰富的故事内容�?,
+    title: '多镜头叙事',
+    desc: '支持多镜头组合叙事，通过智能镜头切换和场景转换，打造更加生动丰富的故事内容。',
     icon: PencilIcon,
   },
 ]
@@ -54,72 +54,72 @@ const features = [
 const initialFeatureDetails = [
   {
     title: '角色模板视频生成，打造专属IP',
-    desc: '上传人物或角色形象作为模板并自动保存至个人角色库，可重复调用，快速生成以该角色为主角的定制化叙事视频。无需专业门槛，轻松实现角色化叙事，助力高效产出高质量动态内容�?,
+    desc: '上传人物或角色形象作为模板并自动保存至个人角色库，可重复调用，快速生成以该角色为主角的定制化叙事视频。无需专业门槛，轻松实现角色化叙事，助力高效产出高质量动态内容。',
     activePoint: 0,
     points: [
       {
         title: '角色模板上传',
-        desc: '支持上传真人或虚拟形象作为模板，自动保存至个人角色库，方便重复使用�?
+        desc: '支持上传真人或虚拟形象作为模板，自动保存至个人角色库，方便重复使用。',
       },
       {
-        title: '角色库管�?,
-        desc: '个人角色库可存储多个角色模板，随时调用，满足不同创作场景需求�?
+        title: '角色库管理',
+        desc: '个人角色库可存储多个角色模板，随时调用，满足不同创作场景需求。',
       },
       {
-        title: '定制化叙事视�?,
-        desc: '基于角色模板快速生成定制化叙事视频，让角色成为故事的主角�?
+        title: '定制化叙事视频',
+        desc: '基于角色模板快速生成定制化叙事视频，让角色成为故事的主角。',
       },
       {
-        title: '角色一致性保�?,
-        desc: '有效保持角色特征一致性，确保生成视频中的角色形象与模板高度一致�?
+        title: '角色一致性保障',
+        desc: '有效保持角色特征一致性，确保生成视频中的角色形象与模板高度一致。',
       }
     ],
     image: 'https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png',
   },
   {
-    title: '首尾帧动画生成，简化创作流�?,
-    desc: '设定起始与结束画面，智能生成流畅过渡的动态视频，简化动画创作流程。无需专业动画技能，即可轻松实现角色化叙事与自由视觉创作，大幅提升创作效率�?,
+    title: '首尾帧动画生成，简化创作流程',
+    desc: '设定起始与结束画面，智能生成流畅过渡的动态视频，简化动画创作流程。无需专业动画技能，即可轻松实现角色化叙事与自由视觉创作，大幅提升创作效率。',
     activePoint: 0,
     points: [
       {
-        title: '首尾帧设�?,
-        desc: '设定起始与结束画面，智能生成流畅过渡的动态视频，简化动画创作流程�?
+        title: '首尾帧设定',
+        desc: '设定起始与结束画面，智能生成流畅过渡的动态视频，简化动画创作流程。',
       },
       {
         title: '智能过渡生成',
-        desc: 'AI智能生成流畅的过渡动画，让画面切换自然流畅，提升观看体验�?
+        desc: 'AI 智能生成流畅的过渡动画，让画面切换自然流畅，提升观看体验。',
       },
       {
         title: '无需专业门槛',
-        desc: '无需专业动画技能，即可轻松实现角色化叙事与自由视觉创作�?
+        desc: '无需专业动画技能，即可轻松实现角色化叙事与自由视觉创作。',
       },
       {
         title: '高效创作流程',
-        desc: '大幅简化动画创作流程，提升创作效率，让创意快速落地�?
+        desc: '大幅简化动画创作流程，提升创作效率，让创意快速落地。',
       }
     ],
     image: 'https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png',
   },
   {
     title: '专业镜头与光影配置，提升电影质感',
-    desc: '内置运镜轨迹、景别切换及光影效果模板，一键提升视频电影感与表现力。支持多种分辨率与视频时长选择，适配不同平台发布与使用场景需求，让作品更具专业水准�?,
+    desc: '内置运镜轨迹、景别切换及光影效果模板，一键提升视频电影感与表现力。支持多种分辨率与视频时长选择，适配不同平台发布与使用场景需求，让作品更具专业水准。',
     activePoint: 0,
     points: [
       {
         title: '运镜轨迹模板',
-        desc: '内置多种运镜轨迹模板，包括推拉摇移等专业运镜效果，一键应用�?
+        desc: '内置多种运镜轨迹模板，包括推拉摇移等专业运镜效果，一键应用。',
       },
       {
         title: '景别切换',
-        desc: '支持多种景别切换，包括远景、中景、近景、特写等，丰富画面表现力�?
+        desc: '支持多种景别切换，包括远景、中景、近景、特写等，丰富画面表现力。',
       },
       {
         title: '光影效果模板',
-        desc: '内置多种光影效果模板，包括日景、夜景、黄昏等，营造不同氛围�?
+        desc: '内置多种光影效果模板，包括日景、夜景、黄昏等，营造不同氛围。',
       },
       {
-        title: '分辨率与时长自定�?,
-        desc: '支持多种分辨率与视频时长选择，适配不同平台发布与使用场景需求�?
+        title: '分辨率与时长自定义',
+        desc: '支持多种分辨率与视频时长选择，适配不同平台发布与使用场景需求。',
       }
     ],
     image: 'https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png',
@@ -134,7 +134,8 @@ function ProductFeatures() {
     <div className="py-12 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
       <Container>
         <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wide mb-8">
-          受信赖的 AI 视频生成技�?        </p>
+          受信赖的 AI 视频生成技术
+        </p>
         <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           {/* 这里使用简单的文本代替 Logo，或者可以用 public/images/logos 下的图片 */}
           <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
@@ -144,9 +145,11 @@ function ProductFeatures() {
             <CubeIcon className="w-6 h-6" /> 快手
           </div>
           <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
-            <PhotoIcon className="w-6 h-6" /> B�?          </div>
+            <PhotoIcon className="w-6 h-6" /> B站
+          </div>
           <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
-            <DocumentTextIcon className="w-6 h-6" /> 小红�?          </div>
+            <DocumentTextIcon className="w-6 h-6" /> 小红书
+          </div>
         </div>
       </Container>
     </div>
@@ -157,18 +160,18 @@ function ProductFeatures() {
 function LandingUserReviews() {
   const reviews = [
     {
-      content: '角色模板视频生成功能非常实用,大幅提升了我们的视频创作效率,节省了大量时间成本�?,
-      author: '张创�?,
+      content: '角色模板视频生成功能非常实用，大幅提升了我们的视频创作效率，节省了大量时间成本。',
+      author: '张创意',
       role: '视频制作总监',
     },
     {
-      content: '首尾帧动画生成功能很强大,智能生成流畅过渡的动态视�?简化了动画创作流程�?,
-      author: '李动�?,
-      role: '动画设计�?,
+      content: '首尾帧动画生成功能很强大，智能生成流畅过渡的动态视频，简化了动画创作流程。',
+      author: '李动画',
+      role: '动画设计师',
     },
     {
-      content: '专业镜头与光影配置功能很贴心,一键提升视频电影感与表现力,让作品更具专业水准�?,
-      author: '王导�?,
+      content: '专业镜头与光影配置功能很贴心，一键提升视频电影感与表现力，让作品更具专业水准。',
+      author: '王导演',
       role: '视频导演',
     },
   ]
@@ -259,20 +262,23 @@ export default function BananaClientPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-              打造您�?<span className="text-[#0055ff]">专属 AI 视频世界</span>
+              打造您的<span className="text-[#0055ff]">专属 AI 视频世界</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Wan漫剧是一款智能AI视频生成工具，服务于创作者、动画爱好者及视觉工作者�?              <br className="hidden sm:block" />
-              提供"角色主演"�?首尾帧生�?两大创作模式，轻松实现角色化叙事与自由视觉创作�?            </p>
+              Wan漫剧是一款智能 AI 视频生成工具，服务于创作者、动画爱好者及视觉工作者。
+              <br className="hidden sm:block" />
+              提供“角色主演”和首尾帧生成两大创作模式，轻松实现角色化叙事与自由视觉创作。
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
-              {/* 开始创�?Button */}
+              {/* 开始创作 Button */}
               <Link
                 href="#"
                 className="group inline-flex items-center justify-center py-3.5 px-8 text-base font-medium rounded-lg bg-[#0055ff] text-white shadow-lg shadow-[#0055ff]/20 hover:bg-[#0043cc] transition-all"
               >
-                开始创�?                <ArrowRightIcon className="w-5 h-5 ml-2" />
+                开始创作
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Link>
 
               {/* 查看示例 Button */}
@@ -296,7 +302,7 @@ export default function BananaClientPage() {
         <Container>
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-              {/* 使用 img 标签以避�?Next.js Image 的静态导入限制，并允许容�?*/}
+              {/* 使用 img 标签以避免 Next.js Image 的静态导入限制，并允许容错 */}
               <img
                 src="https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png"
                 alt="Wan漫剧展示"
@@ -312,10 +318,10 @@ export default function BananaClientPage() {
         <Container>
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              全能�?Wan漫剧智能视频平台
+              全能型 Wan漫剧智能视频平台
             </h2>
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              集角色模板视频生成、首尾帧动画生成、专业镜头配置于一�?为您提供一站式解决方案
+              集角色模板视频生成、首尾帧动画生成、专业镜头配置于一体，为您提供一站式解决方案
             </p>
           </div>
 
@@ -430,10 +436,10 @@ export default function BananaClientPage() {
                           )}
                         </div>
 
-                        {/* 连接�?*/}
+                        {/* 连接线 */}
                         {pIndex < detail.points.length - 1 && (
                           <div className="w-[2px] grow bg-gray-100 dark:bg-gray-800 rounded-full relative overflow-hidden min-h-[16px]">
-                            {/* 活动进度�?*/}
+                            {/* 活动进度条 */}
                             <div
                               className={clsx(
                                 'absolute top-0 left-0 w-full bg-[#0055ff] rounded-full transition-all duration-500 ease-out',
@@ -541,7 +547,8 @@ export default function BananaClientPage() {
             准备好开始创作了吗？
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-            立即加入 BuidAI，体验前�?AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用�?          </p>
+            立即加入 BuidAI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。
+          </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="#"

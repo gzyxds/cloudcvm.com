@@ -21,106 +21,107 @@ import { AIscene } from '@/components/ai/AIscene'
 const features = [
   {
     title: '文生视频',
-    desc: '支持纯文本提示词来生成视�?只需输入文字描述即可快速生成风格多样的短视频�?,
+    desc: '支持纯文本提示词来生成视频，用户只需输入文字描述，即可快速生成风格多样的短视频。',
     icon: DocumentTextIcon,
   },
   {
     title: '图生视频',
-    desc: '上传参考图来生成视�?支持多张图片融合,让创作更加灵活多样�?,
+    desc: '支持上传参考图来生成视频，并可进行多张图片融合，让创作更加灵活多样。',
     icon: PhotoIcon,
   },
   {
-    title: '多种分辨�?,
-    desc: '支持生成不同的视频比例和分辨�?包括 720P�?080P,满足不同场景需求�?,
+    title: '多种分辨率',
+    desc: '支持生成不同的视频比例和分辨率，包括 720P、1080P 等，满足不同场景需求。',
     icon: FilmIcon,
   },
   {
     title: '视频下载',
-    desc: '生成的视频支持下�?方便用户保存和分享到各个平台�?,
+    desc: '生成的视频支持一键下载，方便用户保存和分享到各大平台。',
     icon: ArrowDownTrayIcon,
   },
   {
-    title: '提示词示�?,
-    desc: '后台可以配置提示词示�?方便用户试用,降低创作门槛�?,
+    title: '提示词示例',
+    desc: '后台可以配置提示词示例，方便用户一键试用，降低创作门槛。',
     icon: LightBulbIcon,
   },
   {
     title: '灵感广场',
-    desc: '后台可配置灵感广场的示例视频,为用户提供创作灵感和参考�?,
+    desc: '后台可配置灵感广场示例视频，为用户提供创作灵感和参考。',
     icon: SparklesIcon,
   },
 ]
 
 const initialFeatureDetails = [
   {
-    title: '文生视频,文字即刻成片',
-    desc: '支持纯文本提示词来生成视�?用户只需输入文字描述,即可快速生成风格多样的短视频。让创意瞬间变为现实,开启智能视频创作新时代�?,
+    title: '文生视频，文字即刻成片',
+    desc: '支持纯文本提示词来生成视频，用户只需输入文字描述，即可快速生成风格多样的短视频。让创意瞬间变为现实，开启智能视频创作新时代。',
     activePoint: 0,
     points: [
       {
         title: '纯文本提示词',
-        desc: '支持纯文本提示词来生成视�?只需输入文字描述,即可快速生成风格多样的短视频�?
+        desc: '支持纯文本提示词来生成视频，只需输入文字描述，即可快速生成风格多样的短视频。',
       },
       {
         title: '风格多样',
-        desc: '支持多种视频风格,如写实、卡通、动漫等,满足不同场景和创作需求�?
+        desc: '支持多种视频风格，如写实、卡通、动漫等，满足不同场景和创作需求。',
       },
       {
-        title: '快速生�?,
-        desc: '生成速度非常�?大幅缩短等待时间,提升创作效率,让创意快速落地�?
+        title: '快速生成',
+        desc: '生成速度非常快，大幅缩短等待时间，提升创作效率，让创意快速落地。',
       },
       {
-        title: '高质量输�?,
-        desc: '生成的视频质量高,细节丰富,色彩饱满,满足专业级创作需求�?
-      }
+        title: '高质量输出',
+        desc: '生成的视频质量高，细节丰富、色彩饱满，满足专业级创作需求。',
+      },
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/11/585c00e5-374f-4bf1-81e8-b208ba435a77.png',
+    image:
+      'https://server.buildingai.cc/uploads/image/2025/11/585c00e5-374f-4bf1-81e8-b208ba435a77.png',
   },
   {
-    title: '图生视频,参考图智能融合',
-    desc: '上传参考图来生成视�?支持多张图片融合。让创作更加灵活多样,轻松实现从静态到动态的转换�?,
+    title: '图生视频，参考图智能融合',
+    desc: '支持上传参考图来生成视频，并支持多张图片智能融合，让创作更加灵活多样，轻松实现从静态到动态的转换。',
     activePoint: 0,
     points: [
       {
-        title: '多图参考输�?,
-        desc: '支持上传参考图来生成视�?提供更丰富的创作素材和灵感来源�?
+        title: '多图参考输入',
+        desc: '支持上传多张参考图来生成视频，提供更丰富的创作素材和灵感来源。',
       },
       {
         title: '智能图片融合',
-        desc: '支持多张图片智能融合,理解图片中物体的逻辑关系,生成更加丰富的画面�?
+        desc: '支持多张图片智能融合，理解图片中物体的逻辑关系，生成更加丰富的画面。',
       },
       {
-        title: '风格保持一�?,
-        desc: '从参考图中学习风格、构图和细节,生成与原图风格协调的新视频�?
+        title: '风格保持一致',
+        desc: '从参考图中学习风格、构图和细节，生成与原图风格协调的新视频。',
       },
       {
         title: '灵活创作方式',
-        desc: '支持纯文本提示词和上传参考图两种方式,满足不同用户的创作习惯�?
-      }
+        desc: '同时支持纯文本提示词和上传参考图两种方式，满足不同用户的创作习惯。',
+      },
     ],
     image: 'https://www.buidai.com/product/jimeng-3.png',
   },
   {
-    title: '后台管理与配�?灵活可控',
-    desc: '后台可以配置提示词示例和灵感广场,支持自定义积分消�?可自由修改应用在前台显示的名称。提供完整的后台管理功能,满足企业级应用需求�?,
+    title: '后台管理与配置，灵活可控',
+    desc: '后台可以配置提示词示例和灵感广场，支持自定义积分消耗，并可自由修改应用在前台显示的名称，提供完整的后台管理功能，满足企业级应用需求。',
     activePoint: 0,
     points: [
       {
-        title: '提示词示例配�?,
-        desc: '后台可以配置提示词示�?方便用户试用,降低创作门槛,提升用户体验�?
+        title: '提示词示例配置',
+        desc: '后台可以配置提示词示例，方便用户试用，降低创作门槛，提升用户体验。',
       },
       {
         title: '灵感广场示例',
-        desc: '后台可配置灵感广场的示例视频,为用户提供创作灵感和参�?激发创作灵感�?
+        desc: '后台可配置灵感广场示例视频，为用户提供创作灵感和参考，激发创意灵感。',
       },
       {
-        title: '生成记录与积分管�?,
-        desc: '后台可查看生成记录和积分消耗情�?支持自定义积分消�?方便运营管理�?
+        title: '生成记录与积分管理',
+        desc: '后台可查看生成记录和积分消耗情况，支持自定义积分消耗策略，方便运营管理。',
       },
       {
-        title: '自定义应用名�?,
-        desc: '后台可自由修改应用在前台显示的名�?打造品牌专属体�?满足个性化需求�?
-      }
+        title: '自定义应用名称',
+        desc: '后台可自由修改应用在前台显示的名称，打造品牌专属体验，满足个性化需求。',
+      },
     ],
     image: 'https://www.buidai.com/product/jimeng-4.png',
   },
@@ -134,7 +135,8 @@ function ProductFeatures() {
     <div className="py-12 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
       <Container>
         <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wide mb-8">
-          受信赖的 AI 视频生成技�?        </p>
+          受信赖的 AI 视频生成技术
+        </p>
         <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
             <SparklesIcon className="w-6 h-6" /> Sora
@@ -158,19 +160,22 @@ function ProductFeatures() {
 function LandingUserReviews() {
   const reviews = [
     {
-      content: '生成的视频质量非常高，完全超出了我的预期。特别是图生视频功能，非常智能�?,
-      author: '张视�?,
-      role: '视频创作�?,
+      content:
+        '生成的视频质量非常高，完全超出了我的预期。特别是图生视频功能，非常智能。',
+      author: '张视频',
+      role: '视频创作者',
     },
     {
-      content: '后台管理功能很强大，可以灵活配置提示词示例，非常适合企业内部使用�?,
-      author: '李运�?,
+      content:
+        '后台管理功能很强大，可以灵活配置提示词示例，非常适合企业内部使用。',
+      author: '李运营',
       role: '运营经理',
     },
     {
-      content: '文生视频功能太强大了，帮我快速完成了短视频的制作，大大提升了工作效率�?,
-      author: '王内�?,
-      role: '自媒体创作�?,
+      content:
+        '文生视频功能太强大了，帮我快速完成了短视频的制作，大大提升了工作效率。',
+      author: '王内容',
+      role: '自媒体创作者',
     },
   ]
 
@@ -260,20 +265,23 @@ export default function BananaClientPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-              打造您�?<span className="text-[#0055ff]">专属 AI 视频</span>
+              打造您的 <span className="text-[#0055ff]">专属 AI 视频</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              新一�?AI 视频生成工具,输入文字描述或上传参考图即可快速生成视频�?              <br className="hidden sm:block" />
-              支持多种视频比例和分辨率,让创作更简�?开启智能视频创作新时代�?            </p>
+              新一代 AI 视频生成工具，输入文字描述或上传参考图即可快速生成视频。
+              <br className="hidden sm:block" />
+              支持多种视频比例和分辨率，让创作更简单，开启智能视频创作新时代。
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
-              {/* 开始构�?Button */}
+              {/* 开始创作 Button */}
               <Link
                 href="#"
                 className="group inline-flex items-center justify-center py-3.5 px-8 text-base font-medium rounded-lg bg-[#0055ff] text-white shadow-lg shadow-[#0055ff]/20 hover:bg-[#0043cc] transition-all"
               >
-                开始构�?                <ArrowRightIcon className="w-5 h-5 ml-2" />
+                开始创作
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Link>
 
               {/* 查看案例 Button */}
@@ -297,7 +305,7 @@ export default function BananaClientPage() {
         <Container>
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-              {/* 使用 img 标签以避�?Next.js Image 的静态导入限制，并允许容�?*/}
+              {/* 使用 img 标签以避免 Next.js Image 的静态导入限制，并允许容错 */}
               <img
                 src="https://server.buildingai.cc/uploads/image/2025/11/e05b4a10-0de2-4267-a8af-1a8b1a59e2a8.png"
                 alt="即梦AI视频生成展示"
@@ -313,10 +321,10 @@ export default function BananaClientPage() {
         <Container>
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              全能�?AI 视频生成平台
+              全能型 AI 视频生成平台
             </h2>
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              集文生视频、图生视频、多种分辨率于一�?为您提供一站式视频生成解决方案
+              集文生视频、图生视频、多种分辨率于一体，为您提供一站式视频生成解决方案。
             </p>
           </div>
 
@@ -431,10 +439,10 @@ export default function BananaClientPage() {
                           )}
                         </div>
 
-                        {/* 连接�?*/}
+                        {/* 连接线 */}
                         {pIndex < detail.points.length - 1 && (
                           <div className="w-[2px] grow bg-gray-100 dark:bg-gray-800 rounded-full relative overflow-hidden min-h-[16px]">
-                            {/* 活动进度�?*/}
+                            {/* 活动进度条 */}
                             <div
                               className={clsx(
                                 'absolute top-0 left-0 w-full bg-[#0055ff] rounded-full transition-all duration-500 ease-out',
@@ -542,7 +550,8 @@ export default function BananaClientPage() {
             准备好开始创作了吗？
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-            立即加入 BuidAI，体验前�?AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用�?          </p>
+            立即加入 BuidAI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。
+          </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="#"

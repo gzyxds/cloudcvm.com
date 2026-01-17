@@ -24,105 +24,105 @@ import { AIscene } from '@/components/ai/AIscene'
 const features = [
   {
     title: '智能模特匹配',
-    desc: '支持上传服装平铺图或白底图，系统内置真人模特库可直接选用�?,
+    desc: '支持上传服装平铺图或白底图，系统内置真人模特库可直接选用。',
     icon: UserIcon,
   },
   {
-    title: 'AI换背�?,
-    desc: '内置多风格场景背景库，包括影棚、街拍、自然、室内等，用户可直接选择�?,
+    title: 'AI换背景',
+    desc: '内置多风格场景背景库，包括影棚、街拍、自然、室内等，用户可直接选择。',
     icon: PhotoIcon,
   },
   {
     title: '服装贴合处理',
-    desc: 'AI自动识别服装版型，并智能贴合至所选模特身上，保持服装纹理与穿着效果�?,
+    desc: 'AI 自动识别服装版型，并智能贴合至所选模特身上，保持服装纹理与穿着效果。',
     icon: SparklesIcon,
   },
   {
-    title: 'AI生模�?,
-    desc: '通过AI智能生成用户想要的虚拟模特形象，满足个性化需求�?,
+    title: 'AI 生模特',
+    desc: '通过 AI 智能生成用户想要的虚拟模特形象，满足个性化需求。',
     icon: FaceSmileIcon,
   },
   {
     title: 'AI生背景图',
-    desc: '通过AI生成与服装风格或用户需求匹配的虚拟背景，实现一键场景切换�?,
+    desc: '通过 AI 生成与服装风格或用户需求匹配的虚拟背景，实现一键场景切换。',
     icon: GlobeAltIcon,
   },
   {
-    title: '简洁易�?,
-    desc: '直观的用户界面设计，降低使用门槛，让每一位用户都能轻松上手�?,
+    title: '简洁易用',
+    desc: '直观的用户界面设计，降低使用门槛，让每一位用户都能轻松上手。',
     icon: BoltIcon,
   },
 ]
 
 const initialFeatureDetails = [
   {
-    title: '智能模特匹配，一键上�?,
-    desc: '支持上传服装平铺图或白底图，系统内置真人模特库可直接选用。AI自动识别服装版型，并智能贴合至所选模特身上，保持服装纹理与穿着效果。通过AI智能生成用户想要的虚拟模特形象，满足个性化需求�?,
+    title: '智能模特匹配，一键上身',
+    desc: '支持上传服装平铺图或白底图，系统内置真人模特库可直接选用。AI 自动识别服装版型，并智能贴合至所选模特身上，保持服装纹理与穿着效果。通过 AI 智能生成用户想要的虚拟模特形象，满足个性化需求。',
     activePoint: 0,
     points: [
       {
         title: '智能模特匹配',
-        desc: '支持上传服装平铺图或白底图，系统内置真人模特库可直接选用，快速完成模特匹配�?
+        desc: '支持上传服装平铺图或白底图，系统内置真人模特库可直接选用，快速完成模特匹配。',
       },
       {
         title: '服装贴合处理',
-        desc: 'AI自动识别服装版型，并智能贴合至所选模特身上，保持服装纹理与穿着效果，真实自然�?
+        desc: 'AI 自动识别服装版型，并智能贴合至所选模特身上，保持服装纹理与穿着效果，真实自然。',
       },
       {
-        title: 'AI生模�?,
-        desc: '通过AI智能生成用户想要的虚拟模特形象，满足个性化需求，打造专属模特�?
+        title: 'AI 生模特',
+        desc: '通过 AI 智能生成用户想要的虚拟模特形象，满足个性化需求，打造专属模特。',
       },
       {
         title: '批量处理',
-        desc: '支持批量上传服装图片，自动匹配模特并生成上身效果图，大幅提升工作效率�?
+        desc: '支持批量上传服装图片，自动匹配模特并生成上身效果图，大幅提升工作效率。',
       }
     ],
     image: 'https://www.buidai.com/product/model-1.png',
   },
   {
-    title: 'AI换背景，多场景切�?,
-    desc: '内置多风格场景背景库，包括影棚、街拍、自然、室内等，用户可直接选择。通过AI生成与服装风格或用户需求匹配的虚拟背景，实现一键场景切换，让商品在众多竞争者中脱颖而出�?,
+    title: 'AI 换背景，多场景切换',
+    desc: '内置多风格场景背景库，包括影棚、街拍、自然、室内等，用户可直接选择。通过 AI 生成与服装风格或用户需求匹配的虚拟背景，实现一键场景切换，让商品在众多竞争者中脱颖而出。',
     activePoint: 0,
     points: [
       {
-        title: 'AI换背�?,
-        desc: '内置多风格场景背景库，包括影棚、街拍、自然、室内等，用户可直接选择，快速切换背景�?
+        title: 'AI 换背景',
+        desc: '内置多风格场景背景库，包括影棚、街拍、自然、室内等，用户可直接选择，快速切换背景。',
       },
       {
         title: 'AI生背景图',
-        desc: '通过AI生成与服装风格或用户需求匹配的虚拟背景，实现一键场景切换，满足多样化需求�?
+        desc: '通过 AI 生成与服装风格或用户需求匹配的虚拟背景，实现一键场景切换，满足多样化需求。',
       },
       {
         title: '智能场景识别',
-        desc: 'AI智能识别服装风格，自动推荐最佳背景场景，提升视觉效果和转化率�?
+        desc: 'AI 智能识别服装风格，自动推荐最佳背景场景，提升视觉效果和转化率。',
       },
       {
         title: '高清输出',
-        desc: '支持高清图片输出，确保商品细节清晰可见，满足电商平台要求�?
+        desc: '支持高清图片输出，确保商品细节清晰可见，满足电商平台要求。',
       }
     ],
     image: 'https://server.buildingai.cc/uploads/image/2025/12/c951b9f7-dd34-46ed-97fb-89f1a62cc421.png',
   },
   {
     title: '简洁易用，高效便捷',
-    desc: '直观的用户界面设计，降低使用门槛，让每一位用户都能轻松上手。无需复杂拍摄与高昂成本，通过AI技术，即可实现商品一键适配模特上身与背景智能替换，大幅提升商品主图的吸引力与转化率�?,
+    desc: '直观的用户界面设计，降低使用门槛，让每一位用户都能轻松上手。无需复杂拍摄与高昂成本，通过 AI 技术，即可实现商品一键适配模特上身与背景智能替换，大幅提升商品主图的吸引力与转化率。',
     activePoint: 0,
     points: [
       {
-        title: '简洁易�?,
-        desc: '直观的用户界面设计，降低使用门槛，让每一位用户都能轻松上手，快速上手�?
+        title: '简洁易用',
+        desc: '直观的用户界面设计，降低使用门槛，让每一位用户都能轻松上手，快速上手。',
       },
       {
-        title: '一键操�?,
-        desc: '无需复杂操作，一键即可完成模特匹配和背景替换，大幅提升工作效率�?
+        title: '一键操作',
+        desc: '无需复杂操作，一键即可完成模特匹配和背景替换，大幅提升工作效率。',
       },
       {
         title: '实时预览',
-        desc: '支持实时预览功能，随时查看效果，及时调整优化，确保满意效果�?
+        desc: '支持实时预览功能，随时查看效果，及时调整优化，确保满意效果。',
       },
       {
         title: '云端存储',
-        desc: '支持云端存储，随时随地访问和管理您的商品图片，方便快捷�?
+        desc: '支持云端存储，随时随地访问和管理您的商品图片，方便快捷。',
       }
     ],
     image: 'https://www.buidai.com/product/model-3.png',
@@ -137,7 +137,8 @@ function ProductFeatures() {
     <div className="py-12 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
       <Container>
         <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wide mb-8">
-          受信赖的 AI 换装技�?        </p>
+          受信赖的 AI 换装技术
+        </p>
         <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
             <SparklesIcon className="w-6 h-6" /> AI换装
@@ -161,19 +162,19 @@ function ProductFeatures() {
 function LandingUserReviews() {
   const reviews = [
     {
-      content: 'AI换装效果非常逼真，模特匹配精准，大大提升了我们商品主图的吸引力和转化率�?,
-      author: '张运�?,
+      content: 'AI 换装效果非常逼真，模特匹配精准，大大提升了我们商品主图的吸引力和转化率。',
+      author: '张运营',
       role: '电商运营总监',
     },
     {
-      content: '背景替换功能很强大，一键就能切换不同场景，节省了大量拍摄成本和时间�?,
-      author: '李店�?,
+      content: '背景替换功能很强大，一键就能切换不同场景，节省了大量拍摄成本和时间。',
+      author: '李店长',
       role: '服装店主',
     },
     {
-      content: '操作简单易懂，即使是新手也能快速上手，批量处理功能大大提升了工作效率�?,
-      author: '王美�?,
-      role: '视觉设计�?,
+      content: '操作简单易懂，即使是新手也能快速上手，批量处理功能大大提升了工作效率。',
+      author: '王美编',
+      role: '视觉设计师',
     },
   ]
 
@@ -263,20 +264,23 @@ export default function BananaClientPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-              AI模特 <span className="text-[#0055ff]">多场景切�?/span>
+              AI 模特 <span className="text-[#0055ff]">多场景切换</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              专为电商卖家打造的AI视觉优化解决方案，提升商品主图的吸引力与转化率�?              <br className="hidden sm:block" />
-              无需复杂拍摄与高昂成本，通过AI技术实现商品一键适配模特上身与背景智能替换�?            </p>
+              专为电商卖家打造的 AI 视觉优化解决方案，提升商品主图的吸引力与转化率。
+              <br className="hidden sm:block" />
+              无需复杂拍摄与高昂成本，通过 AI 技术实现商品一键适配模特上身与背景智能替换。
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
-              {/* 开始试�?Button */}
+              {/* 开始试衣 Button */}
               <Link
                 href="#"
                 className="group inline-flex items-center justify-center py-3.5 px-8 text-base font-medium rounded-lg bg-[#0055ff] text-white shadow-lg shadow-[#0055ff]/20 hover:bg-[#0043cc] transition-all"
               >
-                开始试�?                <ArrowRightIcon className="w-5 h-5 ml-2" />
+                开始试衣
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Link>
 
               {/* 查看示例 Button */}
@@ -300,7 +304,7 @@ export default function BananaClientPage() {
         <Container>
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-              {/* 使用 img 标签以避�?Next.js Image 的静态导入限制，并允许容�?*/}
+              {/* 使用 img 标签以避免 Next.js Image 的静态导入限制，并允许更大尺寸 */}
               <img
                 src="https://server.buildingai.cc/uploads/image/2025/12/4cdde414-ea72-4cc7-a838-18f47c909fc4.png"
                 alt="电商试衣换装展示"
@@ -316,7 +320,8 @@ export default function BananaClientPage() {
         <Container>
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              全能型电商试衣换装平�?            </h2>
+              全能型电商试衣换装平台
+            </h2>
             <p className="text-gray-500 dark:text-gray-400 text-lg">
               集智能模特匹配、AI换背景、服装贴合处理、AI生模特、AI生背景图于一体，为您提供一站式电商视觉优化解决方案
             </p>
@@ -433,10 +438,10 @@ export default function BananaClientPage() {
                           )}
                         </div>
 
-                        {/* 连接�?*/}
+                        {/* 连接线 */}
                         {pIndex < detail.points.length - 1 && (
                           <div className="w-[2px] grow bg-gray-100 dark:bg-gray-800 rounded-full relative overflow-hidden min-h-[16px]">
-                            {/* 活动进度�?*/}
+                            {/* 活动进度条 */}
                             <div
                               className={clsx(
                                 'absolute top-0 left-0 w-full bg-[#0055ff] rounded-full transition-all duration-500 ease-out',
@@ -544,7 +549,8 @@ export default function BananaClientPage() {
             准备好开始创作了吗？
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-            立即加入 BuidAI，体验前�?AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用�?          </p>
+            立即加入 BuidAI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。
+          </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="#"
