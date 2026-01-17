@@ -20,106 +20,106 @@ import { AIscene } from '@/components/ai/AIscene'
 // ==================== Data ====================
 const features = [
   {
-    title: '无限量剧本创作',
-    desc: '支持创建无限量剧本和小说,满足自媒体创作者、编剧、网络作家的多样化创作需求。',
+    title: '无限量剧本创�?,
+    desc: '支持创建无限量剧本和小说,满足自媒体创作者、编剧、网络作家的多样化创作需求�?,
     icon: DocumentTextIcon,
   },
   {
     title: '角色设定管理',
-    desc: '完善的角色卡和故事设定功能,帮助用户构建丰富的人物形象和世界观。',
+    desc: '完善的角色卡和故事设定功�?帮助用户构建丰富的人物形象和世界观�?,
     icon: UserGroupIcon,
   },
   {
-    title: '章节可视化拖拽',
-    desc: '章节顺序可视化拖拽,灵活调整剧情结构,让创作流程更加直观高效。',
+    title: '章节可视化拖�?,
+    desc: '章节顺序可视化拖�?灵活调整剧情结构,让创作流程更加直观高效�?,
     icon: ArrowsRightLeftIcon,
   },
   {
     title: 'AI 扩写润色',
-    desc: '正文支持选中文本进行扩写、润色、改写、续写,提升内容质量和创作效率。',
+    desc: '正文支持选中文本进行扩写、润色、改写、续�?提升内容质量和创作效率�?,
     icon: SparklesIcon,
   },
   {
     title: '大纲细纲记录',
-    desc: '完善的大纲和细纲记录功能,帮助用户系统化规划故事情节和章节内容。',
+    desc: '完善的大纲和细纲记录功能,帮助用户系统化规划故事情节和章节内容�?,
     icon: ClipboardDocumentListIcon,
   },
   {
     title: '多种风格配置',
-    desc: '后台可配置多种写作提示词风格,支持插入变量,每种风格可配置不同大模型。',
+    desc: '后台可配置多种写作提示词风格,支持插入变量,每种风格可配置不同大模型�?,
     icon: Cog6ToothIcon,
   },
 ]
 
 const initialFeatureDetails = [
   {
-    title: '无限量剧本创作,构建完整故事世界',
-    desc: '支持创建无限量剧本和小说,提供丰富的剧情模板、角色设定和冲突框架。帮助自媒体创作者、编剧、网络作家快速构思情节、对话和分镜,让短剧创作更高效、更系统。',
+    title: '无限量剧本创�?构建完整故事世界',
+    desc: '支持创建无限量剧本和小说,提供丰富的剧情模板、角色设定和冲突框架。帮助自媒体创作者、编剧、网络作家快速构思情节、对话和分镜,让短剧创作更高效、更系统�?,
     activePoint: 0,
     points: [
       {
         title: '丰富剧情模板',
-        desc: '内置多种剧情模板,涵盖搞笑段子、情感剧场、品牌微剧等类型,快速上手创作。'
+        desc: '内置多种剧情模板,涵盖搞笑段子、情感剧场、品牌微剧等类型,快速上手创作�?
       },
       {
         title: '角色设定管理',
-        desc: '完善的角色卡功能,记录人物性格、外貌、背景等设定,保持角色一致性。'
+        desc: '完善的角色卡功能,记录人物性格、外貌、背景等设定,保持角色一致性�?
       },
       {
         title: '冲突框架构建',
-        desc: '提供专业的冲突框架模板,帮助用户构建引人入胜的故事冲突和情节转折。'
+        desc: '提供专业的冲突框架模�?帮助用户构建引人入胜的故事冲突和情节转折�?
       },
       {
-        title: '无限量创作空间',
-        desc: '支持创建无限量剧本和小说,满足自媒体创作者、编剧、网络作家的多样化创作需求。'
+        title: '无限量创作空�?,
+        desc: '支持创建无限量剧本和小说,满足自媒体创作者、编剧、网络作家的多样化创作需求�?
       }
     ],
     image: 'https://server.buildingai.cc/uploads/image/2025/12/ae4bfe56-455b-4689-9499-665fb3e97cbf.png',
   },
   {
-    title: '章节可视化拖拽与大纲管理,系统化创作流程',
-    desc: '章节顺序可视化拖拽,灵活调整剧情结构。完善的大纲和细纲记录功能,帮助用户系统化规划故事情节和章节内容,让创作流程更加直观高效。',
+    title: '章节可视化拖拽与大纲管理,系统化创作流�?,
+    desc: '章节顺序可视化拖�?灵活调整剧情结构。完善的大纲和细纲记录功�?帮助用户系统化规划故事情节和章节内容,让创作流程更加直观高效�?,
     activePoint: 0,
     points: [
       {
-        title: '章节可视化拖拽',
-        desc: '支持章节顺序可视化拖拽,灵活调整剧情结构,让创作流程更加直观高效。'
+        title: '章节可视化拖�?,
+        desc: '支持章节顺序可视化拖�?灵活调整剧情结构,让创作流程更加直观高效�?
       },
       {
         title: '大纲细纲记录',
-        desc: '完善的大纲和细纲记录功能,帮助用户系统化规划故事情节和章节内容。'
+        desc: '完善的大纲和细纲记录功能,帮助用户系统化规划故事情节和章节内容�?
       },
       {
         title: '故事设定管理',
-        desc: '支持世界观、背景设定等故事元素管理,构建完整的故事世界。'
+        desc: '支持世界观、背景设定等故事元素管理,构建完整的故事世界�?
       },
       {
         title: '灵活调整结构',
-        desc: '随时调整章节顺序和内容结构,支持草稿编辑与复用,方便内容迭代与优化。'
+        desc: '随时调整章节顺序和内容结�?支持草稿编辑与复�?方便内容迭代与优化�?
       }
     ],
     image: 'https://server.buildingai.cc/uploads/image/2025/12/469c84d0-4c36-4ae1-95fd-bb94a58a13b5.png',
   },
   {
-    title: 'AI 智能辅助写作,提升创作效率与质量',
-    desc: '正文支持选中文本进行扩写、润色、改写、续写。后台可配置多种写作提示词风格,支持插入变量,每种风格可配置不同大模型。正文一键排版、复制全文,可调节字号大小。',
+    title: 'AI 智能辅助写作,提升创作效率与质�?,
+    desc: '正文支持选中文本进行扩写、润色、改写、续写。后台可配置多种写作提示词风�?支持插入变量,每种风格可配置不同大模型。正文一键排版、复制全�?可调节字号大小�?,
     activePoint: 0,
     points: [
       {
         title: 'AI 扩写续写',
-        desc: '选中文本即可进行扩写和续写,AI 根据上下文智能生成连贯内容,提升创作效率。'
+        desc: '选中文本即可进行扩写和续�?AI 根据上下文智能生成连贯内�?提升创作效率�?
       },
       {
         title: 'AI 润色改写',
-        desc: '支持对文本进行润色和改写,优化语言表达,提升内容质量和可读性。'
+        desc: '支持对文本进行润色和改写,优化语言表达,提升内容质量和可读性�?
       },
       {
         title: '多种风格配置',
-        desc: '后台可配置多种写作提示词风格,支持插入变量,每种风格可配置不同大模型。'
+        desc: '后台可配置多种写作提示词风格,支持插入变量,每种风格可配置不同大模型�?
       },
       {
         title: '便捷编辑工具',
-        desc: '正文一键排版、复制全文,可调节字号大小,提供舒适的写作和阅读体验。'
+        desc: '正文一键排版、复制全�?可调节字号大�?提供舒适的写作和阅读体验�?
       }
     ],
     image: 'https://www.buidai.com/product/drama-3.png',
@@ -134,8 +134,7 @@ function ProductFeatures() {
     <div className="py-12 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
       <Container>
         <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wide mb-8">
-          受信赖的 AI 短剧创作技术
-        </p>
+          受信赖的 AI 短剧创作技�?        </p>
         <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
             <SparklesIcon className="w-6 h-6" /> GPT-4
@@ -159,19 +158,19 @@ function ProductFeatures() {
 function LandingUserReviews() {
   const reviews = [
     {
-      content: 'AI扩写功能太强大了，帮我快速完成了短剧剧本的创作，大大提升了工作效率。',
-      author: '张编剧',
+      content: 'AI扩写功能太强大了，帮我快速完成了短剧剧本的创作，大大提升了工作效率�?,
+      author: '张编�?,
       role: '影视编剧',
     },
     {
-      content: '角色设定和章节管理功能很实用，让我能够系统化地规划整个故事情节。',
-      author: '李作家',
+      content: '角色设定和章节管理功能很实用，让我能够系统化地规划整个故事情节�?,
+      author: '李作�?,
       role: '网络作家',
     },
     {
-      content: '可视化拖拽功能让剧情结构调整变得非常直观，创作流程更加顺畅。',
-      author: '王内容',
-      role: '自媒体创作者',
+      content: '可视化拖拽功能让剧情结构调整变得非常直观，创作流程更加顺畅�?,
+      author: '王内�?,
+      role: '自媒体创作�?,
     },
   ]
 
@@ -199,7 +198,7 @@ function LandingUserReviews() {
                 ))}
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                "{review.content}"
+                {review.content}
               </p>
               <div>
                 <div className="font-semibold text-gray-900 dark:text-white">
@@ -261,23 +260,20 @@ export default function BananaClientPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
-              打造您的 <span className="text-[#0055ff]">专属爆款短剧</span>
+              打造您�?<span className="text-[#0055ff]">专属爆款短剧</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              专为自媒体创作者、编剧、网络作家打造的 AI 写作工具,支持无限量剧本创作。
-              <br className="hidden sm:block" />
-              AI 扩写润色改写续写,章节可视化拖拽,开启智能创作新时代。
-            </p>
+              专为自媒体创作者、编剧、网络作家打造的 AI 写作工具,支持无限量剧本创作�?              <br className="hidden sm:block" />
+              AI 扩写润色改写续写,章节可视化拖�?开启智能创作新时代�?            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
-              {/* 开始构建 Button */}
+              {/* 开始构�?Button */}
               <Link
                 href="#"
                 className="group inline-flex items-center justify-center py-3.5 px-8 text-base font-medium rounded-lg bg-[#0055ff] text-white shadow-lg shadow-[#0055ff]/20 hover:bg-[#0043cc] transition-all"
               >
-                开始构建
-                <ArrowRightIcon className="w-5 h-5 ml-2" />
+                开始构�?                <ArrowRightIcon className="w-5 h-5 ml-2" />
               </Link>
 
               {/* 查看案例 Button */}
@@ -301,7 +297,7 @@ export default function BananaClientPage() {
         <Container>
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-              {/* 使用 img 标签以避免 Next.js Image 的静态导入限制，并允许容错 */}
+              {/* 使用 img 标签以避�?Next.js Image 的静态导入限制，并允许容�?*/}
               <img
                 src="https://server.buildingai.cc/uploads/image/2025/12/b333a8b0-0244-4c9a-9cfd-15d4ab764a87.png"
                 alt="AI短剧小说创作"
@@ -317,10 +313,10 @@ export default function BananaClientPage() {
         <Container>
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              全能型 AI 短剧小说创作平台
+              全能�?AI 短剧小说创作平台
             </h2>
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              集剧本创作、角色设定、AI 辅助写作于一体,为您提供一站式解决方案
+              集剧本创作、角色设定、AI 辅助写作于一�?为您提供一站式解决方案
             </p>
           </div>
 
@@ -435,10 +431,10 @@ export default function BananaClientPage() {
                           )}
                         </div>
 
-                        {/* 连接线 */}
+                        {/* 连接�?*/}
                         {pIndex < detail.points.length - 1 && (
                           <div className="w-[2px] grow bg-gray-100 dark:bg-gray-800 rounded-full relative overflow-hidden min-h-[16px]">
-                            {/* 活动进度条 */}
+                            {/* 活动进度�?*/}
                             <div
                               className={clsx(
                                 'absolute top-0 left-0 w-full bg-[#0055ff] rounded-full transition-all duration-500 ease-out',
@@ -546,8 +542,7 @@ export default function BananaClientPage() {
             准备好开始创作了吗？
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-            立即加入 BuidAI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。
-          </p>
+            立即加入 BuidAI，体验前�?AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用�?          </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="#"
