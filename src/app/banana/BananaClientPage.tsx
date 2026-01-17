@@ -200,7 +200,7 @@ function LandingUserReviews() {
                 ))}
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                "{review.content}"
+                “{review.content}”
               </p>
               <div>
                 <div className="font-semibold text-gray-900 dark:text-white">
@@ -303,10 +303,11 @@ export default function BananaClientPage() {
         <Container>
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-              {/* 使用 img 标签以避免 Next.js Image 的静态导入限制，并允许容错 */}
-              <img
+              <Image
                 src="https://server.buildingai.cc/uploads/image/2025/11/51090798-73c8-4b60-bad3-1e2996176a22.png"
                 alt="香蕉绘画展示"
+                width={1280}
+                height={720}
                 className="w-full h-full object-contain"
               />
             </div>
@@ -512,9 +513,11 @@ export default function BananaClientPage() {
               <div className="relative h-full">
                 <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 h-full">
                   <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 h-full flex items-center justify-center">
-                    <img
+                    <Image
                       src={detail.image}
                       alt={detail.title}
+                      width={1280}
+                      height={720}
                       className="w-full h-full object-cover"
                     />
                     {/* 渐变遮罩 */}

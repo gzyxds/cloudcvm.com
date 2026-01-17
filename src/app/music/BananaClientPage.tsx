@@ -272,7 +272,7 @@ export default function BananaClientPage() {
             <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
               新一代 AI 音乐生成工具,以文本/歌词/哼唱/乐谱为输入,快速生成完整歌曲。
               <br className="hidden sm:block" />
-              降低门槛、提升效率,支持个人娱乐与商用配乐的"人机协同"。
+              降低门槛、提升效率,支持个人娱乐与商用配乐的“人机协同”。
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
@@ -306,11 +306,12 @@ export default function BananaClientPage() {
         <Container>
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-              {/* 使用 img 标签以避免 Next.js Image 的静态导入限制，并允许容错 */}
-              <img
+              <Image
                 src="https://server.buildingai.cc/uploads/image/2025/12/d6b8f151-cb48-4450-a93c-6f483838fb9e.png"
                 alt="AI音乐生成展示"
-                className="w-full h-full object-contain"
+                fill
+                className="object-contain"
+                unoptimized={true}
               />
             </div>
           </div>
@@ -515,10 +516,12 @@ export default function BananaClientPage() {
               <div className="relative h-full">
                 <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 h-full">
                   <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 h-full flex items-center justify-center">
-                    <img
+                    <Image
                       src={detail.image}
                       alt={detail.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      unoptimized={true}
                     />
                     {/* 渐变遮罩 */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-black/5 to-transparent pointer-events-none"></div>

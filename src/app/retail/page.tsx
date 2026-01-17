@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import {
   ArrowTrendingUpIcon,
   BanknotesIcon,
@@ -216,11 +217,14 @@ function HeroSection() {
           {/* 右侧图片展示 - 简洁大气 */}
           <div className="relative mx-auto w-full lg:mx-0">
             <div className="relative rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-slate-900/10">
-               <div className="rounded-xl overflow-hidden bg-slate-50">
-                  <img
+               <div className="relative rounded-xl overflow-hidden bg-slate-50">
+                  <Image
                     src="https://www.crmeb.com/static/images/pro_store/pro_store.png"
                     alt="智慧零售云平台展示"
+                    width={1200}
+                    height={800}
                     className="w-full h-auto object-cover"
+                    unoptimized={true}
                   />
                </div>
 
@@ -869,10 +873,13 @@ function ConsultSection() {
                 <p className="text-base text-[#7a8093]">扫码添加企业客服了解更多优惠信息</p>
               </div>
               <div className="w-[150px] h-[150px] shrink-0 bg-white p-2 rounded-lg shadow-sm">
-                <img
+                <Image
                   src="/images/contact/userhlc.png"
                   alt="企业微信二维码"
+                  width={150}
+                  height={150}
                   className="w-full h-full object-cover rounded-md"
+                  unoptimized={true}
                 />
               </div>
             </div>

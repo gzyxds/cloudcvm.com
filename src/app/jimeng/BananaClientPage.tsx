@@ -305,10 +305,11 @@ export default function BananaClientPage() {
         <Container>
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
-              {/* 使用 img 标签以避免 Next.js Image 的静态导入限制，并允许容错 */}
-              <img
+              <Image
                 src="https://server.buildingai.cc/uploads/image/2025/11/e05b4a10-0de2-4267-a8af-1a8b1a59e2a8.png"
                 alt="即梦AI视频生成展示"
+                width={1280}
+                height={720}
                 className="w-full h-full object-contain"
               />
             </div>
@@ -514,9 +515,11 @@ export default function BananaClientPage() {
               <div className="relative h-full">
                 <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 h-full">
                   <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 h-full flex items-center justify-center">
-                    <img
+                    <Image
                       src={detail.image}
                       alt={detail.title}
+                      width={1280}
+                      height={720}
                       className="w-full h-full object-cover"
                     />
                     {/* 渐变遮罩 */}
