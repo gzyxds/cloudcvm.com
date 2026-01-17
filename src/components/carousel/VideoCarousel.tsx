@@ -426,12 +426,12 @@ const Carousel = memo(function Carousel({
               </p>
 
               {/* 普通链接按钮 - Bento 风格 */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-1">
+              <div className="flex flex-row gap-3 sm:gap-4 pt-1 justify-center sm:justify-start">
                 <a
                   href={currentSlide.primaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn px-5 py-3 sm:px-6 lg:px-8 lg:py-4 text-sm sm:text-base bg-[#0055ff] hover:bg-[#0043cc] text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium"
+                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 text-sm sm:text-base bg-[#0055ff] hover:bg-[#0043cc] text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -443,7 +443,7 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.secondaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn px-5 py-3 sm:px-6 lg:px-8 lg:py-4 bg-transparent text-slate-500 dark:text-slate-400 font-medium border border-slate-200 dark:border-slate-800 hover:text-[#0F172A] dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 rounded-lg flex items-center justify-center text-sm sm:text-base"
+                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-[#0F172A] dark:hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center text-sm sm:text-base"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -509,25 +509,25 @@ const Carousel = memo(function Carousel({
 
         {/* 移动端：两排两列网格布局 */}
         <div className="lg:hidden px-4 mt-10">
-          <div className="grid grid-cols-2 gap-1.5 pb-2">
+          <div className="grid grid-cols-2 gap-2 pb-3">
             {floatingCards.map((card) => (
               <div
                 key={card.id}
                 className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 transition-colors duration-200 cursor-pointer rounded-xl overflow-hidden shadow-sm"
               >
-                <div className="p-1.5">
-                  <div className="flex flex-col items-start text-left gap-1">
-                    <div className="flex items-center gap-1 w-full">
-                      <div className="flex h-6 w-6 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg flex-shrink-0">
+                <div className="p-3">
+                  <div className="flex flex-col items-start text-left gap-1.5">
+                    <div className="flex items-center gap-1.5 w-full">
+                      <div className="flex h-8 w-8 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg flex-shrink-0">
                         {React.createElement(card.icon, {
-                          className: `text-[#0055ff] w-3 h-3`
+                          className: `text-[#0055ff] w-4 h-4`
                         })}
                       </div>
-                      <h3 className="font-bold text-[#0055ff] dark:text-[#0055ff] text-[9px] line-clamp-1">
+                      <h3 className="font-bold text-[#0F172A] dark:text-white text-xs line-clamp-1">
                         {card.title}
                       </h3>
                     </div>
-                    <p className="text-slate-500 dark:text-slate-400 text-[8px] line-clamp-2 leading-relaxed">
+                    <p className="text-slate-500 dark:text-slate-400 text-[10px] line-clamp-2 leading-relaxed">
                       {card.description}
                     </p>
                   </div>

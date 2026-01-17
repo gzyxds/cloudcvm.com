@@ -28,6 +28,15 @@ import {
   ShieldCheckIcon,
   ServerIcon,
   UserPlusIcon,
+  VideoCameraIcon,
+  PhotoIcon,
+  MusicalNoteIcon,
+  PresentationChartBarIcon,
+  DocumentDuplicateIcon,
+  ScissorsIcon,
+  PencilSquareIcon,
+  SparklesIcon,
+  FilmIcon,
 } from '@heroicons/react/24/outline'
 import {
   ChevronDownIcon,
@@ -135,6 +144,82 @@ const aiProducts: MenuItem[] = [
 
 // 行业解决方案菜单配置
 const solutions: MenuItem[] = [
+  {
+    name: '香蕉绘画',
+    description: 'AI图像生成系统',
+    href: '/banana',
+    icon: PhotoIcon,
+  },
+  {
+    name: '短剧小说创作',
+    description: '网文短剧写作工具',
+    href: '/drama',
+    icon: PencilSquareIcon,
+  },
+  {
+    name: '即梦AI视频',
+    description: 'AI视频生成系统',
+    href: '/jimeng',
+    icon: VideoCameraIcon,
+  },
+  {
+    name: '即梦AI绘画',
+    description: 'AI绘画生成系统',
+    href: '/jmdraw',
+    icon: SparklesIcon,
+  },
+  {
+    name: 'Wan漫剧',
+    description: '角色模板视频生成',
+    href: '/manju',
+    icon: FilmIcon,
+  },
+  {
+    name: '电商试衣换装',
+    description: 'AI模特换装系统',
+    href: '/model',
+    icon: UserIcon,
+  },
+  {
+    name: 'AI音乐',
+    description: 'AI音乐生成系统',
+    href: '/music',
+    icon: MusicalNoteIcon,
+  },
+  {
+    name: 'AI PPT',
+    description: '智能演示文稿制作',
+    href: '/ppt',
+    icon: PresentationChartBarIcon,
+  },
+  {
+    name: 'AI简历',
+    description: '智能简历生成系统',
+    href: '/resume',
+    icon: DocumentDuplicateIcon,
+  },
+  {
+    name: 'Sora视频生成',
+    description: 'AI视频创作系统',
+    href: '/sora',
+    icon: VideoCameraIcon,
+  },
+  {
+    name: '视频混剪助手',
+    description: '视频剪辑软件',
+    href: '/videoclip',
+    icon: ScissorsIcon,
+  },
+  {
+    name: '小红书助手',
+    description: '热门内容创作工具',
+    href: '/xhs',
+    icon: DocumentTextIcon,
+  },
+]
+
+// 企业解决方案菜单配置
+const enterpriseSolutions: MenuItem[] = [
   {
     name: '电商解决方案',
     description: '智能建站解决方案',
@@ -414,7 +499,7 @@ export function Header(): JSX.Element {
                   <PopoverButton
                     className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
                   >
-                    解决方案
+                    AI解决方案
                     <ChevronDownIcon
                       aria-hidden="true"
                       className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'}`}
@@ -432,6 +517,77 @@ export function Header(): JSX.Element {
                     <div className="p-4">
                       <div className="grid grid-cols-2 gap-3">
                         {solutions.map((item) => (
+                          <div
+                            key={item.name}
+                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50"
+                          >
+                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-50 transition-colors group-hover:bg-gray-100">
+                              <item.icon
+                                aria-hidden="true"
+                                className="size-4 text-gray-600"
+                              />
+                            </div>
+                            <div className="flex-auto">
+                              <a
+                                href={item.href}
+                                className="block font-medium text-black transition-colors group-hover:text-gray-700"
+                              >
+                                {item.name}
+                                <span className="absolute inset-0" />
+                              </a>
+                              <p className="mt-1 text-xs text-black">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                      {callsToAction.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-medium text-black hover:bg-gray-100"
+                        >
+                          <item.icon
+                            aria-hidden="true"
+                            className="size-4 flex-none text-blue-600"
+                          />
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                  </PopoverPanel>
+                </>
+              )}
+            </Popover>
+
+            {/* 企业解决方案下拉菜单 */}
+            <Popover className="group relative">
+              {({ open }) => (
+                <>
+                  <PopoverButton
+                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
+                  >
+                    企业解决方案
+                    <ChevronDownIcon
+                      aria-hidden="true"
+                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'}`}
+                    />
+                  </PopoverButton>
+
+                  <PopoverPanel
+                    className="pointer-events-none absolute top-full left-1/2 z-10 w-screen max-w-md origin-top -translate-x-1/2 scale-95 transform overflow-hidden rounded-lg bg-white opacity-0 shadow-lg ring-1 ring-gray-200 transition-all duration-200 ease-out group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100"
+                    style={{
+                      boxShadow:
+                        '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                    }}
+                    static
+                  >
+                    <div className="p-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        {enterpriseSolutions.map((item) => (
                           <div
                             key={item.name}
                             className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50"
@@ -826,6 +982,68 @@ export function Header(): JSX.Element {
                       <DisclosurePanel className="mt-1 pr-1 pl-3">
                         <div className="grid grid-cols-2 gap-2">
                           {solutions.map((item) => (
+                            <div
+                              key={item.name}
+                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-gray-50"
+                            >
+                              <div className="mb-2 flex items-center">
+                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-gray-50">
+                                  <item.icon
+                                    aria-hidden="true"
+                                    className="size-4 text-gray-600"
+                                  />
+                                </div>
+                                <a
+                                  href={item.href}
+                                  className="block font-medium text-black transition-colors hover:text-gray-700"
+                                >
+                                  {item.name}
+                                </a>
+                              </div>
+                              <p className="text-xs text-gray-600">
+                                {item.description}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-3 border-t border-gray-200 pt-3">
+                          <div className="grid grid-cols-2 gap-2">
+                            {callsToAction.map((item) => (
+                              <a
+                                key={item.name}
+                                href={item.href}
+                                className="flex items-center justify-center gap-x-1.5 bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                              >
+                                <item.icon
+                                  aria-hidden="true"
+                                  className="size-3"
+                                />
+                                {item.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </DisclosurePanel>
+                    </>
+                  )}
+                </Disclosure>
+
+                {/* 移动端企业解决方案折叠菜单 */}
+                <Disclosure as="div" defaultOpen={false}>
+                  {({ open }) => (
+                    <>
+                      <DisclosureButton
+                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                      >
+                        企业解决方案
+                        <ChevronDownIcon
+                          aria-hidden="true"
+                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}
+                        />
+                      </DisclosureButton>
+                      <DisclosurePanel className="mt-1 pr-1 pl-3">
+                        <div className="grid grid-cols-2 gap-2">
+                          {enterpriseSolutions.map((item) => (
                             <div
                               key={item.name}
                               className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-gray-50"

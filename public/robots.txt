@@ -34,6 +34,18 @@ User-agent: *
     Allow: /paper
     Allow: /demo
     Allow: /new
+    Allow: /banana
+    Allow: /drama
+    Allow: /jimeng
+    Allow: /jmdraw
+    Allow: /manju
+    Allow: /model
+    Allow: /music
+    Allow: /ppt
+    Allow: /resume
+    Allow: /sora
+    Allow: /videoclip
+    Allow: /xhs
 
     # 搜索引擎友好的爬取频率
     Crawl-delay: 1

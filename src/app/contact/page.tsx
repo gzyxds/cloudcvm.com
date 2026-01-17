@@ -121,7 +121,7 @@ function HeroBanner() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative lg:block"
           >
-            <div className="relative rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-2xl backdrop-blur-sm">
+            <div className="relative rounded-xl border border-slate-200 bg-white/80 p-6 shadow-2xl backdrop-blur-sm">
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-[#0055ff]">
@@ -140,19 +140,19 @@ function HeroBanner() {
               <div className="mt-6 space-y-4">
                 <div className="flex gap-3">
                   <div className="h-8 w-8 rounded-full bg-slate-100" />
-                  <div className="rounded-2xl rounded-tl-none bg-slate-100 px-4 py-2 text-sm text-slate-600">
+                  <div className="rounded-xl rounded-tl-none bg-slate-100 px-4 py-2 text-sm text-slate-600">
                     您好，我想咨询一下云服务器的价格。
                   </div>
                 </div>
                 <div className="flex flex-row-reverse gap-3">
                   <div className="h-8 w-8 rounded-full bg-[#0055ff]" />
-                  <div className="rounded-2xl rounded-tr-none bg-[#0055ff] px-4 py-2 text-sm text-white shadow-md shadow-blue-500/20">
+                  <div className="rounded-xl rounded-tr-none bg-[#0055ff] px-4 py-2 text-sm text-white shadow-md shadow-blue-500/20">
                     您好！很高兴为您服务。我们提供多种配置的云服务器，目前新用户还有特惠活动...
                   </div>
                 </div>
                 <div className="flex flex-row-reverse gap-3">
                   <div className="h-8 w-8 rounded-full bg-[#0055ff] opacity-0" />
-                  <div className="rounded-2xl rounded-tr-none bg-[#0055ff] px-4 py-2 text-sm text-white shadow-md shadow-blue-500/20">
+                  <div className="rounded-xl rounded-tr-none bg-[#0055ff] px-4 py-2 text-sm text-white shadow-md shadow-blue-500/20">
                     请问您主要用于什么业务场景呢？我可以为您推荐最适合的配置。
                   </div>
                 </div>
@@ -260,7 +260,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 lg:row-span-2 bg-white border border-slate-200 rounded-3xl p-8 relative overflow-hidden group hover:border-[#0055ff]/30 hover:shadow-2xl hover:shadow-[#0055ff]/5 transition-all duration-300"
+            className="lg:col-span-2 lg:row-span-2 bg-white border border-slate-200 rounded-2xl p-8 relative overflow-hidden group hover:border-[#0055ff]/30 hover:shadow-2xl hover:shadow-[#0055ff]/5 transition-all duration-300"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#0055ff]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#0055ff]/20 transition-colors" />
             <div className="flex flex-col h-full relative z-10">
@@ -276,7 +276,7 @@ function ContactInfoSection() {
               <div className="flex-1 flex flex-row items-center justify-center gap-4 md:gap-8 py-4 md:py-8">
                 {/* 微信客服二维码 */}
                 <div className="flex flex-col items-center gap-2 md:gap-4">
-                  <div className="relative w-32 h-32 md:w-40 md:h-40 bg-white p-2 md:p-3 rounded-2xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-500 overflow-hidden">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40 bg-white p-2 md:p-3 rounded-xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-500 overflow-hidden">
                     <Image src="/images/contact/userhlc.png" alt="微信客服" fill className="object-contain rounded-xl" unoptimized />
                     {/* 扫描线动画 */}
                     <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
@@ -291,7 +291,7 @@ function ContactInfoSection() {
 
                 {/* 公众号二维码 */}
                 <div className="flex flex-col items-center gap-2 md:gap-4">
-                  <div className="relative w-32 h-32 md:w-40 md:h-40 bg-white p-2 md:p-3 rounded-2xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-500 delay-100 overflow-hidden">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40 bg-white p-2 md:p-3 rounded-xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-500 delay-100 overflow-hidden">
                     <Image src="/images/contact/gzh.png" alt="微信公众号" fill className="object-contain rounded-xl" unoptimized />
                   </div>
                   <div className="text-center">
@@ -309,7 +309,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 bg-slate-50 border border-slate-200 rounded-3xl p-8 relative overflow-hidden group hover:border-[#0055ff]/30 transition-all duration-300"
+            className="lg:col-span-2 bg-slate-50 border border-slate-200 rounded-2xl p-8 relative overflow-hidden group hover:border-[#0055ff]/30 transition-all duration-300"
           >
              <div className="absolute top-0 right-0 w-32 h-32 bg-[#0055ff]/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
              <div className="flex items-start justify-between relative z-10">
@@ -347,7 +347,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-white border border-slate-200 rounded-3xl p-6 relative overflow-hidden group hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-[#0055ff]/5 transition-all duration-300"
+            className="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden group hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-[#0055ff]/5 transition-all duration-300"
           >
             <div className="flex flex-col h-full justify-between gap-6">
                <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600 group-hover:bg-[#0055ff] group-hover:text-white transition-colors duration-300">
@@ -369,7 +369,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
-            className="bg-white border border-slate-200 rounded-3xl p-6 relative overflow-hidden group hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-[#0055ff]/5 transition-all duration-300"
+            className="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden group hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-[#0055ff]/5 transition-all duration-300"
           >
             <div className="flex flex-col h-full justify-between gap-6">
                <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600 group-hover:bg-[#0055ff] group-hover:text-white transition-colors duration-300">

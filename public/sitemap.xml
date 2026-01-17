@@ -196,4 +196,100 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- 香蕉绘画页面 -->
+  <url>
+    <loc>https://cloudcvm.com/banana</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 短剧小说创作页面 -->
+  <url>
+    <loc>https://cloudcvm.com/drama</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 即梦AI视频页面 -->
+  <url>
+    <loc>https://cloudcvm.com/jimeng</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 即梦AI绘画页面 -->
+  <url>
+    <loc>https://cloudcvm.com/jmdraw</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Wan漫剧页面 -->
+  <url>
+    <loc>https://cloudcvm.com/manju</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 电商试衣换装页面 -->
+  <url>
+    <loc>https://cloudcvm.com/model</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI音乐页面 -->
+  <url>
+    <loc>https://cloudcvm.com/music</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI PPT页面 -->
+  <url>
+    <loc>https://cloudcvm.com/ppt</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI简历页面 -->
+  <url>
+    <loc>https://cloudcvm.com/resume</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sora视频生成页面 -->
+  <url>
+    <loc>https://cloudcvm.com/sora</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 视频混剪助手页面 -->
+  <url>
+    <loc>https://cloudcvm.com/videoclip</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 小红书助手页面 -->
+  <url>
+    <loc>https://cloudcvm.com/xhs</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
