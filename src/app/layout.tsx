@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   },
   description:
     '【优刻云计算】 云计算云服务器基础设施服务提供商、为数百万中小微企业和开发者降低全球化上云成本、提供优刻云服务器、 弹性云服务器、CVM轻量云服务器、 云主机CVM 、 香港云服务器、云虚拟主机、免备案海外空间、服务器租用一站式服务',
+  icons: {
+    icon: [
+      { url: '/images/logos/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/images/logos/logo.svg',
+    apple: '/images/logos/logo.svg',
+  },
 }
 
 export default function RootLayout({
