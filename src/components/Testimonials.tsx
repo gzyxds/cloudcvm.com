@@ -154,7 +154,7 @@ export default function Testimonials() {
               >
                 {/* 评价内容 */}
                 <p className="mb-8 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  "{review.body}"
+                  &quot;{review.body}&quot;
                 </p>
 
                 {/* 用户信息 */}
@@ -197,7 +197,7 @@ export default function Testimonials() {
               >
                 {/* 评价内容 */}
                 <p className="mb-8 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  "{review.body}"
+                  &quot;{review.body}&quot;
                 </p>
 
                 {/* 用户信息 */}
@@ -240,7 +240,7 @@ export default function Testimonials() {
               >
                 {/* 评价内容 */}
                 <p className="mb-8 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  "{review.body}"
+                  &quot;{review.body}&quot;
                 </p>
 
                 {/* 用户信息 */}
