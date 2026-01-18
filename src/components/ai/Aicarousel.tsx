@@ -1,8 +1,16 @@
 'use client'
 
-import React, { useCallback, useEffect, useMemo, useRef, useState, memo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import Image from 'next/image'
-import clsx from 'clsx'
+import Link from 'next/link'
+import {
+  MessageSquareCode,
+  Database,
+  Sparkles,
+  Palette,
+  ArrowRight
+} from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 /**
  * 轮播每一项的数据结构
@@ -31,7 +39,6 @@ export interface CarouselProps {
   showIndicators?: boolean
   slides?: CarouselSlide[]
   className?: string
-  // 新增的属性定义
   showProgress?: boolean
   showPlayButton?: boolean
   showNavigation?: boolean
@@ -57,14 +64,13 @@ export type VideoCarouselProps = CarouselProps
  * 默认轮播图数据
  */
 const defaultSlides: CarouselSlide[] = [
-
   {
     id: 1,
     order: 1,
     title: '全能知识库',
     subtitle: '赋能企业知识管理与数字化转型',
     description: '基于先进的AI技术，提供高度拟真的数字人解决方案，赋能企业知识管理与数字化转型， 让智能服务触手可及',
-    imagePath: '/images/screenshots/carousel -5.jpg',
+    imagePath: '/images/product/saas.svg',
     imageAlt: '云计算解决方案',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -77,7 +83,7 @@ const defaultSlides: CarouselSlide[] = [
     title: '数字分身',
     subtitle: '基于先进的AI技术，提供高度拟真的数字人解决方案',
     description: '专为企业主、个人博主打造短视频IP系统，支持真人声音+形象克隆，一键合成课程、带货、形象宣传、行业干货等口播视',
-    imagePath: '/images/screenshots/carousel -7.png',
+    imagePath: '/images/aisolution/manju-1.png',
     imageAlt: 'GPU云服务器平台',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -90,7 +96,7 @@ const defaultSlides: CarouselSlide[] = [
     title: '聊天绘画',
     subtitle: '基于前沿AI技术，为企业提供专业可靠的智能化解决方案',
     description: '集成最新GPT-4、DALL-E 3、Midjourney等顶级AI模型，一站式AI创作平台， 让创意无限可能',
-    imagePath: '/images/screenshots/carousel -9.jpg',
+    imagePath: '/images/aisolution/drama-4.png',
     imageAlt: '全球化部署解决方案',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -103,7 +109,7 @@ const defaultSlides: CarouselSlide[] = [
     title: '论文创作',
     subtitle: '集成最新AI技术，为您提供全方位的智能参考文案',
     description: '基于先进的AI技术，提供智能化论文写作解决方案，助力学术研究与知识创新',
-    imagePath: '/images/screenshots/carousel -9.jpg',
+    imagePath: '/images/aisolution/banana-1.png',
     imageAlt: '论文创作解决方案',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -112,395 +118,333 @@ const defaultSlides: CarouselSlide[] = [
   }
 ]
 
-
-
-/**
- * 预定义样式类 - 减少重复计算和优化性能
- */
-const styles = {
-  section: 'relative w-full overflow-hidden touch-pan-y',
-  imageContainer: 'absolute inset-0 transition-opacity duration-1000 ease-in-out',
-  image: 'object-cover will-change-transform',
-  titleButton: 'group relative text-left transition-all duration-300 cursor-pointer bg-gradient-to-b from-white to-gray-50 p-3 sm:p-4 border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] hover:-translate-y-1 max-w-[200px] sm:max-w-[250px]',
-  titleButtonActive: 'bg-gradient-to-b from-white to-gray-50 border-blue-300 -translate-y-1 shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)]',
-  content: 'absolute inset-0 z-10 flex items-center',
-  indicator: 'h-2 transition-all duration-300'
-}
-
-
+// 打字机文案 - 从 slide 数据中提取或定义
+const sentences = [
+  '它能够助您快速开发AI应用，缩短80%项目交付周期',
+  '它拥有开箱即用的丰富AI应用',
+  '它正在努力成为AI应用落地的首选方案',
+  '它能够助您快速落地MVP，验证AI应用商业价值'
+]
 
 /**
- * 轮播图片组件 - 使用memo优化性能
+ * 简单的 Marquee 组件
+ * 支持垂直和水平滚动
  */
-const CarouselImage = memo(({ slide, isActive, index, active }: {
-  slide: CarouselSlide
-  isActive: boolean
-  index: number
-  active: number
-}) => (
-  <div
-    className={`${styles.imageContainer} ${isActive ? 'opacity-100' : 'opacity-0'}`}
-    style={{ display: Math.abs(index - active) > 1 ? 'none' : 'block' }}
-  >
-    <Image
-      src={slide.imagePath}
-      alt={slide.imageAlt}
-      fill
-      className={styles.image}
-      unoptimized
-      priority={isActive}
-      loading={isActive ? 'eager' : 'lazy'}
-    />
-  </div>
-))
-
-CarouselImage.displayName = 'CarouselImage'
-
-/**
- * 标题按钮组件 - 使用memo优化性能
- */
-const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, interval, onTitleClick }: {
-  slideItem: CarouselSlide
-  index: number
-  active: number
-  progressKey: number
-  isPlaying: boolean
-  interval: number
-  onTitleClick: (index: number) => void
-}) => {
-  const isActive = active === index
-  return (
-    <button
-      onClick={() => onTitleClick(index)}
-      className={`${styles.titleButton} ${isActive ? styles.titleButtonActive : ''}`}
-      aria-label={`切换到 ${slideItem.title}`}
-    >
-      <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10">
-        <span className={`inline-flex items-center justify-center w-7 h-7 text-xs font-bold transition-all duration-300 rounded-none ${
-          isActive
-            ? 'bg-blue-600 text-white shadow-md'
-            : 'bg-gray-100 text-gray-500 border border-gray-200'
-        }`}>
-          {String(slideItem.order).padStart(2, '0')}
-        </span>
-      </div>
-
-      <div className="relative pl-12">
-        <h3 className={`text-sm lg:text-base font-bold leading-tight mb-1 transition-colors duration-300 ${
-          isActive ? 'text-gray-900' : 'text-gray-800 group-hover:text-gray-900'
-        }`}>
-          {slideItem.title}
-        </h3>
-
-        {slideItem.subtitle && (
-          <p className={`text-xs leading-relaxed truncate transition-colors duration-300 ${
-            isActive ? 'text-gray-600' : 'text-gray-500 group-hover:text-gray-600'
-          }`}>
-            {slideItem.subtitle}
-          </p>
-        )}
-      </div>
-
-      {isActive && (
-        <div className="absolute bottom-0 left-0 right-0">
-          <div
-            key={progressKey}
-            className="h-px bg-blue-500 transition-all duration-300 ease-out"
-            style={{
-              width: isPlaying ? '100%' : '0%',
-              animation: isPlaying ? `progressBar ${interval}ms linear infinite` : 'none'
-            }}
-          />
-        </div>
-      )}
-
-      <div className={`absolute right-2 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-500 transition-all duration-300 ${
-        isActive ? 'opacity-100' : 'opacity-0'
-      }`} />
-    </button>
-  )
-})
-
-TitleButton.displayName = 'TitleButton'
-
-/**
- * 优化后的轮播组件
- */
-const Carousel = memo(function Carousel({
-  autoPlay = true,
-  interval = 8000,
-  heightClass = 'h-[400px] sm:h-[500px] lg:h-[600px]',
-  showIndicators = true,
-  slides: propSlides,
+const Marquee = ({
+  children,
+  vertical = false,
+  reverse = false,
+  duration = 30,
   className
-}: CarouselProps) {
-  // 添加进度条动画样式 - 优化：避免重复创建样式元素
+}: {
+  children: React.ReactNode,
+  vertical?: boolean,
+  reverse?: boolean,
+  duration?: number,
+  className?: string
+}) => {
+  return (
+    <div
+      className={cn(
+        "flex overflow-hidden",
+        vertical ? "flex-col h-full" : "flex-row w-full",
+        className
+      )}
+    >
+      <div
+        className={cn(
+          "flex shrink-0 gap-4",
+          vertical ? "flex-col" : "flex-row",
+          vertical ? "animate-marquee-vertical" : "animate-marquee-horizontal"
+        )}
+        style={{
+          animationDirection: reverse ? 'reverse' : 'normal',
+          animationDuration: `${duration}s`
+        }}
+      >
+        {children}
+        {children}
+      </div>
+    </div>
+  );
+};
+
+/**
+ * Hero Section 风格的 Carousel 组件
+ * 复刻参考设计的布局与交互
+ */
+const Carousel = ({ slides = defaultSlides }: CarouselProps) => {
+  // 打字机效果状态
+  const [typeWriterText, setTypeWriterText] = useState('');
+
+  // 图片数据处理
+  const marqueeImages = useMemo(() => {
+    // 获取所有图片路径
+    const images = slides.map(s => s.imagePath);
+
+    // 简单的随机打乱
+    // const shuffled = [...images].sort(() => Math.random() - 0.5);
+
+    // 确保有足够的图片用于滚动，如果少于10张则重复
+    let result = [...images];
+    while (result.length < 10) {
+      result = [...result, ...images];
+    }
+
+    const mid = Math.ceil(result.length / 2);
+    return {
+      first: result.slice(0, mid),
+      second: result.slice(mid)
+    };
+  }, [slides]);
+
+  // 打字机效果逻辑
   useEffect(() => {
-    const styleId = 'carousel-progress-animation'
-    if (document.getElementById(styleId)) return
+    let isDeleting = false;
+    let sentenceIndex = 0;
+    let charIndex = 0;
+    let timeoutId: NodeJS.Timeout;
 
-    const style = document.createElement('style')
-    style.id = styleId
-    style.textContent = '@keyframes progressBar{0%{width:0%}100%{width:100%}}'
-    document.head.appendChild(style)
+    const type = () => {
+      const currentSentence = sentences[sentenceIndex];
 
-    return () => document.getElementById(styleId)?.remove()
-  }, [])
-  const slides = useMemo(() => (propSlides || defaultSlides).sort((a, b) => a.order - b.order), [propSlides])
-  const [active, setActive] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(autoPlay)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
-  const [progressKey, setProgressKey] = useState(0) // 用于重置进度条动画
-
-  // 触摸滑动相关状态
-  const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
-
-  // 最小滑动距离（像素）
-  const minSwipeDistance = 50
-
-  // 合并的导航函数
-  const navigate = useCallback((direction: 'next' | 'prev' | number) => {
-    setActive(prev => {
-      const total = slides.length
-      if (typeof direction === 'number') {
-        return ((direction % total) + total) % total
+      if (isDeleting) {
+        setTypeWriterText(currentSentence.substring(0, charIndex - 1));
+        charIndex--;
+      } else {
+        setTypeWriterText(currentSentence.substring(0, charIndex + 1));
+        charIndex++;
       }
-      return direction === 'next'
-        ? (prev + 1) % total
-        : ((prev - 1) + total) % total
-    })
-    // 重置进度条动画
-    setProgressKey(prev => prev + 1)
-  }, [slides.length])
 
-  // 标题点击处理 - 优化后
-  const handleTitleClick = useCallback((index: number) => {
-    navigate(index)
-    setIsPlaying(false)
-    setTimeout(() => setIsPlaying(autoPlay), 3000)
-  }, [navigate, autoPlay])
+      let typeSpeed = isDeleting ? 50 : 100;
 
-  // 合并的定时器管理
+      if (!isDeleting && charIndex === currentSentence.length) {
+        typeSpeed = 2000; // 完成一句后暂停
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        sentenceIndex = (sentenceIndex + 1) % sentences.length;
+        typeSpeed = 500; // 开始新句前暂停
+      }
+
+      timeoutId = setTimeout(type, typeSpeed);
+    };
+
+    type();
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  // 注入关键帧动画
   useEffect(() => {
-    if (!autoPlay || !isPlaying || slides.length <= 1) {
-      if (timerRef.current) {
-        clearInterval(timerRef.current)
-        timerRef.current = null
-      }
-      return
+    const styleId = 'marquee-animations';
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = `
+        @keyframes marquee-vertical {
+          from { transform: translateY(0); }
+          to { transform: translateY(-50%); }
+        }
+        @keyframes marquee-horizontal {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .animate-marquee-vertical {
+          animation: marquee-vertical linear infinite;
+        }
+        .animate-marquee-horizontal {
+          animation: marquee-horizontal linear infinite;
+        }
+        .animate-blink {
+          animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
     }
+  }, []);
 
-    timerRef.current = setInterval(() => navigate('next'), interval)
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current)
-        timerRef.current = null
-      }
-    }
-  }, [autoPlay, isPlaying, slides.length, interval, navigate])
-
-  // 悬停控制 - 优化
-  const handleMouseEnter = useCallback(() => setIsPlaying(false), [])
-  const handleMouseLeave = useCallback(() => setIsPlaying(autoPlay), [autoPlay])
-
-  // 触摸事件处理函数 - 优化性能
-  const onTouchStart = useCallback((e: React.TouchEvent) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
-  }, [])
-
-  const onTouchMove = useCallback((e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
-  }, [])
-
-  const onTouchEnd = useCallback(() => {
-    if (!touchStart || !touchEnd) return
-
-    const distance = touchStart - touchEnd
-    if (Math.abs(distance) > minSwipeDistance) {
-      navigate(distance > 0 ? 'next' : 'prev')
-    }
-
-    setTouchStart(null)
-    setTouchEnd(null)
-  }, [touchStart, touchEnd, navigate, minSwipeDistance])
-
-  const currentSlide = slides[active]
+  // 特性列表
+  const features = [
+    { icon: Sparkles, title: "AI数字人", desc: "声音形象克隆，24h在线" },
+    { icon: Database, title: "知识库系统", desc: "智能问答，文档管理" },
+    { icon: Palette, title: "聊天绘画", desc: "AI创作，文生图/视频" },
+    { icon: MessageSquareCode, title: "源码定制", desc: "私有部署，专业支持" }
+  ];
 
   return (
-    <div className="relative">
-      <section
-        className={clsx(styles.section, heightClass, className)}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        {/* 轮播图片背景 - 优化渲染 */}
-        <div className="relative w-full h-full">
-          {slides.map((slide, index) => (
-            <CarouselImage
-              key={slide.id}
-              slide={slide}
-              isActive={index === active}
-              index={index}
-              active={active}
-            />
-          ))}
-        </div>
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white py-16 md:py-24">
+      <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-        {/* 轮播内容叠加层 - 响应式优化 */}
-        <div className={styles.content}>
-          <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8 w-full flex flex-col lg:flex-row">
-            {/* 左侧标题列表 - 移动端隐藏，PC端显示 */}
-            <div className="hidden lg:block w-64 lg:w-72 xl:w-80 flex-shrink-0">
-              <div className="flex flex-col space-y-4">
-                {slides.map((slideItem, index) => (
-                  <TitleButton
-                    key={slideItem.id}
-                    slideItem={slideItem}
-                    index={index}
-                    active={active}
-                    progressKey={progressKey}
-                    isPlaying={isPlaying}
-                    interval={interval}
-                    onTitleClick={handleTitleClick}
-                  />
+          {/* 左侧内容区 */}
+          <div className="relative space-y-8 md:space-y-10 text-center lg:text-left z-20">
+            {/* 装饰背景 */}
+            <div className="absolute inset-0 -z-10 overflow-visible pointer-events-none select-none">
+              {/* 顶部聚焦光束 - 调整位置和模糊度 */}
+              <div className="absolute top-0 left-1/2 lg:left-0 -translate-x-1/2 lg:-translate-x-1/3 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen"></div>
+
+              {/* 科技网格背景 - 降低透明度 */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+            </div>
+
+            <div className="flex justify-center lg:justify-start">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 rounded-full bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/10 shadow-sm backdrop-blur-sm transition-transform hover:scale-105 duration-300">
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-300">企业知识库全新升级 v2.0</span>
+                <Link href="/work" className="ml-1 text-blue-600 hover:text-blue-700 text-xs font-semibold flex items-center">
+                  查看详情 <ArrowRight className="ml-0.5 w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="space-y-4 md:space-y-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">
+                <span className="block pb-2"><span className="text-blue-600">全方位</span> AI解决方案</span>
+                <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-600 dark:text-gray-300 mt-2">
+                  赋能开发者与先进组织
+                </span>
+              </h1>
+            </div>
+
+            <div className="min-h-[3.5em] sm:min-h-[1.75em] flex items-center justify-center lg:justify-start">
+              <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed font-medium">
+                {typeWriterText}<span className="animate-blink ml-1 border-r-2 border-blue-500 h-[1.2em] align-middle inline-block"></span>
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
+              <Link
+                href="/demo"
+                className="w-full sm:w-auto rounded-full px-8 py-4 text-base font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 transition-all duration-300 hover:-translate-y-0.5 text-center flex items-center justify-center"
+              >
+                开始免费试用
+              </Link>
+              <Link
+                href="/contact"
+                className="w-full sm:w-auto rounded-full px-8 py-4 text-base font-semibold border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200 transition-all duration-300 bg-white dark:bg-gray-900 text-center flex items-center justify-center"
+              >
+                联系技术顾问
+              </Link>
+            </div>
+
+            <div className="pt-8 max-w-3xl mx-auto lg:mx-0 border-t border-gray-100 dark:border-gray-800/50 mt-8">
+              <div className="grid grid-cols-2 gap-4">
+                {features.map((item, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200 group cursor-default">
+                    <div className="shrink-0 mt-1 p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 group-hover:scale-110 transition-transform duration-300">
+                      <item.icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed line-clamp-1">{item.desc}</p>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* 轮播内容 - 移动端优化 */}
-            <div className="flex-1 max-w-3xl mt-4 sm:mt-8 lg:mt-12 xl:mt-16 px-2 sm:px-0">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-blue-600 leading-tight mb-3 sm:mb-4">
-                {currentSlide.title}
-              </h1>
+          {/* 右侧图片展示区 (Mobile Only) */}
+          <div className="relative w-full z-10 mt-12 lg:hidden flex items-center justify-center">
+             {/* 背景光效 */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[80%] bg-blue-100/30 dark:bg-blue-900/10 blur-[100px] rounded-full -z-10"></div>
 
-              {currentSlide.subtitle && (
-                <h2 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-black leading-relaxed mb-4 sm:mb-6 truncate">
-                  {currentSlide.subtitle}
-                </h2>
-              )}
-
-              <p className="text-sm sm:text-base lg:text-lg text-black leading-relaxed max-w-2xl mb-6 sm:mb-8">
-                {currentSlide.description}
-              </p>
-
-              {/* 普通链接按钮 - 使用自定义的primaryButtonHref */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <a
-                  href={currentSlide.primaryButtonHref || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base inline-flex items-center justify-center"
-                >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                  </svg>
-                  {currentSlide.primaryButtonText}
-                </a>
-                
-                <a
-                  href={currentSlide.secondaryButtonHref || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-white/90 backdrop-blur-sm text-black font-medium rounded-lg border border-gray-300 hover:bg-white hover:border-gray-400 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base inline-flex items-center justify-center"
-                >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  {currentSlide.secondaryButtonText || '联系客服'}
-                </a>
-              </div>
-
-              {/* 原双二维码按钮组 - 已注释 */}
-              {/* <DualQRCodeButtonGroup
-                leftButton={{
-                  text: currentSlide.primaryButtonText,
-                  className: "px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base",
-                  icon: (
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                    </svg>
-                  )
-                }}
-                rightButton={{
-                  text: currentSlide.secondaryButtonText || '联系客服',
-                  className: "px-4 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-white/90 backdrop-blur-sm text-black font-medium rounded-lg border border-gray-300 hover:bg-white hover:border-gray-400 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base",
-                  icon: (
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  )
-                }}
-                leftQRCode={{
-                  src: '/images/contact/userhlc.png',
-                  title: '客服咨询',
-                  description: '扫码添加客服微信，获取解决方案'
-                }}
-                rightQRCode={{
-                  src: '/images/contact/gzh.png',
-                  title: '关注公众号',
-                  description: '扫码关注公众号，获取产品信息'
-                }}
-                title="扫码联系我们"
-                description="选择下方二维码进行联系，为您提供专业的支付解决方案"
-                containerClassName="flex-row gap-3 sm:gap-4"
-              /> */}
+            {/* Mobile: Horizontal Marquee */}
+            <div className="flex flex-col gap-5 w-screen -ml-[calc(50vw-50%)]">
+              <Marquee duration={30}>
+                {marqueeImages.first.map((img, index) => (
+                  <div key={`row1-${index}`} className="block w-[260px] shrink-0 mx-3">
+                    <div className="w-full rounded-xl border-[3px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden relative aspect-video">
+                      <Image
+                        src={img}
+                        alt={`Product Preview ${index + 1}`}
+                        fill
+                        className="object-cover bg-gray-50 dark:bg-gray-900"
+                        loading="lazy"
+                        sizes="260px"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </Marquee>
+              <Marquee reverse duration={35}>
+                {marqueeImages.second.map((img, index) => (
+                  <div key={`row2-${index}`} className="block w-[260px] shrink-0 mx-3">
+                    <div className="w-full rounded-xl border-[3px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden relative aspect-video">
+                      <Image
+                        src={img}
+                        alt={`Product Preview ${index + 1}`}
+                        fill
+                        className="object-cover bg-gray-50 dark:bg-gray-900"
+                        loading="lazy"
+                        sizes="260px"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </Marquee>
             </div>
           </div>
+
         </div>
+      </div>
 
-        {/* 移动端底部指示器 - 仅在移动端显示 */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 lg:hidden">
-          <div className="flex space-x-2">
-            {slides.map((_, index) => {
-              const isActive = active === index
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleTitleClick(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    isActive ? 'bg-white w-6' : 'bg-white/50'
-                  }`}
-                  aria-label={`切换到第 ${index + 1} 张图片`}
-                />
-              )
-            })}
-          </div>
+      {/* 右侧图片展示区 (Desktop Only - Absolute Positioned) */}
+      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 w-[50vw] z-10 items-center justify-center overflow-hidden pl-12">
+          {/* 背景光效 */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[80%] bg-blue-100/30 dark:bg-blue-900/10 blur-[100px] rounded-full -z-10"></div>
+
+        {/* Desktop: Vertical Marquee */}
+        <div className="grid grid-cols-2 gap-6 w-full h-[120%] -my-[10%] overflow-hidden relative">
+           {/* 遮罩层：顶部和底部渐变消失 */}
+           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-gray-900 to-transparent z-20 pointer-events-none"></div>
+           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20 pointer-events-none"></div>
+
+          <Marquee vertical duration={50} className="h-full py-4">
+            {marqueeImages.first.map((img, index) => (
+              <div key={`col1-${index}`} className="block w-full mb-6">
+                <div className="w-full rounded-2xl border-[4px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/50 overflow-hidden hover:scale-[1.02] transition-transform duration-300 relative aspect-video">
+                  <Image
+                    src={img}
+                    alt={`Product Preview ${index + 1}`}
+                    fill
+                    className="object-cover bg-gray-50 dark:bg-gray-900"
+                    loading="lazy"
+                    sizes="(max-width: 1280px) 25vw, 20vw"
+                  />
+                </div>
+              </div>
+            ))}
+          </Marquee>
+          <Marquee vertical reverse duration={60} className="h-full py-4">
+            {marqueeImages.second.map((img, index) => (
+              <div key={`col2-${index}`} className="block w-full mb-6">
+                <div className="w-full rounded-2xl border-[4px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/50 overflow-hidden hover:scale-[1.02] transition-transform duration-300 relative aspect-video">
+                  <Image
+                    src={img}
+                    alt={`Product Preview ${index + 1}`}
+                    fill
+                    className="object-cover bg-gray-50 dark:bg-gray-900"
+                    loading="lazy"
+                    sizes="(max-width: 1280px) 25vw, 20vw"
+                  />
+                </div>
+              </div>
+            ))}
+          </Marquee>
         </div>
-
-        {/* 移动端左右滑动按钮 - 已隐藏 */}
-        <button
-          onClick={() => navigate('prev')}
-          className="hidden"
-          aria-label="上一张"
-        >
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={() => navigate('next')}
-          className="hidden"
-          aria-label="下一张"
-        >
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-
-
-
-      </section>
-
-
-    </div>
+      </div>
+    </section>
   )
-})
+}
 
 Carousel.displayName = 'Carousel'
 

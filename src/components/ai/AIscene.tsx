@@ -275,7 +275,10 @@ export function AIscene() {
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             全场景{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2055FA] via-[#1B52F8] to-[#A07CFE]">
+            <span
+              className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#2055FA] via-[#1B52F8] to-[#A07CFE] pb-1"
+              style={{ WebkitBackgroundClip: 'text', backgroundClip: 'text' }}
+            >
               AI 解决方案
             </span>
           </h2>

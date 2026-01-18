@@ -156,11 +156,11 @@ const floatingCards = [
  */
 const styles = {
   section: 'relative w-full overflow-hidden touch-pan-y',
-  imageContainer: 'absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out',
+  imageContainer: 'absolute inset-0 flex items-center justify-center transition-opacity duration-700 ease-in-out',
   image: 'object-cover w-full h-full object-center will-change-transform',
   // Bento 风格：无圆角，边框优先，无阴影，Flex布局，字体优化，右对齐
   titleButton: 'group relative w-full flex items-center justify-start text-left transition-all duration-300 cursor-pointer py-5 pl-0 pr-2 rounded-none text-[15px] leading-[1.6] text-slate-600 font-sans',
-  titleButtonActive: 'text-[#0055ff] font-semibold',
+  titleButtonActive: 'text-primary-500 font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
   indicator: 'h-2 transition-all duration-300'
 }
@@ -175,15 +175,13 @@ const CarouselImage = memo(({ slide, isActive, index, active }: {
   active: number
 }) => (
   <div
-    className={`${styles.imageContainer} ${isActive ? 'opacity-100' : 'opacity-0'}`}
-    style={{ display: Math.abs(index - active) > 1 ? 'none' : 'block' }}
+    className={`${styles.imageContainer} ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
   >
     <Image
       src={slide.imagePath}
       alt={slide.imageAlt}
       fill
       className={styles.image}
-      unoptimized
       priority={isActive}
       loading={isActive ? 'eager' : 'lazy'}
     />
@@ -222,7 +220,7 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
       {/* 文本内容 - Flex item - 右对齐 */}
       <div className="flex-grow min-w-0">
         <h3 className={`transition-colors duration-300 truncate ${
-          isActive ? 'text-[#0055ff]' : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-50'
+          isActive ? 'text-primary-500' : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-50'
         }`}>
           {slideItem.title}
         </h3>
@@ -233,7 +231,7 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
         <div className="absolute right-0 top-0 bottom-0 w-px overflow-hidden">
           <div
             key={progressKey}
-            className="absolute top-0 left-0 w-full bg-[#0055ff]"
+            className="absolute top-0 left-0 w-full bg-primary-500"
             style={{
               height: isPlaying ? '100%' : '100%',
               animation: isPlaying ? `verticalProgressBar ${interval}ms linear` : 'none'
@@ -259,22 +257,6 @@ const Carousel = memo(function Carousel({
   slides: propSlides,
   className
 }: CarouselProps) {
-  // 添加进度条动画样式 - 优化：避免重复创建样式元素
-  useEffect(() => {
-    const styleId = 'carousel-progress-animation'
-    if (document.getElementById(styleId)) return
-
-    const style = document.createElement('style')
-    style.id = styleId
-    style.textContent = `
-      @keyframes progressBar{0%{width:0%}100%{width:100%}}
-      @keyframes verticalProgressBar{0%{height:0%}100%{height:100%}}
-    `
-    document.head.appendChild(style)
-
-    return () => document.getElementById(styleId)?.remove()
-  }, [])
-
   const slides = useMemo(() => (propSlides || defaultSlides).sort((a, b) => a.order - b.order), [propSlides])
   const [active, setActive] = useState(0)
   const [isPlaying, setIsPlaying] = useState(autoPlay)
@@ -417,7 +399,7 @@ const Carousel = memo(function Carousel({
                 </div>
               )}
 
-              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-[#0F172A] dark:text-white leading-[1.05] tracking-tight">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-slate-900 dark:text-white leading-[1.05] tracking-tight">
                 {currentSlide.title}
               </h1>
 
@@ -431,7 +413,7 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.primaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 text-sm sm:text-base bg-[#0055ff] hover:bg-[#0043cc] text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium"
+                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 text-sm sm:text-base bg-primary-500 hover:bg-primary-600 text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -443,7 +425,7 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.secondaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-[#0F172A] dark:hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center text-sm sm:text-base"
+                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center text-sm sm:text-base"
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -468,15 +450,15 @@ const Carousel = memo(function Carousel({
              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
              <div className="flex items-center gap-3 mb-3 relative z-10">
-               <h3 className="text-2xl font-bold text-[#0F172A] dark:text-white tracking-tight font-sans">
-                 云服务器 <span className="text-[#EF4444]">领万元津贴</span>
+               <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-sans">
+                 云服务器 <span className="text-red-500">领万元津贴</span>
                  <span className="text-slate-400 text-xl not-italic ml-1">›</span>
                </h3>
              </div>
 
              <div className="grid grid-cols-3 gap-y-3 gap-x-6 relative z-10">
                 {['新客首购1元', '场景组合2.8折', '云计算热销榜', '高释270元起', 'AI新购1折抢', '大模型培训9折'].map((item, idx) => (
-                  <a key={idx} href="#" className="flex items-center text-sm font-medium text-slate-600 hover:text-[#0055ff] transition-colors group/link">
+                  <a key={idx} href="#" className="flex items-center text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors group/link">
                     {item}
                     <span className="ml-1 text-slate-400 group-hover/link:translate-x-0.5 transition-transform">›</span>
                   </a>
@@ -491,10 +473,10 @@ const Carousel = memo(function Carousel({
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg group-hover:scale-105 transition-transform duration-300">
                     {React.createElement(card.icon, {
-                      className: "w-6 h-6 text-[#0055ff] transition-colors"
+                      className: "w-6 h-6 text-primary-500 transition-colors"
                     })}
                   </div>
-                  <h4 className="font-bold text-[#0F172A] dark:text-white text-lg line-clamp-1 group-hover:text-[#0055ff] transition-colors">{card.title}</h4>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-lg line-clamp-1 group-hover:text-primary-500 transition-colors">{card.title}</h4>
                 </div>
                 <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">{card.description}</p>
 
@@ -520,10 +502,10 @@ const Carousel = memo(function Carousel({
                     <div className="flex items-center gap-1.5 w-full">
                       <div className="flex h-8 w-8 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg flex-shrink-0">
                         {React.createElement(card.icon, {
-                          className: `text-[#0055ff] w-4 h-4`
+                          className: `text-primary-500 w-4 h-4`
                         })}
                       </div>
-                      <h3 className="font-bold text-[#0F172A] dark:text-white text-xs line-clamp-1">
+                      <h3 className="font-bold text-slate-900 dark:text-white text-xs line-clamp-1">
                         {card.title}
                       </h3>
                     </div>
