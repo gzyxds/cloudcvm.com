@@ -118,7 +118,7 @@ export default function Top() {
                         </div>
                         <div className="flex justify-center">
                           <Image
-                            src="/images/contact/userhlc.png"
+                            src="/images/contact/Tencent.png"
                             alt="客服二维码"
                             width={144}
                             height={144}
@@ -343,7 +343,7 @@ export default function Top() {
                 <div className="mb-4 flex justify-center">
                   <div className="relative">
                     <Image
-                      src="/images/contact/weixin.png"
+                      src="/images/contact/Tencent.png"
                       alt="客服二维码"
                       width={192}
                       height={192}

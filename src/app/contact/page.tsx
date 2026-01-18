@@ -277,15 +277,15 @@ function ContactInfoSection() {
                 {/* 微信客服二维码 */}
                 <div className="flex flex-col items-center gap-2 md:gap-4">
                   <div className="relative w-32 h-32 md:w-40 md:h-40 bg-white p-2 md:p-3 rounded-xl shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-500 overflow-hidden">
-                    <Image src="/images/contact/userhlc.png" alt="微信客服" fill className="object-contain rounded-xl" unoptimized />
+                    <Image src="/images/contact/Tencent.png" alt="微信客服" fill className="object-contain rounded-xl" unoptimized />
                     {/* 扫描线动画 */}
                     <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
                       <div className="absolute top-0 left-0 w-full h-1 bg-[#0055ff]/50 shadow-[0_0_20px_rgba(0,85,255,0.5)] animate-scan" />
                     </div>
                   </div>
                   <div className="text-center">
-                    <p className="font-bold text-slate-900 text-sm md:text-base">客服微信</p>
-                    <p className="text-xs text-slate-500 mt-0.5 md:mt-1">userhlc</p>
+                    <p className="font-bold text-slate-900 text-sm md:text-base">Tencent微信</p>
+                    <p className="text-xs text-slate-500 mt-0.5 md:mt-1">236749035</p>
                   </div>
                 </div>
 

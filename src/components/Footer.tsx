@@ -268,7 +268,7 @@ export function Footer() {
                   <div className="text-center">
                     <div className="rounded-none bg-white p-1.5 shadow-sm">
                       <Image
-                        src="/images/contact/userhlc.png"
+                        src="/images/contact/Tencent.png"
                         alt="扫码联系客服"
                         width={48}
                         height={48}
