@@ -176,7 +176,7 @@ const serviceTabs: ServiceTab[] = [
       tags: ['独享带宽', '全球节点', '低至1.5折'],
       buttonText: '立即购买',
       link: 'https://www.ucloud.cn/site/active/uhost.html',
-      image: 'https://www-s.ucloud.cn/2024/03/77b51f148efa13788aec21109e75f7bf_1710408303510.png',
+      image: '/images/aisolution/components-1.png',
     },
     secondaryBanner: {
       title: '推荐有礼 返现35%',

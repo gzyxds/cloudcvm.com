@@ -78,7 +78,7 @@ const initialFeatureDetails = [
         desc: '一次生成多个版本文案,支持对比选择,找到最适合的表达方式。'
       }
     ],
-    image: 'https://www.buidai.com/product/xhs-1.png',
+    image: '/images/aisolution/xhs-1.png',
   },
   {
     title: 'AI 生成配图与视频封面,提升视觉吸引力',
@@ -102,7 +102,7 @@ const initialFeatureDetails = [
         desc: '支持制作视频封面,适配小红书视频笔记格式,提升视频内容的点击率。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2026/01/d532b15b-1c78-483f-8fb4-b384ec45ce28.png',
+    image: '/images/aisolution/xhs-2.png',
   },
   {
     title: '智能标签与历史管理,提升运营效率',
@@ -126,7 +126,7 @@ const initialFeatureDetails = [
         desc: '后台自定义设置模型计费,灵活配置价格策略,满足不同商业需求。'
       }
     ],
-    image: 'https://www.buidai.com/product/xhs-3.png',
+    image: '/images/aisolution/xhs-3.png',
   },
 ]
 
@@ -307,7 +307,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://www.buidai.com/product/xhs-1.png"
+                src="/images/aisolution/xhs-1.png"
                 alt="小红书助手展示"
                 fill
                 className="object-contain"

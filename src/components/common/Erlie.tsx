@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
-import { Plus, Minus } from 'lucide-react'
+import { Plus, Minus, Users, Cpu, GraduationCap, Headphones, Megaphone } from 'lucide-react'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
 
@@ -19,6 +19,7 @@ interface SceneItem {
 interface SceneCategory {
   id: string
   label: string
+  icon: React.ElementType
   items: SceneItem[]
 }
 
@@ -28,6 +29,7 @@ const CATEGORIES: SceneCategory[] = [
   {
     id: 'social',
     label: '社交娱乐',
+    icon: Users,
     items: [
       {
         id: 'emotion',
@@ -52,6 +54,7 @@ const CATEGORIES: SceneCategory[] = [
   {
     id: 'hardware',
     label: '硬件助手',
+    icon: Cpu,
     items: [
       {
         id: 'smart-home',
@@ -70,6 +73,7 @@ const CATEGORIES: SceneCategory[] = [
   {
     id: 'education',
     label: '学习教育',
+    icon: GraduationCap,
     items: [
       {
         id: 'tutor',
@@ -88,6 +92,7 @@ const CATEGORIES: SceneCategory[] = [
   {
     id: 'service',
     label: '客服与销售',
+    icon: Headphones,
     items: [
       {
         id: 'support',
@@ -106,6 +111,7 @@ const CATEGORIES: SceneCategory[] = [
   {
     id: 'marketing',
     label: '营销提效',
+    icon: Megaphone,
     items: [
       {
         id: 'copywriting',
@@ -175,7 +181,7 @@ export default function Erlie() {
         </h2>
 
         {/* Tab 导航栏 */}
-        <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-3 mb-8 sm:mb-10 lg:mb-14 border-b border-slate-100 pb-3">
+        <div className="flex flex-wrap gap-x-2 sm:gap-x-4 gap-y-2 sm:gap-y-3 mb-8 sm:mb-10 lg:mb-14 border-b border-slate-100 pb-3">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id
             return (
@@ -183,20 +189,14 @@ export default function Erlie() {
                 key={cat.id}
                 onClick={() => handleCategoryChange(cat.id)}
                 className={clsx(
-                  "relative py-2 text-sm sm:text-[16px] lg:text-[18px] font-medium transition-colors duration-300",
+                  "relative flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm sm:text-[15px] lg:text-[16px] font-medium transition-all duration-300",
                   isActive
-                    ? "text-[#0055ff] font-bold"
-                    : "text-[#86909c] hover:text-[#4e5969]"
+                    ? "text-[#0055ff] bg-blue-50/80 shadow-sm ring-1 ring-blue-100"
+                    : "text-[#64748B] hover:text-[#1e293b] hover:bg-slate-50"
                 )}
               >
+                <cat.icon className={clsx("w-4 h-4 sm:w-5 sm:h-5 transition-colors", isActive ? "text-[#0055ff]" : "text-[#94a3b8] group-hover:text-[#64748b]")} />
                 {cat.label}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTabIndicator"
-                    className="absolute bottom-[-13px] left-0 w-full h-[3px] bg-[#0055ff] rounded-full"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
               </button>
             )
           })}

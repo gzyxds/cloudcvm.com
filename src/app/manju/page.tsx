@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Wan漫剧 - 角色模板视频生成与首尾帧动画创作工具 | 必定AI-BuidAI',
     description: '智能AI视频生成工具，支持角色主演和首尾帧生成两大创作模式，轻松实现角色化叙事与自由视觉创作，助力高效产出高质量动态内容。',
-    images: ['https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png'],
+    images: ['/images/aisolution/manju-1.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Wan漫剧 - 角色模板视频生成与首尾帧动画创作工具 | 必定AI-BuidAI',
     description: '智能AI视频生成工具，支持角色主演和首尾帧生成两大创作模式，无需专业门槛，轻松实现角色化叙事与自由视觉创作。',
-    images: ['https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png'],
+    images: ['/images/aisolution/manju-1.png'],
   },
 }
 

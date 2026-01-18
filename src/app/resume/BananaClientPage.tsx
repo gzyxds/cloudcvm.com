@@ -78,7 +78,7 @@ const initialFeatureDetails = [
         desc: '支持多种格式导出，如 PDF、Word 等，满足不同投递需求。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/11/f714c5ff-38f4-49f0-887a-ea883b7e8625.png',
+    image: '/images/aisolution/resume-1.png',
   },
   {
     title: '简历模板，专业设计',
@@ -102,7 +102,7 @@ const initialFeatureDetails = [
         desc: '支持自定义简历样式，包括字体、颜色、布局等，打造个性化简历。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/11/32113cec-db7c-4ffb-bc16-2025cc072f3e.png',
+    image: '/images/aisolution/resume-2.png',
   },
   {
     title: 'AI分析，深度优化',
@@ -126,7 +126,7 @@ const initialFeatureDetails = [
         desc: '后台可查看生成记录和积分消耗情况，全面掌握使用情况。'
       }
     ],
-    image: 'https://www.buidai.com/product/resume-3.png',
+    image: '/images/aisolution/resume-3.png',
   },
 ]
 
@@ -306,7 +306,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2025/11/5efc9880-1dec-4d09-b0df-cf3fb2a01c69.png"
+                src="/images/aisolution/resume-4.png"
                 alt="AI简历展示"
                 fill
                 className="object-contain"

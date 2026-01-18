@@ -76,7 +76,7 @@ const initialFeatureDetails = [
       },
     ],
     image:
-      'https://server.buildingai.cc/uploads/image/2025/11/b87307cd-ade4-40a4-8f4e-2fd7da5a270c.png',
+      '/images/aisolution/jmdraw-1.png',
   },
   {
     title: '图生图，参考图智能融合',
@@ -101,7 +101,7 @@ const initialFeatureDetails = [
       },
     ],
     image:
-      'https://server.buildingai.cc/uploads/image/2025/11/2e29e5ae-6bc0-41e0-9a65-08afc2b36232.png',
+      '/images/aisolution/jmdraw-2.png',
   },
   {
     title: '后台管理与配置，灵活可控',
@@ -125,7 +125,7 @@ const initialFeatureDetails = [
         desc: '后台可自由修改应用在前台显示的名称，打造品牌专属体验，满足个性化需求。',
       },
     ],
-    image: 'https://www.buidai.com/product/jmdraw-3.png',
+    image: '/images/aisolution/jmdraw-3.png',
   },
 ]
 
@@ -308,7 +308,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2025/11/16b6e01a-d56e-4c0b-b7d3-6c276f00561f.png"
+                src="/images/aisolution/jmdraw-4.png"
                 alt="即梦AI绘画生成展示"
                 fill
                 className="object-contain"

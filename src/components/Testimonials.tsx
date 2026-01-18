@@ -1,11 +1,29 @@
-import Image from 'next/image'
+"use client";
+
+import Image, { StaticImageData } from 'next/image'
+import { User, MessageSquare } from "lucide-react";
+import { cn } from "@/lib/utils";
 import avatar1 from '@/images/avatars/avatar-1.png'
 import avatar2 from '@/images/avatars/avatar-2.png'
 import avatar3 from '@/images/avatars/avatar-3.png'
 import avatar4 from '@/images/avatars/avatar-4.png'
 import avatar5 from '@/images/avatars/avatar-5.png'
 
-const testimonials = [
+/**
+ * 客户评价组件
+ * 展示客户对 CloudCVM 的反馈和评价
+ */
+
+type Testimonial = {
+  body: string;
+  author: {
+    name: string;
+    handle: string;
+    imageUrl: StaticImageData;
+  };
+};
+
+const testimonials: Testimonial[] = [
   {
     body: '工作质量非常好。处理问题专业且高效。对细节的关注令人印象深刻。',
     author: {
@@ -80,50 +98,204 @@ const testimonials = [
   },
 ]
 
-export default function Example() {
+// 将评论分为三列
+const columns: Testimonial[][] = [
+  testimonials.slice(0, 3),
+  testimonials.slice(3, 6),
+  testimonials.slice(6, 9)
+];
+
+/**
+ * 获取指定列的评论列表（用于纵向滚动复制）
+ *
+ * @param index 列索引（0 开始）
+ * @returns 指定列的评论数组，内容复制两遍
+ */
+const getColumnReviews = (index: number): Testimonial[] => {
+  const col = columns[index] ?? [];
+  return [...col, ...col];
+};
+
+const gradients = [
+  'bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-900/10 dark:to-indigo-900/10',
+  'bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-purple-900/10 dark:to-pink-900/10',
+  'bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-900/10 dark:to-emerald-900/10',
+  'bg-gradient-to-br from-orange-50/50 to-amber-50/50 dark:from-orange-900/10 dark:to-amber-900/10',
+  'bg-gradient-to-br from-cyan-50/50 to-sky-50/50 dark:from-cyan-900/10 dark:to-sky-900/10',
+  'bg-gradient-to-br from-rose-50/50 to-red-50/50 dark:from-rose-900/10 dark:to-red-900/10',
+];
+
+export default function Testimonials() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <section className="py-16 md:py-24 bg-white dark:bg-gray-950">
       <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-base/7 font-semibold text-indigo-600">
             客户评价
           </h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
+          <p className="mt-2 text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             我们已经与数千位优秀客户合作
           </p>
+          <p className="mt-6 text-lg text-gray-500 dark:text-gray-400">
+             听听来自社区的真实反馈，见证 CloudCVM 如何提升工作效率
+          </p>
         </div>
-        <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
-          <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
-            {testimonials.map((testimonial) => (
+
+        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[800px] overflow-hidden mask-gradient">
+          {/* Column 1 */}
+          <div className="marquee-column space-y-6" style={{ '--duration': '40s' } as React.CSSProperties}>
+            {getColumnReviews(0).map((review, index) => (
               <div
-                key={testimonial.author.handle}
-                className="pt-8 sm:inline-block sm:w-full sm:px-4"
+                key={`col1-${index}`}
+                className={cn(
+                  "p-8 rounded-2xl border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
+                  gradients[index % gradients.length]
+                )}
               >
-                <figure className="rounded-2xl bg-gray-50 p-8 text-sm/6">
-                  <blockquote className="text-gray-900">
-                    <p>{`"${testimonial.body}"`}</p>
-                  </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-x-4">
-                    <Image
-                      alt=""
-                      src={testimonial.author.imageUrl}
-                      width={40}
-                      height={40}
-                      className="size-10 rounded-full bg-gray-50"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-900">
-                        {testimonial.author.name}
-                      </div>
-                      <div className="text-gray-600">{`@${testimonial.author.handle}`}</div>
+                {/* 评价内容 */}
+                <p className="mb-8 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  "{review.body}"
+                </p>
+
+                {/* 用户信息 */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700">
+                      <Image
+                        src={review.author.imageUrl}
+                        alt={review.author.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                  </figcaption>
-                </figure>
+                    <div>
+                      <div className="font-medium text-gray-900 dark:text-white text-sm">
+                        {review.author.name}
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                        @{review.author.handle}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 装饰性图标 */}
+                  <MessageSquare className="w-5 h-5 text-gray-200 dark:text-gray-800" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Column 2 */}
+          <div className="marquee-column space-y-6 hidden md:block" style={{ '--duration': '50s', '--direction': 'reverse' } as React.CSSProperties}>
+            {getColumnReviews(1).map((review, index) => (
+              <div
+                key={`col2-${index}`}
+                className={cn(
+                  "p-8 rounded-2xl border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
+                  gradients[(index + 2) % gradients.length]
+                )}
+              >
+                {/* 评价内容 */}
+                <p className="mb-8 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  "{review.body}"
+                </p>
+
+                {/* 用户信息 */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700">
+                      <Image
+                        src={review.author.imageUrl}
+                        alt={review.author.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900 dark:text-white text-sm">
+                        {review.author.name}
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                        @{review.author.handle}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 装饰性图标 */}
+                  <MessageSquare className="w-5 h-5 text-gray-200 dark:text-gray-800" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Column 3 */}
+          <div className="marquee-column space-y-6 hidden lg:block" style={{ '--duration': '45s' } as React.CSSProperties}>
+            {getColumnReviews(2).map((review, index) => (
+              <div
+                key={`col3-${index}`}
+                className={cn(
+                  "p-8 rounded-2xl border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
+                  gradients[(index + 4) % gradients.length]
+                )}
+              >
+                {/* 评价内容 */}
+                <p className="mb-8 text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  "{review.body}"
+                </p>
+
+                {/* 用户信息 */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                     <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700">
+                      <Image
+                        src={review.author.imageUrl}
+                        alt={review.author.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900 dark:text-white text-sm">
+                        {review.author.name}
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                        @{review.author.handle}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 装饰性图标 */}
+                  <MessageSquare className="w-5 h-5 text-gray-200 dark:text-gray-800" />
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </div>
-  )
+      <style>{`
+        .mask-gradient {
+          mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+          -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-column {
+          animation: marquee-vertical var(--duration) linear infinite;
+          animation-direction: var(--direction, normal);
+        }
+
+        .marquee-column:hover {
+          animation-play-state: paused;
+        }
+
+        @keyframes marquee-vertical {
+          from {
+            transform: translateY(0);
+          }
+          to {
+            transform: translateY(-50%);
+          }
+        }
+      `}</style>
+    </section>
+  );
 }

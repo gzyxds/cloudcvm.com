@@ -74,7 +74,7 @@ const initialFeatureDetails = [
         desc: '有效保持角色特征一致性，确保生成视频中的角色形象与模板高度一致。',
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png',
+    image: '/images/aisolution/manju-1.png',
   },
   {
     title: '首尾帧动画生成，简化创作流程',
@@ -98,7 +98,7 @@ const initialFeatureDetails = [
         desc: '大幅简化动画创作流程，提升创作效率，让创意快速落地。',
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png',
+    image: '/images/aisolution/manju-1.png',
   },
   {
     title: '专业镜头与光影配置，提升电影质感',
@@ -122,7 +122,7 @@ const initialFeatureDetails = [
         desc: '支持多种分辨率与视频时长选择，适配不同平台发布与使用场景需求。',
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png',
+    image: '/images/aisolution/manju-1.png',
   },
 ]
 
@@ -303,7 +303,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png"
+                src="/images/aisolution/manju-1.png"
                 alt="Wan漫剧展示"
                 fill
                 className="object-contain"

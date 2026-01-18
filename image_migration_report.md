@@ -1,0 +1,59 @@
+# Image Migration Report
+
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/51090798-73c8-4b60-bad3-1e2996176a22.png` -> `banana-1.png` (from `src\app\banana\BananaClientPage.tsx`)
+- Updated file: `src\app\banana\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/ae4bfe56-455b-4689-9499-665fb3e97cbf.png` -> `drama-1.png` (from `src\app\drama\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/469c84d0-4c36-4ae1-95fd-bb94a58a13b5.png` -> `drama-2.png` (from `src\app\drama\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/drama-3.png` -> `drama-3.png` (from `src\app\drama\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/b333a8b0-0244-4c9a-9cfd-15d4ab764a87.png` -> `drama-4.png` (from `src\app\drama\BananaClientPage.tsx`)
+- Updated file: `src\app\drama\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/585c00e5-374f-4bf1-81e8-b208ba435a77.png` -> `jimeng-1.png` (from `src\app\jimeng\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/jimeng-3.png` -> `jimeng-2.png` (from `src\app\jimeng\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/jimeng-4.png` -> `jimeng-3.png` (from `src\app\jimeng\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/e05b4a10-0de2-4267-a8af-1a8b1a59e2a8.png` -> `jimeng-4.png` (from `src\app\jimeng\BananaClientPage.tsx`)
+- Updated file: `src\app\jimeng\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/b87307cd-ade4-40a4-8f4e-2fd7da5a270c.png` -> `jmdraw-1.png` (from `src\app\jmdraw\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/2e29e5ae-6bc0-41e0-9a65-08afc2b36232.png` -> `jmdraw-2.png` (from `src\app\jmdraw\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/jmdraw-3.png` -> `jmdraw-3.png` (from `src\app\jmdraw\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/16b6e01a-d56e-4c0b-b7d3-6c276f00561f.png` -> `jmdraw-4.png` (from `src\app\jmdraw\BananaClientPage.tsx`)
+- Updated file: `src\app\jmdraw\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2026/01/28da090f-a363-48b6-9540-57cbc53d89df.png` -> `manju-1.png` (from `src\app\manju\BananaClientPage.tsx`)
+- Updated file: `src\app\manju\BananaClientPage.tsx`
+- Updated file: `src\app\manju\page.tsx`
+- Downloaded: `https://www.buidai.com/product/model-1.png` -> `model-1.png` (from `src\app\model\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/c951b9f7-dd34-46ed-97fb-89f1a62cc421.png` -> `model-2.png` (from `src\app\model\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/model-3.png` -> `model-3.png` (from `src\app\model\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/4cdde414-ea72-4cc7-a838-18f47c909fc4.png` -> `model-4.png` (from `src\app\model\BananaClientPage.tsx`)
+- Updated file: `src\app\model\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/d6b8f151-cb48-4450-a93c-6f483838fb9e.png` -> `music-1.png` (from `src\app\music\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/6dcba637-d63b-48e8-a721-b6656c0240be.png` -> `music-2.png` (from `src\app\music\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/music-3.png` -> `music-3.png` (from `src\app\music\BananaClientPage.tsx`)
+- Updated file: `src\app\music\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/434a729c-94fb-4dd1-b51b-af6adc67a374.png` -> `ppt-1.png` (from `src\app\ppt\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/ppt-1.png` -> `ppt-2.png` (from `src\app\ppt\BananaClientPage.tsx`)
+- Updated file: `src\app\ppt\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/f714c5ff-38f4-49f0-887a-ea883b7e8625.png` -> `resume-1.png` (from `src\app\resume\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/32113cec-db7c-4ffb-bc16-2025cc072f3e.png` -> `resume-2.png` (from `src\app\resume\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/resume-3.png` -> `resume-3.png` (from `src\app\resume\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/11/5efc9880-1dec-4d09-b0df-cf3fb2a01c69.png` -> `resume-4.png` (from `src\app\resume\BananaClientPage.tsx`)
+- Updated file: `src\app\resume\BananaClientPage.tsx`
+- Downloaded: `https://www.crmeb.com/static/images/pro_store/pro_store.png` -> `retail-1.png` (from `src\app\retail\page.tsx`)
+- Updated file: `src\app\retail\page.tsx`
+- Downloaded: `https://www.buidai.com/product/sora-1.png` -> `sora-1.png` (from `src\app\sora\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/sora-2.png` -> `sora-2.png` (from `src\app\sora\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/sora-3.png` -> `sora-3.png` (from `src\app\sora\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/sora.png` -> `sora-4.png` (from `src\app\sora\BananaClientPage.tsx`)
+- Updated file: `src\app\sora\BananaClientPage.tsx`
+- Downloaded: `https://server.buildingai.cc/uploads/image/2025/12/d2da3fab-1fed-4e3f-8649-006302931c30.png` -> `videoclip-1.png` (from `src\app\videoclip\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/videoclip-1.png` -> `videoclip-2.png` (from `src\app\videoclip\BananaClientPage.tsx`)
+- Updated file: `src\app\videoclip\BananaClientPage.tsx`
+- Downloaded: `https://www.buidai.com/product/xhs-1.png` -> `xhs-1.png` (from `src\app\xhs\BananaClientPage.tsx`)
+- Downloaded: `https://server.buildingai.cc/uploads/image/2026/01/d532b15b-1c78-483f-8fb4-b384ec45ce28.png` -> `xhs-2.png` (from `src\app\xhs\BananaClientPage.tsx`)
+- Downloaded: `https://www.buidai.com/product/xhs-3.png` -> `xhs-3.png` (from `src\app\xhs\BananaClientPage.tsx`)
+- Updated file: `src\app\xhs\BananaClientPage.tsx`
+- Downloaded: `https://portal.volccdn.com/obj/volcfe/bee_prod/biz_950/tos_9c738c3983371d4652420bd4110aae53.png` -> `common-1.png` (from `src\components\common\Rightleft.tsx`)
+- Updated file: `src\components\common\Rightleft.tsx`
+- Downloaded: `https://www-s.ucloud.cn/2024/03/77b51f148efa13788aec21109e75f7bf_1710408303510.png` -> `components-1.png` (from `src\components\ServiceTabs copy 2.tsx`)
+- Updated file: `src\components\ServiceTabs copy 2.tsx`
+- Updated file: `src\components\ServiceTabs copy.tsx`
+- Updated file: `src\components\ServiceTabs.tsx`

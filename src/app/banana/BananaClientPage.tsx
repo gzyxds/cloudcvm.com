@@ -17,8 +17,63 @@ import {
 import { Container } from '@/components/Container'
 import { AIscene } from '@/components/ai/AIscene'
 
+// ==================== Interfaces ====================
+
+/**
+ * 产品特性接口
+ * 定义首页网格展示的功能特性数据结构
+ */
+interface Feature {
+  /** 特性标题 */
+  title: string
+  /** 特性描述文本 */
+  desc: string
+  /** Heroicon 图标组件 */
+  icon: React.ElementType
+}
+
+/**
+ * 功能详情点接口
+ * 定义功能详情板块中的具体功能点
+ */
+interface FeaturePoint {
+  /** 功能点标题 */
+  title: string
+  /** 功能点详细描述 */
+  desc: string
+}
+
+/**
+ * 功能详情板块接口
+ * 定义包含图片和交互列表的详细功能板块
+ */
+interface FeatureDetail {
+  /** 板块主标题 */
+  title: string
+  /** 板块整体描述 */
+  desc: string
+  /** 当前激活的功能点索引 */
+  activePoint: number
+  /** 功能点列表 */
+  points: FeaturePoint[]
+  /** 展示图片 URL */
+  image: string
+}
+
+/**
+ * 用户评价接口
+ */
+interface Review {
+  /** 评价内容 */
+  content: string
+  /** 评价人姓名 */
+  author: string
+  /** 评价人职位 */
+  role: string
+}
+
 // ==================== Data ====================
-const features = [
+const features: Feature[] = [
   {
     title: '文生图（Text-to-Image）',
     desc: '基于 Gemini 3 Pro Image Preview 模型,只需输入自然语言提示词,即可生成高质量图像。',
@@ -51,7 +106,7 @@ const features = [
   },
 ]
 
-const initialFeatureDetails = [
+const initialFeatureDetails: FeatureDetail[] = [
   {
     title: '文生图：用文字直接创造精美图像',
     desc: '基于 Gemini 3 Pro Image Preview 模型的文生图能力,只需输入提示词,即可生成高质量图像。生成速度极快,让创意瞬间变为现实。',
@@ -74,7 +129,7 @@ const initialFeatureDetails = [
         desc: '支持固定角色、画风与色调,沉淀品牌专属视觉资产,持续迭代系列内容。',
       },
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/11/51090798-73c8-4b60-bad3-1e2996176a22.png',
+    image: '/images/aisolution/banana-1.png',
   },
   {
     title: '图生图：让参考图成为创作起点',
@@ -98,7 +153,7 @@ const initialFeatureDetails = [
         desc: '从参考图中学习风格、构图和细节,生成与原图风格协调的新图像。',
       },
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/11/51090798-73c8-4b60-bad3-1e2996176a22.png',
+    image: '/images/aisolution/banana-1.png',
   },
   {
     title: '模板配置与后台管理：开箱即用的企业级方案',
@@ -122,32 +177,37 @@ const initialFeatureDetails = [
         desc: '后台可自由修改应用在前台显示的名称,打造品牌专属体验。',
       },
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/11/51090798-73c8-4b60-bad3-1e2996176a22.png',
+    image: '/images/aisolution/banana-1.png',
   },
 ]
 
 // ==================== Components ====================
 
-// 简单的 ProductFeatures 占位组件
+/**
+ * 产品特性展示组件
+ * 展示支持的 AI 模型 Logo 或名称，增加信任背书
+ *
+ * @returns {JSX.Element} 包含 AI 模型列表的展示区域
+ */
 function ProductFeatures() {
   return (
-    <div className="py-12 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
+    <div className="py-12 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
       <Container>
-        <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wide mb-8">
+        <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-wide mb-8">
           受信赖的 AI 图像生成技术
         </p>
         <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           {/* 这里使用简单的文本代替 Logo，或者可以用 public/images/logos 下的图片 */}
-          <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
             <SparklesIcon className="w-6 h-6" /> Gemini
           </div>
-          <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
             <CubeIcon className="w-6 h-6" /> Stable Diffusion
           </div>
-          <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
             <PhotoIcon className="w-6 h-6" /> Midjourney
           </div>
-          <div className="flex items-center gap-2 text-xl font-bold text-gray-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
             <DocumentTextIcon className="w-6 h-6" /> DALL·E 3
           </div>
         </div>
@@ -156,9 +216,14 @@ function ProductFeatures() {
   )
 }
 
-// 简单的 UserReviews 占位组件
+/**
+ * 用户评价组件
+ * 展示用户的真实反馈，建立社会认同
+ *
+ * @returns {JSX.Element} 包含用户评价卡片的网格区域
+ */
 function LandingUserReviews() {
-  const reviews = [
+  const reviews: Review[] = [
     {
       content: '生成的图片质量非常高，完全超出了我的预期。特别是多图融合功能，非常智能。',
       author: '张设计师',
@@ -177,16 +242,16 @@ function LandingUserReviews() {
   ]
 
   return (
-    <div className="py-24 bg-white dark:bg-gray-900">
+    <div className="py-24 bg-white dark:bg-slate-900">
       <Container>
-        <h2 className="text-3xl font-bold text-center mb-16 text-gray-900 dark:text-white">
+        <h2 className="text-3xl font-bold text-center mb-16 text-slate-900 dark:text-white">
           用户评价
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700"
+              className="p-8 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex gap-1 text-yellow-400 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -199,14 +264,14 @@ function LandingUserReviews() {
                   </svg>
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
+              <p className="text-slate-600 dark:text-slate-300 mb-6">
                 “{review.content}”
               </p>
               <div>
-                <div className="font-semibold text-gray-900 dark:text-white">
+                <div className="font-semibold text-slate-900 dark:text-white">
                   {review.author}
                 </div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">
+                <div className="text-sm text-slate-500 dark:text-slate-400">
                   {review.role}
                 </div>
               </div>
@@ -219,14 +284,34 @@ function LandingUserReviews() {
 }
 
 // ==================== Main Page Component ====================
+
+/**
+ * 香蕉绘画客户端主页组件
+ *
+ * 包含 Hero 区域、功能特性网格、详细功能演示、用户评价和行动号召。
+ * 使用客户端渲染以支持交互效果（如滚动定位、Hover 交互）。
+ *
+ * @returns {JSX.Element} 完整的页面内容
+ */
 export default function BananaClientPage() {
-  const [featureDetails, setFeatureDetails] = useState(initialFeatureDetails)
+  const [featureDetails, setFeatureDetails] = useState<FeatureDetail[]>(initialFeatureDetails)
   const demoContainerRef = useRef<HTMLDivElement>(null)
 
+  /**
+   * 滚动到演示区域
+   * 点击"查看案例"按钮时触发，平滑滚动到图片展示区
+   */
   const toDemo = () => {
     demoContainerRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  /**
+   * 处理功能点悬停事件
+   * 更新当前选中的功能点索引，以切换右侧展示的详细描述或图片（如需关联图片变化）
+   *
+   * @param {number} featureIndex - 功能大类的索引
+   * @param {number} pointIndex - 功能点列表中的索引
+   */
   const handlePointHover = (featureIndex: number, pointIndex: number) => {
     setFeatureDetails((prev) =>
       prev.map((feature, idx) =>
@@ -236,7 +321,7 @@ export default function BananaClientPage() {
   }
 
   return (
-    <div className="relative font-sans text-gray-900 dark:bg-gray-900 dark:text-white overflow-x-hidden">
+    <div className="relative font-sans text-slate-900 dark:bg-slate-900 dark:text-white overflow-x-hidden">
       {/* 首屏区域 */}
       <div className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
         {/* 背景特效 */}
@@ -252,20 +337,20 @@ export default function BananaClientPage() {
 
         <Container className="text-center relative z-10">
           <div className="flex flex-col gap-6 items-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200 dark:bg-gray-800 dark:border-gray-700 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 dark:bg-slate-800 dark:border-slate-700 mb-4">
               <span className="px-1.5 py-0.5 rounded bg-[#0055ff] text-[11px] font-bold text-white tracking-wider">
                 NEW
               </span>
-              <span className="text-xs text-gray-600 dark:text-gray-300">
+              <span className="text-xs text-slate-600 dark:text-slate-300">
                 Nanobanana 香蕉绘画 2.0 发布
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
               打造您的 <span className="text-[#0055ff]">专属 AI 绘画世界</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
               基于 Gemini 3 Pro Image Preview
               的新一代 AI 绘画平台,一键生成高质量图像。
               <br className="hidden sm:block" />
@@ -285,7 +370,7 @@ export default function BananaClientPage() {
               {/* 查看案例 Button */}
               <button
                 onClick={toDemo}
-                className="group inline-flex items-center justify-center py-3.5 px-8 text-base font-medium rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+                className="group inline-flex items-center justify-center py-3.5 px-8 text-base font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all"
               >
                 查看案例
               </button>
@@ -301,10 +386,10 @@ export default function BananaClientPage() {
         className="py-12 md:py-20"
       >
         <Container>
-          <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
+          <div className="relative p-2 rounded-2xl bg-slate-100/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 max-w-5xl mx-auto">
+            <div className="relative rounded-xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm bg-white/60 dark:bg-slate-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2025/11/51090798-73c8-4b60-bad3-1e2996176a22.png"
+                src="/images/aisolution/banana-1.png"
                 alt="香蕉绘画展示"
                 width={1280}
                 height={720}
@@ -316,13 +401,13 @@ export default function BananaClientPage() {
       </div>
 
       {/* 功能网格 */}
-      <div className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800/50">
+      <div className="py-16 md:py-24 bg-slate-50 dark:bg-slate-800/50">
         <Container>
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
               全能型 Nanobanana 香蕉绘画平台
             </h2>
-            <p className="text-gray-500 dark:text-gray-400 text-lg">
+            <p className="text-slate-500 dark:text-slate-400 text-lg">
               集文生图、图生图、多图融合于一体,为您提供一站式解决方案
             </p>
           </div>
@@ -331,15 +416,15 @@ export default function BananaClientPage() {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="bg-white dark:bg-gray-900 rounded-3xl p-8 border border-gray-100 dark:border-gray-800 transition-all duration-300 group"
+                className="bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-800 transition-all duration-300 group hover:shadow-lg hover:border-[#0055ff]/30"
               >
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:scale-110 transition-transform duration-300">
                   <feature.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
+                <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
                   {feature.desc}
                 </p>
               </div>
@@ -381,7 +466,7 @@ export default function BananaClientPage() {
                 </div>
 
                 {/* 标题 */}
-                <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white leading-tight mb-3">
+                <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white leading-tight mb-3">
                   {detail.title}
                 </h2>
 
@@ -440,7 +525,7 @@ export default function BananaClientPage() {
 
                         {/* 连接线 */}
                         {pIndex < detail.points.length - 1 && (
-                          <div className="w-[2px] grow bg-gray-100 dark:bg-gray-800 rounded-full relative overflow-hidden min-h-[16px]">
+                          <div className="w-[2px] grow bg-slate-100 dark:bg-slate-800 rounded-full relative overflow-hidden min-h-[16px]">
                             {/* 活动进度条 */}
                             <div
                               className={clsx(
@@ -462,8 +547,8 @@ export default function BananaClientPage() {
                             className={clsx(
                               'flex items-center gap-3 font-medium leading-normal p-3 pl-0 transition-colors duration-300 text-base',
                               detail.activePoint === pIndex
-                                ? 'text-gray-900 dark:text-white'
-                                : 'text-gray-500 dark:text-gray-400'
+                                ? 'text-slate-900 dark:text-white'
+                                : 'text-slate-500 dark:text-slate-400'
                             )}
                           >
                             {point.title}
@@ -480,7 +565,7 @@ export default function BananaClientPage() {
                             <div className="overflow-hidden">
                               <div
                                 className={clsx(
-                                  'text-sm text-gray-500 dark:text-gray-400 leading-relaxed pt-0 pb-3 opacity-0 -translate-y-1 transition-all duration-300 delay-75',
+                                  'text-sm text-slate-500 dark:text-slate-400 leading-relaxed pt-0 pb-3 opacity-0 -translate-y-1 transition-all duration-300 delay-75',
                                   {
                                     'opacity-100 translate-y-0':
                                       detail.activePoint === pIndex,
@@ -511,8 +596,8 @@ export default function BananaClientPage() {
 
               {/* 右侧图片 */}
               <div className="relative h-full">
-                <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 h-full">
-                  <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 h-full flex items-center justify-center">
+                <div className="relative p-2 rounded-2xl bg-slate-100/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 h-full">
+                  <div className="relative rounded-xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm bg-white/60 dark:bg-slate-800/60 h-full flex items-center justify-center">
                     <Image
                       src={detail.image}
                       alt={detail.title}
@@ -539,7 +624,7 @@ export default function BananaClientPage() {
      <AIscene />
 
       {/* 行动号召区域 */}
-      <section className="py-24 bg-gray-50 dark:bg-gray-800/30 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 dark:bg-slate-800/30 relative overflow-hidden">
         {/* 背景图形 */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-5%] w-[30%] h-[30%] bg-blue-400/10 rounded-full blur-[80px]"></div>
@@ -547,11 +632,11 @@ export default function BananaClientPage() {
         </div>
 
         <Container className="text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
             准备好开始创作了吗？
           </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
-            立即加入 BuidAI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。
+          <p className="text-lg text-slate-500 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
+            立即加入 必定AI-BuidAI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的AI应用。
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
@@ -562,7 +647,7 @@ export default function BananaClientPage() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-10 py-3 rounded-lg text-lg font-medium shadow-sm border border-gray-200 dark:border-gray-700 bg-white text-gray-900 dark:bg-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+              className="inline-flex items-center justify-center px-10 py-3 rounded-lg text-lg font-medium shadow-sm border border-slate-200 dark:border-slate-700 bg-white text-slate-900 dark:bg-slate-800 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all"
             >
               联系商务
             </Link>

@@ -232,7 +232,7 @@ const FeatureCard = memo(function FeatureCard({
             : "w-full mb-3 last:mb-0",
         isSelected
           ? "bg-white border-[#E2E8F0] z-10 shadow-lg shadow-slate-200/50 outline-none ring-0"
-          : "bg-[var(--theme-primary)] border-transparent shadow-lg shadow-blue-900/20 hover:shadow-xl hover:shadow-blue-900/30 z-0 outline-none ring-0"
+          : "bg-white border-[#E2E8F0] shadow-sm hover:shadow-md transition-all z-0 outline-none ring-0"
       )}
       style={containerStyle}
     >
@@ -245,7 +245,7 @@ const FeatureCard = memo(function FeatureCard({
 
       <div
         className={clsx(
-          "absolute bottom-0 left-0 w-full h-[1px] bg-[rgba(var(--theme-primary-rgb),0.5)] pointer-events-none transition-transform duration-300 origin-left",
+          "absolute bottom-0 left-0 w-full h-[1px] bg-[var(--theme-primary)] pointer-events-none transition-transform duration-300 origin-left",
           "scale-x-0 group-hover:scale-x-100"
         )}
       />
@@ -314,33 +314,33 @@ const FeatureCard = memo(function FeatureCard({
             {isDesktop ? (
               <>
                 <div className="flex flex-col items-center gap-6 mt-4">
-                  <div className="p-3 bg-white/10 border border-white/20 rounded-sm transition-all duration-300 group-hover:bg-white group-hover:scale-110 shadow-sm">
-                    <feature.icon className="w-6 h-6 text-white group-hover:text-[var(--theme-primary)] transition-colors" />
+                  <div className="p-3 bg-[var(--theme-light)] border border-[#E2E8F0] rounded-sm transition-all duration-300 group-hover:bg-white group-hover:scale-110 shadow-sm">
+                    <feature.icon className="w-6 h-6 text-[var(--theme-primary)] group-hover:text-[var(--theme-primary)] transition-colors" />
                   </div>
 
-                  <div className="w-px h-12 bg-white/20 group-hover:h-16 transition-all duration-300" />
+                  <div className="w-px h-12 bg-[#E2E8F0] group-hover:h-16 transition-all duration-300" />
                 </div>
 
                 <div className="flex flex-col items-center text-center w-full mb-4">
-                  <h3 className="font-bold text-[24px] lg:text-[28px] [writing-mode:vertical-rl] tracking-wide text-white/90 text-center group-hover:text-white transition-colors drop-shadow-sm">
+                  <h3 className="font-bold text-[24px] lg:text-[28px] [writing-mode:vertical-rl] tracking-wide text-[#0F172A] text-center group-hover:text-[var(--theme-primary)] transition-colors">
                     {feature.title}
                   </h3>
                 </div>
               </>
             ) : (
               <>
-                <div className="p-2 bg-white/10 border border-white/20 mr-4 rounded-sm">
-                  <feature.icon className="w-5 h-5 text-white" />
+                <div className="p-2 bg-[var(--theme-light)] border border-[#E2E8F0] mr-4 rounded-sm">
+                  <feature.icon className="w-5 h-5 text-[var(--theme-primary)]" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-[18px] text-white">
+                  <h3 className="font-bold text-[18px] text-[#0F172A]">
                     {feature.title}
                   </h3>
-                  <p className="text-[14px] text-white/80 mt-0.5">
+                  <p className="text-[14px] text-[#64748B] mt-0.5">
                     {feature.summary}
                   </p>
                 </div>
-                <ArrowRightIcon className="w-4 h-4 text-white/70" />
+                <ArrowRightIcon className="w-4 h-4 text-[#94A3B8]" />
               </>
             )}
           </div>

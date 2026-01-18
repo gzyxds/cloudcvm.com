@@ -79,7 +79,7 @@ const initialFeatureDetails = [
         desc: '生成的视频质量高,画面清晰,节奏感强,满足专业级创作需求。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/d2da3fab-1fed-4e3f-8649-006302931c30.png',
+    image: '/images/aisolution/videoclip-1.png',
   },
   {
     title: '智能转场,流畅自然',
@@ -103,7 +103,7 @@ const initialFeatureDetails = [
         desc: '视频衔接流畅自然,节奏感强,视觉冲击力大,提升观看体验。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/d2da3fab-1fed-4e3f-8649-006302931c30.png',
+    image: '/images/aisolution/videoclip-1.png',
   },
   {
     title: '滤镜调色与字幕添加,专业级制作',
@@ -127,7 +127,7 @@ const initialFeatureDetails = [
         desc: '提供海量模板与素材库,一键套用模板,快速生成专业级视频。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/d2da3fab-1fed-4e3f-8649-006302931c30.png',
+    image: '/images/aisolution/videoclip-1.png',
   },
 ]
 
@@ -307,7 +307,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://www.buidai.com/product/videoclip-1.png"
+                src="/images/aisolution/videoclip-2.png"
                 alt="视频混剪助手展示"
                 fill
                 className="object-contain"

@@ -973,7 +973,7 @@ export function Header(): JSX.Element {
                       <DisclosureButton
                         className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
                       >
-                        解决方案
+                        AI解决方案
                         <ChevronDownIcon
                           aria-hidden="true"
                           className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}

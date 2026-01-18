@@ -108,7 +108,7 @@ export function Rightleft() {
               {/* 模拟聊天界面截图区域 - 使用真实产品截图 */}
               <div className="relative w-full h-[300px] sm:h-[400px] bg-[#F7F8FA] rounded-xl border border-slate-100 overflow-hidden mt-auto">
                 <Image
-                  src="https://portal.volccdn.com/obj/volcfe/bee_prod/biz_950/tos_9c738c3983371d4652420bd4110aae53.png"
+                  src="/images/aisolution/common-1.png"
                   alt="极速体验模型界面"
                   fill
                   className="object-cover object-top"

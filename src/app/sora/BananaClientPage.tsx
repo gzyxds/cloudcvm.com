@@ -77,7 +77,7 @@ const initialFeatureDetails = [
         desc: '支持导入分镜脚本或大纲，按段落驱动 Sora 生成对应场景，清晰映射创意结构。'
       }
     ],
-    image: 'https://www.buidai.com/product/sora-1.png',
+    image: '/images/aisolution/sora-1.png',
   },
   {
     title: '图生视频：让静态素材在 Sora 中"活"起来',
@@ -101,7 +101,7 @@ const initialFeatureDetails = [
         desc: '将已有 KV、海报和 IP 角色在 Sora 中扩展为系列短视频内容。'
       }
     ],
-    image: 'https://www.buidai.com/product/sora-2.png',
+    image: '/images/aisolution/sora-2.png',
   },
   {
     title: 'Sora 视频增强与编辑：从出片到成片一站打通',
@@ -125,7 +125,7 @@ const initialFeatureDetails = [
         desc: '按平台比例与时长导出多版本视频，覆盖短视频平台、官网与线下大屏等多种发布场景。'
       }
     ],
-    image: 'https://www.buidai.com/product/sora-3.png',
+    image: '/images/aisolution/sora-3.png',
   },
 ]
 
@@ -305,7 +305,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://www.buidai.com/product/sora.png"
+                src="/images/aisolution/sora-4.png"
                 alt="Sora视频展示"
                 fill
                 className="object-contain"

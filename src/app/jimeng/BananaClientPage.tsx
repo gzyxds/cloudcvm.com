@@ -75,7 +75,7 @@ const initialFeatureDetails = [
       },
     ],
     image:
-      'https://server.buildingai.cc/uploads/image/2025/11/585c00e5-374f-4bf1-81e8-b208ba435a77.png',
+      '/images/aisolution/jimeng-1.png',
   },
   {
     title: '图生视频，参考图智能融合',
@@ -99,7 +99,7 @@ const initialFeatureDetails = [
         desc: '同时支持纯文本提示词和上传参考图两种方式，满足不同用户的创作习惯。',
       },
     ],
-    image: 'https://www.buidai.com/product/jimeng-3.png',
+    image: '/images/aisolution/jimeng-2.png',
   },
   {
     title: '后台管理与配置，灵活可控',
@@ -123,7 +123,7 @@ const initialFeatureDetails = [
         desc: '后台可自由修改应用在前台显示的名称，打造品牌专属体验，满足个性化需求。',
       },
     ],
-    image: 'https://www.buidai.com/product/jimeng-4.png',
+    image: '/images/aisolution/jimeng-3.png',
   },
 ]
 
@@ -306,7 +306,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2025/11/e05b4a10-0de2-4267-a8af-1a8b1a59e2a8.png"
+                src="/images/aisolution/jimeng-4.png"
                 alt="即梦AI视频生成展示"
                 width={1280}
                 height={720}

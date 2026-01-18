@@ -77,7 +77,7 @@ const initialFeatureDetails = [
         desc: '支持批量上传服装图片，自动匹配模特并生成上身效果图，大幅提升工作效率。',
       }
     ],
-    image: 'https://www.buidai.com/product/model-1.png',
+    image: '/images/aisolution/model-1.png',
   },
   {
     title: 'AI 换背景，多场景切换',
@@ -101,7 +101,7 @@ const initialFeatureDetails = [
         desc: '支持高清图片输出，确保商品细节清晰可见，满足电商平台要求。',
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/c951b9f7-dd34-46ed-97fb-89f1a62cc421.png',
+    image: '/images/aisolution/model-2.png',
   },
   {
     title: '简洁易用，高效便捷',
@@ -125,7 +125,7 @@ const initialFeatureDetails = [
         desc: '支持云端存储，随时随地访问和管理您的商品图片，方便快捷。',
       }
     ],
-    image: 'https://www.buidai.com/product/model-3.png',
+    image: '/images/aisolution/model-3.png',
   },
 ]
 
@@ -305,7 +305,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2025/12/4cdde414-ea72-4cc7-a838-18f47c909fc4.png"
+                src="/images/aisolution/model-4.png"
                 alt="电商试衣换装展示"
                 fill
                 className="object-contain"

@@ -77,7 +77,7 @@ const initialFeatureDetails = [
         desc: '生成的 PPT 质量高，设计美观，结构清晰，满足专业级创作需求。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/434a729c-94fb-4dd1-b51b-af6adc67a374.png',
+    image: '/images/aisolution/ppt-1.png',
   },
   {
     title: '模板图表，专业设计',
@@ -101,7 +101,7 @@ const initialFeatureDetails = [
         desc: '支持动画效果优化，让演示更加生动有趣，增强观众参与感。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/434a729c-94fb-4dd1-b51b-af6adc67a374.png',
+    image: '/images/aisolution/ppt-1.png',
   },
   {
     title: '演讲备注，掌控全场',
@@ -125,7 +125,7 @@ const initialFeatureDetails = [
         desc: '支持云端存储，随时随地访问和编辑您的演示文稿。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/434a729c-94fb-4dd1-b51b-af6adc67a374.png',
+    image: '/images/aisolution/ppt-1.png',
   },
 ]
 
@@ -305,7 +305,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://www.buidai.com/product/ppt-1.png"
+                src="/images/aisolution/ppt-2.png"
                 alt="AI PPT展示"
                 fill
                 className="object-contain"

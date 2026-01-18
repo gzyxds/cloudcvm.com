@@ -79,7 +79,7 @@ const initialFeatureDetails = [
         desc: '生成的音乐质量高,音质清晰,旋律优美,满足专业级创作需求。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/d6b8f151-cb48-4450-a93c-6f483838fb9e.png',
+    image: '/images/aisolution/music-1.png',
   },
   {
     title: '哼唱生成,旋律即刻成曲',
@@ -103,7 +103,7 @@ const initialFeatureDetails = [
         desc: '支持文本、歌词、哼唱、乐谱多种方式,满足不同用户的创作习惯。'
       }
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/6dcba637-d63b-48e8-a721-b6656c0240be.png',
+    image: '/images/aisolution/music-2.png',
   },
   {
     title: '多种输出,满足不同场景',
@@ -127,7 +127,7 @@ const initialFeatureDetails = [
         desc: '提供完整的商用授权支持,支持个人娱乐与商用配乐,满足商业需求。'
       }
     ],
-    image: 'https://www.buidai.com/product/music-3.png',
+    image: '/images/aisolution/music-3.png',
   },
 ]
 
@@ -307,7 +307,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2025/12/d6b8f151-cb48-4450-a93c-6f483838fb9e.png"
+                src="/images/aisolution/music-1.png"
                 alt="AI音乐生成展示"
                 fill
                 className="object-contain"

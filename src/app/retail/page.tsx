@@ -219,7 +219,7 @@ function HeroSection() {
             <div className="relative rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-slate-900/10">
                <div className="relative rounded-xl overflow-hidden bg-slate-50">
                   <Image
-                    src="https://www.crmeb.com/static/images/pro_store/pro_store.png"
+                    src="/images/aisolution/retail-1.png"
                     alt="智慧零售云平台展示"
                     width={1200}
                     height={800}

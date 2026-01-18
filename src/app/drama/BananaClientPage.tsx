@@ -74,7 +74,7 @@ const initialFeatureDetails = [
         desc: '支持创建无限量剧本和小说，满足自媒体创作者、编剧、网络作家的多样化创作需求。',
       },
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/ae4bfe56-455b-4689-9499-665fb3e97cbf.png',
+    image: '/images/aisolution/drama-1.png',
   },
   {
     title: '章节可视化拖拽与大纲管理，系统化创作流程',
@@ -98,7 +98,7 @@ const initialFeatureDetails = [
         desc: '随时调整章节顺序和内容结构，支持草稿编辑与版本恢复，方便内容迭代与优化。',
       },
     ],
-    image: 'https://server.buildingai.cc/uploads/image/2025/12/469c84d0-4c36-4ae1-95fd-bb94a58a13b5.png',
+    image: '/images/aisolution/drama-2.png',
   },
   {
     title: 'AI 智能辅助写作，提升创作效率与质量',
@@ -122,7 +122,7 @@ const initialFeatureDetails = [
         desc: '正文一键排版、复制全文，可调节字号大小，提供舒适的写作和阅读体验。',
       },
     ],
-    image: 'https://www.buidai.com/product/drama-3.png',
+    image: '/images/aisolution/drama-3.png',
   },
 ]
 
@@ -302,7 +302,7 @@ export default function BananaClientPage() {
           <div className="relative p-2 rounded-3xl bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 max-w-5xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-sm bg-white/60 dark:bg-gray-800/60 aspect-video flex items-center justify-center">
               <Image
-                src="https://server.buildingai.cc/uploads/image/2025/12/b333a8b0-0244-4c9a-9cfd-15d4ab764a87.png"
+                src="/images/aisolution/drama-4.png"
                 alt="AI短剧小说创作"
                 width={1280}
                 height={720}
