@@ -7,7 +7,7 @@ import { Container } from './Container'
  * Logo云展示组件 - 带有水平滚动效果
  * 展示合作伙伴或客户的logo，支持无限循环滚动
  */
-export default function Example() {
+export default function Logoclouds() {
   // Logo数据数组
   const allLogos = [
     {
@@ -137,14 +137,14 @@ export default function Example() {
 
       <Container className="relative z-10">
         {/* 头部标题介绍 */}
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-base/7 font-semibold text-[#0055ff]">
+        <div id="logoclouds-title" className="relative z-20 mx-auto max-w-2xl text-center pb-16">
+          <h2 className="text-base font-semibold text-[#0055ff] tracking-wide uppercase">
             合作伙伴
           </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <p className="mt-2 text-3xl font-bold tracking-tight text-[#0f172a] sm:text-4xl">
             深受全球创新团队信赖
           </p>
-          <p className="mt-6 text-lg leading-8 text-slate-600">
+          <p className="mt-6 text-lg leading-8 text-[#475569]">
             从初创公司到行业巨头，我们与 500+ 全球知名企业建立了稳固的合作关系，共同构建稳定、高效的云端未来。
           </p>
         </div>

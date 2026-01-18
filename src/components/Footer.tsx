@@ -6,19 +6,28 @@ import { useState } from 'react'
 const navigation = {
   products: [
     { name: '云服务器 ECS', href: '/ecs/' },
-    { name: '内容分发网络 CDN', href: '/cdn/' },
-    { name: 'SSL证书', href: '/ssl/' },
-    { name: '虚拟主机', href: '/host/' },
+    { name: '轻量云主机', href: '/ecs/' },
     { name: '独立服务器', href: '/server/' },
     { name: 'Windows服务器', href: '/windows/' },
+    { name: '虚拟主机', href: '/host/' },
+    { name: '内容分发网络 CDN', href: '/cdn/' },
+    { name: 'SSL证书', href: '/ssl/' },
   ],
   aiServices: [
     { name: '艺创AI平台', href: '/ai/' },
     { name: '数字分身', href: '/human/' },
-    { name: '企业知识库', href: '/work/' },
     { name: 'AI聊天绘画', href: '/chat/' },
+    { name: '企业知识库', href: '/work/' },
     { name: '论文创作', href: '/paper/' },
-    { name: '体验产品', href: '/demo/' },
+    { name: 'AI视频生成', href: '/video/' },
+  ],
+  aiSolutions: [
+    { name: 'AI PPT制作', href: '/ppt/' },
+    { name: 'AI 简历生成', href: '/resume/' },
+    { name: 'AI 音乐创作', href: '/music/' },
+    { name: 'AI 短剧解说', href: '/drama/' },
+    { name: 'AI 视频剪辑', href: '/videoclip/' },
+    { name: '小红书文案', href: '/xhs/' },
   ],
   solutions: [
     { name: '电商解决方案', href: '/ecommerce/' },
@@ -26,12 +35,22 @@ const navigation = {
     { name: '内容管理系统', href: '/cms/' },
     { name: '智能客服', href: '/aiservice/' },
     { name: '云端代理', href: '/agent/' },
+    { name: '网站建设', href: '/host/' },
   ],
   support: [
-    { name: '帮助支持', href: '/support/' },
-    { name: '联系我们', href: '/contact/' },
-    { name: '关于我们', href: '/about/' },
+    { name: '帮助中心', href: '/support/' },
     { name: '账户验证', href: '/verify/' },
+    { name: '备案服务', href: 'https://beian.miit.gov.cn/' },
+    { name: '服务条款', href: '/terms/' },
+    { name: '隐私政策', href: '/privacy/' },
+    { name: '举报中心', href: '/report/' },
+  ],
+  about: [
+    { name: '公司简介', href: '/about/' },
+    { name: '联系我们', href: '/contact/' },
+    { name: '加入我们', href: '/join/' },
+    { name: '合作伙伴', href: '/partners/' },
+    { name: '最新动态', href: '/news/' },
   ],
   friendlyLinks: [
     { name: '艺创AI', href: 'https://www.urlnet.cn' },
@@ -183,39 +202,41 @@ export function Footer() {
       <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
       <footer className="bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-[1800px] px-6 pt-6 pb-4 sm:pt-10 lg:px-8 lg:pt-14">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div className="xl:grid xl:grid-cols-7 xl:gap-8">
             {/* 移动端手风琴布局，桌面端网格布局 */}
-            <div className="space-y-0 md:grid md:grid-cols-2 md:gap-8 md:space-y-0 xl:col-span-2">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <AccordionSection
-                  title="云计算产品"
-                  items={navigation.products}
-                  sectionKey="products"
-                />
-                <div className="md:mt-0">
-                  <AccordionSection
-                    title="AI智能服务"
-                    items={navigation.aiServices}
-                    sectionKey="aiServices"
-                  />
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <AccordionSection
-                  title="行业解决方案"
-                  items={navigation.solutions}
-                  sectionKey="solutions"
-                />
-                <div className="md:mt-0">
-                  <AccordionSection
-                    title="服务支持"
-                    items={navigation.support}
-                    sectionKey="support"
-                  />
-                </div>
-              </div>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-6 xl:col-span-6">
+              <AccordionSection
+                title="基础云计算"
+                items={navigation.products}
+                sectionKey="products"
+              />
+              <AccordionSection
+                title="人工智能"
+                items={navigation.aiServices}
+                sectionKey="aiServices"
+              />
+              <AccordionSection
+                title="AI解决方案"
+                items={navigation.aiSolutions}
+                sectionKey="aiSolutions"
+              />
+              <AccordionSection
+                title="行业解决方案"
+                items={navigation.solutions}
+                sectionKey="solutions"
+              />
+              <AccordionSection
+                title="支持与服务"
+                items={navigation.support}
+                sectionKey="support"
+              />
+              <AccordionSection
+                title="关于我们"
+                items={navigation.about}
+                sectionKey="about"
+              />
             </div>
-            <div className="mt-10 xl:mt-0">
+            <div className="mt-10 xl:mt-0 xl:col-span-1">
               <div className="flex justify-center xl:justify-start">
                 <Image
                   src="/images/logos/logo.svg"
