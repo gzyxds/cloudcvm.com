@@ -197,7 +197,7 @@ function CMSHeroSection() {
 
           {/* 右侧展示区 - 现代化CMS仪表板预览 */}
           <div className="relative mt-8 lg:mt-0">
-            <div className="relative rounded-xl border border-slate-200 bg-white/80 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-slate-200/50">
+            <div className="relative rounded-xl border border-slate-200 bg-white transition-all duration-500">
               {/* 窗口控制栏 */}
               <div className="border-b border-slate-200 bg-slate-50/80 px-4 py-3 rounded-t-xl">
                 <div className="flex items-center justify-between">
@@ -295,9 +295,6 @@ function CMSHeroSection() {
               </div>
             </div>
 
-            {/* 装饰性光效 */}
-            <div className="absolute -top-4 -right-4 h-24 w-24 bg-[#0055ff]/10 blur-2xl"></div>
-            <div className="absolute -bottom-4 -left-4 h-16 w-16 bg-slate-400/10 blur-2xl"></div>
           </div>
         </div>
       </Container>
@@ -463,12 +460,10 @@ function CMSScenariosSection() {
           {scenarios.map((scenario, index) => (
             <div
               key={scenario.title}
-              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-colors duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* 选中时的背景渐变 */}
-              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
+
               {/* 内容区域 */}
               <div className="relative z-10">
                 {/* 标题和标签 */}
@@ -522,10 +517,6 @@ function CMSScenariosSection() {
                 )}
               </div>
 
-              {/* 悬停效果箭头 */}
-              <div className="absolute right-4 bottom-4 opacity-0 transition-all duration-300 group-hover:opacity-100">
-                <ArrowRightIcon className="h-4 w-4 text-[#0055ff]" />
-              </div>
             </div>
           ))}
         </div>
@@ -589,11 +580,8 @@ function CMSTechAdvantagesSection() {
           {techAdvantages.map((advantage, index) => (
             <div
               key={advantage.title}
-              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-8 transition-colors duration-300"
             >
-              {/* 背景渐变 */}
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
               <div className="relative z-10">
                 {/* 数据值 */}
                 <div className="mb-4 text-center text-4xl font-bold text-[#0055ff]">
@@ -610,9 +598,6 @@ function CMSTechAdvantagesSection() {
                   {advantage.description}
                 </div>
               </div>
-
-              {/* 底部装饰线 */}
-              <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#0055ff] transition-all duration-500 group-hover:w-full"></div>
             </div>
           ))}
         </div>
