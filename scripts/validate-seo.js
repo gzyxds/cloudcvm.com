@@ -75,17 +75,17 @@ function validateRobots() {
 }
 
 function validateRobotsContent(content, type) {
-  // 检查必要的指令
+  const normalizedContent = content.toLowerCase()
   const requiredDirectives = [
-    'User-agent:',
-    'Allow:',
-    'Disallow:',
-    'Sitemap:'
+    'user-agent:',
+    'allow:',
+    'disallow:',
+    'sitemap:'
   ]
 
   let isValid = true
   for (const directive of requiredDirectives) {
-    if (!content.includes(directive)) {
+    if (!normalizedContent.includes(directive)) {
       console.log(`❌ robots.txt (${type}) 缺少 ${directive} 指令`)
       isValid = false
     }

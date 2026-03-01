@@ -1,52 +1,21 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { Button } from '@/components/Button'
 import { Logo } from '@/components/Logo'
 import { SlimLayout } from '@/components/SlimLayout'
 
 export default function NotFound() {
-  const router = useRouter()
-  const [countdown, setCountdown] = useState(2)
-  const [shouldRedirect, setShouldRedirect] = useState(false)
-
-  // 处理重定向到首页
   useEffect(() => {
-    if (shouldRedirect) {
-      router.push('/')
-    }
-  }, [shouldRedirect, router])
-
-  // 处理.html结尾的URL和倒计时
-  useEffect(() => {
-    // 处理.html结尾的URL
     if (typeof window !== 'undefined') {
       const path = window.location.pathname
       if (path.endsWith('.html')) {
-        // 移除.html后缀并重定向
         const newPath = path.replace(/\.html$/, '')
         window.location.href = newPath
         return
       }
-    }
-
-    // 倒计时功能
-    const countdownInterval = setInterval(() => {
-      setCountdown((prevCount) => {
-        if (prevCount <= 1) {
-          clearInterval(countdownInterval)
-          setShouldRedirect(true) // 触发重定向而不是直接调用router.push
-          return 0
-        }
-        return prevCount - 1
-      })
-    }, 1000)
-
-    return () => {
-      clearInterval(countdownInterval)
     }
   }, [])
 
@@ -65,15 +34,8 @@ export default function NotFound() {
         <div className="w-full max-w-4xl mx-auto text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">抱歉，当前页面无法访问</h1>
           <p className="mt-6 text-lg text-gray-600">
-            当前页面已更新，正在返回首页...
+            当前页面不存在或已被移动
           </p>
-
-          <div className="mt-8 inline-flex items-center justify-center space-x-2 text-sm bg-blue-50 px-4 py-2 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-4 w-4 text-blue-600">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            <span><span className="font-medium text-blue-600">{countdown}</span> 秒后自动返回首页...</span>
-          </div>
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Button href="/" color="blue" className="px-8 py-3">

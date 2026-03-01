@@ -8,8 +8,8 @@ export const seoConfig = {
   site: {
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cloudcvm.com',
     name: '优刻云计算',
-    title: '优刻云计算_弹性云服务器_cvm轻量服务器_香港服务器_高防服务器_优刻云官网',
-    description: '【优刻云计算】 云计算云服务器基础设施服务提供商、为数百万中小微企业和开发者降低全球化上云成本、提供优刻云服务器、 弹性云服务器、CVM轻量云服务器、 云主机CVM 、 香港云服务器、云虚拟主机、免备案海外空间、服务器租用一站式服务',
+    title: '优刻云计算_弹性云服务器_cvm 轻量服务器_香港服务器_高防服务器_优刻云官网',
+    description: '【优刻云计算】云计算云服务器基础设施服务提供商、为数百万中小微企业和开发者降低全球化上云成本、提供优刻云服务器、弹性云服务器、CVM 轻量云服务器、云主机 CVM、香港云服务器、云虚拟主机、免备案海外空间、服务器租用一站式服务',
     keywords: [
       '优刻云计算',
       '优刻云服务器',
@@ -18,7 +18,7 @@ export const seoConfig = {
       '轻量云服务器',
       '优刻云数据中心',
       '香港免备案服务器',
-      '国内高防服务器'
+      '国内高防服务器',
     ],
   },
 
@@ -61,44 +61,6 @@ export const seoConfig = {
     creator: '@cloudcvm',
   },
 
-  // robots.txt 配置
-  robots: {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/', '/private/'],
-        crawlDelay: 1,
-      },
-      {
-        userAgent: 'Baiduspider',
-        crawlDelay: 2,
-      },
-      {
-        userAgent: 'Googlebot',
-        crawlDelay: 1,
-      },
-    ],
-    sitemap: '/sitemap.xml',
-  },
-
-  // sitemap.xml 配置
-  sitemap: {
-    changefreq: {
-      home: 'daily',
-      product: 'weekly',
-      about: 'monthly',
-      support: 'weekly',
-    },
-    priority: {
-      home: 1.0,
-      product: 0.9,
-      about: 0.8,
-      support: 0.7,
-      other: 0.6,
-    },
-  },
-
   // 页面路径配置
   pages: [
     { path: '/', priority: 1.0, changefreq: 'daily' },
@@ -125,6 +87,18 @@ export const seoConfig = {
     { path: '/paper', priority: 0.5, changefreq: 'monthly' },
     { path: '/demo', priority: 0.5, changefreq: 'monthly' },
     { path: '/new', priority: 0.6, changefreq: 'weekly' },
+    { path: '/banana', priority: 0.5, changefreq: 'monthly' },
+    { path: '/drama', priority: 0.5, changefreq: 'monthly' },
+    { path: '/jimeng', priority: 0.5, changefreq: 'monthly' },
+    { path: '/jmdraw', priority: 0.5, changefreq: 'monthly' },
+    { path: '/manju', priority: 0.5, changefreq: 'monthly' },
+    { path: '/model', priority: 0.5, changefreq: 'monthly' },
+    { path: '/music', priority: 0.5, changefreq: 'monthly' },
+    { path: '/ppt', priority: 0.5, changefreq: 'monthly' },
+    { path: '/resume', priority: 0.5, changefreq: 'monthly' },
+    { path: '/sora', priority: 0.5, changefreq: 'monthly' },
+    { path: '/videoclip', priority: 0.5, changefreq: 'monthly' },
+    { path: '/xhs', priority: 0.5, changefreq: 'monthly' },
   ],
 }
 

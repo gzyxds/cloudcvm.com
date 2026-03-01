@@ -4,21 +4,59 @@ import clsx from 'clsx'
 import '@/styles/tailwind.css'
 import Top from '@/components/common/Top'
 import Analytics from '@/components/Analytics'
+import { seoConfig } from '@/config/seo.config'
 
+/**
+ * 根据配置文件生成 SEO 元数据
+ * 使用集中配置管理，确保全站 SEO 一致性
+ */
 export const metadata: Metadata = {
+  metadataBase: new URL(seoConfig.site.url),
   title: {
-    template: '%s_优刻云计算',
-    default:
-      '优刻云计算_弹性云服务器_cvm轻量服务器_香港服务器_高防服务器_优刻云官网',
+    template: '%s_' + seoConfig.site.name,
+    default: seoConfig.site.title,
   },
-  description:
-    '【优刻云计算】 云计算云服务器基础设施服务提供商、为数百万中小微企业和开发者降低全球化上云成本、提供优刻云服务器、 弹性云服务器、CVM轻量云服务器、 云主机CVM 、 香港云服务器、云虚拟主机、免备案海外空间、服务器租用一站式服务',
+  description: seoConfig.site.description,
+  keywords: seoConfig.site.keywords,
+  alternates: {
+    canonical: '/',
+  },
+  authors: [{ name: seoConfig.site.name }],
+  creator: seoConfig.site.name,
+  publisher: seoConfig.site.name,
+  verification: seoConfig.verification,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    ...seoConfig.openGraph,
+    url: seoConfig.site.url,
+    siteName: seoConfig.site.name,
+    title: seoConfig.site.title,
+    description: seoConfig.site.description,
+  },
+  twitter: {
+    ...seoConfig.twitter,
+    title: seoConfig.site.title,
+    description: seoConfig.site.description,
+  },
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
       { url: '/images/logos/icon.svg', type: 'image/svg+xml' },
     ],
-    shortcut: '/images/logos/logo.svg',
-    apple: '/images/logos/logo.svg',
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/favicon.ico', sizes: '180x180' },
+    ],
   },
 }
 
@@ -37,7 +75,40 @@ export default function RootLayout({
       <head>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=device-width, initial-scale=1"
+        />
+        {/* 搜索引擎验证 */}
+        {seoConfig.verification.google && (
+          <meta
+            name="google-site-verification"
+            content={seoConfig.verification.google}
+          />
+        )}
+        {seoConfig.verification.baidu && (
+          <meta
+            name="baidu-site-verification"
+            content={seoConfig.verification.baidu}
+          />
+        )}
+        {/* JSON-LD 结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: seoConfig.site.name,
+              url: seoConfig.site.url,
+              logo: `${seoConfig.site.url}/images/logos/logo.svg`,
+              description: seoConfig.site.description,
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'customer service',
+                availableLanguage: 'Chinese',
+              },
+              sameAs: [seoConfig.site.url],
+            }),
+          }}
         />
       </head>
       <body className="flex h-full flex-col">

@@ -10,12 +10,16 @@ export function generateSitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
   // 使用配置文件中的页面路径
-  const routes = seoConfig.pages.map((page) => ({
-    url: `${baseUrl}${page.path}`,
-    lastModified,
-    changeFrequency: page.changefreq as 'daily' | 'weekly' | 'monthly',
-    priority: page.priority,
-  }))
+  const routes = seoConfig.pages.map((page) => {
+    const normalizedPath =
+      page.path === '/' ? '/' : `${page.path.replace(/\/$/, '')}/`
+    return {
+      url: `${baseUrl}${normalizedPath}`,
+      lastModified,
+      changeFrequency: page.changefreq as 'daily' | 'weekly' | 'monthly',
+      priority: page.priority,
+    }
+  })
 
   return routes
 }
