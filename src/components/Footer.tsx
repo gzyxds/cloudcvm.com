@@ -56,6 +56,9 @@ const navigation = {
     { name: '艺创AI', href: 'https://www.urlnet.cn' },
     { name: 'AI系统源码', href: 'https://www.artaigc.cn' },
     { name: 'PaYphp', href: 'https://www.payphp.cn' },
+    { name: '论文创作', href: 'https://paper.gmlart.cn' },
+    { name: '智言AI', href: 'https://buidai.com/' },
+    { name: '智言API', href: 'https://api.gmlart.cn/' },
     { name: '数字分身', href: 'https://v.cnai.art' },
     { name: '企业知识库', href: 'https://www.cnai.art' },
     { name: '聊天绘画', href: '/' },
@@ -299,7 +302,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* 友情链接区域 */}
+          {/* 区域 */}
           <div className="mt-6 border-t border-gray-900/10 pt-6 md:flex md:items-center md:justify-between dark:border-white/10">
             {/* 桌面端：标题和链接并排显示，与底部版权信息保持一致的布局 */}
             <div className="hidden md:flex md:items-center md:gap-x-6">

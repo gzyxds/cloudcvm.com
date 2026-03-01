@@ -79,7 +79,7 @@ const backupSteps = [
   },
   {
     step: 2,
-    title: '主题云审核',
+    title: '优刻云审核',
     description: '专业备案专员1个工作日内初审',
   },
   {
@@ -143,7 +143,7 @@ function HeroBanner() {
             全方位服务保障
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
-            主题云专业的服务工程师团队为您提供 <span className="font-semibold text-[#0055ff]">7x24h</span> 云端护航服务。
+            优刻云专业的服务工程师团队为您提供 <span className="font-semibold text-[#0055ff]">7x24h</span> 云端护航服务。
             无论是技术难题还是业务咨询，我们都随时待命，助您轻松上云。
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -287,7 +287,7 @@ function BackupProcessSection() {
             免费备案
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            在中华人民共和国境内提供互联网信息服务，应当依法履行备案手续，主题云可为您免费提供备案服务
+            在中华人民共和国境内提供互联网信息服务，应当依法履行备案手续，优刻云可为您免费提供备案服务
           </p>
         </div>
         <ProcessSteps steps={backupSteps} />
@@ -308,7 +308,7 @@ function RefundProcessSection() {
             无忧退款
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            如果您购买主题云产品后有任何退订需求，您可以随时在官网产品中心提交工单发起退订申请
+            如果您购买优刻云产品后有任何退订需求，您可以随时在官网产品中心提交工单发起退订申请
           </p>
         </div>
         <ProcessSteps steps={refundSteps} />

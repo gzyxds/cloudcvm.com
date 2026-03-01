@@ -121,40 +121,35 @@ function HeroBanner() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative lg:block"
           >
-            <div className="relative rounded-xl border border-slate-200 bg-white/80 p-6 shadow-2xl backdrop-blur-sm">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-[#0055ff]">
-                    <ChatBubbleLeftRightIcon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900">在线客服</div>
-                    <div className="text-xs text-slate-500">Typical reply time: &lt; 3m</div>
-                  </div>
+            <div className="relative rounded-xl border border-slate-200 bg-white/80 p-6 backdrop-blur-sm">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-[#0055ff]">
+                  <ChatBubbleLeftRightIcon className="h-5 w-5" />
                 </div>
-                <div className="flex items-center gap-2 rounded-full bg-green-50 px-2.5 py-1 text-xs font-medium text-green-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
-                  Online
+                <div>
+                  <div className="text-sm font-semibold text-slate-900">全渠道客服</div>
+                  <div className="text-xs text-slate-500">服务响应稳定可靠</div>
                 </div>
               </div>
-              <div className="mt-6 space-y-4">
-                <div className="flex gap-3">
-                  <div className="h-8 w-8 rounded-full bg-slate-100" />
-                  <div className="rounded-xl rounded-tl-none bg-slate-100 px-4 py-2 text-sm text-slate-600">
-                    您好，我想咨询一下云服务器的价格。
-                  </div>
+
+              <div className="mt-5 rounded-lg border border-slate-100 bg-white px-4 py-3 text-sm text-slate-600">
+                售前咨询、售后支持与技术指导一站式覆盖，帮助您快速上云。
+              </div>
+
+              <div className="mt-5 space-y-3 text-sm text-slate-600">
+                <div className="flex items-center justify-between">
+                  <span>平均响应</span>
+                  <span className="rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-[#0055ff]">
+                    &lt; 3 分钟
+                  </span>
                 </div>
-                <div className="flex flex-row-reverse gap-3">
-                  <div className="h-8 w-8 rounded-full bg-[#0055ff]" />
-                  <div className="rounded-xl rounded-tr-none bg-[#0055ff] px-4 py-2 text-sm text-white shadow-md shadow-blue-500/20">
-                    您好！很高兴为您服务。我们提供多种配置的云服务器，目前新用户还有特惠活动...
-                  </div>
+                <div className="flex items-center justify-between">
+                  <span>服务时间</span>
+                  <span className="text-slate-900 font-medium">7×24 小时</span>
                 </div>
-                <div className="flex flex-row-reverse gap-3">
-                  <div className="h-8 w-8 rounded-full bg-[#0055ff] opacity-0" />
-                  <div className="rounded-xl rounded-tr-none bg-[#0055ff] px-4 py-2 text-sm text-white shadow-md shadow-blue-500/20">
-                    请问您主要用于什么业务场景呢？我可以为您推荐最适合的配置。
-                  </div>
+                <div className="flex items-center justify-between">
+                  <span>支持方式</span>
+                  <span className="text-slate-900 font-medium">工单/在线/电话</span>
                 </div>
               </div>
             </div>
