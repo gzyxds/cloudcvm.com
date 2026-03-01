@@ -119,18 +119,20 @@ const floatingCards = [
   {
     id: 1,
     type: 'feature',
-    title: '新人首单直降',
-    description: 'COS标准存储 低至1元',
+    title: '云服务器CVM',
+    description: '提供安全可靠的弹性计算服务',
     icon: CreditCardIcon,
-    style: 'modern'
+    style: 'modern',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 2,
     type: 'feature',
-    title: '领券有省',
-    description: '领大额礼包 新购续费不用愁',
+    title: 'AI 专题活动',
+    description: '大模型云协同，快速实现AI应用​',
     icon: DevicePhoneMobileIcon,
-    style: 'rounded'
+    style: 'rounded',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 3,
@@ -138,7 +140,8 @@ const floatingCards = [
     title: 'CVM蜂驰型实例',
     description: '算力成本最大降幅 超45%',
     icon: QrCodeIcon,
-    style: 'gradient'
+    style: 'gradient',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 4,
@@ -146,7 +149,8 @@ const floatingCards = [
     title: '会员续费折上折',
     description: '续费折上9.5折起',
     icon: UserGroupIcon,
-    style: 'extended'
+    style: 'extended',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   }
 ]
 
@@ -442,23 +446,23 @@ const Carousel = memo(function Carousel({
 
       {/* 底部悬浮卡片 - 响应式设计 - 100%复刻参考图布局 (左1右3) */}
       <div className="absolute bottom-0 left-0 right-0 z-20 transform translate-y-1/2">
-        <Container className="hidden lg:flex justify-center items-stretch gap-6 min-h-[120px] w-full">
+        <Container className="hidden lg:flex justify-center items-stretch gap-6 min-h-[96px] w-full">
 
           {/* 左侧大卡片 - 云服务器 */}
-          <div className="relative w-[480px] h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-xl px-8 py-5 shadow-sm overflow-hidden flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
+          <div className="relative w-[480px] h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-lg px-7 py-4 shadow-sm overflow-hidden flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
              {/* 背景装饰 - 调整为更柔和的渐变光晕 */}
              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-             <div className="flex items-center gap-3 mb-3 relative z-10">
-               <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-sans">
-                 云服务器 <span className="text-red-500">领万元津贴</span>
+             <div className="flex items-center gap-3 mb-2 relative z-10">
+               <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight font-sans">
+                 云智特惠 <span className="text-red-500">上云加速季</span>
                  <span className="text-slate-400 text-xl not-italic ml-1">›</span>
                </h3>
              </div>
 
-             <div className="grid grid-cols-3 gap-y-3 gap-x-6 relative z-10">
-                {['新客首购1元', '场景组合2.8折', '云计算热销榜', '高释270元起', 'AI新购1折抢', '大模型培训9折'].map((item, idx) => (
-                  <a key={idx} href="#" className="flex items-center text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors group/link">
+             <div className="grid grid-cols-3 gap-y-2 gap-x-6 relative z-10">
+                {['新老特惠专场', '场景组合2.8折', '云计算热销榜', '高释270元起', 'AI新购1折抢', '大模型培训9折'].map((item, idx) => (
+                  <a key={idx} href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=110" className="flex items-center text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors group/link">
                     {item}
                     <span className="ml-1 text-slate-400 group-hover/link:translate-x-0.5 transition-transform">›</span>
                   </a>
@@ -467,24 +471,24 @@ const Carousel = memo(function Carousel({
           </div>
 
           {/* 右侧三个特性卡片 - 合并为一个容器，使用 Flex 布局、竖分割线和毛玻璃效果 */}
-          <div className="flex-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-xl flex items-stretch transition-shadow shadow-sm hover:shadow-xl duration-300">
+          <div className="flex-1 bg-[linear-gradient(rgb(0,82,217)_0%,rgba(0,82,217,0.85)_100%)] border border-[#0052d9]/30 rounded-lg flex items-stretch transition-shadow shadow-sm hover:shadow-xl duration-300">
             {floatingCards.slice(0, 3).map((card, index) => (
-              <div key={card.id} className="relative flex-1 px-8 py-5 flex flex-col justify-center items-start h-full hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer gap-3 first:rounded-l-xl last:rounded-r-xl">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg group-hover:scale-105 transition-transform duration-300">
+              <a key={card.id} href={card.href} className="relative flex-1 px-7 py-4 flex flex-col justify-center items-start h-full transition-colors group cursor-pointer gap-2.5 first:rounded-l-lg last:rounded-r-lg">
+                <div className="flex items-center gap-3.5">
+                  <div className="flex h-11 w-11 items-center justify-center border border-white/20 bg-white/10 rounded-lg group-hover:scale-105 transition-transform duration-300">
                     {React.createElement(card.icon, {
-                      className: "w-6 h-6 text-primary-500 transition-colors"
+                      className: "w-5 h-5 text-white transition-colors"
                     })}
                   </div>
-                  <h4 className="font-bold text-slate-900 dark:text-white text-lg line-clamp-1 group-hover:text-primary-500 transition-colors">{card.title}</h4>
+                  <h4 className="font-bold text-white text-base line-clamp-1 group-hover:text-white/90 transition-colors">{card.title}</h4>
                 </div>
-                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">{card.description}</p>
+                <p className="text-sm text-white/80 line-clamp-2 leading-relaxed">{card.description}</p>
 
                 {/* 自定义短分割线 - 仅在非最后一个元素显示 */}
                 {index < 2 && (
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-12 w-px bg-slate-200 dark:bg-slate-800"></div>
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/20"></div>
                 )}
-              </div>
+              </a>
             ))}
           </div>
         </Container>
@@ -493,8 +497,9 @@ const Carousel = memo(function Carousel({
         <div className="lg:hidden px-4 mt-10">
           <div className="grid grid-cols-2 gap-2 pb-3">
             {floatingCards.map((card) => (
-              <div
+              <a
                 key={card.id}
+                href={card.href}
                 className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 transition-colors duration-200 cursor-pointer rounded-xl overflow-hidden shadow-sm"
               >
                 <div className="p-3">
@@ -514,7 +519,7 @@ const Carousel = memo(function Carousel({
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
