@@ -269,11 +269,11 @@ export function AIscene() {
   }
 
   return (
-    <section className="w-full py-12 sm:py-24 font-sans bg-white dark:bg-gray-900">
+    <section className="w-full py-12 md:py-20 lg:py-24 font-sans bg-white dark:bg-gray-900">
       <Container>
         {/* 顶部标题 */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-5 tracking-tight">
             全场景{' '}
             <span
               className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#2055FA] via-[#1B52F8] to-[#A07CFE] pb-1"
@@ -288,7 +288,7 @@ export function AIscene() {
         </div>
 
         {/* 主体卡片容器 */}
-        <div className="relative rounded-3xl overflow-hidden border border-white/50 dark:border-gray-700/50 shadow-2xl shadow-gray-200/50 dark:shadow-none min-h-[600px] flex flex-col lg:flex-row transition-all duration-500 backdrop-blur-xl bg-white/40 dark:bg-gray-800/40">
+        <div className="relative rounded-2xl overflow-hidden border border-white/50 dark:border-gray-700/50 shadow-2xl shadow-gray-200/50 dark:shadow-none min-h-[600px] flex flex-col lg:flex-row transition-all duration-500 backdrop-blur-xl bg-white/40 dark:bg-gray-800/40">
           {/* 动态背景装饰 */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -311,15 +311,15 @@ export function AIscene() {
           {/* 导航区域 */}
           <aside className="relative z-10 w-full lg:w-1/4 bg-white/30 dark:bg-gray-800/30 border-b lg:border-b-0 lg:border-r border-white/40 dark:border-gray-700/40 backdrop-blur-md flex flex-col">
             {/* 移动端横向滚动/桌面端垂直列表 */}
-            <div className="flex-1 overflow-x-auto lg:overflow-y-auto no-scrollbar">
-              <div className="flex lg:flex-col p-2 lg:p-4 gap-2">
+            <div className="overflow-x-auto lg:overflow-y-auto no-scrollbar">
+              <div className="flex lg:flex-col p-2 sm:p-3 lg:p-4 gap-1.5 sm:gap-2 min-w-max lg:min-w-0">
                 {tabs.map((t, idx) => (
                   <button
                     key={t.name}
                     onClick={() => setActive(idx)}
                     onMouseEnter={() => setActive(idx)}
                     className={clsx(
-                      'group relative flex items-center px-6 py-4 lg:py-5 rounded-xl transition-all duration-300 min-w-[140px] lg:min-w-0 text-left outline-none',
+                      'group relative flex items-center px-4 py-3 sm:px-5 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl transition-all duration-300 min-w-[120px] sm:min-w-[140px] lg:min-w-0 text-left outline-none',
                       active === idx
                         ? 'bg-white dark:bg-gray-800 text-[#0055ff] dark:text-white ring-1 ring-slate-200 dark:ring-gray-700'
                         : 'text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-gray-200 hover:bg-white/60 dark:hover:bg-gray-800/60'
@@ -328,20 +328,20 @@ export function AIscene() {
                     {/* 激活指示条 */}
                     <div
                       className={clsx(
-                        'absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-[#0055ff] rounded-r-full transition-all duration-300',
+                        'absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 sm:h-8 bg-[#0055ff] rounded-r-full transition-all duration-300',
                         active === idx ? 'opacity-100' : 'opacity-0'
                       )}
                     ></div>
 
                     <t.icon
                       className={clsx(
-                        'h-6 w-6 mr-4 transition-colors shrink-0',
+                        'h-5 w-5 sm:h-6 sm:w-6 mr-3 sm:mr-4 transition-colors shrink-0',
                         active === idx
                           ? 'text-[#0055ff] dark:text-blue-400'
                           : 'text-slate-400 group-hover:text-slate-600 dark:text-gray-500 dark:group-hover:text-gray-300'
                       )}
                     />
-                    <span className="text-lg font-medium truncate">
+                    <span className="text-sm sm:text-base lg:text-lg font-medium truncate">
                       {t.name}
                     </span>
 
@@ -361,7 +361,7 @@ export function AIscene() {
           </aside>
 
           {/* 内容面板 */}
-          <section className="relative z-10 flex-1 p-6 sm:p-8 lg:p-12 flex flex-col overflow-hidden">
+          <section className="relative z-10 flex-1 p-4 sm:p-6 lg:p-8 flex flex-col overflow-hidden">
              <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -372,42 +372,42 @@ export function AIscene() {
                 className="flex flex-col h-full"
               >
                 {/* 头部信息 */}
-                <div className="mb-8">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
                     {currentTab.title}
                   </h3>
-                  <div className="h-1 w-20 bg-gradient-to-r from-[#0055ff] to-blue-400 rounded-full"></div>
+                  <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#0055ff] to-blue-400 rounded-full"></div>
                 </div>
 
                 {/* 功能网格 */}
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 content-start mb-8">
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 content-start mb-6 sm:mb-8">
                   {currentTab.features.map((f, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className="group flex gap-4 p-4 rounded-2xl bg-white dark:bg-gray-800 border border-slate-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
+                      className="group flex gap-3 p-4 rounded-lg sm:rounded-xl bg-white dark:bg-gray-800 border border-slate-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
                     >
                       <div className="shrink-0">
-                        <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-[#0055ff] dark:text-blue-400 group-hover:bg-[#0055ff] group-hover:text-white transition-all duration-300">
-                          <f.icon className="h-5 w-5" />
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-[#0055ff] dark:text-blue-400 group-hover:bg-[#0055ff] group-hover:text-white transition-all duration-300">
+                          <f.icon className="h-4 w-4 sm:h-5 sm:w-5" />
                         </div>
                       </div>
-                      <div className="flex-1">
-                        <h4 className="font-bold text-lg mb-1 text-slate-900 dark:text-white group-hover:text-[#0055ff] dark:group-hover:text-blue-400 transition-colors">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-sm sm:text-base lg:text-lg mb-1 text-slate-900 dark:text-white group-hover:text-[#0055ff] dark:group-hover:text-blue-400 transition-colors">
                           {f.title}
                         </h4>
-                        <p className="text-sm text-slate-500 dark:text-gray-400 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-slate-500 dark:text-gray-400 leading-relaxed line-clamp-2">
                           {f.desc}
                         </p>
                       </div>
-                      <div className="shrink-0">
+                      <div className="shrink-0 self-center">
                         <a
                           href="https://cloud.buidai.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3 py-1 text-xs font-medium text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-[#0055ff] hover:text-white rounded-lg transition-all"
+                          className="px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-medium text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-[#0055ff] hover:text-white rounded-md sm:rounded-lg transition-all whitespace-nowrap"
                         >
                           立即创作
                         </a>
@@ -417,10 +417,10 @@ export function AIscene() {
                 </div>
 
                 {/* 底部操作栏 */}
-                <div className="mt-auto pt-6 border-t border-slate-100 dark:border-gray-800 flex flex-wrap gap-4">
+                <div className="mt-auto pt-4 sm:pt-6 border-t border-slate-100 dark:border-gray-800 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                   <button
                     onClick={() => openQrModal('solution')}
-                    className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-slate-900 dark:text-white bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-gray-700 hover:border-slate-300 dark:hover:border-gray-600"
+                    className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-900 dark:text-white bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg sm:rounded-xl transition-all hover:bg-slate-50 dark:hover:bg-gray-700 hover:border-slate-300 dark:hover:border-gray-600 flex-1 sm:flex-none"
                   >
                     了解方案详情
                     <ArrowRightIcon className="ml-2 h-4 w-4" />
@@ -428,7 +428,7 @@ export function AIscene() {
 
                   <button
                     onClick={() => openQrModal('consult')}
-                    className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-slate-600 dark:text-gray-300 bg-transparent hover:bg-slate-50 dark:hover:bg-gray-800 border border-transparent hover:border-slate-200 dark:hover:border-gray-700 rounded-lg transition-all"
+                    className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-600 dark:text-gray-300 bg-transparent hover:bg-slate-50 dark:hover:bg-gray-800 border border-transparent hover:border-slate-200 dark:hover:border-gray-700 rounded-lg sm:rounded-xl transition-all flex-1 sm:flex-none"
                   >
                     联系售前咨询
                     <ChatBubbleLeftRightIcon className="ml-2 h-4 w-4" />
