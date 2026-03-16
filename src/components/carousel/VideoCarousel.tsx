@@ -30,22 +30,8 @@ export interface CarouselProps {
   autoPlay?: boolean
   interval?: number
   heightClass?: string
-  showIndicators?: boolean
   slides?: CarouselSlide[]
   className?: string
-  showProgress?: boolean
-  showPlayButton?: boolean
-  showNavigation?: boolean
-  height?: {
-    base?: string
-    md?: string
-    lg?: string
-  } | string
-  theme?: 'light' | 'dark'
-  textModeButton?: boolean
-  showOverlay?: boolean
-  customSlides?: any[]
-  forceImageMode?: boolean
 }
 
 /**
@@ -87,10 +73,10 @@ const defaultSlides: CarouselSlide[] = [
   {
     id: 3,
     order: 3,
-    title: 'AI 算力平台',
-    subtitle: 'GPU 云服务器',
-    description: '提供强大 GPU 算力的弹性计算服务，具有超强并行计算能力，专为深度学习训练、科学计算、图形渲染等场景优化',
-    imagePath: '/images/screenshots/carousel -7.png',
+    title: 'OpenClaw',
+    subtitle: 'OpenClaw 云端一键秒级部署',
+    description: '一键部署OpenClaw(Clawdbot/Moltbot),7X24小时在线，随时响应，企业微信、QQ、钉钉、飞书四大国内主流IMAPP已全面支持!',
+    imagePath: '/images/screenshots/OpenClaw.jpg',
     imageAlt: 'GPU云服务器平台',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -166,7 +152,9 @@ const styles = {
   titleButton: 'group relative w-full flex items-center justify-start text-left transition-all duration-300 cursor-pointer py-5 pl-0 pr-2 rounded-none text-[15px] leading-[1.6] text-slate-600 font-sans',
   titleButtonActive: 'text-primary-500 font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
-  indicator: 'h-2 transition-all duration-300'
+  indicator: 'h-2 transition-all duration-300',
+  primaryButton: 'btn px-6 py-2.5 lg:px-7 lg:py-3 text-sm bg-primary-500 hover:bg-primary-600 text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium',
+  secondaryButton: 'btn px-6 py-2.5 lg:px-7 lg:py-3 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center text-sm'
 }
 
 /**
@@ -213,12 +201,11 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
   return (
     <button
       onClick={() => onTitleClick(index)}
-      className={`${styles.titleButton} ${isActive ? styles.titleButtonActive : ''}`}
+      className={`${styles.titleButton} ${isActive ? styles.titleButtonActive : ''} font-sans`}
       aria-label={`切换到 ${slideItem.title}`}
       style={{
         fontVariant: 'tabular-nums',
-        fontFeatureSettings: '"tnum"',
-        fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
+        fontFeatureSettings: '"tnum"'
       }}
     >
       {/* 文本内容 - Flex item - 右对齐 */}
@@ -253,11 +240,19 @@ TitleButton.displayName = 'TitleButton'
  * 优化后的轮播组件
  * 风格：Bento Linear (直角、边框、简约)
  */
+/**
+ * @name Carousel
+ * @description 一个功能丰富的、支持触摸滑动和自动播放的轮播组件。
+ * @param {boolean} [autoPlay=true] - 是否自动播放。
+ * @param {number} [interval=8000] - 自动播放的间隔时间（毫秒）。
+ * @param {string} [heightClass='h-[400px] sm:h-[500px] lg:h-[600px]'] - 定义轮播组件高度的 Tailwind CSS 类。
+ * @param {CarouselSlide[]} [slides] - 自定义轮播数据。如果未提供，则使用默认数据。
+ * @param {string} [className] - 应用于根元素的额外 CSS 类。
+ */
 const Carousel = memo(function Carousel({
   autoPlay = true,
   interval = 8000,
   heightClass = 'h-[400px] sm:h-[500px] lg:h-[600px]',
-  showIndicators = true,
   slides: propSlides,
   className
 }: CarouselProps) {
@@ -265,6 +260,7 @@ const Carousel = memo(function Carousel({
   const [active, setActive] = useState(0)
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const resumePlayTimerRef = useRef<NodeJS.Timeout | null>(null) // 用于恢复播放的定时器
   const [progressKey, setProgressKey] = useState(0) // 用于重置进度条动画
 
   // 触摸滑动相关状态
@@ -274,7 +270,10 @@ const Carousel = memo(function Carousel({
   // 最小滑动距离（像素）
   const minSwipeDistance = 50
 
-  // 合并的导航函数
+  /**
+   * 导航到指定的轮播项。
+   * @param {'next' | 'prev' | number} direction - 导航方向或目标索引。
+   */
   const navigate = useCallback((direction: 'next' | 'prev' | number) => {
     setActive(prev => {
       const total = slides.length
@@ -289,12 +288,34 @@ const Carousel = memo(function Carousel({
     setProgressKey(prev => prev + 1)
   }, [slides.length])
 
-  // 标题点击处理 - 优化后
+  /**
+   * 处理标题按钮的点击事件。
+   * 点击后会切换到对应的轮播项，并暂时停止自动播放，3秒后恢复。
+   * @param {number} index - 被点击标题的索引。
+   */
   const handleTitleClick = useCallback((index: number) => {
     navigate(index)
     setIsPlaying(false)
-    setTimeout(() => setIsPlaying(autoPlay), 3000)
+
+    if (resumePlayTimerRef.current) {
+      clearTimeout(resumePlayTimerRef.current)
+    }
+
+    resumePlayTimerRef.current = setTimeout(() => {
+      if (autoPlay) {
+        setIsPlaying(true)
+      }
+    }, 3000)
   }, [navigate, autoPlay])
+
+  // 组件卸载时清除定时器
+  useEffect(() => {
+    return () => {
+      if (resumePlayTimerRef.current) {
+        clearTimeout(resumePlayTimerRef.current)
+      }
+    }
+  }, [])
 
   // 合并的定时器管理
   useEffect(() => {
@@ -319,16 +340,26 @@ const Carousel = memo(function Carousel({
   const handleMouseEnter = useCallback(() => setIsPlaying(false), [])
   const handleMouseLeave = useCallback(() => setIsPlaying(autoPlay), [autoPlay])
 
-  // 触摸事件处理函数 - 优化性能
+  /**
+   * 触摸开始事件处理。
+   * @param {React.TouchEvent} e - 触摸事件对象。
+   */
   const onTouchStart = useCallback((e: React.TouchEvent) => {
     setTouchEnd(null)
     setTouchStart(e.targetTouches[0].clientX)
   }, [])
 
+  /**
+   * 触摸移动事件处理。
+   * @param {React.TouchEvent} e - 触摸事件对象。
+   */
   const onTouchMove = useCallback((e: React.TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX)
   }, [])
 
+  /**
+   * 触摸结束事件处理，判断滑动距离并执行导航。
+   */
   const onTouchEnd = useCallback(() => {
     if (!touchStart || !touchEnd) return
 
@@ -417,7 +448,7 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.primaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 text-sm sm:text-base bg-primary-500 hover:bg-primary-600 text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium"
+                  className={styles.primaryButton}
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -429,7 +460,7 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.secondaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn px-8 py-3 sm:px-6 lg:px-8 lg:py-4 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center text-sm sm:text-base"
+                  className={styles.secondaryButton}
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
