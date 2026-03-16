@@ -494,29 +494,29 @@ const Carousel = memo(function Carousel({
         <Container className="hidden lg:flex justify-center items-stretch gap-6 min-h-[96px] w-full">
 
           {/* 左侧大卡片 - 云服务器 */}
-          <div className="relative w-[480px] h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-lg px-7 py-4 shadow-sm overflow-hidden flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
+          <div className="relative w-[480px] h-full bg-white/80 backdrop-blur-xl border border-[#E2E8F0] rounded-sm px-7 py-4 shadow-sm overflow-hidden flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
              {/* 背景装饰 - 调整为更柔和的渐变光晕 */}
-             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
              <div className="flex items-center gap-3 mb-2 relative z-10">
-               <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight font-sans">
-                 云智特惠 <span className="text-red-500">上云加速季</span>
-                 <span className="text-slate-400 text-xl not-italic ml-1">›</span>
+               <h3 className="text-xl font-bold text-[#0F172A] tracking-tight font-sans">
+                 云智特惠 <span className="text-[#EF4444]">上云加速季</span>
+                 <span className="text-[#94a3b8] text-xl not-italic ml-1">›</span>
                </h3>
              </div>
 
              <div className="grid grid-cols-3 gap-y-2 gap-x-6 relative z-10">
                 {['新老特惠专场', '场景组合2.8折', '云计算热销榜', '高释270元起', 'AI新购1折抢', '大模型培训9折'].map((item, idx) => (
-                  <a key={idx} href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=110" className="flex items-center text-sm font-medium text-slate-600 hover:text-primary-500 transition-colors group/link">
+                  <a key={idx} href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=110" className="flex items-center text-sm font-medium text-[#64748B] hover:text-[#0055ff] transition-colors group/link">
                     {item}
-                    <span className="ml-1 text-slate-400 group-hover/link:translate-x-0.5 transition-transform">›</span>
+                    <span className="ml-1 text-[#94a3b8] group-hover/link:translate-x-0.5 transition-transform">›</span>
                   </a>
                 ))}
              </div>
           </div>
 
           {/* 右侧三个特性卡片 - 合并为一个容器，使用 Flex 布局、竖分割线和毛玻璃效果 */}
-          <div className="flex-1 bg-[linear-gradient(rgb(0,82,217)_0%,rgba(0,82,217,0.85)_100%)] border border-[#0052d9]/30 rounded-lg flex items-stretch transition-shadow shadow-sm hover:shadow-xl duration-300">
+          <div className="flex-1 bg-[#0055ff]/85 backdrop-blur-xl border border-white/20 rounded-lg flex items-stretch transition-shadow shadow-sm hover:shadow-xl duration-300">
             {floatingCards.slice(0, 3).map((card, index) => (
               <a key={card.id} href={card.href} className="relative flex-1 px-7 py-4 flex flex-col justify-center items-start h-full transition-colors group cursor-pointer gap-2.5 first:rounded-l-lg last:rounded-r-lg">
                 <div className="flex items-center gap-3.5">
@@ -545,21 +545,21 @@ const Carousel = memo(function Carousel({
               <a
                 key={card.id}
                 href={card.href}
-                className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 transition-colors duration-200 cursor-pointer rounded-xl overflow-hidden shadow-sm"
+                className="bg-white/80 backdrop-blur-xl border border-[#E2E8F0] transition-colors duration-200 cursor-pointer rounded-sm overflow-hidden shadow-sm"
               >
                 <div className="p-3">
                   <div className="flex flex-col items-start text-left gap-1.5">
                     <div className="flex items-center gap-1.5 w-full">
-                      <div className="flex h-8 w-8 items-center justify-center border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 rounded-lg flex-shrink-0">
+                      <div className="flex h-8 w-8 items-center justify-center border border-[#E2E8F0] bg-white rounded-sm flex-shrink-0">
                         {React.createElement(card.icon, {
-                          className: `text-primary-500 w-4 h-4`
+                          className: `text-[#0055ff] w-4 h-4`
                         })}
                       </div>
-                      <h3 className="font-bold text-slate-900 dark:text-white text-xs line-clamp-1">
+                      <h3 className="font-bold text-[#0F172A] text-xs line-clamp-1">
                         {card.title}
                       </h3>
                     </div>
-                    <p className="text-slate-500 dark:text-slate-400 text-[10px] line-clamp-2 leading-relaxed">
+                    <p className="text-[#64748B] text-[10px] line-clamp-2 leading-relaxed">
                       {card.description}
                     </p>
                   </div>
