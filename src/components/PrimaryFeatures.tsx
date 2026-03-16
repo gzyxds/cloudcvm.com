@@ -446,14 +446,15 @@ export function PrimaryFeatures() {
         </div>
 
         <div className="flex justify-start mb-8 sm:mb-12">
-          <div className="inline-flex border border-[#E2E8F0] bg-[#F8FAFC] overflow-x-auto no-scrollbar max-w-full rounded-sm">
+          <div className="inline-flex border border-[#E2E8F0] bg-[#F8FAFC] w-full rounded-sm">
             {FEATURES.map((f, i) => (
               <button
                 key={f.id}
                 data-index={i}
                 onClick={handleTabClick}
+                onMouseEnter={() => handleHover(i)}
                 className={clsx(
-                  "flex items-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-2 sm:py-3 text-[14px] sm:text-[16px] font-medium transition-all duration-300 whitespace-nowrap border-r border-[#E2E8F0] last:border-r-0 rounded-none",
+                  "flex items-center justify-center gap-2 sm:gap-2.5 px-4 sm:px-6 py-2 sm:py-3 text-[14px] sm:text-[16px] font-medium transition-all duration-300 whitespace-nowrap border-r border-[#E2E8F0] last:border-r-0 rounded-none flex-1",
                   activeIndex === i
                     ? "bg-white shadow-sm"
                     : "text-[#64748B] hover:text-[#0F172A] hover:bg-white/50"

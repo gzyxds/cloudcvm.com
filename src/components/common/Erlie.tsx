@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
 import { Plus, Minus, Users, Cpu, GraduationCap, Headphones, Megaphone } from 'lucide-react'
@@ -133,7 +133,7 @@ const CATEGORIES: SceneCategory[] = [
 
 function ImagePreview({ imageUrl, title }: { imageUrl: string, title: string }) {
   return (
-    <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[560px] rounded-2xl overflow-hidden border border-slate-100 bg-slate-50">
+    <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[560px] rounded-sm overflow-hidden border border-[#E2E8F0] bg-gradient-to-b from-[#F0F5FF] to-white">
       {/* 骨架屏/背景色 */}
       <div className="absolute inset-0 bg-slate-50 animate-pulse" />
 
@@ -155,6 +155,7 @@ function ImagePreview({ imageUrl, title }: { imageUrl: string, title: string }) 
 export default function Erlie() {
   const [activeCategory, setActiveCategory] = useState<string>('social')
   const [activeItem, setActiveItem] = useState<string>('emotion')
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // 获取当前分类的数据
   const currentCategory = CATEGORIES.find(c => c.id === activeCategory) || CATEGORIES[0]
@@ -162,14 +163,41 @@ export default function Erlie() {
   // 获取当前选中的项目数据
   const currentItem = currentCategory.items.find(i => i.id === activeItem) || currentCategory.items[0]
 
-  // 切换分类时，默认选中第一个项目
-  const handleCategoryChange = (catId: string) => {
+  /**
+   * 切换分类时，默认选中第一个项目
+   * @param {string} catId - 分类 ID
+   */
+  const handleCategoryChange = useCallback((catId: string) => {
     setActiveCategory(catId)
     const cat = CATEGORIES.find(c => c.id === catId)
     if (cat && cat.items.length > 0) {
       setActiveItem(cat.items[0].id)
     }
-  }
+  }, [])
+
+  /**
+   * 处理 Tab 悬停事件
+   * 使用防抖机制，延迟 100ms 切换
+   * @param {string} catId - 分类 ID
+   */
+  const handleTabHover = useCallback((catId: string) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      handleCategoryChange(catId)
+    }, 100)
+  }, [handleCategoryChange])
+
+  /**
+   * 处理鼠标离开 Tab 区域
+   */
+  const handleTabLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+  }, [])
 
   return (
     <section className="bg-white py-12 sm:py-16 lg:py-28">
@@ -181,25 +209,32 @@ export default function Erlie() {
         </h2>
 
         {/* Tab 导航栏 */}
-        <div className="flex flex-wrap gap-x-2 sm:gap-x-4 gap-y-2 sm:gap-y-3 mb-8 sm:mb-10 lg:mb-14 border-b border-slate-100 pb-3">
-          {CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat.id
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryChange(cat.id)}
-                className={clsx(
-                  "relative flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm sm:text-[15px] lg:text-[16px] font-medium transition-all duration-300",
-                  isActive
-                    ? "text-[#0055ff] bg-blue-50/80 shadow-sm ring-1 ring-blue-100"
-                    : "text-[#64748B] hover:text-[#1e293b] hover:bg-slate-50"
-                )}
-              >
-                <cat.icon className={clsx("w-4 h-4 sm:w-5 sm:h-5 transition-colors", isActive ? "text-[#0055ff]" : "text-[#94a3b8] group-hover:text-[#64748b]")} />
-                {cat.label}
-              </button>
-            )
-          })}
+        <div className="flex justify-start mb-8 sm:mb-10 lg:mb-14 overflow-x-auto no-scrollbar border-b border-[#E2E8F0]">
+          <div className="inline-flex w-full">
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.id
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.id)}
+                  onMouseEnter={() => handleTabHover(cat.id)}
+                  onMouseLeave={handleTabLeave}
+                  className={clsx(
+                    "relative flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium transition-colors duration-200 whitespace-nowrap flex-1",
+                    isActive
+                      ? "text-[#0055ff]"
+                      : "text-[#64748B] hover:text-[#0F172A]"
+                  )}
+                >
+                  <cat.icon className={clsx("w-4 h-4 sm:w-5 sm:h-5 transition-colors", isActive ? "text-[#0055ff]" : "text-[#94a3b8]")} />
+                  {cat.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0055ff]" />
+                  )}
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* 内容区域：左侧手风琴 + 右侧预览 */}

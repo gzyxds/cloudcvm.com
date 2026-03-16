@@ -8,7 +8,6 @@ import {
   Sparkles
 } from 'lucide-react'
 import { Container } from '@/components/Container'
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -80,75 +79,78 @@ function ScenarioCard({ card, variant = 'large' }: { card: ServiceCard, variant?
     digital: '/images/screenshots/scenario-digital.png'
   }
 
+  const iconMap = {
+    chat: <Bot className="w-4 h-4 text-purple-500" />,
+    cpu: <BarChart3 className="w-4 h-4 text-blue-500" />,
+    cloud: <Cloud className="w-4 h-4 text-sky-500" />,
+    sparkles: <Sparkles className="w-4 h-4 text-pink-500" />
+  }
+
   return (
     <div className={clsx(
-      "group relative overflow-hidden bg-white rounded-2xl border border-slate-200 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-900/10 hover:-translate-y-1",
-      isLarge ? "flex flex-col h-[550px] sm:h-[600px] lg:h-[680px]" : "flex h-[280px] sm:h-[280px] lg:h-[320px]"
+      "group relative overflow-hidden bg-white rounded-sm border border-[#E2E8F0] transition-all duration-300",
+      "hover:shadow-lg hover:shadow-slate-200/50 hover:border-[#0055ff]/30",
+      isLarge ? "flex flex-col h-[520px] sm:h-[580px] lg:h-[640px]" : "flex flex-row-reverse h-[260px] sm:h-[280px] lg:h-[300px]"
     )}>
-      {/* 顶部/右侧 插图区域 */}
+      {/* 插图区域 */}
       <div className={clsx(
-        "relative overflow-hidden bg-gradient-to-b from-[#F0F5FF] to-white",
-        isLarge ? "h-[50%] order-1 border-b border-slate-100" : "w-[45%] order-2 border-l border-slate-100 h-full"
+        "relative overflow-hidden bg-gradient-to-b from-[#F0F5FF] to-white flex-shrink-0",
+        isLarge ? "h-[45%] border-b border-[#E2E8F0]" : "w-[40%] border-l border-[#E2E8F0]"
       )}>
         <Image
           src={illustrationImages[card.illustration]}
           alt={card.title}
           fill
-          className="object-contain p-4"
-          sizes="(max-width: 1024px) 100vw, 45vw"
+          className="object-contain p-4 sm:p-6 group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 1024px) 100vw, 40vw"
         />
       </div>
 
-      {/* 底部/左侧 内容区域 */}
+      {/* 内容区域 */}
       <div className={clsx(
-        "flex flex-col justify-between",
-        isLarge ? "flex-1 order-2 p-6 sm:p-8 lg:p-10" : "flex-1 order-1 py-6 px-6 sm:px-8 lg:px-10"
+        "flex flex-col justify-between flex-1",
+        isLarge ? "p-5 sm:p-6 lg:p-8" : "p-4 sm:p-5 lg:p-6"
       )}>
         <div>
           {/* 标签 */}
-          <div className="flex items-center gap-2 mb-4 sm:mb-6">
-             {/* 装饰图标 */}
-             {card.icon === 'chat' && <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />}
-             {card.icon === 'cpu' && <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />}
-             {card.icon === 'cloud' && <Cloud className="w-4 h-4 sm:w-5 sm:h-5 text-sky-500" />}
-             {card.icon === 'sparkles' && <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" />}
-
-             <span className="text-xs sm:text-sm font-bold tracking-wide text-slate-500 bg-slate-100 px-2 sm:px-3 py-1 rounded-md">
-               {card.tag}
-             </span>
+          <div className="flex items-center gap-2 mb-3">
+            {iconMap[card.icon]}
+            <span className="text-xs font-medium text-[#64748B] bg-[#F1F5F9] px-2.5 py-1 rounded-sm">
+              {card.tag}
+            </span>
           </div>
 
           <h3 className={clsx(
-            "font-bold text-slate-900 mb-2 sm:mb-3",
-            isLarge ? "text-lg sm:text-xl" : "text-base sm:text-lg"
+            "font-bold text-[#0F172A] mb-2 group-hover:text-[#0055ff] transition-colors",
+            isLarge ? "text-lg sm:text-xl lg:text-2xl" : "text-base sm:text-lg"
           )}>
             {card.title}
           </h3>
 
           <p className={clsx(
-            "text-slate-500 leading-relaxed",
-            isLarge ? "text-xs sm:text-sm line-clamp-3" : "text-xs sm:text-sm line-clamp-3"
+            "text-[#64748B] leading-relaxed",
+            isLarge ? "text-sm sm:text-base line-clamp-3" : "text-xs sm:text-sm line-clamp-3"
           )}>
             {card.description}
           </p>
         </div>
 
         {/* 按钮组 */}
-        <div className="mt-4 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mt-4 sm:mt-5">
           {card.primaryAction && (
-            <button className="px-2 sm:px-6 py-2 sm:py-3 bg-[#0055ff] text-white text-xs sm:text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/20">
+            <button className="px-4 sm:px-5 py-2 bg-[#0055ff] text-white text-sm font-medium rounded-sm hover:bg-[#0043cc] transition-colors shadow-sm hover:shadow-md hover:shadow-[#0055ff]/20">
               {card.primaryAction}
             </button>
           )}
           {card.secondaryAction && (
-             <button className="px-2 sm:px-6 py-2 sm:py-3 bg-white text-slate-600 border border-slate-200 text-xs sm:text-sm font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors">
-               {card.secondaryAction}
-             </button>
+            <button className="px-4 sm:px-5 py-2 bg-white text-[#64748B] border border-[#E2E8F0] text-sm font-medium rounded-sm hover:text-[#0F172A] hover:border-[#CBD5E1] hover:bg-[#F8FAFC] transition-colors">
+              {card.secondaryAction}
+            </button>
           )}
-          {!card.secondaryAction && isLarge === false && (
-             <button className="px-2 sm:px-5 py-2 sm:py-2.5 bg-white text-slate-600 border border-slate-200 text-xs sm:text-sm font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors">
-               了解详情
-             </button>
+          {!card.secondaryAction && !isLarge && (
+            <button className="px-4 sm:px-5 py-2 bg-white text-[#64748B] border border-[#E2E8F0] text-sm font-medium rounded-sm hover:text-[#0F172A] hover:border-[#CBD5E1] hover:bg-[#F8FAFC] transition-colors">
+              了解详情
+            </button>
           )}
         </div>
       </div>
@@ -161,15 +163,15 @@ function ScenarioCard({ card, variant = 'large' }: { card: ServiceCard, variant?
  */
 export function Scenario() {
   return (
-    <section className="relative overflow-hidden bg-[#F8FAFC] py-20 sm:py-32 lg:py-40 selection:bg-[#0055ff] selection:text-white">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#F8FAFC] py-16 sm:py-24 lg:py-32 selection:bg-[#0055ff] selection:text-white">
       <Container>
         {/* 标题区域 */}
-        <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0 mb-16 lg:mb-24">
+        <div className="max-w-4xl mx-auto text-center lg:text-left lg:mx-0 mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 inline-flex items-center gap-2 border border-slate-200 bg-white px-4 py-1.5 text-sm font-bold tracking-[0.2em] text-slate-500 rounded-full shadow-sm"
+            className="mb-6 inline-flex items-center gap-2 border border-[#E2E8F0] bg-white px-4 py-1.5 text-sm font-medium tracking-wide text-[#64748B] rounded-sm"
           >
             <Sparkles className="h-4 w-4 text-[#0055ff]" />
             <span>SCENARIO SOLUTIONS</span>
@@ -180,13 +182,10 @@ export function Scenario() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mb-8 text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight text-slate-900 tracking-tight"
+            className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-[#0F172A] tracking-tight"
           >
             全场景
-            <span className="mx-3 text-[#0055ff] relative">
-              智能化
-              <span className="absolute bottom-2 left-0 w-full h-4 bg-blue-100 -z-10 opacity-60 rounded-full" />
-            </span>
+            <span className="text-[#0055ff]">智能化</span>
             解决方案
           </motion.h2>
 
@@ -195,14 +194,14 @@ export function Scenario() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mx-auto max-w-3xl text-lg sm:text-xl lg:text-2xl leading-relaxed text-slate-600 lg:mx-0 font-medium"
+            className="mx-auto max-w-2xl text-base sm:text-lg lg:text-xl leading-relaxed text-[#64748B] lg:mx-0"
           >
             深入业务核心场景，为您提供开箱即用的智能化服务能力。无论是客户服务、内容创作还是系统运维，都能找到最适合的解决方案。
           </motion.p>
         </div>
 
         {/* 网格布局 - 响应式设计：移动端单列，平板双列，桌面30/30/40比例 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10 gap-4 sm:gap-6 lg:gap-6">
           {/* 大卡片 1 - 占 3/10 */}
           <motion.div
             className="md:col-span-1 lg:col-span-3"
@@ -225,10 +224,9 @@ export function Scenario() {
             <ScenarioCard card={serviceCards[1]} variant="large" />
           </motion.div>
 
-          {/* 右侧小卡片堆叠 - 占 4/10，提供更宽展示空间 */}
-          <div className="md:col-span-2 lg:col-span-4 flex flex-col gap-6 lg:gap-8 justify-between h-full">
+          {/* 右侧小卡片堆叠 - 占 4/10 */}
+          <div className="md:col-span-2 lg:col-span-4 flex flex-col gap-4 sm:gap-6">
             <motion.div
-              className="flex-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -238,7 +236,6 @@ export function Scenario() {
             </motion.div>
 
             <motion.div
-              className="flex-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

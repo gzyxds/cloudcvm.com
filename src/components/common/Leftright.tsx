@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Container } from '@/components/Container'
 import { motion, AnimatePresence, Variants } from 'framer-motion'
 import Image from 'next/image'
@@ -207,8 +207,34 @@ const itemVariants: Variants = {
  */
 export function Leftright() {
   const [activeTab, setActiveTab] = useState('industry')
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const activeCategory = solutionsData.find(c => c.id === activeTab) || solutionsData[0]
+
+  /**
+   * 处理 Tab 悬停事件
+   * 使用防抖机制，延迟 100ms 切换，避免鼠标快速划过时频繁切换
+   * @param {string} tabId - 目标 tab ID
+   */
+  const handleTabHover = useCallback((tabId: string) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setActiveTab(tabId)
+    }, 100)
+  }, [])
+
+  /**
+   * 处理鼠标离开 Tab 区域
+   * 清除未执行的防抖定时器
+   */
+  const handleTabLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+  }, [])
 
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24 min-h-screen flex flex-col justify-center">
@@ -223,15 +249,17 @@ export function Leftright() {
           </p>
         </div>
 
-        {/* Tab 导航 */}
-        <div className="flex justify-center mb-10 sm:mb-16 lg:mb-24">
-          <div className="inline-flex space-x-6 sm:space-x-12 border-b border-gray-100">
+        {/* Tab 导航 - 下划线风格 */}
+        <div className="flex justify-start mb-10 sm:mb-16 lg:mb-24 overflow-x-auto no-scrollbar border-b border-[#E2E8F0]">
+          <div className="inline-flex w-full">
             {solutionsData.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
+                onMouseEnter={() => handleTabHover(category.id)}
+                onMouseLeave={handleTabLeave}
                 className={clsx(
-                  'pb-4 sm:pb-5 text-sm sm:text-base lg:text-lg font-medium transition-colors relative px-2 sm:px-4',
+                  'relative flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium transition-colors duration-200 whitespace-nowrap flex-1',
                   activeTab === category.id
                     ? 'text-[#0055ff]'
                     : 'text-[#64748B] hover:text-[#0F172A]'
@@ -239,11 +267,7 @@ export function Leftright() {
               >
                 {category.name}
                 {activeTab === category.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0055ff]"
-                  />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0055ff]" />
                 )}
               </button>
             ))}
@@ -262,7 +286,7 @@ export function Leftright() {
             exit="exit"
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-6 lg:gap-6 2xl:gap-8"
           >
-            {activeCategory.items.map((item) => (
+            {activeCategory.items.map((item, index) => (
               <motion.div
                 key={item.id}
                 variants={itemVariants}
@@ -280,7 +304,8 @@ export function Leftright() {
                   fill
                   className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 16vw"
-                  priority={true}
+                  priority={index < 3}
+                  loading={index < 3 ? 'eager' : 'lazy'}
                 />
 
                 {/* 渐变遮罩：增加底部深度，确保文字清晰 */}

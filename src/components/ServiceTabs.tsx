@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -435,11 +435,38 @@ const serviceTabs: ServiceTab[] = [
  * 2. Color: Neutral Foundation + Primary Blue (#2b7fff) Accent
  * 3. Typography: Tech-focused (Lexend/Inter/Mono)
  * 4. Micro-interactions: 边框颜色变化，无缩放动画
+ * 5. 悬停切换: 鼠标悬停自动展开对应分类（带防抖）
  */
 export default function ServiceTabs() {
   const [activeTab, setActiveTab] = useState(0)
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const activeService = serviceTabs[activeTab]
   const { banner, secondaryBanner, products } = activeService
+
+  /**
+   * 处理 Tab 悬停事件
+   * 使用防抖机制，延迟 100ms 切换，避免鼠标快速划过时频繁切换
+   * @param {number} index - 目标 tab 索引
+   */
+  const handleTabHover = useCallback((index: number) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setActiveTab(index)
+    }, 100)
+  }, [])
+
+  /**
+   * 处理鼠标离开 Tab 区域
+   * 清除未执行的防抖定时器
+   */
+  const handleTabLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+  }, [])
 
   return (
     <section className="py-6 sm:py-8 lg:py-10 bg-gradient-to-b from-[#e0e7ff]/50 to-[#FFFFFF]">
@@ -466,13 +493,15 @@ export default function ServiceTabs() {
 
         {/* 顶部 Tab 导航 - Bento 风格 Segmented Control */}
         <div className="flex justify-start mb-6 sm:mb-8 overflow-x-auto no-scrollbar pb-1">
-          <div className="inline-flex border border-[#E2E8F0] bg-[#F8FAFC] min-w-full sm:min-w-0 rounded-sm">
+          <div className="inline-flex border border-[#E2E8F0] bg-[#F8FAFC] w-full rounded-sm">
             {serviceTabs.map((tab, index) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(index)}
+                onMouseEnter={() => handleTabHover(index)}
+                onMouseLeave={handleTabLeave}
                 className={clsx(
-                  "flex items-center gap-2 px-4 py-2.5 text-sm sm:text-base font-medium transition-all duration-200 whitespace-nowrap outline-none select-none rounded-none border-r border-[#E2E8F0] last:border-r-0 hover:bg-white/50",
+                  "flex items-center justify-center gap-2 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 text-sm sm:text-base lg:text-lg font-medium transition-all duration-200 whitespace-nowrap outline-none select-none rounded-none border-r border-[#E2E8F0] last:border-r-0 hover:bg-white/50 flex-1",
                   activeTab === index
                     ? "bg-white text-[#0055ff] shadow-sm"
                     : "text-[#64748B] hover:text-[#0F172A]"
@@ -480,7 +509,7 @@ export default function ServiceTabs() {
               >
                 <tab.icon
                   className={clsx(
-                    "w-4 h-4 transition-colors duration-200",
+                    "w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-200",
                     activeTab === index ? "text-[#0055ff]" : "text-[#94A3B8] group-hover:text-[#0055ff]"
                   )}
                 />
