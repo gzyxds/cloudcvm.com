@@ -60,7 +60,7 @@ export type VideoCarouselProps = CarouselProps
 const defaultSlides: CarouselSlide[] = [
   {
     id: 1,
-    order: 1,
+    order: 2,
     title: '专属福利活动',
     subtitle: '优刻云计算',
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
@@ -73,7 +73,7 @@ const defaultSlides: CarouselSlide[] = [
   },
   {
     id: 2,
-    order: 2,
+    order: 3,
     title: '专属福利活动',
     subtitle: '优刻云计算',
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
@@ -86,7 +86,7 @@ const defaultSlides: CarouselSlide[] = [
   },
   {
     id: 3,
-    order: 3,
+    order: 1,
     title: 'OpenClaw',
     subtitle: 'OpenClaw 云端一键秒级部署',
     description: '一键部署OpenClaw(Clawdbot/Moltbot),7X24小时在线，随时响应，企业微信、QQ、钉钉、飞书四大国内主流IMAPP已全面支持!',
