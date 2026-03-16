@@ -30,8 +30,22 @@ export interface CarouselProps {
   autoPlay?: boolean
   interval?: number
   heightClass?: string
+  showIndicators?: boolean
   slides?: CarouselSlide[]
   className?: string
+  showProgress?: boolean
+  showPlayButton?: boolean
+  showNavigation?: boolean
+  height?: {
+    base?: string
+    md?: string
+    lg?: string
+  } | string
+  theme?: 'light' | 'dark'
+  textModeButton?: boolean
+  showOverlay?: boolean
+  customSlides?: any[]
+  forceImageMode?: boolean
 }
 
 /**
