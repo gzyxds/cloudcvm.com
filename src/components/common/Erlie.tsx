@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import { Plus, Minus, Users, Cpu, GraduationCap, Headphones, Megaphone } from 'lucide-react'
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { Button } from '@/components/Button'
 
 // --- 类型定义 ---
 
@@ -133,19 +134,28 @@ const CATEGORIES: SceneCategory[] = [
 
 function ImagePreview({ imageUrl, title }: { imageUrl: string, title: string }) {
   return (
-    <div className="relative w-full h-[280px] sm:h-[400px] lg:h-[560px] rounded-sm overflow-hidden border border-[#E2E8F0] bg-gradient-to-b from-[#F0F5FF] to-white">
-      {/* 骨架屏/背景色 */}
-      <div className="absolute inset-0 bg-slate-50 animate-pulse" />
+    <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[520px] rounded-xl overflow-hidden border border-[#E2E8F0] bg-gradient-to-br from-[#eff6ff] via-white to-[#f8fafc]">
+      {/* 装饰背景 */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#0055ff]/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
+      </div>
+
+      {/* 骨架屏 */}
+      <div className="absolute inset-0 bg-slate-100/50 animate-pulse" />
 
       {/* 图片 */}
       <Image
         src={imageUrl}
         alt={title}
         fill
-        className="object-cover object-center transition-opacity duration-500"
+        className="object-cover object-center transition-opacity duration-500 relative z-10"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
         priority
       />
+
+      {/* 底部渐变遮罩 */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/80 to-transparent z-20" />
     </div>
   )
 }
@@ -200,13 +210,24 @@ export default function Erlie() {
   }, [])
 
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-28">
+    <section className="bg-gradient-to-b from-white via-[#f8fafc] to-white py-16 sm:py-20 lg:py-28">
       <Container>
 
         {/* 标题 */}
-        <h2 className="text-2xl sm:text-4xl lg:text-[48px] font-bold text-[#0055ff] mb-6 sm:mb-8 lg:mb-12 leading-tight">
-          多样的大模型应用场景
-        </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mx-auto text-center mb-12 sm:mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-4 tracking-tight">
+            多样的<span className="text-[#0055ff]">大模型应用场景</span>
+          </h2>
+          <p className="text-base sm:text-lg lg:text-xl text-[#64748B] leading-relaxed">
+            基于先进的自研架构，为您提供全方位的云端基础设施服务，助力业务快速实现数字化转型。
+          </p>
+        </motion.div>
 
         {/* Tab 导航栏 */}
         <div className="flex justify-start mb-8 sm:mb-10 lg:mb-14 overflow-x-auto no-scrollbar border-b border-[#E2E8F0]">
@@ -238,83 +259,111 @@ export default function Erlie() {
         </div>
 
         {/* 内容区域：左侧手风琴 + 右侧预览 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-          {/* 左侧手风琴 - 宽度占比调整 */}
-          <div className="lg:col-span-4 flex flex-col gap-1">
-            {currentCategory.items.map((item) => {
-              const isOpen = activeItem === item.id
-              return (
-                <div
-                  key={item.id}
-                  className={clsx(
-                    "border-b border-slate-100 last:border-0 transition-all duration-300",
-                    isOpen ? "pb-4 sm:pb-6" : "pb-3 sm:pb-4"
-                  )}
-                >
-                  <button
-                    onClick={() => setActiveItem(item.id)}
-                    className="w-full flex items-center justify-between group text-left py-3 sm:py-4 focus:outline-none"
-                  >
-                    <span className={clsx(
-                      "text-lg sm:text-[20px] lg:text-[22px] transition-colors duration-300",
-                      isOpen ? "text-[#0055ff] font-bold" : "text-[#4e5969] font-medium group-hover:text-[#0055ff]"
-                    )}>
-                      {item.title}
-                    </span>
-                    <div className={clsx(
-                      "transition-transform duration-300 text-[#86909c]",
-                      isOpen ? "rotate-0 text-[#0055ff]" : "group-hover:text-[#4e5969]"
-                    )}>
-                      {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-                    </div>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+          {/* 左侧手风琴 */}
+          <div className="lg:col-span-5 flex flex-col gap-1">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                {currentCategory.items.map((item, index) => {
+                  const isOpen = activeItem === item.id
+                  return (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className={clsx(
+                        "border-b border-[#E2E8F0] last:border-0 transition-all duration-300",
+                        isOpen ? "pb-4 sm:pb-5" : "pb-3 sm:pb-4"
+                      )}
+                    >
+                      <button
+                        onClick={() => setActiveItem(item.id)}
+                        className="w-full flex items-center justify-between group text-left py-3 sm:py-4 focus:outline-none"
                       >
-                        <p className="text-sm sm:text-[15px] lg:text-[16px] text-[#4e5969] leading-relaxed mb-4 sm:mb-6">
-                          {item.description}
-                        </p>
-
-                        {/* 移动端显示的按钮组 */}
-                        <div className="flex items-center gap-3 sm:gap-4 lg:hidden">
-                           <button className="px-5 py-2 sm:px-6 bg-[#0055ff] text-white text-xs sm:text-sm font-medium rounded-sm shadow-sm hover:bg-[#0044cc]">
-                             立即体验
-                           </button>
+                        <span className={clsx(
+                          "text-base sm:text-lg lg:text-xl transition-colors duration-300",
+                          isOpen ? "text-[#0055ff] font-bold" : "text-[#0F172A] font-medium group-hover:text-[#0055ff]"
+                        )}>
+                          {item.title}
+                        </span>
+                        <div className={clsx(
+                          "transition-transform duration-300",
+                          isOpen ? "text-[#0055ff]" : "text-[#94A3B8] group-hover:text-[#64748B]"
+                        )}>
+                          {isOpen ? <Minus className="w-4 h-4 sm:w-5 sm:h-5" /> : <Plus className="w-4 h-4 sm:w-5 sm:h-5" />}
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )
-            })}
+                      </button>
+
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-sm sm:text-[15px] lg:text-base text-[#64748B] leading-relaxed mb-4 sm:mb-5">
+                              {item.description}
+                            </p>
+
+                            {/* 移动端按钮 */}
+                            <div className="flex items-center gap-3 lg:hidden">
+                              <Button
+                                href="/chat"
+                                color="blue"
+                                variant="erlieSolid"
+                                className="rounded-lg px-5 py-2 text-xs sm:text-sm font-semibold"
+                              >
+                                立即体验
+                              </Button>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  )
+                })}
+              </motion.div>
+            </AnimatePresence>
 
             {/* 桌面端按钮组 */}
-            <div className="hidden lg:flex items-center gap-4 mt-10">
-              <button className="px-8 py-3 bg-[#0055ff] text-white text-[15px] font-medium rounded-sm hover:bg-[#0044cc] transition-all shadow-md hover:shadow-lg shadow-blue-500/20">
+            <div className="hidden lg:flex items-center gap-4 mt-8">
+              <Button
+                href="/chat"
+                color="blue"
+                variant="erlieSolid"
+                className="rounded-lg px-8 py-3 text-sm font-semibold"
+              >
                 立即体验
-              </button>
-              <button className="px-8 py-3 bg-white text-[#4e5969] border border-[#e5e6eb] text-[15px] font-medium rounded-sm hover:text-[#1d2129] hover:border-[#c9cdd4] transition-all hover:bg-[#eff6ff]/50">
+              </Button>
+              <Button
+                href="/chat"
+                variant="erlieOutline"
+                color="slate"
+                className="rounded-lg px-8 py-3 text-sm font-semibold"
+              >
                 在线咨询
-              </button>
+              </Button>
             </div>
           </div>
 
-          {/* 右侧预览区 - 宽度占比调整 */}
-          <div className="lg:col-span-8 w-full">
+          {/* 右侧预览区 */}
+          <div className="lg:col-span-7 w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentItem.imageUrl}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.98 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="w-full"
               >
