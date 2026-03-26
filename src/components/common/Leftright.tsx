@@ -8,6 +8,83 @@ import clsx from 'clsx'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 
 /**
+ * 设计令牌系统 - 统一的样式规范
+ */
+const tokens = {
+  colors: {
+    primary: {
+      DEFAULT: '#0055ff',
+      hover: '#0043cc',
+      light: '#eff6ff',
+      subtle: '#0055ff10',
+    },
+    text: {
+      primary: '#0F172A',
+      secondary: '#475569',
+      tertiary: '#64748B',
+      inverse: '#FFFFFF',
+    },
+    border: {
+      DEFAULT: '#E2E8F0',
+      hover: '#CBD5E1',
+      primary: '#0055ff',
+    },
+    background: {
+      DEFAULT: '#FFFFFF',
+      subtle: '#F8FAFC',
+    },
+    shadow: {
+      subtle: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+      medium: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      large: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+      primary: '0 20px 40px -12px rgba(0, 85, 255, 0.15)',
+    },
+  },
+  spacing: {
+    xs: '0.5rem',
+    sm: '0.75rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+    '2xl': '3rem',
+    '3xl': '4rem',
+  },
+  typography: {
+    sizes: {
+      xs: '0.75rem',
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '1.875rem',
+      '4xl': '2.25rem',
+      '5xl': '3rem',
+      '6xl': '3.75rem',
+    },
+    weights: {
+      normal: '400',
+      medium: '500',
+      semibold: '600',
+      bold: '700',
+    },
+  },
+  animation: {
+    duration: {
+      fast: '150ms',
+      base: '200ms',
+      slow: '300ms',
+      slower: '500ms',
+    },
+    easing: {
+      easeOut: 'ease-out',
+      easeInOut: 'ease-in-out',
+      smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',
+    },
+  },
+} as const
+
+/**
  * 解决方案数据接口
  */
 interface SolutionItem {
@@ -170,13 +247,15 @@ const solutionsData: SolutionCategory[] = [
   }
 ]
 
-// 容器动画变体：用于控制子元素的 stagger 效果
+/**
+ * 容器动画变体：用于控制子元素的 stagger 效果
+ */
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08, // 稍微加快交错速度
+      staggerChildren: 0.08,
       delayChildren: 0.1
     }
   },
@@ -188,7 +267,9 @@ const containerVariants: Variants = {
   }
 }
 
-// 列表项动画变体：从下往上浮现
+/**
+ * 列表项动画变体：从下往上浮现
+ */
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -196,18 +277,27 @@ const itemVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1] // Custom easeOutQuint for smooth feel
+      ease: [0.22, 1, 0.36, 1]
     }
   }
 }
 
 /**
+ * 检查是否支持减少动画
+ */
+const useReducedMotion = () => {
+  if (typeof window === 'undefined') return false
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+/**
  * 解决方案展示组件
- * 100% 复刻还原参考设计
+ * 优化版：符合云计算风格，提升可访问性、交互体验和视觉设计
  */
 export function Leftright() {
   const [activeTab, setActiveTab] = useState('industry')
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   const activeCategory = solutionsData.find(c => c.id === activeTab) || solutionsData[0]
 
@@ -236,43 +326,80 @@ export function Leftright() {
     }
   }, [])
 
+  /**
+   * 处理键盘导航 - 左右箭头切换 Tab
+   */
+  const handleKeyDown = useCallback((e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      const nextIndex = (index + 1) % solutionsData.length
+      setActiveTab(solutionsData[nextIndex].id)
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      const prevIndex = (index - 1 + solutionsData.length) % solutionsData.length
+      setActiveTab(solutionsData[prevIndex].id)
+    }
+  }, [])
+
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24 min-h-screen flex flex-col justify-center">
+    <section 
+      className="bg-white py-16 sm:py-20 lg:py-24 min-h-screen flex flex-col justify-center"
+      aria-labelledby="solutions-section-title"
+    >
       <Container>
         {/* 顶部标题 */}
         <div className="text-center mb-10 sm:mb-16 lg:mb-24">
-          <h2 className="text-2xl font-bold tracking-tight text-[#0F172A] sm:text-4xl lg:text-6xl mb-4 sm:mb-6">
+          <h2 
+            id="solutions-section-title"
+            className="text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-6xl mb-4 sm:mb-6"
+          >
             成熟行业实践，释放云上数字生产力
           </h2>
-          <p className="text-base text-[#64748B] max-w-3xl mx-auto sm:text-lg lg:text-xl">
+          <p className="text-base text-slate-500 max-w-3xl mx-auto sm:text-lg lg:text-xl">
             汇聚各行业数字化转型成功经验，提供场景化解决方案，助力企业降本增效，加速业务创新
           </p>
         </div>
 
         {/* Tab 导航 - 下划线风格 */}
-        <div className="flex justify-start mb-10 sm:mb-16 lg:mb-24 overflow-x-auto no-scrollbar border-b border-[#E2E8F0]">
+        <nav 
+          className="flex justify-start mb-10 sm:mb-16 lg:mb-24 overflow-x-auto no-scrollbar border-b border-slate-200"
+          role="tablist"
+          aria-label="解决方案分类"
+        >
           <div className="inline-flex w-full">
-            {solutionsData.map((category) => (
+            {solutionsData.map((category, index) => (
               <button
                 key={category.id}
                 onClick={() => setActiveTab(category.id)}
                 onMouseEnter={() => handleTabHover(category.id)}
                 onMouseLeave={handleTabLeave}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                role="tab"
+                aria-selected={activeTab === category.id}
+                aria-controls={`solutions-panel-${category.id}`}
+                id={`solutions-tab-${category.id}`}
+                tabIndex={activeTab === category.id ? 0 : -1}
                 className={clsx(
                   'relative flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium transition-colors duration-200 whitespace-nowrap flex-1',
+                  'min-h-[44px]',
+                  'outline-none',
+                  'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
                   activeTab === category.id
-                    ? 'text-[#0055ff]'
-                    : 'text-[#64748B] hover:text-[#0F172A]'
+                    ? 'text-blue-600'
+                    : 'text-slate-500 hover:text-slate-900'
                 )}
               >
                 {category.name}
                 {activeTab === category.id && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0055ff]" />
+                  <span 
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600" 
+                  aria-hidden="true"
+                />
                 )}
               </button>
             ))}
           </div>
-        </div>
+        </nav>
       </Container>
 
       {/* 解决方案卡片列表 - 全屏通栏布局 */}
@@ -280,27 +407,35 @@ export function Leftright() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
+            variants={reducedMotion ? {} : containerVariants}
+            initial={reducedMotion ? false : 'hidden'}
+            animate={reducedMotion ? false : 'visible'}
+            exit={reducedMotion ? undefined : 'exit'}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-6 lg:gap-6 2xl:gap-8"
+            role="tabpanel"
+            id={`solutions-panel-${activeCategory.id}`}
+            aria-labelledby={`solutions-tab-${activeCategory.id}`}
           >
             {activeCategory.items.map((item, index) => (
-              <motion.div
+              <motion.article
                 key={item.id}
-                variants={itemVariants}
+                variants={reducedMotion ? {} : itemVariants}
                 className={clsx(
                   "group relative aspect-video sm:aspect-auto sm:h-[50vh] xl:h-[60vh] sm:min-h-[500px] xl:min-h-[500px] sm:max-h-[700px] overflow-hidden rounded-2xl cursor-pointer",
                   "border border-slate-200/60 bg-white",
-                  "hover:border-[#0055ff]/30 hover:shadow-[0_20px_40px_-12px_rgba(0,85,255,0.15)]",
-                  "transition-all duration-500 ease-out"
+                  "hover:border-blue-500/30 hover:shadow-[0_20px_40px_-12px_rgba(0,85,255,0.15)]",
+                  "transition-all duration-500 ease-out",
+                  "outline-none",
+                  "focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 )}
+                tabIndex={0}
+                role="button"
+                aria-label={`查看${item.title}解决方案详情`}
               >
                 {/* 背景图片 */}
                 <Image
                   src={item.imageUrl}
-                  alt={item.title}
+                  alt=""
                   fill
                   className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 16vw"
@@ -314,7 +449,9 @@ export function Leftright() {
                   item.theme === 'dark'
                     ? "bg-gradient-to-b from-black/10 via-black/30 to-black/90"
                     : "bg-gradient-to-b from-black/5 via-black/10 to-black/70"
-                )} />
+                )}
+                  aria-hidden="true"
+                />
 
                 {/* 内容区域 */}
                 <div className="absolute inset-0 p-5 sm:p-8 lg:p-10 flex flex-col z-10">
@@ -335,7 +472,10 @@ export function Leftright() {
 
                     {/* 箭头图标 */}
                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 delay-75">
-                      <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-[#0055ff] transition-colors duration-300">
+                      <div 
+                        className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-blue-600 transition-colors duration-300"
+                        aria-hidden="true"
+                      >
                         <ChevronRightIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                     </div>
@@ -343,8 +483,11 @@ export function Leftright() {
                 </div>
 
                 {/* 装饰：顶部高光条 (模拟玻璃反光) */}
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              </motion.div>
+                <div 
+                  className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" 
+                  aria-hidden="true"
+                />
+              </motion.article>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -355,10 +498,11 @@ export function Leftright() {
         <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
           <a
             href="#"
-            className="inline-flex items-center px-6 py-3 sm:px-10 sm:py-4 rounded-full border border-[#E2E8F0] bg-white text-[#0F172A] hover:border-[#0055ff] hover:text-[#0055ff] transition-all duration-300 shadow-sm hover:shadow-lg text-base sm:text-lg font-medium group"
+            className="inline-flex items-center px-6 py-3 sm:px-10 sm:py-4 rounded-full border border-slate-200 bg-white text-slate-900 hover:border-blue-600 hover:text-blue-600 transition-all duration-300 shadow-sm hover:shadow-lg text-base sm:text-lg font-medium group"
+            aria-label="查看所有解决方案"
           >
             查看所有解决方案
-            <ChevronRightIcon className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform group-hover:translate-x-1" />
+            <ChevronRightIcon className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true" />
           </a>
         </div>
       </Container>
