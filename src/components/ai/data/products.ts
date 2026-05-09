@@ -121,7 +121,7 @@ export const products: Product[] = [
   },
   {
     image: "/images/product/buidai.webp",
-    title: "BuidAl部署服务",
+    title: "智言AI部署服务",
     subtitle: "[独立系统]",
     description: "官方技术专家，帮您部署 BuildAl 平台框架，支持本地部署或服务器部署",
     features: ["私有化部署", "企业级", "源码交付", "技术支持"],
@@ -132,20 +132,6 @@ export const products: Product[] = [
     sales: 856,
     buyLink: BASE_BUY_LINK,
     isPlugin: false
-  },
-  {
-    image: "/images/product/Sora2短剧视频创作.png",
-    title: "Sora2短剧视频创作",
-    subtitle: "[图像视频]",
-    description: "Sora2短剧视频创作是一款聚焦高效优质短剧创作的AI智能生成工具，它能深度理解用户输入的文字提示词，将创意转化为精彩视频。",
-    features: ["Sora模型", "短剧生成", "剧本转视频", "创意转化"],
-    price: 699,
-    originalPrice: 1398,
-    link: "/demo",
-    rating: 4.8,
-    sales: 1243,
-    buyLink: BASE_BUY_LINK,
-    isPlugin: true
   },
   {
     image: "/images/product/Nanobanana.png",
@@ -246,21 +232,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/AI商图秀.png",
-    title: "AI商图秀",
-    subtitle: "[图像视频]",
-    description: "电商主图智能生成，模特替换，场景合成，提升点击率。无需专业摄影，也能制作出高质量的商品展示图。",
-    features: ["电商主图", "场景合成", "模特替换", "点击率提升"],
-    price: 399,
-    originalPrice: 899,
-    link: "/demo",
-    rating: 4.7,
-    sales: 1543,
-    buyLink: BASE_BUY_LINK,
-    isPlugin: true
-  },
-  {
-    image: "/images/product/AI直播短视频数字人.png",
+    image: "/images/product/human1.png",
     title: "AI直播短视频数字人",
     subtitle: "[图像视频]",
     description: "7x24小时无人直播，数字人带货，低成本高回报。打造永不休息的超级主播，抢占直播红利。",
@@ -288,8 +260,8 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/GEO优化排名工具.png",
-    title: "GEO优化排名工具",
+    image: "/images/product/GEO排名优化.png",
+    title: "GEO排名优化",
     subtitle: "[企业工具]",
     description: "基于地理位置的SEO优化工具，提升本地搜索排名。精准锁定目标客户，让生意自动找上门。",
     features: ["本地SEO", "排名优化", "精准获客", "流量增长"],
@@ -330,7 +302,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/大模型擂台.png",
+    image: "/images/product/arena-model.png",
     title: "大模型擂台",
     subtitle: "[企业工具]",
     description: "主流大模型能力评测与对比，助你选择最适合的模型。客观公正的评测数据，助您做出明智的技术选型。",
@@ -358,8 +330,8 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/模绘衣境.png",
-    title: "模绘衣境",
+    image: "/images/product/fashion-ai.png",
+    title: "AI服装设计与展示",
     subtitle: "[图像视频]",
     description: "AI服装设计与展示，虚拟试衣，缩短设计周期。无需制作样衣，即可预览穿着效果，降低设计成本。",
     features: ["虚拟试衣", "服装设计", "效果预览", "成本降低"],
@@ -372,7 +344,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/热门视频混剪.png",
+    image: "/images/product/视频混剪.png",
     title: "热门视频混剪",
     subtitle: "[图像视频]",
     description: "智能抓取热门素材，自动混剪，快速生成短视频。紧跟热点趋势，轻松制作出爆款短视频。",
@@ -382,20 +354,6 @@ export const products: Product[] = [
     link: "/demo",
     rating: 4.6,
     sales: 1654,
-    buyLink: BASE_BUY_LINK,
-    isPlugin: true
-  },
-  {
-    image: "/images/product/爆款文章自动配图.png",
-    title: "爆款文章自动配图",
-    subtitle: "[智能写作]",
-    description: "根据文章内容自动匹配高质量图片，提升阅读体验。图文并茂，让您的文章更具吸引力。",
-    features: ["智能配图", "图文匹配", "内容增强", "阅读体验"],
-    price: 249,
-    originalPrice: 499,
-    link: "/demo",
-    rating: 4.7,
-    sales: 1980,
     buyLink: BASE_BUY_LINK,
     isPlugin: true
   },

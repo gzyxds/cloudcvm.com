@@ -958,6 +958,7 @@ export default function ServiceTabs() {
         >
           <AnimatePresence mode="wait">
             <motion.div
+              suppressHydrationWarning
               key={activeTab}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}

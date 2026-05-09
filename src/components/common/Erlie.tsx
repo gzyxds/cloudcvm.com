@@ -269,6 +269,7 @@ export default function Erlie() {
 
         {/* 标题 */}
         <motion.div
+          suppressHydrationWarning
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -319,6 +320,7 @@ export default function Erlie() {
           <div className="lg:col-span-5 flex flex-col gap-1">
             <AnimatePresence mode="wait">
               <motion.div
+                suppressHydrationWarning
                 key={activeCategory}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -329,6 +331,7 @@ export default function Erlie() {
                   const isOpen = activeItem === item.id
                   return (
                     <motion.div
+                      suppressHydrationWarning
                       key={item.id}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -359,6 +362,7 @@ export default function Erlie() {
                       <AnimatePresence initial={false}>
                         {isOpen && (
                           <motion.div
+                            suppressHydrationWarning
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -414,6 +418,7 @@ export default function Erlie() {
           <div className="lg:col-span-7 w-full">
             <AnimatePresence mode="wait">
               <motion.div
+                suppressHydrationWarning
                 key={currentItem.imageUrl}
                 initial={{ opacity: 0, y: 20, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}

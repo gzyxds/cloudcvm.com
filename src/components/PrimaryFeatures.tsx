@@ -95,6 +95,7 @@ const FEATURES: Feature[] = [
 function FeatureCard({ feature, isActive }: { feature: Feature; isActive?: boolean }) {
   return (
     <motion.div
+      suppressHydrationWarning
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -158,6 +159,7 @@ function FeatureCard({ feature, isActive }: { feature: Feature; isActive?: boole
 function MainIntro({ activeFeature }: { activeFeature: Feature }) {
   return (
     <motion.div
+      suppressHydrationWarning
       key={activeFeature.id}
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
@@ -230,6 +232,7 @@ export function PrimaryFeatures() {
 
       <Container className="relative z-10">
         <motion.div
+          suppressHydrationWarning
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

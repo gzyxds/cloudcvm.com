@@ -330,6 +330,7 @@ export function Scenario() {
       <Container>
         {/* 标题区域 */}
         <motion.h2
+          suppressHydrationWarning
           id="scenario-heading"
           {...animationProps}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}

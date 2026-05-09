@@ -406,6 +406,7 @@ export function Leftright() {
       <div className="w-full px-3 sm:px-6 lg:px-8 2xl:px-12">
         <AnimatePresence mode="wait">
           <motion.div
+            suppressHydrationWarning
             key={activeTab}
             variants={reducedMotion ? {} : containerVariants}
             initial={reducedMotion ? false : 'hidden'}
@@ -418,6 +419,7 @@ export function Leftright() {
           >
             {activeCategory.items.map((item, index) => (
               <motion.article
+                suppressHydrationWarning
                 key={item.id}
                 variants={reducedMotion ? {} : itemVariants}
                 className={clsx(
