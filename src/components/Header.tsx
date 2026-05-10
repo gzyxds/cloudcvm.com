@@ -169,7 +169,7 @@ const solutions: MenuItem[] = [
     icon: SparklesIcon,
   },
   {
-    name: 'Wan漫剧',
+    name: '漫剧创作',
     description: '角色模板视频生成',
     href: '/manju',
     icon: FilmIcon,
