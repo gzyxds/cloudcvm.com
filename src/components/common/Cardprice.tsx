@@ -3,11 +3,11 @@
 /**
  * 云服务器产品展示组件
  * 展示轻量应用服务器产品、热门活动和促销信息
- * 包含产品卡片、价格展示、数量选择和购买功能
+ * 包含产品卡片、价格展示和购买功能
  * 遵循 Linear Design 风格：Light Mode, 细边框, 工业科技感
  */
 
-import { useState } from 'react'
+import React from 'react'
 
 /**
  * 服务器产品数据类型定义
@@ -64,29 +64,27 @@ interface ServerProduct {
 /**
  * 轻量应用服务器产品列表数据
  * 包含多种配置规格的轻量应用服务器产品
- * 活动标题：新春特惠 - 限时1折起
  */
 const serverProducts: ServerProduct[] = [
   {
     id: 1,
-    name: '10周年活动特惠服务器 ',
-    subtitle: '2核 2G 20M ',
+    name: '香港 · 轻量云',
+    subtitle: 'CN2优化 无需备案',
     specs: {
-      cpu: '2核 2G 20M',
-      memory: '2GB',
-      storage: '40GB SSD',
-      bandwidth: '20Mbps',
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '3 ~ 5Mbps',
     },
-    regions: ['国内', '香港', '美国'],
-    duration: '1年',
-    originalPrice: 1200,
-    currentPrice: 600,
-    discount: '5折',
+    regions: ['香港'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
     isHot: true,
     isRecommended: false,
-    activityEndDate: '2024年9月15日',
-    activityNote: '购买后第2天自动赠送2年，5分之1价格体验大厂同级CPU，20分之1价格体验大厂优质带宽，阿里精品网CN2大带宽',
-    networkType: '精品网CN2',
+    activityNote: 'Linux系统可选，CN2优化，无需备案，开箱即用',
+    networkType: 'CN2优化',
     ipConfig: '原生IP：1个',
     defense: '标准防御',
     note: '',
@@ -94,24 +92,23 @@ const serverProducts: ServerProduct[] = [
   },
   {
     id: 2,
-    name: '10周年活动特惠服务器',
-    subtitle: '4核 4G 50M ',
+    name: '日本 · 轻量云',
+    subtitle: '回国优化 无需备案',
     specs: {
-      cpu: '4核 4G 50M',
-      memory: '4GB',
-      storage: '60GB SSD',
-      bandwidth: '50Mbps 不限流量',
+      cpu: '2 ~ 4核心 Gold',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '5 ~ 8Mbps',
     },
-    regions: ['国内', '香港', '美国'],
-    duration: '1年',
-    originalPrice: 4500,
-    currentPrice: 1500,
-    discount: '2折',
+    regions: ['日本'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
     isHot: true,
     isRecommended: false,
-    activityEndDate: '2024年9月15日',
-    activityNote: '购买后第2天自动赠送2年，5分之1价格体验大厂同级CPU，20分之1价格体验大厂优质带宽，阿里精品网CN2大带宽',
-    networkType: '精品网CN2',
+    activityNote: 'Linux系统可选，回国优化，无需备案，开箱即用',
+    networkType: '回国优化',
     ipConfig: '原生IP：1个',
     defense: '标准防御',
     note: '',
@@ -119,24 +116,23 @@ const serverProducts: ServerProduct[] = [
   },
   {
     id: 3,
-    name: '10周年活动特惠服务器',
-    subtitle: '8核 8G 300M ',
+    name: '韩国 · 轻量云',
+    subtitle: '回国优化 无需备案',
     specs: {
-      cpu: '8核 8G 300M',
-      memory: '8GB',
-      storage: '100GB SSD',
-      bandwidth: '300Mbps 不限流量',
+      cpu: '2 ~ 4核心 V2处理器',
+      memory: '2 ~ 4GB DDR3',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '3 ~ 5Mbps',
     },
-    regions: ['国内', '香港', '美国'],
-    duration: '1年',
-    originalPrice: 4700,
-    currentPrice: 2350,
-    discount: '2折',
-    isHot: true,
-    isRecommended: false,
-    activityEndDate: '2024年9月15日',
-    activityNote: '购买后第2天自动赠送2年，5分之1价格体验大厂同级CPU，20分之1价格体验大厂优质带宽，阿里精品网CN2大带宽',
-    networkType: '精品网CN2',
+    regions: ['韩国'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
+    isHot: false,
+    isRecommended: true,
+    activityNote: 'Linux系统可选，回国优化，无需备案，开箱即用',
+    networkType: '回国优化',
     ipConfig: '原生IP：1个',
     defense: '标准防御',
     note: '',
@@ -144,125 +140,120 @@ const serverProducts: ServerProduct[] = [
   },
   {
     id: 4,
-    name: '10周年活动特惠服务器',
-    subtitle: '4核4G 100M ',
+    name: '美国 · 轻量云',
+    subtitle: '精品线路 无需备案',
     specs: {
-      cpu: '4核4G 100M',
-      memory: 'DDR5代内存',
-      storage: '40GB SSD',
-      bandwidth: '100Mbps 不限流量',
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '10 ~ 20Mbps',
     },
-    regions: ['美国VIP精品网'],
-    duration: '1年',
-    originalPrice: 2400,
-    currentPrice: 800,
-    discount: '2.5折',
-    isHot: false,
-    isRecommended: true,
-    activityEndDate: '2024年9月15日',
-    activityNote: '购买后第2天自动赠送2年，访问速度极快，25端口开放',
-    networkType: 'VIP精品网',
+    regions: ['美国'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
+    isHot: true,
+    isRecommended: false,
+    activityNote: 'Linux系统可选，精品线路，无需备案，开箱即用',
+    networkType: '精品线路',
     ipConfig: '原生IP：1个',
-    defense: '100G防御',
+    defense: '标准防御',
     note: '',
     linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
   },
   {
     id: 5,
-    name: '10周年活动特惠服务器',
-    subtitle: '8核 8G 100M',
+    name: '德国 · 轻量云',
+    subtitle: 'CN2优化 无需备案',
     specs: {
-      cpu: '8核 8G 100M',
-      memory: 'DDR5代内存',
-      storage: '80G 系统硬盘',
-      bandwidth: '100M 不限流量',
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '3 ~ 5Mbps',
     },
-    regions: ['美国'],
-    duration: '日常价',
-    originalPrice: 1299,
-    currentPrice: 1299,
-    discount: '买1年送2年',
-    isHot: true,
-    isRecommended: false,
-    activityEndDate: '2024年9月15日',
-    activityNote: '购买后第2天自动赠送2年，访问速度极快，25端口开放',
-    networkType: '精品网',
+    regions: ['德国'],
+    duration: '月付',
+    originalPrice: 18,
+    currentPrice: 10.39,
+    discount: '特惠',
+    isHot: false,
+    isRecommended: true,
+    activityNote: 'Linux系统可选，CN2优化，无需备案，开箱即用',
+    networkType: 'CN2优化',
     ipConfig: '原生IP：1个',
-    defense: '100G防御',
+    defense: '标准防御',
     note: '',
     linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
   },
   {
     id: 6,
-    name: '10周年活动特惠服务器',
-    subtitle: '12核12G 100M',
+    name: '美国高防 · 轻量云',
+    subtitle: '9929线路 200G防御',
     specs: {
-      cpu: '12核12G 100M',
-      memory: 'DDR5代内存',
-      storage: '80G 系统硬盘',
-      bandwidth: '100M 不限流量',
+      cpu: '4核心 V4处理器',
+      memory: '4GB DDR4',
+      storage: '50G 高速存储',
+      bandwidth: '30Mbps',
     },
-    regions: ['美国', '上海', '北京'],
-    duration: '年付',
-    originalPrice: 7500,
-    currentPrice: 2500,
-    discount: '买一年送2年',
+    regions: ['美国'],
+    duration: '月付',
+    originalPrice: 68,
+    currentPrice: 43.89,
+    discount: '特惠',
     isHot: true,
     isRecommended: false,
-    activityEndDate: '2023-09-15',
-    activityNote: '购买后第2天自动赠送2年 25端口开放',
-    networkType: 'VIP精品网',
+    activityNote: 'Linux系统可选，9929线路，无需备案，200G防御',
+    networkType: '9929线路',
     ipConfig: '原生IP：1个',
-    defense: '100G防御',
+    defense: '200G防御',
     note: '',
     linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
   },
   {
     id: 7,
-    name: '成都通用型ECS实例',
-    subtitle: '4H 4G 20M',
+    name: '新加坡 · 轻量云',
+    subtitle: 'CN2优化 无需备案',
     specs: {
-      cpu: '4H 4G 20M',
-      memory: '4GiB',
-      storage: 'Windows 50GiB / Linux 30GiB',
-      bandwidth: '20Mbps',
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '5 ~ 10Mbps',
     },
-    regions: ['成都'],
+    regions: ['新加坡'],
     duration: '月付',
-    originalPrice: 126,
-    currentPrice: 63,
+    originalPrice: 38,
+    currentPrice: 25.99,
     discount: '特惠',
-    isHot: true,
-    isRecommended: false,
-    activityEndDate: '2024年12月31日',
-    activityNote: '免费赠送 100Gbps DDoS/CC 防护',
-    networkType: '公网',
-    ipConfig: '固定IP：1个，系统：Windows/Linux',
-    defense: '免费赠送 100Gbps DDoS/CC 防护',
+    isHot: false,
+    isRecommended: true,
+    activityNote: 'Linux系统可选，CN2优化，无需备案，开箱即用',
+    networkType: 'CN2优化',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
     note: '',
     linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
   },
   {
     id: 8,
-    name: '10周年活动特惠服务器',
-    subtitle: '8核32G22M',
+    name: '台湾 · 轻量云',
+    subtitle: '回国优化 无需备案',
     specs: {
-      cpu: '8核32G22M',
-      memory: '32GB',
-      storage: '800GB SSD',
-      bandwidth: '22Mbps',
+      cpu: '2 ~ 4核心 V3处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '5 ~ 8Mbps',
     },
-    regions: ['广州', '上海', '北京', '成都', '南京'],
-    duration: '日常价',
-    originalPrice: 6165,
-    currentPrice: 3200,
-    discount: '7折',
+    regions: ['台湾'],
+    duration: '月付',
+    originalPrice: 32,
+    currentPrice: 19.99,
+    discount: '特惠',
     isHot: true,
     isRecommended: false,
-    activityEndDate: '2024年12月31日',
-    activityNote: '高性能服务器，适合大型应用和数据处理',
-    networkType: '公网',
-    ipConfig: '固定IP：1个',
+    activityNote: 'Linux系统可选，回国优化，无需备案，开箱即用',
+    networkType: '回国优化',
+    ipConfig: '原生IP：1个',
     defense: '标准防御',
     note: '',
     linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
@@ -479,29 +470,13 @@ const resolveProductLinkUrl = (productId: number) =>
  * - 响应式网格布局，适配不同屏幕尺寸（手机、平板、桌面）
  * - 包含服务器规格、地域、价格、折扣等完整信息展示
  * - 支持热门标签和推荐标签显示
- * - 数量选择器和购买按钮交互功能
+ * - 购买按钮交互功能
  * - 热门活动和促销信息展示
  * - 遵循 Linear Design 风格：Light Mode, 细边框, 工业科技感
  *
  * @returns {JSX.Element} 云服务器产品展示组件
  */
 export default function Cardprice() {
-  // 初始化每个产品的数量状态，默认为1
-  const [quantities, setQuantities] = useState<{ [key: number]: number }>(
-    serverProducts.reduce((acc, product) => ({ ...acc, [product.id]: 1 }), {}),
-  )
-
-  /**
-   * 更新产品数量
-   * @param {number} productId - 产品ID
-   * @param {number} newQuantity - 新数量（必须大于等于1）
-   */
-  const updateQuantity = (productId: number, newQuantity: number) => {
-    if (newQuantity >= 1) {
-      setQuantities((prev) => ({ ...prev, [productId]: newQuantity }))
-    }
-  }
-
   /**
    * 添加到购物车处理函数
    * @param {number} productId - 产品ID
@@ -734,9 +709,9 @@ export default function Cardprice() {
 
         {/* 云计算产品网格数据区域 */}
         <div className="mt-12 mb-6">
-          <h2 className="text-3xl font-bold text-[#0F172A]">云服务器产品</h2>
+          <h2 className="text-3xl font-bold text-[#0F172A]">轻量应用服务器</h2>
           <p className="mt-1 text-[#64748B]">
-            每个配置全网（包含其他活动页面）限新购1次，续费1次，详情参见销售卡片
+            新用户首购专享，老用户续费同价，全场配置限购1次，更多优惠详见活动规则
           </p>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -894,31 +869,6 @@ export default function Cardprice() {
                     <span className="text-sm text-[#94A3B8] line-through">
                       ¥{product.originalPrice}
                     </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#64748B]">数量</span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() =>
-                        updateQuantity(product.id, quantities[product.id] - 1)
-                      }
-                      className="flex h-7 w-7 items-center justify-center rounded-md border border-[#e5e6eb] text-[#64748B] transition-colors hover:bg-[#f7f8fa] hover:border-[#1664ff] hover:text-[#1664ff]"
-                    >
-                      −
-                    </button>
-                    <span className="w-8 text-center text-[#0F172A]">
-                      {quantities[product.id]}
-                    </span>
-                    <button
-                      onClick={() =>
-                        updateQuantity(product.id, quantities[product.id] + 1)
-                      }
-                      className="flex h-7 w-7 items-center justify-center rounded-md border border-[#e5e6eb] text-[#64748B] transition-colors hover:bg-[#f7f8fa] hover:border-[#1664ff] hover:text-[#1664ff]"
-                    >
-                      +
-                    </button>
                   </div>
                 </div>
 
