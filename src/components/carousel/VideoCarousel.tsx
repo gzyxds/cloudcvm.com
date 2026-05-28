@@ -61,7 +61,7 @@ const defaultSlides: CarouselSlide[] = [
   {
     id: 1,
     order: 2,
-    title: '专属福利活动',
+    title: '轻量服务器',
     subtitle: '优刻云计算',
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
     imagePath: '/images/screenshots/carousel -2.jpg',
@@ -87,10 +87,10 @@ const defaultSlides: CarouselSlide[] = [
   {
     id: 3,
     order: 1,
-    title: 'OpenClaw',
-    subtitle: 'OpenClaw 云端一键秒级部署',
-    description: '一键部署OpenClaw(Clawdbot/Moltbot),7X24小时在线，随时响应，企业微信、QQ、钉钉、飞书四大国内主流IMAPP已全面支持!',
-    imagePath: '/images/screenshots/OpenClaw.jpg',
+    title: '年终钜惠狂欢',
+    subtitle: '智聚优刻云 年中钜惠狂欢',
+    description: '智聚优刻云 年中钜惠狂欢 优惠商品与活动合集!',
+    imagePath: '/images/screenshots/carousel -7.png',
     imageAlt: 'GPU云服务器平台',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
