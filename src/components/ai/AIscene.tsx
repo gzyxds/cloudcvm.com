@@ -462,7 +462,7 @@ export const AIscene = memo(function AIscene() {
                       </div>
                       <div className="shrink-0 self-center">
                         <a
-                          href="https://cloud.buidai.com"
+                          href="https://aigc.gmlart.cn"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-medium text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-gray-700 hover:bg-[#0055ff] hover:text-white rounded-md sm:rounded-lg transition-all whitespace-nowrap"
