@@ -11,7 +11,15 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid'
  */
 export default function Hero() {
   return (
-    <div className="relative isolate overflow-hidden bg-white">
+    <div
+      className="relative isolate overflow-hidden"
+      style={{
+        backgroundImage: 'url(/images/background/background-4.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       {/* 背景装饰网格 */}
       <svg
         aria-hidden="true"

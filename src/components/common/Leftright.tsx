@@ -500,10 +500,16 @@ export function Leftright() {
 
   return (
     <section
-      className="flex min-h-screen flex-col justify-center bg-white py-16 sm:py-20 lg:py-24"
+      className="relative flex min-h-screen flex-col justify-center py-16 sm:py-20 lg:py-24"
+      style={{
+        backgroundImage: 'url(/images/background/background-4.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
       aria-labelledby="solutions-section-title"
     >
-      <Container>
+      <Container className="relative z-10">
         {/* 顶部标题 */}
         <div className="mb-10 text-center sm:mb-16 lg:mb-24">
           <h2
@@ -559,7 +565,7 @@ export function Leftright() {
       </Container>
 
       {/* 解决方案卡片列表 */}
-      <div className="w-full px-3 sm:px-6 lg:px-8 2xl:px-12">
+      <div className="relative z-10 w-full px-3 sm:px-6 lg:px-8 2xl:px-12">
         <AnimatePresence mode="wait">
           <motion.div
             suppressHydrationWarning
@@ -585,7 +591,7 @@ export function Leftright() {
         </AnimatePresence>
       </div>
 
-      <Container>
+      <Container className="relative z-10">
         {/* 底部链接 */}
         <div className="mt-12 text-center sm:mt-16 lg:mt-20">
           <a

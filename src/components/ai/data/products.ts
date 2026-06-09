@@ -94,7 +94,7 @@ export const products: Product[] = [
     buyLink: BASE_BUY_LINK
   },
   {
-    image: "/images/product/saas.svg",
+    image: "/images/product/saas2.png",
     title: "艺创AI数字分身2.0",
     subtitle: "[PHP源码版]",
     description: "基于Java开发的AI聊天绘画系统，高性能架构，支持多种绘画模型和聊天场景...",

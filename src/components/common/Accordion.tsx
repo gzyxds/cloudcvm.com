@@ -118,8 +118,6 @@ function BentoCard({ feature, index }: { feature: CloudFeature; index: number })
         <IconComponent className="h-48 w-48" />
       </div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-
       <div className="relative z-10">
         <div className="mb-3 sm:mb-4 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:bg-[#eff6ff]">
         <IconComponent className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
@@ -155,7 +153,16 @@ function BentoCard({ feature, index }: { feature: CloudFeature; index: number })
  */
 export function Accordion() {
   return (
-    <section className="relative overflow-hidden border-t border-[#E2E8F0] bg-gradient-to-b from-white via-[#eff6ff]/20 to-[#eff6ff] py-12 sm:py-16 lg:py-24" id="cloud-features">
+    <section
+      className="relative overflow-hidden border-t border-[#E2E8F0] py-12 sm:py-16 lg:py-24"
+      style={{
+        backgroundImage: 'url(/images/background/background-2.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+      id="cloud-features"
+    >
       <Container className="relative z-10">
         {/* Header */}
         <div className="mb-6 sm:mb-8 text-center max-w-4xl mx-auto">

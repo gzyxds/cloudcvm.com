@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback, useRef, memo } from 'react'
 import { Container } from '@/components/Container'
 import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
@@ -31,7 +31,8 @@ const tabs = [
     name: 'AI 视觉创作',
     title: 'AI 视觉与创意生成解决方案',
     icon: PhotoIcon,
-    gradient: 'from-slate-50/80 via-blue-50/30 to-slate-50/80 dark:from-slate-900/80 dark:via-blue-900/20 dark:to-slate-900/80',
+    gradient:
+      'from-slate-50/80 via-blue-50/30 to-slate-50/80 dark:from-slate-900/80 dark:via-blue-900/20 dark:to-slate-900/80',
     features: [
       {
         icon: VideoCameraIcon,
@@ -74,7 +75,8 @@ const tabs = [
     name: '智能对话 Agent',
     title: '智能体与对话交互系统',
     icon: ChatBubbleLeftRightIcon,
-    gradient: 'from-blue-50/80 via-indigo-50/30 to-blue-50/80 dark:from-blue-900/80 dark:via-indigo-900/20 dark:to-blue-900/80',
+    gradient:
+      'from-blue-50/80 via-indigo-50/30 to-blue-50/80 dark:from-blue-900/80 dark:via-indigo-900/20 dark:to-blue-900/80',
     features: [
       {
         icon: CpuChipIcon,
@@ -111,14 +113,19 @@ const tabs = [
         title: '语音播报',
         desc: '将对话回复自动转换为语音播报',
       },
-      { icon: ShareIcon, title: '分享对话', desc: '一键生成链接，便捷分享精彩对话' },
+      {
+        icon: ShareIcon,
+        title: '分享对话',
+        desc: '一键生成链接，便捷分享精彩对话',
+      },
     ],
   },
   {
     name: '知识库与文档',
     title: '企业级知识库与文档处理',
     icon: DocumentTextIcon,
-    gradient: 'from-emereldald-50/80 vttaleal-50/50 emer-ldmerald-50/80 darkemerrldm-eme2ald-900/20 teaa:via-teal-900/20emeraldk:to-2merald-900/20',
+    gradient:
+      'from-emerald-50/80 via-teal-50/30 to-emerald-50/80 dark:from-emerald-900/80 dark:via-teal-900/20 dark:to-emerald-900/80',
     features: [
       {
         icon: DocumentTextIcon,
@@ -161,7 +168,8 @@ const tabs = [
     name: '模型与数据能力',
     title: '多模型管理与数据解析',
     icon: CpuChipIcon,
-    gradient: 'from-indigo-50/80 via-blue-50/30 to-indigo-50/80 dark:from-indigo-900/80 dark:via-blue-900/20 dark:to-indigo-900/80',
+    gradient:
+      'from-indigo-50/80 via-blue-50/30 to-indigo-50/80 dark:from-indigo-900/80 dark:via-blue-900/20 dark:to-indigo-900/80',
     features: [
       {
         icon: CpuChipIcon,
@@ -204,7 +212,8 @@ const tabs = [
     name: '营销与应用集成',
     title: '全渠道营销与应用生态集成',
     icon: MegaphoneIcon,
-    gradient: 'from-sky-50/80 via-indigo-50/30 to-sky-50/80 dark:from-sky-900/80 dark:via-indigo-900/20 dark:to-sky-900/80',
+    gradient:
+      'from-sky-50/80 via-indigo-50/30 to-sky-50/80 dark:from-sky-900/80 dark:via-indigo-900/20 dark:to-sky-900/80',
     features: [
       {
         icon: ChatBubbleLeftRightIcon,
@@ -250,23 +259,64 @@ const tabs = [
   },
 ]
 
-export function AIscene() {
+/**
+ * 全场景AI解决方案展示组件
+ *
+ * 性能优化策略：
+ * 1. 使用 React.memo 避免父级渲染时产生不必要的重绘。
+ * 2. 导航 hover 切换引入 60ms 防抖，抑制鼠标快速滑过导致的频繁 setState。
+ * 3. 移除大面积 backdrop-blur 与 mix-blend-overlay，降低 GPU 合成层压力。
+ * 4. 背景渐变直接采用轻量 motion.div，避免 AnimatePresence 带来的额外卸载/挂载开销。
+ * 5. 功能卡片入场动画缩短 duration 并封顶 delay，减少布局抖动与重排时间。
+ * 6. 对事件处理器使用 useCallback，确保引用稳定，便于未来做更深度的子组件拆分。
+ */
+export const AIscene = memo(function AIscene() {
   const [active, setActive] = useState(0)
   const currentTab = tabs[active] || tabs[0]
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // 二维码弹窗 - 触发自定义事件
-  const openQrModal = (type: 'solution' | 'consult') => {
+  /**
+   * 防抖切换标签页
+   * 避免鼠标在导航区快速划过时触发连续渲染
+   */
+  const handleMouseEnter = useCallback((idx: number) => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current)
+    hoverTimer.current = setTimeout(() => setActive(idx), 60)
+  }, [])
+
+  /**
+   * 清除未触发的 hover 定时器，防止内存泄漏
+   */
+  const handleMouseLeave = useCallback(() => {
+    if (hoverTimer.current) {
+      clearTimeout(hoverTimer.current)
+      hoverTimer.current = null
+    }
+  }, [])
+
+  /**
+   * 打开二维码弹窗，通过自定义事件与全局模态框通信
+   */
+  const openQrModal = useCallback((type: 'solution' | 'consult') => {
     const config =
       type === 'solution'
-        ? { title: '了解方案详情', desc: '扫码获取完整方案', image: '/qrcode.png' }
-        : { title: '联系售前咨询', desc: '扫码添加微信顾问', image: '/wechat.png' }
+        ? {
+            title: '了解方案详情',
+            desc: '扫码获取完整方案',
+            image: '/qrcode.png',
+          }
+        : {
+            title: '联系售前咨询',
+            desc: '扫码添加微信顾问',
+            image: '/wechat.png',
+          }
 
     if (typeof window !== 'undefined') {
       window.dispatchEvent(
         new CustomEvent('showQRCodeModal', { detail: config })
       )
     }
-  }
+  }, [])
 
   return (
     <section className="w-full py-12 md:py-20 lg:py-24 font-sans bg-white dark:bg-gray-900">
@@ -277,7 +327,10 @@ export function AIscene() {
             全场景{' '}
             <span
               className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#2055FA] via-[#1B52F8] to-[#A07CFE] pb-1"
-              style={{ WebkitBackgroundClip: 'text', backgroundClip: 'text' }}
+              style={{
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+              }}
             >
               AI 解决方案
             </span>
@@ -288,40 +341,42 @@ export function AIscene() {
         </div>
 
         {/* 主体卡片容器 */}
-        <div className="relative rounded-2xl overflow-hidden border border-white/50 dark:border-gray-700/50 shadow-2xl shadow-gray-200/50 dark:shadow-none min-h-[600px] flex flex-col lg:flex-row transition-all duration-500 backdrop-blur-xl bg-white/40 dark:bg-gray-800/40">
-          {/* 动态背景装饰 */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className={clsx(
-                "absolute inset-0 z-0 bg-gradient-to-br",
-                currentTab.gradient
-              )}
-            />
-          </AnimatePresence>
+        <div className="relative rounded-2xl overflow-hidden border border-white/50 dark:border-gray-700/50 shadow-2xl shadow-gray-200/50 dark:shadow-none min-h-[600px] flex flex-col lg:flex-row transition-all duration-500 bg-white/40 dark:bg-gray-800/40">
+          {/* 动态背景装饰 - 移除 AnimatePresence，直接用 motion.div 做轻量淡入，避免卸载/挂载开销 */}
+          <motion.div
+            key={active}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35 }}
+            className={clsx(
+              'absolute inset-0 z-0 bg-gradient-to-br pointer-events-none',
+              currentTab.gradient
+            )}
+          />
 
-          {/* 装饰性光晕 - 固定 */}
-          <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-white/40 dark:bg-white/5 rounded-full blur-3xl pointer-events-none mix-blend-overlay"></div>
-          <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-white/40 dark:bg-white/5 rounded-full blur-3xl pointer-events-none mix-blend-overlay"></div>
+          {/* 装饰性光晕 - 移除 mix-blend-overlay，降低合成层复杂度 */}
+          <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-white/30 dark:bg-white/5 rounded-full blur-3xl pointer-events-none opacity-60" />
+          <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-white/30 dark:bg-white/5 rounded-full blur-3xl pointer-events-none opacity-60" />
 
           {/* 导航区域 */}
-          <aside className="relative z-10 w-full lg:w-1/4 bg-white/30 dark:bg-gray-800/30 border-b lg:border-b-0 lg:border-r border-white/40 dark:border-gray-700/40 backdrop-blur-md flex flex-col">
+          <aside className="relative z-10 w-full lg:w-1/4 bg-white/30 dark:bg-gray-800/30 border-b lg:border-b-0 lg:border-r border-white/40 dark:border-gray-700/40 flex flex-col">
             {/* 移动端横向滚动/桌面端垂直列表 */}
-            <div className="overflow-x-auto lg:overflow-y-auto no-scrollbar">
+            <div className="overflow-x-auto lg:overflow-y-auto no-scrollbar relative">
+              {/* 移动端左右滚动阴影指示，增强可滚动感知 */}
+              <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-white/80 dark:from-gray-900/80 to-transparent pointer-events-none z-10 lg:hidden" />
+              <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-white/80 dark:from-gray-900/80 to-transparent pointer-events-none z-10 lg:hidden" />
+
               <div className="flex lg:flex-col p-2 sm:p-3 lg:p-4 gap-1.5 sm:gap-2 min-w-max lg:min-w-0">
                 {tabs.map((t, idx) => (
                   <button
                     key={t.name}
                     onClick={() => setActive(idx)}
-                    onMouseEnter={() => setActive(idx)}
+                    onMouseEnter={() => handleMouseEnter(idx)}
+                    onMouseLeave={handleMouseLeave}
                     className={clsx(
                       'group relative flex items-center px-4 py-3 sm:px-5 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl transition-all duration-300 min-w-[120px] sm:min-w-[140px] lg:min-w-0 text-left outline-none',
                       active === idx
-                        ? 'bg-white dark:bg-gray-800 text-[#0055ff] dark:text-white ring-1 ring-slate-200 dark:ring-gray-700'
+                        ? 'bg-white dark:bg-gray-800 text-[#0055ff] dark:text-white shadow-sm ring-1 ring-slate-200 dark:ring-gray-700'
                         : 'text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-gray-200 hover:bg-white/60 dark:hover:bg-gray-800/60'
                     )}
                   >
@@ -331,7 +386,7 @@ export function AIscene() {
                         'absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 sm:h-8 bg-[#0055ff] rounded-r-full transition-all duration-300',
                         active === idx ? 'opacity-100' : 'opacity-0'
                       )}
-                    ></div>
+                    />
 
                     <t.icon
                       className={clsx(
@@ -362,32 +417,35 @@ export function AIscene() {
 
           {/* 内容面板 */}
           <section className="relative z-10 flex-1 p-4 sm:p-6 lg:p-8 flex flex-col overflow-hidden">
-             <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait">
               <motion.div
                 key={active}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col h-full"
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                className="flex flex-col h-full will-change-transform"
               >
                 {/* 头部信息 */}
                 <div className="mb-6 sm:mb-8">
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-3">
                     {currentTab.title}
                   </h3>
-                  <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#0055ff] to-blue-400 rounded-full"></div>
+                  <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-[#0055ff] to-blue-400 rounded-full" />
                 </div>
 
                 {/* 功能网格 */}
                 <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 content-start mb-6 sm:mb-8">
                   {currentTab.features.map((f, i) => (
                     <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 10 }}
+                      key={`${active}-${i}`}
+                      initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                      className="group flex gap-3 p-4 rounded-lg sm:rounded-xl bg-white dark:bg-gray-800 border border-slate-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300"
+                      transition={{
+                        delay: Math.min(i * 0.04, 0.2),
+                        duration: 0.25,
+                      }}
+                      className="group flex gap-3 p-4 rounded-lg sm:rounded-xl bg-white dark:bg-gray-800 border border-slate-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 will-change-transform"
                     >
                       <div className="shrink-0">
                         <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-[#0055ff] dark:text-blue-400 group-hover:bg-[#0055ff] group-hover:text-white transition-all duration-300">
@@ -420,7 +478,7 @@ export function AIscene() {
                 <div className="mt-auto pt-4 sm:pt-6 border-t border-slate-100 dark:border-gray-800 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                   <button
                     onClick={() => openQrModal('solution')}
-                    className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-900 dark:text-white bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg sm:rounded-xl transition-all hover:bg-slate-50 dark:hover:bg-gray-700 hover:border-slate-300 dark:hover:border-gray-600 flex-1 sm:flex-none"
+                    className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-900 dark:text-white bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg sm:rounded-xl transition-all hover:bg-slate-50 dark:hover:bg-gray-700 hover:border-slate-300 dark:hover:border-gray-600 hover:shadow-sm flex-1 sm:flex-none"
                   >
                     了解方案详情
                     <ArrowRightIcon className="ml-2 h-4 w-4" />
@@ -450,4 +508,4 @@ export function AIscene() {
       `}</style>
     </section>
   )
-}
+})
