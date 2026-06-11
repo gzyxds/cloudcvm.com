@@ -34,7 +34,7 @@ interface Product {
  */
 const products: Product[] = [
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '单商户标准商城系统-PHP',
     subtitle: '[PHP源码版]',
     description:
@@ -48,7 +48,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '单商户商城系统-JAVA',
     subtitle: '[JAVA源码版]',
     description:
@@ -62,7 +62,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '单商户高级商城系统-PHP',
     subtitle: '[PHP高级版]',
     description:
@@ -76,7 +76,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '单商户SaaS商城系统-PHP',
     subtitle: '[SaaS版本]',
     description:
@@ -90,7 +90,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '多商户商城系统-PHP',
     subtitle: '[多商户版]',
     description:
@@ -104,7 +104,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '多商户高级商城系统-PHP',
     subtitle: '[B2B2C PLUS]',
     description:
@@ -118,7 +118,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '社区团购系统-PHP',
     subtitle: '[社区团购]',
     description:
@@ -132,7 +132,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '连锁点餐系统-PHP',
     subtitle: '[餐饮系统]',
     description:
@@ -146,7 +146,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '按摩到家专业版-PHP',
     subtitle: '[按摩系统]',
     description:
@@ -160,7 +160,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '上门家政专业版-PHP',
     subtitle: '[家政系统]',
     description:
@@ -174,7 +174,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '上门家政系统-JAVA',
     subtitle: '[JAVA家政版]',
     description:
@@ -188,7 +188,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '知识付费系统-PHP',
     subtitle: '[知识付费]',
     description:
@@ -202,7 +202,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '知识付费系统-JAVA',
     subtitle: '[JAVA知识付费]',
     description:
@@ -216,7 +216,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '回收租赁系统-PHP',
     subtitle: '[回收租赁]',
     description:
@@ -230,7 +230,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: '同城跑腿系统-PHP',
     subtitle: '[跑腿系统]',
     description:
@@ -244,7 +244,7 @@ const products: Product[] = [
     buyLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
   },
   {
-    image: '/images/carousel/cloudcvm.svg',
+    image: '/images/carousel/ecommerce.png',
     title: 'CRM系统-JAVA',
     subtitle: '[CRM管理]',
     description:

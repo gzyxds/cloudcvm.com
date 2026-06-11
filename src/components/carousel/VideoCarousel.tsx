@@ -68,7 +68,7 @@ const defaultSlides: CarouselSlide[] = [
     imageAlt: '全方位支付解决方案',
     primaryButtonText: '立即领取',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
-    secondaryButtonText: '联系客服',
+    secondaryButtonText: '立即购买',
     secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
@@ -81,7 +81,7 @@ const defaultSlides: CarouselSlide[] = [
     imageAlt: '云计算解决方案',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
-    secondaryButtonText: '联系客服',
+    secondaryButtonText: '立即购买',
     secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
@@ -94,7 +94,7 @@ const defaultSlides: CarouselSlide[] = [
     imageAlt: 'GPU云服务器平台',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
-    secondaryButtonText: '联系客服',
+    secondaryButtonText: '立即购买',
     secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
@@ -107,7 +107,7 @@ const defaultSlides: CarouselSlide[] = [
     imageAlt: '全球化部署解决方案',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
-    secondaryButtonText: '联系客服',
+    secondaryButtonText: '立即购买',
     secondaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm'
   }
 ]
@@ -457,12 +457,12 @@ const Carousel = memo(function Carousel({
               </p>
 
               {/* 普通链接按钮 - Bento 风格 */}
-              <div className="flex flex-row gap-3 sm:gap-4 pt-1 justify-center sm:justify-start">
+              <div className="flex flex-row gap-3 sm:gap-4 pt-1 justify-between sm:justify-start w-full sm:w-auto">
                 <a
                   href={currentSlide.primaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.primaryButton}
+                  className={clsx(styles.primaryButton, "flex-1 sm:flex-none max-w-[50%] sm:max-w-none")}
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -474,12 +474,12 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.secondaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.secondaryButton}
+                  className={clsx(styles.secondaryButton, "flex-1 sm:flex-none max-w-[50%] sm:max-w-none")}
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
-                  {currentSlide.secondaryButtonText || '联系客服'}
+                  {currentSlide.secondaryButtonText || '立即购买'}
                 </a>
               </div>
             </div>

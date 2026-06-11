@@ -15,10 +15,13 @@ import {
 } from '@headlessui/react'
 import {
   ArrowPathIcon,
+  BanknotesIcon,
   Bars3Icon,
   ChartPieIcon,
   CursorArrowRaysIcon,
+  DevicePhoneMobileIcon,
   FingerPrintIcon,
+  GlobeAltIcon,
   SquaresPlusIcon,
   XMarkIcon,
   QuestionMarkCircleIcon,
@@ -221,6 +224,24 @@ const solutions: MenuItem[] = [
 // 企业解决方案菜单配置
 const enterpriseSolutions: MenuItem[] = [
   {
+    name: '移动解决方案',
+    description: '移动应用云上部署方案',
+    href: '/mobile',
+    icon: DevicePhoneMobileIcon,
+  },
+  {
+    name: '游戏解决方案',
+    description: '低延迟高防护游戏云方案',
+    href: '/game',
+    icon: GlobeAltIcon,
+  },
+  {
+    name: '金融解决方案',
+    description: '安全合规金融云方案',
+    href: '/finance',
+    icon: BanknotesIcon,
+  },
+  {
     name: '电商解决方案',
     description: '智能建站解决方案',
     href: '/ecommerce',
@@ -236,6 +257,12 @@ const enterpriseSolutions: MenuItem[] = [
     name: '视频解决方案',
     description: '视频行业专属解决方案',
     href: '/video',
+    icon: ShieldCheckIcon,
+  },
+  {
+    name: '政府解决方案',
+    description: '政府场景化解决方案',
+    href: '/gov',
     icon: ShieldCheckIcon,
   },
   {
