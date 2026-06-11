@@ -561,9 +561,9 @@ const Carousel = memo(function Carousel({
         </div>
 
         {/* 移动端：+ 分割线设计 */}
-        <div className="lg:hidden mt-14">
-          <div className="bg-white pt-4">
-            <div className="grid grid-cols-2 pb-3">
+        <div className="lg:hidden mt-10">
+          <div className="bg-white pt-2">
+            <div className="grid grid-cols-2 pb-2">
               {entryCards.map((card, index) => (
                 <a
                   key={card.id}
@@ -571,7 +571,7 @@ const Carousel = memo(function Carousel({
                   target="_blank"
                   rel="noopener noreferrer"
                   className={clsx(
-                    "group relative transition-colors duration-200 py-3 px-3",
+                    "group relative transition-colors duration-200 py-2 px-3",
                     index % 2 === 0 && "border-r border-[#eee]",
                     index >= 2 && "border-t border-[#eee]"
                   )}
@@ -579,10 +579,10 @@ const Carousel = memo(function Carousel({
                   <span className="inline-block text-xs text-[#0055ff] mb-0.5 font-medium tracking-wider">
                     {card.tag}
                   </span>
-                  <p className="font-medium text-[#0F172A] text-base leading-snug mb-0.5 group-hover:text-[#0055ff] transition-colors">
+                  <p className="font-medium text-[#0F172A] text-sm leading-snug mb-0.5 group-hover:text-[#0055ff] transition-colors">
                     {card.title}
                   </p>
-                  <p className="text-[#8C8C8C] text-[13px] leading-relaxed">
+                  <p className="hidden text-[#8C8C8C] text-xs leading-relaxed">
                     {card.subtitle}
                   </p>
                 </a>
