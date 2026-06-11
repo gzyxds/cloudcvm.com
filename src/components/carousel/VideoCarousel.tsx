@@ -561,7 +561,7 @@ const Carousel = memo(function Carousel({
         </div>
 
         {/* 移动端：+ 分割线设计 */}
-        <div className="lg:hidden mt-10">
+        <div className="lg:hidden -mt-2">
           <div className="bg-white pt-2">
             <div className="grid grid-cols-2 pb-2">
               {entryCards.map((card, index) => (
