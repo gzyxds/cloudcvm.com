@@ -376,7 +376,7 @@ function SectionNav() {
 function HeroSection() {
   return (
     <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
-      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/banner-finance.jpg')] bg-cover bg-center bg-no-repeat opacity-20" />
+      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/finance.png')] bg-cover bg-center bg-no-repeat opacity-20" />
       
       <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
         <motion.div

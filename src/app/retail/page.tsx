@@ -124,116 +124,40 @@ interface Testimonial {
 }
 
 /**
- * Hero区域组件
- * 采用简洁大气的左右布局设计，强调视觉冲击力
+ * Hero 区域组件 - 零售行业解决方案
+ * 采用统一方案页设计风格，图片背景
  */
 function HeroSection() {
-  const features = [
-    { name: '高并发处理', href: '#performance' },
-    { name: '弹性扩容', href: '#scaling' },
-    { name: '安全防护', href: '#security' },
-    { name: '营销创新', href: '#marketing' },
-  ]
-
   return (
-    <section className="relative overflow-hidden bg-white pt-16 pb-20 lg:pt-24 lg:pb-32">
-      {/* 背景装饰网格 */}
-      <svg
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 size-full mask-[radial-gradient(100%_100%_at_top_right,white,transparent)] stroke-[#E2E8F0]"
-      >
-        <defs>
-          <pattern
-            x="50%"
-            y={-1}
-            id="retail-hero-pattern"
-            width={200}
-            height={200}
-            patternUnits="userSpaceOnUse"
-          >
-            <path d="M.5 200V.5H200" fill="none" />
-          </pattern>
-        </defs>
-        <rect
-          fill="url(#retail-hero-pattern)"
-          width="100%"
-          height="100%"
-          strokeWidth={0}
-        />
-      </svg>
+    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+      {/* 背景图片 */}
+      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/retail.png')] bg-cover bg-center bg-no-repeat opacity-20" />
 
-      {/* 顶部蓝色光晕 */}
-      <div className="absolute top-0 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl" aria-hidden="true">
-        <div
-          className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#eff6ff] to-[#eff6ff] opacity-60"
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-          }}
-        />
-      </div>
-
-      <Container className="relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* 左侧内容 */}
-          <div className="text-center lg:text-left">
-            <div className="mb-8 inline-flex items-center rounded-full border border-blue-100 bg-blue-50/50 px-4 py-1.5 text-sm font-medium text-blue-600 ring-1 ring-inset ring-blue-600/10">
-              <span className="mr-2 flex h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
-              零售数字化转型首选
-            </div>
-
-            <h1 className="mb-8 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl font-display">
-              构建下一代
-              <span className="block text-[#0055ff] mt-2">智慧零售云平台</span>
-            </h1>
-
-            <p className="mb-10 text-lg leading-8 text-slate-600 max-w-2xl mx-auto lg:mx-0">
-              为零售企业提供从基础设施到业务应用的全栈云解决方案。
-              应对高并发大促，实现全渠道营销，数据驱动业务增长。
-            </p>
-
-            <div className="mb-10 flex flex-wrap justify-center gap-3 lg:justify-start">
-              {features.map((feature) => (
-                <div
-                  key={feature.name}
-                  className="flex items-center gap-x-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm"
-                >
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#0055ff]" />
-                  {feature.name}
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-              <Button href="#scenarios" color="blue" className="rounded-full px-8 py-3.5 text-base shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all">
-                立即体验
-              </Button>
-              <Button href="#features" variant="outline" className="rounded-full px-8 py-3.5 text-base hover:bg-slate-50 hover:text-slate-900 transition-all">
-                了解更多
-              </Button>
-            </div>
+      <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
+          <span className="inline-flex h-7 items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3 text-xs font-semibold text-[#0055ff]">
+            零售行业 / 高并发 / 弹性扩容
+          </span>
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-tight">
+            构建下一代智慧零售云平台
+          </h1>
+          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
+            为零售企业提供从基础设施到业务应用的全栈云解决方案，应对高并发大促，实现全渠道营销，数据驱动业务增长。
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
+            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+              获取定制方案
+            </Button>
+            <Button href="#scenarios" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+              查看方案详情
+            </Button>
           </div>
-
-          {/* 右侧图片展示 - 简洁大气 */}
-          <div className="relative mx-auto w-full lg:mx-0">
-            <div className="relative rounded-2xl bg-white p-2 shadow-2xl ring-1 ring-slate-900/10">
-               <div className="relative rounded-xl overflow-hidden bg-slate-50">
-                  <Image
-                    src="/images/aisolution/retail-1.png"
-                    alt="智慧零售云平台展示"
-                    width={1200}
-                    height={800}
-                    className="w-full h-auto object-cover"
-                    unoptimized={true}
-                  />
-               </div>
-
-              {/* 装饰性元素 */}
-              <div className="absolute -top-12 -right-12 -z-10 h-[300px] w-[300px] bg-gradient-to-tr from-[#eff6ff] to-[#dbeafe] opacity-50 blur-3xl rounded-full" />
-              <div className="absolute -bottom-12 -left-12 -z-10 h-[300px] w-[300px] bg-gradient-to-tr from-[#dbeafe] to-[#eff6ff] opacity-50 blur-3xl rounded-full" />
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   )
@@ -703,36 +627,59 @@ function FeaturesSection() {
 }
 
 /**
- * 品牌介绍区域
+ * 数据指标区域 - 展现零售云解决方案核心能力数据
  */
 function StatsSection() {
+  const stats = [
+    { value: '99.99%', label: '服务可用性', description: '全年稳定运行保障' },
+    { value: '100万+', label: 'QPS 并发', description: '从容应对大促峰值' },
+    { value: '< 50ms', label: '平均响应延迟', description: '毫秒级用户体验' },
+    { value: '7×24h', label: '全天候安全防护', description: '实时威胁检测与拦截' },
+  ]
+
   return (
-    <section className="border-y border-slate-200 bg-white py-16 sm:py-24">
+    <section className="border-b border-slate-200 bg-white py-12 sm:py-20">
       <Container>
-        <div className="relative overflow-hidden rounded-2xl bg-[#eff6ff] px-6 py-16 sm:px-16 lg:px-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl font-display">
-              品牌介绍
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-[#0055ff]">
+              数据驱动增长
+            </span>
+            <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              为零售业务提供高可靠基础设施保障
             </h2>
-            <div className="mt-10 space-y-8 text-xl leading-9 text-slate-600 sm:text-2xl sm:leading-10 font-light">
-              <p>
-                围绕电商领域，<span className="font-medium text-slate-900"></span> 希望能够构建多元化的产品长期愿景是助力企业低成本、高效快速并且质量可靠、安全稳定的实现各类有趣的创意，落地一个又一个的
-              </p>
-              <p>
-               多元化产品都将构建于开源的场景下，立志成为大家首选的商城系统解决方案。初心不改，使命不移，会坚持开源路线不动摇，坚持极易二次开发研发思路不动摇，坚持做好技术服务态度不动摇。
-              </p>
-            </div>
-            <div className="mt-12 flex items-center justify-center gap-x-8">
-              <Button href="#" color="blue" className="px-8 py-4 text-lg">
-                立即开始
-              </Button>
-              <Button href="#" variant="outline" className="px-8 py-4 text-lg">
-                了解更多
-                <span aria-hidden="true" className="ml-2">→</span>
-              </Button>
-            </div>
+          </motion.div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="relative z-10">
+                  <span className="text-3xl font-bold tracking-tight text-[#0055ff] sm:text-4xl">
+                    {stat.value}
+                  </span>
+                  <h3 className="mt-2 text-base font-semibold text-slate-900">
+                    {stat.label}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                    {stat.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </div>
       </Container>
     </section>
   )
