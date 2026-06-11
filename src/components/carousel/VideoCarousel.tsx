@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState, memo } from '
 import Image from 'next/image'
 import clsx from 'clsx'
 import { Container } from '@/components/Container'
-import { CreditCardIcon, DevicePhoneMobileIcon, QrCodeIcon, UserGroupIcon } from '@heroicons/react/20/solid'
 
 /**
  * 轮播每一项的数据结构
@@ -15,8 +14,9 @@ export interface CarouselSlide {
   title: string
   subtitle?: string
   description: string
-  imagePath: string
+  imagePath?: string
   imageAlt: string
+  videoPath?: string
   primaryButtonText: string
   primaryButtonHref?: string
   secondaryButtonText?: string
@@ -65,6 +65,7 @@ const defaultSlides: CarouselSlide[] = [
     subtitle: '优刻云计算',
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
     imagePath: '/images/screenshots/carousel -2.jpg',
+    videoPath: '/images/screenshots/VideoCarousel.mp4',
     imageAlt: '全方位支付解决方案',
     primaryButtonText: '立即领取',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -78,6 +79,7 @@ const defaultSlides: CarouselSlide[] = [
     subtitle: '优刻云计算',
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
     imagePath: '/images/screenshots/carousel -5.jpg',
+    videoPath: '/images/screenshots/VideoCarousel1.mp4',
     imageAlt: '云计算解决方案',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -91,6 +93,7 @@ const defaultSlides: CarouselSlide[] = [
     subtitle: '智聚优刻云 年中钜惠狂欢',
     description: '智聚优刻云 年中钜惠狂欢 优惠商品与活动合集!',
     imagePath: '/images/screenshots/carousel -7.png',
+    videoPath: '/images/screenshots/VideoCarousel2.mp4',
     imageAlt: 'GPU云服务器平台',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -104,6 +107,7 @@ const defaultSlides: CarouselSlide[] = [
     subtitle: '弹性伸缩服务',
     description: '智能化、自动化的计算资源管理策略，具备计划性调度和高容错性，为您提供低成本、高效率的云端解决方案',
     imagePath: '/images/screenshots/carousel -9.jpg',
+    videoPath: '/images/screenshots/VideoCarousel3.mp4',
     imageAlt: '全球化部署解决方案',
     primaryButtonText: '立即查看',
     primaryButtonHref: 'https://console.cloudcvm.com/cart/goodsList.htm',
@@ -113,43 +117,35 @@ const defaultSlides: CarouselSlide[] = [
 ]
 
 /**
- * 底部悬浮卡片数据 - 独立设计的4个卡片，使用Heroicons图标
+ * 底部入口卡片数据 - 简洁四栏设计，参考腾讯云首页入口卡片样式
  */
-const floatingCards = [
+const entryCards = [
   {
     id: 1,
-    type: 'feature',
-    title: '云服务器CVM',
-    description: '提供安全可靠的弹性计算服务',
-    icon: CreditCardIcon,
-    style: 'modern',
+    tag: '云服务器',
+    title: 'CVM 蜂驰型实例',
+    subtitle: '算力成本最大降幅超45%',
     href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 2,
-    type: 'feature',
-    title: 'AI 专题活动',
-    description: '大模型云协同，快速实现AI应用​',
-    icon: DevicePhoneMobileIcon,
-    style: 'rounded',
+    tag: 'AI 专题活动',
+    title: '大模型云协同',
+    subtitle: '快速实现AI应用',
     href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 3,
-    type: 'feature',
-    title: 'CVM蜂驰型实例',
-    description: '算力成本最大降幅 超45%',
-    icon: QrCodeIcon,
-    style: 'gradient',
+    tag: '轻量服务器',
+    title: '轻量应用服务器',
+    subtitle: '开箱即用，高性价比上云之选',
     href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   },
   {
     id: 4,
-    type: 'special',
-    title: '会员续费折上折',
-    description: '续费折上9.5折起',
-    icon: UserGroupIcon,
-    style: 'extended',
+    tag: '会员续费',
+    title: '续费折上折',
+    subtitle: '续费折上9.5折起',
     href: 'https://console.cloudcvm.com/cart/goodsList.htm'
   }
 ]
@@ -183,14 +179,46 @@ const CarouselImage = memo(({ slide, isActive, index, active }: {
   <div
     className={`${styles.imageContainer} ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
   >
-    <Image
-      src={slide.imagePath}
-      alt={slide.imageAlt}
-      fill
-      className={styles.image}
-      priority={isActive}
-      loading={isActive ? 'eager' : 'lazy'}
-    />
+    {slide.videoPath && slide.imagePath ? (
+      <>
+        {/* PC端：视频 */}
+        <video
+          src={slide.videoPath}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hidden lg:block absolute inset-0 object-cover w-full h-full"
+        />
+        {/* 移动端：图片 */}
+        <Image
+          src={slide.imagePath}
+          alt={slide.imageAlt}
+          fill
+          className={`${styles.image} lg:hidden`}
+          priority={isActive}
+          loading={isActive ? 'eager' : 'lazy'}
+        />
+      </>
+    ) : slide.videoPath ? (
+      <video
+        src={slide.videoPath}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 object-cover w-full h-full"
+      />
+    ) : slide.imagePath ? (
+      <Image
+        src={slide.imagePath}
+        alt={slide.imageAlt}
+        fill
+        className={styles.image}
+        priority={isActive}
+        loading={isActive ? 'eager' : 'lazy'}
+      />
+    ) : null}
     {/* 添加一个轻微的遮罩，确保文字可读性 */}
     <div className="absolute inset-0 bg-white/30 dark:bg-black/30" />
   </div>
@@ -224,9 +252,8 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
     >
       {/* 文本内容 - Flex item - 右对齐 */}
       <div className="flex-grow min-w-0">
-        <h3 className={`transition-colors duration-300 truncate ${
-          isActive ? 'text-primary-500' : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-50'
-        }`}>
+        <h3 className={`transition-colors duration-300 truncate ${isActive ? 'text-primary-500' : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-50'
+          }`}>
           {slideItem.title}
         </h3>
       </div>
@@ -489,83 +516,78 @@ const Carousel = memo(function Carousel({
         {/* 移动端底部指示器 - 已移除，因为卡片布局遮挡了指示器 */}
       </section>
 
-      {/* 底部悬浮卡片 - 响应式设计 - 100%复刻参考图布局 (左1右3) */}
+      {/* 底部入口卡片 - 左右保留间距，左侧对齐轮播内容区 */}
       <div className="absolute bottom-0 left-0 right-0 z-20 transform translate-y-1/2">
-        <Container className="hidden lg:flex justify-center items-stretch gap-6 min-h-[96px] w-full">
+        {/* PC端：四栏布局，页面标准间距均匀分布 */}
+        <div className="hidden lg:block bg-white border-y border-[#eee]">
+          <Container>
+            <div className="grid grid-cols-4">
+              {entryCards.map((card, index) => (
+                <a
+                  key={card.id}
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={clsx(
+                    "relative flex flex-col justify-center px-8 py-4 transition-colors duration-200 group hover:bg-[#F0F5FF]",
+                    index < entryCards.length - 1 && "border-r border-[#eee]"
+                  )}
+                >
+                  {/* 标签 */}
+                  <span className="inline-flex self-start text-sm text-[#0055ff] font-medium tracking-wider mb-1.5">
+                    {card.tag}
+                  </span>
 
-          {/* 左侧大卡片 - 云服务器 */}
-          <div className="relative w-[480px] h-full bg-white/80 backdrop-blur-xl border border-[#E2E8F0] rounded-sm px-7 py-4 shadow-sm overflow-hidden flex flex-col justify-between group hover:shadow-xl transition-all duration-300">
-             {/* 背景装饰 - 调整为更柔和的渐变光晕 */}
-             <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-100/40 to-indigo-100/40 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {/* 标题 */}
+                  <p className="text-lg font-medium text-[#0F172A] leading-snug mb-0.5">
+                    {card.title}
+                  </p>
 
-             <div className="flex items-center gap-3 mb-2 relative z-10">
-               <h3 className="text-xl font-bold text-[#0F172A] tracking-tight font-sans">
-                 云智特惠 <span className="text-[#EF4444]">上云加速季</span>
-                 <span className="text-[#94a3b8] text-xl not-italic ml-1">›</span>
-               </h3>
-             </div>
+                  {/* 副标题 */}
+                  <p className="text-sm text-[#8C8C8C] leading-relaxed">
+                    {card.subtitle}
+                  </p>
 
-             <div className="grid grid-cols-3 gap-y-2 gap-x-6 relative z-10">
-                {['新老特惠专场', '场景组合2.8折', '云计算热销榜', '高释270元起', 'AI新购1折抢', '大模型培训9折'].map((item, idx) => (
-                  <a key={idx} href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=110" className="flex items-center text-sm font-medium text-[#64748B] hover:text-[#0055ff] transition-colors group/link">
-                    {item}
-                    <span className="ml-1 text-[#94a3b8] group-hover/link:translate-x-0.5 transition-transform">›</span>
-                  </a>
-                ))}
-             </div>
-          </div>
+                  {/* 箭头 - 始终可见，hover时增强 */}
+                  <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[#D9D9D9] group-hover:text-[#0055ff] transition-colors duration-200">
+                    <svg className="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Container>
+        </div>
 
-          {/* 右侧三个特性卡片 - 合并为一个容器，使用 Flex 布局、竖分割线和毛玻璃效果 */}
-          <div className="flex-1 bg-[#0055ff]/85 backdrop-blur-xl border border-white/20 rounded-lg flex items-stretch transition-shadow shadow-sm hover:shadow-xl duration-300">
-            {floatingCards.slice(0, 3).map((card, index) => (
-              <a key={card.id} href={card.href} className="relative flex-1 px-7 py-4 flex flex-col justify-center items-start h-full transition-colors group cursor-pointer gap-2.5 first:rounded-l-lg last:rounded-r-lg">
-                <div className="flex items-center gap-3.5">
-                  <div className="flex h-11 w-11 items-center justify-center border border-white/20 bg-white/10 rounded-lg group-hover:scale-105 transition-transform duration-300">
-                    {React.createElement(card.icon, {
-                      className: "w-5 h-5 text-white transition-colors"
-                    })}
-                  </div>
-                  <h4 className="font-bold text-white text-base line-clamp-1 group-hover:text-white/90 transition-colors">{card.title}</h4>
-                </div>
-                <p className="text-sm text-white/80 line-clamp-2 leading-relaxed">{card.description}</p>
-
-                {/* 自定义短分割线 - 仅在非最后一个元素显示 */}
-                {index < 2 && (
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px bg-white/20"></div>
-                )}
-              </a>
-            ))}
-          </div>
-        </Container>
-
-        {/* 移动端：两排两列网格布局 */}
-        <div className="lg:hidden px-4 mt-10">
-          <div className="grid grid-cols-2 gap-2 pb-3">
-            {floatingCards.map((card) => (
-              <a
-                key={card.id}
-                href={card.href}
-                className="bg-white/80 backdrop-blur-xl border border-[#E2E8F0] transition-colors duration-200 cursor-pointer rounded-sm overflow-hidden shadow-sm"
-              >
-                <div className="p-3">
-                  <div className="flex flex-col items-start text-left gap-1.5">
-                    <div className="flex items-center gap-1.5 w-full">
-                      <div className="flex h-8 w-8 items-center justify-center border border-[#E2E8F0] bg-white rounded-sm flex-shrink-0">
-                        {React.createElement(card.icon, {
-                          className: `text-[#0055ff] w-4 h-4`
-                        })}
-                      </div>
-                      <h3 className="font-bold text-[#0F172A] text-xs line-clamp-1">
-                        {card.title}
-                      </h3>
-                    </div>
-                    <p className="text-[#64748B] text-[10px] line-clamp-2 leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              </a>
-            ))}
+        {/* 移动端：+ 分割线设计 */}
+        <div className="lg:hidden mt-14">
+          <div className="bg-white pt-4">
+            <div className="grid grid-cols-2 pb-3">
+              {entryCards.map((card, index) => (
+                <a
+                  key={card.id}
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={clsx(
+                    "group relative transition-colors duration-200 py-3 px-3",
+                    index % 2 === 0 && "border-r border-[#eee]",
+                    index >= 2 && "border-t border-[#eee]"
+                  )}
+                >
+                  <span className="inline-block text-xs text-[#0055ff] mb-0.5 font-medium tracking-wider">
+                    {card.tag}
+                  </span>
+                  <p className="font-medium text-[#0F172A] text-base leading-snug mb-0.5 group-hover:text-[#0055ff] transition-colors">
+                    {card.title}
+                  </p>
+                  <p className="text-[#8C8C8C] text-[13px] leading-relaxed">
+                    {card.subtitle}
+                  </p>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

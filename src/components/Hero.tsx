@@ -20,37 +20,6 @@ export default function Hero() {
         backgroundAttachment: 'fixed',
       }}
     >
-      {/* 背景装饰网格 */}
-      <svg
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 size-full mask-[radial-gradient(100%_100%_at_top_right,white,transparent)] stroke-[#E2E8F0]"
-      >
-        <defs>
-          <pattern
-            x="50%"
-            y={-1}
-            id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc"
-            width={200}
-            height={200}
-            patternUnits="userSpaceOnUse"
-          >
-            <path d="M.5 200V.5H200" fill="none" />
-          </pattern>
-        </defs>
-        <svg x="50%" y={-1} className="overflow-visible fill-[#F8FAFC]">
-          <path
-            d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
-            strokeWidth={0}
-          />
-        </svg>
-        <rect
-          fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"
-          width="100%"
-          height="100%"
-          strokeWidth={0}
-        />
-      </svg>
-
       {/* 背景光效装饰 */}
       <div
         aria-hidden="true"
@@ -117,99 +86,99 @@ export default function Hero() {
                   <div className="text-xs font-medium text-[#64748B] font-mono">云计算控制台</div>
                 </div>
 
-              {/* 云服务器集群 */}
-              <div className="mb-6">
-                <h3 className="mb-4 text-lg font-semibold text-[#0F172A] font-sans">
-                  云服务器集群
-                </h3>
-                <div className="grid grid-cols-3 gap-4">
-                  {[1, 2, 3].map((server) => (
-                    <div
-                      key={server}
-                      className="rounded-sm border border-[#E2E8F0] bg-white p-4 hover:border-[#0055ff]/30 hover:shadow-md transition-all"
-                    >
-                      <div className="mb-2 flex items-center justify-between">
-                        <div className="h-3 w-3 rounded-full bg-[#0055ff] animate-pulse"></div>
-                        <span className="text-xs text-[#64748B] font-mono">
-                          服务器 {server}
-                        </span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-2 rounded-sm bg-[#F8FAFC]">
-                          <div
-                            className="h-2 rounded-sm bg-[#0055ff]"
-                            style={{ width: `${Math.random() * 80 + 20}%` }}
-                          ></div>
-                        </div>
-                        <div className="text-xs text-[#64748B] font-mono">
-                          CPU: {Math.floor(Math.random() * 80 + 20)}%
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 数据流动图 */}
-              <div className="mb-6">
-                <h3 className="mb-4 text-lg font-semibold text-[#0F172A] font-sans">
-                  数据流动
-                </h3>
-                <div className="relative rounded-sm border border-[#E2E8F0] bg-white p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff]">
-                      <svg
-                        className="h-8 w-8"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
+                {/* 云服务器集群 */}
+                <div className="mb-6">
+                  <h3 className="mb-4 text-lg font-semibold text-[#0F172A] font-sans">
+                    云服务器集群
+                  </h3>
+                  <div className="grid grid-cols-3 gap-4">
+                    {[1, 2, 3].map((server) => (
+                      <div
+                        key={server}
+                        className="rounded-sm border border-[#E2E8F0] bg-white p-4 hover:border-[#0055ff]/30 hover:shadow-md transition-all"
                       >
-                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                      </svg>
-                    </div>
-                    <div className="mx-4 flex-1">
-                      <div className="flex items-center">
-                        <div className="h-1 flex-1 animate-pulse rounded-sm bg-[#0055ff]/70"></div>
-                        <div className="mx-2 text-sm text-[#64748B] font-mono">传输中</div>
-                        <div className="h-1 flex-1 animate-pulse rounded-sm bg-[#0055ff]/40"></div>
+                        <div className="mb-2 flex items-center justify-between">
+                          <div className="h-3 w-3 rounded-full bg-[#0055ff] animate-pulse"></div>
+                          <span className="text-xs text-[#64748B] font-mono">
+                            服务器 {server}
+                          </span>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="h-2 rounded-sm bg-[#F8FAFC]">
+                            <div
+                              className="h-2 rounded-sm bg-[#0055ff]"
+                              style={{ width: `${Math.random() * 80 + 20}%` }}
+                            ></div>
+                          </div>
+                          <div className="text-xs text-[#64748B] font-mono">
+                            CPU: {Math.floor(Math.random() * 80 + 20)}%
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 数据流动图 */}
+                <div className="mb-6">
+                  <h3 className="mb-4 text-lg font-semibold text-[#0F172A] font-sans">
+                    数据流动
+                  </h3>
+                  <div className="relative rounded-sm border border-[#E2E8F0] bg-white p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff]">
+                        <svg
+                          className="h-8 w-8"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                        </svg>
+                      </div>
+                      <div className="mx-4 flex-1">
+                        <div className="flex items-center">
+                          <div className="h-1 flex-1 animate-pulse rounded-sm bg-[#0055ff]/70"></div>
+                          <div className="mx-2 text-sm text-[#64748B] font-mono">传输中</div>
+                          <div className="h-1 flex-1 animate-pulse rounded-sm bg-[#0055ff]/40"></div>
+                        </div>
+                      </div>
+                      <div className="flex h-16 w-16 items-center justify-center rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff]">
+                        <svg
+                          className="h-8 w-8"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
                       </div>
                     </div>
-                    <div className="flex h-16 w-16 items-center justify-center rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff]">
-                      <svg
-                        className="h-8 w-8"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* 性能指标 */}
-              <div>
-                <h3 className="mb-4 text-lg font-semibold text-[#0F172A] font-sans">
-                  实时监控
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-sm border border-[#E2E8F0] bg-white p-4">
-                    <div className="mb-1 text-sm text-[#64748B]">响应时间</div>
-                    <div className="text-2xl font-bold text-[#0055ff] font-mono">
-                      23ms
+                {/* 性能指标 */}
+                <div>
+                  <h3 className="mb-4 text-lg font-semibold text-[#0F172A] font-sans">
+                    实时监控
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="rounded-sm border border-[#E2E8F0] bg-white p-4">
+                      <div className="mb-1 text-sm text-[#64748B]">响应时间</div>
+                      <div className="text-2xl font-bold text-[#0055ff] font-mono">
+                        23ms
+                      </div>
                     </div>
-                  </div>
-                  <div className="rounded-sm border border-[#E2E8F0] bg-white p-4">
-                    <div className="mb-1 text-sm text-[#64748B]">在线用户</div>
-                    <div className="text-2xl font-bold text-[#0055ff] font-mono">
-                      1,247
+                    <div className="rounded-sm border border-[#E2E8F0] bg-white p-4">
+                      <div className="mb-1 text-sm text-[#64748B]">在线用户</div>
+                      <div className="text-2xl font-bold text-[#0055ff] font-mono">
+                        1,247
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
