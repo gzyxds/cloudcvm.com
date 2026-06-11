@@ -163,8 +163,8 @@ const styles = {
   titleButtonActive: 'text-primary-500 font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
   indicator: 'h-2 transition-all duration-300',
-  primaryButton: 'btn px-6 py-2.5 lg:px-7 lg:py-3 text-sm bg-primary-500 hover:bg-primary-600 text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium',
-  secondaryButton: 'btn px-6 py-2.5 lg:px-7 lg:py-3 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center text-sm'
+  primaryButton: 'btn px-6 py-2.5 lg:px-7 lg:py-3 text-sm bg-primary-500 hover:bg-primary-600 text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium',
+  secondaryButton: 'btn px-6 py-2.5 lg:px-7 lg:py-3 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all duration-300 flex items-center justify-center text-sm'
 }
 
 /**
