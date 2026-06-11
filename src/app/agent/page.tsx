@@ -13,7 +13,6 @@ import {
   UsersIcon,
   CogIcon,
   ChevronDownIcon,
-  UserGroupIcon,
 } from '@heroicons/react/20/solid'
 
 import { Button } from '@/components/Button'
@@ -162,183 +161,42 @@ const faqs = [
 ]
 
 /**
- * 页面头部横幅组件 - 代理合作Hero区域
- * 采用 Linear 风格，使用 Framer Motion 实现入场动画
+ * 页面英雄区域组件 - 代理合作 Hero 区域
+ * 采用统一方案页设计风格，图片背景
  */
 function HeroBanner() {
   return (
-    <div className="relative isolate overflow-hidden bg-white">
-      {/* 背景装饰 - 使用更柔和的渐变 */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-      >
-        <div
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-          }}
-          className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#0055ff]/20 to-[#eff6ff] opacity-40 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-        />
-      </div>
+    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+      {/* 背景图片 */}
+      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/agent.png')] bg-cover bg-center bg-no-repeat opacity-20" />
 
-      <Container className="py-16 sm:py-24">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          {/* 左侧文字内容 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
-              代理合作
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              加入主题云代理合作伙伴计划，享受 <span className="font-semibold text-[#0055ff]">5-7折优惠价格</span>，获得全方位销售支持和技术支持，共同开拓云计算市场，实现互利共赢。
-            </p>
-            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row sm:justify-start">
-              <Button
-                variant="solid"
-                color="blue"
-                className="group relative rounded-md bg-[#0055ff] px-5 py-2.5 font-medium text-white transition-all duration-200 hover:bg-[#0043cc] hover:shadow-lg hover:shadow-blue-500/20"
-              >
-                <Link href="/contact" className="flex items-center">
-                  <span className="mr-3 text-sm">立即申请代理</span>
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white transition-transform duration-200 group-hover:translate-x-1">
-                    <ArrowRightIcon className="h-3 w-3 text-[#0055ff]" />
-                  </span>
-                </Link>
-              </Button>
-              <Button
-                variant="outline"
-                className="group relative rounded-md border border-slate-200 bg-white px-5 py-2.5 font-medium text-slate-600 transition-all duration-200 hover:border-[#0055ff] hover:bg-blue-50 hover:text-[#0055ff]"
-              >
-                <Link href="#faq" className="flex items-center">
-                  <span className="mr-2 text-sm">了解详情</span>
-                  <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </Button>
-            </div>
-
-            {/* 功能标签 */}
-            <div className="mt-8 flex flex-wrap gap-4">
-              <div className="flex items-center rounded-full bg-blue-50 px-3 py-1 text-slate-600 ring-1 ring-inset ring-blue-700/10">
-                <CurrencyDollarIcon className="mr-1.5 h-4 w-4 text-[#0055ff]" />
-                <span className="text-sm font-medium">5-7折优惠</span>
-              </div>
-              <div className="flex items-center rounded-full bg-blue-50 px-3 py-1 text-slate-600 ring-1 ring-inset ring-blue-700/10">
-                <WrenchScrewdriverIcon className="mr-1.5 h-4 w-4 text-[#0055ff]" />
-                <span className="text-sm font-medium">7x24技术支持</span>
-              </div>
-              <div className="flex items-center rounded-full bg-blue-50 px-3 py-1 text-slate-600 ring-1 ring-inset ring-blue-700/10">
-                <MegaphoneIcon className="mr-1.5 h-4 w-4 text-[#0055ff]" />
-                <span className="text-sm font-medium">营销支持</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 右侧模拟界面设计 - 优化为 Linear 风格 */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="relative rounded-xl border border-slate-200 bg-white/50 p-2 shadow-2xl backdrop-blur-xl sm:p-4">
-              <div className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
-                {/* 模拟浏览器头部 */}
-                <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3">
-                  <div className="flex space-x-1.5">
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]"></div>
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]"></div>
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#28C840]"></div>
-                  </div>
-                  <div className="flex h-6 items-center rounded bg-slate-100 px-3 text-[10px] font-medium text-slate-500">
-                    cloudcvm.com/agent/dashboard
-                  </div>
-                  <div className="w-10"></div>
-                </div>
-
-                {/* 模拟 Dashboard 内容 */}
-                <div className="grid grid-cols-12 gap-4 p-4">
-                  {/* 左侧侧边栏 */}
-                  <div className="col-span-3 hidden flex-col gap-2 sm:flex">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="h-8 rounded bg-white border border-slate-200"></div>
-                    ))}
-                  </div>
-
-                  {/* 主内容区 */}
-                  <div className="col-span-12 sm:col-span-9 space-y-4">
-                     {/* 统计卡片 */}
-                     <div className="grid grid-cols-3 gap-4">
-                        <div className="rounded-lg bg-white p-3 border border-slate-200 shadow-sm">
-                           <div className="h-2 w-12 bg-slate-200 rounded mb-2"></div>
-                           <div className="h-6 w-16 bg-[#0055ff]/20 rounded"></div>
-                        </div>
-                        <div className="rounded-lg bg-white p-3 border border-slate-200 shadow-sm">
-                           <div className="h-2 w-12 bg-slate-200 rounded mb-2"></div>
-                           <div className="h-6 w-16 bg-green-100 rounded"></div>
-                        </div>
-                        <div className="rounded-lg bg-white p-3 border border-slate-200 shadow-sm">
-                           <div className="h-2 w-12 bg-slate-200 rounded mb-2"></div>
-                           <div className="h-6 w-16 bg-orange-100 rounded"></div>
-                        </div>
-                     </div>
-
-                     {/* 图表区域 */}
-                     <div className="h-32 rounded-lg bg-white border border-slate-200 p-4 shadow-sm flex items-end justify-between gap-2">
-                        {[40, 70, 45, 90, 60, 80, 50, 75].map((h, i) => (
-                          <div key={i} className="w-full bg-[#0055ff]/10 rounded-t" style={{ height: `${h}%` }}></div>
-                        ))}
-                     </div>
-
-                     {/* 列表区域 */}
-                     <div className="space-y-2">
-                        {[1, 2].map((i) => (
-                          <div key={i} className="flex items-center justify-between rounded-lg bg-white p-3 border border-slate-200 shadow-sm">
-                             <div className="flex gap-2">
-                                <div className="h-8 w-8 rounded bg-slate-100"></div>
-                                <div className="space-y-1">
-                                   <div className="h-2 w-24 bg-slate-200 rounded"></div>
-                                   <div className="h-2 w-16 bg-slate-100 rounded"></div>
-                                </div>
-                             </div>
-                             <div className="h-4 w-12 bg-green-100 rounded"></div>
-                          </div>
-                        ))}
-                     </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 底部状态指示 - 悬浮效果 */}
-              <div className="absolute -bottom-4 -right-4 flex items-center space-x-2 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-lg">
-                  <div className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-                  </div>
-                  <span className="text-xs font-medium text-slate-600">系统运行正常</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+      <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
+          <span className="inline-flex h-7 items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3 text-xs font-semibold text-[#0055ff]">
+            合作伙伴 / 5-7折优惠 / 7x24技术支持
+          </span>
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-tight">
+            代理合作
+          </h1>
+          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
+            加入优刻云代理合作伙伴计划，享受 <span className="font-semibold text-[#0055ff]">5-7折优惠价格</span>，获得全方位销售支持和技术支持，共同开拓云计算市场，实现互利共赢。
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
+            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+              立即申请代理
+            </Button>
+            <Button href="#faq" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+              了解详情
+            </Button>
+          </div>
+        </motion.div>
       </Container>
-
-      {/* 底部装饰 */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-      >
-        <div
-          style={{
-            clipPath:
-              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-          }}
-          className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#0055ff]/20 to-[#eff6ff] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-        />
-      </div>
-    </div>
+    </section>
   )
 }
 
