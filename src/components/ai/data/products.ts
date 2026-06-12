@@ -120,7 +120,7 @@ export const products: Product[] = [
     buyLink: BASE_BUY_LINK
   },
   {
-    image: "/images/product/buidai.webp",
+    image: "/images/product/gmlart.png",
     title: "智言AI部署服务",
     subtitle: "[独立系统]",
     description: "官方技术专家，帮您部署 BuildAl 平台框架，支持本地部署或服务器部署",
