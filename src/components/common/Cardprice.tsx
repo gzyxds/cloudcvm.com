@@ -492,217 +492,127 @@ export default function Cardprice() {
   const handleBuyNow = (productId: number) => {
     window.location.href = resolveProductLinkUrl(productId)
   }
+  /**
+   * 热门活动精选卡片数据
+   */
+  const hotCards = [
+    {
+      variant: 'large' as const,
+      tag: '精选特惠 新老同享',
+      title: '热门产品优惠套餐',
+      desc: ['新老用户同价秒杀', '性能稳定 等你来抢'],
+      bg: '/images/carousel/new.png',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: '云计算产品热销榜',
+      title: '云服务器热销榜单',
+      desc: ['云服务器热销榜单上架'],
+      bg: '/images/carousel/new-1.png',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: '人工智能超级品类季',
+      title: '人工智能超级品类季',
+      desc: ['文字、人脸、语音、图像识别 低至1折'],
+      bg: '/images/carousel/new-2.png',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: '语音技术品类季',
+      title: '语音技术品类季',
+      desc: ['语音合成转换等多项功能', '自选应用场景'],
+      bg: '/images/carousel/new-3.png',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: 'AI智能助手',
+      title: '智能对话',
+      desc: ['企业级AI助手'],
+      bg: '/images/carousel/new-4.png',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+  ]
+
+  // 分离大卡片和小卡片
+  const largeCard = hotCards[0]
+  const smallCards = hotCards.slice(1)
+
+  /**
+   * 公共卡片容器样式
+   */
+  const cardBase = `group relative block overflow-hidden rounded-xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50 cursor-pointer`
+
+  /**
+   * 热门活动精选区域
+   */
   return (
     <div className="min-h-screen bg-white">
-      {/* 热门活动精选区域 */}
       <div className="mx-auto max-w-[1800px] px-4 py-8 pt-24 sm:px-6 lg:px-8">
-        {/* 热门活动精选卡片 - 完全按照参考图片设计：左侧1个大卡片，右侧4个小卡片(2x2布局) */}
+        {/* 热门活动精选 — 左侧大卡片 + 右侧 2×2 网格 */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {/* 左侧大卡片 - 精选特惠 新老同享 */}
-          <a
-            href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-            className="group lg:col-span-1 relative block overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl cursor-pointer"
-          >
-            {/* 背景图片 */}
+          {/* ---- 左侧大卡片 ---- */}
+          <a href={largeCard.href} className={cardBase}>
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: "url('/images/carousel/new.png')",
-              }}
+              style={{ backgroundImage: `url('${largeCard.bg}')` }}
             />
-            {/* 选中时的背景渐变 */}
-            <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-b from-white/50 to-[#eff6ff]/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-            <div className="relative z-10 flex h-full min-h-[350px] flex-col p-6">
-              {/* 卡片标签 */}
-              <div className="mb-4">
-                <span className="inline-block bg-[#0055ff] px-4 py-1.5 text-sm font-medium text-white shadow-sm rounded-sm">
-                  精选特惠 新老同享
+            <div className="relative z-10 flex h-full min-h-[350px] flex-col justify-between p-8">
+              <div>
+                <span className="mb-5 inline-block rounded-md bg-[#0055ff] px-4 py-1.5 text-sm font-semibold text-white shadow-sm">
+                  {largeCard.tag}
                 </span>
-              </div>
-
-              {/* 卡片标题 */}
-              <div className="mb-6">
-                <h3 className="mb-2 text-2xl font-bold text-[#0F172A]">
-                  热门产品优惠套餐
+                <h3 className="mb-3 text-2xl font-bold leading-tight text-[#0F172A]">
+                  {largeCard.title}
                 </h3>
-                <p className="text-[#64748B]">新老用户同价秒杀</p>
-                <p className="text-[#64748B]">性能稳定 等你来抢!!!</p>
+                {largeCard.desc.map((line, i) => (
+                  <p key={i} className="text-base leading-relaxed text-[#64748B]">
+                    {line}
+                  </p>
+                ))}
               </div>
-
-              {/* 卡片按钮 - 靠左显示并向上移动 */}
-              <div className="mt-4">
-                <div className="text-left">
-                  <button className="rounded-sm bg-[#0055ff] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#0043cc] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0055ff] transition-all">
-                    立即抢购
-                  </button>
-                </div>
-              </div>
+              <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
+                立即抢购 <span aria-hidden="true">→</span>
+              </span>
             </div>
           </a>
 
-          {/* 右侧卡片区域 - 2x2网格布局 */}
-          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* 右侧卡片1 - 云计算产品热销榜 */}
-            <a
-              href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-              className="group relative block overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl cursor-pointer"
-            >
-              {/* 背景图片 */}
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: "url('/images/carousel/new-1.png')",
-                }}
-              />
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-b from-white/50 to-[#eff6ff]/50" />
+          {/* ---- 右侧 2×2 小卡片 ---- */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2">
+            {smallCards.map((card) => (
+              <a key={card.tag} href={card.href} className={cardBase}>
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url('${card.bg}')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-              <div className="relative z-10 flex h-full min-h-[160px] flex-col p-5">
-                {/* 卡片标签 */}
-                <div className="mb-3">
-                  <span className="inline-block bg-[#0055ff] px-3 py-1 text-xs font-medium text-white shadow-sm rounded-sm">
-                    云计算产品热销榜
+                <div className="relative z-10 flex h-full min-h-[168px] flex-col justify-between p-6">
+                  <div>
+                    <span className="mb-4 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm">
+                      {card.tag}
+                    </span>
+                    <h3 className="mb-2 text-lg font-bold leading-snug text-[#0F172A]">
+                      {card.title}
+                    </h3>
+                    {card.desc.map((line, i) => (
+                      <p key={i} className="text-sm leading-relaxed text-[#64748B]">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
+                    立即查看 <span aria-hidden="true">→</span>
                   </span>
                 </div>
-
-                {/* 卡片内容 */}
-                <div className="mb-4">
-                  <h3 className="mb-1 text-lg font-bold text-[#0F172A]">
-                    云服务器热销榜单
-                  </h3>
-                  <p className="text-sm text-[#64748B]">云服务器热销榜单上架</p>
-                </div>
-
-                {/* 卡片文案 - 靠左显示 */}
-                <div className="mt-auto">
-                  <div className="text-left text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
-                    立即查看 →
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            {/* 右侧卡片2 - 文字识别品类季 */}
-            <a
-              href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-              className="group relative block overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl cursor-pointer"
-            >
-              {/* 背景图片 */}
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: "url('/images/carousel/new-2.png')",
-                }}
-              />
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-b from-white/50 to-[#eff6ff]/50" />
-
-              <div className="relative z-10 flex h-full min-h-[160px] flex-col p-5">
-                {/* 卡片标签 */}
-                <div className="mb-3">
-                  <span className="inline-block bg-[#0055ff] px-3 py-1 text-xs font-medium text-white shadow-sm rounded-sm">
-                    人工智能超级品类季
-                  </span>
-                </div>
-
-                {/* 卡片内容 */}
-                <div className="mb-4">
-                  <h3 className="mb-1 text-lg font-bold text-[#0F172A]">
-                    人工智能超级品类季
-                  </h3>
-                  <p className="text-sm text-[#64748B]">
-                    文字、人脸、语音、图像识别 低至1折
-                  </p>
-                </div>
-
-                {/* 卡片文案 - 靠左显示 */}
-                <div className="mt-auto">
-                  <div className="text-left text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
-                    立即查看 →
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            {/* 右侧卡片3 - 语音技术品类季 */}
-            <a
-              href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-              className="group relative block overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl cursor-pointer"
-            >
-              {/* 背景图片 */}
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: "url('/images/carousel/new-3.png')",
-                }}
-              />
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-b from-white/50 to-[#eff6ff]/50" />
-
-              <div className="relative z-10 flex h-full min-h-[160px] flex-col p-5">
-                {/* 卡片标签 */}
-                <div className="mb-3">
-                  <span className="inline-block bg-[#0055ff] px-3 py-1 text-xs font-medium text-white shadow-sm rounded-sm">
-                    语音技术品类季
-                  </span>
-                </div>
-
-                {/* 卡片内容 */}
-                <div className="mb-4">
-                  <h3 className="mb-1 text-lg font-bold text-[#0F172A]">
-                    语音技术品类季
-                  </h3>
-                  <p className="text-sm text-[#64748B]">
-                    语音合成转换等多项功能
-                  </p>
-                  <p className="text-sm text-[#64748B]">自选应用场景</p>
-                </div>
-
-                {/* 卡片文案 - 靠左显示 */}
-                <div className="mt-auto">
-                  <div className="text-left text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
-                    立即查看 →
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            {/* 右侧卡片4 - AI智能助手 */}
-            <a
-              href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-              className="group relative block overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl cursor-pointer"
-            >
-              {/* 背景图片 */}
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: "url('/images/carousel/new-4.png')",
-                }}
-              />
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-b from-white/50 to-[#eff6ff]/50" />
-
-              <div className="relative z-10 flex h-full min-h-[160px] flex-col p-5">
-                {/* 卡片标签 */}
-                <div className="mb-3">
-                  <span className="inline-block bg-[#0055ff] px-3 py-1 text-xs font-medium text-white shadow-sm rounded-sm">
-                    AI智能助手
-                  </span>
-                </div>
-
-                {/* 卡片内容 */}
-                <div className="mb-4">
-                  <h3 className="mb-1 text-lg font-bold text-[#0F172A]">
-                    智能对话
-                  </h3>
-                  <p className="text-sm text-[#64748B]">企业级AI助手</p>
-                </div>
-
-                {/* 卡片文案 - 靠左显示 */}
-                <div className="mt-auto">
-                  <div className="text-left text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
-                    立即查看 →
-                  </div>
-                </div>
-              </div>
-            </a>
+              </a>
+            ))}
           </div>
         </div>
         {/* 热门活动精选区域结束 */}

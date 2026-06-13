@@ -330,8 +330,8 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/fashion-ai.png",
-    title: "AI服装设计与展示",
+    image: "/images/product/电商换装.png",
+    title: "电商换装",
     subtitle: "[图像视频]",
     description: "AI服装设计与展示，虚拟试衣，缩短设计周期。无需制作样衣，即可预览穿着效果，降低设计成本。",
     features: ["虚拟试衣", "服装设计", "效果预览", "成本降低"],
