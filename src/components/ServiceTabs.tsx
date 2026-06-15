@@ -14,117 +14,6 @@ import {
   ArrowRight
 } from 'lucide-react'
 
-// ==================== 设计令牌 (Design Tokens) ====================
-
-/**
- * 确保颜色对比度符合 WCAG AA 标准 (4.5:1)
- */
-const tokens = {
-  colors: {
-    primary: {
-      DEFAULT: '#0055ff',
-      hover: '#0043cc',
-      light: '#eff6ff',
-      subtle: '#0055ff10',
-    },
-    text: {
-      primary: '#0F172A',
-      secondary: '#475569',
-      tertiary: '#64748B',
-      inverse: '#FFFFFF',
-    },
-    surface: {
-      DEFAULT: '#FFFFFF',
-      secondary: '#F8FAFC',
-      tertiary: '#F1F5F9',
-    },
-    border: {
-      DEFAULT: '#E2E8F0',
-      hover: '#CBD5E1',
-      active: '#94A3B8',
-    },
-    state: {
-      focus: '#0055ff',
-    },
-  },
-  spacing: {
-    touchTarget: 'min-h-[44px] sm:min-h-[48px]',
-    cardPadding: 'p-4 sm:p-5 lg:p-6',
-    sectionGap: 'gap-4 sm:gap-5 lg:gap-6',
-  },
-  animation: {
-    duration: {
-      fast: 150,
-      normal: 200,
-      slow: 300,
-    },
-    easing: {
-      spring: { type: 'spring', stiffness: 400, damping: 30 },
-      smooth: { type: 'tween', ease: [0.4, 0, 0.2, 1] },
-    },
-  },
-} as const
-
-// ==================== 样式组件 (Typography & Layout) ====================
-
-/**
- * 排版系统组件库 - 基于 Bento Linear Design 规范
- * 使用系统默认无衬线字体，确保跨平台一致性
- */
-const Typography = {
-  /**
-   * 一级标题组件
-   * @param {React.ReactNode} children - 标题内容
-   * @param {string} [className] - 额外的 CSS 类名
-   */
-  H1: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <h2 className={clsx("text-[28px] xs:text-[32px] sm:text-[40px] font-bold leading-[1.4] sm:leading-[1.5] text-[#0F172A] py-2 sm:py-3 tracking-tight", className)}>
-      {children}
-    </h2>
-  ),
-  /**
-   * 二级标题组件
-   * @param {React.ReactNode} children - 标题内容
-   * @param {string} [className] - 额外的 CSS 类名
-   */
-  H2: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <div className={clsx("text-[22px] sm:text-[30px] font-semibold leading-[1.4] text-[#0F172A] py-1.5 sm:py-2 tracking-tight", className)}>
-      {children}
-    </div>
-  ),
-  /**
-   * 三级标题组件
-   * @param {React.ReactNode} children - 标题内容
-   * @param {string} [className] - 额外的 CSS 类名
-   */
-  H3: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <div className={clsx("font-sans text-[18px] sm:text-[20px] font-medium leading-[1.3] text-[#0F172A] py-1.5 sm:py-2", className)}>
-      {children}
-    </div>
-  ),
-  /**
-   * 四级标题组件
-   * @param {React.ReactNode} children - 标题内容
-   * @param {string} [className] - 额外的 CSS 类名
-   */
-  H4: ({ children, className }: { children: React.ReactNode; className?: string }) => (
-    <div className={clsx("font-sans text-[16px] sm:text-[18px] font-medium leading-[1.2] text-[#0F172A] py-1", className)}>
-      {children}
-    </div>
-  ),
-  /**
-   * 段落文本组件
-   * @param {React.ReactNode} children - 文本内容
-   * @param {string} [className] - 额外的 CSS 类名
-   * @param {boolean} [emphasized] - 是否强调显示
-   */
-  Paragraph: ({ children, className, emphasized }: { children: React.ReactNode; className?: string; emphasized?: boolean }) => (
-    <div className={clsx("text-[15px] sm:text-[17px] md:text-[19px] leading-[1.6] sm:leading-[1.7] text-[#475569]", emphasized && "bg-[#F8FAFC] p-3 border border-[#E2E8F0]", className)}>
-      {children}
-    </div>
-  )
-}
-
 // ==================== 子组件 ====================
 
 /**
@@ -143,14 +32,14 @@ function Tag({
   variant?: 'default' | 'primary' | 'muted'
 }) {
   const variantStyles = {
-    default: 'border-[#E2E8F0] bg-[#F8FAFC] text-[#475569]',
-    primary: 'border-[#0055ff]/20 bg-[#eff6ff] text-[#0055ff]',
-    muted: 'border-[#E2E8F0] bg-transparent text-[#64748B]',
+    default: 'border-neutral-200 bg-neutral-50 text-neutral-600',
+    primary: 'border-brand-500/20 bg-brand-50 text-brand-500',
+    muted: 'border-neutral-200 bg-transparent text-neutral-500',
   }
 
   return (
     <div className={clsx(
-      "text-[14px] sm:text-[15px] px-2.5 sm:px-3.5 py-1 leading-6 rounded-sm border font-medium transition-colors",
+      "text-[13px] sm:text-sm px-3 py-1 leading-6 rounded-md border font-medium transition-colors",
       variantStyles[variant],
       className
     )}>
@@ -180,7 +69,7 @@ function LinkWithArrow({
       target="_blank"
       rel="noopener"
       className={clsx(
-        'flex items-center text-[15px] sm:text-base font-medium text-[#0F172A] hover:text-[#0055ff] group transition-colors whitespace-nowrap focus-visible:ring-2 focus-visible:ring-[#0055ff] focus-visible:ring-offset-2 rounded-sm outline-none',
+        'flex items-center text-[15px] sm:text-base font-medium text-neutral-900 hover:text-brand-500 group transition-colors whitespace-nowrap focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded-md outline-none',
         className,
       )}
     >
@@ -207,7 +96,7 @@ function DocLink({
       href={href}
       target="_blank"
       rel="noopener"
-      className="text-[#475569] hover:text-[#0055ff] transition-colors font-medium flex items-center text-[15px] sm:text-base group focus-visible:ring-2 focus-visible:ring-[#0055ff] focus-visible:ring-offset-2 rounded-sm outline-none"
+      className="text-neutral-600 hover:text-brand-500 transition-colors font-medium flex items-center text-[15px] sm:text-base group focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded-md outline-none"
     >
       <span>{children}</span>
       <ArrowRight className="ml-1 w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
@@ -840,10 +729,10 @@ const serviceTabs: ServiceTab[] = [
  * 企业级服务选项卡主组件 - Bento Linear Design 风格重构
  *
  * 核心设计遵循:
- * 1. Geometry: 直角 (rounded-none), 边框优先 (border-first)
- * 2. Color: Neutral Foundation + Primary Blue (#2b7fff) Accent
- * 3. Typography: Tech-focused (Lexend/Inter/Mono)
- * 4. Micro-interactions: 边框颜色变化，无缩放动画
+ * 1. Geometry: 圆角 (rounded-lg/md), 边框 + 阴影层次
+ * 2. Color: Neutral Foundation + Brand Blue (#3860F4) Accent
+ * 3. Typography: System sans-serif, semantic HTML headings
+ * 4. Micro-interactions: hover 边框发光 + 阴影抬升 + 颜色渐变
  * 5. 悬停切换: 鼠标悬停自动展开对应分类（带防抖）
  */
 export default function ServiceTabs() {
@@ -881,26 +770,26 @@ export default function ServiceTabs() {
     <section 
       className="py-6 sm:py-8 lg:py-10 pt-20 pb-20 relative overflow-hidden"
       style={{
-        backgroundImage: 'linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #eff6ff 100%)',
+        backgroundImage: 'linear-gradient(135deg, #f0f4ff 0%, #ffffff 50%, #f0f4ff 100%)',
         backgroundSize: '100% 100%',
         backgroundPosition: 'center center'
       }}
     >
       {/* 装饰性元素 - 浮动圆点 */}
-      <div className="absolute top-20 left-10 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-20 w-56 h-56 bg-blue-500/20 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-300/15 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-40 h-40 bg-brand-400/[0.12] rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-20 w-56 h-56 bg-brand-500/[0.10] rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-300/[0.08] rounded-full blur-3xl" />
       
       <div className="w-full max-w-[1800px] px-3 sm:px-6 lg:px-8 mx-auto relative z-10">
         {/* 标题区域 */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 sm:mb-8 lg:mb-10 border-b border-[#E2E8F0] pb-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 sm:mb-8 lg:mb-10 border-b border-neutral-200 pb-4">
           <div className="flex-1">
-            <Typography.H1 className="!my-0 mb-1 sm:mb-1.5 !py-1">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-neutral-900 tracking-tight mb-1 sm:mb-1.5">
               自主研发，安全可靠的云服务
-            </Typography.H1>
-            <Typography.Paragraph className="!mb-0 !text-xs sm:!text-sm">
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
               12年技术沉淀，100+款产品与服务，持续创新
-            </Typography.Paragraph>
+            </p>
           </div>
           <div className="hidden lg:flex flex-row gap-6 items-center mt-4 sm:mt-0">
             <LinkWithArrow href="https://console.cloudcvm.com/cart/goodsList.htm">
@@ -914,7 +803,7 @@ export default function ServiceTabs() {
 
         {/* 顶部 Tab 导航 - Bento 风格 Segmented Control */}
         <div className="flex justify-start mb-6 sm:mb-8 overflow-x-auto no-scrollbar pb-1 -mx-3 sm:mx-0 px-3 sm:px-0">
-          <div className="inline-flex border border-[#E2E8F0] bg-[#F8FAFC] w-full rounded-sm">
+          <div className="inline-flex border border-neutral-200 bg-neutral-50 w-full rounded-lg p-0.5">
             {serviceTabs.map((tab, index) => {
               const isActive = activeTab === index
               return (
@@ -927,18 +816,18 @@ export default function ServiceTabs() {
                   role="tab"
                   aria-controls={`tabpanel-${tab.id}`}
                   className={clsx(
-                    "flex items-center justify-center gap-2 px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 text-sm sm:text-base lg:text-lg font-medium transition-all duration-200 whitespace-nowrap outline-none select-none rounded-none border-r border-[#E2E8F0] last:border-r-0 flex-1",
+                    "flex items-center justify-center gap-2 px-3 sm:px-5 lg:px-7 py-2.5 sm:py-3 text-sm sm:text-base font-medium transition-all duration-200 whitespace-nowrap outline-none select-none rounded-md flex-1",
                     "min-h-[44px] sm:min-h-[48px]",
-                    "focus-visible:ring-2 focus-visible:ring-[#0055ff] focus-visible:ring-inset focus-visible:z-10",
+                    "focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:z-10",
                     isActive
-                      ? "bg-white text-[#0055ff] shadow-sm"
-                      : "text-[#475569] hover:text-[#0F172A] hover:bg-white/50"
+                      ? "bg-white text-brand-500 shadow-sm"
+                      : "text-neutral-600 hover:text-neutral-900 hover:bg-white/50"
                   )}
                 >
                   <tab.icon
                     className={clsx(
                       "w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-200 flex-shrink-0",
-                      isActive ? "text-[#0055ff]" : "text-[#94A3B8]"
+                      isActive ? "text-brand-500" : "text-neutral-400"
                     )}
                     aria-hidden="true"
                   />
@@ -972,14 +861,14 @@ export default function ServiceTabs() {
               {/* 左侧区域 */}
               <div className="w-full lg:w-[320px] xl:w-[360px] flex flex-col gap-4 sm:gap-5 flex-shrink-0">
                  {/* 上方 Banner */}
-                <article className="flex-1 min-h-[220px] sm:min-h-[260px] w-full bg-white border border-[#E2E8F0] p-5 sm:p-6 flex flex-col justify-between group rounded-lg relative overflow-hidden hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                <article className="flex-1 min-h-[220px] sm:min-h-[260px] w-full bg-white border border-neutral-200 p-5 sm:p-6 flex flex-col justify-between group rounded-lg relative overflow-hidden hover:border-brand-300 hover:shadow-md transition-all duration-300">
 
                    <div className="relative z-10 flex flex-col h-full">
                       <div className="flex-1">
                           <div className="flex flex-col gap-3 mb-4">
-                              <Typography.H2 className="!my-0 !text-[20px] sm:!text-[22px] group-hover:text-[#0055ff] transition-colors">
+                              <h3 className="text-xl sm:text-2xl font-semibold text-neutral-900 tracking-tight group-hover:text-brand-500 transition-colors">
                                 {banner.title}
-                              </Typography.H2>
+                              </h3>
 
                               <div className="flex flex-wrap gap-2">
                             {banner.tags.map((tag, i) => (
@@ -990,9 +879,9 @@ export default function ServiceTabs() {
                           </div>
                       </div>
 
-                      <Typography.Paragraph className="pt-4 border-t border-[#E2E8F0] !text-sm sm:!text-base">
+                      <p className="pt-4 border-t border-neutral-200 text-sm sm:text-base text-neutral-600 leading-relaxed">
                         {banner.description}
-                      </Typography.Paragraph>
+                      </p>
 
                       <div className="mt-6 flex items-center gap-4">
                           <DocLink href="https://docs.ucloud.cn/uhost/introduction/uhost/type_new">
@@ -1009,7 +898,7 @@ export default function ServiceTabs() {
                       href={banner.link}
                       target="_blank"
                       rel="noopener"
-                      className="btn btn-primary w-full mt-6 text-center bg-[#0055ff] hover:bg-[#0043cc] text-white py-3 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#0055ff]/20 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0055ff] outline-none"
+                      className="btn btn-primary w-full mt-6 text-center bg-brand-500 hover:bg-brand-600 text-white py-3 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-brand-500/20 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-500 outline-none"
                     >
                       {banner.buttonText}
                     </a>
@@ -1019,16 +908,16 @@ export default function ServiceTabs() {
 
                 {/* 下方 Banner */}
                 <article className={clsx(
-                  "min-h-[80px] w-full bg-white border border-[#E2E8F0] rounded-lg group flex flex-col justify-center hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300",
+                  "min-h-[80px] w-full bg-white border border-neutral-200 rounded-lg group flex flex-col justify-center hover:border-brand-300 hover:shadow-md transition-all duration-300",
                   secondaryBanner.link && "cursor-pointer"
                 )}>
                   {secondaryBanner.link ? (
-                    <a href={secondaryBanner.link} target="_blank" rel="noopener" className="w-full h-full p-5 sm:p-6 flex flex-col justify-center relative z-10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#0055ff] outline-none rounded-lg">
+                    <a href={secondaryBanner.link} target="_blank" rel="noopener" className="w-full h-full p-5 sm:p-6 flex flex-col justify-center relative z-10 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-500 outline-none rounded-lg">
                         <div className="flex justify-between items-center mb-2">
-                            <Typography.H3 className="!my-0 !text-[16px] sm:!text-[18px] group-hover:text-[#0055ff] transition-colors flex-1 pr-4">
+                            <div className="text-lg sm:text-xl font-semibold text-neutral-900 tracking-tight group-hover:text-brand-500 transition-colors flex-1 pr-4">
                               {secondaryBanner.title}
-                            </Typography.H3>
-                            <ArrowRight className="text-[#94A3B8] w-5 h-5 group-hover:text-[#0055ff] group-hover:translate-x-0.5 transition-all" aria-hidden="true" />
+                            </div>
+                            <ArrowRight className="text-neutral-400 w-5 h-5 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all" aria-hidden="true" />
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {secondaryBanner.tags.map((tag, i) => (
@@ -1040,9 +929,9 @@ export default function ServiceTabs() {
                     </a>
                   ) : (
                     <div className="w-full p-5 sm:p-6 flex flex-col justify-center">
-                        <Typography.H3 className="!my-0 mb-2 !text-[16px] sm:!text-[18px]">
+                        <div className="text-lg sm:text-xl font-semibold text-neutral-900 tracking-tight mb-2">
                           {secondaryBanner.title}
-                        </Typography.H3>
+                        </div>
                         <div className="flex flex-wrap gap-2">
                             {secondaryBanner.tags.map((tag, i) => (
                              <Tag key={i} variant="muted">
@@ -1056,26 +945,26 @@ export default function ServiceTabs() {
              </div>
 
              {/* 右侧网格区域 */}
-             <div className="flex-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-4 sm:p-5 lg:p-6">
+             <div className="flex-1 bg-neutral-50 border border-neutral-200 rounded-lg p-4 sm:p-5 lg:p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 w-full h-full">
                    {products.map((product, idx) => {
                      const content = (
-                      <article className="h-full flex flex-col justify-start p-4 group cursor-pointer border border-[#E2E8F0] transition-all duration-200 rounded-lg bg-white hover:border-[#0055ff]/30 hover:shadow-md hover:shadow-slate-200/40 relative focus-within:ring-2 focus-within:ring-[#0055ff] focus-within:ring-inset">
+                      <article className="h-full flex flex-col justify-start p-4 group cursor-pointer border border-neutral-200 transition-all duration-200 rounded-lg bg-white hover:border-brand-500/30 hover:shadow-md relative focus-within:ring-2 focus-within:ring-brand-500 focus-within:ring-inset">
                          <div className="w-full">
                            <div className="flex items-center justify-between mb-3">
-                            <Typography.H4 className="!my-0 !text-[15px] sm:!text-[16px] !font-semibold line-clamp-1 flex-1 group-hover:text-[#0055ff] transition-colors">
+                            <h4 className="text-base sm:text-lg font-semibold text-neutral-900 tracking-tight line-clamp-1 flex-1 group-hover:text-brand-500 transition-colors">
                               {product.name}
-                            </Typography.H4>
-                            <ArrowRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#0055ff] transition-all opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5" aria-hidden="true" />
+                            </h4>
+                            <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-brand-500 transition-all opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5" aria-hidden="true" />
                           </div>
 
-                          <Typography.Paragraph className="!text-sm line-clamp-2 !mb-3 min-h-[40px] !text-[#475569] group-hover:text-[#0F172A] leading-relaxed">
+                          <p className="text-sm line-clamp-2 mb-3 min-h-[40px] text-neutral-500 group-hover:text-neutral-700 leading-relaxed">
                             {product.description}
-                          </Typography.Paragraph>
+                          </p>
 
                            <div className="flex flex-wrap gap-1.5 mt-auto">
                              {product.tags.map((tag, tIdx) => (
-                              <span key={tIdx} className="text-[11px] sm:text-[12px] px-1.5 py-0.5 border border-[#E2E8F0] text-[#64748B] bg-[#F8FAFC] group-hover:border-[#0055ff]/20 group-hover:text-[#0055ff] group-hover:bg-[#eff6ff] transition-colors rounded-sm">
+                              <span key={tIdx} className="text-xs px-2 py-0.5 border border-neutral-200 text-neutral-500 bg-neutral-50 group-hover:border-brand-300 group-hover:text-brand-500 group-hover:bg-brand-50 transition-colors rounded-md">
                                 {tag}
                               </span>
                              ))}

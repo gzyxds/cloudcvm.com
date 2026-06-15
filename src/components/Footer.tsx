@@ -54,6 +54,7 @@ const navigation = {
   ],
   friendlyLinks: [
     { name: '艺创AI', href: 'https://www.urlnet.cn' },
+    { name: 'AIGC', href: 'https://aigc.gmlart.cn/' },
     { name: 'AI系统源码', href: 'https://www.artaigc.cn' },
     { name: 'PaYphp', href: 'https://www.payphp.cn' },
     { name: '论文创作', href: 'https://paper.gmlart.cn' },
@@ -61,7 +62,8 @@ const navigation = {
     { name: '智言API', href: 'https://api.gmlart.cn/' },
     { name: '数字分身', href: 'https://v.cnai.art' },
     { name: '企业知识库', href: 'https://www.cnai.art' },
-    { name: '聊天绘画', href: '/' },
+    { name: '聊天绘画', href: 'https://cnai.art' },
+    { name: '免费领卡', href: 'https://urlka.cn/' },
   ],
   social: [
     {

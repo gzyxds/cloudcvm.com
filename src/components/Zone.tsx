@@ -1,287 +1,242 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import { Container } from './Container'
 import { motion, AnimatePresence } from 'framer-motion'
-import clsx from 'clsx'
+import { MapPin, Radio, Cable } from 'lucide-react'
 
-/**
- * 全球基础设施展示组件
- * 展示优刻云在全球的区域、数据中心和加速专线分布
- * 采用 Linear 风格设计，适配移动端和桌面端
- */
-
-// 数据定义
-const TABS = [
-  { id: 'regions', label: '14', suffix: '个国内区域' },
-  { id: 'centers', label: '30', suffix: '个数据中心' },
-  { id: 'lines', label: '31', suffix: '条加速专线' },
-]
-
+// ============================================================
+// 数据
+// ============================================================
 interface ZoneItem {
   id: string
   name: string
   zones?: string
   description?: string
-  position?: { top: string; left: string } // 仅用于大屏定位示意
 }
 
-const REGION_DATA: ZoneItem[] = [
-  {
-    id: 'bj1',
-    name: '华北一',
-    zones: '可用区B  可用区C  可用区D  可用区E',
-    description: '为华北周边及全国提供优质网络服务；提供中美、京沪、京广三条专线服务',
-    position: { top: '30%', left: '25%' },
-  },
-  {
-    id: 'bj2',
-    name: '华北二',
-    zones: '可用区A',
-    description: '为华北地区提供高可用云计算服务',
-    position: { top: '35%', left: '28%' },
-  },
-  {
-    id: 'sh2',
-    name: '上海二',
-    zones: '可用区A  可用区B  可用区C',
-    description: '辐射长三角地区，提供金融级网络支持',
-    position: { top: '50%', left: '32%' },
-  },
-  {
-    id: 'hk',
-    name: '香港',
-    zones: '可用区A  可用区B',
-    description: '连接内地与海外的重要枢纽，提供国际级网络延迟',
-    position: { top: '65%', left: '30%' },
-  },
-  {
-    id: 'gz',
-    name: '广州',
-    zones: '可用区B',
-    description: '覆盖珠三角地区，支撑高并发业务场景',
-    position: { top: '60%', left: '28%' },
-  },
-  {
-    id: 'tpe',
-    name: '台北',
-    zones: '可用区A',
-    description: '连接两岸三地，提供优质网络服务',
-    position: { top: '58%', left: '35%' },
-  },
-  {
-    id: 'fj',
-    name: '福建',
-    zones: 'GPU可用区A',
-    description: '为华南及全国提供优质网络服务；是GPU机型的重要可用区',
-    position: { top: '55%', left: '30%' },
-  },
+const tabConfig = [
+  { id: 'regions', label: '14', suffix: '个国内区域', icon: MapPin },
+  { id: 'centers', label: '30', suffix: '个数据中心', icon: Radio },
+  { id: 'lines', label: '31', suffix: '条加速专线', icon: Cable },
+] as const
+
+const regionData: ZoneItem[] = [
+  { id: 'bj1', name: '华北一', zones: '可用区 B / C / D / E', description: '华北周边及全国优质网络服务，中美、京沪、京广三条专线' },
+  { id: 'bj2', name: '华北二', zones: '可用区 A', description: '为华北地区提供高可用云计算服务' },
+  { id: 'sh2', name: '上海二', zones: '可用区 A / B / C', description: '辐射长三角地区，提供金融级网络支持' },
+  { id: 'gz', name: '广州', zones: '可用区 B', description: '覆盖珠三角地区，支撑高并发业务场景' },
+  { id: 'fj', name: '福建', zones: 'GPU 可用区 A', description: 'GPU 机型重要可用区，服务华南及全国' },
+  { id: 'hk', name: '香港', zones: '可用区 A / B', description: '连接内地与海外的重要枢纽' },
+  { id: 'tpe', name: '台北', zones: '可用区 A', description: '连接两岸三地，提供优质网络服务' },
 ]
 
-// 模拟其他 Tab 数据（简化）
-const CENTER_DATA: ZoneItem[] = [
-  { id: 'c1', name: '北京BGP', zones: 'T3+标准', description: '核心骨干网节点', position: { top: '30%', left: '25%' } },
-  { id: 'c2', name: '上海BGP', zones: 'T3+标准', description: '核心骨干网节点', position: { top: '50%', left: '32%' } },
-  { id: 'c3', name: '广州BGP', zones: 'T3+标准', description: '核心骨干网节点', position: { top: '60%', left: '28%' } },
-  { id: 'c4', name: '香港国际', zones: 'T4标准', description: '亚太核心节点', position: { top: '65%', left: '30%' } },
-  { id: 'c5', name: '洛杉矶', zones: 'T3+标准', description: '北美核心节点', position: { top: '35%', left: '85%' } },
-  { id: 'c6', name: '法兰克福', zones: 'T3+标准', description: '欧洲核心节点', position: { top: '25%', left: '5%' } },
+const centerData: ZoneItem[] = [
+  { id: 'c1', name: '北京 BGP', zones: 'T3+ 标准', description: '核心骨干网节点，覆盖华北全境' },
+  { id: 'c2', name: '上海 BGP', zones: 'T3+ 标准', description: '核心骨干网节点，辐射长三角' },
+  { id: 'c3', name: '广州 BGP', zones: 'T3+ 标准', description: '核心骨干网节点，覆盖珠三角' },
+  { id: 'c4', name: '香港国际', zones: 'T4 标准', description: '亚太核心节点，国际流量枢纽' },
+  { id: 'c5', name: '洛杉矶', zones: 'T3+ 标准', description: '北美核心节点，中美海缆接入' },
+  { id: 'c6', name: '法兰克福', zones: 'T3+ 标准', description: '欧洲核心节点，中欧陆缆接入' },
 ]
 
-const LINE_DATA: ZoneItem[] = [
-  { id: 'l1', name: '京沪专线', description: '低延迟 < 25ms', position: { top: '40%', left: '28%' } },
-  { id: 'l2', name: '京广专线', description: '低延迟 < 35ms', position: { top: '45%', left: '26%' } },
-  { id: 'l3', name: '沪广专线', description: '低延迟 < 20ms', position: { top: '55%', left: '30%' } },
-  { id: 'l4', name: '中港专线', description: '跨境低延迟 < 40ms', position: { top: '62%', left: '29%' } },
-  { id: 'l5', name: '中美专线', description: '跨境海缆直连', position: { top: '35%', left: '55%' } },
-  { id: 'l6', name: '中欧专线', description: '陆缆直连', position: { top: '30%', left: '15%' } },
+const lineData: ZoneItem[] = [
+  { id: 'l1', name: '京沪专线', description: '低延迟 < 25ms，双路由冗余' },
+  { id: 'l2', name: '京广专线', description: '低延迟 < 35ms，骨干环网' },
+  { id: 'l3', name: '沪广专线', description: '低延迟 < 20ms，金融级链路' },
+  { id: 'l4', name: '中港专线', description: '跨境低延迟 < 40ms，多路径备份' },
+  { id: 'l5', name: '中美专线', description: '海缆直连，带宽 10Gbps+' },
+  { id: 'l6', name: '中欧专线', description: '陆缆直连，覆盖欧洲主要城市' },
 ]
 
+const dataMap = { regions: regionData, centers: centerData, lines: lineData }
+
+// ============================================================
+// 地图标记点
+// ============================================================
+const mapDots = [
+  { name: '北京', top: '28%', left: '68%' },
+  { name: '上海', top: '44%', left: '72%' },
+  { name: '广州', top: '54%', left: '66%' },
+  { name: '福建', top: '50%', left: '69%' },
+  { name: '香港', top: '58%', left: '64%' },
+  { name: '台北', top: '52%', left: '73%' },
+  { name: 'LA', top: '32%', left: '12%' },
+  { name: 'FRA', top: '26%', left: '42%' },
+]
+
+// ============================================================
+// 地图背景 + 标记点
+// ============================================================
+function WorldMap() {
+  return (
+    <div className="absolute inset-0 z-0 flex items-center justify-center" aria-hidden="true">
+      <div className="relative h-full w-full max-w-[1600px]">
+        <Image
+          src="/images/screenshots/zone-earth.webp"
+          alt=""
+          fill
+          className="object-contain opacity-[0.12] lg:opacity-[0.18]"
+        />
+        {/* 标记点 — 桌面端可见 */}
+        {mapDots.map((dot) => (
+          <div
+            key={dot.name}
+            className="absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 lg:block"
+            style={{ top: dot.top, left: dot.left }}
+          >
+            <span className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-[#0055ff]/15" />
+            <span className="relative block h-2 w-2 rounded-full bg-[#0055ff]/60 ring-1 ring-white/80" />
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 whitespace-nowrap text-[10px] font-medium text-[#64748B]">
+              {dot.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ============================================================
+// 信息卡片
+// ============================================================
+function InfoCard({ item }: { item: ZoneItem }) {
+  return (
+    <div className="group rounded-xl border border-[#E2E8F0] bg-white/95 p-4 backdrop-blur-sm transition-all duration-200 hover:border-[#0055ff]/25 hover:shadow-[0_2px_16px_rgba(0,85,255,0.06)] sm:p-5">
+      <div className="flex items-start gap-3">
+        <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#eff6ff]">
+          <MapPin className="h-3.5 w-3.5 text-[#0055ff]" strokeWidth={1.5} />
+        </div>
+        <div className="min-w-0">
+          <h3 className="text-sm font-semibold text-[#0F172A]">{item.name}</h3>
+          {item.zones && (
+            <p className="mt-0.5 text-xs text-[#64748B]">{item.zones}</p>
+          )}
+          {item.description && (
+            <p className="mt-1 text-xs leading-relaxed text-[#94A3B8]">{item.description}</p>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ============================================================
+// 主组件
+// ============================================================
 export default function Zone() {
   const [activeTab, setActiveTab] = useState('regions')
+  const currentData = dataMap[activeTab as keyof typeof dataMap]
 
-  const currentData =
-    activeTab === 'regions'
-      ? REGION_DATA
-      : activeTab === 'centers'
-      ? CENTER_DATA
-      : LINE_DATA
-
-  // 动画配置
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] as const } },
-  }
+  // 分为左右两列
+  const mid = Math.ceil(currentData.length / 2)
+  const leftCards = currentData.slice(0, mid)
+  const rightCards = currentData.slice(mid)
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#F6F8FD] py-10 sm:py-24">
-      <Container className="relative z-10 flex flex-col items-center">
-        {/* 标题区域 */}
-        <div className="text-center">
-          <h2 className="text-2xl font-medium text-[#1D273F] sm:text-4xl">
-            优刻得全球云计算基础设施
+    <section className="relative overflow-hidden bg-[#F8FAFC] py-14 sm:py-20 lg:py-28">
+      {/* 全幅地图背景 */}
+      <WorldMap />
+
+      <Container className="relative z-10">
+        {/* 标题 */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <h2 className="text-2xl font-bold tracking-tight text-[#0F172A] sm:text-3xl lg:text-4xl">
+            全球云计算基础设施
           </h2>
-          <p className="mt-4 text-sm text-[#50627F] sm:text-lg">
+          <p className="mt-4 text-sm leading-relaxed text-[#64748B] sm:text-base">
             安全合规，稳定可靠，服务瞬达全球
           </p>
-        </div>
+        </motion.div>
 
         {/* Tab 切换 */}
-        <div className="mt-8 flex w-full justify-center sm:mt-12">
-          <div className="grid w-[calc(100%-32px)] max-w-md grid-cols-3 gap-1 rounded-xl bg-white p-1 shadow-sm sm:flex sm:w-auto sm:max-w-none sm:gap-0 sm:rounded-full">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={clsx(
-                  'relative flex flex-col items-center justify-center rounded-lg py-2 text-xs font-medium transition-all duration-300 sm:flex-row sm:rounded-full sm:px-8 sm:py-3 sm:text-base',
-                  activeTab === tab.id
-                    ? 'bg-[#0055ff] text-white shadow-md'
-                    : 'text-[#50627F] hover:bg-gray-50'
-                )}
-              >
-                <span className="text-sm font-bold sm:mr-1 sm:text-lg">{tab.label}</span>
-                <span className="scale-90 sm:scale-100 whitespace-nowrap">{tab.suffix}</span>
-              </button>
-            ))}
+        <div className="mt-8 flex justify-center sm:mt-10">
+          <div className="inline-flex rounded-full border border-[#E2E8F0] bg-white p-1 shadow-sm" role="tablist">
+            {tabConfig.map((tab) => {
+              const isActive = activeTab === tab.id
+              const Icon = tab.icon
+              return (
+                <button
+                  key={tab.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 sm:gap-2 sm:px-6 sm:py-2.5 sm:text-base
+                    ${isActive
+                      ? 'bg-[#0055ff] text-white shadow-sm'
+                      : 'text-[#64748B] hover:text-[#0F172A] hover:bg-white'
+                    }`}
+                >
+                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" strokeWidth={1.5} />
+                  <span className="font-bold tabular-nums">{tab.label}</span>
+                  <span className="hidden sm:inline">{tab.suffix}</span>
+                  <span className="sm:hidden">{tab.suffix.replace('个国内区域', ' 区域').replace('个数据中心', ' 中心').replace('条加速专线', ' 专线')}</span>
+                </button>
+              )
+            })}
           </div>
         </div>
 
-        {/* 内容展示区域 */}
-        <div className="relative mt-8 w-full min-h-[400px] lg:mt-16 lg:h-[800px]">
-          {/* 背景地图 - 在移动端作为背景淡化处理，在桌面端完整显示 */}
-          <div className="absolute inset-0 z-0 flex items-center justify-center opacity-20 lg:opacity-100 transition-opacity duration-500">
-            <div className="relative h-full w-full max-w-[1400px]">
-              <Image
-                src="/images/screenshots/zone-earth.webp"
-                alt="Global Zone Map"
-                fill
-                className="object-contain"
-                unoptimized
-              />
-
-              {/* 地图上的定位点 (Ripple Dots) */}
-              <AnimatePresence>
-                {currentData.map((item) => (
-                  <motion.div
-                    key={`dot-${item.id}`}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute z-10 hidden lg:flex items-center justify-center group/dot"
-                    style={{
-                      top: item.position?.top || '50%',
-                      left: item.position?.left || '50%',
-                    }}
-                  >
-                    {/* 呼吸光环 */}
-                    <span className="absolute h-6 w-6 rounded-full bg-[#0055ff] opacity-20 animate-[ping_2s_ease-in-out_infinite]" />
-                    <span className="absolute h-10 w-10 rounded-full bg-[#0055ff] opacity-10 animate-[ping_3s_ease-in-out_infinite_delay-300ms]" />
-
-                    {/* 实心圆点 */}
-                    <div className="relative h-3 w-3 rounded-full bg-[#0055ff] shadow-[0_0_10px_rgba(0,85,255,0.6)] ring-2 ring-white transition-transform duration-300 group-hover/dot:scale-125" />
-
-                    {/* 地名标签 - 默认显示 */}
-                    <motion.div
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="absolute left-6 whitespace-nowrap rounded-lg bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#1D273F] shadow-sm backdrop-blur-sm border border-gray-100"
-                    >
-                      {item.name}
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* 列表内容 - 桌面端为左右浮动卡片布局，移动端为网格布局 */}
+        {/* 内容区 */}
+        <div className="mt-10 sm:mt-12 lg:mt-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit={{ opacity: 0, transition: { duration: 0.2 } }}
-              className="relative z-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:block lg:h-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              {/* 桌面端布局逻辑：将数据分为左右两组模拟设计图中的浮动卡片 */}
-              {/* 这里为了响应式简单处理，我们使用绝对定位仅在 lg 以上生效，小屏下流式排列 */}
-              {currentData.map((item, index) => {
-                // 简单的左右分布逻辑
-                const isLeft = index < Math.ceil(currentData.length / 2)
+              {/* 桌面端：左右两列浮动卡片，中间留空露出地图 */}
+              <div className="hidden lg:flex lg:justify-between lg:gap-6">
+                {/* 左列 */}
+                <div className="flex w-[380px] shrink-0 flex-col gap-4">
+                  {leftCards.map((item, i) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.08 }}
+                    >
+                      <InfoCard item={item} />
+                    </motion.div>
+                  ))}
+                </div>
 
-                // 预计算桌面端位置
-                const desktopStyle = {
-                  '--lg-top':
-                    index === 0 ? '10%' :
-                    index === 1 ? '32%' :
-                    index === 2 ? '54%' :
-                    index === 3 ? '76%' :
-                    index === 4 ? '20%' :
-                    index === 5 ? '42%' :
-                    index === 6 ? '64%' : 'auto',
-                  '--lg-left': isLeft ? '2%' : 'auto',
-                  '--lg-right': !isLeft ? '2%' : 'auto',
-                } as React.CSSProperties
+                {/* 右列 */}
+                <div className="flex w-[380px] shrink-0 flex-col gap-4">
+                  {rightCards.map((item, i) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.08 }}
+                    >
+                      <InfoCard item={item} />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
 
-                return (
+              {/* 移动端：单列网格 */}
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:hidden">
+                {currentData.map((item, i) => (
                   <motion.div
                     key={item.id}
-                    variants={itemVariants}
-                    className={clsx(
-                      'group relative overflow-hidden rounded-2xl border border-[rgba(236,239,246,0.6)] bg-white/90 p-4 backdrop-blur-sm transition-all duration-300 sm:p-5',
-                      // 桌面端定位样式：使用 CSS 变量控制
-                      'lg:absolute lg:w-[400px]',
-                      'lg:top-[var(--lg-top)] lg:left-[var(--lg-left)] lg:right-[var(--lg-right)]'
-                    )}
-                    style={desktopStyle}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="relative h-6 w-6 flex-shrink-0 mt-1">
-                        <Image
-                          src="/images/screenshots/zone-icon.webp"
-                          alt="Zone Icon"
-                          width={24}
-                          height={24}
-                          className="object-contain"
-                          unoptimized
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                          <h3 className="text-lg font-medium text-[#1D273F]">
-                            {item.name}
-                          </h3>
-                          {item.zones && (
-                            <span className="text-sm text-[#50627F]">
-                              {item.zones}
-                            </span>
-                          )}
-                        </div>
-                        {item.description && (
-                          <p className="text-sm leading-relaxed text-[#50627F]/80">
-                            {item.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                    <InfoCard item={item} />
                   </motion.div>
-                )
-              })}
+                ))}
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -289,4 +244,3 @@ export default function Zone() {
     </section>
   )
 }
-

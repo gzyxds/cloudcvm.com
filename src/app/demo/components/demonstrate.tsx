@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import {
   X,
@@ -297,18 +296,18 @@ const Demonstrate: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* 页面标题区域 - 简约设计，增加留白 */}
-      <header className="bg-gradient-to-b from-slate-50 to-white pt-16 pb-8 text-center">
+      <header className="bg-gradient-to-b from-neutral-50 to-white pt-16 pb-8 text-center">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="mb-4 text-4xl font-bold tracking-tight text-black md:text-5xl">
+            <h1 className="mb-4 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
               系统演示站点
             </h1>
-            <div className="mx-auto mb-6 h-1 w-24 bg-gradient-to-r from-blue-500 to-blue-600"></div>
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">
+            <div className="mx-auto mb-6 h-1 w-20 rounded-full bg-brand-500"></div>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-neutral-500">
               选择产品类型，体验我们的在线演示系统
             </p>
           </motion.div>
@@ -319,15 +318,15 @@ const Demonstrate: React.FC = () => {
       <main className="pb-20">
         <Container>
           <div className="max-w-8xl mx-auto">
-            <div className="overflow-hidden rounded-none border border-slate-200 bg-white shadow-lg">
+            <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
               <div className="flex flex-col lg:flex-row">
                 {/* 左侧产品导航菜单 */}
-                <aside className="w-full border-r border-slate-200 bg-slate-50 lg:w-80">
-                  <div className="border-b border-slate-200 p-6">
-                    <h2 className="text-lg font-semibold text-black">
-                      艺创AI-产品演示
+                <aside className="w-full border-r border-neutral-200 bg-neutral-50 lg:w-72 xl:w-80">
+                  <div className="border-b border-neutral-200 p-5">
+                    <h2 className="text-lg font-semibold text-neutral-900 tracking-tight">
+                      艺创AI · 产品演示
                     </h2>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-neutral-500">
                       选择要查看的产品演示
                     </p>
                   </div>
@@ -339,28 +338,17 @@ const Demonstrate: React.FC = () => {
                           <li key={product.id}>
                             <button
                               onClick={() => setActiveTab(product.id)}
-                              className={`flex w-full items-center gap-3 rounded-none p-4 text-left transition-all duration-300 ${
+                              className={`flex w-full items-center gap-3 rounded-lg p-3.5 text-left transition-all duration-200 ${
                                 activeTab === product.id
-                                  ? 'border border-blue-200 bg-white text-blue-600 shadow-md'
-                                  : 'text-gray-700 hover:bg-white/70 hover:text-gray-900'
+                                  ? 'bg-white text-brand-500 shadow-sm ring-1 ring-brand-200'
+                                  : 'text-neutral-600 hover:bg-white/60 hover:text-neutral-800'
                               }`}
                             >
-                              <div
-                                className={`rounded-none bg-gradient-to-r p-2 ${product.color} ${
-                                  activeTab === product.id
-                                    ? 'opacity-100'
-                                    : 'opacity-70'
-                                }`}
-                              >
+                              <div className={`rounded-lg bg-gradient-to-r p-2 ${product.color}`}>
                                 <IconComponent className="h-4 w-4 text-white" />
                               </div>
-                              <div className="flex-1">
-                                <div className="text-sm font-medium">
-                                  {product.name}
-                                </div>
-                                <div className="mt-0.5 line-clamp-2 text-xs text-gray-500">
-                                  {product.description.substring(0, 50)}...
-                                </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-sm font-medium truncate">{product.name}</div>
                               </div>
                             </button>
                           </li>
@@ -371,7 +359,7 @@ const Demonstrate: React.FC = () => {
                 </aside>
 
                 {/* 右侧产品详情内容区域 */}
-                <section className="flex-1 p-6 lg:p-8">
+                <section className="flex-1 bg-white p-6 lg:p-8">
                   <AnimatePresence mode="wait">
                     {activeProduct && (
                       <motion.div
@@ -382,22 +370,20 @@ const Demonstrate: React.FC = () => {
                         transition={{ duration: 0.4 }}
                         className="space-y-8"
                       >
-                        {/* 产品标题和描述 - 增强视觉层次 */}
+                        {/* 产品标题和描述 */}
                         <header className="space-y-4">
                           <div className="flex items-center gap-4">
-                            <div
-                              className={`rounded-lg bg-gradient-to-r p-3 ${activeProduct.color} shadow-lg`}
-                            >
-                              <activeProduct.icon className="h-8 w-8 text-white" />
+                            <div className={`rounded-xl bg-gradient-to-r p-3 ${activeProduct.color} shadow-sm`}>
+                              <activeProduct.icon className="h-7 w-7 text-white" />
                             </div>
                             <div>
-                              <h2 className="text-2xl font-bold text-black md:text-3xl">
-                                艺创AI - {activeProduct.name}
+                              <h2 className="text-xl font-bold text-neutral-900 tracking-tight sm:text-2xl">
+                                {activeProduct.name}
                               </h2>
-                              <div className="mt-2 h-0.5 w-16 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+                              <div className="mt-1.5 h-0.5 w-12 rounded-full bg-brand-500"></div>
                             </div>
                           </div>
-                          <p className="text-lg leading-relaxed text-gray-600">
+                          <p className="text-sm sm:text-base leading-relaxed text-neutral-500">
                             {activeProduct.description}
                           </p>
                         </header>
@@ -410,97 +396,66 @@ const Demonstrate: React.FC = () => {
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.4, delay: index * 0.1 }}
-                              className="group flex h-full transform flex-col overflow-hidden rounded-lg bg-white border-2 border-white shadow-[8px_8px_20px_0_rgba(55,99,170,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_25px_0_rgba(55,99,170,0.15)] dark:bg-gray-800 dark:border-gray-700 dark:shadow-[8px_8px_20px_0_rgba(55,99,170,0.2)]"
+                              className="group flex h-full flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-brand-200"
                             >
                               {/* 演示站点标题栏 - 简约现代设计 */}
-                              <header className="border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 px-4 py-3">
+                              <header className="border-b border-neutral-100 bg-neutral-50 px-4 py-3">
                                 <div className="flex items-center justify-between">
-                                  <h3 className="font-semibold text-black">
-                                    {demo.title}
-                                  </h3>
-                                  {/* 简约装饰元素 */}
+                                  <h3 className="text-sm font-semibold text-neutral-900 tracking-tight">{demo.title}</h3>
                                   <div className="flex space-x-1">
-                                    <div className="h-2.5 w-2.5 rounded-full bg-slate-300"></div>
-                                    <div className="h-2.5 w-2.5 rounded-full bg-slate-400"></div>
-                                    <div className="h-2.5 w-2.5 rounded-full bg-blue-500"></div>
+                                    <div className="h-2 w-2 rounded-full bg-neutral-300"></div>
+                                    <div className="h-2 w-2 rounded-full bg-neutral-400"></div>
+                                    <div className="h-2 w-2 rounded-full bg-brand-500"></div>
                                   </div>
                                 </div>
                               </header>
 
                               {/* 演示站点内容区域 - 优化间距和布局 */}
                               <div className="space-y-4 p-4">
-                                {/* 二维码展示区 - 现代化设计 */}
+                                {/* 二维码展示区 */}
                                 <figure className="flex justify-center">
-                                  <div className="group relative">
-                                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 opacity-20 blur transition-opacity group-hover:opacity-30"></div>
-                                    <div className="relative rounded-lg border-2 border-slate-200 bg-white p-3">
-                                      <Image
-                                        src={demo.qrcode}
-                                        alt={`${demo.title}二维码`}
-                                        width={112}
-                                        height={112}
-                                        className="h-28 w-28 rounded-md object-cover"
-                                        unoptimized
-                                      />
-                                      {/* 移动设备标识图标 - 现代化设计 */}
-                                      <div className="absolute -right-1 -bottom-1 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 p-1.5 shadow-lg">
-                                        <Smartphone className="h-3 w-3 text-white" />
-                                      </div>
+                                  <div className="relative rounded-lg border border-neutral-200 bg-white p-3">
+                                    <Image
+                                      src={demo.qrcode}
+                                      alt={`${demo.title}二维码`}
+                                      width={112}
+                                      height={112}
+                                      className="h-28 w-28 rounded-md object-cover"
+                                      unoptimized
+                                    />
+                                    <div className="absolute -right-1 -bottom-1 rounded-full bg-brand-500 p-1.5 shadow-sm">
+                                      <Smartphone className="h-3 w-3 text-white" />
                                     </div>
                                   </div>
                                 </figure>
 
-                                {/* 站点访问信息列表 - 现代化信息展示 */}
+                                {/* 站点信息 */}
                                 <div className="space-y-2">
-                                  <div className="flex items-center justify-between rounded-md bg-slate-50 p-2.5">
-                                    <span className="text-xs font-medium text-gray-600">
-                                      网址
-                                    </span>
-                                    <a
-                                      href={demo.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="max-w-32 truncate text-xs font-medium text-blue-600 transition-colors hover:text-blue-700"
-                                    >
+                                  <div className="flex items-center justify-between rounded-lg bg-neutral-50 p-2.5">
+                                    <span className="text-xs font-medium text-neutral-500">网址</span>
+                                    <a href={demo.url} target="_blank" rel="noopener noreferrer" className="max-w-32 truncate text-xs font-medium text-brand-500 hover:text-brand-600 transition-colors">
                                       {demo.url}
                                     </a>
                                   </div>
                                   <div className="grid grid-cols-2 gap-2">
-                                    <div className="rounded-md bg-slate-50 p-2.5">
-                                      <div className="mb-0.5 text-xs text-gray-500">
-                                        账号
-                                      </div>
-                                      <div className="text-xs font-medium text-black">
-                                        {demo.credentials.username}
-                                      </div>
+                                    <div className="rounded-lg bg-neutral-50 p-2.5">
+                                      <div className="mb-0.5 text-xs text-neutral-400">账号</div>
+                                      <div className="text-xs font-medium text-neutral-900">{demo.credentials.username}</div>
                                     </div>
-                                    <div className="rounded-md bg-slate-50 p-2.5">
-                                      <div className="mb-0.5 text-xs text-gray-500">
-                                        密码
-                                      </div>
-                                      <div className="text-xs font-medium text-black">
-                                        {demo.credentials.password}
-                                      </div>
+                                    <div className="rounded-lg bg-neutral-50 p-2.5">
+                                      <div className="mb-0.5 text-xs text-neutral-400">密码</div>
+                                      <div className="text-xs font-medium text-neutral-900">{demo.credentials.password}</div>
                                     </div>
                                   </div>
                                 </div>
 
-                                {/* 操作按钮组 - 现代化按钮设计 */}
+                                {/* 操作按钮 */}
                                 <div className="grid grid-cols-2 gap-2">
-                                  <a
-                                    href={demo.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-center gap-1.5 rounded-md bg-gradient-to-r from-blue-500 to-blue-600 py-2.5 text-xs font-medium text-white shadow-md transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-lg"
-                                    aria-label={`查看${demo.title}演示`}
-                                  >
+                                  <a href={demo.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 rounded-lg bg-brand-500 hover:bg-brand-600 py-2.5 text-xs font-semibold text-white shadow-sm hover:shadow-md transition-all duration-200">
                                     <ExternalLink className="h-3 w-3" />
                                     查看演示
                                   </a>
-                                  <button
-                                    className="flex items-center justify-center gap-1.5 rounded-md border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-900 shadow-md transition-all duration-300 hover:border-gray-300 hover:bg-gray-50 hover:shadow-lg"
-                                    aria-label="立即购买"
-                                  >
+                                  <button className="flex items-center justify-center gap-1.5 rounded-lg border border-neutral-200 bg-white py-2.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-200">
                                     立即购买
                                   </button>
                                 </div>
@@ -510,22 +465,19 @@ const Demonstrate: React.FC = () => {
                         </div>
 
                         {/* 底部操作按钮区域 - 现代化按钮组设计 */}
-                        <footer className="mt-8 flex flex-col justify-center gap-4 border-t border-slate-200 pt-6 sm:flex-row">
-                          <Button
-                            className="rounded-md bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl"
+                        <footer className="mt-8 flex flex-col justify-center gap-3 border-t border-neutral-200 pt-6 sm:flex-row">
+                          <button
+                            className="inline-flex items-center gap-2 rounded-[10px] bg-brand-500 hover:bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:shadow-md transition-all duration-200"
                             onClick={() => handleShowQRCode('demo')}
-                            aria-label="申请专属演示"
                           >
                             申请专属演示
-                          </Button>
-                          <Button
-                            variant="outline"
-                            className="rounded-md border-2 border-slate-300 px-8 py-3 font-medium text-black transition-all duration-300 hover:bg-slate-50"
+                          </button>
+                          <button
+                            className="inline-flex items-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-6 py-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-200"
                             onClick={() => handleShowQRCode('service')}
-                            aria-label="联系客服"
                           >
                             联系客服
-                          </Button>
+                          </button>
                         </footer>
                       </motion.div>
                     )}
@@ -560,55 +512,41 @@ const Demonstrate: React.FC = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-2xl"
+              className="relative w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* 关闭按钮 - 现代化设计 */}
               <button
                 onClick={handleCloseQRModal}
-                className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 transition-colors hover:bg-slate-200"
+                className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors"
                 aria-label="关闭弹窗"
               >
-                <X className="h-4 w-4 text-gray-600" />
+                <X className="h-4 w-4 text-neutral-500" />
               </button>
 
-              {/* 弹窗内容区域 - 优化布局和间距 */}
               <div className="space-y-6 p-8 text-center">
                 <div className="space-y-2">
-                  <h3
-                    id="qr-modal-title"
-                    className="text-xl font-bold text-black"
-                  >
+                  <h3 id="qr-modal-title" className="text-xl font-bold text-neutral-900 tracking-tight">
                     {modalType === 'demo' ? '申请专属演示' : '联系客服'}
                   </h3>
-                  <p className="text-gray-600">
-                    {modalType === 'demo'
-                      ? '扫描二维码联系专属顾问'
-                      : '扫描二维码添加客服微信'}
+                  <p className="text-neutral-500 text-sm">
+                    {modalType === 'demo' ? '扫描二维码联系专属顾问' : '扫描二维码添加客服微信'}
                   </p>
                 </div>
 
-                {/* 二维码图片容器 - 现代化展示 */}
                 <figure className="flex justify-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 opacity-20 blur"></div>
-                    <div className="relative rounded-lg border-2 border-slate-200 bg-white p-6 shadow-lg">
-                      <Image
-                        src="/images/contact/userhlc.png"
-                        alt={
-                          modalType === 'demo' ? '专属演示二维码' : '客服二维码'
-                        }
-                        width={192}
-                        height={192}
-                        className="h-48 w-48 rounded-md object-contain"
-                        unoptimized
-                      />
-                    </div>
+                  <div className="relative rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
+                    <Image
+                      src="/images/contact/userhlc.png"
+                      alt={modalType === 'demo' ? '专属演示二维码' : '客服二维码'}
+                      width={192}
+                      height={192}
+                      className="h-48 w-48 rounded-lg object-contain"
+                      unoptimized
+                    />
                   </div>
                 </figure>
 
-                {/* 操作提示文字 - 简约设计 */}
-                <p className="text-sm text-gray-500">长按二维码保存到相册</p>
+                <p className="text-xs text-neutral-400">长按二维码保存到相册</p>
               </div>
             </motion.div>
           </motion.div>

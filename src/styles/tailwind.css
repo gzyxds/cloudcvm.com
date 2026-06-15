@@ -2,7 +2,12 @@
 
 @plugin '@tailwindcss/forms';
 
+/* ================================================================
+   CloudCVM Design System — Unified Design Tokens
+   ================================================================ */
+
 @theme {
+  /* ---- Typography Scale ---- */
   --text-*: initial;
   --text-xs: 0.75rem;
   --text-xs--line-height: 1rem;
@@ -31,47 +36,126 @@
   --text-9xl: 8rem;
   --text-9xl--line-height: 1;
 
-  --radius-4xl: 2rem;
-
+  /* ---- Font Families ---- */
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
 
+  /* ---- Max Width ---- */
   --container-2xl: 80rem;
 
-  /* 自定义靛蓝色为 #05f */
-  --color-indigo-50: #f0f9ff;
-  --color-indigo-100: #e0f2fe;
-  --color-indigo-200: #bae6fd;
-  --color-indigo-300: #7dd3fc;
-  --color-indigo-400: #38bdf8;
-  --color-indigo-500: #0055ff;
-  --color-indigo-600: #0055ff;
-  --color-indigo-700: #0043cc;
-  --color-indigo-800: #003399;
-  --color-indigo-900: #002266;
+  /* ================================================================
+     Brand Color Scale — Based on reference design #3860F4
+     ================================================================ */
+  --color-brand-50: #f0f4ff;
+  --color-brand-100: #dce4fd;
+  --color-brand-200: #bcc9fb;
+  --color-brand-300: #9db6fa;
+  --color-brand-400: #6b8df7;
+  --color-brand-500: #3860F4;
+  --color-brand-600: #3052d8;
+  --color-brand-700: #2845b8;
+  --color-brand-800: #1f3798;
+  --color-brand-900: #162878;
+  --color-brand-950: #0d1a58;
 
-  /* Bento Linear 设计系统颜色 - 用户指定 Indigo 强调色 */
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: var(--color-indigo-600); /* 核心强调色 #0055ff */
-  --color-primary-600: #0043cc;
-  --color-primary-700: #003399;
-  --color-primary-800: #002266;
-  --color-primary-900: #001133;
-  --color-primary-950: #00091a;
+  /* ---- Legacy aliases for gradual migration ---- */
+  --color-indigo-50: var(--color-brand-50);
+  --color-indigo-100: var(--color-brand-100);
+  --color-indigo-200: var(--color-brand-200);
+  --color-indigo-300: var(--color-brand-300);
+  --color-indigo-400: var(--color-brand-400);
+  --color-indigo-500: var(--color-brand-500);
+  --color-indigo-600: var(--color-brand-600);
+  --color-indigo-700: var(--color-brand-700);
+  --color-indigo-800: var(--color-brand-800);
+  --color-indigo-900: var(--color-brand-900);
 
-  /* 辅助色 */
-  --color-accent-500: var(--color-indigo-500);
+  --color-primary-50: var(--color-brand-50);
+  --color-primary-100: var(--color-brand-100);
+  --color-primary-200: var(--color-brand-200);
+  --color-primary-300: var(--color-brand-300);
+  --color-primary-400: var(--color-brand-400);
+  --color-primary-500: var(--color-brand-500);
+  --color-primary-600: var(--color-brand-600);
+  --color-primary-700: var(--color-brand-700);
+  --color-primary-800: var(--color-brand-800);
+  --color-primary-900: var(--color-brand-900);
+  --color-primary-950: var(--color-brand-950);
+  --color-accent-500: var(--color-brand-500);
 
+  /* ================================================================
+     Neutral Color Scale — Based on reference design palette
+     title: #1D273F, body: #50627F, remark: #C3CAD9
+     border: #DDE3F2, bg: #F6F8FD / #ECF0FF
+     ================================================================ */
+  --color-neutral-50: #F6F8FD;
+  --color-neutral-100: #ECF0FF;
+  --color-neutral-200: #DDE3F2;
+  --color-neutral-300: #C3CAD9;
+  --color-neutral-400: #C3CAD9;
+  --color-neutral-500: #50627F;
+  --color-neutral-600: #50627F;
+  --color-neutral-700: #2A315F;
+  --color-neutral-800: #1D273F;
+  --color-neutral-900: #1D273F;
+  --color-neutral-950: #0F172A;
+
+  /* ================================================================
+     Radius Hierarchy
+     ================================================================ */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+
+  /* ================================================================
+     Shadows — Layered depth system
+     ================================================================ */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 40px -12px rgba(56, 96, 244, 0.15);
+  --shadow-glow-sm: 0 0 20px -6px rgba(56, 96, 244, 0.12);
+
+  /* ================================================================
+     Animations
+     ================================================================ */
   --animate-scan: scan 2s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
+  --animate-slide-up: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-fade-in: fade-in 0.4s ease-out;
 
   @keyframes scan {
     0% { top: 0; opacity: 0; }
     50% { opacity: 1; }
     100% { top: 100%; opacity: 0; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   @keyframes progressBar {
@@ -85,41 +169,120 @@
   }
 }
 
-/* 隐藏滚动条样式 */
+/* ================================================================
+   Utility Classes
+   ================================================================ */
+
+/* Hide scrollbar */
 .scrollbar-hide {
-  /* Firefox */
   scrollbar-width: none;
-  /* Safari and Chrome */
   -ms-overflow-style: none;
 }
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
 @layer components {
+
+  /* ---- Glass Surface — subtle glassmorphism card ---- */
+  .glass-surface {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-sm;
+  }
+
+  .glass-surface-strong {
+    @apply bg-white/90 backdrop-blur-2xl border border-white/30 shadow-md;
+  }
+
+  /* ---- Glow Border — blue glow on hover ---- */
+  .glow-border {
+    @apply transition-all duration-300;
+    box-shadow: 0 0 0 0 rgba(0, 85, 255, 0);
+  }
+  .glow-border:hover {
+    box-shadow: 0 0 0 1px rgba(0, 85, 255, 0.15),
+                0 0 40px -12px rgba(0, 85, 255, 0.12);
+    border-color: rgba(0, 85, 255, 0.25);
+  }
+
+  /* ---- Standard section gradient backgrounds ---- */
+  .section-gradient-light {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #FFFFFF 100%);
+  }
+
+  .section-gradient-brand {
+    background: linear-gradient(180deg, #FFFFFF 0%, #eff6ff 40%, #FFFFFF 100%);
+  }
+
+  /* ---- Base card ---- */
+  .card-base {
+    background-color: white;
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-interactive {
+    background-color: white;
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+  }
+  .card-interactive:hover {
+    border-color: var(--color-brand-200);
+    box-shadow: 0 0 0 1px rgba(0, 85, 255, 0.08),
+                0 10px 25px -5px rgba(0, 0, 0, 0.06);
+  }
+  .card-interactive.is-active {
+    border-color: var(--color-brand-300);
+    box-shadow: 0 0 0 1px rgba(0, 85, 255, 0.12),
+                0 0 30px -8px rgba(0, 85, 255, 0.12);
+  }
+
+  /* ---- Bento card (sharp variant) ---- */
   .bento-card {
-    @apply border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 rounded-none;
+    @apply border border-neutral-200 bg-white rounded-none;
+  }
+  .dark .bento-card {
+    @apply border-neutral-800 bg-neutral-900;
   }
 
   .bento-grid {
     @apply grid gap-4;
   }
 
+  /* ---- Corner markers (industrial feel) ---- */
   .corner-marker {
-    @apply absolute w-3 h-3 border-gray-400 dark:border-gray-600;
+    @apply absolute w-3 h-3 border-neutral-400;
+  }
+  .dark .corner-marker {
+    @apply border-neutral-600;
   }
 
-  .border-glow {
-    @apply transition-colors duration-300 hover:bg-[linear-gradient(135deg,rgba(0,85,255,0.14),rgba(0,85,255,0.00))] dark:hover:bg-[linear-gradient(135deg,rgba(0,85,255,0.20),rgba(0,85,255,0.00))];
-  }
-
-  /* Bento Linear 按钮样式 */
+  /* ---- Standard button base ---- */
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 disabled:pointer-events-none disabled:opacity-50 rounded-none;
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium
+           transition-all duration-200 focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
+           disabled:pointer-events-none disabled:opacity-50 rounded-md;
   }
 
   .btn-primary {
-    @apply bg-primary-500 text-white hover:bg-primary-600 shadow-none border border-transparent;
+    @apply bg-brand-500 text-white hover:bg-brand-600
+           shadow-sm hover:shadow-md border border-transparent;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-neutral-700 border border-neutral-200
+           hover:bg-neutral-50 hover:border-neutral-300 hover:text-neutral-900;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900;
+  }
+
+  .btn-glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/30 text-neutral-800
+           hover:bg-white/95 hover:shadow-md;
   }
 }

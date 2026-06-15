@@ -130,7 +130,7 @@ function AdvantageCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-[flex] duration-700 ease-out hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+        'group relative cursor-pointer overflow-hidden rounded-xl border border-neutral-200 bg-white transition-[flex] duration-700 ease-out hover:border-brand-300 hover:shadow-lg',
         isExpanded
           ? 'flex-[2] md:flex-[2.5] lg:flex-[3]' // 响应式展开比例
           : 'flex-[1] md:flex-[1.2] lg:flex-[1.5]',
@@ -138,10 +138,10 @@ function AdvantageCard({
       onMouseEnter={onToggle}
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-4 top-4 h-3 w-3 border-l border-t border-[#E2E8F0]" />
-        <div className="absolute right-4 top-4 h-3 w-3 border-r border-t border-[#E2E8F0]" />
-        <div className="absolute bottom-4 left-4 h-3 w-3 border-b border-l border-[#E2E8F0]" />
-        <div className="absolute bottom-4 right-4 h-3 w-3 border-b border-r border-[#E2E8F0]" />
+        <div className="absolute left-4 top-4 h-3 w-3 border-l border-t border-neutral-200" />
+        <div className="absolute right-4 top-4 h-3 w-3 border-r border-t border-neutral-200" />
+        <div className="absolute bottom-4 left-4 h-3 w-3 border-b border-l border-neutral-200" />
+        <div className="absolute bottom-4 right-4 h-3 w-3 border-b border-r border-neutral-200" />
       </div>
       {/* 主要内容区域 */}
       <div className="relative flex h-full flex-col p-3 pt-4 sm:p-4 sm:pt-5 md:p-5 md:pt-6 lg:p-6 lg:pt-7 xl:p-7 xl:pt-8 2xl:p-8 2xl:pt-10">
@@ -150,8 +150,8 @@ function AdvantageCard({
           <span className={clsx(
             'inline-flex items-center border px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-widest sm:px-2.5 sm:py-1 sm:text-[10px] lg:px-3 lg:text-[11px]',
             isExpanded
-              ? 'border-[#0055ff]/20 bg-[#eff6ff] text-[#0055ff]'
-              : 'border-[#E2E8F0] bg-white text-[#64748B]'
+              ? 'border-brand-500/20 bg-brand-50 text-brand-500'
+              : 'border-neutral-200 bg-white text-neutral-500'
           )}>
             {advantage.category}
           </span>
@@ -161,10 +161,10 @@ function AdvantageCard({
         <div className="mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-7 2xl:mb-8">
           <div className="mb-2 flex items-center justify-start sm:mb-3 lg:mb-4">
             {/* 图标容器 */}
-            <div className="mr-2 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border border-[#E2E8F0] bg-[#F8FAFC] p-1 text-[#0055ff] sm:mr-2.5 sm:h-6 sm:w-6 sm:p-1.5 lg:mr-3 lg:h-7 lg:w-7 lg:p-2">
+            <div className="mr-2 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border border-neutral-200 bg-neutral-50 p-1 text-brand-500 sm:mr-2.5 sm:h-6 sm:w-6 sm:p-1.5 lg:mr-3 lg:h-7 lg:w-7 lg:p-2">
               <IconComponent className={clsx(
                 "h-2.5 w-2.5 sm:h-3 sm:w-3 lg:h-4 lg:w-4",
-                "text-[#0055ff]"
+                "text-brand-500"
               )} />
             </div>
 
@@ -172,8 +172,8 @@ function AdvantageCard({
               className={clsx(
                 'font-sans leading-tight font-bold tracking-tight transition-colors duration-500',
                 isExpanded
-                  ? 'text-sm text-[#0F172A] sm:text-base md:text-lg lg:text-xl xl:text-2xl'
-                  : 'text-sm text-[#0F172A] sm:text-base md:text-lg lg:text-xl xl:text-xl',
+                  ? 'text-sm text-neutral-900 sm:text-base md:text-lg lg:text-xl xl:text-2xl'
+                  : 'text-sm text-neutral-900 sm:text-base md:text-lg lg:text-xl xl:text-xl',
               )}
             >
               {advantage.title}
@@ -192,7 +192,7 @@ function AdvantageCard({
                 className={clsx(
                   'font-bold transition-colors duration-500',
                   'text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl',
-                  'text-[#0055ff]'
+                  'text-brand-500'
                 )}
               >
                 {advantage.metric}
@@ -200,7 +200,7 @@ function AdvantageCard({
               <span
                 className={clsx(
                   'font-mono text-[10px] font-medium uppercase tracking-widest transition-colors duration-500 sm:text-[10px] lg:text-xs',
-                  'text-[#64748B]'
+                  'text-neutral-500'
                 )}
               >
                 核心指标
@@ -213,13 +213,13 @@ function AdvantageCard({
         {!isExpanded && (
           <div className="flex flex-1 flex-col justify-start pt-2 sm:pt-3 md:pt-4 lg:pt-5 xl:pt-6">
             <div className="space-y-2 text-center sm:space-y-3 lg:space-y-4">
-              <p className="px-1 text-xs font-medium leading-relaxed text-[#64748B] sm:px-2 sm:text-xs lg:px-3 lg:text-sm">
+              <p className="px-1 text-xs font-medium leading-relaxed text-neutral-500 sm:px-2 sm:text-xs lg:px-3 lg:text-sm">
                 {advantage.description.slice(0, 40)}...
               </p>
-              <div className="flex justify-center space-x-2 text-xs text-[#64748B] sm:space-x-3 md:space-x-4 lg:space-x-6">
+              <div className="flex justify-center space-x-2 text-xs text-neutral-500 sm:space-x-3 md:space-x-4 lg:space-x-6">
                 {advantage.highlights.slice(0, 2).map((highlight, idx) => (
                   <span key={idx} className="flex items-center font-medium">
-                    <div className="mr-1 h-1 w-1 rounded-sm bg-[#0055ff] sm:mr-1 sm:h-1 sm:w-1 lg:mr-1.5 lg:h-1.5 lg:w-1.5" />
+                    <div className="mr-1 h-1 w-1 rounded-sm bg-brand-500 sm:mr-1 sm:h-1 sm:w-1 lg:mr-1.5 lg:h-1.5 lg:w-1.5" />
                     <span className="max-w-[60px] truncate sm:max-w-[70px] md:max-w-[80px] lg:max-w-none">
                       {highlight}
                     </span>
@@ -248,7 +248,7 @@ function AdvantageCard({
                 <div
                   className={clsx(
                     'absolute top-0 -left-3 h-full w-1 transition-all duration-500',
-                    'bg-[#0055ff]'
+                    'bg-brand-500'
                   )}
                 />
                 <div className="pl-2 sm:pl-3 md:pl-4">
@@ -256,7 +256,7 @@ function AdvantageCard({
                     className={clsx(
                       'text-xs leading-relaxed transition-all duration-500 sm:text-sm md:text-sm lg:text-base xl:text-lg',
                       'font-normal tracking-wide',
-                      'text-[#0F172A]'
+                      'text-neutral-900'
                     )}
                   >
                     {advantage.description}
@@ -270,13 +270,13 @@ function AdvantageCard({
                   <div
                     className={clsx(
                       'h-2 w-2 transition-all duration-500',
-                      'bg-[#0055ff]'
+                      'bg-brand-500'
                     )}
                   />
                   <h4
                     className={clsx(
                       'text-sm font-semibold transition-colors duration-500 lg:text-base',
-                      'text-[#0F172A]'
+                      'text-neutral-900'
                     )}
                   >
                     核心亮点
@@ -290,13 +290,13 @@ function AdvantageCard({
                       key={highlightIndex}
                       className={clsx(
                         'flex items-start space-x-2 py-0.5 text-xs sm:space-x-3 sm:py-1 sm:text-xs lg:text-sm',
-                        'text-[#64748B]'
+                        'text-neutral-500'
                       )}
                     >
                       <div
                         className={clsx(
                           'mt-1 h-1 w-1 flex-shrink-0 rounded-sm sm:mt-1.5 sm:h-1.5 sm:w-1.5 lg:h-2 lg:w-2',
-                          'bg-[#0055ff]'
+                          'bg-brand-500'
                         )}
                       />
                       <span className="leading-relaxed font-medium">
@@ -326,8 +326,8 @@ function AdvantageCard({
                   'h-0.5 transition-all duration-300 sm:h-1',
                   i === index
                     ? isExpanded
-                      ? 'w-4 bg-[#0055ff] sm:w-6 md:w-8'
-                      : 'w-4 bg-[#0055ff] sm:w-6 md:w-8'
+                      ? 'w-4 bg-brand-500 sm:w-6 md:w-8'
+                      : 'w-4 bg-brand-500 sm:w-6 md:w-8'
                     : 'w-1 bg-[#E2E8F0] sm:w-2',
                   i <= index ? 'opacity-100' : 'opacity-50',
                 )}
@@ -346,7 +346,7 @@ function AdvantageCard({
             <ArrowRightIcon
               className={clsx(
                 'h-3 w-3 sm:h-4 sm:w-4',
-                isExpanded ? 'text-[#0055ff]' : 'text-[#64748B]',
+                isExpanded ? 'text-brand-500' : 'text-neutral-500',
               )}
             />
           </div>
@@ -359,8 +359,8 @@ function AdvantageCard({
               'flex h-6 w-6 items-center justify-center transition-all duration-500 sm:h-7 sm:w-7 md:h-8 md:w-8',
               'text-xs font-bold sm:text-xs md:text-xs',
               isExpanded
-                ? 'border border-[#E2E8F0] bg-white font-mono text-[#0055ff]'
-                : 'border border-[#E2E8F0] bg-white font-mono text-[#64748B]',
+                ? 'border border-neutral-200 bg-white font-mono text-brand-500'
+                : 'border border-neutral-200 bg-white font-mono text-neutral-500',
             )}
           >
             {String(index + 1).padStart(2, '0')}
@@ -388,35 +388,35 @@ function MobileAdvantageCard({
   const IconComponent = getIconByType(advantage.iconType)
 
   return (
-    <div className="relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-4 transition-all hover:border-[#0055ff]/30 hover:shadow-md">
+    <div className="relative overflow-hidden rounded-sm border border-neutral-200 bg-white p-4 transition-all hover:border-brand-500/30 hover:shadow-md">
       {/* 顶部区域：类别标签和序号 */}
       <div className="relative mb-3 flex items-center justify-between">
-        <span className="inline-flex items-center border border-[#E2E8F0] bg-white px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-widest text-[#0055ff]">
+        <span className="inline-flex items-center border border-neutral-200 bg-white px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-widest text-brand-500">
           {advantage.category}
         </span>
-        <span className="flex h-6 w-6 items-center justify-center border border-[#E2E8F0] bg-white font-mono text-[10px] font-bold text-[#64748B]">
+        <span className="flex h-6 w-6 items-center justify-center border border-neutral-200 bg-white font-mono text-[10px] font-bold text-neutral-500">
           {String(index + 1).padStart(2, '0')}
         </span>
       </div>
 
       {/* 标题与图标 */}
       <div className="relative mb-3 flex items-center">
-        <IconComponent className="mr-2 h-5 w-5 flex-shrink-0 text-[#0055ff]" />
-        <h3 className="font-sans text-base font-semibold text-[#0F172A]">
+        <IconComponent className="mr-2 h-5 w-5 flex-shrink-0 text-brand-500" />
+        <h3 className="font-sans text-base font-semibold text-neutral-900">
           {advantage.title}
         </h3>
       </div>
 
       {/* 关键指标 */}
       <div className="relative mb-3">
-        <span className="text-xl font-bold text-[#0055ff]">
+        <span className="text-xl font-bold text-brand-500">
           {advantage.metric}
         </span>
-        <span className="ml-1 font-mono text-[10px] font-medium uppercase tracking-widest text-[#64748B]">核心指标</span>
+        <span className="ml-1 font-mono text-[10px] font-medium uppercase tracking-widest text-neutral-500">核心指标</span>
       </div>
 
       {/* 描述文本 */}
-      <p className="relative mb-3 text-sm leading-relaxed text-[#64748B]">
+      <p className="relative mb-3 text-sm leading-relaxed text-neutral-500">
         {advantage.description}
       </p>
 
@@ -425,7 +425,7 @@ function MobileAdvantageCard({
         {advantage.highlights.map((highlight, highlightIndex) => (
           <span
             key={highlightIndex}
-            className="border border-[#E2E8F0] bg-white px-2 py-1 font-mono text-[10px] font-medium tracking-widest text-[#64748B]"
+            className="border border-neutral-200 bg-white px-2 py-1 font-mono text-[10px] font-medium tracking-widest text-neutral-500"
           >
             {highlight}
           </span>
@@ -457,15 +457,15 @@ export default function Advantage() {
     <section
       id="advantages"
       aria-label="产品优势"
-      className="relative overflow-hidden bg-[#F8FAFC] py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 2xl:py-24"
+      className="relative overflow-hidden bg-neutral-50 py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 2xl:py-24"
     >
       <Container className="relative">
         {/* 标题区域 - 响应式优化 */}
         <div className="mb-6 text-left sm:mb-8 md:mb-10 lg:mb-12 xl:mb-16 2xl:mb-20">
-          <h2 className="font-sans mb-3 text-xl font-bold leading-tight tracking-tight text-[#0F172A] sm:mb-4 sm:text-2xl md:mb-5 md:text-3xl lg:mb-6 lg:text-4xl xl:mb-8 xl:text-5xl 2xl:text-6xl">
+          <h2 className="font-sans mb-3 text-xl font-bold leading-tight tracking-tight text-neutral-900 sm:mb-4 sm:text-2xl md:mb-5 md:text-3xl lg:mb-6 lg:text-4xl xl:mb-8 xl:text-5xl 2xl:text-6xl">
             产品优势
           </h2>
-          <p className="max-w-none text-sm leading-relaxed text-[#64748B] sm:max-w-2xl sm:text-base md:max-w-3xl md:text-lg lg:max-w-4xl lg:text-xl xl:max-w-5xl xl:text-2xl">
+          <p className="max-w-none text-sm leading-relaxed text-neutral-500 sm:max-w-2xl sm:text-base md:max-w-3xl md:text-lg lg:max-w-4xl lg:text-xl xl:max-w-5xl xl:text-2xl">
             优刻云云服务器
             ECS是优刻云提供的性能卓越、稳定可靠、弹性扩展的IaaS（Infrastructure
             as a Service）级别云计算服务。选择云服务器

@@ -1,211 +1,131 @@
 'use client'
 
 import { Container } from '@/components/Container'
-import clsx from 'clsx'
 import { motion } from 'framer-motion'
-import {
-  Cloud,
-  Lock,
-  Server,
-  Cpu,
-  ShieldCheck,
-  BarChart3,
-  Terminal,
-  ArrowRight,
-  Database,
-  Zap,
-  Globe
-} from 'lucide-react'
+import { ArrowRight, Server, Cpu, ShieldCheck, Database, BarChart3, Terminal } from 'lucide-react'
 
-/**
- * 云计算功能数据类型定义
- */
-interface CloudFeature {
-  id: string
-  name: string
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  description: string
-  className?: string
-}
-
-/**
- * Bento Grid 数据源
- * 包含六个核心功能分类：基础服务、安全防护、数据管理、AI智能、性能监控、开发工具
- * 使用 col-span 和 row-span 控制网格布局
- */
-const bentoFeatures: CloudFeature[] = [
+// ============================================================
+// 数据
+// ============================================================
+const capabilities = [
   {
-    id: 'basic',
-    name: '基础服务',
+    title: '弹性计算',
+    desc: '秒级部署云服务器，弹性伸缩 + 全球负载均衡',
     icon: Server,
-    title: '弹性计算与网络分发',
-    description: '提供秒级启动的云服务器和全球加速网络，助您快速构建高可用应用架构。',
-    className: 'col-span-2 md:col-span-2 md:row-span-1',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm',
+    stat: '< 30s',
+    statLabel: '实例启动',
   },
   {
-    id: 'security',
-    name: '安全防护',
-    icon: ShieldCheck,
-    title: 'DDoS 防护体系',
-    description: 'Tbps 级防护能力，智能清洗流量，保障业务永续在线。',
-    className: 'col-span-1 md:col-span-1 md:row-span-1',
-  },
-  {
-    id: 'ai',
-    name: 'AI 智能',
+    title: 'AI 算力',
+    desc: 'GPU 集群调度，大模型训练推理一站式服务',
     icon: Cpu,
-    title: '企业级 AI 解决方案',
-    description: '内置大模型与机器学习平台，一键部署训练环境，加速智能化转型。支持 GPU 算力调度与模型微调。',
-    className: 'col-span-1 row-span-2 md:col-span-1 md:row-span-2',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm',
+    stat: '1000+',
+    statLabel: 'GPU 节点',
   },
   {
-    id: 'data',
-    name: '数据管理',
+    title: '安全防护',
+    desc: 'Tbps 级 DDoS 清洗 + WAF + 主机安全',
+    icon: ShieldCheck,
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm',
+    stat: '99.99%',
+    statLabel: '清洗成功率',
+  },
+  {
+    title: '云数据库',
+    desc: 'MySQL / Redis / MongoDB 分布式高可用',
     icon: Database,
-    title: '云原生数据库',
-    description: '高并发、低延迟的分布式数据库服务，支持自动备份与容灾。',
-    className: 'col-span-1 md:col-span-2 md:row-span-1',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm',
+    stat: '< 1ms',
+    statLabel: '读写延迟',
   },
   {
-    id: 'monitor',
-    name: '性能监控',
+    title: '可观测性',
+    desc: '实时监控 + 秒级告警 + 智能根因分析',
     icon: BarChart3,
-    title: '全链路可观测性',
-    description: '实时监控资源状态，提供秒级告警与智能根因分析。',
-    className: 'col-span-1 md:col-span-1 md:row-span-1',
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm',
+    stat: '50+',
+    statLabel: '监控指标',
   },
   {
-    id: 'devtools',
-    name: '开发工具',
+    title: 'DevOps',
+    desc: '容器化部署，CI/CD 流水线开箱即用',
     icon: Terminal,
-    title: 'DevOps 一体化',
-    description: '从代码提交到自动发布的完整流水线，提升研发效能。',
-    className: 'col-span-1 md:col-span-1 md:row-span-1',
-  }
+    href: 'https://console.cloudcvm.com/cart/goodsList.htm',
+    stat: '3 分钟',
+    statLabel: '完成部署',
+  },
 ]
 
-/**
- * Bento Grid 卡片组件 - 核心功能特性展示单元。
- *
- * 设计规范：
- * - 边框：细边框 #E2E8F0，Hover 时变为 #0055ff/30
- * - 圆角：统一使用 rounded-xl
- * - 背景：纯白背景，Hover 时增加投影
- * - 字体：标题 font-sans，正文 Slate 500
- *
- * @param props - 组件属性
- * @param props.feature - 功能特性数据对象
- * @param props.index - 索引，用于交错动画延迟
- * @returns 渲染后的卡片组件
- */
-function BentoCard({ feature, index }: { feature: CloudFeature; index: number }) {
-  const IconComponent = feature.icon
+// ============================================================
+// 能力卡片
+// ============================================================
+function CapabilityCard({ item, index }: { item: (typeof capabilities)[0]; index: number }) {
+  const Icon = item.icon
 
   return (
-    <motion.div
+    <motion.a
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={clsx(
-        'group relative overflow-hidden rounded-xl p-3 sm:p-4 md:p-8 flex flex-col justify-between transition-all duration-300 border border-[#E2E8F0] bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
-        feature.className
-      )}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+      className="group flex flex-col rounded-xl border border-[#E2E8F0] bg-white p-6 transition-all duration-200 hover:border-[#0055ff]/25 hover:shadow-[0_2px_16px_rgba(0,85,255,0.06)]"
     >
-      {/* 装饰性背景图标 */}
-      <div className="absolute -right-10 -bottom-10 opacity-[0.06] text-[#0F172A] pointer-events-none group-hover:opacity-[0.08] transition-opacity">
-        <IconComponent className="h-48 w-48" />
+      {/* 图标 */}
+      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-[#eff6ff] transition-colors duration-200 group-hover:bg-[#0055ff]">
+        <Icon className="h-5 w-5 text-[#0055ff] transition-colors duration-200 group-hover:text-white" strokeWidth={1.5} />
       </div>
 
-      <div className="relative z-10">
-        <div className="mb-3 sm:mb-4 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:bg-[#eff6ff]">
-        <IconComponent className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
-      </div>
-
-      <h3 className="text-base sm:text-lg md:text-2xl font-bold mb-1.5 sm:mb-2 tracking-tight text-[#0F172A]">
-        {feature.title}
+      {/* 标题 + 描述 */}
+      <h3 className="text-base font-semibold text-[#0F172A] transition-colors duration-200 group-hover:text-[#0055ff]">
+        {item.title}
       </h3>
-
-      <p className="text-xs sm:text-sm md:text-base leading-relaxed max-w-[95%] text-[#64748B]">
-        {feature.description}
+      <p className="mt-1.5 text-sm leading-relaxed text-[#64748B]">
+        {item.desc}
       </p>
-      </div>
 
-      <div className="relative z-10 mt-3 sm:mt-4 flex items-center gap-1.5 text-xs sm:text-sm md:text-base font-semibold transition-opacity opacity-100 lg:opacity-0 lg:group-hover:opacity-100">
-        <span className="text-[#0055ff]">了解详情</span>
-        <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#0055ff]" />
+      {/* 指标 + 箭头 */}
+      <div className="mt-5 flex items-center justify-between border-t border-[#E2E8F0] pt-4">
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-lg font-bold tabular-nums text-[#0F172A]">{item.stat}</span>
+          <span className="text-xs text-[#64748B]">{item.statLabel}</span>
+        </div>
+        <ArrowRight className="h-4 w-4 text-[#94A3B8] transition-all duration-200 group-hover:text-[#0055ff] group-hover:translate-x-0.5" strokeWidth={1.5} />
       </div>
-    </motion.div>
+    </motion.a>
   )
 }
 
-/**
- * 云计算功能展示区块 (Accordion Section)
- * 采用流行的 Bento Grid 网格布局展示核心特性。
- *
- * 视觉风格：
- * - 背景：白色 + 细微网格纹理
- * - 布局：3列网格，支持跨行跨列
- * - 响应式：移动端单列，桌面端三列
- *
- * @returns 渲染后的云计算功能展示区块
- */
+// ============================================================
+// 主组件
+// ============================================================
 export function Accordion() {
   return (
-    <section
-      className="relative overflow-hidden border-t border-[#E2E8F0] py-12 sm:py-16 lg:py-24"
-      style={{
-        backgroundImage: 'url(/images/background/background-2.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-      id="cloud-features"
-    >
-      <Container className="relative z-10">
-        {/* Header */}
-        <div className="mb-6 sm:mb-8 text-center max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 inline-flex items-center gap-2 border border-[#E2E8F0] bg-white px-4 py-1.5 text-sm font-semibold tracking-[0.18em] text-[#64748B] rounded-full"
-          >
-            <Cloud className="h-4 w-4 text-[#0055ff]" />
-            <span>CLOUD FEATURES</span>
-          </motion.div>
+    <section className="bg-[#F8FAFC] py-16 sm:py-20 lg:py-28" id="cloud-features">
+      <Container>
+        {/* 标题 */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto mb-12 max-w-2xl text-center sm:mb-16"
+        >
+          <h2 className="text-2xl font-bold tracking-tight text-[#0F172A] sm:text-3xl lg:text-4xl">
+            全栈云能力，<span className="text-[#0055ff]">一站就绪</span>
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-[#64748B] sm:text-base">
+            覆盖计算、存储、网络、安全、AI 的全栈云服务
+          </p>
+        </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0F172A] leading-[1.1] tracking-tight mb-3"
-          >
-            构建未来的
-            <span className="text-[#0055ff] px-3">
-              数字化基石
-            </span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto"
-          >
-            无论您是初创团队还是大型企业，我们提供全栈式云服务能力，
-            <br className="hidden sm:block" />
-            助力您在数字经济时代保持领先优势。
-          </motion.p>
-        </div>
-
-        {/* Bento Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 auto-rows-[minmax(240px,auto)] sm:auto-rows-[minmax(280px,auto)]">
-          {bentoFeatures.map((feature, index) => (
-            <BentoCard key={feature.id} feature={feature} index={index} />
+        {/* 卡片网格 */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((item, index) => (
+            <CapabilityCard key={item.title} item={item} index={index} />
           ))}
         </div>
       </Container>

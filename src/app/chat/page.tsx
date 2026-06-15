@@ -18,7 +18,6 @@ import {
   UsersIcon,
   MicrophoneIcon,
   PencilIcon,
-  VideoCameraIcon,
   PlayIcon,
   ChevronRightIcon,
 } from '@heroicons/react/24/outline'
@@ -620,7 +619,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '支持自定义各类AI技能模型，可根据具体场景定制专属技能。技能分类越细致，AI回答越精准，全面满足多样化业务需求。',
       icon: AcademicCapIcon,
-      image: '/images/product/AI技能.webp', // 新增图片路径
+      image: '/images/product/AI技能.webp',
 
       stats: [
         { label: '技能自定义', value: '支持自定义各类AI技能模型' },
@@ -812,376 +811,204 @@ function CoreFeaturesSection(): JSX.Element {
   )
 }
 
-// 知识库英雄区块开始
+// ================================================================
+// 英雄区块 — 现代化云平台设计
+// ================================================================
 export default function KnowledgeBasePage(): JSX.Element {
   return (
     <>
       <Header />
       <main className="pt-10 sm:pt-0">
         {/* 英雄区块开始 */}
-        <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-          {/* 几何背景装饰 - 响应式尺寸优化 */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="xs:-top-32 xs:-right-32 xs:w-60 xs:h-60 animate-blob absolute -top-20 -right-20 h-40 w-40 rounded-full bg-blue-400 opacity-20 mix-blend-multiply blur-xl filter sm:-top-40 sm:-right-40 sm:h-80 sm:w-80"></div>
-            <div className="xs:-bottom-32 xs:-left-32 xs:w-60 xs:h-60 animate-blob animation-delay-2000 absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-purple-400 opacity-20 mix-blend-multiply blur-xl filter sm:-bottom-40 sm:-left-40 sm:h-80 sm:w-80"></div>
-            <div className="xs:w-60 xs:h-60 animate-blob animation-delay-4000 absolute top-1/2 left-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-indigo-400 opacity-20 mix-blend-multiply blur-xl filter sm:h-80 sm:w-80"></div>
+        <section className="relative min-h-screen overflow-hidden bg-white">
+          {/* 简约背景 — 点阵 + 光晕 */}
+          <div className="absolute inset-0 -z-10">
+            <div
+              className="absolute inset-0 opacity-[0.025]"
+              style={{
+                backgroundImage: 'radial-gradient(circle, #3860F4 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
+              }}
+            />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-500/[0.04] rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/[0.03] rounded-full blur-3xl" />
           </div>
 
-          {/* 动态渐变背景 - 光效和网格 */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-indigo-600/5"></div>
-            <div className="absolute inset-0 animate-pulse bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_24%,rgba(59,130,246,0.03)_25%,rgba(59,130,246,0.03)_26%,transparent_27%,transparent_74%,rgba(59,130,246,0.03)_75%,rgba(59,130,246,0.03)_76%,transparent_77%,transparent),linear-gradient(rgba(59,130,246,0.03)_24%,transparent_25%,transparent_26%,rgba(59,130,246,0.03)_27%,rgba(59,130,246,0.03)_74%,transparent_75%,transparent_76%,rgba(59,130,246,0.03)_77%,rgba(59,130,246,0.03))] bg-[length:75px_75px]"></div>
-          </div>
-
-          {/* 响应式容器 - 优化超小屏幕适配 */}
-          <div className="xs:px-4 xs:pt-20 xs:pb-16 relative z-10 mx-auto max-w-[1800px] px-3 pt-16 pb-12 sm:px-6 sm:pt-24 sm:pb-20 lg:px-8 lg:pt-28">
-            {/* 状态标签 - 响应式间距和字体 */}
-            <div className="xs:mb-6 mb-4 flex justify-center sm:mb-8">
-              <div className="xs:gap-2 xs:px-4 xs:py-2 inline-flex items-center gap-1.5 rounded-full border border-blue-100 bg-white/80 px-3 py-1.5 shadow-sm backdrop-blur-sm">
-                <div className="xs:w-2 xs:h-2 h-1.5 w-1.5 animate-pulse rounded-full bg-green-400"></div>
-                <span className="xs:text-sm text-xs font-medium text-gray-700">
-                  AI服务正常运行中
+          <Container className="relative z-10 pt-20 pb-16 sm:pt-28 sm:pb-24 lg:pt-36">
+            {/* 在线状态指示 */}
+            <div className="mb-8 flex justify-center lg:justify-start animate-slide-up">
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/80 px-4 py-1.5 shadow-sm backdrop-blur-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
+                <span className="text-sm font-medium text-neutral-700">AI服务正常运行中</span>
               </div>
             </div>
 
-            <div className="xs:gap-8 grid items-center gap-6 lg:grid-cols-2 lg:gap-12">
-              {/* 左侧内容区 - 优化移动端间距 */}
-              <div className="xs:space-y-6 space-y-4 text-center sm:space-y-8 lg:text-left">
-                {/* 主标题 - 增强响应式字体大小 */}
-                <div className="xs:space-y-4 space-y-3 sm:space-y-6">
-                  <h1 className="xs:text-3xl text-2xl leading-tight font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl">
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              {/* 左侧：文字内容 */}
+              <div className="text-center lg:text-left">
+                <div>
+                  <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl xl:text-6xl">
                     <span className="block">艺创AI</span>
-                    <span className="block text-blue-600">
-                      智能聊天绘画系统
+                    <span className="block text-brand-500 mt-1">
+                      聊天绘画
                     </span>
                   </h1>
-                  <p className="xs:text-base xs:px-0 mx-auto max-w-2xl px-2 text-sm leading-relaxed text-gray-600 sm:text-lg lg:mx-0 lg:text-xl">
-                    集成最新GPT-4、DALL-E 3、Midjourney等顶级AI模型，
-                    <span className="font-semibold text-blue-600">
-                      一站式AI创作平台
-                    </span>
-                    ， 让创意无限可能
+                  <p className="mt-5 text-sm sm:text-base lg:text-lg text-neutral-500 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    集成最新 GPT-4、DALL·E 3、Midjourney 等顶级 AI 模型，
+                    <span className="font-semibold text-brand-500"> 一站式 AI 创作平台</span>，
+                    让创意无限可能
                   </p>
                 </div>
 
-                {/* 核心功能标签 - 优化移动端显示 */}
-                <div className="xs:gap-2 xs:px-0 mx-auto flex max-w-2xl flex-wrap justify-center gap-1.5 px-2 sm:gap-3 lg:mx-0 lg:justify-start">
+                {/* 功能 Pill 标签 */}
+                <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3 lg:justify-start">
                   {[
-                    {
-                      name: '智能对话',
-                      time: '24/7',
-                      icon: ChatBubbleLeftRightIcon,
-                    },
-                    { name: 'AI绘画', time: '5min', icon: UsersIcon },
-                    { name: '智能创作', time: '<3s', icon: MicrophoneIcon },
-                    { name: '营销变现', time: '1h', icon: AcademicCapIcon },
-                  ].map((feature, index) => {
-                    const Icon = feature.icon
-                    return (
-                      <div
-                        key={index}
-                        className="xs:gap-2 xs:px-3 xs:py-2 group inline-flex touch-manipulation items-center gap-1.5 rounded-full border border-gray-200 bg-white/80 px-2 py-1.5 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-sm"
-                      >
-                        <Icon className="xs:w-4 xs:h-4 h-3 w-3 text-gray-600 transition-colors group-hover:text-blue-600" />
-                        <span className="xs:text-sm text-xs font-medium text-gray-800">
-                          {feature.name}
-                        </span>
-                        <span className="xs:text-xs xs:px-2 rounded-full bg-blue-50 px-1.5 py-0.5 font-mono text-[10px] text-blue-600">
-                          {feature.time}
-                        </span>
-                      </div>
-                    )
-                  })}
-                </div>
-                {/* 行动按钮 - 增强移动端适配 */}
-                <div className="xs:flex-row xs:gap-3 xs:px-0 flex flex-col justify-center gap-2.5 px-4 sm:gap-4 lg:justify-start">
-                  <Button
-                    href="/demo"
-                    variant="solid"
-                    color="blue"
-                    className="xs:px-6 xs:py-3 xs:text-base min-h-[44px] touch-manipulation rounded-xl px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-4"
-                  >
-                    立即体验
-                  </Button>
-                  <Button
-                    href="/contact"
-                    target="_blank"
-                    variant="outline"
-                    color="slate"
-                    className="xs:px-6 xs:py-3 xs:text-base min-h-[44px] touch-manipulation rounded-xl px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-4"
-                  >
-                    联系客服
-                  </Button>
+                    { name: '智能对话', time: '24/7', icon: ChatBubbleLeftRightIcon },
+                    { name: 'AI绘画', time: '5min', icon: SparklesIcon },
+                    { name: '智能创作', time: '<3s', icon: PencilIcon },
+                    { name: '营销变现', time: '1h', icon: MegaphoneIcon },
+                  ].map((f, i) => (
+                    <div
+                      key={i}
+                      className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-2 text-sm transition-all duration-200 hover:border-brand-200 hover:shadow-sm"
+                    >
+                      <f.icon className="w-4 h-4 text-neutral-500" />
+                      <span className="font-medium text-neutral-800">{f.name}</span>
+                      <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-mono font-semibold text-brand-500">
+                        {f.time}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
-                {/* 实时数据展示 - 优化移动端布局 */}
-                <div className="xs:gap-6 flex justify-center gap-4 sm:gap-8 lg:justify-start">
-                  <div className="text-center">
-                    <div className="xs:text-2xl xs:mb-1 mb-0.5 text-xl font-bold text-blue-600 sm:text-3xl">
-                      1000+
+                {/* CTA 按钮 */}
+                <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                  <a
+                    href="/demo"
+                    className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-brand-500 hover:bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:shadow-md transition-all duration-200"
+                  >
+                    <RocketLaunchIcon className="w-4 h-4" />
+                    立即体验
+                  </a>
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-200"
+                  >
+                    <ChatBubbleLeftRightIcon className="w-4 h-4" />
+                    联系客服
+                  </a>
+                </div>
+
+                {/* 信任指标 */}
+                <div className="mt-10 flex justify-center gap-8 lg:justify-start">
+                  {[
+                    { value: '1000+', label: '企业用户' },
+                    { value: '50万+', label: 'AI创作' },
+                    { value: '99.9%', label: '系统稳定' },
+                  ].map((m, i) => (
+                    <div key={i} className="text-center">
+                      <div className="text-2xl sm:text-3xl font-bold text-brand-500 tracking-tight">{m.value}</div>
+                      <div className="text-xs sm:text-sm text-neutral-500 mt-0.5">{m.label}</div>
                     </div>
-                    <div className="xs:text-sm text-xs text-gray-600">
-                      企业用户
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="xs:text-2xl xs:mb-1 mb-0.5 text-xl font-bold text-blue-600 sm:text-3xl">
-                      50万+
-                    </div>
-                    <div className="xs:text-sm text-xs text-gray-600">
-                      AI创作
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="xs:text-2xl xs:mb-1 mb-0.5 text-xl font-bold text-blue-600 sm:text-3xl">
-                      99.9%
-                    </div>
-                    <div className="xs:text-sm text-xs text-gray-600">
-                      系统稳定
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
-              {/* 右侧展示区 - 增强移动端适配 */}
-              <div className="xs:mt-8 xs:mx-4 relative mx-2 mt-6 sm:mx-0 lg:mt-0">
-                {/* 主展示容器 - 优化响应式尺寸 */}
-                <div className="relative">
-                  {/* 展示卡片 - 全面优化移动端高度和间距 */}
-                  <div className="xs:p-4 xs:min-h-[380px] relative min-h-[320px] rounded-lg border border-gray-100 bg-gradient-to-br from-white to-gray-50 p-3 transition-all duration-300 sm:min-h-[460px] sm:rounded-xl sm:p-6 md:min-h-[500px]">
-                    {/* 顶部状态栏 - 增强移动端布局 */}
-                    <div className="xs:mb-4 mb-3 flex items-center justify-between sm:mb-6">
-                      <div className="xs:gap-2 flex items-center gap-1.5 sm:gap-3">
-                        <div className="xs:w-7 xs:h-7 flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 sm:h-9 sm:w-9">
-                          <ChatBubbleLeftRightIcon className="xs:w-4 xs:h-4 h-3 w-3 text-white sm:h-5 sm:w-5" />
-                        </div>
-                        <div>
-                          <h3 className="xs:text-sm text-xs font-bold text-gray-900 sm:text-base">
-                            艺创AI助手
-                          </h3>
-                          <p className="xs:text-xs text-[10px] text-gray-500 sm:text-sm">
-                            智能对话 | 图像生成
-                          </p>
-                        </div>
+              {/* 右侧：演示卡片 */}
+              <div className="relative"
+              >
+                <div className="relative rounded-2xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm">
+                  {/* 卡片头部 */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center">
+                        <ChatBubbleLeftRightIcon className="w-5 h-5 text-white" />
                       </div>
-                      <div className="xs:gap-1.5 flex items-center gap-1 sm:gap-2">
-                        <div className="xs:w-1.5 xs:h-1.5 h-1 w-1 animate-pulse rounded-full bg-green-400 sm:h-2 sm:w-2"></div>
-                        <span className="xs:text-xs xs:inline hidden text-[10px] text-gray-600 sm:text-sm">
-                          在线服务中
-                        </span>
-                        <span className="xs:hidden text-[10px] text-gray-600">
-                          在线
-                        </span>
+                      <div>
+                        <h3 className="text-sm font-bold text-neutral-900">艺创AI助手</h3>
+                        <p className="text-xs text-neutral-500">智能对话 · 图像生成</p>
                       </div>
                     </div>
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                      </span>
+                      <span className="text-xs text-neutral-500">在线</span>
+                    </div>
+                  </div>
 
-                    {/* 对话展示区 - 全面优化移动端设计 */}
-                    <div className="xs:p-3 xs:mb-4 xs:min-h-[170px] mb-3 min-h-[140px] rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 p-2.5 transition-all duration-300 hover:shadow-md sm:mb-6 sm:min-h-[220px] sm:rounded-xl sm:p-5 md:min-h-[250px]">
-                      <div className="xs:space-y-3 space-y-2.5 sm:space-y-5">
-                        {/* AI消息 */}
-                        <div className="xs:gap-2 animate-fade-in flex items-start gap-1.5 sm:gap-3">
-                          <div className="xs:w-6 xs:h-6 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-lg bg-blue-600 shadow-sm sm:h-8 sm:w-8">
-                            <ChatBubbleLeftRightIcon
-                              className="xs:w-3 xs:h-3 h-2.5 w-2.5 text-white sm:h-4 sm:w-4"
-                              aria-hidden="true"
-                            />
-                            <span className="sr-only">AI助手</span>
-                          </div>
-                          <div className="xs:p-2.5 xs:max-w-[calc(100%-3rem)] max-w-[calc(100%-2.5rem)] rounded-lg rounded-tl-none bg-white p-2 sm:max-w-xs sm:rounded-xl sm:p-3.5">
-                            <p className="xs:text-xs text-[10px] leading-relaxed text-gray-800 sm:text-sm">
-                              您好！我可以帮您进行AI创作、图片生成等服务
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* 用户消息 */}
-                        <div className="xs:gap-2 animate-fade-in animation-delay-300 flex items-start justify-end gap-1.5 sm:gap-3">
-                          <div className="xs:p-2.5 xs:max-w-[calc(100%-3rem)] max-w-[calc(100%-2.5rem)] rounded-lg rounded-tr-none bg-blue-600 p-2 sm:max-w-xs sm:rounded-xl sm:p-3.5">
-                            <p className="xs:text-xs text-[10px] leading-relaxed text-white sm:text-sm">
-                              请帮我生成一张未来科技城市的图片
-                            </p>
-                          </div>
-                          <div className="xs:w-6 xs:h-6 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-lg bg-gray-700 shadow-sm sm:h-8 sm:w-8">
-                            <UsersIcon
-                              className="xs:w-3 xs:h-3 h-2.5 w-2.5 text-white sm:h-4 sm:w-4"
-                              aria-hidden="true"
-                            />
-                            <span className="sr-only">用户</span>
-                          </div>
-                        </div>
+                  {/* 对话区 */}
+                  <div className="rounded-xl bg-brand-50/50 p-4 mb-5 space-y-4 min-h-[200px] sm:min-h-[260px]">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center flex-shrink-0">
+                        <ChatBubbleLeftRightIcon className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="bg-white rounded-xl rounded-tl-sm px-4 py-2.5 max-w-[75%] shadow-sm">
+                        <p className="text-sm text-neutral-700">您好！我可以帮您进行AI创作、图片生成等服务</p>
                       </div>
                     </div>
-
-                    {/* 功能展示区 - 优化移动端网格布局 */}
-                    <div className="xs:gap-2 grid grid-cols-3 gap-1.5 sm:gap-3 md:gap-4">
-                      {/* AI创作功能卡片 */}
-                      <div className="xs:p-2.5 group touch-manipulation rounded-md bg-gradient-to-br from-blue-500 to-blue-600 p-2 text-white transition-all duration-300 sm:rounded-lg sm:p-3.5">
-                        <PencilIcon
-                          className="xs:w-4 xs:h-4 xs:mb-1.5 mb-1 h-3 w-3 transition-transform duration-300 group-hover:scale-110 sm:mb-2.5 sm:h-5 sm:w-5"
-                          aria-hidden="true"
-                        />
-                        <h4 className="xs:text-xs mb-0.5 text-[10px] font-medium sm:mb-1.5 sm:text-sm">
-                          AI创作
-                        </h4>
-                        <p className="xs:text-xs xs:block hidden text-[9px] text-blue-100 opacity-80">
-                          智能文案生成
-                        </p>
+                    <div className="flex items-start justify-end gap-3">
+                      <div className="bg-brand-500 rounded-xl rounded-tr-sm px-4 py-2.5 max-w-[75%]">
+                        <p className="text-sm text-white">请帮我生成一张未来科技城市的图片</p>
                       </div>
-
-                      {/* AI绘画功能卡片 */}
-                      <div className="xs:p-2.5 group touch-manipulation rounded-md bg-gradient-to-br from-indigo-500 to-indigo-600 p-2 text-white transition-all duration-300 sm:rounded-lg sm:p-3.5">
-                        <svg
-                          className="xs:w-4 xs:h-4 xs:mb-1.5 mb-1 h-3 w-3 transition-transform duration-300 group-hover:scale-110 sm:mb-2.5 sm:h-5 sm:w-5"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <h4 className="xs:text-xs mb-0.5 text-[10px] font-medium sm:mb-1.5 sm:text-sm">
-                          AI绘画
-                        </h4>
-                        <p className="xs:text-xs xs:block hidden text-[9px] text-indigo-100 opacity-80">
-                          图像智能生成
-                        </p>
-                      </div>
-
-                      {/* 语音助手功能卡片 */}
-                      <div className="xs:p-2.5 group touch-manipulation rounded-md bg-gradient-to-br from-purple-500 to-purple-600 p-2 text-white transition-all duration-300 sm:rounded-lg sm:p-3.5">
-                        <MicrophoneIcon
-                          className="xs:w-4 xs:h-4 xs:mb-1.5 mb-1 h-3 w-3 transition-transform duration-300 group-hover:scale-110 sm:mb-2.5 sm:h-5 sm:w-5"
-                          aria-hidden="true"
-                        />
-                        <h4 className="xs:text-xs mb-0.5 text-[10px] font-medium sm:mb-1.5 sm:text-sm">
-                          语音助手
-                        </h4>
-                        <p className="xs:text-xs xs:block hidden text-[9px] text-purple-100 opacity-80">
-                          智能语音交互
-                        </p>
+                      <div className="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center flex-shrink-0">
+                        <UsersIcon className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </div>
 
-                  {/* 装饰浮动元素 - 全面优化移动端位置和大小 */}
-                  <div className="xs:-top-2 xs:-right-2 xs:p-2 animate-float absolute -top-1.5 -right-1.5 transform rounded-md bg-white p-1.5 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 sm:-top-3 sm:-right-3 sm:rounded-lg sm:p-3 md:-top-4 md:-right-4">
-                    <div className="xs:gap-1 flex items-center justify-center gap-0.5 sm:gap-2">
-                      <svg
-                        className="xs:w-3 xs:h-3 h-2.5 w-2.5 text-blue-600 sm:h-4 sm:w-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="xs:text-xs bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-[9px] font-medium whitespace-nowrap text-transparent sm:text-sm">
-                        智能问答
-                      </span>
-                    </div>
-                  </div>
-                  <div className="xs:-bottom-2 xs:-left-2 xs:p-2 animate-float animation-delay-2000 absolute -bottom-1.5 -left-1.5 transform rounded-md bg-white p-1.5 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 sm:-bottom-3 sm:-left-3 sm:rounded-lg sm:p-3 md:-bottom-4 md:-left-4">
-                    <div className="xs:gap-1 flex items-center justify-center gap-0.5 sm:gap-2">
-                      <VideoCameraIcon className="xs:w-3 xs:h-3 h-2.5 w-2.5 text-black sm:h-4 sm:w-4" />
-                      <span className="xs:text-[10px] text-[8px] font-medium whitespace-nowrap text-black sm:text-sm">
-                        知识库数据训练
-                      </span>
-                    </div>
+                  {/* 功能网格 */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: 'AI创作', desc: '智能文案', icon: PencilIcon, g: 'from-brand-500 to-brand-400' },
+                      { label: 'AI绘画', desc: '图像生成', icon: SparklesIcon, g: 'from-purple-500 to-purple-400' },
+                      { label: '语音助手', desc: '语音交互', icon: MicrophoneIcon, g: 'from-indigo-500 to-indigo-400' },
+                    ].map((item, i) => (
+                      <div key={i} className={`rounded-xl bg-gradient-to-br ${item.g} p-3.5 text-white transition-transform duration-200 hover:scale-[1.03]`}>
+                        <item.icon className="w-5 h-5 mb-2" />
+                        <h4 className="text-sm font-semibold">{item.label}</h4>
+                        <p className="text-[11px] text-white/70 mt-0.5">{item.desc}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 技术优势展示 - 优化移动端布局 */}
-            <div className="xs:mt-16 mt-12 sm:mt-20">
-              <div className="xs:mb-8 mb-6 text-center">
-                <h3 className="xs:text-lg xs:mb-2 mb-1.5 text-base font-semibold text-gray-900 sm:text-xl">
+            {/* 技术优势 */}
+            <div className="mt-16 sm:mt-24"
+            >
+              <div className="text-center mb-8">
+                <h3 className="text-lg sm:text-xl font-semibold text-neutral-900 tracking-tight">
                   核心技术优势
                 </h3>
-                <p className="xs:text-sm xs:px-0 px-4 text-xs text-gray-600">
+                <p className="mt-2 text-sm text-neutral-500">
                   基于前沿AI技术，为企业提供专业可靠的智能化解决方案
                 </p>
               </div>
-              <div className="xs:gap-3 xs:px-0 mx-auto grid max-w-5xl grid-cols-2 gap-2 px-2 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                 {[
-                  { name: '自然语言处理', desc: 'NLP' },
-                  { name: '计算机视觉', desc: 'CV' },
-                  { name: '深度学习', desc: 'DL' },
-                  { name: '知识图谱', desc: 'KG' },
-                  { name: '多模态融合', desc: 'MM' },
-                ].map((tech, index) => (
+                  { name: '自然语言处理', code: 'NLP' },
+                  { name: '计算机视觉', code: 'CV' },
+                  { name: '深度学习', code: 'DL' },
+                  { name: '知识图谱', code: 'KG' },
+                  { name: '多模态融合', code: 'MM' },
+                ].map((tech, i) => (
                   <div
-                    key={index}
-                    className="xs:p-4 group cursor-pointer touch-manipulation rounded-xl border border-gray-200 bg-white/80 p-3 text-center backdrop-blur-sm transition-all duration-300 hover:border-blue-300 hover:bg-blue-50/50"
+                    key={i}
+                    className="group rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all duration-200 hover:border-brand-200 hover:shadow-sm"
                   >
-                    <div className="xs:text-xs xs:mb-1 mb-0.5 font-mono text-[10px] font-semibold text-blue-600 group-hover:text-blue-700">
-                      {tech.desc}
-                    </div>
-                    <div className="xs:text-sm text-xs font-medium text-gray-700 group-hover:text-gray-900">
-                      {tech.name}
-                    </div>
+                    <div className="text-xs font-mono font-bold text-brand-500 mb-1 tracking-wide">{tech.code}</div>
+                    <div className="text-sm font-medium text-neutral-700">{tech.name}</div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-
-          {/* 自定义CSS动画样式 - 增加移动端优化 */}
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `
-              @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
-              }
-              .animate-float {
-                animation: float 3s ease-in-out infinite;
-              }
-              .animation-delay-2000 {
-                animation-delay: 2s;
-              }
-              .animation-delay-4000 {
-                animation-delay: 4s;
-              }
-              .animation-delay-300 {
-                animation-delay: 0.3s;
-              }
-              .rotate-3d {
-                transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
-              }
-              @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
-              }
-              .animate-fade-in {
-                animation: fadeIn 0.5s ease-out forwards;
-              }
-              /* 移动端触摸优化 */
-              .touch-manipulation {
-                touch-action: manipulation;
-              }
-              /* 减少移动端动画以提升性能 */
-              @media (max-width: 640px) {
-                .animate-float {
-                  animation-duration: 4s;
-                }
-                .animate-blob {
-                  animation-duration: 8s;
-                }
-              }
-              /* 超小屏幕断点 */
-              @media (min-width: 475px) {
-                .xs\:block { display: block; }
-                .xs\:inline { display: inline; }
-                .xs\:flex { display: flex; }
-                .xs\:hidden { display: none; }
-              }
-            `,
-            }}
-          />
+          </Container>
         </section>
         {/* 英雄区块结束 */}
 
@@ -1281,7 +1108,6 @@ export default function KnowledgeBasePage(): JSX.Element {
           <Container>
             <div className="mx-auto max-w-[1800px] px-1 sm:px-2 lg:px-4">
               <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white sm:rounded-xl">
-                {/* 装饰元素 - 仅在大屏显示 */}
                 <div className="absolute top-0 right-0 hidden h-full w-1/2 lg:block">
                   <svg
                     className="h-full w-full"
@@ -1289,44 +1115,18 @@ export default function KnowledgeBasePage(): JSX.Element {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="80"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="300"
-                      cy="300"
-                      r="150"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="250"
-                      cy="150"
-                      r="50"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="150"
-                      cy="250"
-                      r="30"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
+                    <circle cx="100" cy="100" r="80" fill="black" fillOpacity="0.02" />
+                    <circle cx="300" cy="300" r="150" fill="black" fillOpacity="0.02" />
+                    <circle cx="250" cy="150" r="50" fill="black" fillOpacity="0.02" />
+                    <circle cx="150" cy="250" r="30" fill="black" fillOpacity="0.02" />
                   </svg>
                 </div>
 
                 <div className="grid grid-cols-1 gap-0 lg:grid-cols-5">
-                  {/* 左侧内容 */}
                   <div className="relative z-10 p-6 sm:p-8 lg:col-span-3 lg:p-12">
                     <div className="max-w-xl">
                       <h3 className="mb-4 text-xl leading-tight font-bold text-gray-900 sm:text-2xl lg:text-3xl">
-                        艺创AI<span className="text-blue-600">企业知识库</span>
-                        系统
+                        艺创AI<span className="text-blue-600">企业知识库</span>系统
                       </h3>
                       <p className="mb-6 text-sm leading-relaxed text-gray-600 sm:text-base">
                         基于Vue3和ThinkPHP技术栈开发,支持PC端和H5端。系统支持多种文档格式导入,完成AI训练后可进行智能问答。
@@ -1336,339 +1136,142 @@ export default function KnowledgeBasePage(): JSX.Element {
                       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
-                              高清还原
-                            </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              100%真实感官体验
-                            </p>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">高清还原</h4>
+                            <p className="text-xs text-gray-500 sm:text-sm">100%真实感官体验</p>
                           </div>
                         </div>
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
-                              专业服务
-                            </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              7×24小时技术支持
-                            </p>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">专业服务</h4>
+                            <p className="text-xs text-gray-500 sm:text-sm">7×24小时技术支持</p>
                           </div>
                         </div>
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
-                              数据安全
-                            </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              企业级安全保障
-                            </p>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">数据安全</h4>
+                            <p className="text-xs text-gray-500 sm:text-sm">企业级安全保障</p>
                           </div>
                         </div>
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
-                              持续更新
-                            </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              定期功能迭代升级
-                            </p>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">持续更新</h4>
+                            <p className="text-xs text-gray-500 sm:text-sm">定期功能迭代升级</p>
                           </div>
                         </div>
                       </div>
 
                       <div className="flex flex-col gap-3 sm:flex-row">
-                        <Button
-                          href="#demo"
-                          className="w-full rounded-none bg-blue-600 px-6 py-3 font-bold text-white shadow-lg hover:bg-blue-700 sm:w-auto sm:py-4"
-                        >
+                        <Button href="#demo" className="w-full rounded-none bg-blue-600 px-6 py-3 font-bold text-white shadow-lg hover:bg-blue-700 sm:w-auto sm:py-4">
                           立即体验
                         </Button>
-                        <Button
-                          href="https://v.cnai.art"
-                          target="_blank"
-                          variant="outline"
-                          className="w-full rounded-none border-blue-600 px-6 py-3 text-blue-600 hover:bg-blue-50 sm:w-auto sm:py-4"
-                        >
+                        <Button href="https://v.cnai.art" target="_blank" variant="outline" className="w-full rounded-none border-blue-600 px-6 py-3 text-blue-600 hover:bg-blue-50 sm:w-auto sm:py-4">
                           咨询价格
                         </Button>
                       </div>
                     </div>
                   </div>
 
-                  {/* 右侧功能卡片 - 在移动端显示在下方 */}
                   <div className="relative lg:col-span-2">
-                    {/* 移动端显示 */}
                     <div className="p-6 lg:hidden">
                       <div className="grid grid-cols-2 gap-3">
-                        {/* AI数字人 */}
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
-                            AI知识库
-                          </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            三版本支持
-                          </p>
+                          <h4 className="text-center text-sm font-medium text-gray-900">AI知识库</h4>
+                          <p className="mt-1 text-center text-xs text-gray-500">三版本支持</p>
                         </div>
-
-                        {/* 私有部署 */}
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
-                            私有部署
-                          </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            安全可控
-                          </p>
+                          <h4 className="text-center text-sm font-medium text-gray-900">私有部署</h4>
+                          <p className="mt-1 text-center text-xs text-gray-500">安全可控</p>
                         </div>
-
-                        {/* 专业团队 */}
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
-                            专业团队
-                          </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            一对一支持
-                          </p>
+                          <h4 className="text-center text-sm font-medium text-gray-900">专业团队</h4>
+                          <p className="mt-1 text-center text-xs text-gray-500">一对一支持</p>
                         </div>
-
-                        {/* 开源方案 */}
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                              />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
-                            开源方案
-                          </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            灵活定制
-                          </p>
+                          <h4 className="text-center text-sm font-medium text-gray-900">开源方案</h4>
+                          <p className="mt-1 text-center text-xs text-gray-500">灵活定制</p>
                         </div>
                       </div>
                     </div>
 
-                    {/* 桌面端显示 */}
                     <div className="absolute inset-0 hidden lg:block">
                       <div className="flex h-full w-full items-center p-6">
                         <div className="h-full w-full bg-gray-50 p-4 shadow-lg">
                           <div className="grid h-full grid-cols-2 gap-4">
-                            {/* AI数字人 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                  />
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                AI知识库
-                              </h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
-                                PHP/Java双版本支持
-                              </p>
+                              <h4 className="text-lg font-medium text-gray-900">AI知识库</h4>
+                              <p className="mt-1 text-center text-sm text-gray-500">PHP/Java双版本支持</p>
                             </div>
-
-                            {/* 私有部署 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                                  />
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                私有部署
-                              </h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
-                                安全可控的私有化部署
-                              </p>
+                              <h4 className="text-lg font-medium text-gray-900">私有部署</h4>
+                              <p className="mt-1 text-center text-sm text-gray-500">安全可控的私有化部署</p>
                             </div>
-
-                            {/* 专业团队 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                  />
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                专业团队
-                              </h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
-                                一对一技术支持
-                              </p>
+                              <h4 className="text-lg font-medium text-gray-900">专业团队</h4>
+                              <p className="mt-1 text-center text-sm text-gray-500">一对一技术支持</p>
                             </div>
-
-                            {/* 开源方案 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                                  />
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                开源方案
-                              </h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
-                                灵活定制，售后无忧
-                              </p>
+                              <h4 className="text-lg font-medium text-gray-900">开源方案</h4>
+                              <p className="mt-1 text-center text-sm text-gray-500">灵活定制，售后无忧</p>
                             </div>
                           </div>
                         </div>

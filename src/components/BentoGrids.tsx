@@ -113,7 +113,7 @@ function AccordionFeatureCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-xl border border-[#E2E8F0] bg-white transition-[flex] duration-500 ease-in-out hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+        'group relative cursor-pointer overflow-hidden rounded-xl border border-neutral-200 bg-white transition-[flex] duration-500 ease-in-out hover:border-brand-300 hover:shadow-lg hover:shadow-slate-200/50',
         isExpanded ? 'flex-[2.5]' : 'flex-[1.2]',
       )}
       onMouseEnter={onToggle}
@@ -125,8 +125,8 @@ function AccordionFeatureCard({
             className={clsx(
               'py-2 text-xl font-bold tracking-tight transition-colors duration-300',
               isExpanded
-                ? 'text-[#0055ff]'
-                : 'text-[#0F172A]'
+                ? 'text-brand-500'
+                : 'text-neutral-900'
             )}
           >
             {feature.title}
@@ -139,8 +139,8 @@ function AccordionFeatureCard({
               isExpanded ? 'opacity-100' : 'opacity-80'
             )}
           >
-            <div className="flex h-8 w-8 items-center justify-center border border-[#E2E8F0] transition-colors duration-200 hover:border-[#0055ff]">
-              <ArrowRightIcon className="h-4 w-4 text-[#64748B]" />
+            <div className="flex h-8 w-8 items-center justify-center border border-neutral-200 transition-colors duration-200 hover:border-[#0055ff]">
+              <ArrowRightIcon className="h-4 w-4 text-neutral-500" />
             </div>
           </div>
         </div>
@@ -150,10 +150,10 @@ function AccordionFeatureCard({
           {/* 分类标签 */}
           <div className="mb-4">
             <span className={clsx(
-              'inline-flex items-center border border-[#E2E8F0] bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-widest',
+              'inline-flex items-center border border-neutral-200 bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-widest',
               isExpanded
-                ? 'text-[#0055ff] border-[#0055ff]/20 bg-[#eff6ff]'
-                : 'text-[#64748B]'
+                ? 'text-brand-500 border-brand-500/20 bg-brand-50'
+                : 'text-neutral-500'
             )}>
               {feature.category}
             </span>
@@ -161,7 +161,7 @@ function AccordionFeatureCard({
 
           {/* 描述文本 */}
           <p className={clsx(
-            'mb-6 text-base leading-relaxed text-[#64748B] transition-colors duration-300',
+            'mb-6 text-base leading-relaxed text-neutral-500 transition-colors duration-300',
             isExpanded ? 'line-clamp-none' : 'line-clamp-3'
           )}>
             {feature.description}
@@ -169,15 +169,15 @@ function AccordionFeatureCard({
 
           {/* 核心功能列表 */}
           <div className="space-y-3">
-            <h4 className="mb-3 text-base font-semibold text-[#0F172A]">
+            <h4 className="mb-3 text-base font-semibold text-neutral-900">
               核心功能
             </h4>
             {feature.features.map((featureItem, featureIndex) => (
               <div
                 key={featureIndex}
-                className="flex items-center text-base text-[#64748B]"
+                className="flex items-center text-base text-neutral-500"
               >
-                <div className="mr-3 h-2 w-2 rounded-full bg-[#0055ff]" />
+                <div className="mr-3 h-2 w-2 rounded-full bg-brand-500" />
                 {featureItem}
               </div>
             ))}
@@ -191,8 +191,8 @@ function AccordionFeatureCard({
               'h-6 w-6 transition-opacity duration-300',
               isExpanded ? 'opacity-100' : 'opacity-60',
               isExpanded
-                ? 'text-[#0055ff]'
-                : 'text-[#64748B]'
+                ? 'text-brand-500'
+                : 'text-neutral-500'
             )}
           />
         </div>
@@ -216,46 +216,46 @@ function MobileFeatureCard({
 
   return (
     <div
-      className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-xl border border-[#E2E8F0] bg-white transition-all hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:h-[280px]"
+      className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-xl border border-neutral-200 bg-white transition-all hover:border-brand-300 hover:shadow-lg hover:shadow-slate-200/50 sm:h-[280px]"
     >
       {/* 内容区域 */}
       <div className="relative flex h-full flex-col p-3 sm:p-4">
         {/* 标题和图标 */}
         <div className="mb-2 flex items-center justify-between sm:mb-3">
-          <h3 className="text-base font-bold text-[#0F172A] sm:text-lg">
+          <h3 className="text-base font-bold text-neutral-900 sm:text-lg">
             {feature.title}
           </h3>
-          <IconComponent className="h-4 w-4 text-[#64748B] sm:h-5 sm:w-5" />
+          <IconComponent className="h-4 w-4 text-neutral-500 sm:h-5 sm:w-5" />
         </div>
 
         {/* 分类标签 */}
         <div className="mb-2">
-          <span className="inline-flex items-center border border-[#E2E8F0] bg-white px-2 py-0.5 text-[10px] font-medium uppercase tracking-widest text-[#64748B] sm:text-xs">
+          <span className="inline-flex items-center border border-neutral-200 bg-white px-2 py-0.5 text-[10px] font-medium uppercase tracking-widest text-neutral-500 sm:text-xs">
             {feature.category}
           </span>
         </div>
 
         {/* 描述文本 */}
-        <p className="mb-2 line-clamp-2 flex-1 text-xs leading-relaxed text-[#64748B] sm:mb-4 sm:line-clamp-3 sm:text-sm">
+        <p className="mb-2 line-clamp-2 flex-1 text-xs leading-relaxed text-neutral-500 sm:mb-4 sm:line-clamp-3 sm:text-sm">
           {feature.description}
         </p>
 
         {/* 核心功能列表 */}
         <div className="space-y-1 sm:space-y-2">
-          <h4 className="text-xs font-semibold text-[#0F172A] sm:text-sm">
+          <h4 className="text-xs font-semibold text-neutral-900 sm:text-sm">
             核心功能
           </h4>
           {feature.features.slice(0, 2).map((featureItem, featureIndex) => (
             <div
               key={featureIndex}
-              className="flex items-center text-xs text-[#64748B] sm:text-sm"
+              className="flex items-center text-xs text-neutral-500 sm:text-sm"
             >
-              <div className="mr-1.5 h-1 w-1 rounded-full bg-[#0055ff] sm:mr-2 sm:h-1.5 sm:w-1.5" />
+              <div className="mr-1.5 h-1 w-1 rounded-full bg-brand-500 sm:mr-2 sm:h-1.5 sm:w-1.5" />
               {featureItem}
             </div>
           ))}
           {feature.features.length > 2 && (
-            <div className="text-xs text-[#64748B] sm:text-sm">...</div>
+            <div className="text-xs text-neutral-500 sm:text-sm">...</div>
           )}
         </div>
       </div>
@@ -285,15 +285,15 @@ export default function BentoGrids() {
     <section
       id="features"
       aria-label="产品特性"
-      className="relative overflow-hidden bg-gradient-to-b from-[#F8FAFC] to-[#e0e7ff]/50 py-12 sm:py-16 lg:py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-neutral-50 to-[#e0e7ff]/50 py-12 sm:py-16 lg:py-24"
     >
       <Container className="relative">
         {/* 标题区域 */}
         <div className="mb-4 text-left sm:mb-6 md:mb-10 lg:mb-16">
-          <h2 className="text-xs/6 font-semibold uppercase tracking-widest text-[#0055ff] sm:text-sm/6 md:text-base/7">
+          <h2 className="text-xs/6 font-semibold uppercase tracking-widest text-brand-500 sm:text-sm/6 md:text-base/7">
             更快部署
           </h2>
-          <p className="mt-1 max-w-lg text-2xl font-semibold tracking-tight text-pretty text-[#0F172A] sm:mt-2 sm:text-3xl md:text-4xl lg:text-5xl">
+          <p className="mt-1 max-w-lg text-2xl font-semibold tracking-tight text-pretty text-neutral-900 sm:mt-2 sm:text-3xl md:text-4xl lg:text-5xl">
             部署应用所需的一切
           </p>
         </div>

@@ -348,7 +348,7 @@ export function Header(): JSX.Element {
             {/* 最新活动菜单 - 带HOT标签的直链菜单 */}
             <a
               href="/new"
-              className="relative rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600"
+              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-500"
             >
               最新活动
               <span className="absolute -top-1 -right-1 rounded-full bg-red-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
@@ -359,10 +359,10 @@ export function Header(): JSX.Element {
             {/* 电商云菜单 - 带HOT标签的直链菜单 */}
             <a
               href="/eccloud"
-              className="relative rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600"
+              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-500"
             >
               电商云
-              <span className="absolute -top-1 -right-1 rounded-full bg-blue-600 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
+              <span className="absolute -top-1 -right-1 rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
                 NEW
               </span>
             </a>
@@ -372,12 +372,12 @@ export function Header(): JSX.Element {
               {({ open }) => (
                 <>
                   <PopoverButton
-                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
+                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50 hover:text-brand-500'}`}
                   >
                     产品与服务
                     <ChevronDownIcon
                       aria-hidden="true"
-                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'}`}
+                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-brand-500' : 'text-gray-400 group-hover:text-brand-500'}`}
                     />
                   </PopoverButton>
 
@@ -394,9 +394,9 @@ export function Header(): JSX.Element {
                         {products.map((item) => (
                           <div
                             key={item.name}
-                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50"
+                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-neutral-50"
                           >
-                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-50 transition-colors group-hover:bg-gray-100">
+                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-neutral-50 transition-colors group-hover:bg-gray-100">
                               <item.icon
                                 aria-hidden="true"
                                 className="size-4 text-gray-600"
@@ -405,11 +405,11 @@ export function Header(): JSX.Element {
                             <div className="flex-auto">
                               <a
                                 href={item.href}
-                                className="block font-medium text-black transition-colors group-hover:text-gray-700"
+                                className="block font-medium text-black transition-colors group-hover:text-neutral-700"
                               >
                                 {item.name}
                                 {item.name === '电商云' && (
-                                  <span className="ml-1 inline-flex items-center rounded-full bg-blue-600 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
+                                  <span className="ml-1 inline-flex items-center rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
                                     NEW
                                   </span>
                                 )}
@@ -423,7 +423,7 @@ export function Header(): JSX.Element {
                         ))}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-neutral-50">
                       {callsToAction.map((item) => (
                         <a
                           key={item.name}
@@ -432,7 +432,7 @@ export function Header(): JSX.Element {
                         >
                           <item.icon
                             aria-hidden="true"
-                            className="size-5 flex-none text-blue-600"
+                            className="size-5 flex-none text-brand-500"
                           />
                           {item.name}
                         </a>
@@ -448,12 +448,12 @@ export function Header(): JSX.Element {
               {({ open }) => (
                 <>
                   <PopoverButton
-                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
+                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50 hover:text-brand-500'}`}
                   >
                     人工智能与应用
                     <ChevronDownIcon
                       aria-hidden="true"
-                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'}`}
+                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-brand-500' : 'text-gray-400 group-hover:text-brand-500'}`}
                     />
                   </PopoverButton>
 
@@ -470,9 +470,9 @@ export function Header(): JSX.Element {
                         {aiProducts.map((item) => (
                           <div
                             key={item.name}
-                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50"
+                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-neutral-50"
                           >
-                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-50 transition-colors group-hover:bg-gray-100">
+                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-neutral-50 transition-colors group-hover:bg-gray-100">
                               <item.icon
                                 aria-hidden="true"
                                 className="size-4 text-gray-600"
@@ -481,7 +481,7 @@ export function Header(): JSX.Element {
                             <div className="flex-auto">
                               <a
                                 href={item.href}
-                                className="block font-medium text-black transition-colors group-hover:text-gray-700"
+                                className="block font-medium text-black transition-colors group-hover:text-neutral-700"
                               >
                                 {item.name}
                                 {item.hot && (
@@ -499,7 +499,7 @@ export function Header(): JSX.Element {
                         ))}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-neutral-50">
                       {callsToAction.map((item) => (
                         <a
                           key={item.name}
@@ -508,7 +508,7 @@ export function Header(): JSX.Element {
                         >
                           <item.icon
                             aria-hidden="true"
-                            className="size-4 flex-none text-blue-600"
+                            className="size-4 flex-none text-brand-500"
                           />
                           {item.name}
                         </a>
@@ -524,12 +524,12 @@ export function Header(): JSX.Element {
               {({ open }) => (
                 <>
                   <PopoverButton
-                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
+                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50 hover:text-brand-500'}`}
                   >
                     AI解决方案
                     <ChevronDownIcon
                       aria-hidden="true"
-                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'}`}
+                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-brand-500' : 'text-gray-400 group-hover:text-brand-500'}`}
                     />
                   </PopoverButton>
 
@@ -546,9 +546,9 @@ export function Header(): JSX.Element {
                         {solutions.map((item) => (
                           <div
                             key={item.name}
-                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50"
+                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-neutral-50"
                           >
-                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-50 transition-colors group-hover:bg-gray-100">
+                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-neutral-50 transition-colors group-hover:bg-gray-100">
                               <item.icon
                                 aria-hidden="true"
                                 className="size-4 text-gray-600"
@@ -557,7 +557,7 @@ export function Header(): JSX.Element {
                             <div className="flex-auto">
                               <a
                                 href={item.href}
-                                className="block font-medium text-black transition-colors group-hover:text-gray-700"
+                                className="block font-medium text-black transition-colors group-hover:text-neutral-700"
                               >
                                 {item.name}
                                 <span className="absolute inset-0" />
@@ -570,7 +570,7 @@ export function Header(): JSX.Element {
                         ))}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-neutral-50">
                       {callsToAction.map((item) => (
                         <a
                           key={item.name}
@@ -579,7 +579,7 @@ export function Header(): JSX.Element {
                         >
                           <item.icon
                             aria-hidden="true"
-                            className="size-4 flex-none text-blue-600"
+                            className="size-4 flex-none text-brand-500"
                           />
                           {item.name}
                         </a>
@@ -595,12 +595,12 @@ export function Header(): JSX.Element {
               {({ open }) => (
                 <>
                   <PopoverButton
-                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
+                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50 hover:text-brand-500'}`}
                   >
                     企业解决方案
                     <ChevronDownIcon
                       aria-hidden="true"
-                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'}`}
+                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-brand-500' : 'text-gray-400 group-hover:text-brand-500'}`}
                     />
                   </PopoverButton>
 
@@ -617,9 +617,9 @@ export function Header(): JSX.Element {
                         {enterpriseSolutions.map((item) => (
                           <div
                             key={item.name}
-                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50"
+                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-neutral-50"
                           >
-                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-50 transition-colors group-hover:bg-gray-100">
+                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-neutral-50 transition-colors group-hover:bg-gray-100">
                               <item.icon
                                 aria-hidden="true"
                                 className="size-4 text-gray-600"
@@ -628,7 +628,7 @@ export function Header(): JSX.Element {
                             <div className="flex-auto">
                               <a
                                 href={item.href}
-                                className="block font-medium text-black transition-colors group-hover:text-gray-700"
+                                className="block font-medium text-black transition-colors group-hover:text-neutral-700"
                               >
                                 {item.name}
                                 <span className="absolute inset-0" />
@@ -641,7 +641,7 @@ export function Header(): JSX.Element {
                         ))}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-neutral-50">
                       {callsToAction.map((item) => (
                         <a
                           key={item.name}
@@ -650,7 +650,7 @@ export function Header(): JSX.Element {
                         >
                           <item.icon
                             aria-hidden="true"
-                            className="size-4 flex-none text-blue-600"
+                            className="size-4 flex-none text-brand-500"
                           />
                           {item.name}
                         </a>
@@ -666,12 +666,12 @@ export function Header(): JSX.Element {
               {({ open }) => (
                 <>
                   <PopoverButton
-                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
+                    className={`flex items-center gap-x-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50 hover:text-brand-500'}`}
                   >
                     关于我们
                     <ChevronDownIcon
                       aria-hidden="true"
-                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'}`}
+                      className={`size-5 flex-none transition-all duration-200 ${open ? 'rotate-180 text-brand-500' : 'text-gray-400 group-hover:text-brand-500'}`}
                     />
                   </PopoverButton>
 
@@ -688,9 +688,9 @@ export function Header(): JSX.Element {
                         {company.map((item) => (
                           <div
                             key={item.name}
-                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50"
+                            className="group relative flex items-center gap-x-3 rounded-lg p-3 text-sm transition-colors hover:bg-neutral-50"
                           >
-                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-50 transition-colors group-hover:bg-gray-100">
+                            <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-neutral-50 transition-colors group-hover:bg-gray-100">
                               <item.icon
                                 aria-hidden="true"
                                 className="size-4 text-gray-600"
@@ -699,7 +699,7 @@ export function Header(): JSX.Element {
                             <div className="flex-auto">
                               <a
                                 href={item.href}
-                                className="block font-medium text-black transition-colors group-hover:text-gray-700"
+                                className="block font-medium text-black transition-colors group-hover:text-neutral-700"
                               >
                                 {item.name}
                                 <span className="absolute inset-0" />
@@ -712,7 +712,7 @@ export function Header(): JSX.Element {
                         ))}
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                    <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-neutral-50">
                       {callsToAction.map((item) => (
                         <a
                           key={item.name}
@@ -721,7 +721,7 @@ export function Header(): JSX.Element {
                         >
                           <item.icon
                             aria-hidden="true"
-                            className="size-4 flex-none text-blue-600"
+                            className="size-4 flex-none text-brand-500"
                           />
                           {item.name}
                         </a>
@@ -737,14 +737,14 @@ export function Header(): JSX.Element {
             {/* 艺创智能 */}
             {/* <a
               href="/yichuang-ai"
-              className="px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors"
+              className="px-3 py-2 text-sm font-medium rounded-md text-neutral-700 hover:text-brand-500 hover:bg-neutral-50 transition-colors"
             >
               艺创智能
             </a> */}
             {/* 172号卡菜单 */}
             {/* <a
               href="/172-card"
-              className="px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors"
+              className="px-3 py-2 text-sm font-medium rounded-md text-neutral-700 hover:text-brand-500 hover:bg-neutral-50 transition-colors"
             >
               172号卡
             </a> */}
@@ -756,7 +756,7 @@ export function Header(): JSX.Element {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-gray-700"
+            className="inline-flex items-center justify-center rounded-md p-2 text-neutral-700"
           >
             <span className="sr-only">打开主菜单</span>
             <Bars3Icon aria-hidden="true" className="size-6" />
@@ -767,7 +767,7 @@ export function Header(): JSX.Element {
           {/* 文档中心 */}
           <a
             href="https://console.cloudcvm.com/plugin/26/source.htm"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-500"
           >
             文档中心
           </a>
@@ -778,7 +778,7 @@ export function Header(): JSX.Element {
           {/* 控制台 */}
           <a
             href="https://console.cloudcvm.com"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-500"
           >
             控制台
           </a>
@@ -789,7 +789,7 @@ export function Header(): JSX.Element {
           {/* 登录 */}
           <a
             href="https://console.cloudcvm.com/login.htm"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-500"
           >
             登录
           </a>
@@ -800,7 +800,7 @@ export function Header(): JSX.Element {
           {/* 免费注册 - 主要CTA按钮 */}
           <a
             href="https://console.cloudcvm.com/login.htm"
-            className="inline-flex items-center justify-center gap-2 border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+            className="inline-flex items-center justify-center gap-2 border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
           >
             <UserPlusIcon className="h-4 w-4" aria-hidden="true" />
             免费注册
@@ -826,7 +826,7 @@ export function Header(): JSX.Element {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
-              className="rounded-md p-2 text-gray-500 transition-colors hover:text-gray-700"
+              className="rounded-md p-2 text-gray-500 transition-colors hover:text-neutral-700"
             >
               <span className="sr-only">关闭菜单</span>
               <XMarkIcon aria-hidden="true" className="size-6" />
@@ -840,7 +840,7 @@ export function Header(): JSX.Element {
                 {/* 移动端最新活动链接 - 带HOT标签 */}
                 <a
                   href="/new"
-                  className="relative block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600"
+                  className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-500"
                 >
                   最新活动
                   <span className="absolute top-1 right-3 rounded-full bg-red-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
@@ -851,10 +851,10 @@ export function Header(): JSX.Element {
                 {/* 移动端电商云链接 - 带HOT标签 */}
                 <a
                   href="/eccloud"
-                  className="relative block rounded-md px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-50 hover:text-blue-600"
+                  className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-500"
                 >
                   电商云
-                  <span className="absolute top-1 right-3 rounded-full bg-blue-600 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
+                  <span className="absolute top-1 right-3 rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
                     NEW
                   </span>
                 </a>
@@ -864,12 +864,12 @@ export function Header(): JSX.Element {
                   {({ open }) => (
                     <>
                       <DisclosureButton
-                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50'}`}
                       >
                         产品与服务
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}
+                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-brand-500' : 'text-gray-400'}`}
                         />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-1 pr-1 pl-3">
@@ -877,10 +877,10 @@ export function Header(): JSX.Element {
                           {products.map((item) => (
                             <div
                               key={item.name}
-                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-gray-50"
+                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-neutral-50"
                             >
                               <div className="mb-2 flex items-center">
-                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-gray-50">
+                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-neutral-50">
                                   <item.icon
                                     aria-hidden="true"
                                     className="size-4 text-gray-600"
@@ -888,11 +888,11 @@ export function Header(): JSX.Element {
                                 </div>
                                 <a
                                   href={item.href}
-                                  className="block font-medium text-black transition-colors hover:text-gray-700"
+                                  className="block font-medium text-black transition-colors hover:text-neutral-700"
                                 >
                                   {item.name}
                                   {item.name === '电商云' && (
-                                    <span className="ml-1 inline-flex items-center rounded-full bg-blue-600 px-1 py-0.5 text-xs leading-none font-bold text-white">
+                                    <span className="ml-1 inline-flex items-center rounded-full bg-brand-500 px-1 py-0.5 text-xs leading-none font-bold text-white">
                                       NEW
                                     </span>
                                   )}
@@ -910,7 +910,7 @@ export function Header(): JSX.Element {
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="flex items-center justify-center gap-x-1.5 bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                                className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
                               >
                                 <item.icon
                                   aria-hidden="true"
@@ -931,12 +931,12 @@ export function Header(): JSX.Element {
                   {({ open }) => (
                     <>
                       <DisclosureButton
-                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50'}`}
                       >
                         人工智能与应用
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}
+                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-brand-500' : 'text-gray-400'}`}
                         />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-1 pr-1 pl-3">
@@ -944,10 +944,10 @@ export function Header(): JSX.Element {
                           {aiProducts.map((item) => (
                             <div
                               key={item.name}
-                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-gray-50"
+                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-neutral-50"
                             >
                               <div className="mb-2 flex items-center">
-                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-gray-50">
+                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-neutral-50">
                                   <item.icon
                                     aria-hidden="true"
                                     className="size-4 text-gray-600"
@@ -955,7 +955,7 @@ export function Header(): JSX.Element {
                                 </div>
                                 <a
                                   href={item.href}
-                                  className="block font-medium text-black transition-colors hover:text-gray-700"
+                                  className="block font-medium text-black transition-colors hover:text-neutral-700"
                                 >
                                   {item.name}
                                   {item.hot && (
@@ -977,7 +977,7 @@ export function Header(): JSX.Element {
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="flex items-center justify-center gap-x-1.5 bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                                className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
                               >
                                 <item.icon
                                   aria-hidden="true"
@@ -998,12 +998,12 @@ export function Header(): JSX.Element {
                   {({ open }) => (
                     <>
                       <DisclosureButton
-                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50'}`}
                       >
                         AI解决方案
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}
+                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-brand-500' : 'text-gray-400'}`}
                         />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-1 pr-1 pl-3">
@@ -1011,10 +1011,10 @@ export function Header(): JSX.Element {
                           {solutions.map((item) => (
                             <div
                               key={item.name}
-                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-gray-50"
+                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-neutral-50"
                             >
                               <div className="mb-2 flex items-center">
-                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-gray-50">
+                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-neutral-50">
                                   <item.icon
                                     aria-hidden="true"
                                     className="size-4 text-gray-600"
@@ -1022,7 +1022,7 @@ export function Header(): JSX.Element {
                                 </div>
                                 <a
                                   href={item.href}
-                                  className="block font-medium text-black transition-colors hover:text-gray-700"
+                                  className="block font-medium text-black transition-colors hover:text-neutral-700"
                                 >
                                   {item.name}
                                 </a>
@@ -1039,7 +1039,7 @@ export function Header(): JSX.Element {
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="flex items-center justify-center gap-x-1.5 bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                                className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
                               >
                                 <item.icon
                                   aria-hidden="true"
@@ -1060,12 +1060,12 @@ export function Header(): JSX.Element {
                   {({ open }) => (
                     <>
                       <DisclosureButton
-                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50'}`}
                       >
                         企业解决方案
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}
+                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-brand-500' : 'text-gray-400'}`}
                         />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-1 pr-1 pl-3">
@@ -1073,10 +1073,10 @@ export function Header(): JSX.Element {
                           {enterpriseSolutions.map((item) => (
                             <div
                               key={item.name}
-                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-gray-50"
+                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-neutral-50"
                             >
                               <div className="mb-2 flex items-center">
-                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-gray-50">
+                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-neutral-50">
                                   <item.icon
                                     aria-hidden="true"
                                     className="size-4 text-gray-600"
@@ -1084,7 +1084,7 @@ export function Header(): JSX.Element {
                                 </div>
                                 <a
                                   href={item.href}
-                                  className="block font-medium text-black transition-colors hover:text-gray-700"
+                                  className="block font-medium text-black transition-colors hover:text-neutral-700"
                                 >
                                   {item.name}
                                 </a>
@@ -1101,7 +1101,7 @@ export function Header(): JSX.Element {
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="flex items-center justify-center gap-x-1.5 bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                                className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
                               >
                                 <item.icon
                                   aria-hidden="true"
@@ -1122,12 +1122,12 @@ export function Header(): JSX.Element {
                   {({ open }) => (
                     <>
                       <DisclosureButton
-                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`}
+                        className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${open ? 'bg-brand-50 text-brand-500' : 'text-neutral-700 hover:bg-neutral-50'}`}
                       >
                         关于我们
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-blue-600' : 'text-gray-400'}`}
+                          className={`size-5 flex-none transition-transform ${open ? 'rotate-180 text-brand-500' : 'text-gray-400'}`}
                         />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-1 pr-1 pl-3">
@@ -1135,10 +1135,10 @@ export function Header(): JSX.Element {
                           {company.map((item) => (
                             <div
                               key={item.name}
-                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-gray-50"
+                              className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-neutral-50"
                             >
                               <div className="mb-2 flex items-center">
-                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-gray-50">
+                                <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-neutral-50">
                                   <item.icon
                                     aria-hidden="true"
                                     className="size-4 text-gray-600"
@@ -1146,7 +1146,7 @@ export function Header(): JSX.Element {
                                 </div>
                                 <a
                                   href={item.href}
-                                  className="block font-medium text-black transition-colors hover:text-gray-700"
+                                  className="block font-medium text-black transition-colors hover:text-neutral-700"
                                 >
                                   {item.name}
                                 </a>
@@ -1163,7 +1163,7 @@ export function Header(): JSX.Element {
                               <a
                                 key={item.name}
                                 href={item.href}
-                                className="flex items-center justify-center gap-x-1.5 bg-blue-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                                className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
                               >
                                 <item.icon
                                   aria-hidden="true"
@@ -1185,7 +1185,7 @@ export function Header(): JSX.Element {
                 {/*
                 <a
                   href="/yichuang-ai"
-                  className="block rounded-md py-2 px-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                  className="block rounded-md py-2 px-3 text-base font-medium text-neutral-700 hover:bg-neutral-50 hover:text-brand-500 transition-colors"
                 >
                   艺创智能
                 </a>
@@ -1195,7 +1195,7 @@ export function Header(): JSX.Element {
                 {/*
                 <a
                   href="/172-card"
-                  className="block rounded-md py-2 px-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                  className="block rounded-md py-2 px-3 text-base font-medium text-neutral-700 hover:bg-neutral-50 hover:text-brand-500 transition-colors"
                 >
                   172号卡
                 </a>
@@ -1206,7 +1206,7 @@ export function Header(): JSX.Element {
                   {/* 登录注册按钮 - 次要样式 */}
                   <a
                     href="https://console.cloudcvm.com/login.htm"
-                    className="flex flex-1 items-center justify-center gap-x-2 bg-gray-100 px-4 py-2.5 text-base font-medium text-gray-700 transition-colors hover:bg-gray-200 hover:text-blue-600"
+                    className="flex flex-1 items-center justify-center gap-x-2 bg-gray-100 px-4 py-2.5 text-base font-medium text-neutral-700 transition-colors hover:bg-gray-200 hover:text-brand-500"
                   >
                     <UserIcon className="h-5 w-5" />
                     登录/注册
@@ -1215,7 +1215,7 @@ export function Header(): JSX.Element {
                   {/* 控制台按钮 - 主要CTA样式 */}
                   <a
                     href="https://console.cloudcvm.com/login.htm"
-                    className="flex flex-1 items-center justify-center gap-x-2 border border-transparent bg-blue-600 px-4 py-2.5 text-base font-medium text-white shadow-sm transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                    className="flex flex-1 items-center justify-center gap-x-2 border border-transparent bg-brand-500 px-4 py-2.5 text-base font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
                   >
                     <ComputerDesktopIcon className="h-5 w-5" />
                     控制台

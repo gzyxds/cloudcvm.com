@@ -112,7 +112,7 @@ function SolutionCard({
       className={clsx(
         'group relative cursor-pointer overflow-hidden rounded-xl border transition-[flex] duration-500 ease-in-out',
         // 边框样式：默认 slate-200，Hover时变为主题色/30
-        'border-slate-200 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+        'border-neutral-200 hover:border-brand-300 hover:shadow-lg hover:shadow-slate-200/50',
         // 背景样式：白色
         'bg-white',
         // 展开状态下的宽度占比
@@ -123,7 +123,7 @@ function SolutionCard({
       {/* 选中时的背景渐变 */}
       <div
         className={clsx(
-          'absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] transition-opacity duration-300 pointer-events-none',
+          'absolute inset-0 bg-gradient-to-b from-white to-brand-50 transition-opacity duration-300 pointer-events-none',
           isExpanded ? 'opacity-100' : 'opacity-0',
         )}
       />
@@ -151,7 +151,7 @@ function SolutionCard({
               isExpanded ? 'opacity-100' : 'opacity-80',
             )}
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-white/20 backdrop-blur-sm transition-all duration-200 group-hover:bg-[#0055ff] group-hover:border-[#0055ff] group-hover:text-white">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-white/20 backdrop-blur-sm transition-all duration-200 group-hover:bg-brand-500 group-hover:border-brand-500 group-hover:text-white">
               <ArrowRightIcon className="h-4 w-4 text-white" />
             </div>
           </div>
@@ -239,7 +239,7 @@ function MobileSolutionCard({
           {(() => {
             const IconComponent = getIconByTitle(solution.title)
             return (
-              <IconComponent className="h-5 w-5 text-[#0055ff] sm:h-6 sm:w-6" />
+              <IconComponent className="h-5 w-5 text-brand-500 sm:h-6 sm:w-6" />
             )
           })()}
         </div>
@@ -259,7 +259,7 @@ function MobileSolutionCard({
               key={featureIndex}
               className="flex items-center text-sm text-slate-600 sm:text-base md:text-base"
             >
-              <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#0055ff] sm:mr-2.5 sm:h-1.5 sm:w-1.5" />
+              <div className="mr-2 h-1.5 w-1.5 rounded-full bg-brand-500 sm:mr-2.5 sm:h-1.5 sm:w-1.5" />
               {feature}
             </div>
           ))}

@@ -863,271 +863,152 @@ function CoreFeaturesSection(): JSX.Element {
   )
 }
 
-// 知识库英雄区块开始
+// 英雄区块开始
 export default function KnowledgeBasePage(): JSX.Element {
   return (
     <>
       <Header />
       <main>
         {/* 英雄区块开始 */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white pt-24 pb-16">
-          {/* 现代化背景装饰 */}
-          <div className="absolute inset-0">
-            {/* 几何装饰元素 */}
-            <div className="absolute top-10 left-10 h-24 w-24 rounded-full bg-blue-100/40 blur-2xl"></div>
-            <div className="absolute right-20 bottom-10 h-32 w-32 rounded-full bg-indigo-100/30 blur-3xl"></div>
-            {/* 网格背景 */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f8fafc_1px,transparent_1px),linear-gradient(to_bottom,#f8fafc_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
+        <section className="relative min-h-screen overflow-hidden bg-white">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: 'radial-gradient(circle, #3860F4 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-500/[0.04] rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-500/[0.03] rounded-full blur-3xl" />
           </div>
 
-          <Container className="relative z-10">
-            <div className="flex flex-col items-center justify-between gap-12 lg:flex-row">
-              {/* 左侧内容 - 优化布局和层次 */}
-              <div className="w-full text-center lg:w-1/2 lg:text-left">
-                {/* 主标题 - 增强视觉层次 */}
-                <h1 className="mb-6 text-4xl leading-[1.1] font-black tracking-tight text-gray-900 lg:text-6xl">
-                  <span className="relative inline-block">
-                    <span className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-gradient-to-r from-blue-600 to-blue-500"></span>
-                  </span>
-                  <br />
-                  <span className="text-blue-600">
-                    艺创AI
-                  </span>
-                  <br />
-                  <span className="text-3xl font-bold text-gray-800 lg:text-4xl">
-                    智能论文创作系统
-                  </span>
-                </h1>
+          <Container className="relative z-10 pt-20 pb-16 sm:pt-28 sm:pb-24 lg:pt-36">
+            <div className="mb-8 flex justify-center lg:justify-start">
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/80 px-4 py-1.5 shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="text-sm font-medium text-neutral-700">AI论文服务正常运行中</span>
+              </div>
+            </div>
 
-                {/* 副标题 - 优化描述内容 */}
-                <p className="mx-auto mb-6 max-w-xl text-lg leading-relaxed font-medium text-gray-600 lg:mx-0">
-                  集成最新GPT-4、Claude、文心一言等顶级AI模型，
-                  <span className="font-semibold text-blue-600">
-                    打造一站式论文创作平台
-                  </span>
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              {/* 左侧：文字内容 */}
+              <div className="text-center lg:text-left">
+                <h1 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl xl:text-5xl">
+                  <span className="block">艺创AI</span>
+                  <span className="block text-brand-500 mt-1">论文创作</span>
+                </h1>
+                <p className="mt-5 text-sm sm:text-base lg:text-lg text-neutral-500 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                  集成最新 GPT-4、Claude、文心一言等顶级 AI 模型，
+                  <span className="font-semibold text-brand-500"> 打造一站式论文创作平台</span>
                 </p>
 
-                {/* 核心特性标签 */}
-                <div className="mb-8 flex flex-wrap justify-center gap-2 lg:justify-start">
-                  <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    智能写作
-                  </span>
-                  <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    文献检索
-                  </span>
-                  <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    格式排版
-                  </span>
-                  <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-sm font-medium text-blue-700">
-                    查重降重
-                  </span>
+                {/* 功能 Pill 标签 */}
+                <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3 lg:justify-start">
+                  {['智能写作', '文献检索', '格式排版', '查重降重', 'AI润色'].map((tag) => (
+                    <span key={tag} className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-sm font-medium text-neutral-700 hover:border-brand-200 hover:text-brand-500 transition-colors">
+                      <SparklesIcon className="w-3.5 h-3.5 text-brand-500" />
+                      {tag}
+                    </span>
+                  ))}
                 </div>
 
-                {/* 数据指标 - 重新设计布局 */}
-                <div className="mb-8 grid grid-cols-3 gap-4">
-                  <div className="group rounded-xl border border-gray-100/50 bg-white/70 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
-                    <div className="flex flex-col items-center lg:items-start">
-                      <div className="mb-1 flex items-baseline">
-                        <span className="text-2xl font-black text-gray-900 lg:text-3xl">
-                          1000
-                        </span>
-                        <span className="ml-1 text-sm font-semibold text-blue-600">
-                          +
-                        </span>
-                      </div>
-                      <span className="text-xs font-medium text-gray-600">
-                        企业用户
-                      </span>
-                      <div className="mt-2 h-0.5 w-full overflow-hidden rounded-full bg-gray-100">
-                        <div className="h-full w-4/5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500 group-hover:w-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group rounded-xl border border-gray-100/50 bg-white/70 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
-                    <div className="flex flex-col items-center lg:items-start">
-                      <div className="mb-1 flex items-baseline">
-                        <span className="text-2xl font-black text-gray-900 lg:text-3xl">
-                          50
-                        </span>
-                        <span className="ml-1 text-sm font-semibold text-blue-600">
-                          万+
-                        </span>
-                      </div>
-                      <span className="text-xs font-medium text-gray-600">
-                        AI创作
-                      </span>
-                      <div className="mt-2 h-0.5 w-full overflow-hidden rounded-full bg-gray-100">
-                        <div className="h-full w-full rounded-full bg-gradient-to-r from-green-500 to-green-600 transition-all duration-500"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group rounded-xl border border-gray-100/50 bg-white/70 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
-                    <div className="flex flex-col items-center lg:items-start">
-                      <div className="mb-1 flex items-baseline">
-                        <span className="text-2xl font-black text-gray-900 lg:text-3xl">
-                          99.9
-                        </span>
-                        <span className="ml-1 text-sm font-semibold text-blue-600">
-                          %
-                        </span>
-                      </div>
-                      <span className="text-xs font-medium text-gray-600">
-                        系统稳定
-                      </span>
-                      <div className="mt-2 h-0.5 w-full overflow-hidden rounded-full bg-gray-100">
-                        <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all duration-500 group-hover:w-full"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* 按钮组 - 现代化设计 - 紧凑样式 */}
-                <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
-                  <Button
-                    href="https://paper.gmlart.cn/"
-                    className="h-auto rounded-xl bg-blue-600 px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
-                  >
-                    <PencilIcon className="mr-2 h-4 w-4" />
+                {/* CTA 按钮 */}
+                <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                  <a href="https://paper.gmlart.cn/" className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-brand-500 hover:bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:shadow-md transition-all duration-200">
+                    <PencilIcon className="w-4 h-4" />
                     立即开始创作
-                  </Button>
-                  <Button
-                    href="https://paper.gmlart.cn/"
-                    target="_blank"
-                    variant="outline"
-                    className="h-auto rounded-xl border-2 border-gray-300 px-8 py-3 text-base font-semibold text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:bg-gray-50"
-                  >
-                    <PlayIcon className="mr-2 h-4 w-4" />
+                  </a>
+                  <a href="https://paper.gmlart.cn/" className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-200">
+                    <PlayIcon className="w-4 h-4" />
                     观看演示
-                  </Button>
+                  </a>
+                </div>
+
+                {/* 信任指标 */}
+                <div className="mt-10 flex justify-center gap-8 lg:justify-start">
+                  {[
+                    { value: '1000+', label: '企业用户' },
+                    { value: '50万+', label: '论文生成' },
+                    { value: '99.9%', label: '系统稳定' },
+                  ].map((m, i) => (
+                    <div key={i} className="text-center">
+                      <div className="text-2xl sm:text-3xl font-bold text-brand-500 tracking-tight">{m.value}</div>
+                      <div className="text-xs sm:text-sm text-neutral-500 mt-0.5">{m.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* 右侧图形 - 现代化展示 - 紧凑布局 */}
-              <div className="relative w-full lg:w-1/2">
-                <div className="relative">
-                  {/* 主图 - 现代化设计 */}
-                  <div className="relative mx-auto max-w-md">
-                    {/* 模拟AI创作界面 */}
-                    <div className="w-full rounded-2xl border border-gray-100/50 bg-white/90 p-6 backdrop-blur-sm">
-                      {/* 模拟标题栏 - 现代化设计 */}
-                      <div className="mb-6 flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="h-3 w-3 rounded-full bg-red-400"></div>
-                          <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
-                          <div className="h-3 w-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200">
-                            <ChatBubbleLeftRightIcon className="h-3 w-3 text-blue-600" />
-                          </div>
-                          <div className="h-2 w-20 rounded-full bg-gradient-to-r from-blue-100 to-blue-200"></div>
-                        </div>
-                      </div>
-
-                      {/* 模拟AI对话内容区 */}
-                      <div className="space-y-4">
-                        {/* 对话标题 */}
-                        <div className="h-8 w-4/5 rounded-lg bg-gradient-to-r from-gray-200 to-gray-100"></div>
-
-                        {/* 对话内容 */}
-                        <div className="space-y-2">
-                          <div className="h-2 rounded bg-gradient-to-r from-gray-100 to-gray-50"></div>
-                          <div className="h-2 w-5/6 rounded bg-gradient-to-r from-gray-100 to-gray-50"></div>
-                          <div className="h-2 w-4/6 rounded bg-gradient-to-r from-gray-100 to-gray-50"></div>
-                        </div>
-
-                        {/* 功能区域 */}
-                        <div className="mt-4 grid grid-cols-2 gap-3">
-                          <div className="flex h-20 items-center justify-center rounded-lg border border-blue-200/50 bg-gradient-to-br from-blue-50 to-blue-100">
-                            <div className="h-6 w-6 rounded bg-blue-200"></div>
-                          </div>
-                          <div className="flex h-20 items-center justify-center rounded-lg border border-purple-200/50 bg-gradient-to-br from-purple-50 to-purple-100">
-                            <div className="h-6 w-6 rounded bg-purple-200"></div>
-                          </div>
-                        </div>
-
-                        {/* 工具栏区域 */}
-                        <div className="space-y-1.5 border-t border-gray-100 pt-3">
-                          <div className="h-1.5 w-3/4 rounded bg-gradient-to-r from-gray-100 to-gray-50"></div>
-                          <div className="h-1.5 w-2/3 rounded bg-gradient-to-r from-gray-100 to-gray-50"></div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 功能标签 - 现代化设计 - 紧凑样式 */}
-                    <div className="absolute -top-6 -right-6 flex transform items-center rounded-xl border border-blue-100/50 bg-white/95 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
-                      <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600">
-                        <ChatBubbleLeftRightIcon className="h-4 w-4 text-white" />
+              {/* 右侧：论文创作演示卡片 */}
+              <div className="relative">
+                <div className="relative rounded-2xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm">
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center">
+                        <AcademicCapIcon className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-gray-900">
-                          智能对话
-                        </p>
-                        <p className="text-xs font-medium text-blue-600">
-                          AI助手交互
-                        </p>
+                        <h3 className="text-sm font-bold text-neutral-900">论文创作助手</h3>
+                        <p className="text-xs text-neutral-500">AI驱动 · 学术写作</p>
                       </div>
                     </div>
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    </span>
+                  </div>
 
-                    <div className="absolute -bottom-6 -left-6 flex transform items-center rounded-xl border border-green-100/50 bg-white/95 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
-                      <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-green-600">
-                        <svg
-                          className="h-4 w-4 text-white"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-gray-900">
-                          论文创作
-                        </p>
-                        <p className="text-xs font-medium text-green-600">
-                          AI原创论文写作
-                        </p>
+                  <div className="rounded-xl bg-brand-50/50 p-4 mb-5 space-y-3 min-h-[180px] sm:min-h-[240px]">
+                    <div className="bg-white rounded-xl px-4 py-3 shadow-sm">
+                      <p className="text-sm text-neutral-700 font-medium mb-1">论文大纲生成</p>
+                      <div className="space-y-1.5">
+                        <div className="h-2 rounded bg-brand-100 w-full" />
+                        <div className="h-2 rounded bg-brand-100 w-4/5" />
+                        <div className="h-2 rounded bg-brand-100 w-3/5" />
                       </div>
                     </div>
-
-                    {/* 创作工具标签 */}
-                    <div className="absolute top-1/2 -right-4 flex translate-x-1/2 -translate-y-1/2 transform items-center rounded-xl border border-purple-100/50 bg-white/95 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1">
-                      <div className="mr-2 flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-purple-600">
-                        <PencilIcon className="h-3 w-3 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-gray-900">
-                          智能创作
-                        </p>
+                    <div className="bg-white rounded-xl px-4 py-3 shadow-sm">
+                      <p className="text-sm text-neutral-700 font-medium mb-1">文献综述助手</p>
+                      <div className="flex gap-2">
+                        {['NLP', 'CV', 'DL', 'KG'].map((t) => (
+                          <span key={t} className="text-xs px-2 py-0.5 rounded-md bg-brand-100 text-brand-600 font-mono font-semibold">{t}</span>
+                        ))}
                       </div>
                     </div>
+                  </div>
 
-                    {/* 装饰性几何元素 */}
-                    <div className="absolute -top-3 -left-3 h-6 w-6 animate-pulse rounded-full bg-gradient-to-br from-blue-400 to-blue-500 opacity-20"></div>
-                    <div className="absolute -right-3 -bottom-3 h-4 w-4 animate-pulse rounded-full bg-gradient-to-br from-purple-400 to-purple-500 opacity-20 delay-1000"></div>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: '大纲生成', g: 'from-brand-500 to-brand-400' },
+                      { label: '文献检索', g: 'from-violet-500 to-violet-400' },
+                      { label: '智能排版', g: 'from-indigo-500 to-indigo-400' },
+                    ].map((item, i) => (
+                      <div key={i} className={`rounded-xl bg-gradient-to-br ${item.g} p-3.5 text-white text-center transition-transform duration-200 hover:scale-[1.03]`}>
+                        <div className="text-xs font-semibold">{item.label}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 底部技术标签 - 现代化设计 - 紧凑布局 */}
-            <div className="mt-12 flex flex-wrap justify-center gap-2">
-              <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">自然语言处理</span>
+            {/* 技术优势 */}
+            <div className="mt-16 sm:mt-24">
+              <div className="text-center mb-8">
+                <h3 className="text-lg sm:text-xl font-semibold text-neutral-900 tracking-tight">核心技术优势</h3>
+                <p className="mt-2 text-sm text-neutral-500">基于前沿AI技术，为学术写作提供专业可靠的智能化解决方案</p>
               </div>
-              <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">学术写作</span>
-              </div>
-              <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">文献分析</span>
-              </div>
-              <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">智能排版</span>
-              </div>
-              <div className="group rounded-xl border border-gray-200/50 bg-white/80 px-4 py-2 text-sm text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200">
-                <span className="font-medium">查重降重</span>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                {[
+                  { name: '自然语言处理', code: 'NLP' },
+                  { name: '学术写作引擎', code: 'AWE' },
+                  { name: '文献智能分析', code: 'LIA' },
+                  { name: '深度语义理解', code: 'DSU' },
+                  { name: '多模态融合', code: 'MM' },
+                ].map((tech, i) => (
+                  <div key={i} className="group rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all duration-200 hover:border-brand-200 hover:shadow-sm">
+                    <div className="text-xs font-mono font-bold text-brand-500 mb-1 tracking-wide">{tech.code}</div>
+                    <div className="text-sm font-medium text-neutral-700">{tech.name}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </Container>
