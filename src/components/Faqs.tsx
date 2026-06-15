@@ -171,6 +171,25 @@ const faqCategories: FAQCategory[] = [
 ]
 
 /**
+ * 生成 FAQPage 结构化数据 (Schema.org JSON-LD)
+ * 用于 Google 富媒体搜索结果展示可展开的 Q&A
+ */
+const faqJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqCategories.flatMap((category) =>
+    category.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    }))
+  ),
+})
+
+/**
  * FAQ组件 - 现代化的常见问题页面
  */
 export function Faqs() {
@@ -180,6 +199,11 @@ export function Faqs() {
 
   return (
     <div className="bg-gradient-to-b from-white to-[#F8FAFC]">
+      {/* JSON-LD 结构化数据: FAQPage Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: faqJsonLd }}
+      />
       <div className="mx-auto max-w-[1800px] px-4 py-12 sm:py-16 lg:py-24">
         <div className="mx-auto max-w-full">
           {/* 页面标题和描述 */}

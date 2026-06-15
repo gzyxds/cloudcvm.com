@@ -18,9 +18,6 @@ export const metadata: Metadata = {
   },
   description: seoConfig.site.description,
   keywords: seoConfig.site.keywords,
-  alternates: {
-    canonical: '/',
-  },
   authors: [{ name: seoConfig.site.name }],
   creator: seoConfig.site.name,
   publisher: seoConfig.site.name,
@@ -48,14 +45,15 @@ export const metadata: Metadata = {
     title: seoConfig.site.title,
     description: seoConfig.site.description,
   },
+  manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon.ico', sizes: '48x48' },
       { url: '/images/logos/icon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.ico',
     apple: [
-      { url: '/favicon.ico', sizes: '180x180' },
+      { url: '/images/logos/icon.svg', type: 'image/svg+xml' },
     ],
   },
 }
@@ -77,6 +75,7 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1"
         />
+        <meta name="theme-color" content="#3860F4" />
         {/* 搜索引擎验证 */}
         {seoConfig.verification.google && (
           <meta
@@ -113,10 +112,6 @@ export default function RootLayout({
                 contactOption: 'TollFree',
                 areaServed: 'CN',
               },
-              sameAs: [
-                // TODO: 替换为实际的社交媒体/平台链接
-                seoConfig.site.url,
-              ],
               knowsAbout: [
                 'Cloud Computing',
                 '云服务器',

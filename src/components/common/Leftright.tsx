@@ -502,7 +502,7 @@ export function Leftright() {
     <section
       className="relative flex min-h-screen flex-col justify-center py-16 sm:py-20 lg:py-24"
       style={{
-        backgroundImage: 'url(/images/background/background-4.png)',
+        backgroundImage: 'url(/images/background/background-4.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

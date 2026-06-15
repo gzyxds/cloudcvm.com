@@ -1,0 +1,28 @@
+{
+  "name": "优刻云计算 - 弹性云服务器 & AI智能平台",
+  "short_name": "优刻云",
+  "description": "云计算云服务器基础设施服务提供商，提供云服务器、CDN、SSL证书、AI系统等一站式云服务",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#3860F4",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/images/logos/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "developer tools", "productivity"],
+  "prefer_related_applications": false
+}
