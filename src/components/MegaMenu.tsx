@@ -411,11 +411,10 @@ export function MegaMenu({
                               animate="show"
                               exit="exit"
                             >
-                              {activeCategory.featured.map((item, idx) => (
+                              {activeCategory.featured.map((item) => (
                                 <motion.div key={item.id || item.name} variants={itemVariants}>
                                   <FeaturedProductCard
                                     item={item}
-                                    index={item.index || idx + 1}
                                     onClick={() => close()}
                                   />
                                 </motion.div>
@@ -506,25 +505,21 @@ const SectionTitle = React.memo(function SectionTitle({ color, text }: { color: 
 /** 热门产品卡片 */
 const FeaturedProductCard = React.memo(function FeaturedProductCard({
   item,
-  index,
   onClick,
 }: {
   item: MegaMenuItem
-  index: number
   onClick?: () => void
 }) {
-  const formattedIndex = index.toString().padStart(2, '0')
-
   return (
     <Link
       href={item.href}
       onClick={onClick}
-      className="group/card relative flex items-start gap-4 rounded-md p-4 transition-all duration-150 hover:bg-slate-50"
+      className="group/card relative flex flex-col gap-1.5 rounded-md p-4 transition-all duration-150 hover:bg-slate-50"
     >
-      <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center text-[15px] font-bold leading-none text-brand-500">
-        {formattedIndex}
-      </span>
-      <div className="min-w-0 flex-1">
+      <div className="flex items-center gap-2">
+        {item.icon && (
+          <item.icon aria-hidden="true" className="size-[17px] flex-none text-brand-500 transition-colors duration-150 group-hover/card:text-brand-600" />
+        )}
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-slate-900 transition-colors group-hover/card:text-brand-600 line-clamp-1">
             {item.name}
@@ -539,10 +534,10 @@ const FeaturedProductCard = React.memo(function FeaturedProductCard({
             </span>
           )}
         </div>
-        {item.description && (
-          <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-slate-500">{item.description}</p>
-        )}
       </div>
+      {item.description && (
+        <p className="line-clamp-2 text-xs leading-relaxed text-slate-500">{item.description}</p>
+      )}
     </Link>
   )
 })
@@ -553,14 +548,12 @@ const ProductLink = React.memo(function ProductLink({ item, onClick }: { item: M
     <Link
       href={item.href}
       onClick={onClick}
-      className="group/link flex items-center gap-4 rounded-md p-4 transition-all duration-150 hover:bg-slate-50"
+      className="group/link flex flex-col gap-1.5 rounded-md p-4 transition-all duration-150 hover:bg-slate-50"
     >
-      {item.icon && (
-        <div className="flex size-9 flex-none items-center justify-center rounded-[4px] bg-brand-50 text-brand-500 transition-all duration-150 group-hover/link:bg-brand-500 group-hover/link:text-white group-hover/link:shadow-sm">
-          <item.icon aria-hidden="true" className="size-[18px]" />
-        </div>
-      )}
-      <div className="min-w-0 flex-1">
+      <div className="flex items-center gap-2">
+        {item.icon && (
+          <item.icon aria-hidden="true" className="size-[17px] flex-none text-brand-500 transition-colors duration-150 group-hover/link:text-brand-600" />
+        )}
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-slate-900 transition-colors group-hover/link:text-brand-600 line-clamp-1">
             {item.name}
@@ -575,10 +568,10 @@ const ProductLink = React.memo(function ProductLink({ item, onClick }: { item: M
             </span>
           )}
         </div>
-        {item.description && (
-          <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-slate-500">{item.description}</p>
-        )}
       </div>
+      {item.description && (
+        <p className="line-clamp-2 text-xs leading-relaxed text-slate-500">{item.description}</p>
+      )}
     </Link>
   )
 })
