@@ -184,7 +184,7 @@ const cdnProducts: CDNProduct[] = [
 ]
 // 页面元数据配置
 export const metadata: Metadata = {
-  title: 'CDN加速_内容分发网络_全球CDN_网站加速_静态资源加速_优刻云',
+  title: 'CDN加速_内容分发网络_全球CDN_网站加速_静态资源加速',
   description:
     '优刻云CDN内容分发网络，提供全球加速服务，支持网站加速、视频加速、下载加速等多种场景。',
   keywords: [
@@ -286,7 +286,7 @@ function CDNVideoHero() {
       description:
         'CDN内容分发网络安全高效，支持全球加速和智能缓存，访问极速，资源就近分发，适用于网站、视频、下载等场景。',
       backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.jpg',
+      backgroundImage: '/images/carousel/HeaderCarousel.webp',
       textPosition: 'left' as const,
       buttonText: '开始体验CDN加速',
       buttonLink: 'https://console.cloudcvm.com/regist.htm',

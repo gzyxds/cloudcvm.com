@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import {
@@ -44,7 +44,7 @@ const features: FeatureCard[] = [
     title: '闪电般的构建速度',
     description: '采用业界领先的增量构建技术和智能缓存策略，构建速度提升90%以上。支持热重载和实时预览，让您的开发效率倍增，告别漫长的等待时间。',
     features: ['增量构建技术', '智能缓存策略', '热重载预览'],
-    bgImage: '/images/screenshots/solution-1.png',
+    bgImage: '/images/screenshots/solution-1.webp',
     icon: BoltIcon,
     topLeftText: '10亿+ 微信及QQ用户',
     bottomLeftText: '庞大用户基础',
@@ -54,7 +54,7 @@ const features: FeatureCard[] = [
     title: '推送即部署',
     description: 'Git推送后自动触发CI/CD流水线，支持蓝绿部署、金丝雀发布等多种策略。内置回滚机制和健康检查，确保每次发布都安全可靠，零停机时间。',
     features: ['CI/CD流水线', '蓝绿部署', '零停机发布'],
-    bgImage: '/images/screenshots/solution-5.png',
+    bgImage: '/images/screenshots/solution-5.webp',
     icon: CloudIcon,
     topLeftText: '3200+ 全球CDN节点',
     bottomLeftText: '全球网络覆盖',
@@ -64,7 +64,7 @@ const features: FeatureCard[] = [
     title: '为专业用户打造',
     description: '提供代码分割、Tree Shaking、压缩优化等专业级性能调优工具。支持自定义Webpack配置，满足复杂项目需求，让您的应用始终保持最佳性能。',
     features: ['代码分割优化', 'Tree Shaking', '自定义配置'],
-    bgImage: '/images/screenshots/solution-1.png',
+    bgImage: '/images/screenshots/solution-1.webp',
     icon: CogIcon,
     topLeftText: '24/7 全天候提供服务',
     bottomLeftText: '专业技术支持',
@@ -74,7 +74,7 @@ const features: FeatureCard[] = [
     title: '连接您喜爱的工具',
     description: '支持GitHub、GitLab、Bitbucket等主流代码仓库，集成Slack、钉钉等协作工具。提供丰富的API和Webhook，轻松构建自定义工作流。',
     features: ['代码仓库集成', '协作工具连接', '自定义工作流'],
-    bgImage: '/images/screenshots/solution-2.png',
+    bgImage: '/images/screenshots/solution-2.webp',
     icon: PuzzlePieceIcon,
     topLeftText: '经多行业证实的技术',
     bottomLeftText: '成熟稳定方案',
@@ -84,7 +84,7 @@ const features: FeatureCard[] = [
     title: '深入了解您的数据',
     description: '实时监控应用性能、用户行为和业务指标。提供可视化仪表板、智能告警和趋势分析，助您做出数据驱动的决策，持续优化产品体验。',
     features: ['实时监控', '可视化仪表板', '趋势分析'],
-    bgImage: '/images/screenshots/solution-4.png',
+    bgImage: '/images/screenshots/solution-4.webp',
     icon: ChartBarIcon,
     topLeftText: '专业团队技术解决方案',
     bottomLeftText: '全方位服务',
@@ -277,9 +277,9 @@ export default function BentoGrids() {
    * 处理卡片展开状态切换（仅PC端使用）
    * @param {number} index - 卡片索引
    */
-  const handleCardToggle = (index: number) => {
+  const handleCardToggle = useCallback((index: number) => {
     setExpandedIndex(index)
-  }
+  }, [])
 
   return (
     <section

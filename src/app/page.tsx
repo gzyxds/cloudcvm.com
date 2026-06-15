@@ -1,37 +1,82 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 
-// 布局组件
+// ============================================================
+// 首屏关键组件 — 静态导入（用户第一眼可见的内容）
+// ============================================================
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
-
-// 媒体展示组件
-import { VideoCarousel } from '@/components/carousel/VideoCarousel'
 import Hero from '@/components/Hero'
-
-// 功能特性组件
 import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 import { Leftright } from '@/components/common/Leftright'
 import { Rightleft } from '@/components/common/Rightleft'
 import { Solution } from '@/components/Solution'
 import { Scenario } from '@/components/common/Scenario'
 import Erlie from '@/components/common/Erlie'
-import { Accordion } from '@/components/common/Accordion'
-
-// 商业组件
-import Price from '@/components/Price'
 import ServiceTabs from '@/components/ServiceTabs'
-import CallToAction from '@/components/BentoGrids'
 
-// 数据展示组件
-import Advantage from '@/components/Advantage'
-import Testimonials from '@/components/Testimonials'
-import Customer from '@/components/common/Customer'
-import Zone from '@/components/Zone'
+// ============================================================
+// 首屏以下组件 — 动态导入（用户滚动到才加载）
+// 每个组件都有 200px 高度的骨架屏占位，防止 CLS
+// ============================================================
 
-// 信息组件
-import { Faqs } from '@/components/Faqs'
-import Logoclouds from '@/components/Logoclouds'
-import CatSections from '@/components/CatSections'
+// 骨架屏占位组件
+const SectionSkeleton = ({ height = 'h-[400px]' }: { height?: string }) => (
+  <div className={`${height} w-full animate-pulse rounded-xl bg-gray-50`} />
+)
+
+// 视频轮播 — 含 4 个视频，动态导入减少首屏 JS
+const VideoCarousel = dynamic(
+  () => import('@/components/carousel/VideoCarousel').then(mod => ({ default: mod.VideoCarousel })),
+  { loading: () => <SectionSkeleton height="h-[500px]" /> }
+)
+
+// 中段内容组件
+const Accordion = dynamic(
+  () => import('@/components/common/Accordion').then(mod => ({ default: mod.Accordion })),
+  { loading: () => <SectionSkeleton /> }
+)
+
+const Price = dynamic(
+  () => import('@/components/Price').then(mod => ({ default: mod.Price })),
+  { loading: () => <SectionSkeleton /> }
+)
+
+const CallToAction = dynamic(() => import('@/components/BentoGrids'), {
+  loading: () => <SectionSkeleton />,
+})
+
+// 后段内容组件
+const Advantage = dynamic(() => import('@/components/Advantage'), {
+  loading: () => <SectionSkeleton />,
+})
+
+const Customer = dynamic(
+  () => import('@/components/common/Customer'),
+  { loading: () => <SectionSkeleton /> }
+)
+
+const Faqs = dynamic(
+  () => import('@/components/Faqs').then(mod => ({ default: mod.Faqs })),
+  { loading: () => <SectionSkeleton /> }
+)
+
+const Logoclouds = dynamic(() => import('@/components/Logoclouds'), {
+  loading: () => <SectionSkeleton height="h-[200px]" />,
+})
+
+const CatSections = dynamic(() => import('@/components/CatSections'), {
+  loading: () => <SectionSkeleton />,
+})
+
+// 重动画组件 — 动态导入延迟加载
+const Testimonials = dynamic(() => import('@/components/Testimonials'), {
+  loading: () => <SectionSkeleton />,
+})
+
+const Zone = dynamic(() => import('@/components/Zone'), {
+  loading: () => <SectionSkeleton />,
+})
 
 /**
  * 首页 SEO 元数据配置

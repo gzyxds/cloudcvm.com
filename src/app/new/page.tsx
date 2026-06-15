@@ -14,7 +14,7 @@ import { ProductTraits } from '@/components/common/ProductTraits'
 import { Superiority } from '@/components/common/Superiority'
 
 export const metadata: Metadata = {
-  title: '优刻云最新活动-新用户特惠专场',
+  title: '最新活动-新用户特惠专场',
 
   keywords: [
     '最新活动',
@@ -54,7 +54,7 @@ function VideoHero() {
         controls: false,
         preload: 'auto' as const,
       },
-      backgroundImage: '/images/carousel/HeaderCarousel1.jpg',
+      backgroundImage: '/images/carousel/HeaderCarousel1.webp',
       textPosition: 'left' as const,
       buttonText: '立即参与',
       buttonLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',

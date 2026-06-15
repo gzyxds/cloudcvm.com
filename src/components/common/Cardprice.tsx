@@ -501,7 +501,7 @@ export default function Cardprice() {
       tag: '精选特惠 新老同享',
       title: '热门产品优惠套餐',
       desc: ['新老用户同价秒杀', '性能稳定 等你来抢'],
-      bg: '/images/carousel/new.png',
+      bg: '/images/carousel/new.webp',
       href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
     },
     {
@@ -509,7 +509,7 @@ export default function Cardprice() {
       tag: '云计算产品热销榜',
       title: '云服务器热销榜单',
       desc: ['云服务器热销榜单上架'],
-      bg: '/images/carousel/new-1.png',
+      bg: '/images/carousel/new-1.webp',
       href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
     },
     {
@@ -517,7 +517,7 @@ export default function Cardprice() {
       tag: '人工智能超级品类季',
       title: '人工智能超级品类季',
       desc: ['文字、人脸、语音、图像识别 低至1折'],
-      bg: '/images/carousel/new-2.png',
+      bg: '/images/carousel/new-2.webp',
       href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
     },
     {
@@ -525,7 +525,7 @@ export default function Cardprice() {
       tag: '语音技术品类季',
       title: '语音技术品类季',
       desc: ['语音合成转换等多项功能', '自选应用场景'],
-      bg: '/images/carousel/new-3.png',
+      bg: '/images/carousel/new-3.webp',
       href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
     },
     {
@@ -533,7 +533,7 @@ export default function Cardprice() {
       tag: 'AI智能助手',
       title: '智能对话',
       desc: ['企业级AI助手'],
-      bg: '/images/carousel/new-4.png',
+      bg: '/images/carousel/new-4.webp',
       href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
     },
   ]
@@ -831,7 +831,7 @@ export default function Cardprice() {
           <div
             className="relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-[#0055ff] bg-cover bg-center transition-colors duration-300"
             style={{
-              backgroundImage: 'url("/images/carousel/HeaderCarousel.jpg")',
+              backgroundImage: 'url("/images/carousel/HeaderCarousel.webp")',
             }}
           >
             {/* 半透明遮罩层 */}

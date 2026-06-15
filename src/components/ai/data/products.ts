@@ -94,7 +94,7 @@ export const products: Product[] = [
     buyLink: BASE_BUY_LINK
   },
   {
-    image: "/images/product/saas2.png",
+    image: "/images/product/saas2.webp",
     title: "艺创AI数字分身2.0",
     subtitle: "[PHP源码版]",
     description: "基于Java开发的AI聊天绘画系统，高性能架构，支持多种绘画模型和聊天场景...",
@@ -120,7 +120,7 @@ export const products: Product[] = [
     buyLink: BASE_BUY_LINK
   },
   {
-    image: "/images/product/gmlart.png",
+    image: "/images/product/gmlart.webp",
     title: "智言AI部署服务",
     subtitle: "[独立系统]",
     description: "官方技术专家，帮您部署 BuildAl 平台框架，支持本地部署或服务器部署",
@@ -134,7 +134,7 @@ export const products: Product[] = [
     isPlugin: false
   },
   {
-    image: "/images/product/Nanobanana.png",
+    image: "/images/product/Nanobanana.webp",
     title: "Nanobanana",
     subtitle: "[图像视频]",
     description: "香蕉绘画预置多个模版，开箱即用。结合gemini-3-pro-image-preview的生图能力，能够有效保持角色一致性。",
@@ -148,7 +148,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/AI简历.png",
+    image: "/images/product/AI简历.webp",
     title: "AI简历",
     subtitle: "[效率工具]",
     description: "AI简历致力于高效生成与深度优化您的个人简历，帮助您节省时间的同时，显著提升简历质量与影响力。",
@@ -162,7 +162,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/思维导图.png",
+    image: "/images/product/思维导图.webp",
     title: "思维导图",
     subtitle: "[效率工具]",
     description: "各种结构的思维导图，支持自由导图样式，修改前台显示名称，帮助您理清思路，激发创意。",
@@ -176,7 +176,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/AI证件照.png",
+    image: "/images/product/AI证件照.webp",
     title: "AI证件照",
     subtitle: "[图像视频]",
     description: "各种证件照类型，尺寸自定义，生成图片导出。无需跑照相馆，在家即可轻松制作专业证件照。",
@@ -190,7 +190,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/智能写作助手.png",
+    image: "/images/product/智能写作助手.webp",
     title: "智能写作助手",
     subtitle: "[智能写作]",
     description: "在线编辑，支持AI改写，自定义模板助手。无论是文案创作还是日常写作，都能助您一臂之力。",
@@ -204,7 +204,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/aippt.png",
+    image: "/images/product/aippt.webp",
     title: "AI PPT",
     subtitle: "[效率工具]",
     description: "智能生成PPT，一键排版，海量模板，让演示更出彩。告别繁琐的排版工作，专注于内容创作。",
@@ -218,7 +218,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/AI合同.png",
+    image: "/images/product/AI合同.webp",
     title: "AI合同",
     subtitle: "[企业工具]",
     description: "智能合同审查与生成，降低法律风险，提高签约效率。专业的法律助手，为您的商业合作保驾护航。",
@@ -232,7 +232,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/human1.png",
+    image: "/images/product/human1.webp",
     title: "AI直播短视频数字人",
     subtitle: "[图像视频]",
     description: "7x24小时无人直播，数字人带货，低成本高回报。打造永不休息的超级主播，抢占直播红利。",
@@ -246,7 +246,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/AI短剧小说创作.png",
+    image: "/images/product/AI短剧小说创作.webp",
     title: "AI短剧小说创作",
     subtitle: "[智能写作]",
     description: "辅助短剧剧本创作，小说续写，激发创作灵感。从灵感到剧本，AI全程陪伴，让创作变得简单有趣。",
@@ -260,7 +260,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/GEO排名优化.png",
+    image: "/images/product/GEO排名优化.webp",
     title: "GEO排名优化",
     subtitle: "[企业工具]",
     description: "基于地理位置的SEO优化工具，提升本地搜索排名。精准锁定目标客户，让生意自动找上门。",
@@ -274,7 +274,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/即梦AI绘画.png",
+    image: "/images/product/即梦AI绘画.webp",
     title: "即梦AI绘画",
     subtitle: "[图像视频]",
     description: "文本生成图片，艺术创作，风格迁移，释放你的想象力。无论是二次元还是写实风，都能轻松驾驭。",
@@ -288,7 +288,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/即梦AI视频.png",
+    image: "/images/product/即梦AI视频.webp",
     title: "即梦AI视频",
     subtitle: "[图像视频]",
     description: "文本生成视频，静态图转视频，轻松制作创意短片。让静态的画面动起来，讲述更生动的故事。",
@@ -302,7 +302,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/arena-model.png",
+    image: "/images/product/arena-model.webp",
     title: "大模型擂台",
     subtitle: "[企业工具]",
     description: "主流大模型能力评测与对比，助你选择最适合的模型。客观公正的评测数据，助您做出明智的技术选型。",
@@ -316,7 +316,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/小红书内容复刻.png",
+    image: "/images/product/小红书内容复刻.webp",
     title: "小红书内容复刻",
     subtitle: "[智能写作]",
     description: "一键提取爆款笔记文案，智能仿写，快速产出高质量内容。轻松掌握流量密码，打造爆款账号。",
@@ -330,7 +330,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/电商换装.png",
+    image: "/images/product/电商换装.webp",
     title: "电商换装",
     subtitle: "[图像视频]",
     description: "AI服装设计与展示，虚拟试衣，缩短设计周期。无需制作样衣，即可预览穿着效果，降低设计成本。",
@@ -344,7 +344,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/视频混剪.png",
+    image: "/images/product/视频混剪.webp",
     title: "热门视频混剪",
     subtitle: "[图像视频]",
     description: "智能抓取热门素材，自动混剪，快速生成短视频。紧跟热点趋势，轻松制作出爆款短视频。",
@@ -358,7 +358,7 @@ export const products: Product[] = [
     isPlugin: true
   },
   {
-    image: "/images/product/AI音乐.png",
+    image: "/images/product/AI音乐.webp",
     title: "AI音乐",
     subtitle: "[图像视频]",
     description: "AI音乐是一款以文本/歌词/哼唱/乐谱为输入，快速生成完整歌曲、伴奏、人声或纯音乐的创作与生产工具，旨在降低门槛、提升效率，支持个人娱乐与商用配乐的“人机协同”",

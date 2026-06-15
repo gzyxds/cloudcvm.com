@@ -36,25 +36,25 @@ const CATEGORIES: SceneCategory[] = [
         id: 'social-emotion',
         title: '情感陪伴',
         description: '支持文本、语音、图像多种输入，多模态协同，丰富交流情境，提供更真实陪伴',
-        imageUrl: '/images/screenshots/scene-emotion.jpg'
+        imageUrl: '/images/screenshots/scene-emotion.webp'
       },
       {
         id: 'social-roleplay',
         title: '角色扮演',
         description: '灵活扮演各类角色，遵循人设逻辑，长期记忆记住用户喜好与过往交流，构建沉浸式互动体验',
-        imageUrl: '/images/screenshots/scene-roleplay.jpg'
+        imageUrl: '/images/screenshots/scene-roleplay.webp'
       },
       {
         id: 'social-story',
         title: '剧情创作',
         description: '协同用户进行小说、剧本等创意写作，激发灵感，自动续写情节，打造个性化故事世界',
-        imageUrl: '/images/screenshots/scene-story.jpg'
+        imageUrl: '/images/screenshots/scene-story.webp'
       },
       {
         id: 'social-game',
         title: '游戏互动',
         description: '智能NPC对话、游戏攻略助手、实时对战分析，让游戏体验更加丰富有趣',
-        imageUrl: '/images/screenshots/scene-smart-home.jpg'
+        imageUrl: '/images/screenshots/scene-smart-home.webp'
       },
     ],
   },
@@ -67,25 +67,25 @@ const CATEGORIES: SceneCategory[] = [
         id: 'hardware-smart-home',
         title: '智能家居',
         description: '语音控制全屋设备，智能场景联动，打造懂你的智慧生活空间',
-        imageUrl: '/images/screenshots/scene-smart-home.jpg'
+        imageUrl: '/images/screenshots/scene-smart-home.webp'
       },
       {
         id: 'hardware-wearable',
         title: '穿戴设备',
         description: '健康监测，实时助手，随时随地提供贴心服务与数据分析',
-        imageUrl: '/images/screenshots/scene-wearable.jpg'
+        imageUrl: '/images/screenshots/scene-wearable.webp'
       },
       {
         id: 'hardware-robot',
         title: '机器人控制',
         description: '为服务机器人、工业机器人提供智能决策与自主导航能力',
-        imageUrl: '/images/screenshots/scene-emotion.jpg'
+        imageUrl: '/images/screenshots/scene-emotion.webp'
       },
       {
         id: 'hardware-vehicle',
         title: '车载系统',
         description: '智能语音交互、导航规划、车况监测，让出行更加安全便捷',
-        imageUrl: '/images/screenshots/scene-roleplay.jpg'
+        imageUrl: '/images/screenshots/scene-roleplay.webp'
       },
     ],
   },
@@ -98,25 +98,25 @@ const CATEGORIES: SceneCategory[] = [
         id: 'education-tutor',
         title: 'AI 辅导',
         description: '个性化学习路径规划与答疑，针对薄弱点进行专项训练提升',
-        imageUrl: '/images/screenshots/scene-emotion.jpg'
+        imageUrl: '/images/screenshots/scene-emotion.webp'
       },
       {
         id: 'education-language',
         title: '语言学习',
         description: '沉浸式口语对练环境，实时纠正发音与语法，快速提升语言能力',
-        imageUrl: '/images/screenshots/scene-roleplay.jpg'
+        imageUrl: '/images/screenshots/scene-roleplay.webp'
       },
       {
         id: 'education-knowledge',
         title: '知识问答',
         description: '覆盖多学科知识库，智能检索与解答，成为你的随身百科全书',
-        imageUrl: '/images/screenshots/scene-story.jpg'
+        imageUrl: '/images/screenshots/scene-story.webp'
       },
       {
         id: 'education-exam',
         title: '考试备考',
         description: '智能题库推荐、错题分析、考点预测，助你高效备战各类考试',
-        imageUrl: '/images/screenshots/scene-smart-home.jpg'
+        imageUrl: '/images/screenshots/scene-smart-home.webp'
       },
     ],
   },
@@ -129,25 +129,25 @@ const CATEGORIES: SceneCategory[] = [
         id: 'service-support',
         title: '智能客服',
         description: '7x24小时自动应答，精准理解用户意图，高效解决各类咨询问题',
-        imageUrl: '/images/screenshots/scene-story.jpg'
+        imageUrl: '/images/screenshots/scene-story.webp'
       },
       {
         id: 'service-sales',
         title: '销售助手',
         description: '实时分析客户意向，智能推荐话术与策略，助力销售转化率提升',
-        imageUrl: '/images/screenshots/scene-smart-home.jpg'
+        imageUrl: '/images/screenshots/scene-smart-home.webp'
       },
       {
         id: 'service-booking',
         title: '预约管理',
         description: '智能预约调度、自动提醒通知、冲突检测，优化服务流程效率',
-        imageUrl: '/images/screenshots/scene-wearable.jpg'
+        imageUrl: '/images/screenshots/scene-wearable.webp'
       },
       {
         id: 'service-feedback',
         title: '工单处理',
         description: '自动分类工单、智能分配处理人、跟踪进度，提升服务响应速度',
-        imageUrl: '/images/screenshots/scene-emotion.jpg'
+        imageUrl: '/images/screenshots/scene-emotion.webp'
       },
     ],
   },
@@ -160,25 +160,25 @@ const CATEGORIES: SceneCategory[] = [
         id: 'marketing-copywriting',
         title: '文案生成',
         description: '快速生成多渠道、多风格的营销文案，大幅提升内容生产效率',
-        imageUrl: '/images/screenshots/scene-wearable.jpg'
+        imageUrl: '/images/screenshots/scene-wearable.webp'
       },
       {
         id: 'marketing-poster',
         title: '海报设计',
         description: '一键智能生成营销海报与视觉素材，满足多样化品牌宣传需求',
-        imageUrl: '/images/screenshots/scene-emotion.jpg'
+        imageUrl: '/images/screenshots/scene-emotion.webp'
       },
       {
         id: 'marketing-analysis',
         title: '数据分析',
         description: '多维度营销数据分析、用户画像洞察、ROI预测，驱动精准营销决策',
-        imageUrl: '/images/screenshots/scene-roleplay.jpg'
+        imageUrl: '/images/screenshots/scene-roleplay.webp'
       },
       {
         id: 'marketing-seo',
         title: 'SEO优化',
         description: '智能关键词分析、内容优化建议、排名监控，提升搜索引擎曝光',
-        imageUrl: '/images/screenshots/scene-story.jpg'
+        imageUrl: '/images/screenshots/scene-story.webp'
       },
     ],
   },

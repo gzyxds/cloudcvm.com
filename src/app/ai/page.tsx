@@ -23,9 +23,10 @@ import Carousel from '@/components/ai/Aicarousel'
  * 页面元数据
  */
 export const metadata = {
-  title: '艺创AI_AI系统程序源码_AI数字人SaaS系统_AI企业知识库_企业级AI平台系统',
+  title: { absolute: '艺创AI_AI系统程序源码_AI数字人SaaS系统_AI企业知识库_企业级AI平台系统' },
   description:
     '艺创AI专注提供AI系统源代码解决方案的技术团队「AI数字人系统」「企业全能AI变现系统」「AI聊天绘画系统」「AI论文写作系统」拥有PHP和Java两种语言版本，技术实力强，系统体验好支持私有部署，专业团队、售后无忧',
+  keywords: ['艺创AI', 'AI系统源码', 'AI数字人', 'AI绘画', 'AI聊天', 'AI论文写作', 'SaaS系统', '私有化部署'],
 }
 
 

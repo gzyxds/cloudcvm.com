@@ -190,7 +190,7 @@ const serverProducts: ServerProduct[] = [
 
 // 页面元数据配置
 export const metadata: Metadata = {
-  title: '云服务器ECS_云主机_云计算服务器_弹性云服务器_轻量应用服务器_优刻云',
+  title: '云服务器ECS_云主机_云计算服务器_弹性云服务器_轻量应用服务器',
   description:
     '优刻云云服务器ECS，提供弹性计算能力，支持多种实例规格，满足不同业务需求。',
   keywords: [
@@ -336,7 +336,7 @@ function ECSVideoHero() {
       description:
         '体验下一代云计算服务，让弹性计算为您的业务发展提供强大支持。从基础设施管理到应用部署，ECS 让云端计算变得前所未有的简单。',
       backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.jpg',
+      backgroundImage: '/images/carousel/HeaderCarousel.webp',
       textPosition: 'left' as const,
       buttonText: '开始体验 ECS',
       buttonLink: 'https://console.cloudcvm.com/regist.htm',

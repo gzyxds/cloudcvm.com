@@ -1,5 +1,3 @@
-"use client";
-
 import Image, { StaticImageData } from 'next/image'
 import { User, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";

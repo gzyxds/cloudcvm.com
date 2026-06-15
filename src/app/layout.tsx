@@ -101,12 +101,30 @@ export default function RootLayout({
               url: seoConfig.site.url,
               logo: `${seoConfig.site.url}/images/logos/logo.svg`,
               description: seoConfig.site.description,
+              foundingDate: '2015',
+              areaServed: {
+                '@type': 'Country',
+                name: 'China',
+              },
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'customer service',
-                availableLanguage: 'Chinese',
+                availableLanguage: ['Chinese', 'English'],
+                contactOption: 'TollFree',
+                areaServed: 'CN',
               },
-              sameAs: [seoConfig.site.url],
+              sameAs: [
+                // TODO: 替换为实际的社交媒体/平台链接
+                seoConfig.site.url,
+              ],
+              knowsAbout: [
+                'Cloud Computing',
+                '云服务器',
+                'CDN',
+                'SSL证书',
+                'AI系统',
+                '人工智能',
+              ],
             }),
           }}
         />

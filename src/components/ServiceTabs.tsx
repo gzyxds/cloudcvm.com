@@ -267,7 +267,7 @@ const serviceTabs: ServiceTab[] = [
       tags: ['独享带宽', '全球节点', '低至1.5折'],
       buttonText: '立即购买',
       link: 'https://console.cloudcvm.com/cart/goodsList.htm',
-      image: '/images/aisolution/components-1.png',
+      image: '/images/aisolution/components-1.webp',
     },
     secondaryBanner: {
       title: '推荐有礼 返现35%',

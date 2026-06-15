@@ -916,7 +916,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '轻松创建你的AI虚拟数字人！只需上传一段视频，即可高品质、批量克隆你的形象！',
       icon: FaceSmileIcon,
-      image: '/images/product/human1.png',
+      image: '/images/product/human1.webp',
       stats: [
         { label: '高清还原', value: '100%真实感官体验' },
         { label: '形象生成', value: '100%快速生成' },
@@ -940,7 +940,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '基于可定制的多层分站，输入用户相关信息系统后，即可创建新分站与管理账号。',
       icon: UserGroupIcon,
-      image: '/images/product/human2.png',
+      image: '/images/product/human2.webp',
       stats: [
         { label: '多级分站', value: '灵活的分站管理' },
         { label: '账户管理', value: '完善的账户体系' },

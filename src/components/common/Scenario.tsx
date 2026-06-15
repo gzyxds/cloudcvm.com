@@ -36,7 +36,7 @@ const solutionCards: SolutionCard[] = [
     subtitle: '解决方案',
     description: '依托豆包大模型，提升全域数字营销能力。在 AI 赋能下，让用户洞察更精准，让销售效率更高，线索实现更高转化',
     icon: Monitor,
-    image: '/images/screenshots/ai-cockpit.jpg',
+    image: '/images/screenshots/ai-cockpit.webp',
     href: '#'
   },
   {
@@ -44,7 +44,7 @@ const solutionCards: SolutionCard[] = [
     subtitle: '解决方案',
     description: '多模态大模型驱动，打造门店渠道 AI 智能巡管，实现监管智能闭环',
     icon: ClipboardCheck,
-    image: '/images/screenshots/ai-agent.jpg',
+    image: '/images/screenshots/ai-agent.webp',
     href: '#'
   },
   {
@@ -52,7 +52,7 @@ const solutionCards: SolutionCard[] = [
     subtitle: '解决方案',
     description: '火山引擎以 AI+ 大模型驱动智慧校园建设，赋能高校数字化转型',
     icon: GraduationCap,
-    image: '/images/screenshots/ai-campus.jpg',
+    image: '/images/screenshots/ai-campus.webp',
     href: '#'
   },
   {
@@ -60,7 +60,7 @@ const solutionCards: SolutionCard[] = [
     subtitle: '解决方案',
     description: '豆包大模型赋能智能终端，多模型组合优化链路，覆盖全场景 AI 需求',
     icon: Smartphone,
-    image: '/images/screenshots/ai-device.jpg',
+    image: '/images/screenshots/ai-device.webp',
     href: '#'
   },
   {
@@ -68,7 +68,7 @@ const solutionCards: SolutionCard[] = [
     subtitle: '解决方案',
     description: '使用豆包角色扮演模型，打造虚拟角色陪伴产品，精准制定角色模版',
     icon: Users,
-    image: '/images/screenshots/ai-character.jpg',
+    image: '/images/screenshots/ai-character.webp',
     href: '#'
   },
   {
@@ -76,7 +76,7 @@ const solutionCards: SolutionCard[] = [
     subtitle: '解决方案',
     description: '提供算力、模型、平台、应用全栈大模型解决方案，在对公业务、零售业务、研发支持、办公助手等场景实现大模型升级',
     icon: Landmark,
-    image: '/images/screenshots/ai-finance.jpg',
+    image: '/images/screenshots/ai-finance.webp',
     href: '#'
   },
   {
@@ -84,7 +84,7 @@ const solutionCards: SolutionCard[] = [
     subtitle: '解决方案',
     description: '整合 AI 技术构建科研全流程工具链，推动生命科学、材料、气象等领域科研范式变革',
     icon: FlaskConical,
-    image: '/images/screenshots/ai-science.jpg',
+    image: '/images/screenshots/ai-science.webp',
     href: '#'
   },
 ]

@@ -1,5 +1,3 @@
-'use client'
-
 import { Container } from '@/components/Container'
 import {
   CpuChipIcon,
@@ -94,7 +92,7 @@ export function Rightleft() {
               {/* 模拟聊天界面截图区域 */}
               <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:h-[320px] bg-gradient-to-b from-[#F0F5FF] to-white rounded-lg sm:rounded-xl border border-[#E2E8F0] overflow-hidden mt-auto">
                 <Image
-                  src="/images/aisolution/common-1.png"
+                  src="/images/aisolution/common-1.webp"
                   alt="极速体验模型界面"
                   fill
                   className="object-cover object-top p-3 sm:p-4"

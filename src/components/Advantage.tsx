@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import {
@@ -449,9 +449,9 @@ export default function Advantage() {
    * 处理卡片展开状态切换（桌面端和平板端使用）
    * @param {number} index - 卡片索引
    */
-  const handleCardToggle = (index: number) => {
+  const handleCardToggle = useCallback((index: number) => {
     setExpandedIndex(index)
-  }
+  }, [])
 
   return (
     <section

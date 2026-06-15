@@ -164,7 +164,7 @@ export default function Zone() {
           <div className="absolute inset-0 z-0 flex items-center justify-center opacity-20 lg:opacity-100 transition-opacity duration-500">
             <div className="relative h-full w-full max-w-[1400px]">
               <Image
-                src="/images/screenshots/zone-earth.png"
+                src="/images/screenshots/zone-earth.webp"
                 alt="Global Zone Map"
                 fill
                 className="object-contain"
@@ -253,7 +253,7 @@ export default function Zone() {
                     <div className="flex items-start gap-4">
                       <div className="relative h-6 w-6 flex-shrink-0 mt-1">
                         <Image
-                          src="/images/screenshots/zone-icon.png"
+                          src="/images/screenshots/zone-icon.webp"
                           alt="Zone Icon"
                           width={24}
                           height={24}

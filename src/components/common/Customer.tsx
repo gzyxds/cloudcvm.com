@@ -12,28 +12,28 @@ const customers = [
     name: '小红书',
     description:
       '我们使用 AMD 实例提供高性能算力支撑，搜索推荐系统分布式训练集群性能提升 30%，多可用区部署，提供大规模高可用算力服务。',
-    image: '/images/screenshots/Customer.jpg',
+    image: '/images/screenshots/Customer.webp',
   },
   {
     id: 'weibo',
     name: '新浪微博',
     description:
       '倚天计算型 c8y 实例算力强劲，构建音视频直播处理集群，提升音视频处理效率，转码 H264场景单路成本降 66.7%。',
-    image: '/images/screenshots/Customer1.jpg',
+    image: '/images/screenshots/Customer1.webp',
   },
   {
     id: 'douyin',
     name: '抖音',
     description:
       '通过优刻云的CDN和存储解决方案，我们的内容分发速度提升了200%，用户体验显著改善，同时运营成本降低了30%。',
-    image: '/images/screenshots/Customer2.png',
+    image: '/images/screenshots/Customer2.webp',
   },
   {
     id: 'kuaishou',
     name: '快手',
     description:
       '借助优刻云的AI和大数据分析能力，我们成功构建了智能推荐系统，用户留存率提升了45%，平台活跃度显著增长。',
-    image: '/images/screenshots/kuaishou.png',
+    image: '/images/screenshots/kuaishou.webp',
   },
 ]
 

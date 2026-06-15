@@ -188,7 +188,7 @@ const sslProducts: SSLProduct[] = [
 ]
 // 页面元数据配置
 export const metadata: Metadata = {
-  title: 'SSL证书_HTTPS证书_网站安全证书_域名证书_数字证书_优刻云',
+  title: 'SSL证书_HTTPS证书_网站安全证书_域名证书_数字证书',
   description:
     '优刻云SSL证书服务，提供DV、OV、EV等多种类型SSL证书，保障网站数据传输安全，支持通配符和多域名证书。',
   keywords: [
@@ -362,7 +362,7 @@ function SSLVideoHero() {
       description:
         '体验专业的SSL证书服务，让HTTPS加密为您的网站提供强大的安全保障。从证书申请到自动部署，SSL证书让网站安全变得前所未有的简单。',
       backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.jpg',
+      backgroundImage: '/images/carousel/HeaderCarousel.webp',
       textPosition: 'left' as const,
       buttonText: '立即申请SSL证书',
       buttonLink: 'https://console.cloudcvm.com/regist.htm',

@@ -311,19 +311,19 @@ function DemoSection() {
     {
       title: '单/排行榜/追剧',
       description: '根据用户喜好推荐单集、排行榜和追剧内容。',
-      image: '/images/product/videodemo.jpg',
+      image: '/images/product/videodemo.webp',
       rating: 4.5,
     },
     {
       title: '短剧瀑布流',
       description: '提供丰富的短剧内容，瀑布流式展示，方便用户浏览。',
-      image: '/images/product/videodemo1.jpg',
+      image: '/images/product/videodemo1.webp',
       rating: 5.0,
     },
     {
       title: '官方播放',
       description: '官方正版播放，高清流畅，用户体验极佳。',
-      image: '/images/product/videodemo2.jpg',
+      image: '/images/product/videodemo2.webp',
       rating: 5.0,
     },
   ]

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import {
@@ -37,34 +37,34 @@ const solutions: SolutionCard[] = [
     description:
       '提供一站式视频解决方案，涵盖点播直播、实时视频通话、短视频等视频服务，广泛应用于在线视频、电商、游戏直播、在线教育等场景',
     features: ['广电级音视频处理', '在线视频点播', '实时音视频通话'],
-    bgImage: '/images/screenshots/solution-1.png',
+    bgImage: '/images/screenshots/solution-1.webp',
   },
   {
     title: '互动直播',
     description:
       '覆盖PK连麦直播、派对直播、视频相亲、在线自习室、互动课堂等多种场景，低延时的连麦互动，更优质的直播体验',
     features: ['PK连麦直播', '派对直播', '在线自习室'],
-    bgImage: '/images/screenshots/solution-2.png',
+    bgImage: '/images/screenshots/solution-2.webp',
   },
   {
     title: '在线教育',
     description: '快速搭建在线课堂平台，提供全面的在线学习解决方案',
     features: ['在线课堂', '互动教学', '学习管理'],
-    bgImage: '/images/screenshots/solution-3.png',
+    bgImage: '/images/screenshots/solution-3.webp',
   },
   {
     title: '游戏',
     description:
       '依托丰富的游戏生态资源和能力，共享海量游戏研发和运营经验，致力于打造高质量、全方位生态的游戏云服务平台',
     features: ['游戏多媒体引擎', '边缘加速平台', '游戏云服务'],
-    bgImage: '/images/screenshots/solution-4.png',
+    bgImage: '/images/screenshots/solution-4.webp',
   },
   {
     title: '游戏媒体',
     description:
       '一站式游戏视频工具包，视频转码、视频摘要提取、视频内容整理、视觉增强',
     features: ['视频转码', '内容整理', '视觉增强'],
-    bgImage: '/images/screenshots/solution-5.png',
+    bgImage: '/images/screenshots/solution-5.webp',
   },
 ]
 
@@ -283,9 +283,9 @@ export function Solution() {
    * 处理卡片展开状态切换（仅PC端使用）
    * @param {number} index - 卡片索引
    */
-  const handleCardToggle = (index: number) => {
+  const handleCardToggle = useCallback((index: number) => {
     setExpandedIndex(index)
-  }
+  }, [])
 
   return (
     <section

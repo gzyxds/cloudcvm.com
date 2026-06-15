@@ -2,7 +2,7 @@
 
 import { Container } from '@/components/Container'
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 import { motion } from 'framer-motion'
 import { SparklesIcon, BoltIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 
@@ -140,134 +140,123 @@ interface LightServerCardProps {
   server: LightServerPlan
 }
 
+// 挂机宝服务器配置数据（模块级常量，避免每次渲染重建）
+const serverPlans: ServerPlan[] = [
+  {
+    name: '1核1G挂机宝A型',
+    description: 'NAT网络服务，适合轻量级应用',
+    os: 'Windows/CentOS',
+    cpu: '1核',
+    memory: '1G',
+    storage: 'NVMe SSD 40GB',
+    bandwidth: '20Mbps（上行带宽）',
+    price: '26.21',
+    unit: '元/月',
+    originalPrice: '201.6',
+    featured: false,
+  },
+  {
+    name: '1核2G挂机宝B型',
+    description: 'NAT网络服务，性能升级版',
+    os: 'Windows/CentOS',
+    cpu: '1核',
+    memory: '2G',
+    storage: 'NVMe SSD 60GB',
+    bandwidth: '30Mbps（上行带宽）',
+    price: '49',
+    unit: '元/月',
+    originalPrice: '610.34',
+    featured: true,
+  },
+  {
+    name: '2核2G挂机宝C型',
+    description: 'NAT网络服务，双核配置',
+    os: 'Windows/CentOS',
+    cpu: '2核',
+    memory: '2G',
+    storage: 'NVMe SSD 80GB',
+    bandwidth: '40Mbps（上行带宽）',
+    price: '134.64',
+    unit: '元/月',
+    originalPrice: '207.44',
+    featured: false,
+  },
+  {
+    name: '2核4G挂机宝D型',
+    description: 'NAT网络服务，高性能配置',
+    os: 'Windows/CentOS',
+    cpu: '2核',
+    memory: '4G',
+    storage: 'NVMe SSD 100GB',
+    bandwidth: '50Mbps（上行带宽）',
+    price: '335.69',
+    unit: '元/月',
+    originalPrice: '610.34',
+    featured: false,
+  },
+]
+
+// 轻量应用服务器配置数据（模块级常量，避免每次渲染重建）
+const lightServerPlans: LightServerPlan[] = [
+  {
+    name: '轻量应用服务器 2核2G',
+    badge: '爆款',
+    config: '2核2G4M',
+    specs: '50G SSD盘 300G月流量',
+    location: '北京/上海/广州/成都',
+    duration: '3个月',
+    discount: '4折',
+    price: '60',
+    unit: '元 ¥20元/月',
+    originalPrice: '150',
+    featured: true,
+  },
+  {
+    name: '轻量应用服务器 2核2G',
+    badge: '爆款',
+    config: '2核2G4M',
+    specs: '50G SSD盘 300G月流量',
+    location: '北京/上海/广州/成都',
+    duration: '1年',
+    discount: '1折',
+    price: '99',
+    unit: '元 ¥8.25元/月',
+    originalPrice: '1200',
+    featured: false,
+  },
+  {
+    name: '轻量应用服务器 2核4G5M',
+    badge: '入门之选',
+    config: '2核4G5M',
+    specs: '60G SSD盘 500G月流量',
+    location: '北京/上海/广州/成都',
+    duration: '1年',
+    discount: '2.3折',
+    price: '188',
+    unit: '元 ¥15.67元/月',
+    originalPrice: '816',
+    featured: false,
+  },
+  {
+    name: '轻量应用服务器 2核4G6M',
+    badge: '入门之选',
+    config: '2核4G6M',
+    specs: '70G SSD盘 800G月流量',
+    location: '北京/上海/广州/成都',
+    duration: '1年',
+    discount: '2.3折',
+    price: '199',
+    unit: '元 ¥16.58元/月',
+    originalPrice: '864',
+    featured: false,
+  },
+]
+
 /**
- * 价格展示组件 - Bento Grid 风格的定价与促销展示
- * 设计目标：
- * - 采用 Bento Grid 不对称布局，创造视觉节奏
- * - 蓝白色调主视觉，符合 B 端专业调性
- * - 圆角卡片与渐变效果，现代化设计语言
- * - 流畅的动画过渡，提升用户体验
- * @returns 页面主体 JSX
+ * 服务器卡片组件 — 使用 memo 避免父组件重渲染时重建
  */
-export function Price() {
-  // 挂机宝服务器配置数据
-  const serverPlans: ServerPlan[] = [
-    {
-      name: '1核1G挂机宝A型',
-      description: 'NAT网络服务，适合轻量级应用',
-      os: 'Windows/CentOS',
-      cpu: '1核',
-      memory: '1G',
-      storage: 'NVMe SSD 40GB',
-      bandwidth: '20Mbps（上行带宽）',
-      price: '26.21',
-      unit: '元/月',
-      originalPrice: '201.6',
-      featured: false,
-    },
-    {
-      name: '1核2G挂机宝B型',
-      description: 'NAT网络服务，性能升级版',
-      os: 'Windows/CentOS',
-      cpu: '1核',
-      memory: '2G',
-      storage: 'NVMe SSD 60GB',
-      bandwidth: '30Mbps（上行带宽）',
-      price: '49',
-      unit: '元/月',
-      originalPrice: '610.34',
-      featured: true,
-    },
-    {
-      name: '2核2G挂机宝C型',
-      description: 'NAT网络服务，双核配置',
-      os: 'Windows/CentOS',
-      cpu: '2核',
-      memory: '2G',
-      storage: 'NVMe SSD 80GB',
-      bandwidth: '40Mbps（上行带宽）',
-      price: '134.64',
-      unit: '元/月',
-      originalPrice: '207.44',
-      featured: false,
-    },
-    {
-      name: '2核4G挂机宝D型',
-      description: 'NAT网络服务，高性能配置',
-      os: 'Windows/CentOS',
-      cpu: '2核',
-      memory: '4G',
-      storage: 'NVMe SSD 100GB',
-      bandwidth: '50Mbps（上行带宽）',
-      price: '335.69',
-      unit: '元/月',
-      originalPrice: '610.34',
-      featured: false,
-    },
-  ]
-
-  // 轻量应用服务器配置数据
-  const lightServerPlans: LightServerPlan[] = [
-    {
-      name: '轻量应用服务器 2核2G',
-      badge: '爆款',
-      config: '2核2G4M',
-      specs: '50G SSD盘 300G月流量',
-      location: '北京/上海/广州/成都',
-      duration: '3个月',
-      discount: '4折',
-      price: '60',
-      unit: '元 ¥20元/月',
-      originalPrice: '150',
-      featured: true,
-    },
-    {
-      name: '轻量应用服务器 2核2G',
-      badge: '爆款',
-      config: '2核2G4M',
-      specs: '50G SSD盘 300G月流量',
-      location: '北京/上海/广州/成都',
-      duration: '1年',
-      discount: '1折',
-      price: '99',
-      unit: '元 ¥8.25元/月',
-      originalPrice: '1200',
-      featured: false,
-    },
-    {
-      name: '轻量应用服务器 2核4G5M',
-      badge: '入门之选',
-      config: '2核4G5M',
-      specs: '60G SSD盘 500G月流量',
-      location: '北京/上海/广州/成都',
-      duration: '1年',
-      discount: '2.3折',
-      price: '188',
-      unit: '元 ¥15.67元/月',
-      originalPrice: '816',
-      featured: false,
-    },
-    {
-      name: '轻量应用服务器 2核4G6M',
-      badge: '入门之选',
-      config: '2核4G6M',
-      specs: '70G SSD盘 800G月流量',
-      location: '北京/上海/广州/成都',
-      duration: '1年',
-      discount: '2.3折',
-      price: '199',
-      unit: '元 ¥16.58元/月',
-      originalPrice: '864',
-      featured: false,
-    },
-  ]
-
-  /**
-   * 服务器卡片组件 - 展示单个服务器配置信息
-   * @param props - 服务器卡片组件属性
-   * @returns 服务器卡片组件JSX
-   */
-  const ServerCard = ({ plan }: ServerCardProps) => (
+const ServerCard = memo(function ServerCard({ plan }: ServerCardProps) {
+  return (
     <Card title={plan.name} featured={plan.featured} badge={plan.featured ? '热销推荐' : undefined}>
       <p className="border-b border-[#f2f3f5] px-6 py-4 text-sm leading-relaxed text-[#4e5969]">
         {plan.description}
@@ -310,13 +299,13 @@ export function Price() {
       </div>
     </Card>
   )
+})
 
-  /**
-   * 轻量应用服务器卡片组件 - 展示单个轻量应用服务器配置信息
-   * @param props - 轻量应用服务器卡片组件属性
-   * @returns 轻量应用服务器卡片组件JSX
-   */
-  const LightServerCard = ({ server }: LightServerCardProps) => (
+/**
+ * 轻量应用服务器卡片组件 — 使用 memo 避免父组件重渲染时重建
+ */
+const LightServerCard = memo(function LightServerCard({ server }: LightServerCardProps) {
+  return (
     <Card
       title={server.name}
       featured={server.featured}
@@ -363,6 +352,13 @@ export function Price() {
       </div>
     </Card>
   )
+})
+
+/**
+ * 价格展示组件 - Bento Grid 风格的定价与促销展示
+ * @returns 页面主体 JSX
+ */
+export function Price() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#F8FAFC] pb-16">

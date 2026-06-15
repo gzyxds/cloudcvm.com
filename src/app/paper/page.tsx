@@ -29,7 +29,7 @@ import { Footer } from '@/components/Footer'
 
 // ==================== 页面SEO元数据配置 ====================
 export const metadata: Metadata = {
-  title: '艺创AI_AI系统源码_AI论文写作系统_AI论文生成器',
+  title: { absolute: '艺创AI_AI系统源码_AI论文写作系统_AI论文生成器' },
   description:
     '艺创AI专注提供AI系统源代码解决方案的技术团队「AI数字人系统」「企业全能AI变现系统」「AI聊天绘画系统」「AI论文写作系统」拥有PHP和Java两种语言版本，技术实力强，系统体验好支持私有部署，专业团队、售后无忧',
   keywords: [
@@ -570,7 +570,7 @@ function DemoSection(): JSX.Element {
               {/* 主要演示图片 */}
               <div className="bg-white p-4 shadow-lg sm:p-6">
                 <Image
-                  src="/images/product/论文创作.png"
+                  src="/images/product/论文创作.webp"
                   alt="论文创作演示"
                   width={600}
                   height={400}
@@ -636,7 +636,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '研究人员可以使用AI写作系统来生成论文的初稿或补充材料，显著提升研究效率，加速学术成果产出。',
       icon: PencilIcon,
-      image: '/images/product/期刊论文.png',
+      image: '/images/product/期刊论文.webp',
       stats: [
         { label: '快速生成', value: '智能生成论文初稿和补充材料，大幅缩短写作时间' },
         { label: '文献推荐', value: '智能推荐相关研究文献，构建完整的理论基础' },
@@ -648,7 +648,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '让科学知识更有趣！AI助你将复杂的科学概念转化为通俗易懂的科普文章，配合生动示例和智能配图，让读者轻松理解科学知识。',
       icon: SpeakerWaveIcon,
-      image: '/images/product/期刊论文.png',
+      image: '/images/product/期刊论文.webp',
       stats: [
         { label: '简化表达', value: '化繁为简解释' },
         { label: '生动示例', value: '趣味类比说明' },
@@ -660,7 +660,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '以走马灯形式展示系统重要通知、用户动态和更新信息，让用户及时了解平台动态。',
       icon: MegaphoneIcon,
-      image: '/images/product/实时通知.png',
+      image: '/images/product/实时通知.webp',
       stats: [
         { label: '实时推送', value: '即时消息通知' },
         { label: '动态展示', value: '走马灯滚动播放' },
@@ -672,7 +672,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '支持手机、平板、电脑访问。通过自适应，完美解决移动端的管理需求，一套后台多端应用。',
       icon: VideoCameraIcon,
-      image: '/images/product/论文创作.png',
+      image: '/images/product/论文创作.webp',
       stats: [
         { label: '多端适配', value: '手机、平板、电脑全适配' },
         { label: '响应式设计', value: '界面布局自动调整' },

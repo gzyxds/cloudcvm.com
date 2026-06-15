@@ -28,7 +28,7 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 // ==================== 页面SEO元数据配置 ====================
 export const metadata: Metadata = {
-  title: '艺创AI_全能AI知识库系统_数字人解决方案_企业级AI平台',
+  title: { absolute: '艺创AI_全能AI知识库系统_数字人解决方案_企业级AI平台' },
   description:
     '艺创AI全能AI知识库系统是一款基于PHP和Java双语言开发的AI知识库系统,支持私有化部署,提供知识库训练、智能问答、数字人等多种功能,是企业打造数字化转型的理想选择',
   keywords: [
@@ -585,7 +585,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '为短视频创作者及抖音经营者提供智能灵感挖掘、智能剧本创作、智能视频生成、智能客服回复等AI工具，增强曝光及品牌影响力，全面提升获客转化率。',
       icon: SpeakerWaveIcon,
-      image: '/images/product/Marketing.png',
+      image: '/images/product/Marketing.webp',
       stats: [
         { label: '灵感挖掘', value: '智能剧本创作' },
         { label: '创意文案', value: '营销文案生成' },

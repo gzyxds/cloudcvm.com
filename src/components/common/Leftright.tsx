@@ -125,7 +125,7 @@ const solutionsData: SolutionCategory[] = [
         title: '汽车',
         description:
           '优刻云携手合作伙伴，基于云计算、大数据、AI、5G等前沿技术，赋能汽车产业数智升级，共建智能汽车新生态',
-        imageUrl: '/images/screenshots/solution-industry-auto.jpg',
+        imageUrl: '/images/screenshots/solution-industry-auto.webp',
         theme: 'dark',
       },
       {
@@ -133,7 +133,7 @@ const solutionsData: SolutionCategory[] = [
         title: '金融',
         description:
           '通过金融专区、专属云安全合规部署和全栈技术创新，助力金融客户业务敏捷创新，实现数字化转型',
-        imageUrl: '/images/screenshots/solution-industry-finance.jpg',
+        imageUrl: '/images/screenshots/solution-industry-finance.webp',
         theme: 'dark',
       },
       {
@@ -141,7 +141,7 @@ const solutionsData: SolutionCategory[] = [
         title: '医疗',
         description:
           '基于优刻云高性能、高可靠、高安全的数字化底座，携手医疗伙伴，为客户提供完善的医疗应用和服务体系',
-        imageUrl: '/images/screenshots/solution-industry-medical.jpg',
+        imageUrl: '/images/screenshots/solution-industry-medical.webp',
         theme: 'dark',
       },
       {
@@ -149,7 +149,7 @@ const solutionsData: SolutionCategory[] = [
         title: '制造',
         description:
           '华为工业互联网平台FusionPlant，助力企业实现业务在云上敏捷开发，边缘可信运行，持续释放潜在业务价值',
-        imageUrl: '/images/screenshots/solution-industry-manufacturing.jpg',
+        imageUrl: '/images/screenshots/solution-industry-manufacturing.webp',
         theme: 'light',
       },
       {
@@ -157,7 +157,7 @@ const solutionsData: SolutionCategory[] = [
         title: '教育',
         description:
           '面向市/区/县教育局及辖区内中小学提供场景化解决方案，将智慧化教育带给每个学校、每个家庭、每个孩子',
-        imageUrl: '/images/screenshots/solution-industry-education.jpg',
+        imageUrl: '/images/screenshots/solution-industry-education.webp',
         theme: 'dark',
       },
       {
@@ -165,7 +165,7 @@ const solutionsData: SolutionCategory[] = [
         title: '政府',
         description:
           '聚焦政务与城市数字化，面向场景进行流程再造与优化，真正提升人民的获得感、幸福感和安全感',
-        imageUrl: '/images/screenshots/solution-industry-government.jpg',
+        imageUrl: '/images/screenshots/solution-industry-government.webp',
         theme: 'dark',
       },
     ],
@@ -179,7 +179,7 @@ const solutionsData: SolutionCategory[] = [
         title: '优刻云数据使能解决方案',
         description:
           '以数据治理为基础，数据智能为动力，释放数据价值，助力各行各业数字化转型',
-        imageUrl: '/images/screenshots/solution-general-data-enablement.jpg',
+        imageUrl: '/images/screenshots/solution-general-data-enablement.webp',
         theme: 'dark',
       },
       {
@@ -187,7 +187,7 @@ const solutionsData: SolutionCategory[] = [
         title: 'SAP上云解决方案',
         description:
           '支持S/4 ERP、Business one等SAP系统上云，帮助企业实现极简运维与智慧运营',
-        imageUrl: '/images/screenshots/solution-general-sap.jpg',
+        imageUrl: '/images/screenshots/solution-general-sap.webp',
         theme: 'dark',
       },
       {
@@ -195,7 +195,7 @@ const solutionsData: SolutionCategory[] = [
         title: '优刻云数据要素流通解决方案',
         description:
           '提供可信、可控、可证的数据要素流通基础设施，支撑高质量数据供给，促进合规高效数据流通',
-        imageUrl: '/images/screenshots/solution-general-data-circulation.jpg',
+        imageUrl: '/images/screenshots/solution-general-data-circulation.webp',
         theme: 'dark',
       },
       {
@@ -203,7 +203,7 @@ const solutionsData: SolutionCategory[] = [
         title: '数字化营销解决方案',
         description:
           '提升用户增长运营效益，构建渠道&门店数字化能力，实现全面营销数字化转型',
-        imageUrl: '/images/screenshots/solution-general-digital-marketing.jpg',
+        imageUrl: '/images/screenshots/solution-general-digital-marketing.webp',
         theme: 'light',
       },
       {
@@ -211,7 +211,7 @@ const solutionsData: SolutionCategory[] = [
         title: '优刻云成长型企业数字化转型包',
         description:
           '联合业界知名应用厂商，针对成长型企业市场推出的系列化数字化转型包',
-        imageUrl: '/images/screenshots/solution-general-growth-enterprise.jpg',
+        imageUrl: '/images/screenshots/solution-general-growth-enterprise.webp',
         theme: 'dark',
       },
     ],
@@ -225,7 +225,7 @@ const solutionsData: SolutionCategory[] = [
         title: '快速搭建Dify-LLM应用开发平台',
         description:
           '云上快速部署单机版、高可用版Dify LLM应用开发平台，使开发者可以快速搭建生产级的生成式AI应用',
-        imageUrl: '/images/screenshots/solution-practice-dify.jpg',
+        imageUrl: '/images/screenshots/solution-practice-dify.webp',
         theme: 'light',
       },
       {
@@ -233,7 +233,7 @@ const solutionsData: SolutionCategory[] = [
         title: '部署Embedding及Reranker模型',
         description:
           '通过优刻云Flexus云服务器X实例高效部署Embedding和Reranker模型，助力快速搭建企业专属知识库',
-        imageUrl: '/images/screenshots/solution-practice-embedding.jpg',
+        imageUrl: '/images/screenshots/solution-practice-embedding.webp',
         theme: 'dark',
       },
       {
@@ -241,7 +241,7 @@ const solutionsData: SolutionCategory[] = [
         title: '快速体验智能问数',
         description:
           '实现从用户自然语言提问到智能数据查询、分析与可视化反馈的工作流系统，为企业构建自动化数据洞察助手',
-        imageUrl: '/images/screenshots/solution-practice-data-insight.jpg',
+        imageUrl: '/images/screenshots/solution-practice-data-insight.webp',
         theme: 'dark',
       },
       {
@@ -249,7 +249,7 @@ const solutionsData: SolutionCategory[] = [
         title: '数字人交互智能问答解决方案',
         description:
           '基于优刻云数字内容生产线 MetaStudio，ModelArts Studio大模型即服务平台和Dify快速部署数字人交互服务',
-        imageUrl: '/images/screenshots/solution-practice-digital-human.jpg',
+        imageUrl: '/images/screenshots/solution-practice-digital-human.webp',
         theme: 'light',
       },
       {
@@ -257,7 +257,7 @@ const solutionsData: SolutionCategory[] = [
         title: '文字识别-发票识别与验真',
         description:
           '基于优刻云文字识别 OCR增值税发票识别与发票验真技术构建，自动识别和录入增值税发票各字段信息，实现财税报销自动化',
-        imageUrl: '/images/screenshots/solution-practice-ocr.jpg',
+        imageUrl: '/images/screenshots/solution-practice-ocr.webp',
         theme: 'light',
       },
       {
@@ -265,7 +265,7 @@ const solutionsData: SolutionCategory[] = [
         title: '高可用网站架构云化',
         description:
           '快速在优刻云上部署高可用的云上网站架构，支持业务流量跨可用区进行分发，并具备跨可用区故障容灾的能力',
-        imageUrl: '/images/screenshots/solution-practice-ha-web.jpg',
+        imageUrl: '/images/screenshots/solution-practice-ha-web.webp',
         theme: 'light',
       },
     ],

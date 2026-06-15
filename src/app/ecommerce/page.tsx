@@ -56,7 +56,7 @@ const ecommerceFeatures = {
       { name: '订单处理', desc: '自动化订单流程，提升处理效率' },
     ],
     model: '店铺管理系统',
-    image: '/images/product/Carousel4.png',
+    image: '/images/product/Carousel4.webp',
   },
   marketing: {
     id: 'marketing',
@@ -98,7 +98,7 @@ const ecommerceFeatures = {
       { name: '商品分析', desc: '商品销售趋势，优化库存结构' },
     ],
     model: '数据分析平台',
-    image: '/images/product/Carousel4.png',
+    image: '/images/product/Carousel4.webp',
   },
   technology: {
     id: 'technology',
@@ -634,7 +634,7 @@ const ecommerceSlides = [
     description:
       '集直播、分销、拼团、砍价、抽奖等热门社交电商玩法，打通多端用户数据，构建全场景新零售社交电商解决方案',
     backgroundType: 'image' as const,
-    backgroundImage: '/images/carousel/HeaderCarousel2.jpg',
+    backgroundImage: '/images/carousel/HeaderCarousel2.webp',
     textPosition: 'left' as const,
     buttonText: '立即体验',
     buttonLink: '#',
@@ -646,7 +646,7 @@ const ecommerceSlides = [
     description:
       '全平台支持，一套系统适配所有终端，让您的电商业务覆盖更广泛的用户群体，提升销售转化率',
     backgroundType: 'image' as const,
-    backgroundImage: '/images/carousel/HeaderCarousel2.jpg',
+    backgroundImage: '/images/carousel/HeaderCarousel2.webp',
     textPosition: 'left' as const,
     buttonText: '查看详情',
     buttonLink: '#',
@@ -658,7 +658,7 @@ const ecommerceSlides = [
     description:
       '直播带货、多人拼团、砍价助力、限时秒杀等营销工具，助力商家快速获客和提高销售转化率',
     backgroundType: 'image' as const,
-    backgroundImage: '/images/carousel/HeaderCarousel3.jpg',
+    backgroundImage: '/images/carousel/HeaderCarousel3.webp',
     textPosition: 'left' as const,
     buttonText: '了解更多',
     buttonLink: '#',
@@ -670,7 +670,7 @@ const ecommerceSlides = [
     description:
       '完善的会员管理和多层级分销体系，扩大销售网络，充分挖掘会员价值，助力业务快速增长',
     backgroundType: 'image' as const,
-    backgroundImage: '/images/carousel/HeaderCarousel4.jpg',
+    backgroundImage: '/images/carousel/HeaderCarousel4.webp',
     textPosition: 'left' as const,
     buttonText: '立即开始',
     buttonLink: '#',

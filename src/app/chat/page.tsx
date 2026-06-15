@@ -29,7 +29,7 @@ import { Footer } from '@/components/Footer'
 
 // ==================== 页面SEO元数据配置 ====================
 export const metadata: Metadata = {
-  title: '艺创AI_AI系统源码_AI智能聊天系统_AI绘画系统',
+  title: { absolute: '艺创AI_AI系统源码_AI智能聊天系统_AI绘画系统' },
   description:
     '艺创AI专注提供AI系统源代码解决方案的技术团队「AI数字人系统」「企业全能AI变现系统」「AI聊天绘画系统」「AI论文写作系统」拥有PHP和Java两种语言版本，技术实力强，系统体验好支持私有部署，专业团队、售后无忧',
   keywords: ['AI系统源码', 'AI智能聊天系统', 'AI绘画系统', '艺创AI'],
@@ -584,7 +584,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '对接GPT接口，AI秒级回复，让您在工作中得心应手，提供更加精准的回答和服务，助力高效办公与内容创作。',
       icon: PencilIcon,
-      image: '/images/product/chat.png',
+      image: '/images/product/chat.webp',
       stats: [
         { label: 'AI秒级回复', value: '对接GPT接口，快速响应您的每一个问题' },
         { label: '精准内容生成', value: '智能理解需求，生成高质量文案和专业解答' },
@@ -596,7 +596,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '根据不同模型进行提问，AI会针对输入的问题进行深度创作，显著提升内容创作能力，满足多样化创作需求',
       icon: SpeakerWaveIcon,
-      image: '/images/product/AI智能创作.png',
+      image: '/images/product/AI智能创作.webp',
       stats: [
         { label: '多模型支持', value: '支持多种AI模型' },
         { label: '深度内容生成', value: 'AI深度理解创作' },
@@ -608,7 +608,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '只需一句话，让文字秒变精美画作。支持多种绘画风格，一键快速生成高质量画作。',
       icon: PencilIcon,
-      image: '/images/product/AI绘画.png',
+      image: '/images/product/AI绘画.webp',
       stats: [
         { label: '文生图', value: '输入描述，AI自动生成精美图片' },
         { label: '多风格支持', value: '支持多种绘画风格，满足不同创作需求' },
@@ -620,7 +620,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '支持自定义各类AI技能模型，可根据具体场景定制专属技能。技能分类越细致，AI回答越精准，全面满足多样化业务需求。',
       icon: AcademicCapIcon,
-      image: '/images/product/AI技能.png', // 新增图片路径
+      image: '/images/product/AI技能.webp', // 新增图片路径
 
       stats: [
         { label: '技能自定义', value: '支持自定义各类AI技能模型' },

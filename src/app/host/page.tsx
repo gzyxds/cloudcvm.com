@@ -38,7 +38,7 @@ import { VideoCarousel } from '@/components/carousel/VideoCarousel' // 视频轮
 
 // 页面元数据配置
 export const metadata: Metadata = {
-  title: '虚拟主机_适合新手小白_便捷管理_5分钟部署_优刻云官网',
+  title: '虚拟主机_适合新手小白_便捷管理_5分钟部署',
   description:
     '优刻云虚拟主机，适合新手小白初次部署站点，预装了常见环境、数据库及管理工具，可以通过控制面板便捷地管理托管网站，仅需5分钟即可部署第一个站点！',
   keywords: [
@@ -651,7 +651,7 @@ function ECSVideoHero() {
       description:
         '专业的虚拟主机服务，为您提供安全、稳定、高性能的网站托管方案。从个人博客到企业网站，我们都能满足您的需求。',
       backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.jpg',
+      backgroundImage: '/images/carousel/HeaderCarousel.webp',
       textPosition: 'left' as const,
       buttonText: '开始体验',
       buttonLink: 'https://console.cloudcvm.com/regist.htm',

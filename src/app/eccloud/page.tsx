@@ -28,11 +28,11 @@ import { Header } from '@/components/Header'
  * 用于社媒运营和社交媒体分享
  */
 export const metadata: Metadata = {
-  title: '电商云_电商vps_电商云主机_跨境电商云服务器_优刻云',
+  title: '电商云_电商vps_电商云主机_跨境电商云服务器',
   description: '由优刻云打造的跨境电商专用云主机，专为跨境卖家提供纯净静态IP，使用环境完全隔离，有效解决跨境电商多店铺运营的防关联难题，安全、快速、有保障。平台提供30多个海内外线路，将各个电商平台的使用场景一网打尽',
   keywords: ['电商云,电商vps,电商云主机,跨境电商云服务器'],
   openGraph: {
-    title: '电商云_电商vps_电商云主机_跨境电商云服务器_优刻云',
+    title: '电商云_电商vps_电商云主机_跨境电商云服务器',
     description: '由优刻云打造的跨境电商专用云主机，专为跨境卖家提供纯净静态IP，使用环境完全隔离，有效解决跨境电商多店铺运营的防关联难题，安全、快速、有保障。平台提供30多个海内外线路，将各个电商平台的使用场景一网打尽',
     type: 'website',
   },
@@ -565,7 +565,7 @@ export default function EcommercePage() {
                 <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
-                    backgroundImage: "url('/images/product/TikTok.png')"
+                    backgroundImage: "url('/images/product/TikTok.webp')"
                   }}
                 />
                 <div className="absolute inset-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-300"></div>
@@ -581,10 +581,10 @@ export default function EcommercePage() {
               <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* 卡片组件 */}
                 {[
-                    { title: "社媒运营", desc: "批量管理Facebook、Instagram、Twitter等账号，提高运营效率", img: "/images/product/社媒运营.png" },
-                    { title: "海外网站及AI应用解锁", desc: "访问全球网站和AI应用无障碍", img: "/images/product/跨境电商.png" },
-                    { title: "跨境电商", desc: "降低账号被封风险，支持亚马逊、eBay等多平台账号注册与运营", img: "/images/product/ip.png" },
-                    { title: "海外网站及AI应用解锁", desc: "畅享全球互联网服务", img: "/images/product/住宅IP.png" }
+                    { title: "社媒运营", desc: "批量管理Facebook、Instagram、Twitter等账号，提高运营效率", img: "/images/product/社媒运营.webp" },
+                    { title: "海外网站及AI应用解锁", desc: "访问全球网站和AI应用无障碍", img: "/images/product/跨境电商.webp" },
+                    { title: "跨境电商", desc: "降低账号被封风险，支持亚马逊、eBay等多平台账号注册与运营", img: "/images/product/ip.webp" },
+                    { title: "海外网站及AI应用解锁", desc: "畅享全球互联网服务", img: "/images/product/住宅IP.webp" }
                 ].map((item, i) => (
                     <div key={i} className="relative overflow-hidden bg-white border border-[#E2E8F0] transition-all duration-300 hover:border-[#0055ff]/50 hover:shadow-lg cursor-pointer group rounded-sm">
                       <div

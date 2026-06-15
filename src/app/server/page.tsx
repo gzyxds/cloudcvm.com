@@ -184,7 +184,7 @@ const serverProducts: ServerProduct[] = [
 ]
 // 页面元数据配置
 export const metadata: Metadata = {
-  title: '独立服务器_裸金属云服务器_物理服务器_专用服务器_高性能服务器_优刻云',
+  title: '独立服务器_裸金属云服务器_物理服务器_专用服务器_高性能服务器',
   description:
     '优刻云独立物理服务器，提供专属硬件资源，支持多种配置规格，满足高性能业务需求。',
   keywords: [
@@ -286,7 +286,7 @@ function BareMetalVideoHero() {
       description:
         '体验下一代独立物理服务器，让专属硬件资源为您的业务发展提供强大支持。从裸金属部署到应用优化，独立服务器让高性能计算变得前所未有的简单。',
       backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.jpg',
+      backgroundImage: '/images/carousel/HeaderCarousel.webp',
       textPosition: 'left' as const,
       buttonText: '开始体验独立服务器',
       buttonLink: 'https://console.cloudcvm.com/regist.htm',

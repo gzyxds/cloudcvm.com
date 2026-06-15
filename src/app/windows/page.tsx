@@ -192,7 +192,7 @@ const serverProducts: ServerProduct[] = [
 
 // 页面元数据配置
 export const metadata: Metadata = {
-  title: '云电脑_云主机_挂机宝_云计算服务器_弹性云服务器_云电脑_优刻云',
+  title: '云电脑_云主机_挂机宝_云计算服务器_弹性云服务器',
   description:
     '优刻云云电脑，提供弹性计算能力，支持多种实例规格，满足不同业务需求。',
   keywords: [
@@ -297,7 +297,7 @@ function ECSVideoHero() {
       description:
         '云电脑企业版安全高效，支持快速部署和统一管理，访问灵活，资源弹性调整，适用于办公、教育、协作等场景。',
       backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.jpg',
+      backgroundImage: '/images/carousel/HeaderCarousel.webp',
       textPosition: 'left' as const,
       buttonText: '开始体验云电脑',
       buttonLink: 'https://console.cloudcvm.com/regist.htm',
