@@ -190,6 +190,15 @@ export function Header(): JSX.Element {
 
           {/* 分割线 */}
           <div className="mx-2 h-6 w-px bg-gray-200"></div>
+          {/* 产品订购 */}
+          <a
+            href="https://console.cloudcvm.com/cart/goodsList.htm"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
+          >
+            产品订购
+          </a>
+          {/* 分割线 */}
+          <div className="mx-2 h-6 w-px bg-gray-200"></div>
 
           {/* 控制台 */}
           <a
