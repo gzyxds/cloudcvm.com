@@ -414,7 +414,7 @@ export function Leftright() {
 
   return (
     <section
-      className="relative flex min-h-0 flex-col justify-center overflow-x-hidden py-6 sm:min-h-[100dvh] sm:py-20 lg:py-24 bg-scroll sm:bg-fixed"
+      className="relative overflow-x-hidden py-6 sm:py-20 lg:py-24 bg-scroll sm:bg-fixed"
       style={{
         backgroundImage: 'url(/images/background/background-4.webp)',
         backgroundSize: 'cover',
@@ -423,15 +423,15 @@ export function Leftright() {
       aria-labelledby="solutions-section-title"
     >
       <Container className="relative z-10">
-        {/* 顶部标题 */}
-        <div className="mb-3 text-center sm:mb-14 lg:mb-20">
+        {/* 顶部标题 — 仅桌面端显示 */}
+        <div className="hidden text-center sm:block sm:mb-14 lg:mb-20">
           <h2
             id="solutions-section-title"
-            className="mb-2 text-2xl font-bold leading-tight tracking-tight text-neutral-900 sm:mb-4 sm:text-4xl lg:text-5xl"
+            className="mb-4 text-4xl font-bold leading-tight tracking-tight text-neutral-900 lg:text-5xl"
           >
             成熟行业实践，释放云上数字生产力
           </h2>
-          <p className="mx-auto max-w-2xl px-4 text-sm leading-relaxed text-neutral-500 sm:px-0 sm:text-lg">
+          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-neutral-500 sm:text-lg">
             汇聚各行业数字化转型成功经验，提供场景化解决方案，助力企业降本增效，加速业务创新
           </p>
         </div>
@@ -456,8 +456,7 @@ export function Leftright() {
                 id={`solutions-tab-${category.id}`}
                 tabIndex={activeTab === category.id ? 0 : -1}
                 className={clsx(
-                  'relative flex items-center justify-center gap-1.5 whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors duration-200 outline-none sm:flex-1 sm:gap-2 sm:px-6 sm:py-4 sm:text-base',
-                  'min-h-[44px]',
+                  'relative flex min-h-[44px] items-center justify-center gap-1.5 whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors duration-200 outline-none sm:flex-1 sm:gap-2 sm:px-6 sm:py-4 sm:text-base',
                   'focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
                   activeTab === category.id
                     ? 'text-brand-500'
@@ -488,15 +487,9 @@ export function Leftright() {
         </nav>
 
         {/* 解决方案卡片 — 移动端横排滑动，桌面端网格 */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            suppressHydrationWarning
-            key={activeTab}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide snap-x snap-mandatory touch-pan-x sm:grid sm:grid-cols-2 sm:gap-5 sm:snap-none sm:overflow-visible sm:pb-0 sm:touch-auto lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5 2xl:gap-6"
+        <div className="overflow-x-auto scrollbar-hide sm:overflow-visible">
+          <div
+            className="flex w-max gap-3 pb-4 sm:grid sm:w-auto sm:grid-cols-2 sm:gap-5 sm:pb-0 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5 2xl:gap-6"
             role="tabpanel"
             id={`solutions-panel-${activeCategory.id}`}
             aria-labelledby={`solutions-tab-${activeCategory.id}`}
@@ -504,7 +497,7 @@ export function Leftright() {
             {activeCategory.items.map((item, index) => (
               <div
                 key={item.id}
-                className="w-[80vw] max-w-[320px] flex-shrink-0 snap-start sm:w-auto sm:max-w-none"
+                className="w-[80vw] max-w-[320px] flex-shrink-0 sm:w-auto sm:max-w-none"
               >
                 <SolutionCard
                   item={item}
@@ -512,8 +505,8 @@ export function Leftright() {
                 />
               </div>
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        </div>
 
         {/* 底部链接 */}
         <div className="mt-4 text-center sm:mt-16 lg:mt-20">

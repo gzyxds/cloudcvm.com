@@ -801,40 +801,83 @@ export default function ServiceTabs() {
           </div>
         </div>
 
-        {/* 顶部 Tab 导航 - Bento 风格 Segmented Control */}
-        <div className="flex justify-start mb-6 sm:mb-8 overflow-x-auto no-scrollbar pb-1 -mx-3 sm:mx-0 px-3 sm:px-0">
-          <div className="inline-flex border border-neutral-200 bg-neutral-50 w-full rounded-lg p-0.5">
-            {serviceTabs.map((tab, index) => {
-              const isActive = activeTab === index
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(index)}
-                  onMouseEnter={() => handleTabHover(index)}
-                  onMouseLeave={handleTabLeave}
-                  aria-selected={isActive}
-                  role="tab"
-                  aria-controls={`tabpanel-${tab.id}`}
-                  className={clsx(
-                    "flex items-center justify-center gap-2 px-3 sm:px-5 lg:px-7 py-2.5 sm:py-3 text-sm sm:text-base font-medium transition-all duration-200 whitespace-nowrap outline-none select-none rounded-md flex-1",
-                    "min-h-[44px] sm:min-h-[48px]",
-                    "focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:z-10",
-                    isActive
-                      ? "bg-white text-brand-500 shadow-sm"
-                      : "text-neutral-600 hover:text-neutral-900 hover:bg-white/50"
-                  )}
-                >
-                  <tab.icon
+        {/* 顶部 Tab 导航 - 移动端：横向滚动 + 下划线指示器；桌面端：Bento 风格 Segmented Control */}
+        <div className="mb-6 sm:mb-8">
+          {/* 移动端 Tab - 参考 Erlie.tsx 设计：横向滚动 + 底部下划线指示器 */}
+          <div className="sm:hidden overflow-x-auto scrollbar-hide border-b border-neutral-200 -mx-3 px-3">
+            <div className="flex w-max">
+              {serviceTabs.map((tab, index) => {
+                const isActive = activeTab === index
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(index)}
+                    onMouseEnter={() => handleTabHover(index)}
+                    onMouseLeave={handleTabLeave}
+                    aria-selected={isActive}
+                    role="tab"
+                    aria-controls={`tabpanel-${tab.id}`}
                     className={clsx(
-                      "w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-200 flex-shrink-0",
-                      isActive ? "text-brand-500" : "text-neutral-400"
+                      "relative flex items-center justify-center gap-1.5 whitespace-nowrap px-3 py-3 text-sm font-medium transition-colors duration-200 outline-none select-none",
+                      "min-h-[44px] flex-shrink-0",
+                      "focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:z-10",
+                      isActive
+                        ? "text-brand-500"
+                        : "text-neutral-500"
                     )}
-                    aria-hidden="true"
-                  />
-                  <span className="truncate">{tab.name}</span>
-                </button>
-              )
-            })}
+                  >
+                    <tab.icon
+                      className={clsx(
+                        "w-4 h-4 shrink-0 transition-colors duration-200",
+                        isActive ? "text-brand-500" : "text-neutral-400"
+                      )}
+                      aria-hidden="true"
+                    />
+                    <span>{tab.name}</span>
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-500" aria-hidden="true" />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* 桌面端 Tab - Segmented Control 风格 */}
+          <div className="hidden sm:block">
+            <div className="inline-flex border border-neutral-200 bg-neutral-50 w-full rounded-lg p-0.5">
+              {serviceTabs.map((tab, index) => {
+                const isActive = activeTab === index
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(index)}
+                    onMouseEnter={() => handleTabHover(index)}
+                    onMouseLeave={handleTabLeave}
+                    aria-selected={isActive}
+                    role="tab"
+                    aria-controls={`tabpanel-${tab.id}`}
+                    className={clsx(
+                      "flex items-center justify-center gap-2 px-5 lg:px-7 py-3 text-base font-medium transition-all duration-200 whitespace-nowrap outline-none select-none rounded-md flex-1",
+                      "min-h-[48px]",
+                      "focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset focus-visible:z-10",
+                      isActive
+                        ? "bg-white text-brand-500 shadow-sm"
+                        : "text-neutral-600 hover:text-neutral-900 hover:bg-white/50"
+                    )}
+                  >
+                    <tab.icon
+                      className={clsx(
+                        "w-5 h-5 transition-colors duration-200 flex-shrink-0",
+                        isActive ? "text-brand-500" : "text-neutral-400"
+                      )}
+                      aria-hidden="true"
+                    />
+                    <span>{tab.name}</span>
+                  </button>
+                )
+              })}
+            </div>
           </div>
         </div>
 
