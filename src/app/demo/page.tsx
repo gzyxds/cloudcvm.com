@@ -28,25 +28,36 @@ const DemoPage = () => {
       <Header />
 
       {/* 简约英雄区域 */}
-      <section className="relative border-b border-gray-100 bg-slate-100 pt-16">
-        <Container className="py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-gray-50 pt-10 dark:bg-gray-900">
+        {/* 背景装饰光晕 */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 h-80 w-80 rounded-full bg-[#0055ff]/[0.06] blur-3xl sm:h-96 sm:w-96" />
+          <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-blue-400/[0.06] blur-3xl sm:h-80 sm:w-80" />
+        </div>
+        {/* 底部波浪分隔 */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+            <path d="M0 60V20C240 0 480 40 720 30C960 20 1200 0 1440 20V60H0Z" fill="white" className="dark:fill-gray-900" />
+          </svg>
+        </div>
+        <Container className="relative py-14 lg:py-18">
           <div className="mx-auto max-w-4xl text-center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mb-8"
+              className="mb-5"
             >
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-600">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-600">
                 <Star className="h-4 w-4" />
                 用科技创造无限可能
               </div>
 
-              <h1 className="mb-6 text-4xl leading-tight font-bold text-black md:text-5xl lg:text-6xl">
+              <h1 className="mb-4 text-4xl leading-tight font-bold text-black md:text-5xl lg:text-6xl">
                 产品体验
               </h1>
 
-              <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-gray-600 md:text-xl">
+              <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-gray-600 md:text-xl">
                 基于前后端分离架构以及Vue3、uni-app、ThinkPHP6.x、PHP8.0技术栈开发，包含PC端、H5端、小程序端、APP端
               </p>
             </motion.div>

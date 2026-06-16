@@ -192,6 +192,13 @@ export const productCategories: MegaMenuCategory[] = [
         icon: SquaresPlusIcon,
       },
       {
+        id: 'api',
+        name: 'AI大模型',
+        description: 'AI大模型网关',
+        href: '/',
+        icon: SquaresPlusIcon,
+      },
+      {
         id: 'demo',
         name: '体验产品',
         description: '产品演示',

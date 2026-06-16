@@ -55,7 +55,7 @@ const navigation = {
     { name: 'AI系统源码', href: 'https://www.artaigc.cn' },
     { name: 'PaYphp', href: 'https://www.payphp.cn' },
     { name: '论文创作', href: 'https://paper.gmlart.cn' },
-    { name: '智言AI', href: 'https://buidai.com/' },
+    { name: '智言AI', href: 'https://智言AI.com/' },
     { name: '智言API', href: 'https://api.gmlart.cn/' },
     { name: '数字分身', href: 'https://v.cnai.art' },
     { name: '企业知识库', href: 'https://www.cnai.art' },
@@ -98,9 +98,8 @@ export function Footer() {
             {title}
           </h3>
           <svg
-            className={`h-5 w-5 transform transition-transform duration-200 md:hidden ${
-              isExpanded ? 'rotate-180' : ''
-            }`}
+            className={`h-5 w-5 transform transition-transform duration-200 md:hidden ${isExpanded ? 'rotate-180' : ''
+              }`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -114,9 +113,8 @@ export function Footer() {
           </svg>
         </button>
         <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out md:block ${
-            isExpanded ? 'max-h-96 pb-4' : 'max-h-0 md:max-h-none md:pb-0'
-          }`}
+          className={`overflow-hidden transition-all duration-300 ease-in-out md:block ${isExpanded ? 'max-h-96 pb-4' : 'max-h-0 md:max-h-none md:pb-0'
+            }`}
         >
           <ul role="list" className="space-y-4 md:mt-6">
             {items.map((item) => (
@@ -275,9 +273,8 @@ export function Footer() {
                   友情链接
                 </h3>
                 <svg
-                  className={`h-5 w-5 transform text-gray-500 transition-transform duration-200 dark:text-gray-400 ${
-                    expandedSections['friendlyLinks'] ? 'rotate-180' : ''
-                  }`}
+                  className={`h-5 w-5 transform text-gray-500 transition-transform duration-200 dark:text-gray-400 ${expandedSections['friendlyLinks'] ? 'rotate-180' : ''
+                    }`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -295,11 +292,10 @@ export function Footer() {
               {/* 折叠内容 */}
               <div
                 id="friendlyLinks-content"
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  expandedSections['friendlyLinks']
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${expandedSections['friendlyLinks']
                     ? 'max-h-96 pb-3'
                     : 'max-h-0'
-                }`}
+                  }`}
               >
                 <div className="flex flex-wrap gap-x-4 gap-y-3">
                   {navigation.friendlyLinks.map((item) => (

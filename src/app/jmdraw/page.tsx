@@ -4,20 +4,20 @@ import { Footer } from '@/components/Footer'
 import BananaProductPage from '@/components/ai/BananaProductPage'
 
 export const metadata: Metadata = {
-  title: { absolute: '即梦AI绘画 - AI绘画系统,AI系统源码,AI绘画生成系统 | 必定AI-BuidAI' },
-  description: '必定AI-BuidAI 即梦AI绘画是一个基于即梦AI绘画的快速绘图工具,能够通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词或参考图来生成图片,支持多种图片比例以及1K和2K分辨率设置。基于开源技术构建,提供完整源码与私有化部署支持。',
-  keywords: '即梦AI,AI绘画,文生图,图生图,AI绘画工具,必定AI,BuidAI,图片生成,开源AI系统,私有化部署,即梦4.0,绘画源码',
+  title: { absolute: '即梦AI绘画 - AI绘画系统,AI系统源码,AI绘画生成系统 | 智言AI' },
+  description: '智言AI 即梦AI绘画是一个基于即梦AI绘画的快速绘图工具,能够通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词或参考图来生成图片,支持多种图片比例以及1K和2K分辨率设置。基于开源技术构建,提供完整源码与私有化部署支持。',
+  keywords: '即梦AI,AI绘画,文生图,图生图,AI绘画工具,必定AI,智言AI,图片生成,开源AI系统,私有化部署,即梦4.0,绘画源码',
   openGraph: {
-    title: '即梦AI绘画 - 一键生成 AI 图片 | 必定AI-BuidAI',
+    title: '即梦AI绘画 - 一键生成 AI 图片 | 智言AI',
     description: '通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词、多种图片比例和分辨率,让创作更简单。',
-    images: ['/product/jmdraw.png'],
+    images: ['/product/jmdraw.webp'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '即梦AI绘画 - 一键生成 AI 图片 | 必定AI-BuidAI',
+    title: '即梦AI绘画 - 一键生成 AI 图片 | 智言AI',
     description: '通过简单提示词快速生成高质量图像,风格覆盖广泛,支持纯文本提示词和多种图片比例。',
-    images: ['/product/jmdraw.png'],
+    images: ['/product/jmdraw.webp'],
   },
 }
 
@@ -30,7 +30,7 @@ export default function JmdrawPage() {
           badgeText="即梦AI 2.0 发布"
           heroTitle={<>打造您的 <span className="text-[#0055ff]">专属 AI 绘画</span></>}
           heroDesc={<>新一代 AI 绘画生成工具，输入文字描述或上传参考图即可快速生成高质量图像。<br className="hidden sm:block" />风格覆盖广泛，写实、卡通、插画等皆可驾驭，充分释放您的创作潜能。</>}
-          heroImage="/images/aisolution/jmdraw-4.png"
+          heroImage="/images/aisolution/jmdraw-4.webp"
           featuresTitle=""
           featuresDesc="集文生图、图生图、多种分辨率于一体，为您提供一站式绘画生成解决方案。"
           features={[
@@ -52,7 +52,7 @@ export default function JmdrawPage() {
                 { title: '快速生成', desc: '生成速度非常快，大幅缩短等待时间，提升创作效率，让创意快速落地。' },
                 { title: '高质量输出', desc: '生成的图片质量高，细节丰富、色彩饱满，满足专业级创作需求。' },
               ],
-              image: '/images/aisolution/jmdraw-1.png',
+              image: '/images/aisolution/jmdraw-1.webp',
             },
             {
               title: '图生图，参考图智能融合',
@@ -64,7 +64,7 @@ export default function JmdrawPage() {
                 { title: '风格保持一致', desc: '从参考图中学习风格、构图和细节，生成与原图风格协调的新图片。' },
                 { title: '灵活创作方式', desc: '同时支持纯文本提示词和上传参考图两种方式，满足不同用户的创作习惯。' },
               ],
-              image: '/images/aisolution/jmdraw-2.png',
+              image: '/images/aisolution/jmdraw-2.webp',
             },
             {
               title: '后台管理与配置，灵活可控',
@@ -76,11 +76,11 @@ export default function JmdrawPage() {
                 { title: '生成记录与积分管理', desc: '后台可查看生成记录和积分消耗情况，支持自定义积分消耗策略，方便运营管理。' },
                 { title: '自定义应用名称', desc: '后台可自由修改应用在前台显示的名称，打造品牌专属体验，满足个性化需求。' },
               ],
-              image: '/images/aisolution/jmdraw-3.png',
+              image: '/images/aisolution/jmdraw-3.webp',
             },
           ]}
           ctaTitle="准备好开始创作了吗？"
-          ctaDesc="立即加入 BuidAI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。"
+          ctaDesc="立即加入 智言AI，体验前沿 AI 技术带来的无限可能。无需复杂的配置，快速构建您的数字人应用。"
         />
       </main>
       <Footer />

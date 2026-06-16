@@ -4,8 +4,13 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Container } from './Container'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
-import { MapPin, Radio, Cable } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import {
+  MapPinIcon,
+  SignalIcon,
+  GlobeAltIcon,
+  ChevronRightIcon,
+} from '@heroicons/react/24/outline'
+import clsx from 'clsx'
 
 /* ─────────────────────── 类型定义 ─────────────────────── */
 
@@ -20,15 +25,15 @@ interface TabConfigItem {
   id: string
   label: string
   suffix: string
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>
+  icon: React.ComponentType<{ className?: string }>
 }
 
 /* ─────────────────────── 静态数据 ─────────────────────── */
 
 const tabConfig: TabConfigItem[] = [
-  { id: 'regions', label: '14', suffix: '个国内区域', icon: MapPin },
-  { id: 'centers', label: '30', suffix: '个数据中心', icon: Radio },
-  { id: 'lines', label: '31', suffix: '条加速专线', icon: Cable },
+  { id: 'regions', label: '14', suffix: '个国内区域', icon: MapPinIcon },
+  { id: 'centers', label: '30', suffix: '个数据中心', icon: SignalIcon },
+  { id: 'lines', label: '31', suffix: '条加速专线', icon: GlobeAltIcon },
 ]
 
 const regionData: ZoneItem[] = [
@@ -65,12 +70,10 @@ const dataMap: Record<string, ZoneItem[]> = {
   lines: lineData,
 }
 
-/** 全球节点数据 — 同时用于地图可视化标记和信息卡展示 */
 interface MapNode {
   name: string
   top: string
   left: string
-  /** 所属分类，用于点击标记时高亮对应信息卡 */
   region?: string
   zones?: string
   description?: string
@@ -88,27 +91,11 @@ const mapNodes: MapNode[] = [
   { name: '新加坡', top: '53%', left: '58%', region: '东南亚', zones: 'T3+ 标准', description: '东南亚枢纽' },
 ]
 
-/* ─────────────────────── 动画变体 ─────────────────────── */
-
-const pulseVariants: Variants = {
-  hidden: { scale: 1, opacity: 0.2 },
-  visible: {
-    scale: [1, 3.6],
-    opacity: [0.25, 0],
-    transition: { repeat: Infinity, duration: 2.5, ease: 'easeOut' },
-  },
-}
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 },
-}
-
 /* ─────────────────────── 地图背景 ─────────────────────── */
 
 function WorldMap() {
   return (
-    <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden" aria-hidden="true">
+    <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-none" aria-hidden="true">
       <div className="relative h-full w-full max-w-[1400px]">
         <Image
           src="/images/screenshots/zone-earth.webp"
@@ -116,28 +103,20 @@ function WorldMap() {
           role="presentation"
           fill
           loading="lazy"
-          className="object-contain opacity-[0.18] lg:opacity-[0.28]"
+          className="object-contain opacity-[0.06] dark:opacity-[0.10]"
         />
-
-        {/* 全球节点标记 */}
+        {/* 节点标记 */}
         {mapNodes.map((node) => (
           <div
             key={node.name}
-            className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-1/2"
+            className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
             style={{ top: node.top, left: node.left }}
           >
-            {/* 脉冲波纹 */}
-            <motion.span
-              variants={pulseVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.5 }}
-              className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-500/25"
-            />
-            {/* 实体圆点 */}
-            <span className="relative block h-3 w-3 rounded-full bg-primary-500 ring-2 ring-white/90" />
-            {/* 城市名称 */}
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 whitespace-nowrap text-[11px] font-semibold text-slate-500 lg:text-xs">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-30" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600 ring-2 ring-white dark:ring-gray-900" />
+            </span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 whitespace-nowrap text-[11px] font-medium text-gray-500 dark:text-gray-400">
               {node.name}
             </span>
           </div>
@@ -149,77 +128,41 @@ function WorldMap() {
 
 /* ─────────────────────── 信息卡 ─────────────────────── */
 
-function InfoCard({ item, index }: { item: ZoneItem; index: number }) {
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: { opacity: 1, y: 0 },
+}
+
+function InfoCard({ item, index, icon: Icon }: { item: ZoneItem; index: number; icon: React.ComponentType<{ className?: string }> }) {
   return (
     <motion.div
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      transition={{ duration: 0.35, delay: index * 0.05 }}
+      transition={{ duration: 0.25, delay: index * 0.04 }}
     >
-      <div
-        className={cn(
-          'group rounded-xl border border-white/40 bg-white/30 p-4',
-          'backdrop-blur shadow-[0_1px_3px_rgba(0,0,0,0.04)]',
-          'transition-all duration-200',
-          'hover:border-white/60 hover:bg-white/45 hover:shadow-md hover:shadow-primary-500/5',
-          'dark:bg-white/20 dark:hover:bg-white/30'
-        )}
-      >
-        <div className="flex items-start gap-3">
-          <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50">
-            <MapPin className="h-4 w-4 text-primary-500" strokeWidth={1.5} />
+      <div className="group bg-white/30 dark:bg-gray-800/25 backdrop-blur-[2px] border border-white/40 dark:border-gray-700/30 rounded-md p-6 hover:bg-white/50 dark:hover:bg-gray-800/45 hover:border-blue-200/60 dark:hover:border-blue-700/20 transition-all">
+        <div className="flex items-start gap-4">
+          <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-500/10 dark:bg-blue-400/10">
+            <Icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
           </div>
-          <div className="min-w-0 flex-1 space-y-1">
-            <h3 className="text-[15px] font-semibold text-slate-900">{item.name}</h3>
-            {item.zones && (
-              <p className="text-[13px] font-medium text-slate-500">{item.zones}</p>
-            )}
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 mb-1.5">
+              <h3 className="text-base font-semibold text-gray-900 dark:text-white">{item.name}</h3>
+              {item.zones && (
+                <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100/70 dark:bg-gray-700/50 px-2 py-0.5 rounded">
+                  {item.zones}
+                </span>
+              )}
+            </div>
             {item.description && (
-              <p className="text-[13px] leading-relaxed text-slate-400">{item.description}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{item.description}</p>
             )}
           </div>
+          <ChevronRightIcon className="h-5 w-5 shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-blue-500 transition-colors self-center" />
         </div>
       </div>
     </motion.div>
-  )
-}
-
-/* ─────────────────────── Tab 按钮 ─────────────────────── */
-
-function TabButton({
-  tab,
-  isActive,
-  onClick,
-}: {
-  tab: TabConfigItem
-  isActive: boolean
-  onClick: () => void
-}) {
-  const Icon = tab.icon
-  return (
-    <button
-      role="tab"
-      aria-selected={isActive}
-      onClick={onClick}
-      className={cn(
-        'relative flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium',
-        'transition-all duration-200 sm:gap-2.5 sm:px-7 sm:py-3 sm:text-base',
-        isActive
-          ? 'bg-primary-500 text-white shadow-sm'
-          : 'text-slate-500 hover:bg-white hover:text-slate-900'
-      )}
-    >
-      <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.5} />
-      <span className="font-bold tabular-nums">{tab.label}</span>
-      <span className="hidden sm:inline">{tab.suffix}</span>
-      <span className="sm:hidden">
-        {tab.suffix
-          .replace('个国内区域', ' 区域')
-          .replace('个数据中心', ' 中心')
-          .replace('条加速专线', ' 专线')}
-      </span>
-    </button>
   )
 }
 
@@ -228,65 +171,67 @@ function TabButton({
 export default function Zone() {
   const [activeTab, setActiveTab] = useState('regions')
   const currentData = dataMap[activeTab] ?? []
+  const activeTabConfig = tabConfig.find((t) => t.id === activeTab)
+  const ActiveIcon = activeTabConfig?.icon ?? MapPinIcon
 
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-14 sm:py-20 lg:py-28">
-      {/* 全幅地图背景 */}
+    <section className="relative overflow-hidden bg-gray-50 dark:bg-gray-900 py-16 sm:py-20 lg:py-24">
       <WorldMap />
 
       <Container className="relative z-10">
-        {/* 标题区域 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <h2 className="text-balance text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+        {/* 标题区 */}
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
             全球云计算基础设施
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-slate-500 sm:text-base">
+          <p className="mt-4 text-base sm:text-lg text-gray-500 dark:text-gray-400">
             安全合规，稳定可靠，服务瞬达全球
           </p>
-        </motion.div>
+        </div>
 
-        {/* Tab 切换 */}
-        <div className="mt-10 flex justify-center sm:mt-12">
-          <div
-            className="inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm"
-            role="tablist"
-          >
+        {/* Tab 切换栏 */}
+        <div className="mt-10 sm:mt-12 flex justify-center">
+          <div className="inline-flex rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-0.5" role="tablist">
             {tabConfig.map((tab) => (
-              <TabButton
+              <button
                 key={tab.id}
-                tab={tab}
-                isActive={activeTab === tab.id}
+                role="tab"
+                aria-selected={activeTab === tab.id}
                 onClick={() => setActiveTab(tab.id)}
-              />
+                className={clsx(
+                  'flex items-center gap-2.5 px-6 py-2.5 text-base font-medium rounded transition-colors',
+                  activeTab === tab.id
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                )}
+              >
+                <tab.icon className="h-5 w-5" />
+                <span className="tabular-nums font-bold">{tab.label}</span>
+                <span className="hidden sm:inline text-sm opacity-70">{tab.suffix}</span>
+              </button>
             ))}
           </div>
         </div>
 
-        {/* 信息卡片区 — 紧凑居中网格，不再分割左右 */}
-        <div className="mt-10 sm:mt-12 lg:mt-14">
+        {/* 信息卡片网格 */}
+        <div className="mt-8 sm:mt-10 lg:mt-12">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               {currentData.length > 0 ? (
-                <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {currentData.map((item, i) => (
-                    <InfoCard key={item.id} item={item} index={i} />
+                    <InfoCard key={item.id} item={item} index={i} icon={ActiveIcon} />
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center py-16 text-slate-400">
-                  <MapPin className="mb-3 h-10 w-10 opacity-30" strokeWidth={1} />
+                <div className="flex flex-col items-center justify-center py-16 text-gray-400 dark:text-gray-500">
+                  <MapPinIcon className="mb-3 h-10 w-10 opacity-30" />
                   <p className="text-sm">暂无数据</p>
                 </div>
               )}
@@ -294,17 +239,20 @@ export default function Zone() {
           </AnimatePresence>
         </div>
 
-        {/* 底部：全球节点总览条 */}
-        <div className="mx-auto mt-12 max-w-5xl sm:mt-16 lg:mt-20">
-          <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-slate-400">
-            全球节点分布
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-xl border border-white/40 bg-white/30 px-6 py-4 backdrop-blur shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+        {/* 底部全球节点总览 */}
+        <div className="mt-14 sm:mt-16">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="h-4 w-0.5 bg-blue-600 rounded-full" />
+            <p className="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+              全球节点分布
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-6 py-4">
             {mapNodes.map((node) => (
-              <div key={node.name} className="flex items-center gap-1.5 whitespace-nowrap">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary-500/60" />
-                <span className="text-[13px] font-medium text-slate-700">{node.name}</span>
-                <span className="text-[11px] text-slate-400">{node.region}</span>
+              <div key={node.name} className="flex items-center gap-2 whitespace-nowrap">
+                <span className="h-2 w-2 rounded-full bg-blue-500/60" />
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{node.name}</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">{node.region}</span>
               </div>
             ))}
           </div>

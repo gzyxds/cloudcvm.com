@@ -55,7 +55,7 @@ const apiFeatures: FeatureItem[] = [
 ]
 
 /**
- * 极速体验必定AI-BuidAI组件
+ * 极速体验智言AI组件
  */
 export function Rightleft() {
   return (
