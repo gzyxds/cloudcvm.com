@@ -130,7 +130,7 @@ function AdvantageCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-xl border border-neutral-200 bg-white transition-[flex] duration-700 ease-out hover:border-brand-300 hover:shadow-lg',
+        'group relative cursor-pointer overflow-hidden rounded-xl border border-neutral-200/60 bg-white/40 backdrop-blur-xl transition-[flex] duration-700 ease-out hover:shadow-lg',
         isExpanded
           ? 'flex-[2] md:flex-[2.5] lg:flex-[3]' // 响应式展开比例
           : 'flex-[1] md:flex-[1.2] lg:flex-[1.5]',
@@ -388,7 +388,7 @@ function MobileAdvantageCard({
   const IconComponent = getIconByType(advantage.iconType)
 
   return (
-    <div className="relative overflow-hidden rounded-sm border border-neutral-200 bg-white p-4 transition-all hover:border-brand-500/30 hover:shadow-md">
+    <div className="relative overflow-hidden rounded-sm border border-neutral-200/60 bg-white/40 backdrop-blur-xl p-4 transition-all hover:shadow-md">
       {/* 顶部区域：类别标签和序号 */}
       <div className="relative mb-3 flex items-center justify-between">
         <span className="inline-flex items-center border border-neutral-200 bg-white px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-widest text-brand-500">
@@ -457,8 +457,16 @@ export default function Advantage() {
     <section
       id="advantages"
       aria-label="产品优势"
-      className="relative overflow-hidden bg-neutral-50 py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 2xl:py-24"
+      className="relative overflow-hidden py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 2xl:py-24"
     >
+      <div className="pointer-events-none absolute inset-0">
+        <img
+          src="/images/background/background-2.webp"
+          alt=""
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-white/30" />
+      </div>
       <Container className="relative">
         {/* 标题区域 - 响应式优化 */}
         <div className="mb-6 text-left sm:mb-8 md:mb-10 lg:mb-12 xl:mb-16 2xl:mb-20">

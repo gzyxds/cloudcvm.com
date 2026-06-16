@@ -75,7 +75,7 @@ export function Rightleft() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
 
           {/* 左侧卡片：极速体验模型 */}
-          <div className="flex flex-col overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-[#E2E8F0] shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 hover:border-[#0055ff]/30">
+          <div className="flex flex-col overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-[#E2E8F0] shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50">
             <div className="p-5 sm:p-6 lg:p-8 flex-1 flex flex-col">
               <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] mb-3 sm:mb-4">
                 极速体验模型
@@ -103,7 +103,7 @@ export function Rightleft() {
           </div>
 
           {/* 右侧卡片：API构建应用 */}
-          <div className="flex flex-col overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-[#E2E8F0] shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 hover:border-[#0055ff]/30">
+          <div className="flex flex-col overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-[#E2E8F0] shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50">
             <div className="p-5 sm:p-6 lg:p-8 flex-1 flex flex-col">
               <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] mb-3 sm:mb-4">
                 API构建应用
@@ -122,7 +122,7 @@ export function Rightleft() {
                 {apiFeatures.map((feature) => (
                   <div
                     key={feature.name}
-                    className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white hover:border-[#0055ff]/30 hover:shadow-md transition-all duration-300 group"
+                    className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 lg:p-5 rounded-lg sm:rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white hover:shadow-md transition-all duration-300 group"
                   >
                     <div className="flex-shrink-0 mt-0.5">
                       <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-[#0055ff]/80 group-hover:text-[#0055ff] transition-colors" aria-hidden="true" />
