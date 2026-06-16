@@ -21,6 +21,8 @@ import {
   ShieldCheck,
   Layers,
   Cpu,
+  Bot,
+  Sparkles,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -64,7 +66,7 @@ const demoProducts = [
   },
   {
     id: 'knowledge-base',
-    name: '全能知识库PHP版',
+    name: '全能知识库PHP',
     description:
       '基于大型语言模型的企业级知识库解决方案。支持多种文档格式，实现智能问答和语义搜索，帮助企业构建专属的知识中心。',
     icon: Globe,
@@ -142,7 +144,7 @@ const demoProducts = [
   },
   {
     id: 'digital-human-java',
-    name: '数字分身 2.0',
+    name: 'AI数字分身2.0',
     description:
       '2.0版数字人SaaS系统，融合了最新的AI技术和数字人交互体验。通过我们的在线演示系统，您可以亲身体验升级版AI数字人的强大功能。',
     icon: Monitor,
@@ -168,7 +170,7 @@ const demoProducts = [
   },
   {
     id: 'knowledge-base-java',
-    name: '全能知识库Java版',
+    name: '全能知识库Java',
     description:
       'Java版全能AI知识库系统，基于大型语言模型的企业级知识库解决方案。支持多种文档格式，实现智能问答和语义搜索，集成AVA智能助手功能。',
     icon: Globe,
@@ -194,7 +196,7 @@ const demoProducts = [
   },
   {
     id: 'ai-chat-drawing-java',
-    name: '聊天绘画Java版',
+    name: '聊天绘画Java',
     description:
       'Java版智能聊天绘画系统，集成了先进的AI绘画和聊天功能。用户可以通过自然语言与AVA进行对话，并生成高质量的艺术作品，提供更智能的创作体验。',
     icon: Palette,
@@ -220,7 +222,7 @@ const demoProducts = [
   },
   {
     id: 'long-writing-java',
-    name: '论文创作Java版',
+    name: '论文创作Java',
     description:
       'Java版论文创作系统，专为学术研究者和学生设计的AI写作助手。集成AVA智能助手，提供更专业的写作指导，显著提高论文写作效率和质量。',
     icon: FileText,
@@ -241,6 +243,51 @@ const demoProducts = [
         url: 'https://java-writing-demo.chatmoney.cn/admin',
         qrcode: '/images/contact/weixin.png',
         credentials: { username: 'java_writing_admin', password: 'java_writing123' },
+      },
+    ],
+  },
+  {
+    id: 'zhiyan-aigc',
+    name: '智言AIGC',
+    description:
+      '一站式AIGC内容生成平台，集成AI写作、绘画、视频等多模态创作能力，帮助企业快速生成高质量营销内容和创意素材，提升内容创作效率。',
+    icon: Bot,
+    category: 'AI应用',
+    status: 'stable' as const,
+    version: 'v2.0.0',
+    demos: [
+      {
+        title: 'PC前台',
+        type: 'frontend' as const,
+        url: 'https://aigc.gmlart.cn',
+        qrcode: '/images/contact/weixin.png',
+        credentials: { username: '自行注册', password: '自行注册' },
+      },
+    ],
+  },
+  {
+    id: 'zhiyan-platform',
+    name: '智言AI平台框架',
+    description:
+      '企业级AI平台框架，提供完整的AI应用构建底座。支持多模型接入、知识库管理、插件扩展等功能，帮助企业快速搭建自有AI平台。',
+    icon: Sparkles,
+    category: 'AI平台',
+    status: 'stable' as const,
+    version: 'v1.0.0',
+    demos: [
+      {
+        title: '平台官网',
+        type: 'frontend' as const,
+        url: 'https://www.buidai.com/',
+        qrcode: '/images/contact/weixin.png',
+        credentials: { username: '自行注册', password: '自行注册' },
+      },
+      {
+        title: '前台演示',
+        type: 'frontend' as const,
+        url: 'https://www.gmlart.cn/',
+        qrcode: '/images/contact/weixin.png',
+        credentials: { username: '自行注册', password: '自行注册' },
       },
     ],
   },
