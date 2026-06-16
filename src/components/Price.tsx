@@ -6,11 +6,18 @@ import { ReactNode, memo } from 'react'
 import { motion } from 'framer-motion'
 import { SparklesIcon, BoltIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 
+/** 轻量应用服务器购买链接（模块级常量，避免重复定义） */
+const LIGHT_CART_URL = 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=110'
+
+/** 弹性云服务器购买链接（模块级常量，避免重复定义） */
+const ECS_CART_URL = 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=111'
+
 /**
- * 服务器计划接口 - 定义挂机宝服务器配置数据结构
+ * 服务器计划接口 - 定义轻量应用服务器配置数据结构
  * @interface ServerPlan
  */
 interface ServerPlan {
+  id: string
   name: string
   description: string
   os: string
@@ -29,6 +36,7 @@ interface ServerPlan {
  * @interface LightServerPlan
  */
 interface LightServerPlan {
+  id: string
   name: string
   badge: string
   config: string
@@ -56,49 +64,94 @@ interface CardProps {
 }
 
 /**
+ * 卡片底部价格区域属性接口
+ * @interface CardFooterProps
+ */
+interface CardFooterProps {
+  price: string
+  unit: string
+  originalPrice: string
+  priceColor?: string
+  infoBox: ReactNode
+  buttons: ReactNode
+}
+
+/**
+ * 卡片底部价格区域 — 抽取 ServerCard / LightServerCard 的重复结构
+ */
+const CardFooter = memo(function CardFooter({
+  price,
+  unit,
+  originalPrice,
+  priceColor = 'text-[#1d2129]',
+  infoBox,
+  buttons,
+}: CardFooterProps) {
+  return (
+    <div className="mt-auto px-6 py-5">
+      <div className="mb-4 rounded-md bg-[#f7f8fa] px-3 py-2 text-xs text-[#4e5969]">
+        {infoBox}
+      </div>
+      <div className="mb-2 flex items-baseline gap-1">
+        <span className={clsx('text-3xl font-bold', priceColor)}>¥{price}</span>
+        <span className="text-sm text-[#86909c]">{unit}</span>
+      </div>
+      <div className="mb-5 text-xs text-[#86909c] line-through">
+        日常价：{originalPrice} 元
+      </div>
+      <div className="flex gap-3">
+        {buttons}
+      </div>
+    </div>
+  )
+})
+
+/**
  * 基础卡片组件 - Bento Grid 风格的卡片布局
  *
  * 设计规范参考：
- * - 边框：默认 #E2E8F0，Hover #1664ff
+ * - 边框：默认 #E2E8F0
  * - 阴影：Hover shadow-lg
  * - 圆角：rounded-lg (8px)
  * - 字体颜色：#1d2129 (Primary), #4e5969 (Secondary)
  */
-const Card = ({ title, children, className, featured = false, badge, topBgColor }: CardProps) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '-50px' }}
-    transition={{ duration: 0.4 }}
-    className={clsx(
-      'group relative flex h-full flex-col overflow-hidden rounded-lg border bg-white transition-all duration-300',
-      featured ? 'border-[#1664ff] shadow-md' : 'border-[#E2E8F0] hover:border-[#1664ff] hover:shadow-xl hover:-translate-y-1',
-      className
-    )}
-  >
-    {badge && (
-      <div className="absolute left-0 top-0 z-10 rounded-br-lg bg-[#1664ff] px-3 py-1 text-xs font-medium text-white shadow-sm">
-        {badge}
-      </div>
-    )}
+const Card = memo(function Card({ title, children, className, featured = false, badge, topBgColor }: CardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.4 }}
+      className={clsx(
+        'group relative flex h-full flex-col overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300',
+        featured ? 'shadow-md' : 'hover:shadow-xl hover:-translate-y-1',
+        className
+      )}
+    >
+      {badge && (
+        <div className="absolute left-0 top-0 z-10 rounded-br-lg bg-[#1664ff] px-3 py-1 text-xs font-medium text-white shadow-sm">
+          {badge}
+        </div>
+      )}
 
-    {title && (
-      <div
-        className={clsx(
-          'relative px-6 pt-10 pb-6',
-          topBgColor || (featured ? 'bg-gradient-to-br from-[#eff6ff] to-white' : 'bg-gradient-to-br from-[#f7f8fa] to-white')
-        )}
-      >
-        <h3 className="text-xl font-bold text-[#1d2129]">{title}</h3>
-        {/* 装饰性背景元素 */}
-        <div className="absolute right-0 top-0 h-24 w-24 translate-x-8 -translate-y-8 rounded-full bg-gradient-to-br from-[#1664ff]/5 to-transparent blur-2xl" />
+      {title && (
+        <div
+          className={clsx(
+            'relative px-6 pt-10 pb-6',
+            topBgColor || (featured ? 'bg-gradient-to-br from-[#eff6ff] to-white' : 'bg-gradient-to-br from-[#f7f8fa] to-white')
+          )}
+        >
+          <h3 className="text-xl font-bold text-[#1d2129]">{title}</h3>
+          {/* 装饰性背景元素 */}
+          <div className="absolute right-0 top-0 h-24 w-24 translate-x-8 -translate-y-8 rounded-full bg-gradient-to-br from-[#1664ff]/5 to-transparent blur-2xl" />
+        </div>
+      )}
+      <div className="flex-1 flex flex-col">
+        {children}
       </div>
-    )}
-    <div className="flex-1 flex flex-col">
-      {children}
-    </div>
-  </motion.div>
-)
+    </motion.div>
+  )
+})
 
 /**
  * 规格行属性接口 - 定义规格行组件的属性
@@ -143,111 +196,175 @@ interface LightServerCardProps {
 // 挂机宝服务器配置数据（模块级常量，避免每次渲染重建）
 const serverPlans: ServerPlan[] = [
   {
-    name: '1核1G挂机宝A型',
-    description: 'NAT网络服务，适合轻量级应用',
-    os: 'Windows/CentOS',
-    cpu: '1核',
-    memory: '1G',
-    storage: 'NVMe SSD 40GB',
-    bandwidth: '20Mbps（上行带宽）',
-    price: '26.21',
+    id: 'server-a',
+    name: '香港 · 轻量云',
+    description: 'CN2优化 · 无需备案 · 开箱即用',
+    os: 'Linux系统可选',
+    cpu: '2核',
+    memory: '2G',
+    storage: '30G高速存储',
+    bandwidth: '3~5Mbps',
+    price: '25.87',
     unit: '元/月',
-    originalPrice: '201.6',
+    originalPrice: '45.00',
     featured: false,
   },
   {
-    name: '1核2G挂机宝B型',
-    description: 'NAT网络服务，性能升级版',
-    os: 'Windows/CentOS',
-    cpu: '1核',
+    id: 'server-b',
+    name: '日本 · 轻量云',
+    description: '回国优化 · 无需备案 · 开箱即用',
+    os: 'Linux系统可选',
+    cpu: '2核',
     memory: '2G',
-    storage: 'NVMe SSD 60GB',
-    bandwidth: '30Mbps（上行带宽）',
-    price: '49',
+    storage: '30G高速存储',
+    bandwidth: '5~8Mbps',
+    price: '25.87',
     unit: '元/月',
-    originalPrice: '610.34',
+    originalPrice: '45.00',
     featured: true,
   },
   {
-    name: '2核2G挂机宝C型',
-    description: 'NAT网络服务，双核配置',
-    os: 'Windows/CentOS',
+    id: 'server-c',
+    name: '韩国 · 轻量云',
+    description: '回国优化 · 无需备案 · 开箱即用',
+    os: 'Linux系统可选',
     cpu: '2核',
     memory: '2G',
-    storage: 'NVMe SSD 80GB',
-    bandwidth: '40Mbps（上行带宽）',
-    price: '134.64',
+    storage: '30G高速存储',
+    bandwidth: '3~5Mbps',
+    price: '25.87',
     unit: '元/月',
-    originalPrice: '207.44',
+    originalPrice: '45.00',
     featured: false,
   },
   {
-    name: '2核4G挂机宝D型',
-    description: 'NAT网络服务，高性能配置',
-    os: 'Windows/CentOS',
+    id: 'server-d',
+    name: '美国 · 轻量云',
+    description: '精品线路 · 无需备案 · 开箱即用',
+    os: 'Linux系统可选',
     cpu: '2核',
-    memory: '4G',
-    storage: 'NVMe SSD 100GB',
-    bandwidth: '50Mbps（上行带宽）',
-    price: '335.69',
+    memory: '2G',
+    storage: '30G高速存储',
+    bandwidth: '10~20Mbps',
+    price: '25.87',
     unit: '元/月',
-    originalPrice: '610.34',
+    originalPrice: '45.00',
     featured: false,
   },
 ]
 
-// 轻量应用服务器配置数据（模块级常量，避免每次渲染重建）
+// 海外弹性云服务器配置数据（企业精选 · 限时特惠）
 const lightServerPlans: LightServerPlan[] = [
   {
-    name: '轻量应用服务器 2核2G',
+    id: 'light-de',
+    name: '德国弹性云服务器',
     badge: '爆款',
-    config: '2核2G4M',
-    specs: '50G SSD盘 300G月流量',
-    location: '北京/上海/广州/成都',
-    duration: '3个月',
-    discount: '4折',
-    price: '60',
-    unit: '元 ¥20元/月',
-    originalPrice: '150',
+    config: '2~32核心 Gold',
+    specs: '2~128GB内存 · 40~500G高速存储',
+    location: '10~300Mbps带宽 · 全系统可选',
+    duration: 'CN2优化 · 无需备案',
+    discount: '精品线路',
+    price: '37.70',
+    unit: '元/月',
+    originalPrice: '68.00',
     featured: true,
   },
   {
-    name: '轻量应用服务器 2核2G',
-    badge: '爆款',
-    config: '2核2G4M',
-    specs: '50G SSD盘 300G月流量',
-    location: '北京/上海/广州/成都',
-    duration: '1年',
-    discount: '1折',
-    price: '99',
-    unit: '元 ¥8.25元/月',
-    originalPrice: '1200',
+    id: 'light-hk-ddos',
+    name: '香港高防弹性云',
+    badge: '高防',
+    config: '2~16核心 intel',
+    specs: '2~32GB内存 · 40~300G高速存储',
+    location: '30~100Mbps带宽 · 全系统可选',
+    duration: '攻击秒解 · 封UDP · 200G防御',
+    discount: '高防首选',
+    price: '45.60',
+    unit: '元/月',
+    originalPrice: '88.00',
     featured: false,
   },
   {
-    name: '轻量应用服务器 2核4G5M',
-    badge: '入门之选',
-    config: '2核4G5M',
-    specs: '60G SSD盘 500G月流量',
-    location: '北京/上海/广州/成都',
-    duration: '1年',
-    discount: '2.3折',
-    price: '188',
-    unit: '元 ¥15.67元/月',
-    originalPrice: '816',
+    id: 'light-global-cluster',
+    name: '海外站群弹性云',
+    badge: '站群专用',
+    config: '4~16核心 Gold',
+    specs: '4~32GB内存 · 40~500G高速存储',
+    location: '10~200Mbps带宽 · 全系统可选',
+    duration: '精品线路 · 无需备案',
+    discount: '站群优化',
+    price: '300.00',
+    unit: '元/月',
+    originalPrice: '520.00',
     featured: false,
   },
   {
-    name: '轻量应用服务器 2核4G6M',
+    id: 'light-us-ddos',
+    name: '美国高防弹性云',
+    badge: '高防',
+    config: '2~16核心 V4',
+    specs: '2~16GB内存 · 40~300G高速存储',
+    location: '30~100Mbps带宽 · 全系统可选',
+    duration: 'AS9929 · 无需备案',
+    discount: '高防专线',
+    price: '46.80',
+    unit: '元/月',
+    originalPrice: '92.00',
+    featured: false,
+  },
+  {
+    id: 'light-hk',
+    name: '香港弹性云服务器',
+    badge: '热门',
+    config: '2~32核心 Gold',
+    specs: '2~128GB内存 · 40~500G高速存储',
+    location: '10~300Mbps带宽 · 全系统可选',
+    duration: 'CN2优化 · 无需备案',
+    discount: 'CN2专线',
+    price: '37.70',
+    unit: '元/月',
+    originalPrice: '68.00',
+    featured: false,
+  },
+  {
+    id: 'light-jp',
+    name: '日本弹性云服务器',
     badge: '入门之选',
-    config: '2核4G6M',
-    specs: '70G SSD盘 800G月流量',
-    location: '北京/上海/广州/成都',
-    duration: '1年',
-    discount: '2.3折',
-    price: '199',
-    unit: '元 ¥16.58元/月',
-    originalPrice: '864',
+    config: '2~16核心 Gold',
+    specs: '2~16GB内存 · 40~500G高速存储',
+    location: '5~30Mbps带宽 · 全系统可选',
+    duration: '回国优化 · 无需备案',
+    discount: '回国优化',
+    price: '37.70',
+    unit: '元/月',
+    originalPrice: '68.00',
+    featured: false,
+  },
+  {
+    id: 'light-kr',
+    name: '韩国弹性云服务器',
+    badge: '入门之选',
+    config: '2~16核心 V2',
+    specs: '2~16GB内存 · 40~300G高速存储',
+    location: '5~30Mbps带宽 · 全系统可选',
+    duration: '回国优化 · 无需备案',
+    discount: '回国优化',
+    price: '37.70',
+    unit: '元/月',
+    originalPrice: '68.00',
+    featured: false,
+  },
+  {
+    id: 'light-us',
+    name: '美国弹性云服务器',
+    badge: '热门',
+    config: '2~16核心 V4',
+    specs: '2~32GB内存 · 40~500G高速存储',
+    location: '30~100Mbps带宽 · 全系统可选',
+    duration: '精品线路 · 无需备案',
+    discount: '精品线路',
+    price: '37.70',
+    unit: '元/月',
+    originalPrice: '68.00',
     featured: false,
   },
 ]
@@ -266,37 +383,35 @@ const ServerCard = memo(function ServerCard({ plan }: ServerCardProps) {
       <SpecRow label="内存" value={plan.memory} />
       <SpecRow label="硬盘" value={plan.storage} />
       <SpecRow label="带宽" value={plan.bandwidth} />
-      <div className="mt-auto border-t border-[#f2f3f5] px-6 py-5">
-        <div className="mb-4 rounded-md bg-[#f7f8fa] px-3 py-2 text-xs text-[#4e5969]">
+      <CardFooter
+        price={plan.price}
+        unit={plan.unit}
+        originalPrice={plan.originalPrice}
+        infoBox={
           <div className="flex items-center gap-2">
             <ShieldCheckIcon className="h-4 w-4 text-[#1664ff]" />
             <span>100G 防护 • NAT转发 x3</span>
           </div>
-        </div>
-        <div className="mb-2 flex items-baseline gap-1">
-          <span className="text-3xl font-bold text-[#1d2129]">¥{plan.price}</span>
-          <span className="text-sm text-[#86909c]">{plan.unit}</span>
-        </div>
-        <div className="mb-5 text-xs text-[#86909c] line-through">
-          日常价：{plan.originalPrice} 元
-        </div>
-        <div className="flex gap-3">
-          <a
-            href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-            className="flex-1 rounded-md border border-[#e5e6eb] bg-white py-2 text-center text-sm font-medium text-[#1d2129] transition-all hover:bg-[#f7f8fa] hover:border-[#1664ff] hover:text-[#1664ff]"
-            aria-label="加入购物车"
-          >
-            加购
-          </a>
-          <a
-            href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-            className="flex-1 rounded-md bg-[#1664ff] py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
-            aria-label="立即购买"
-          >
-            购买
-          </a>
-        </div>
-      </div>
+        }
+        buttons={
+          <>
+            <a
+              href={LIGHT_CART_URL}
+              className="flex-1 rounded-md border border-[#e5e6eb] bg-white py-2 text-center text-sm font-medium text-[#1d2129] transition-all hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+              aria-label="加入购物车"
+            >
+              加购
+            </a>
+            <a
+              href={LIGHT_CART_URL}
+              className="flex-1 rounded-md bg-[#1664ff] py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
+              aria-label="立即购买"
+            >
+              购买
+            </a>
+          </>
+        }
+      />
     </Card>
   )
 })
@@ -318,38 +433,36 @@ const LightServerCard = memo(function LightServerCard({ server }: LightServerCar
       <SpecRow label="配置" value={server.specs} />
       <SpecRow label="地域" value={server.location} />
       <SpecRow label="时长" value={server.duration} highlight />
-
-      <div className="mt-auto px-6 py-5">
-        <div className="mb-4 rounded-md bg-[#f7f8fa] px-3 py-2 text-xs text-[#4e5969]">
+      <CardFooter
+        price={server.price}
+        unit={server.unit}
+        originalPrice={server.originalPrice}
+        priceColor="text-[#1664ff]"
+        infoBox={
           <div className="flex items-center gap-2">
             <SparklesIcon className="h-4 w-4 text-[#1664ff]" />
             <span>{server.discount} 限1个人</span>
           </div>
-        </div>
-        <div className="mb-2 flex items-baseline gap-1">
-          <span className="text-3xl font-bold text-[#1664ff]">¥{server.price}</span>
-          <span className="text-sm text-[#86909c]">{server.unit}</span>
-        </div>
-        <div className="mb-5 text-xs text-[#86909c] line-through">
-          日常价：{server.originalPrice} 元
-        </div>
-        <div className="flex gap-3">
-          <a
-            href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-            className="flex-1 rounded-md bg-[#1664ff] py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
-            aria-label="立即购买"
-          >
-            立即抢购
-          </a>
-          <a
-            href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-            className="flex-1 rounded-md border border-[#e5e6eb] bg-white py-2 text-center text-sm font-medium text-[#1d2129] transition-all hover:bg-[#f7f8fa] hover:border-[#1664ff] hover:text-[#1664ff]"
-            aria-label="找相似"
-          >
-            找相似
-          </a>
-        </div>
-      </div>
+        }
+        buttons={
+          <>
+            <a
+              href={ECS_CART_URL}
+              className="flex-1 rounded-md bg-[#1664ff] py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
+              aria-label="立即购买"
+            >
+              立即抢购
+            </a>
+            <a
+              href={ECS_CART_URL}
+              className="flex-1 rounded-md border border-[#e5e6eb] bg-white py-2 text-center text-sm font-medium text-[#1d2129] transition-all hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+              aria-label="找相似"
+            >
+              找相似
+            </a>
+          </>
+        }
+      />
     </Card>
   )
 })
@@ -361,7 +474,10 @@ const LightServerCard = memo(function LightServerCard({ server }: LightServerCar
 export function Price() {
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#F8FAFC] pb-16">
+    <div
+      className="relative min-h-screen overflow-hidden pb-16 bg-[#F8FAFC]"
+      style={{ backgroundImage: 'url(/images/background/background-2.webp)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' }}
+    >
       <Container className="relative">
         <motion.header
           initial={{ opacity: 0 }}
@@ -375,7 +491,7 @@ export function Price() {
               <span className="text-sm font-semibold uppercase tracking-widest text-[#64748B]">限时优惠</span>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl">
-              高性价比云桌面电脑
+              高性价比轻量应用服务器
             </h1>
             <p className="text-lg leading-relaxed text-[#64748B] sm:text-xl">
               低至{' '}
@@ -387,7 +503,7 @@ export function Price() {
           </div>
         </motion.header>
 
-        {/* 挂机宝服务器配置（4例）- Bento Grid 布局 */}
+        {/* 轻量应用服务器配置（4例）- Bento Grid 布局 */}
         <section className="mt-2" aria-labelledby="server-plans-title">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -395,7 +511,7 @@ export function Price() {
                 id="server-plans-title"
                 className="text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl"
               >
-                挂机宝服务器
+                轻量应用服务器
               </h2>
               <p className="mt-1 text-base leading-relaxed text-[#64748B] sm:text-lg">
                 轻量业务部署与稳定在线，覆盖主流系统与常用规格
@@ -403,8 +519,8 @@ export function Price() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {serverPlans.map((plan, index) => (
-              <ServerCard key={plan.name + index} plan={plan} />
+            {serverPlans.map((plan) => (
+              <ServerCard key={plan.id} plan={plan} />
             ))}
           </div>
         </section>
@@ -436,8 +552,8 @@ export function Price() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {lightServerPlans.map((server, index) => (
-              <LightServerCard key={server.name + index} server={server} />
+            {lightServerPlans.map((server) => (
+              <LightServerCard key={server.id} server={server} />
             ))}
           </div>
         </motion.section>

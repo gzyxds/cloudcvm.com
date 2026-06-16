@@ -107,8 +107,9 @@ export default function Home() {
       <Header />
       <VideoCarousel />
       <main>
-        <Hero />
+        <Hero />      
         <ServiceTabs />
+        <Price />
         <PrimaryFeatures />
         <Leftright />
         <Rightleft />
@@ -116,8 +117,6 @@ export default function Home() {
         <Erlie />
         <Scenario />
         <Accordion />
-        <Price />
-
         <CallToAction />
         <Advantage />
         <Testimonials />
