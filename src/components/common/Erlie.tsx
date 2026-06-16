@@ -186,30 +186,26 @@ const CATEGORIES: SceneCategory[] = [
 
 // --- 子组件：图片预览 (右侧) ---
 
+/**
+ * 图片预览组件
+ * @param {string} imageUrl - 图片地址
+ * @param {string} title - 图片标题
+ */
 function ImagePreview({ imageUrl, title }: { imageUrl: string, title: string }) {
   return (
-    <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[520px] rounded-xl overflow-hidden border border-[#E2E8F0] bg-gradient-to-br from-[#eff6ff] via-white to-[#f8fafc]">
-      {/* 装饰背景 */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#0055ff]/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
-      </div>
-
+    <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm sm:h-[400px] sm:aspect-auto sm:rounded-xl lg:h-[520px]">
       {/* 骨架屏 */}
-      <div className="absolute inset-0 bg-slate-100/50 animate-pulse" />
+      <div className="absolute inset-0 z-0 bg-slate-100 animate-pulse" />
 
       {/* 图片 */}
       <Image
         src={imageUrl}
         alt={title}
         fill
-        className="object-cover object-center transition-opacity duration-500 relative z-10"
+        className="relative z-10 object-cover object-center transition-opacity duration-500"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
         priority
       />
-
-      {/* 底部渐变遮罩 */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/80 to-transparent z-20" />
     </div>
   )
 }
@@ -264,7 +260,7 @@ export default function Erlie() {
   }, [])
 
   return (
-    <section className="bg-gradient-to-b from-white via-[#f8fafc] to-white py-16 sm:py-20 lg:py-28">
+    <section className="bg-[#F8FAFC] py-16 sm:py-20 lg:py-28">
       <Container>
 
         {/* 标题 */}
@@ -274,19 +270,20 @@ export default function Erlie() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto text-center mb-12 sm:mb-16"
+          className="max-w-3xl mx-auto text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0F172A] mb-4 tracking-tight">
-            多样的<span className="text-[#0055ff]">大模型应用场景</span>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4 tracking-tight">
+            大模型应用场景
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-[#64748B] leading-relaxed">
+          <p className="text-sm sm:text-lg lg:text-xl text-slate-500 leading-relaxed">
             基于先进的自研架构，为您提供全方位的云端基础设施服务，助力业务快速实现数字化转型。
           </p>
         </motion.div>
 
         {/* Tab 导航栏 */}
-        <div className="flex justify-start mb-8 sm:mb-10 lg:mb-14 overflow-x-auto no-scrollbar border-b border-[#E2E8F0]">
-          <div className="inline-flex w-full">
+        {/* Tab 导航栏 */}
+        <div className="mb-6 sm:mb-10 lg:mb-14 overflow-x-auto scrollbar-hide border-b border-slate-200">
+          <div className="flex min-w-full sm:min-w-0">
             {CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat.id
               return (
@@ -296,16 +293,16 @@ export default function Erlie() {
                   onMouseEnter={() => handleTabHover(cat.id)}
                   onMouseLeave={handleTabLeave}
                   className={clsx(
-                    "relative flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium transition-colors duration-200 whitespace-nowrap flex-1",
+                    "relative flex min-h-[44px] flex-1 items-center justify-center gap-1.5 whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:gap-2 sm:px-6 sm:py-4 sm:text-base",
                     isActive
-                      ? "text-[#0055ff]"
-                      : "text-[#64748B] hover:text-[#0F172A]"
+                      ? "text-brand-500"
+                      : "text-slate-500 hover:text-slate-900"
                   )}
                 >
-                  <cat.icon className={clsx("w-4 h-4 sm:w-5 sm:h-5 transition-colors", isActive ? "text-[#0055ff]" : "text-[#94a3b8]")} />
-                  {cat.label}
+                  <cat.icon className={clsx("h-4 w-4 shrink-0 transition-colors sm:h-5 sm:w-5", isActive ? "text-brand-500" : "text-slate-400")} />
+                  <span>{cat.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0055ff]" />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-500" aria-hidden="true" />
                   )}
                 </button>
               )
@@ -343,19 +340,19 @@ export default function Erlie() {
                     >
                       <button
                         onClick={() => setActiveItem(item.id)}
-                        className="w-full flex items-center justify-between group text-left py-3 sm:py-4 focus:outline-none"
+                        className="group flex w-full items-center justify-between py-3 text-left focus:outline-none sm:py-4"
                       >
                         <span className={clsx(
-                          "text-base sm:text-lg lg:text-xl transition-colors duration-300",
-                          isOpen ? "text-[#0055ff] font-bold" : "text-[#0F172A] font-medium group-hover:text-[#0055ff]"
+                          "text-base transition-colors duration-300 sm:text-lg lg:text-xl",
+                          isOpen ? "font-semibold text-brand-500" : "font-medium text-slate-900 group-hover:text-brand-500"
                         )}>
                           {item.title}
                         </span>
                         <div className={clsx(
                           "transition-transform duration-300",
-                          isOpen ? "text-[#0055ff]" : "text-[#94A3B8] group-hover:text-[#64748B]"
+                          isOpen ? "text-brand-500" : "text-slate-400 group-hover:text-slate-500"
                         )}>
-                          {isOpen ? <Minus className="w-4 h-4 sm:w-5 sm:h-5" /> : <Plus className="w-4 h-4 sm:w-5 sm:h-5" />}
+                          {isOpen ? <Minus className="h-4 w-4 sm:h-5 sm:w-5" /> : <Plus className="h-4 w-4 sm:h-5 sm:w-5" />}
                         </div>
                       </button>
 
@@ -369,7 +366,7 @@ export default function Erlie() {
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                             className="overflow-hidden"
                           >
-                            <p className="text-sm sm:text-[15px] lg:text-base text-[#64748B] leading-relaxed mb-4 sm:mb-5">
+                            <p className="mb-4 text-sm leading-relaxed text-slate-500 sm:mb-5 sm:text-[15px] lg:text-base">
                               {item.description}
                             </p>
 
@@ -378,8 +375,8 @@ export default function Erlie() {
                               <Button
                                 href="/chat"
                                 color="blue"
-                                variant="erlieSolid"
-                                className="rounded-lg px-5 py-2 text-xs sm:text-sm font-semibold"
+                                variant="primary"
+                                className="min-h-[44px] rounded-md px-5 text-xs font-semibold sm:text-sm"
                               >
                                 立即体验
                               </Button>
@@ -394,20 +391,20 @@ export default function Erlie() {
             </AnimatePresence>
 
             {/* 桌面端按钮组 */}
-            <div className="hidden lg:flex items-center gap-4 mt-8">
+            <div className="mt-8 hidden items-center gap-4 lg:flex">
               <Button
                 href="/chat"
                 color="blue"
-                variant="erlieSolid"
-                className="rounded-lg px-8 py-3 text-sm font-semibold"
+                variant="primary"
+                className="rounded-md px-8 py-3 text-sm font-semibold"
               >
                 立即体验
               </Button>
               <Button
                 href="/chat"
-                variant="erlieOutline"
+                variant="primaryOutline"
                 color="slate"
-                className="rounded-lg px-8 py-3 text-sm font-semibold"
+                className="rounded-md px-8 py-3 text-sm font-semibold"
               >
                 在线咨询
               </Button>

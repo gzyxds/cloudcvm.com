@@ -211,55 +211,57 @@ function SolutionCard({
  * @param {number} index - 卡片索引
  * @returns {JSX.Element} 移动端卡片组件
  */
+/**
+ * 移动端解决方案卡片组件 - 横排滑动
+ * @param {SolutionCard} solution - 解决方案数据
+ * @returns {JSX.Element} 移动端卡片组件
+ */
 function MobileSolutionCard({
   solution,
 }: {
   solution: SolutionCard
 }) {
   return (
-    <div className="group relative h-[280px] overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:h-[320px] md:h-[340px]">
-      {/* 背景图片遮罩层 - 提高文字可读性 */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/90 to-white/85" />
-
-      {/* 背景图片 - 淡化显示 */}
+    <div className="group relative aspect-[16/9] w-[85vw] max-w-[340px] flex-shrink-0 snap-start overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:w-[40vw] sm:max-w-none">
+      {/* 背景图片 - 移动端完整显示 */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 transition-all duration-500 group-hover:scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 group-hover:scale-105"
         style={{
           backgroundImage: `url(${solution.bgImage})`,
         }}
       />
 
+      {/* 底部深色渐变遮罩 - 仅用于保证文字可读，非白色遮罩 */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
       {/* 内容区域 */}
-      <div className="relative z-10 flex h-full flex-col p-4 sm:p-5">
+      <div className="relative z-10 flex h-full flex-col justify-end p-4">
         {/* 标题和图标 */}
-        <div className="mb-3 flex items-center justify-between sm:mb-4">
-          <h3 className="font-display text-lg font-bold text-slate-900 sm:text-xl md:text-2xl">
+        <div className="mb-3 flex items-center justify-between">
+          <h3 className="font-display text-lg font-bold text-white drop-shadow-md sm:text-xl">
             {solution.title}
           </h3>
           {(() => {
             const IconComponent = getIconByTitle(solution.title)
             return (
-              <IconComponent className="h-5 w-5 text-brand-500 sm:h-6 sm:w-6" />
+              <IconComponent className="h-5 w-5 text-white drop-shadow-md sm:h-6 sm:w-6" />
             )
           })()}
         </div>
 
-        {/* 描述文本 - 移除 line-clamp 限制，让内容完整显示 */}
-        <p className="mb-3 text-sm leading-relaxed text-slate-600 sm:mb-4 sm:text-base md:text-base">
+        {/* 描述文本 */}
+        <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-white/90 drop-shadow-sm">
           {solution.description}
         </p>
 
         {/* 核心功能列表 */}
-        <div className="space-y-2 sm:space-y-2.5">
-          <h4 className="text-sm font-semibold text-slate-900 sm:text-base md:text-base">
-            核心功能
-          </h4>
+        <div className="space-y-1.5">
           {solution.features.map((feature, featureIndex) => (
             <div
               key={featureIndex}
-              className="flex items-center text-sm text-slate-600 sm:text-base md:text-base"
+              className="flex items-center text-sm text-white/90 drop-shadow-sm"
             >
-              <div className="mr-2 h-1.5 w-1.5 rounded-full bg-brand-500 sm:mr-2.5 sm:h-1.5 sm:w-1.5" />
+              <div className="mr-2 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
               {feature}
             </div>
           ))}
@@ -271,7 +273,7 @@ function MobileSolutionCard({
 
 /**
  * 解决方案展示组件 - 响应式设计
- * PC端：手风琴样式，移动端：网格布局
+ * PC端：手风琴样式，移动端：横排滑动布局
  * 为不同业务场景提供安全且高效的解决方案
  * @returns {JSX.Element} 解决方案组件
  */
@@ -316,27 +318,14 @@ export function Solution() {
           ))}
         </div>
 
-        {/* 移动端网格布局 - 隐藏在PC端 */}
-        <div className="lg:hidden">
-          {/* 平板端：两列布局 */}
-          <div className="hidden sm:grid sm:grid-cols-2 sm:gap-4 lg:hidden">
-            {solutions.map((solution, index) => (
-              <MobileSolutionCard
-                key={index}
-                solution={solution}
-              />
-            ))}
-          </div>
-
-          {/* 手机端：单列布局 */}
-          <div className="space-y-4 sm:hidden">
-            {solutions.map((solution, index) => (
-              <MobileSolutionCard
-                key={index}
-                solution={solution}
-              />
-            ))}
-          </div>
+        {/* 移动端横排滑动布局 - 隐藏在PC端 */}
+        <div className="scrollbar-hide flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 touch-pan-x lg:hidden">
+          {solutions.map((solution, index) => (
+            <MobileSolutionCard
+              key={index}
+              solution={solution}
+            />
+          ))}
         </div>
       </Container>
     </section>

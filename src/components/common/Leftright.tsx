@@ -230,7 +230,7 @@ const itemVariants: Variants = {
 /*  响应式 Image sizes                                                */
 /* ------------------------------------------------------------------ */
 const imageSizes =
-  '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw'
+  '(max-width: 640px) 80vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw'
 
 /* ------------------------------------------------------------------ */
 /*  SolutionCard — 图片背景 + 半遮罩 + 浮层内容                         */
@@ -240,26 +240,24 @@ interface SolutionCardProps {
   index: number
 }
 
+/**
+ * 解决方案卡片 — 支持可选外链，移动端优化触控与排版
+ */
 const SolutionCard = memo(function SolutionCard({
   item,
   index,
 }: SolutionCardProps) {
   const isPriority = index < 5
 
-  return (
-    <motion.article
-      suppressHydrationWarning
-      variants={itemVariants}
-      className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-xl',
-        'border border-neutral-200/60 bg-neutral-200 shadow-sm',
-        'hover:border-brand-300/60 hover:shadow-lg hover:shadow-brand-500/10',
-        'outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
-      )}
-      tabIndex={0}
-      role="button"
-      aria-label={`查看${item.title}解决方案详情`}
-    >
+  const cardClass = clsx(
+    'group relative cursor-pointer overflow-hidden rounded-xl',
+    'border border-neutral-200/60 bg-neutral-200 shadow-sm',
+    'hover:border-brand-300/60 hover:shadow-lg hover:shadow-brand-500/10',
+    'outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
+  )
+
+  const cardContent = (
+    <>
       {/* 背景图片 — 完整显示 */}
       {item.imageUrl && (
         <div className="absolute inset-0">
@@ -268,7 +266,7 @@ const SolutionCard = memo(function SolutionCard({
             alt=""
             fill
             sizes={imageSizes}
-            quality={80}
+            quality={75}
             priority={isPriority}
             loading={isPriority ? 'eager' : 'lazy'}
             className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
@@ -289,10 +287,7 @@ const SolutionCard = memo(function SolutionCard({
       />
 
       {/* 内容 — 浮在遮罩上方 */}
-      <div
-        className="relative z-10 flex flex-col justify-end p-5 lg:p-6"
-        style={{ aspectRatio: '9 / 16' }}
-      >
+      <div className="relative z-10 flex flex-col justify-end p-4 aspect-[16/9] sm:p-5 sm:aspect-[3/4] lg:p-6 lg:aspect-[9/16]">
         {/* 图标 */}
         <div
           className={clsx(
@@ -306,24 +301,51 @@ const SolutionCard = memo(function SolutionCard({
         </div>
 
         {/* 标题 */}
-        <h3 className="mb-2 text-lg font-bold leading-tight text-white drop-shadow-md lg:text-xl">
+        <h3 className="mb-2 text-base font-bold leading-tight text-white drop-shadow-md sm:text-lg lg:text-xl">
           {item.title}
         </h3>
 
         {/* 描述 */}
-        <p className="mb-4 text-sm leading-relaxed text-white/85 line-clamp-3">
+        <p className="mb-3 text-[13px] leading-relaxed text-white/85 line-clamp-2 sm:mb-4 sm:text-sm sm:line-clamp-3">
           {item.description}
         </p>
 
         {/* 底部链接指示 */}
         <div
-          className="flex items-center gap-1 text-sm font-medium text-white/60 opacity-0 transition-all duration-300 group-hover:opacity-100"
+          className="flex items-center gap-1 text-sm font-medium text-white/60 opacity-100 transition-all duration-300 sm:opacity-0 sm:group-hover:opacity-100"
           aria-hidden="true"
         >
           <span>了解详情</span>
           <ChevronRightIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
         </div>
       </div>
+    </>
+  )
+
+  if (item.link) {
+    return (
+      <motion.a
+        suppressHydrationWarning
+        variants={itemVariants}
+        className={cardClass}
+        href={item.link}
+        aria-label={`查看${item.title}解决方案详情`}
+      >
+        {cardContent}
+      </motion.a>
+    )
+  }
+
+  return (
+    <motion.article
+      suppressHydrationWarning
+      variants={itemVariants}
+      className={cardClass}
+      tabIndex={0}
+      role="button"
+      aria-label={`查看${item.title}解决方案详情`}
+    >
+      {cardContent}
     </motion.article>
   )
 })
@@ -392,36 +414,35 @@ export function Leftright() {
 
   return (
     <section
-      className="relative flex min-h-screen flex-col justify-center py-16 sm:py-20 lg:py-24"
+      className="relative flex min-h-0 flex-col justify-center overflow-x-hidden py-6 sm:min-h-[100dvh] sm:py-20 lg:py-24 bg-scroll sm:bg-fixed"
       style={{
         backgroundImage: 'url(/images/background/background-4.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
       }}
       aria-labelledby="solutions-section-title"
     >
       <Container className="relative z-10">
         {/* 顶部标题 */}
-        <div className="mb-10 text-center sm:mb-14 lg:mb-20">
+        <div className="mb-3 text-center sm:mb-14 lg:mb-20">
           <h2
             id="solutions-section-title"
-            className="mb-4 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl"
+            className="mb-2 text-2xl font-bold leading-tight tracking-tight text-neutral-900 sm:mb-4 sm:text-4xl lg:text-5xl"
           >
             成熟行业实践，释放云上数字生产力
           </h2>
-          <p className="mx-auto max-w-2xl text-base text-neutral-500 sm:text-lg">
+          <p className="mx-auto max-w-2xl px-4 text-sm leading-relaxed text-neutral-500 sm:px-0 sm:text-lg">
             汇聚各行业数字化转型成功经验，提供场景化解决方案，助力企业降本增效，加速业务创新
           </p>
         </div>
 
-        {/* Tab 导航 — 水平下划线风格 */}
+        {/* Tab 导航 — 移动端可横向滚动 */}
         <nav
-          className="no-scrollbar mb-10 flex justify-start overflow-x-auto border-b border-neutral-200 sm:mb-14 lg:mb-20"
+          className="scrollbar-hide mb-3 flex overflow-x-auto border-b border-neutral-200 sm:mb-14 lg:mb-20"
           role="tablist"
           aria-label="解决方案分类"
         >
-          <div className="inline-flex w-full">
+          <div className="flex sm:mx-auto sm:w-full sm:max-w-lg">
             {solutionsData.map((category, index) => (
               <button
                 key={category.id}
@@ -435,7 +456,7 @@ export function Leftright() {
                 id={`solutions-tab-${category.id}`}
                 tabIndex={activeTab === category.id ? 0 : -1}
                 className={clsx(
-                  'relative flex flex-1 items-center justify-center gap-2 whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors duration-200 outline-none sm:px-6 sm:py-4 sm:text-base',
+                  'relative flex items-center justify-center gap-1.5 whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors duration-200 outline-none sm:flex-1 sm:gap-2 sm:px-6 sm:py-4 sm:text-base',
                   'min-h-[44px]',
                   'focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
                   activeTab === category.id
@@ -466,7 +487,7 @@ export function Leftright() {
           </div>
         </nav>
 
-        {/* 解决方案卡片网格 */}
+        {/* 解决方案卡片 — 移动端横排滑动，桌面端网格 */}
         <AnimatePresence mode="wait">
           <motion.div
             suppressHydrationWarning
@@ -475,27 +496,32 @@ export function Leftright() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5 2xl:gap-6"
+            className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide snap-x snap-mandatory touch-pan-x sm:grid sm:grid-cols-2 sm:gap-5 sm:snap-none sm:overflow-visible sm:pb-0 sm:touch-auto lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 2xl:grid-cols-5 2xl:gap-6"
             role="tabpanel"
             id={`solutions-panel-${activeCategory.id}`}
             aria-labelledby={`solutions-tab-${activeCategory.id}`}
           >
             {activeCategory.items.map((item, index) => (
-              <SolutionCard
+              <div
                 key={item.id}
-                item={item}
-                index={index}
-              />
+                className="w-[80vw] max-w-[320px] flex-shrink-0 snap-start sm:w-auto sm:max-w-none"
+              >
+                <SolutionCard
+                  item={item}
+                  index={index}
+                />
+              </div>
             ))}
           </motion.div>
         </AnimatePresence>
 
         {/* 底部链接 */}
-        <div className="mt-12 text-center sm:mt-16 lg:mt-20">
+        <div className="mt-4 text-center sm:mt-16 lg:mt-20">
           <a
             href="#"
             className={clsx(
-              'group inline-flex items-center rounded-full border px-8 py-3.5 text-base font-medium shadow-sm',
+              'group inline-flex items-center rounded-full border px-6 py-3 text-sm font-medium shadow-sm',
+              'min-h-[48px]',
               'border-neutral-200 bg-white text-neutral-900',
               'hover:border-brand-500 hover:text-brand-500 hover:shadow-md',
               'transition-all duration-300',
@@ -505,7 +531,7 @@ export function Leftright() {
           >
             查看所有解决方案
             <ChevronRightIcon
-              className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 sm:h-5 sm:w-5"
+              className="ml-1.5 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 sm:ml-2 sm:h-5 sm:w-5"
               aria-hidden="true"
             />
           </a>
