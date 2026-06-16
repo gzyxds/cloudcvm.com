@@ -253,7 +253,7 @@ const demoProducts = [
       '一站式AIGC内容生成平台，集成AI写作、绘画、视频等多模态创作能力，帮助企业快速生成高质量营销内容和创意素材，提升内容创作效率。',
     icon: Bot,
     category: 'AI应用',
-    status: 'stable' as const,
+    status: 'beta' as const,
     version: 'v2.0.0',
     demos: [
       {
