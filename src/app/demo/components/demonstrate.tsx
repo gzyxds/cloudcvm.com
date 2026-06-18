@@ -259,7 +259,7 @@ const demoProducts = [
       {
         title: 'PC前台',
         type: 'frontend' as const,
-        url: 'https://aigc.gmlart.cn',
+        url: 'https://aigc.cnai.art',
         qrcode: '/images/contact/weixin.png',
         credentials: { username: '自行注册', password: '自行注册' },
       },

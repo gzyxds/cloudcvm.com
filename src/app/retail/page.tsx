@@ -14,7 +14,6 @@ import {
   PhoneIcon,
   ShieldCheckIcon,
   ShoppingCartIcon,
-  StarIcon,
   UserGroupIcon,
   UsersIcon,
   CreditCardIcon,
@@ -296,11 +295,11 @@ function TrendsSection() {
         fontFamily: 'Microsoft YaHei, Arial, sans-serif',
       }}
     >
-      {/* 背景图层 - 桌面端使用 retail.jpg，移动端使用 PrimaryFeatures.png */}
+      {/* 背景图层 - 桌面端 */}
       <div
         className="absolute inset-0 -z-10 hidden sm:block"
         style={{
-          backgroundImage: `url(/images/screenshots/retail.jpg)`,
+          backgroundImage: `url(/images/background/background-2.webp)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -309,11 +308,11 @@ function TrendsSection() {
         }}
       />
 
-      {/* 移动端专用背景图层 - 移除模糊和透明度，确保清晰显示 */}
+      {/* 移动端专用背景图层 */}
       <div
         className="absolute inset-0 -z-10 block sm:hidden"
         style={{
-          backgroundImage: `url(/images/screenshots/retail.jpg)`,
+          backgroundImage: `url(/images/background/background-2.webp)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -322,10 +321,17 @@ function TrendsSection() {
         }}
       />
       {/* 顶部标题 */}
-      <div className="mx-auto max-w-[1800px] px-4 sm:px-6 pt-4 sm:pt-6 lg:pt-8">
+      <div className="mx-auto max-w-[1800px] px-4 sm:px-6 py-14 sm:py-20 lg:py-24">
         <div className="text-center">
-          <div className="font-bold text-white mb-2 tracking-wide text-xl sm:text-2xl md:text-4xl lg:text-5xl">电商领域全行业解决方案</div>
-          <div className="text-white font-medium text-base sm:text-lg md:text-2xl">构建全领域多渠道上线下智慧新零售体系</div>
+          <span className="mb-5 sm:mb-6 inline-block text-xs sm:text-sm font-semibold tracking-[0.2em] text-[#0055ff] uppercase">
+            新零售解决方案
+          </span>
+          <h1 className="mb-5 sm:mb-6 font-bold text-gray-900 tracking-tight text-2xl sm:text-3xl md:text-5xl lg:text-6xl leading-tight">
+            电商领域全行业解决方案
+          </h1>
+          <p className="mx-auto max-w-2xl text-gray-600 font-normal text-base sm:text-lg md:text-xl leading-relaxed">
+            构建全领域多渠道线上线下智慧新零售体系
+          </p>
         </div>
       </div>
 
@@ -337,11 +343,11 @@ function TrendsSection() {
              className="shrink-0 text-sm rounded-none order-1 w-[35%] sm:w-[32%] lg:w-[28%] p-2 sm:p-4 lg:py-6 lg:px-6 lg:pr-0 min-h-auto lg:min-h-[450px]"
              style={{
                fontFamily: 'Poppins, sans-serif',
-               background: 'rgba(0,0,0,.05)', // 移动端降低透明度
-               backdropFilter: 'blur(10px)', // 恢复为10px模糊效果
+               background: 'rgba(0,0,0,.35)',
+               backdropFilter: 'blur(10px)',
                fontWeight: 400,
                lineHeight: 1.5,
-               color: '#212529',
+               color: '#fff',
                WebkitFontSmoothing: 'antialiased',
                boxSizing: 'border-box',
                margin: 0,
@@ -365,8 +371,8 @@ function TrendsSection() {
                        'lg:rounded-none', // 移动端和桌面端都不使用圆角
                        'whitespace-nowrap', // 防止文字换行
                        isActive
-                         ? 'text-white bg-[linear-gradient(270deg,#455FFE_0%,rgba(26,140,255,0)_100%)]'
-                         : 'hover:bg-gray-700/60 bg-gray-800/40 lg:bg-transparent',
+                         ? 'text-white bg-[linear-gradient(270deg,#0055FF_0%,rgba(0,85,255,0)_100%)]'
+                         : 'hover:bg-white/10 bg-white/5 lg:bg-transparent',
                      ].join(' ')}
                      style={{
                        fontFamily: 'Poppins, sans-serif',
@@ -390,14 +396,14 @@ function TrendsSection() {
            <section
              className="flex-1 text-gray-300 rounded-none flex flex-col justify-between order-2 w-[65%] sm:w-[68%] lg:w-[72%] p-2 sm:p-4 lg:py-6 lg:px-10 min-h-auto lg:min-h-[450px]"
              style={{
-               background: 'rgba(0,0,0,.08)', // 移动端降低透明度
-               backdropFilter: 'blur(15px)', // 恢复为15px模糊效果
+               background: 'rgba(0,0,0,.30)',
+               backdropFilter: 'blur(15px)',
              }}
            >
              {/* 头部标题区域 - 响应式优化 */}
              <div className="flex-shrink-0 mb-2 sm:mb-4 lg:mb-6">
                <div className="text-sm sm:text-lg lg:text-2xl xl:text-3xl font-bold text-white mb-1 sm:mb-2 lg:mb-3 tracking-wide leading-tight">{currentFeature.title}</div>
-               <div className="w-12 sm:w-16 lg:w-24 h-0.5 sm:h-0.5 lg:h-1 bg-gradient-to-r from-blue-500 to-blue-400 mb-2 sm:mb-3 lg:mb-4 rounded-full"></div>
+               <div className="w-12 sm:w-16 lg:w-24 h-0.5 sm:h-0.5 lg:h-1 bg-gradient-to-r from-[#0055ff] to-[#3388ff] mb-2 sm:mb-3 lg:mb-4 rounded-full"></div>
              </div>
 
              {/* 主要内容区域 - 响应式网格优化 */}
@@ -417,7 +423,7 @@ function TrendsSection() {
                <div className="flex flex-col gap-2 sm:flex-row sm:justify-start sm:items-center sm:gap-3 lg:gap-4">
                  {/* 免费试用按钮 */}
                  <button
-                   className="bg-gradient-to-r from-blue-600 to-blue-700 px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-base font-medium text-white shadow-lg hover:from-blue-700 hover:to-blue-800 hover:shadow-xl transition-all duration-200 min-h-[36px] sm:min-h-[44px] flex items-center justify-center gap-1 sm:gap-2"
+                   className="bg-gradient-to-r from-[#0055ff] to-[#0043cc] px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-base font-medium text-white shadow-lg hover:from-[#0043cc] hover:to-[#0033aa] hover:shadow-xl transition-all duration-200 min-h-[36px] sm:min-h-[44px] flex items-center justify-center gap-1 sm:gap-2"
                    type="button"
                  >
                    免费试用
@@ -505,13 +511,13 @@ function ScenariosSection() {
       {/* 标题区域 */}
       <div className="pt-7 pl-10 mb-2">
         <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-        <div className="w-10 h-1 bg-blue-600 mt-2"></div>
+        <div className="w-10 h-1 bg-[#0055ff] mt-2"></div>
       </div>
 
       {/* 装饰背景 - 右上角立方体效果模拟 */}
       <div className="absolute top-0 right-0 w-48 h-48 opacity-10 pointer-events-none">
-         <div className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-blue-400 to-indigo-600 blur-2xl rounded-full opacity-20"></div>
-         <CloudArrowUpIcon className="absolute top-8 right-8 w-24 h-24 text-blue-100" />
+         <div className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-[#0055ff]/20 to-[#0055ff]/40 blur-2xl rounded-full opacity-20"></div>
+         <CloudArrowUpIcon className="absolute top-8 right-8 w-24 h-24 text-[#0055ff]/10" />
       </div>
 
       {/* 列表内容 */}
@@ -522,7 +528,7 @@ function ScenariosSection() {
             className="flex items-start pl-10 pt-10 group transition-all duration-300 hover:-translate-y-1"
           >
             <div className="mr-3 flex-shrink-0">
-               <item.icon className="w-8 h-8 text-blue-600" />
+               <item.icon className="w-8 h-8 text-[#0055ff]" />
             </div>
             <div className="flex-1">
               <p className="font-bold text-slate-900 mb-2.5 text-base">{item.title}</p>
@@ -535,7 +541,7 @@ function ScenariosSection() {
   )
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-20 bg-slate-100">
       <Container>
         {/* 顶部标题 */}
         <div className="text-center mb-16 pt-8">
@@ -610,12 +616,12 @@ function FeaturesSection() {
               {/* 内容区域 */}
               <div className="relative z-10">
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                <div className="w-8 h-1 bg-blue-600 mb-4"></div>
+                <div className="w-8 h-1 bg-[#0055ff] mb-4"></div>
                 <p className="text-sm leading-relaxed text-slate-500 pr-10">{feature.description}</p>
               </div>
 
               {/* 悬浮时的装饰图标 */}
-              <div className="absolute bottom-6 right-6 p-3 rounded-full bg-blue-50 text-blue-600 opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 shadow-sm">
+              <div className="absolute bottom-6 right-6 p-3 rounded-full bg-[#eff6ff] text-[#0055ff] opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 shadow-sm">
                 <feature.icon className="w-6 h-6" />
               </div>
             </div>
@@ -723,7 +729,7 @@ function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24 bg-slate-100">
       <Container>
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-5">全面售后服务，再无后顾之忧</h2>
@@ -737,7 +743,7 @@ function TestimonialsSection() {
               className="flex items-center p-8 bg-white rounded-lg border border-slate-100"
             >
               {/* 图标区域 */}
-              <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-[#eff6ff] text-[#0055ff]">
                 <service.icon className="w-8 h-8" />
               </div>
 
@@ -770,14 +776,14 @@ function CTASection() {
         <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
           准备好开启数字化转型之旅了吗？
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-blue-50">
+        <p className="mx-auto mt-6 max-w-xl text-lg text-[#eff6ff]">
           立即联系我们的解决方案专家，获取为您量身定制的零售云方案。
         </p>
         <div className="mt-10 flex justify-center gap-4">
           <Button
             href="/contact"
             color="white"
-            className="rounded-lg px-8 py-3 text-base font-semibold !text-[#0055ff] hover:!bg-blue-50 hover:!text-[#0043cc] shadow-xl shadow-blue-900/10 transition-all"
+            className="rounded-lg px-8 py-3 text-base font-semibold !text-[#0055ff] hover:!bg-[#eff6ff] hover:!text-[#0043cc] shadow-xl shadow-blue-900/10 transition-all"
           >
             联系销售
           </Button>
@@ -807,8 +813,8 @@ function ConsultSection() {
         <div className="mx-auto">
           {/* 标题区域 */}
           <div className="mb-10">
-            <h2 className="text-3xl font-medium text-[#101010] mb-3">立即咨询</h2>
-            <p className="text-base text-[#7a8093]">联系我们，竭诚为您提供数字化资讯服务</p>
+            <h2 className="text-3xl font-medium text-slate-900 mb-3">立即咨询</h2>
+            <p className="text-base text-slate-500">联系我们，竭诚为您提供数字化资讯服务</p>
           </div>
 
           {/* 内容卡片区域 */}
@@ -816,8 +822,8 @@ function ConsultSection() {
             {/* 微信联系卡片 */}
             <div className="bg-white/60 backdrop-blur-sm rounded-md p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="text-2xl font-medium text-[#101010] mb-2">微信联系</h3>
-                <p className="text-base text-[#7a8093]">扫码添加企业客服了解更多优惠信息</p>
+                <h3 className="text-2xl font-medium text-slate-900 mb-2">微信联系</h3>
+                <p className="text-base text-slate-500">扫码添加企业客服了解更多优惠信息</p>
               </div>
               <div className="w-[150px] h-[150px] shrink-0 bg-white p-2 rounded-lg shadow-sm">
                 <Image
@@ -834,12 +840,12 @@ function ConsultSection() {
             {/* 合作咨询卡片 */}
             <div className="bg-white/60 backdrop-blur-sm rounded-md p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="text-2xl font-medium text-[#101010] mb-2">合作咨询</h3>
-                <p className="text-base text-[#7a8093]">工作日：9:00—18:15</p>
+                <h3 className="text-2xl font-medium text-slate-900 mb-2">合作咨询</h3>
+                <p className="text-base text-slate-500">工作日：9:00—18:15</p>
               </div>
               <div className="text-center sm:text-right">
-                <span className="block text-3xl font-medium text-[#101010] mb-2">236749035</span>
-                <span className="text-base text-[#7a8093]">联系QQ</span>
+                <span className="block text-3xl font-medium text-slate-900 mb-2">236749035</span>
+                <span className="text-base text-slate-500">联系QQ</span>
               </div>
             </div>
           </div>
