@@ -59,7 +59,7 @@ const apiFeatures: FeatureItem[] = [
  */
 export function Rightleft() {
   return (
-    <section className="bg-gradient-to-b from-white to-[#F8FAFC] py-12 sm:py-16 lg:py-24">
+    <section className="relative bg-cover bg-center bg-no-repeat py-12 sm:py-16 lg:py-24" style={{ backgroundImage: 'url("/images/background/background-5.webp")' }}>
       <Container>
         {/* 顶部标题区域 */}
         <div className="mx-auto max-w-2xl text-center mb-8 sm:mb-12 lg:mb-16">

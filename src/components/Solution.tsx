@@ -293,7 +293,7 @@ export function Solution() {
     <section
       id="solutions"
       aria-label="业务解决方案"
-      className="relative overflow-hidden bg-slate-50 py-12 sm:py-16 lg:py-24"
+      className="relative overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed py-12 sm:py-16 lg:py-24" style={{ backgroundImage: 'url("/images/background/background-2.webp")' }}
     >
       <Container className="relative">
         {/* 标题区域 */}

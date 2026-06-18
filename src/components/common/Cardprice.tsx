@@ -551,7 +551,7 @@ export default function Cardprice() {
    * 热门活动精选区域
    */
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed" style={{ backgroundImage: 'url("/images/background/Cardprice.webp")' }}>
       <div className="mx-auto max-w-[1800px] px-4 py-8 pt-24 sm:px-6 lg:px-8">
         {/* 热门活动精选 — 左侧大卡片 + 右侧 2×2 网格 */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

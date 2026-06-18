@@ -568,7 +568,7 @@ export function PrimaryFeatures() {
   }, [])
 
   return (
-    <section className="relative bg-white pt-12 pb-10 lg:pt-[88px] lg:pb-[60px] overflow-hidden">
+    <section className="relative bg-cover bg-center bg-no-repeat pt-12 pb-10 lg:pt-[88px] lg:pb-[60px] overflow-hidden" style={{ backgroundImage: 'url("/images/background/background-1.webp")' }}>
       <Container className="relative z-10">
         {/* ── Header ── */}
         <div className="flex justify-between items-end">
