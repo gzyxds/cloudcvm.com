@@ -184,7 +184,7 @@ function OnlineSupportSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: support.delay }}
-                className="group relative flex flex-col rounded-xl border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
+                className="group relative flex flex-col rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
               >
                 {/* 卡片头部 */}
                 <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
@@ -271,7 +271,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 lg:row-span-2 group relative flex flex-col overflow-hidden rounded-xl border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
+            className="lg:col-span-2 lg:row-span-2 group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
           >
             {/* 卡片头部 */}
             <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
@@ -343,7 +343,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 group relative flex flex-col rounded-xl border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
+            className="lg:col-span-2 group relative flex flex-col rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
           >
             {/* 卡片头部 */}
             <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
@@ -400,7 +400,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="group relative flex flex-col rounded-xl border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
+            className="group relative flex flex-col rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
           >
             {/* 卡片头部 */}
             <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
@@ -440,7 +440,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             viewport={{ once: true }}
-            className="group relative flex flex-col rounded-xl border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
+            className="group relative flex flex-col rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
           >
             {/* 卡片头部 */}
             <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">

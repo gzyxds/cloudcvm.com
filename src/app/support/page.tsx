@@ -207,7 +207,7 @@ function ServiceSupportSection() {
               <motion.div
                 key={support.title}
                 variants={fadeUpItem}
-                className="group relative flex flex-col rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-200 hover:shadow-lg"
+                className="group relative flex flex-col rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-200 hover:shadow-lg"
               >
                 {/* Icon */}
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500 group-hover:bg-brand-500 group-hover:text-white group-hover:shadow-md group-hover:shadow-brand-500/20 transition-all duration-300">
@@ -362,7 +362,7 @@ function FeedbackSection() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
+            <div className="relative overflow-hidden rounded-md border border-neutral-200 bg-neutral-50 p-5">
               {/* Browser chrome */}
               <div className="mb-5 flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 shadow-sm border border-neutral-100">
                 <div className="flex gap-1.5">
@@ -378,7 +378,7 @@ function FeedbackSection() {
               {/* Messages */}
               <div className="space-y-4">
                 {/* Agent message */}
-                <div className="flex gap-3 rounded-xl bg-white p-4 shadow-sm border border-neutral-100">
+                <div className="flex gap-3 rounded-md bg-white p-4 shadow-sm border border-neutral-100">
                   <div className="h-10 w-10 flex-shrink-0 rounded-xl bg-brand-100 flex items-center justify-center text-brand-500">
                     <UserGroupIcon className="h-5 w-5" />
                   </div>
@@ -393,7 +393,7 @@ function FeedbackSection() {
                 </div>
 
                 {/* User message */}
-                <div className="flex flex-row-reverse gap-3 rounded-xl bg-brand-50/50 p-4 border border-brand-100">
+                <div className="flex flex-row-reverse gap-3 rounded-md bg-brand-50/50 p-4 border border-brand-100">
                   <div className="h-10 w-10 flex-shrink-0 rounded-xl bg-brand-500 flex items-center justify-center text-white">
                     <span className="text-xs font-bold">ME</span>
                   </div>
@@ -407,7 +407,7 @@ function FeedbackSection() {
                 </div>
 
                 {/* Status bar */}
-                <div className="flex items-center justify-between rounded-xl bg-emerald-50 px-4 py-2.5 border border-emerald-100">
+                <div className="flex items-center justify-between rounded-md bg-emerald-50 px-4 py-2.5 border border-emerald-100">
                   <div className="flex items-center gap-2.5">
                     <span className="relative flex h-2.5 w-2.5">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -436,7 +436,7 @@ function FeedbackSection() {
             </p>
 
             <dl className="mt-8 space-y-5">
-              <div className="flex gap-4 p-4 rounded-xl border border-neutral-100 bg-neutral-50/50 hover:border-brand-200 transition-colors duration-300">
+              <div className="flex gap-4 p-4 rounded-md border border-neutral-100 bg-neutral-50/50 hover:border-brand-200 transition-colors duration-300">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-500 text-white shadow-sm">
                   <EnvelopeIcon className="h-5 w-5" />
                 </div>
@@ -450,7 +450,7 @@ function FeedbackSection() {
                   </dd>
                 </div>
               </div>
-              <div className="flex gap-4 p-4 rounded-xl border border-neutral-100 bg-neutral-50/50 hover:border-brand-200 transition-colors duration-300">
+              <div className="flex gap-4 p-4 rounded-md border border-neutral-100 bg-neutral-50/50 hover:border-brand-200 transition-colors duration-300">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-500 text-white shadow-sm">
                   <ClockIcon className="h-5 w-5" />
                 </div>

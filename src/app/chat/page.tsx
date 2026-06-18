@@ -216,7 +216,7 @@ function FeaturesSection(): JSX.Element {
             return (
               <li
                 key={feature.id}
-                className="overflow-hidden rounded-xl outline-1 outline-gray-200 transition-all duration-200 hover:shadow-lg hover:outline-gray-300"
+                className="overflow-hidden rounded-md outline-1 outline-gray-200 transition-all duration-200 hover:shadow-lg hover:outline-gray-300"
               >
                 <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
                   <div className="flex h-12 w-12 flex-none items-center justify-center rounded-lg bg-white ring-1 ring-gray-900/10">
@@ -920,7 +920,7 @@ export default function KnowledgeBasePage(): JSX.Element {
               {/* 右侧：演示卡片 */}
               <div className="relative"
               >
-                <div className="relative rounded-2xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm">
+                <div className="relative rounded-md border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm">
                   {/* 卡片头部 */}
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-3">
@@ -1000,7 +1000,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                 ].map((tech, i) => (
                   <div
                     key={i}
-                    className="group rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all duration-200 hover:border-brand-200 hover:shadow-sm"
+                    className="group rounded-md border border-neutral-200 bg-white p-4 text-center transition-all duration-200 hover:border-brand-200 hover:shadow-sm"
                   >
                     <div className="text-xs font-mono font-bold text-brand-500 mb-1 tracking-wide">{tech.code}</div>
                     <div className="text-sm font-medium text-neutral-700">{tech.name}</div>
@@ -1107,7 +1107,7 @@ export default function KnowledgeBasePage(): JSX.Element {
         <section className="py-12 sm:py-16 lg:py-24">
           <Container>
             <div className="mx-auto max-w-[1800px] px-1 sm:px-2 lg:px-4">
-              <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white sm:rounded-xl">
+              <div className="relative overflow-hidden rounded-md border border-gray-200 bg-white">
                 <div className="absolute top-0 right-0 hidden h-full w-1/2 lg:block">
                   <svg
                     className="h-full w-full"

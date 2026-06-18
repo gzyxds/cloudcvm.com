@@ -174,7 +174,7 @@ export const AIscene = memo(function AIscene() {
         </div>
 
         {/* 主体卡片容器 */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 flex flex-col lg:flex-row min-h-[580px]">
+        <div className="bg-white dark:bg-gray-800 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 flex flex-col lg:flex-row min-h-[580px]">
           {/* 左侧导航 */}
           <nav className="w-full lg:w-[240px] xl:w-[280px] shrink-0 bg-gray-50 dark:bg-gray-800/60 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700">
             {/* 移动端横向滚动 */}

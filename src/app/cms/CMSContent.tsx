@@ -202,7 +202,7 @@ function CMSHeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative mt-4 lg:mt-8"
           >
-            <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-300/60">
+            <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white shadow-xl shadow-slate-200/50 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-300/60">
               {/* 窗口控制栏 */}
               <div className="border-b border-slate-200 bg-slate-50/90 px-4 py-3 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
@@ -239,7 +239,7 @@ function CMSHeroSection() {
                 {/* 内容预览区 */}
                 <div className="space-y-3">
                   {/* 文章列表预览 */}
-                  <div className="rounded-xl border border-slate-200 bg-white p-3.5 transition-all hover:border-slate-300 hover:shadow-md">
+                  <div className="rounded-md border border-slate-200 bg-white p-3.5 transition-all hover:border-slate-300 hover:shadow-md">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <div className="h-2 w-2 rounded-full bg-[#0055ff]"></div>
@@ -252,7 +252,7 @@ function CMSHeroSection() {
                   </div>
 
                   {/* 额外内容区域 */}
-                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-3.5 transition-all hover:border-slate-300 hover:shadow-md">
+                  <div className="rounded-md border border-slate-200 bg-slate-50 p-3.5 transition-all hover:border-slate-300 hover:shadow-md">
                     <div className="flex items-center space-x-2">
                       <div className="h-2.5 w-2.5 rounded-full bg-orange-400"></div>
                       <div className="h-2 w-16 rounded bg-slate-200"></div>
@@ -369,7 +369,7 @@ function CMSFeaturesSection() {
             return (
               <div
                 key={feature.title}
-                className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50 sm:p-8"
+                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50 sm:p-8"
               >
                 {/* 选中时的背景渐变 */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -467,7 +467,7 @@ function CMSScenariosSection() {
           {scenarios.map((scenario) => (
             <div
               key={scenario.title}
-              className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-colors duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-colors duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
             >
               {/* 内容区域 */}
               <div className="relative z-10">
@@ -584,7 +584,7 @@ function CMSTechAdvantagesSection() {
           {techAdvantages.map((advantage) => (
             <div
               key={advantage.title}
-              className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-8 transition-colors duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-md border border-slate-200 bg-white p-8 transition-colors duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
             >
               <div className="relative z-10">
                 {/* 图标 */}
@@ -664,7 +664,7 @@ function CMSTestimonialsSection() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
-              className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
             >
               <div className="mb-4 flex">
                 {[...Array(testimonial.rating)].map((_, i) => (

@@ -48,13 +48,16 @@ export default function CatSections() {
   const [showQRCode, setShowQRCode] = useState(false)
 
   return (
-    <section className="bg-[#f5f6f7] dark:bg-gray-900 py-16 sm:py-20 lg:py-24">
+    <section
+      className="bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-24"
+      style={{ backgroundImage: 'url("/images/background/background-5.webp")' }}
+    >
       <Container>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <ServiceCard
             icon={ChatBubbleLeftRightIcon}
             title="产品咨询"
-            description="专业团队为您提供电签POS机解决方案"
+            description="专业团队为您提供云计算解决方案"
             cta="联系我们"
             onCtaClick={() => setShowQRCode(true)}
           />

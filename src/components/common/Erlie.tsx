@@ -193,7 +193,7 @@ const CATEGORIES: SceneCategory[] = [
  */
 function ImagePreview({ imageUrl, title }: { imageUrl: string, title: string }) {
   return (
-    <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm sm:h-[400px] sm:aspect-auto sm:rounded-xl lg:h-[520px]">
+    <div className="relative w-full aspect-[16/9] overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm sm:h-[400px] sm:aspect-auto lg:h-[520px]">
       {/* 骨架屏 */}
       <div className="absolute inset-0 z-0 bg-slate-100 animate-pulse" />
 

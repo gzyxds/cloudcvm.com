@@ -123,7 +123,7 @@ const Card = memo(function Card({ title, children, className, featured = false, 
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.4 }}
       className={clsx(
-        'group relative flex h-full flex-col overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300',
+        'group relative flex h-full flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300',
         featured ? 'shadow-md' : 'hover:shadow-xl hover:-translate-y-1',
         className
       )}

@@ -73,7 +73,7 @@ function CapabilityCard({ item, index }: { item: (typeof capabilities)[0]; index
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.06 }}
-      className="group flex flex-col rounded-xl border border-[#E2E8F0] bg-white p-6 transition-all duration-200 hover:shadow-[0_2px_16px_rgba(0,85,255,0.06)]"
+      className="group flex flex-col rounded-md border border-[#E2E8F0] bg-white p-6 transition-all duration-200 hover:shadow-[0_2px_16px_rgba(0,85,255,0.06)]"
     >
       {/* 图标 */}
       <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-[#eff6ff] transition-colors duration-200 group-hover:bg-[#0055ff]">

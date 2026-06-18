@@ -330,7 +330,7 @@ function SSLRisksSection() {
             return (
               <div
                 key={risk.id}
-                className="group rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 <div className="mb-4 flex items-center">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100 group-hover:bg-[#eff6ff] transition-colors">
@@ -428,7 +428,7 @@ function SSLGuideTable() {
           {guideData.map((item, index) => (
             <div
               key={index}
-              className="border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#0055ff] rounded-xl"
+              className="border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#0055ff] rounded-md"
             >
               <div className="mb-4">
                 <h3 className="mb-2 text-xl font-semibold text-slate-900">
@@ -470,7 +470,7 @@ function SSLGuideTable() {
         </div>
 
         {/* 桌面端表格布局 */}
-        <div className="hidden overflow-hidden border border-slate-200 lg:block rounded-xl">
+        <div className="hidden overflow-hidden border border-slate-200 lg:block rounded-md">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-slate-200">
               <thead className="bg-slate-50">
@@ -560,7 +560,7 @@ function SSLLeftrightSection() {
             </dl>
           </div>
           <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-2 sm:space-x-3">
@@ -682,7 +682,7 @@ function SSLLeftrightSection() {
             </div>
           </div>
           <div className="flex items-start justify-center lg:order-first lg:justify-end">
-            <div className="relative w-full max-w-2xl overflow-hidden border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative w-full max-w-2xl overflow-hidden border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
               {/* 桌面端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-2 sm:space-x-3">
@@ -834,7 +834,7 @@ function SSLRightleftSection() {
               </div>
             </div>
             <div className="flex items-start justify-end">
-              <div className="relative w-full max-w-2xl overflow-hidden border border-slate-200/50 bg-white/80 p-3 sm:p-4 md:p-6 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+              <div className="relative w-full max-w-2xl overflow-hidden border border-slate-200/50 bg-white/80 p-3 sm:p-4 md:p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
                 {/* 桌面端模拟界面头部 */}
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex items-center space-x-2 sm:space-x-3">
@@ -990,7 +990,7 @@ export default function SSLPage() {
               {sslProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   {/* Hover Gradient Background */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

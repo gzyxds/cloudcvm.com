@@ -904,7 +904,7 @@ export default function ServiceTabs() {
               {/* 左侧区域 */}
               <div className="w-full lg:w-[320px] xl:w-[360px] flex flex-col gap-4 sm:gap-5 flex-shrink-0">
                  {/* 上方 Banner */}
-                <article className="flex-1 min-h-[220px] sm:min-h-[260px] w-full bg-white border border-neutral-200 p-5 sm:p-6 flex flex-col justify-between group rounded-lg relative overflow-hidden hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                <article className="flex-1 min-h-[220px] sm:min-h-[260px] w-full bg-white border border-neutral-200 p-5 sm:p-6 flex flex-col justify-between group rounded-md relative overflow-hidden hover:border-brand-300 hover:shadow-md transition-all duration-300">
 
                    <div className="relative z-10 flex flex-col h-full">
                       <div className="flex-1">
@@ -951,7 +951,7 @@ export default function ServiceTabs() {
 
                 {/* 下方 Banner */}
                 <article className={clsx(
-                  "min-h-[80px] w-full bg-white border border-neutral-200 rounded-lg group flex flex-col justify-center hover:border-brand-300 hover:shadow-md transition-all duration-300",
+                  "min-h-[80px] w-full bg-white border border-neutral-200 rounded-md group flex flex-col justify-center hover:border-brand-300 hover:shadow-md transition-all duration-300",
                   secondaryBanner.link && "cursor-pointer"
                 )}>
                   {secondaryBanner.link ? (
@@ -988,11 +988,11 @@ export default function ServiceTabs() {
              </div>
 
              {/* 右侧网格区域 */}
-             <div className="flex-1 bg-neutral-50 border border-neutral-200 rounded-lg p-4 sm:p-5 lg:p-6">
+             <div className="flex-1 bg-neutral-50 border border-neutral-200 rounded-md p-4 sm:p-5 lg:p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 w-full h-full">
                    {products.map((product, idx) => {
                      const content = (
-                      <article className="h-full flex flex-col justify-start p-4 group cursor-pointer border border-neutral-200 transition-all duration-200 rounded-lg bg-white hover:border-brand-500/30 hover:shadow-md relative focus-within:ring-2 focus-within:ring-brand-500 focus-within:ring-inset">
+                      <article className="h-full flex flex-col justify-start p-4 group cursor-pointer border border-neutral-200 transition-all duration-200 rounded-md bg-white hover:border-brand-500/30 hover:shadow-md relative focus-within:ring-2 focus-within:ring-brand-500 focus-within:ring-inset">
                          <div className="w-full">
                            <div className="flex items-center justify-between mb-3">
                             <h4 className="text-base sm:text-lg font-semibold text-neutral-900 tracking-tight line-clamp-1 flex-1 group-hover:text-brand-500 transition-colors">

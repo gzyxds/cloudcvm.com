@@ -139,7 +139,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           <div className="flex flex-col gap-2.5 sm:flex-row sm:gap-3">
             <button
               onClick={() => window.open(product.link, '_blank')}
-              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm font-medium text-gray-600 transition-all duration-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-gray-600 dark:bg-gray-700/50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm font-medium text-gray-600 transition-all duration-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-gray-600 dark:bg-gray-700/50 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
               aria-label={`查看${product.title}的在线演示`}
             >
               <PlayIcon className="h-4 w-4 transition-colors group-hover/btn:text-blue-600 dark:group-hover/btn:text-blue-400" />

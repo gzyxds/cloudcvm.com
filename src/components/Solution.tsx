@@ -110,7 +110,7 @@ function SolutionCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-xl border transition-[flex] duration-500 ease-in-out',
+        'group relative cursor-pointer overflow-hidden rounded-md border transition-[flex] duration-500 ease-in-out',
         // 边框样式：默认 slate-200，Hover时变为主题色/30
         'border-neutral-200 hover:border-brand-300 hover:shadow-lg hover:shadow-slate-200/50',
         // 背景样式：白色
@@ -222,7 +222,7 @@ function MobileSolutionCard({
   solution: SolutionCard
 }) {
   return (
-    <div className="group relative aspect-[16/9] w-[85vw] max-w-[340px] flex-shrink-0 snap-start overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:w-[40vw] sm:max-w-none">
+    <div className="group relative aspect-[16/9] w-[85vw] max-w-[340px] flex-shrink-0 snap-start overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:w-[40vw] sm:max-w-none">
       {/* 背景图片 - 移动端完整显示 */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 group-hover:scale-105"

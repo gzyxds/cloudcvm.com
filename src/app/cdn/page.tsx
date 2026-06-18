@@ -351,7 +351,7 @@ function CDNLeftrightSection() {
             </dl>
           </div>
           <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -470,7 +470,7 @@ function CDNLeftrightSection() {
             </div>
           </div>
           <div className="sm:px-6 lg:px-0">
-            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
                {/* 模拟界面头部 */}
                <div className="mb-6 flex items-center justify-between">
                  <div className="flex items-center space-x-3">
@@ -607,7 +607,7 @@ function CDNRightleftSection() {
               </div>
             </div>
             <div className="flex items-start justify-center lg:order-first lg:justify-end">
-              <div className="relative w-full max-w-lg overflow-hidden border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-xl rounded-xl sm:max-w-xl lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
+              <div className="relative w-full max-w-lg overflow-hidden border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-xl rounded-md sm:max-w-xl lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
                  {/* 模拟界面头部 */}
                  <div className="mb-6 flex items-center justify-between">
                    <div className="flex items-center space-x-3">
@@ -719,7 +719,7 @@ export default function CDNPage() {
               {cdnProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   {/* Hover Gradient Background */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

@@ -375,7 +375,7 @@ function DemoCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.07 }}
-      className="flex flex-col rounded-lg border border-slate-200 bg-white transition-shadow duration-200 hover:shadow-md"
+      className="flex flex-col rounded-md border border-slate-200 bg-white transition-shadow duration-200 hover:shadow-md"
     >
       {/* 卡片头部 */}
       <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3">
@@ -595,7 +595,7 @@ const Demonstrate: React.FC = () => {
 
             {/* ── 左侧导航栏 ──────────────────────────────── */}
             <aside className="hidden w-60 flex-none lg:block xl:w-64">
-              <div className="flex h-full flex-col rounded-lg border border-slate-200 bg-white shadow-sm">
+              <div className="flex h-full flex-col rounded-md border border-slate-200 bg-white shadow-sm">
                 {/* 搜索框 */}
                 <div className="flex-none border-b border-slate-100 p-3">
                   <label className="relative flex items-center">
@@ -779,7 +779,7 @@ const Demonstrate: React.FC = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative w-80 rounded-xl border border-slate-200 bg-white shadow-xl"
+              className="relative w-80 rounded-md border border-slate-200 bg-white shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* 弹窗头部 */}

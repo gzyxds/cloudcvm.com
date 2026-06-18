@@ -100,7 +100,7 @@ export default function Logoclouds() {
         {logos.map((logo, index) => (
           <div
             key={`${rowKey}-first-${index}`}
-            className={`flex-shrink-0 ${styles.logoItem} border border-slate-200 bg-white/80 backdrop-blur rounded-xl hover:border-[#0055ff]/30 hover:shadow-lg transition-all duration-300`}
+            className={`flex-shrink-0 ${styles.logoItem} border border-slate-200 bg-white/80 backdrop-blur rounded-md hover:border-[#0055ff]/30 hover:shadow-lg transition-all duration-300`}
           >
             <Image
               alt={logo.alt}
@@ -115,7 +115,7 @@ export default function Logoclouds() {
         {logos.map((logo, index) => (
           <div
             key={`${rowKey}-second-${index}`}
-            className={`flex-shrink-0 ${styles.logoItem} border border-slate-200 bg-white/80 backdrop-blur rounded-xl hover:border-[#0055ff]/30 hover:shadow-lg transition-all duration-300`}
+            className={`flex-shrink-0 ${styles.logoItem} border border-slate-200 bg-white/80 backdrop-blur rounded-md hover:border-[#0055ff]/30 hover:shadow-lg transition-all duration-300`}
           >
             <Image
               alt={logo.alt}

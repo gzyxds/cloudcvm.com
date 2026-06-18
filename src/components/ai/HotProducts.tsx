@@ -453,7 +453,7 @@ export default function HotProducts() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm sm:rounded-xl lg:flex-row"
+            className="flex flex-col overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm lg:flex-row"
           >
             {/* 左侧内容区域 */}
             <div className="flex min-h-[300px] w-full flex-col justify-between p-3 sm:min-h-[350px] sm:p-4 md:p-6 lg:w-1/2 lg:p-8 xl:p-10">

@@ -247,7 +247,7 @@ function HeroSection() {
                 className="absolute -inset-y-px -left-3 -z-10 w-full origin-bottom-left skew-x-[-30deg] bg-blue-50 opacity-20 ring-1 ring-slate-900/5"
               />
               <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-                <div className="w-full max-w-none bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                <div className="w-full max-w-none bg-white rounded-md shadow-lg border border-slate-200 p-8">
                   <div className="text-slate-900">
                     <h3 className="mb-4 text-xl font-semibold flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full bg-[#0055ff]"></span>
@@ -315,7 +315,7 @@ function FeaturesSection() {
             {hostingFeatures.map((feature, index) => (
               <li
                 key={feature.name}
-                className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 {/* Hover Gradient Background */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -418,7 +418,7 @@ function PricingSection() {
               <div
                 key={plan.name}
                 className={clsx(
-                  "group relative flex flex-col overflow-hidden bg-white border rounded-xl transition-all duration-300 hover:shadow-xl",
+                  "group relative flex flex-col overflow-hidden bg-white border rounded-md transition-all duration-300 hover:shadow-xl",
                   plan.featured
                     ? "border-[#0055ff] shadow-lg shadow-blue-500/10 z-10 scale-105"
                     : "border-slate-200 hover:border-[#0055ff]/30 hover:shadow-slate-200/50"
@@ -513,7 +513,7 @@ function AdvantagesSection() {
             {productAdvantages.map((advantage, index) => (
               <li
                 key={advantage.name}
-                className="group relative flex flex-col overflow-hidden bg-white border border-slate-200 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group relative flex flex-col overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 {/* 顶部标题和图标区域 */}
                 <div className="flex w-full items-center justify-between space-x-6 p-6 border-b border-slate-100">
@@ -618,7 +618,7 @@ function BottomFeaturesSection() {
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8">
           {bottomFeatures.map((feature) => (
-            <div key={feature.name} className="group relative flex flex-col overflow-hidden bg-white border border-slate-200 rounded-xl p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+            <div key={feature.name} className="group relative flex flex-col overflow-hidden bg-white border border-slate-200 rounded-md p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
               <div className="flex items-center mb-4">
                 <div className="flex h-10 w-10 items-center justify-center bg-[#eff6ff] rounded-lg group-hover:bg-[#0055ff] transition-colors duration-300">
                   <feature.icon

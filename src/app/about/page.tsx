@@ -228,7 +228,7 @@ function StatsSection() {
             return (
               <div
                 key={stat.label}
-                className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative z-10 flex flex-col items-center text-center">
@@ -261,7 +261,7 @@ function VisionMissionSection() {
         {/* 愿景、使命和价值观区域 - Bento Grid 布局 */}
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {/* 愿景区域 */}
-          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-md border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
             <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="relative z-10">
               <h2 className="mb-6 text-3xl font-bold text-slate-900">
@@ -310,7 +310,7 @@ function VisionMissionSection() {
           </div>
 
           {/* 使命区域 */}
-          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-md border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
             <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="relative z-10">
               <h2 className="mb-6 text-3xl font-bold text-slate-900">
@@ -365,7 +365,7 @@ function VisionMissionSection() {
           </div>
 
           {/* 价值观区域 */}
-          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-md border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
             <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="relative z-10">
               <h2 className="mb-6 text-3xl font-bold text-slate-900">
@@ -451,7 +451,7 @@ function TimelineSection() {
 
                     {/* 内容卡片 */}
                     <div className="min-w-0 flex-1">
-                      <div className="group relative rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+                      <div className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
                         <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                         <div className="relative z-10">
                           <div className="mb-2 flex items-center justify-between">
@@ -510,7 +510,7 @@ function HonorsSection() {
           {honors.map((honor, index) => (
             <div
               key={honor.title}
-              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+              className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="relative z-10">
@@ -558,7 +558,7 @@ function ContactSection() {
           {offices.map((office, index) => (
             <div
               key={office.city}
-              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+              className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="relative z-10">
@@ -596,7 +596,7 @@ function ContactSection() {
 
         {/* 联系方式说明 */}
         <div className="mt-12 text-center">
-          <div className="mx-auto max-w-4xl rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="mx-auto max-w-4xl rounded-md border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-semibold text-slate-900">
               更多联系方式
             </h3>

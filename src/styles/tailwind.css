@@ -217,14 +217,14 @@
   .card-base {
     background-color: white;
     border: 1px solid var(--color-neutral-200);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
   }
 
   .card-interactive {
     background-color: white;
     border: 1px solid var(--color-neutral-200);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
   }
@@ -241,7 +241,7 @@
 
   /* ---- Bento card (sharp variant) ---- */
   .bento-card {
-    @apply border border-neutral-200 bg-white rounded-none;
+    @apply border border-neutral-200 bg-white rounded-md;
   }
   .dark .bento-card {
     @apply border-neutral-800 bg-neutral-900;

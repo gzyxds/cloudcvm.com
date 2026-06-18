@@ -270,7 +270,7 @@ function HeroSection(): JSX.Element {
           {/* 右侧展示区域 */}
           <div className="relative mt-8 sm:mt-10 lg:mt-0">
             <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-[#0055ff]/10 to-[#0066ff]/10 opacity-50 blur-xl sm:-inset-3 md:-inset-4"></div>
-            <div className="group relative rounded-xl border border-gray-200/50 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:p-6 md:p-8 lg:p-10 dark:border-gray-700/50 dark:bg-gray-800/80">
+            <div className="group relative rounded-md border border-gray-200/50 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:p-6 md:p-8 lg:p-10 dark:border-gray-700/50 dark:bg-gray-800/80">
               {/* 顶部标签区域 */}
               <div className="mb-6 flex flex-wrap gap-1.5 sm:mb-8 sm:gap-2 md:mb-10 md:gap-3">
                 {features.slice(0, 4).map((feature, index) => (
@@ -288,7 +288,7 @@ function HeroSection(): JSX.Element {
                 {cards.map((card, index) => (
                   <div
                     key={card.title}
-                    className="group/card rounded-lg border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg sm:p-4 md:p-5 lg:p-7 dark:border-gray-600/50 dark:bg-gray-700/50"
+                    className="group/card rounded-md border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg sm:p-4 md:p-5 lg:p-7 dark:border-gray-600/50 dark:bg-gray-700/50"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* 图标区域 */}
@@ -854,7 +854,7 @@ function ScenariosSection(): JSX.Element {
             </div>
             {/* 悬浮标签 */}
             <div
-              className={`absolute rounded-2xl border border-gray-100 bg-white p-4 shadow-lg ${
+              className={`absolute rounded-md border border-gray-100 bg-white p-4 shadow-lg ${
                 activeScenario === 'digitalEmployee'
                   ? '-top-4 -left-4'
                   : '-top-4 -right-4'
@@ -1235,7 +1235,7 @@ export default function DigitalHumanPage(): JSX.Element {
         <section className="py-12 sm:py-16 lg:py-24">
           <Container>
             <div className="mx-auto max-w-[1800px] px-1 sm:px-2 lg:px-4">
-              <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white sm:rounded-xl">
+              <div className="relative overflow-hidden rounded-md border border-gray-200 bg-white">
                 {/* 装饰元素 - 仅在大屏显示 */}
                 <div className="absolute top-0 right-0 hidden h-full w-1/2 lg:block">
                   <svg

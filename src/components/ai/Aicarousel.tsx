@@ -362,7 +362,7 @@ const Carousel = ({ slides = defaultSlides }: CarouselProps) => {
               <Marquee duration={30}>
                 {marqueeImages.first.map((img, index) => (
                   <div key={`row1-${index}`} className="block w-[260px] shrink-0 mx-3">
-                    <div className="w-full rounded-xl border-[3px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden relative aspect-video">
+                    <div className="w-full rounded-md border-[3px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden relative aspect-video">
                       <Image
                         src={img}
                         alt={`Product Preview ${index + 1}`}
@@ -378,7 +378,7 @@ const Carousel = ({ slides = defaultSlides }: CarouselProps) => {
               <Marquee reverse duration={35}>
                 {marqueeImages.second.map((img, index) => (
                   <div key={`row2-${index}`} className="block w-[260px] shrink-0 mx-3">
-                    <div className="w-full rounded-xl border-[3px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden relative aspect-video">
+                    <div className="w-full rounded-md border-[3px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-lg overflow-hidden relative aspect-video">
                       <Image
                         src={img}
                         alt={`Product Preview ${index + 1}`}
@@ -411,7 +411,7 @@ const Carousel = ({ slides = defaultSlides }: CarouselProps) => {
           <Marquee vertical duration={50} className="h-full py-4">
             {marqueeImages.first.map((img, index) => (
               <div key={`col1-${index}`} className="block w-full mb-6">
-                <div className="w-full rounded-2xl border-[4px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/50 overflow-hidden hover:scale-[1.02] transition-transform duration-300 relative aspect-video">
+                <div className="w-full rounded-md border-[4px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/50 overflow-hidden hover:scale-[1.02] transition-transform duration-300 relative aspect-video">
                   <Image
                     src={img}
                     alt={`Product Preview ${index + 1}`}
@@ -427,7 +427,7 @@ const Carousel = ({ slides = defaultSlides }: CarouselProps) => {
           <Marquee vertical reverse duration={60} className="h-full py-4">
             {marqueeImages.second.map((img, index) => (
               <div key={`col2-${index}`} className="block w-full mb-6">
-                <div className="w-full rounded-2xl border-[4px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/50 overflow-hidden hover:scale-[1.02] transition-transform duration-300 relative aspect-video">
+                <div className="w-full rounded-md border-[4px] border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/50 overflow-hidden hover:scale-[1.02] transition-transform duration-300 relative aspect-video">
                   <Image
                     src={img}
                     alt={`Product Preview ${index + 1}`}

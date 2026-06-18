@@ -259,7 +259,7 @@ function AgentAdvantagesSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   {/* 选中时的背景渐变 */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -318,7 +318,7 @@ function AgentSupportSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
               >
                 {/* 悬停时的背景装饰 */}
                 <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#0055ff]/5 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100"></div>
@@ -376,7 +376,7 @@ function JoinConditionsSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group flex flex-col items-center rounded-2xl border border-slate-100 bg-slate-50/50 p-8 text-center transition-all duration-300 hover:border-[#0055ff]/20 hover:bg-white hover:shadow-lg hover:shadow-blue-500/5"
+                className="group flex flex-col items-center rounded-md border border-slate-100 bg-slate-50/50 p-8 text-center transition-all duration-300 hover:border-[#0055ff]/20 hover:bg-white hover:shadow-lg hover:shadow-blue-500/5"
               >
                 {/* 图标 */}
                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition-colors group-hover:bg-[#0055ff] group-hover:ring-[#0055ff]">
@@ -422,7 +422,7 @@ function PromotionProcessSection() {
           {promotionSteps.map((step, index) => (
             <div
               key={step.step}
-              className="group relative flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg"
+              className="group relative flex flex-col rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg"
             >
               {/* 连接线 (仅在桌面端显示，且不是最后一个) */}
               {index < promotionSteps.length - 1 && (
@@ -487,7 +487,7 @@ function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50/50 transition-colors hover:bg-white hover:shadow-md"
+              className="overflow-hidden rounded-md border border-slate-200 bg-slate-50/50 transition-colors hover:bg-white hover:shadow-md"
             >
               <button
                 onClick={() => toggleItem(index)}

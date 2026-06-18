@@ -228,7 +228,7 @@ function EcommerceFeatureTabs() {
         <div className="grid grid-cols-1 gap-4">
           <div className="transition-all duration-300 ease-out">
             <div
-              className="flex min-h-[300px] flex-col items-center gap-6 rounded-xl border border-slate-200 bg-white p-4 sm:min-h-[400px] sm:p-6 md:min-h-[500px] md:gap-8 md:p-8 lg:min-h-[600px] lg:flex-row lg:gap-12 lg:p-12 xl:gap-20 shadow-sm"
+              className="flex min-h-[300px] flex-col items-center gap-6 rounded-md border border-slate-200 bg-white p-4 sm:min-h-[400px] sm:p-6 md:min-h-[500px] md:gap-8 md:p-8 lg:min-h-[600px] lg:flex-row lg:gap-12 lg:p-12 xl:gap-20 shadow-sm"
             >
               {/* 左侧文字内容 */}
               <div className="order-2 flex w-full flex-col justify-center space-y-4 sm:space-y-6 md:space-y-8 lg:order-1 lg:w-2/5">
@@ -313,7 +313,7 @@ function EcommerceFeatureTabs() {
               <div className="order-1 mt-6 hidden w-full items-center justify-center lg:order-2 lg:mt-0 lg:flex lg:w-3/5 lg:justify-end">
                 <div className="h-48 w-full max-w-xs sm:h-60 sm:max-w-md md:h-80 md:max-w-xl lg:h-[28rem] lg:max-w-2xl xl:h-[32rem] xl:max-w-3xl">
                   {/* 模拟界面容器 */}
-                  <div className="h-full w-full overflow-hidden rounded-xl border border-slate-200 bg-white/80 shadow-lg backdrop-blur-sm">
+                  <div className="h-full w-full overflow-hidden rounded-md border border-slate-200 bg-white/80 shadow-lg backdrop-blur-sm">
                     {/* 模拟界面头部 */}
                     <div className="border-b border-slate-200 bg-slate-50 px-3 py-2 sm:px-4 sm:py-3">
                       <div className="flex items-center justify-between">
@@ -717,7 +717,7 @@ export default function EcommercePage() {
               {coreFeatures.map((feature) => (
                 <div
                   key={feature.name}
-                  className="group relative border border-slate-200 bg-white p-6 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-white p-6 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-4">
                     <feature.icon
@@ -750,7 +750,7 @@ export default function EcommercePage() {
               {systemFeatures.map((feature) => (
                 <div
                   key={feature.title}
-                  className="group relative border border-slate-200 bg-white p-8 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-white p-8 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-6">
                     <feature.icon
@@ -783,7 +783,7 @@ export default function EcommercePage() {
               {allFeatures.map((feature) => (
                 <div
                   key={feature.name}
-                  className="group relative border border-slate-200 bg-slate-50 p-6 rounded-xl transition-all duration-300 hover:bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-slate-50 p-6 rounded-md transition-all duration-300 hover:bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-4">
                     <feature.icon
@@ -816,7 +816,7 @@ export default function EcommercePage() {
               {membershipFeatures.map((feature) => (
                 <div
                   key={feature.name}
-                  className="group relative border border-slate-200 bg-white p-6 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-white p-6 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-4">
                     <feature.icon
@@ -849,7 +849,7 @@ export default function EcommercePage() {
               {marketingTools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="group relative border border-slate-200 bg-slate-50 p-6 rounded-xl transition-all duration-300 hover:bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-slate-50 p-6 rounded-md transition-all duration-300 hover:bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-4">
                     <tool.icon
@@ -884,7 +884,7 @@ export default function EcommercePage() {
               {applicationScenarios.map((scenario) => (
                 <div
                   key={scenario.title}
-                  className="group relative border border-slate-200 bg-white p-6 text-center rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-white p-6 text-center rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-4 flex justify-center">
                     <scenario.icon
@@ -919,7 +919,7 @@ export default function EcommercePage() {
               {techStack.map((tech, index) => (
                 <div
                   key={index}
-                  className="group relative border border-slate-200 bg-slate-50 p-6 rounded-xl transition-all duration-300 hover:bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-slate-50 p-6 rounded-md transition-all duration-300 hover:bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-3">
                     <span className="inline-block border border-[#0055ff]/20 bg-[#0055ff]/5 px-3 py-1 text-xs font-medium text-[#0055ff] rounded-full">
@@ -951,7 +951,7 @@ export default function EcommercePage() {
               {developmentAdvantages.map((advantage) => (
                 <div
                   key={advantage.name}
-                  className="group relative border border-slate-200 bg-white p-6 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative border border-slate-200 bg-white p-6 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   <div className="mb-4">
                     <advantage.icon

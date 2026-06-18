@@ -113,7 +113,7 @@ function AccordionFeatureCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-xl border border-neutral-200 bg-white/80 backdrop-blur-md transition-[flex] duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-200/50',
+        'group relative cursor-pointer overflow-hidden rounded-md border border-neutral-200 bg-white/80 backdrop-blur-md transition-[flex] duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-200/50',
         isExpanded ? 'flex-[2.5]' : 'flex-[1.2]',
       )}
       onMouseEnter={onToggle}
@@ -216,7 +216,7 @@ function MobileFeatureCard({
 
   return (
     <div
-      className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-xl border border-neutral-200 bg-white/80 backdrop-blur-md transition-all hover:shadow-lg hover:shadow-slate-200/50 sm:h-[280px]"
+      className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-md border border-neutral-200 bg-white/80 backdrop-blur-md transition-all hover:shadow-lg hover:shadow-slate-200/50 sm:h-[280px]"
     >
       {/* 内容区域 */}
       <div className="relative flex h-full flex-col p-3 sm:p-4">

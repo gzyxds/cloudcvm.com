@@ -365,7 +365,7 @@ function ECSLeftrightSection() {
             </dl>
           </div>
           <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
@@ -485,7 +485,7 @@ function ECSLeftrightSection() {
           </div>
           <div className="sm:px-6 lg:px-0">
             {/* 桌面端模拟界面 */}
-            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
               {/* 桌面端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -632,7 +632,7 @@ function ECSRightleftSection() {
             </dl>
           </div>
           <div className="mt-12 sm:mt-16">
-            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
@@ -716,7 +716,7 @@ function ECSRightleftSection() {
         <div className="grid grid-cols-1 gap-x-16 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
           <div className="sm:px-6 lg:px-0 lg:pt-4 lg:pr-8">
             {/* 桌面端模拟界面 */}
-            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-xl dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
               {/* 桌面端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -888,7 +888,7 @@ export default function ECSPage() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-xl transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   {/* Hover Gradient Background */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

@@ -186,7 +186,7 @@ function LandingUserReviews({ reviews }: { reviews: Review[] }) {
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="p-8 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300"
+              className="p-8 rounded-md bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex gap-1 text-yellow-400 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -286,8 +286,8 @@ export default function BananaProductPage({
       {/* ===== Demo Image ===== */}
       <div ref={demoContainerRef} id="__demo_container__" className="py-12 md:py-20">
         <Container>
-          <div className="relative p-2 rounded-2xl bg-slate-100/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 max-w-5xl mx-auto">
-            <div className="relative rounded-xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm bg-white/60 dark:bg-slate-800/60 aspect-video flex items-center justify-center">
+          <div className="relative p-2 rounded-md bg-slate-100/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 max-w-5xl mx-auto">
+            <div className="relative rounded-md overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm bg-white/60 dark:bg-slate-800/60 aspect-video flex items-center justify-center">
               <Image src={heroImage} alt="产品展示" width={1280} height={720} className="w-full h-full object-contain" />
             </div>
           </div>
@@ -307,7 +307,7 @@ export default function BananaProductPage({
                 return (
               <div
                 key={feature.title}
-                className="bg-white dark:bg-slate-900 rounded-xl p-8 border border-slate-200 dark:border-slate-800 transition-all duration-300 group hover:shadow-lg hover:border-[#0055ff]/30"
+                className="bg-white dark:bg-slate-900 rounded-md p-8 border border-slate-200 dark:border-slate-800 transition-all duration-300 group hover:shadow-lg hover:border-[#0055ff]/30"
               >
                 <div className="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:scale-110 transition-transform duration-300">
                   <FeatureIcon className="w-6 h-6" />
@@ -399,8 +399,8 @@ export default function BananaProductPage({
               </div>
 
               <div className="relative h-full">
-                <div className="relative p-2 rounded-2xl bg-slate-100/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 h-full">
-                  <div className="relative rounded-xl overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm bg-white/60 dark:bg-slate-800/60 h-full flex items-center justify-center">
+                <div className="relative p-2 rounded-md bg-slate-100/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 h-full">
+                  <div className="relative rounded-md overflow-hidden border border-slate-200/50 dark:border-slate-700/50 shadow-sm bg-white/60 dark:bg-slate-800/60 h-full flex items-center justify-center">
                     <Image src={detail.image} alt={detail.title} width={1280} height={720} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-tr from-black/5 to-transparent pointer-events-none" />
                   </div>

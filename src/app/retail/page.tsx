@@ -663,7 +663,7 @@ function StatsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative z-10">
@@ -814,7 +814,7 @@ function ConsultSection() {
           {/* 内容卡片区域 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 微信联系卡片 */}
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white/60 backdrop-blur-sm rounded-md p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="text-2xl font-medium text-[#101010] mb-2">微信联系</h3>
                 <p className="text-base text-[#7a8093]">扫码添加企业客服了解更多优惠信息</p>
@@ -832,7 +832,7 @@ function ConsultSection() {
             </div>
 
             {/* 合作咨询卡片 */}
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white/60 backdrop-blur-sm rounded-md p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="text-2xl font-medium text-[#101010] mb-2">合作咨询</h3>
                 <p className="text-base text-[#7a8093]">工作日：9:00—18:15</p>

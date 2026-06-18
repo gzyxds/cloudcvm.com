@@ -291,7 +291,7 @@ function AdvantagesSection(): JSX.Element {
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* 产品卡片1 - AI智能对话 */}
-          <div className="group rounded-xl border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
+          <div className="group rounded-md border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
             <div className="mb-6 flex items-center">
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 group-hover:bg-blue-100">
                 <ChatBubbleLeftRightIcon className="h-6 w-6 text-blue-600" />
@@ -329,7 +329,7 @@ function AdvantagesSection(): JSX.Element {
           </div>
 
           {/* 产品卡片2 - AI智能创作 */}
-          <div className="group rounded-xl border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
+          <div className="group rounded-md border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
             <div className="mb-6 flex items-center">
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 group-hover:bg-blue-100">
                 <AcademicCapIcon className="h-6 w-6 text-blue-600" />
@@ -367,7 +367,7 @@ function AdvantagesSection(): JSX.Element {
           </div>
 
           {/* 产品卡片3 - 学生作业 */}
-          <div className="group rounded-xl border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
+          <div className="group rounded-md border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
             <div className="mb-6 flex items-center">
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 group-hover:bg-blue-100">
                 <PencilIcon className="h-6 w-6 text-blue-600" />
@@ -405,7 +405,7 @@ function AdvantagesSection(): JSX.Element {
           </div>
 
           {/* 产品卡片4 - 营销功能 */}
-          <div className="group rounded-xl border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
+          <div className="group rounded-md border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-blue-100">
             <div className="mb-6 flex items-center">
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 group-hover:bg-blue-100">
                 <CpuChipIcon className="h-6 w-6 text-blue-600" />
@@ -939,7 +939,7 @@ export default function KnowledgeBasePage(): JSX.Element {
 
               {/* 右侧：论文创作演示卡片 */}
               <div className="relative">
-                <div className="relative rounded-2xl border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm">
+                <div className="relative rounded-md border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm">
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center">
@@ -1004,7 +1004,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                   { name: '深度语义理解', code: 'DSU' },
                   { name: '多模态融合', code: 'MM' },
                 ].map((tech, i) => (
-                  <div key={i} className="group rounded-xl border border-neutral-200 bg-white p-4 text-center transition-all duration-200 hover:border-brand-200 hover:shadow-sm">
+                  <div key={i} className="group rounded-md border border-neutral-200 bg-white p-4 text-center transition-all duration-200 hover:border-brand-200 hover:shadow-sm">
                     <div className="text-xs font-mono font-bold text-brand-500 mb-1 tracking-wide">{tech.code}</div>
                     <div className="text-sm font-medium text-neutral-700">{tech.name}</div>
                   </div>
@@ -1106,7 +1106,7 @@ export default function KnowledgeBasePage(): JSX.Element {
         {/* 准备好开启您的AI数字人之旅了吗？ */}
         <section className="py-12 sm:py-16 lg:py-24">
           <Container>
-            <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white sm:rounded-xl">
+            <div className="relative overflow-hidden rounded-md border border-gray-200 bg-white">
               {/* 装饰元素 - 仅在大屏显示 */}
               <div className="absolute top-0 right-0 hidden h-full w-1/2 lg:block">
                 <svg

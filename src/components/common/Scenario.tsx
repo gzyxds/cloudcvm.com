@@ -157,7 +157,7 @@ function SolutionCard({ card }: { card: SolutionCard }) {
       href={card.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col h-full bg-white border border-[#E5E6EB] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_8px_24px_rgba(29,33,41,0.08)] hover:-translate-y-1 hover:border-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664ff] focus-visible:ring-offset-2 active:scale-[0.98]"
+      className="group flex flex-col h-full bg-white border border-[#E5E6EB] rounded-md overflow-hidden transition-all duration-300 hover:shadow-[0_8px_24px_rgba(29,33,41,0.08)] hover:-translate-y-1 hover:border-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664ff] focus-visible:ring-offset-2 active:scale-[0.98]"
     >
       {/* 图片区域 - 采用百分比高度自适应 */}
       <div className="h-[45%] relative overflow-hidden flex-shrink-0 bg-[#F7F8FA]">

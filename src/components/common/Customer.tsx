@@ -87,7 +87,7 @@ export default function Customer() {
             </div>
 
             {/* 移动端：当前选中客户的详细信息 */}
-            <div className="mb-6 block rounded-xl border border-gray-200 bg-gray-50 p-6 lg:hidden">
+            <div className="mb-6 block rounded-md border border-gray-200 bg-gray-50 p-6 lg:hidden">
               <div className="mb-3 flex items-center justify-between">
                 <h3 className="text-xl font-bold text-gray-900">
                   {currentCustomer.name}
@@ -108,7 +108,7 @@ export default function Customer() {
                   key={customer.id}
                   onClick={() => setActiveCustomer(customer.id)}
                   className={clsx(
-                    'group w-full flex-1 rounded-xl border text-left transition-all duration-300 outline-none focus:ring-2 focus:ring-gray-200',
+                    'group w-full flex-1 rounded-md border text-left transition-all duration-300 outline-none focus:ring-2 focus:ring-gray-200',
                     activeCustomer === customer.id
                       ? 'border-transparent bg-gray-50 p-8'
                       : 'border-gray-200 bg-white p-6 hover:border-gray-300 hover:bg-gray-50'
@@ -155,7 +155,7 @@ export default function Customer() {
 
           {/* 右侧：展示图片 */}
           <div className="order-1 w-full lg:order-2">
-            <div className="relative h-[250px] overflow-hidden rounded-2xl border border-gray-200 bg-white p-2 sm:h-[300px] md:h-[350px] lg:h-[500px]">
+            <div className="relative h-[250px] overflow-hidden rounded-md border border-gray-200 bg-white p-2 sm:h-[300px] md:h-[350px] lg:h-[500px]">
               <div className="relative h-full w-full overflow-hidden rounded-xl bg-gray-50">
                 <Image
                   src={currentCustomer.image}

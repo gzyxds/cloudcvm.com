@@ -628,7 +628,7 @@ export default function Cardprice() {
           {serverProducts.map((product) => (
             <div
               key={product.id}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-lg border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
             >
               <div className="p-6">
                 <div className="mb-3 flex items-center gap-2">
@@ -1088,7 +1088,7 @@ export default function Cardprice() {
             {cloudVmProducts.map((product) => (
               <div
                 key={product.id}
-                className="group relative flex flex-col overflow-hidden rounded-lg border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+                className="group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
               >
                 {/* 产品标签 */}
                 <div className="mb-3 flex items-center gap-2">
@@ -1245,7 +1245,7 @@ export default function Cardprice() {
             {promotionProducts.map((product) => (
               <div
                 key={product.id}
-                className="group relative flex flex-col overflow-hidden rounded-lg border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+                className="group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
               >
                 {/* 产品标签 */}
                 <div className="mb-3 flex items-center gap-2">

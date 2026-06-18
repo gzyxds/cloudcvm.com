@@ -644,7 +644,7 @@ export function PrimaryFeatures() {
           {/* Mobile "View More" link */}
           <a
             href="/new"
-            className="flex items-center justify-center gap-2 w-full py-4 rounded-xl border border-neutral-200 bg-neutral-50 text-sm font-semibold text-neutral-700 hover:border-brand-300 hover:text-brand-500 transition-colors tracking-wide"
+            className="flex items-center justify-center gap-2 w-full py-4 rounded-md border border-neutral-200 bg-neutral-50 text-sm font-semibold text-neutral-700 hover:border-brand-300 hover:text-brand-500 transition-colors tracking-wide"
           >
             查看更多方案
             <ArrowRightIcon className="w-4 h-4" />

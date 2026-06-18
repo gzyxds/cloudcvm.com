@@ -313,7 +313,7 @@ function GlassCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-      className={`group relative overflow-hidden rounded-xl border border-slate-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 ${className}`}
+      className={`group relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 ${className}`}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="relative z-10 h-full">{children}</div>
@@ -472,7 +472,7 @@ function OverviewSection() {
                 方案围绕自主可控、安全合规、隐私计算与智能运维展开，适用于政务云建设、数据共享开放、智慧城市与国产化替代等典型政务场景。
               </p>
             </div>
-            <div className="rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
+            <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
               <p className="text-sm font-semibold text-[#eff6ff]">典型适用场景</p>
               <ul className="mt-4 space-y-3 text-sm text-white/90">
                 <li className="flex items-center gap-2">

@@ -148,14 +148,14 @@ interface SuperiorityProps {
 }
 
 /**
- * 产品优势展示组件 — 企业级云计算控制台风格
+ * 产品优势展示组件 — 现代 SaaS 极简风格
  *
- * 设计参考 AWS / 阿里云 / 腾讯云控制台：
+ * 设计参考 Linear / Vercel / Stripe：
  * - 专业蓝灰配色 + 高对比中性色
  * - Bento Grid 非对称网格布局（2-1-1-2 节奏）
- * - 细边框卡片 + 微阴影 + 适中圆角(rounded-xl)
- * - 每张卡片含图标、标题、描述、度量标签
- * - 悬停仅阴影增强，不变边框色
+ * - 无边框卡片 + 微阴影层次 + 微圆角(rounded-md)
+ * - 图标渐变底色 + 度量标签
+ * - 悬停上浮 + 阴影加深 + 品牌色顶边高亮
  * - 响应式：移动端 1 列 → 平板 2 列 → 桌面 3 列 Bento
  * - 可访问性：语义化 dl/dt/dd 结构
  *
@@ -217,61 +217,45 @@ export function Superiority({
                 <div
                   key={advantage.id}
                   className={clsx(
-                    'group relative flex flex-col rounded-xl border border-[#E2E8F0] bg-white transition-all duration-300',
-                    'hover:shadow-md hover:shadow-slate-200/60',
+                    'group relative flex flex-col rounded-md bg-white transition-all duration-300',
+                    'shadow-[0_0_0_1px_rgba(15,23,42,0.04),0_1px_3px_rgba(15,23,42,0.03)]',
+                    'hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(0,85,255,0.1),0_8px_24px_rgba(15,23,42,0.06)]',
+                    'before:absolute before:inset-x-3 before:top-0 before:h-px before:rounded-full before:bg-gradient-to-r before:from-transparent before:via-[#0055ff]/0 before:to-transparent before:transition-colors before:duration-300',
+                    'hover:before:via-[#0055ff]/30',
                     bentoLayout?.wrapper,
                   )}
                   role="article"
                   aria-label={`${advantage.name}${advantage.metricValue ? ` — ${advantage.metricLabel}: ${advantage.metricValue}` : ''}`}
                 >
-                  {/* 卡片头部 */}
-                  <dt className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
-                    {/* 优势图标 */}
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:border-[#0055ff]/30 group-hover:bg-[#eff6ff]">
+                  {/* 卡片内容 */}
+                  <div className="flex flex-auto flex-col px-5 py-5">
+                    {/* 图标 */}
+                    <div className="mb-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#0055ff]/10 to-[#0066ff]/5 text-[#0055ff] transition-all duration-300 group-hover:from-[#0055ff]/15 group-hover:to-[#0066ff]/10 group-hover:scale-110">
                       <advantage.icon aria-hidden="true" className="h-5 w-5" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <span className="block text-base font-semibold text-[#0F172A] truncate">
-                        {advantage.name}
-                      </span>
-                    </div>
-                    {/* 状态指示器 */}
-                    <div className="flex shrink-0 items-center gap-1.5">
-                      <span className="relative flex h-2 w-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10B981] opacity-75" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-[#10B981]" />
-                      </span>
-                      <span className="text-xs font-medium text-[#10B981]">
-                        Active
-                      </span>
-                    </div>
-                  </dt>
 
-                  {/* 卡片主体 — 描述 */}
-                  <dd className="flex flex-auto flex-col px-5 py-4">
-                    <p className="flex-auto text-sm leading-relaxed text-[#64748B]">
+                    {/* 标题 */}
+                    <dt className="text-sm font-semibold text-[#0F172A]">
+                      {advantage.name}
+                    </dt>
+
+                    {/* 描述 */}
+                    <dd className="mt-1.5 flex-auto text-sm leading-relaxed text-[#64748B]">
                       {advantage.description}
-                    </p>
-                  </dd>
+                    </dd>
 
-                  {/* 卡片底部 — 指标与操作 */}
-                  <div className="mt-auto flex items-center justify-between border-t border-[#F1F5F9] bg-[#F8FAFC] px-5 py-3">
-                    {/* 关键指标 */}
-                    {advantage.metricLabel && advantage.metricValue && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-[#94A3B8]">
-                          {advantage.metricLabel}
-                        </span>
-                        <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 text-xs font-mono font-semibold text-[#0055ff]">
+                    {/* 底部：指标 + 操作 */}
+                    <div className="mt-4 flex items-center justify-between">
+                      {advantage.metricLabel && advantage.metricValue && (
+                        <span className="inline-flex items-center gap-1.5 rounded-md bg-[#F1F5F9] px-2 py-1 text-xs font-mono font-semibold text-[#0055ff]">
                           {advantage.metricValue}
                         </span>
-                      </div>
-                    )}
-                    {/* 操作引导 */}
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-[#94A3B8] transition-colors group-hover:text-[#0055ff] cursor-pointer">
-                      了解详情
-                      <ArrowRightIcon className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                    </span>
+                      )}
+                      <span className="inline-flex items-center gap-1 text-xs font-medium text-[#94A3B8] transition-colors duration-200 group-hover:text-[#0055ff] cursor-pointer">
+                        了解详情
+                        <ArrowRightIcon className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               )

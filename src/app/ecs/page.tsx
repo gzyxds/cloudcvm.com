@@ -583,7 +583,7 @@ export default function Page() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 dark:border-gray-800 dark:bg-zinc-900 dark:hover:border-blue-400"
+                  className="group relative flex flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 dark:border-gray-800 dark:bg-zinc-900 dark:hover:border-blue-400"
                 >
                   {/* 悬停时的微弱背景渐变装饰 */}
                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-zinc-900 dark:to-zinc-800/50" />
@@ -756,7 +756,7 @@ export default function Page() {
               {productAdvantages.map((advantage) => (
                 <div
                   key={advantage.name}
-                  className="group relative flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 dark:border-gray-800 dark:bg-zinc-900 dark:hover:border-blue-400"
+                  className="group relative flex h-full flex-col rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 dark:border-gray-800 dark:bg-zinc-900 dark:hover:border-blue-400"
                 >
                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-zinc-900 dark:to-zinc-800/50" />
                   <div className="relative z-10">
@@ -827,7 +827,7 @@ export default function Page() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 dark:border-gray-800 dark:bg-zinc-900 dark:hover:border-blue-400"
+                  className="group relative overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 dark:border-gray-800 dark:bg-zinc-900 dark:hover:border-blue-400"
                 >
                   <div className="border-b border-gray-200 bg-gray-50/50 px-4 py-3 dark:border-gray-800 dark:bg-zinc-900">
                     <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
@@ -865,7 +865,7 @@ export default function Page() {
             </div>
 
             {/* PC端完整表格布局 */}
-            <div className="hidden overflow-hidden rounded-xl border border-gray-200 lg:block dark:border-gray-800">
+            <div className="hidden overflow-hidden rounded-md border border-gray-200 lg:block dark:border-gray-800">
               <table className="min-w-full">
                 <thead className="border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-zinc-900">
                   <tr>

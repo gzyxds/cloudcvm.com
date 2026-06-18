@@ -133,7 +133,7 @@ function CloudVisualization() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
             >
-              <div className="relative flex h-24 w-24 items-center justify-center rounded-2xl border-2 border-primary-300/50 bg-white/90 shadow-xl shadow-primary-500/8 backdrop-blur-sm">
+              <div className="relative flex h-24 w-24 items-center justify-center rounded-md border-2 border-primary-300/50 bg-white/90 shadow-xl shadow-primary-500/8 backdrop-blur-sm">
                 <motion.div
                   animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.15, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
@@ -169,7 +169,7 @@ function CloudVisualization() {
                     ease: 'easeInOut',
                     delay: node.id * 0.25,
                   }}
-                  className={`relative flex items-center justify-center rounded-xl border bg-white/90 shadow-sm backdrop-blur-sm ${typeColors[node.type]}`}
+                  className={`relative flex items-center justify-center rounded-md border bg-white/90 shadow-sm backdrop-blur-sm ${typeColors[node.type]}`}
                   style={{ width: node.size, height: node.size }}
                 >
                   <motion.div

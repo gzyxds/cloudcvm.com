@@ -130,7 +130,7 @@ function AdvantageCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-xl border border-neutral-200/60 bg-white/40 backdrop-blur-xl transition-[flex] duration-700 ease-out hover:shadow-lg',
+        'group relative cursor-pointer overflow-hidden rounded-md border border-neutral-200/60 bg-white/40 backdrop-blur-xl transition-[flex] duration-700 ease-out hover:shadow-lg',
         isExpanded
           ? 'flex-[2] md:flex-[2.5] lg:flex-[3]' // 响应式展开比例
           : 'flex-[1] md:flex-[1.2] lg:flex-[1.5]',

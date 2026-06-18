@@ -146,7 +146,7 @@ export default function Testimonials() {
               <div
                 key={`col1-${index}`}
                 className={cn(
-                  "p-8 rounded-2xl border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
+                  "p-8 rounded-md border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
                   gradients[index % gradients.length]
                 )}
               >
@@ -189,7 +189,7 @@ export default function Testimonials() {
               <div
                 key={`col2-${index}`}
                 className={cn(
-                  "p-8 rounded-2xl border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
+                  "p-8 rounded-md border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
                   gradients[(index + 2) % gradients.length]
                 )}
               >
@@ -232,7 +232,7 @@ export default function Testimonials() {
               <div
                 key={`col3-${index}`}
                 className={cn(
-                  "p-8 rounded-2xl border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
+                  "p-8 rounded-md border border-gray-100 dark:border-gray-800 break-inside-avoid hover:scale-[1.02] transition-transform duration-300",
                   gradients[(index + 4) % gradients.length]
                 )}
               >
