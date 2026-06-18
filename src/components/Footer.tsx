@@ -198,7 +198,7 @@ export function Footer() {
                       />
                     </div>
                     <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">
-                      关注微信公众号
+                      微信公众号
                     </p>
                   </div>
                   {/* 扫码加入社群二维码 */}
@@ -206,14 +206,14 @@ export function Footer() {
                     <div className="rounded-none bg-white p-1.5 shadow-sm">
                       <Image
                         src="/images/contact/Tencent.png"
-                        alt="扫码联系客服"
+                        alt="联系客服"
                         width={48}
                         height={48}
                         className="h-auto w-full"
                       />
                     </div>
                     <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">
-                      扫码联系客服
+                      联系客服
                     </p>
                   </div>
                   {/* 微信小程序二维码 */}
@@ -221,14 +221,14 @@ export function Footer() {
                     <div className="rounded-none bg-white p-1.5 shadow-sm">
                       <Image
                         src="/images/contact/QQ.png"
-                        alt="关注微信小程序"
+                        alt="微信小程序"
                         width={48}
                         height={48}
                         className="h-auto w-full"
                       />
                     </div>
                     <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">
-                      腾讯在线客服
+                      在线客服
                     </p>
                   </div>
                 </div>
