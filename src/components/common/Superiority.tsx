@@ -177,9 +177,10 @@ export function Superiority({
     <section
       className={clsx(
         'relative overflow-hidden py-20 sm:py-28',
-        showBackground && 'bg-[#F8FAFC]',
+        showBackground && 'bg-cover bg-center bg-no-repeat',
         className,
       )}
+      style={showBackground ? { backgroundImage: 'url("/images/background/background-3.webp")' } : undefined}
       aria-label="产品优势展示"
     >
       {/* 背景装饰 */}

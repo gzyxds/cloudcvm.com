@@ -175,9 +175,10 @@ export function ProductTraits({
   return (
     <section
       className={clsx(
-        'relative overflow-hidden bg-[#F8FAFC] py-20 sm:py-28',
+        'relative overflow-hidden bg-cover bg-center bg-no-repeat py-20 sm:py-28',
         className
       )}
+      style={{ backgroundImage: 'url("/images/background/background-4.webp")' }}
       aria-label="产品特性展示"
     >
       {/* 背景装饰 */}

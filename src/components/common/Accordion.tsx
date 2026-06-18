@@ -105,7 +105,7 @@ function CapabilityCard({ item, index }: { item: (typeof capabilities)[0]; index
 // ============================================================
 export function Accordion() {
   return (
-    <section className="bg-[#F8FAFC] py-16 sm:py-20 lg:py-28" id="cloud-features">
+    <section className="bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-28" style={{ backgroundImage: 'url("/images/background/background-5.webp")' }} id="cloud-features">
       <Container>
         {/* 标题 */}
         <motion.div
