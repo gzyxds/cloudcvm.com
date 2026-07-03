@@ -1,37 +1,86 @@
-import { type Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import {
-  CloudArrowUpIcon,
-  LockClosedIcon,
-  ServerIcon,
-  CpuChipIcon,
-  ChartBarIcon,
-  DocumentTextIcon,
+  ArrowRightIcon,
   BuildingOfficeIcon,
-  UserGroupIcon,
+  ChartBarIcon,
+  CpuChipIcon,
   GlobeAltIcon,
+  UserGroupIcon,
   TrophyIcon,
   MapPinIcon,
   PhoneIcon,
-} from '@heroicons/react/20/solid'
-
-import { Button } from '@/components/Button'
+  HeartIcon,
+  SparklesIcon,
+  RocketLaunchIcon,
+  ShieldCheckIcon,
+} from '@heroicons/react/24/outline'
 import { Container } from '@/components/Container'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Button } from '@/components/Button'
 
-export const metadata: Metadata = {
-  title: '关于我们',
-  description:
-    '优刻云计算成立于2015年，是国内专业的大数据基础能力服务商，专注于通过数据激发生产力，为企业与开发者提供大数据的基础技术底座。',
-  keywords: ['关于我们', '优刻云计算', '云计算服务商', '大数据基础能力', '公司介绍'],
+/**
+ * 通用数据类型定义
+ */
+type IconComponent = React.ComponentType<{ className?: string }>
+
+interface SectionLink {
+  id: string
+  label: string
 }
+
+interface StatItem {
+  value: string
+  label: string
+  icon: IconComponent
+}
+
+interface FeatureItem {
+  icon: IconComponent
+  name: string
+  description: string
+}
+
+interface ValueItem {
+  title: string
+  description: string
+}
+
+interface MilestoneItem {
+  year: string
+  title: string
+  description: string
+}
+
+interface HonorItem {
+  title: string
+  date: string
+  description: string
+}
+
+interface OfficeItem {
+  city: string
+  address: string
+  phone: string
+}
+
+/**
+ * 页面锚点导航链接数据
+ */
+const SECTION_LINKS: SectionLink[] = [
+  { id: 'overview', label: '公司概况' },
+  { id: 'stats', label: '数据实力' },
+  { id: 'vision', label: '愿景使命' },
+  { id: 'timeline', label: '发展历程' },
+  { id: 'honors', label: '荣誉资质' },
+  { id: 'contact', label: '联系我们' },
+]
 
 /**
  * 公司统计数据
  */
-const companyStats = [
+const COMPANY_STATS: StatItem[] = [
   {
     value: '75000+',
     label: '企业与开发者用户',
@@ -55,39 +104,45 @@ const companyStats = [
 ]
 
 /**
+ * 公司介绍特性
+ */
+const COMPANY_FEATURES: FeatureItem[] = [
+  {
+    name: '专业服务商',
+    description:
+      '优刻云成立于2015年，是国内专业的大数据基础能力服务商，专注于通过数据激发生产力。',
+    icon: BuildingOfficeIcon,
+  },
+  {
+    name: '丰富经验',
+    description:
+      '在大数据领域有丰富的经验，业务覆盖政府、财会、教育、工业、电商等多个行业。',
+    icon: ChartBarIcon,
+  },
+  {
+    name: '技术前沿',
+    description:
+      '积极推动技术研发与人才培养，确保始终处于数据领域的技术前沿，为客户提供最具竞争力的解决方案。',
+    icon: CpuChipIcon,
+  },
+]
+
+/**
  * 公司价值观
  */
-const companyValues = [
-  {
-    title: '客户至上',
-    description: '始终将客户的需求和利益置于首位',
-  },
-  {
-    title: '科技向善',
-    description: '用科技的力量创造积极的社会价值',
-  },
-  {
-    title: '诚信协作',
-    description: '诚信让协作更加高效',
-  },
-  {
-    title: '共同成长',
-    description: '相互扶持，积极分享迈向卓越',
-  },
-  {
-    title: '结果导向',
-    description: '追求目标实现以成果衡量价值',
-  },
-  {
-    title: '拥抱变化',
-    description: '唯有变化是永恒不变的',
-  },
+const COMPANY_VALUES: ValueItem[] = [
+  { title: '客户至上', description: '始终将客户的需求和利益置于首位' },
+  { title: '科技向善', description: '用科技的力量创造积极的社会价值' },
+  { title: '诚信协作', description: '诚信让协作更加高效' },
+  { title: '共同成长', description: '相互扶持，积极分享迈向卓越' },
+  { title: '结果导向', description: '追求目标实现以成果衡量价值' },
+  { title: '拥抱变化', description: '唯有变化是永恒不变的' },
 ]
 
 /**
  * 发展历程
  */
-const milestones = [
+const MILESTONES: MilestoneItem[] = [
   {
     year: '2024-至今',
     title: '数实融合 破浪前行',
@@ -123,1021 +178,602 @@ const milestones = [
 /**
  * 荣誉资质
  */
-const honors = [
-  {
-    title: '专精特新中小企业',
-    date: '2024.05',
-    description: '评为专精特新中小企业',
-  },
-  {
-    title: '区重点企业',
-    date: '2023.06',
-    description: '认定为丰泽区重点企业',
-  },
-  {
-    title: '科技小巨人企业',
-    date: '2023.06',
-    description: '荣获科技小巨人企业',
-  },
-  {
-    title: '创新型中小企业',
-    date: '2023.01',
-    description: '被评为创新型中小企业',
-  },
-  {
-    title: '"瞪羚"创新企业',
-    date: '2022.07',
-    description: '获评瞪羚企业',
-  },
-  {
-    title: '科技型中小企业',
-    date: '2021.10',
-    description: '评为科技型中小企业',
-  },
-  {
-    title: '高新技术企业',
-    date: '2019.12',
-    description: '荣获国家级高新技术企业称号',
-  },
+const HONORS: HonorItem[] = [
+  { title: '专精特新中小企业', date: '2024.05', description: '评为专精特新中小企业' },
+  { title: '区重点企业', date: '2023.06', description: '认定为丰泽区重点企业' },
+  { title: '科技小巨人企业', date: '2023.06', description: '荣获科技小巨人企业' },
+  { title: '创新型中小企业', date: '2023.01', description: '被评为创新型中小企业' },
+  { title: '"瞪羚"创新企业', date: '2022.07', description: '获评瞪羚企业' },
+  { title: '科技型中小企业', date: '2021.10', description: '评为科技型中小企业' },
+  { title: '高新技术企业', date: '2019.12', description: '荣获国家级高新技术企业称号' },
 ]
 
 /**
  * 联系方式
  */
-const offices = [
-  {
-    city: '泉州',
-    address: '泉州市丰泽区领SHOW天地传媒中心8楼',
-    phone: '0595-22113999',
-  },
-  {
-    city: '厦门',
-    address: '厦门市湖里区厦门跨境产业园1号楼F层AJ02单元',
-    phone: '',
-  },
-  {
-    city: '深圳',
-    address: '深圳市龙岗区坂田街道万致天地商业中心1栋一单元办公1904',
-    phone: '',
-  },
+const OFFICES: OfficeItem[] = [
+  { city: '泉州', address: '泉州市丰泽区领SHOW天地传媒中心8楼', phone: '0595-22113999' },
+  { city: '厦门', address: '厦门市湖里区厦门跨境产业园1号楼F层AJ02单元', phone: '' },
+  { city: '深圳', address: '深圳市龙岗区坂田街道万致天地商业中心1栋一单元办公1904', phone: '' },
 ]
 
+// ===================================================================
+// 通用 Hooks 与组件
+// ===================================================================
+
 /**
- * 公司介绍特性
+ * 自定义 Hook：监听滚动以更新当前激活的导航项
  */
-const companyFeatures = [
-  {
-    name: '专业服务商',
-    description:
-      '优刻云成立于2015年，是国内专业的大数据基础能力服务商，专注于通过数据激发生产力。',
-    icon: BuildingOfficeIcon,
-  },
-  {
-    name: '丰富经验',
-    description:
-      '在大数据领域有丰富的经验，业务覆盖政府、财会、教育、工业、电商等多个行业。',
-    icon: ChartBarIcon,
-  },
-  {
-    name: '技术前沿',
-    description:
-      '积极推动技术研发与人才培养，确保始终处于数据领域的技术前沿，为客户提供最具竞争力的解决方案。',
-    icon: CpuChipIcon,
-  },
-]
+function useActiveSection(sectionIds: string[]) {
+  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
+
+  useEffect(() => {
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null)
+
+    if (sections.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
+
+        if (visibleEntry) {
+          setActiveSection(visibleEntry.target.id)
+        }
+      },
+      {
+        rootMargin: '-30% 0px -55% 0px',
+        threshold: [0.2, 0.35, 0.5, 0.75],
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [sectionIds])
+
+  return activeSection
+}
 
 /**
- * 公司统计数据展示组件
+ * 玻璃拟态卡片组件
+ */
+function GlassCard({
+  children,
+  className = '',
+  delay = 0,
+}: {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+      className={`group relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 ${className}`}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="relative z-10 h-full">{children}</div>
+    </motion.div>
+  )
+}
+
+/**
+ * 通用分区标题组件
+ */
+function SectionHeader({
+  eyebrow,
+  title,
+  description,
+  align = 'center',
+}: {
+  eyebrow: string
+  title: string
+  description: string
+  align?: 'left' | 'center'
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className={align === 'center' ? 'text-center' : ''}
+    >
+      <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
+        {eyebrow}
+      </span>
+      <h2
+        className={`mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl ${
+          align === 'center' ? 'mx-auto max-w-2xl' : ''
+        }`}
+      >
+        {title}
+      </h2>
+      <p
+        className={`mt-4 text-base leading-relaxed text-slate-500 sm:text-lg ${
+          align === 'center' ? 'mx-auto max-w-3xl' : ''
+        }`}
+      >
+        {description}
+      </p>
+    </motion.div>
+  )
+}
+
+/**
+ * 页面锚点导航组件
+ */
+function SectionNav() {
+  const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
+
+  return (
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+      <Container>
+        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+          {SECTION_LINKS.map((item) => {
+            const isActive = item.id === activeSection
+            return (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
+                  isActive
+                    ? 'border-brand-500 text-brand-500'
+                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                }`}
+              >
+                {item.label}
+              </a>
+            )
+          })}
+        </div>
+      </Container>
+    </nav>
+  )
+}
+
+// ===================================================================
+// 页面区块组件
+// ===================================================================
+
+/**
+ * Hero 区域
+ */
+function HeroSection() {
+  return (
+    <section className="relative flex min-h-[520px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+      {/* 背景图片 */}
+      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/about.jpg')] bg-cover bg-center bg-no-repeat" />
+      {/* 渐变覆盖 */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white/70 via-white/20 to-transparent" />
+
+      <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
+          <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-[#eff6ff] px-3 text-xs font-semibold text-brand-500">
+            优刻云与您共创未来
+          </span>
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl lg:leading-tight">
+            优刻云计算
+          </h1>
+          <p className="mt-4 text-lg font-medium text-slate-600 sm:text-xl">
+            成为全球领先的数据驱动引擎
+          </p>
+          <p className="mt-2 text-base font-medium text-brand-500">
+            Leading Global Data-Driven Innovation
+          </p>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-4">
+            <Button href="#contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+              联系我们
+            </Button>
+            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+              了解更多 <span aria-hidden="true">→</span>
+            </Button>
+          </div>
+        </motion.div>
+      </Container>
+    </section>
+  )
+}
+
+/**
+ * 公司概况区域
+ */
+function OverviewSection() {
+  return (
+    <section id="overview" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+      <Container>
+        <SectionHeader
+          eyebrow="Company Profile"
+          title="专业的大数据基础能力服务商"
+          description="专注于通过数据激发生产力，为企业与开发者提供大数据的基础技术底座，业务覆盖政府、财会、教育、工业、电商等多个行业。"
+        />
+
+        {/* 核心介绍卡片 */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 rounded-md bg-brand-500 p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-brand-500/20"
+        >
+          <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
+            <div>
+              <h3 className="text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl">
+                用数据驱动生产力
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-white/80">
+                优刻云成立于2015年，是国内专业的大数据基础能力服务商。我们始终专注于通过数据激发生产力，
+                致力于成为全球领先的数据驱动引擎。公司拥有一支高素质的技术团队，技术人员占比超过50%，
+                为客户提供最优质的大数据基础设施服务。
+              </p>
+            </div>
+            <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
+              <p className="text-sm font-semibold text-[#eff6ff]">核心业务领域</p>
+              <ul className="mt-4 space-y-3 text-sm text-white/90">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 云计算基础服务
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> AI 智能应用
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 大数据处理与分析
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 边缘计算与 CDN
+                </li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 公司特性卡片 */}
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {COMPANY_FEATURES.map((item, index) => {
+            const Icon = item.icon
+            return (
+              <GlassCard key={item.name} delay={index * 0.1} className="flex flex-col">
+                <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-brand-500">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="text-lg font-semibold text-slate-900">{item.name}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              </GlassCard>
+            )
+          })}
+        </div>
+      </Container>
+    </section>
+  )
+}
+
+/**
+ * 数据实力区域
  */
 function StatsSection() {
   return (
-    <div className="bg-slate-50 py-16 sm:py-24">
+    <section id="stats" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
       <Container>
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            数据见证实力
-          </h2>
-          <p className="mt-4 text-lg text-slate-500">
-            用数字说话，用成果证明我们的专业能力与服务品质
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Company Stats"
+          title="数据见证实力"
+          description="用数字说话，用成果证明我们的专业能力与服务品质"
+        />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {companyStats.map((stat, index) => {
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {COMPANY_STATS.map((stat, index) => {
             const Icon = stat.icon
             return (
-              <div
-                key={stat.label}
-                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
-              >
-                <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative z-10 flex flex-col items-center text-center">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff]">
-                    <Icon className="h-6 w-6 text-[#0055ff]" />
-                  </div>
-                  <div className="text-3xl font-bold text-slate-900">
-                    {stat.value}
-                  </div>
-                  <div className="mt-2 text-sm font-medium text-slate-500">
-                    {stat.label}
-                  </div>
-                </div>
-              </div>
+              <GlassCard key={stat.label} delay={index * 0.1} className="text-center">
+                <span className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
+                  <Icon className="h-7 w-7" />
+                </span>
+                <div className="text-3xl font-bold text-slate-900">{stat.value}</div>
+                <div className="mt-2 text-sm font-medium text-slate-500">{stat.label}</div>
+              </GlassCard>
             )
           })}
         </div>
       </Container>
-    </div>
+    </section>
   )
 }
 
 /**
- * 愿景使命价值观展示组件
+ * 愿景使命区域
  */
-function VisionMissionSection() {
+function VisionSection() {
   return (
-    <div className="py-16 sm:py-24">
+    <section id="vision" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
       <Container>
-        {/* 愿景、使命和价值观区域 - Bento Grid 布局 */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-          {/* 愿景区域 */}
-          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-md border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
-            <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="relative z-10">
-              <h2 className="mb-6 text-3xl font-bold text-slate-900">
-                愿景 VISION
-              </h2>
-              <div className="space-y-6">
-                <p className="text-lg font-semibold text-slate-700">
-                  成为全球领先的数据驱动引擎
-                </p>
-                <p className="text-base font-medium text-slate-500">
-                  Leading Global Data-Driven Innovation
-                </p>
-              </div>
-            </div>
-            {/* 装饰性图形 */}
-            <div className="absolute top-6 right-6 h-24 w-24 opacity-10">
-              <svg
-                viewBox="0 0 100 100"
-                className="h-full w-full text-slate-400"
-              >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeDasharray="8,4"
-                />
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="25"
-                  fill="currentColor"
-                  opacity="0.15"
-                />
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="15"
-                  fill="currentColor"
-                  opacity="0.1"
-                />
-              </svg>
-            </div>
-          </div>
+        <SectionHeader
+          eyebrow="Vision & Mission"
+          title="愿景 · 使命 · 价值观"
+          description="以清晰的愿景指引方向，以坚定的使命驱动前行，以共同的价值观凝聚力量"
+        />
 
-          {/* 使命区域 */}
-          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-md border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
-            <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="relative z-10">
-              <h2 className="mb-6 text-3xl font-bold text-slate-900">
-                使命 MISSION
-              </h2>
-              <div className="space-y-6">
-                <p className="text-lg font-semibold text-slate-700">
-                  用数据驱动生产力
-                </p>
-                <p className="text-base font-medium text-slate-500">
-                  Driving the Productivity Explosion with Data
-                </p>
-              </div>
-            </div>
-            {/* 装饰性图形 */}
-            <div className="absolute top-6 right-6 h-24 w-24 opacity-10">
-              <svg
-                viewBox="0 0 100 100"
-                className="h-full w-full text-slate-400"
-              >
-                <rect
-                  x="20"
-                  y="20"
-                  width="60"
-                  height="60"
-                  rx="8"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeDasharray="6,3"
-                />
-                <rect
-                  x="30"
-                  y="30"
-                  width="40"
-                  height="40"
-                  rx="6"
-                  fill="currentColor"
-                  opacity="0.15"
-                />
-                <rect
-                  x="40"
-                  y="40"
-                  width="20"
-                  height="20"
-                  rx="3"
-                  fill="currentColor"
-                  opacity="0.1"
-                />
-              </svg>
-            </div>
-          </div>
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {/* 愿景 */}
+          <GlassCard className="flex min-h-[300px] flex-col justify-center" delay={0}>
+            <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
+              <RocketLaunchIcon className="h-7 w-7" />
+            </span>
+            <h3 className="text-2xl font-bold text-slate-900">
+              愿景 <span className="text-sm font-medium text-slate-400">VISION</span>
+            </h3>
+            <p className="mt-4 text-lg font-semibold text-slate-700">成为全球领先的数据驱动引擎</p>
+            <p className="mt-2 text-sm font-medium text-brand-500">Leading Global Data-Driven Innovation</p>
+          </GlassCard>
 
-          {/* 价值观区域 */}
-          <div className="group relative flex min-h-[320px] flex-col justify-center overflow-hidden rounded-md border border-slate-200 bg-white p-10 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
-            <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="relative z-10">
-              <h2 className="mb-6 text-3xl font-bold text-slate-900">
-                价值观 VALUES
-              </h2>
+          {/* 使命 */}
+          <GlassCard className="flex min-h-[300px] flex-col justify-center" delay={0.1}>
+            <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
+              <SparklesIcon className="h-7 w-7" />
+            </span>
+            <h3 className="text-2xl font-bold text-slate-900">
+              使命 <span className="text-sm font-medium text-slate-400">MISSION</span>
+            </h3>
+            <p className="mt-4 text-lg font-semibold text-slate-700">用数据驱动生产力</p>
+            <p className="mt-2 text-sm font-medium text-brand-500">Driving the Productivity Explosion with Data</p>
+          </GlassCard>
 
-              <div className="grid grid-cols-2 gap-4">
-                {companyValues.map((value, index) => (
-                  <div key={value.title} className="text-center">
-                    <h3 className="mb-1 text-sm font-semibold text-slate-900">
-                      {value.title}
-                    </h3>
-                    <p className="text-xs leading-relaxed text-slate-500">
-                      {value.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+          {/* 价值观 */}
+          <GlassCard className="flex min-h-[300px] flex-col justify-center" delay={0.2}>
+            <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
+              <HeartIcon className="h-7 w-7" />
+            </span>
+            <h3 className="text-2xl font-bold text-slate-900">
+              价值观 <span className="text-sm font-medium text-slate-400">VALUES</span>
+            </h3>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {COMPANY_VALUES.map((v) => (
+                <div key={v.title} className="text-center">
+                  <div className="text-sm font-semibold text-slate-900">{v.title}</div>
+                  <p className="mt-0.5 text-xs leading-relaxed text-slate-500">{v.description}</p>
+                </div>
+              ))}
             </div>
-
-            {/* 装饰性图形 */}
-            <div className="absolute top-6 right-6 h-24 w-24 opacity-10">
-              <svg
-                viewBox="0 0 100 100"
-                className="h-full w-full text-slate-400"
-              >
-                <polygon
-                  points="50,10 90,90 10,90"
-                  fill="currentColor"
-                  opacity="0.3"
-                />
-                <circle cx="50" cy="60" r="8" fill="currentColor" />
-              </svg>
-            </div>
-          </div>
+          </GlassCard>
         </div>
       </Container>
-    </div>
+    </section>
   )
 }
 
 /**
- * 发展历程组件 - 左右交替布局，Linear 风格
+ * 发展历程区域
  */
 function TimelineSection() {
   return (
-    <div className="bg-slate-50 py-16 sm:py-24">
+    <section id="timeline" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
       <Container>
-        <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            发展历程
-          </h2>
-          <p className="mt-4 text-lg text-slate-500">
-            见证我们从初创到行业领先的每一个重要时刻
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Our History"
+          title="发展历程"
+          description="见证我们从初创到行业领先的每一个重要时刻"
+        />
 
-        <div className="relative space-y-16">
-          {/* 整体连续分割线 */}
-          <div className="absolute top-0 bottom-0 left-1/2 hidden w-px -translate-x-1/2 transform bg-slate-200 lg:block"></div>
+        <div className="relative mt-16">
+          {/* 中心分割线（桌面端） */}
+          <div className="absolute left-1/2 top-0 bottom-0 hidden w-px -translate-x-1/2 bg-slate-200 lg:block" />
 
-          {milestones.map((milestone, index) => {
-            const isEven = index % 2 === 0
-            return (
-              <div
-                key={milestone.year}
-                className="relative grid grid-cols-1 gap-x-8 gap-y-8 lg:grid-cols-2 lg:items-center"
-              >
-                {/* 分割线上的装饰圆点 */}
-                <div className="absolute top-1/2 left-1/2 hidden h-4 w-4 -translate-x-1/2 -translate-y-1/2 transform rounded-full border-4 border-white bg-[#0055ff] shadow-sm lg:block"></div>
+          <div className="relative space-y-12 lg:space-y-16">
+            {MILESTONES.map((milestone, index) => {
+              const isEven = index % 2 === 0
 
-                {/* 内容区域 */}
-                <div className={`${isEven ? '' : 'lg:order-2'}`}>
-                  <div className="relative flex items-start space-x-4">
-                    {/* 时间节点 (移动端显示) */}
-                    <div className="flex-shrink-0 lg:hidden">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0055ff]">
-                        <span className="text-sm font-medium text-white">
-                          {milestone.year.slice(-2)}
-                        </span>
-                      </div>
-                    </div>
+              return (
+                <motion.div
+                  key={milestone.year}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-center"
+                >
+                  {/* 时间线圆点 */}
+                  <div className="absolute top-6 left-4 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-brand-500 shadow-sm lg:block lg:left-1/2" />
 
-                    {/* 内容卡片 */}
-                    <div className="min-w-0 flex-1">
-                      <div className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
-                        <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        <div className="relative z-10">
-                          <div className="mb-2 flex items-center justify-between">
-                            <h3 className="text-lg font-semibold text-slate-900">
-                              {milestone.title}
-                            </h3>
-                            <span className="text-sm font-mono font-medium text-[#0055ff]">
-                              {milestone.year}
-                            </span>
-                          </div>
-                          <p className="text-sm leading-relaxed text-slate-500">
-                            {milestone.description}
-                          </p>
+                  {/* 内容卡片 */}
+                  <div className={`lg:pr-12 ${isEven ? '' : 'lg:order-2 lg:pl-12 lg:pr-0'}`}>
+                    <div className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 hover:border-brand-200">
+                      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      <div className="relative z-10">
+                        {/* 移动端年份标记 */}
+                        <div className="mb-3 flex items-center gap-3 lg:hidden">
+                          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white">
+                            {index + 1}
+                          </span>
+                          <span className="text-sm font-mono font-semibold text-brand-500">
+                            {milestone.year}
+                          </span>
                         </div>
+                        {/* 桌面端年份标记 */}
+                        <h3 className="mb-2 text-lg font-semibold text-slate-900">{milestone.title}</h3>
+                        <p className="text-sm leading-relaxed text-slate-500">{milestone.description}</p>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* 占位区域 / 年份大字 */}
-                <div
-                  className={`${isEven ? '' : 'lg:order-1'} hidden lg:block`}
-                >
-                  <div className="flex h-32 items-center justify-center">
-                    <span className="font-mono text-4xl font-bold text-slate-200">
-                      {milestone.year.split('-')[0]}
+                  {/* 年份数字（桌面端） */}
+                  <div className={`hidden lg:flex ${isEven ? 'lg:order-2 lg:pl-12' : 'lg:order-1 lg:pr-12'} h-full items-center`}>
+                    <span className="font-mono text-3xl font-bold text-slate-200 lg:text-4xl">
+                      {milestone.year}
                     </span>
                   </div>
-                </div>
-              </div>
-            )
-          })}
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
       </Container>
-    </div>
+    </section>
   )
 }
 
 /**
- * 荣誉资质组件
+ * 荣誉资质区域
  */
 function HonorsSection() {
   return (
-    <div className="bg-white py-16 sm:py-24">
+    <section id="honors" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
       <Container>
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            荣誉资质
-          </h2>
-          <p className="mt-4 text-lg text-slate-500">
-            自成立以来，优刻云计算获得了众多企业、权威行业机构和知名媒体的关注与认可
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Honors & Awards"
+          title="荣誉资质"
+          description="自成立以来，优刻云计算获得了众多企业、权威行业机构和知名媒体的关注与认可"
+        />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {honors.map((honor, index) => (
-            <div
-              key={honor.title}
-              className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative z-10">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff]">
-                  <TrophyIcon className="h-6 w-6 text-[#0055ff]" />
-                </div>
-
-                <div>
-                  <h3 className="mb-2 text-lg font-semibold text-slate-900">
-                    {honor.title}
-                  </h3>
-                  <div className="mb-3 text-sm font-mono text-[#0055ff]">
-                    {honor.date}
-                  </div>
-                  <p className="text-sm leading-relaxed text-slate-500">
-                    {honor.description}
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {HONORS.map((honor, index) => (
+            <GlassCard key={honor.title} delay={index * 0.05}>
+              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-brand-500">
+                <TrophyIcon className="h-6 w-6" />
+              </span>
+              <div className="mb-2 text-sm font-mono font-semibold text-brand-500">{honor.date}</div>
+              <h3 className="text-lg font-semibold text-slate-900">{honor.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-slate-500">{honor.description}</p>
+            </GlassCard>
           ))}
         </div>
       </Container>
-    </div>
+    </section>
   )
 }
 
 /**
- * 联系我们组件
+ * 联系我们区域
  */
 function ContactSection() {
   return (
-    <div className="bg-slate-50 py-16 sm:py-24">
+    <section id="contact" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
       <Container>
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            联系我们
-          </h2>
-          <p className="mt-4 text-lg text-slate-500">
-            我们在全国多个城市设有办公室，随时为您提供专业的服务支持
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Contact Us"
+          title="联系我们"
+          description="我们在全国多个城市设有办公室，随时为您提供专业的服务支持"
+        />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {offices.map((office, index) => (
-            <div
-              key={office.city}
-              className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative z-10">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff]">
-                  <MapPinIcon className="h-6 w-6 text-[#0055ff]" />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {OFFICES.map((office, index) => (
+            <GlassCard key={office.city} delay={index * 0.1}>
+              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-brand-500">
+                <MapPinIcon className="h-6 w-6" />
+              </span>
+              <h3 className="mb-3 text-lg font-semibold text-slate-900">
+                {office.city}办公室
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-2">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
+                  <p className="text-sm leading-relaxed break-words text-slate-600">
+                    {office.address}
+                  </p>
                 </div>
-
-                <div>
-                  <h3 className="mb-3 text-lg font-semibold text-slate-900">
-                    {office.city}办公室
-                  </h3>
-
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-2">
-                      <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#0055ff]" />
-                      <p className="text-sm leading-relaxed break-words text-slate-600">
-                        {office.address}
-                      </p>
-                    </div>
-
-                    {office.phone && (
-                      <div className="flex items-center space-x-2">
-                        <PhoneIcon className="h-4 w-4 flex-shrink-0 text-[#0055ff]" />
-                        <span className="text-sm font-medium text-slate-700">
-                          {office.phone}
-                        </span>
-                      </div>
-                    )}
+                {office.phone && (
+                  <div className="flex items-center gap-2">
+                    <PhoneIcon className="h-4 w-4 shrink-0 text-brand-500" />
+                    <span className="text-sm font-medium text-slate-700">{office.phone}</span>
                   </div>
-                </div>
+                )}
               </div>
-            </div>
+            </GlassCard>
           ))}
         </div>
 
-        {/* 联系方式说明 */}
-        <div className="mt-12 text-center">
+        {/* 综合联系方式 */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-8 text-center"
+        >
           <div className="mx-auto max-w-4xl rounded-md border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-3 text-lg font-semibold text-slate-900">
-              更多联系方式
-            </h3>
-            <p className="text-sm leading-relaxed text-slate-600">
+            <ShieldCheckIcon className="mx-auto h-8 w-8 text-brand-500" />
+            <h3 className="mt-3 text-lg font-semibold text-slate-900">更多联系方式</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">
               如需了解更多产品信息或商务合作，欢迎通过邮件或电话与我们联系。
               我们的专业团队将为您提供最优质的服务体验。
             </p>
           </div>
-        </div>
+        </motion.div>
       </Container>
-    </div>
+    </section>
+  )
+}
+
+/**
+ * 行动号召区域
+ */
+function CTASection() {
+  return (
+    <section className="bg-brand-500 py-16 md:py-24 text-center relative overflow-hidden">
+      <Container className="relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl"
+        >
+          <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+            立即咨询
+          </span>
+          <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            准备好开始您的云计算之旅了吗？
+          </h2>
+          <p className="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
+            立即联系我们，获取专业的云计算解决方案和技术支持，让您的业务在云端腾飞
+          </p>
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-md px-8 py-3 font-medium text-brand-500">
+              立即咨询
+            </Button>
+            <Button href="/ecs" variant="erlieOutline" color="white" className="rounded-md border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+              了解产品
+            </Button>
+          </div>
+        </motion.div>
+      </Container>
+    </section>
   )
 }
 
 /**
  * 关于我们页面主组件
- * 展示优刻云计算的公司介绍、发展历程、价值观等信息
- * @returns JSX.Element
+ *
+ * 采用现代科技风设计，GlassCard 玻璃拟态卡片与 Bento Grid 布局，
+ * 配合 Framer Motion 滚动动画，全面适配多端响应式展示。
  */
 export default function AboutPage() {
   return (
-    <>
-      <Header />
-      <main className="bg-slate-50">
-        {/* 页面头部区域 */}
-        <div className="relative isolate overflow-hidden bg-white pb-16 pt-14 sm:pb-20">
-          {/* 背景网格图案 */}
-          <svg
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 size-full stroke-slate-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
-          >
-            <defs>
-              <pattern
-                x="50%"
-                y={-1}
-                id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc"
-                width={200}
-                height={200}
-                patternUnits="userSpaceOnUse"
-              >
-                <path d="M.5 200V.5H200" fill="none" />
-              </pattern>
-            </defs>
-            <svg x="50%" y={-1} className="overflow-visible fill-slate-50">
-              <path
-                d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
-                strokeWidth={0}
-              />
-            </svg>
-            <rect
-              fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"
-              width="100%"
-              height="100%"
-              strokeWidth={0}
-            />
-          </svg>
-
-          {/* 渐变装饰元素 */}
-          <div
-            aria-hidden="true"
-            className="absolute top-10 left-[calc(50%-4rem)] -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:top-[calc(50%-30rem)] lg:left-48 xl:left-[calc(50%-24rem)]"
-          >
-            <div
-              style={{
-                clipPath:
-                  'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)',
-              }}
-              className="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-[#80caff] to-[#0055ff] opacity-20"
-            />
-          </div>
-
-          <Container className="pt-10 pb-24 sm:pb-32 lg:flex lg:items-center lg:py-40">
-            {/* 左侧文本内容 */}
-            <div className="mx-auto max-w-2xl shrink-0 lg:mx-0 lg:pt-8">
-              <div className="mt-24 sm:mt-32 lg:mt-16">
-                <span className="inline-flex space-x-6">
-                  <span className="bg-[#eff6ff] px-3 py-1 text-sm/6 font-semibold text-[#0055ff] ring-1 ring-[#0055ff]/20 ring-inset rounded-full">
-                    优刻云与您共创未来
-                  </span>
-                </span>
-              </div>
-              <h1 className="mt-10 text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl">
-                优刻云计算
-              </h1>
-              <p className="mt-8 text-lg font-medium text-slate-500 sm:text-xl/8">
-                成为全球领先的数据驱动引擎
-              </p>
-              <p className="mt-3 text-base font-medium text-[#0055ff]">
-                Leading Global Data-Driven Innovation
-              </p>
-              <div className="mt-10 flex items-center gap-x-6">
-                <Button
-                  href="#contact"
-                  variant="erlieSolid"
-                  color="blue"
-                >
-                  联系我们
-                </Button>
-                <Button
-                  href="#company"
-                  variant="erlieOutline"
-                  color="slate"
-                >
-                  了解更多 <span aria-hidden="true">→</span>
-                </Button>
-              </div>
-            </div>
-
-            {/* 右侧模拟界面设计 */}
-            <div className="mx-auto mt-20 flex max-w-2xl sm:mt-28 lg:mt-4 lg:mr-0 lg:ml-16 lg:max-w-none lg:flex-none xl:ml-40">
-              <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                {/* 模拟云计算控制台界面 */}
-                <div className="w-[76rem] overflow-hidden rounded-xl bg-slate-50 ring-1 ring-slate-200 shadow-2xl">
-                  {/* 顶部导航栏 */}
-                  <div className="border-b border-slate-200 bg-white px-6 py-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0055ff]">
-                          <svg
-                            className="h-5 w-5 text-white"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                          </svg>
-                        </div>
-                        <h3 className="text-lg font-semibold text-slate-900">
-                          优刻云控制台
-                        </h3>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="h-2 w-2 rounded-full bg-slate-200"></div>
-                        <div className="h-2 w-2 rounded-full bg-slate-200"></div>
-                        <div className="h-2 w-2 rounded-full bg-slate-200"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 主要内容区域 */}
-                  <div className="space-y-6 p-6">
-                    {/* 统计卡片 */}
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-sm font-medium text-slate-500">
-                              云服务器
-                            </p>
-                            <p className="text-2xl font-bold text-slate-900">
-                              24
-                            </p>
-                          </div>
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#eff6ff]">
-                            <svg
-                              className="h-6 w-6 text-[#0055ff]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-sm font-medium text-slate-500">
-                              AI应用
-                            </p>
-                            <p className="text-2xl font-bold text-slate-900">
-                              12
-                            </p>
-                          </div>
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-50">
-                            <svg
-                              className="h-6 w-6 text-purple-600"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-sm font-medium text-slate-500">
-                              存储空间
-                            </p>
-                            <p className="text-2xl font-bold text-slate-900">
-                              2.4TB
-                            </p>
-                          </div>
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50">
-                            <svg
-                              className="h-6 w-6 text-emerald-600"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 图表区域 */}
-                    <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                      <h4 className="mb-4 text-lg font-semibold text-slate-900">
-                        资源使用趋势
-                      </h4>
-                      <div className="flex h-32 items-end justify-between bg-slate-50 rounded-lg px-4 pb-4">
-                        {[40, 65, 45, 80, 55, 90, 70, 85].map(
-                          (height, index) => (
-                            <div
-                              key={index}
-                              className="rounded-t-sm bg-[#0055ff] opacity-80"
-                              style={{ height: `${height}%`, width: '12px' }}
-                            ></div>
-                          ),
-                        )}
-                      </div>
-                    </div>
-
-                    {/* 服务状态 */}
-                    <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                      <h4 className="mb-4 text-lg font-semibold text-slate-900">
-                        服务状态
-                      </h4>
-                      <div className="space-y-3">
-                        {[
-                          {
-                            name: 'ECS云服务器',
-                            status: '运行中',
-                            color: 'green',
-                          },
-                          {
-                            name: 'AI智能平台',
-                            status: '运行中',
-                            color: 'green',
-                          },
-                          { name: 'CDN加速', status: '运行中', color: 'green' },
-                          {
-                            name: '数据备份',
-                            status: '维护中',
-                            color: 'yellow',
-                          },
-                        ].map((service, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center justify-between border-b border-slate-50 pb-2 last:border-0 last:pb-0"
-                          >
-                            <span className="text-sm text-slate-700">
-                              {service.name}
-                            </span>
-                            <div className="flex items-center space-x-2">
-                              <div
-                                className={`h-2 w-2 rounded-full ${
-                                  service.color === 'green'
-                                    ? 'bg-emerald-500'
-                                    : 'bg-amber-500'
-                                }`}
-                              ></div>
-                              <span
-                                className={`text-xs font-medium ${
-                                  service.color === 'green'
-                                    ? 'text-emerald-600'
-                                    : 'text-amber-600'
-                                }`}
-                              >
-                                {service.status}
-                              </span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* 公司介绍区域 */}
-        <div
-          id="company"
-          className="overflow-hidden bg-slate-50 py-16 sm:py-24 lg:py-32"
-        >
-          <Container>
-            <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:gap-y-16 lg:grid-cols-2 lg:gap-y-20">
-              <div className="lg:ml-auto lg:pt-4 lg:pl-4">
-                <div className="lg:max-w-lg">
-                  <h2 className="text-base/7 font-semibold text-[#0055ff]">
-                    优刻云计算
-                  </h2>
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                    专业的大数据服务商
-                  </p>
-                  <p className="mt-4 text-base/7 text-slate-600 sm:mt-6 sm:text-lg/8">
-                    专注于通过数据激发生产力，为企业与开发者提供大数据的基础技术底座
-                  </p>
-                  <dl className="mt-8 max-w-xl space-y-6 text-base/7 text-slate-600 sm:mt-10 sm:space-y-8 lg:max-w-none">
-                    {companyFeatures.map((feature) => {
-                      const Icon = feature.icon
-                      return (
-                        <div key={feature.name} className="relative pl-9">
-                          <dt className="inline font-semibold text-slate-900">
-                            <Icon
-                              aria-hidden="true"
-                              className="absolute top-1 left-1 size-5 text-[#0055ff]"
-                            />
-                            {feature.name}
-                          </dt>{' '}
-                          <dd className="inline">{feature.description}</dd>
-                        </div>
-                      )
-                    })}
-                  </dl>
-                </div>
-              </div>
-              <div className="flex items-start justify-center lg:order-first lg:justify-end">
-                {/* 模拟云计算控制台界面 2 */}
-                <div className="w-full max-w-sm rounded-xl bg-white ring-1 ring-slate-200 shadow-xl sm:max-w-lg md:max-w-2xl lg:w-[48rem] lg:max-w-none xl:w-[57rem]">
-                  {/* 控制台顶部导航 */}
-                  <div className="bg-slate-900 px-3 py-3 sm:px-4 sm:py-4 lg:px-6 rounded-t-xl">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2 sm:space-x-4">
-                        <div className="text-sm font-semibold text-white sm:text-base">
-                          优刻云控制台
-                        </div>
-                        <div className="flex space-x-1 sm:space-x-2">
-                          <div className="h-2 w-2 bg-red-500 rounded-full sm:h-3 sm:w-3"></div>
-                          <div className="h-2 w-2 bg-amber-500 rounded-full sm:h-3 sm:w-3"></div>
-                          <div className="h-2 w-2 bg-emerald-500 rounded-full sm:h-3 sm:w-3"></div>
-                        </div>
-                      </div>
-                      <div className="hidden text-xs text-slate-400 sm:block sm:text-sm font-mono">
-                        console.cloudcvm.com
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 主要内容区域 */}
-                  <div className="p-3 sm:p-4 bg-slate-50 rounded-b-xl">
-                    {/* 导航菜单 */}
-                    <div className="mb-4 flex space-x-3 overflow-x-auto border-b border-slate-200 sm:mb-6 sm:space-x-6">
-                      <div className="border-b-2 border-[#0055ff] pb-2 text-sm font-medium whitespace-nowrap text-[#0055ff]">
-                        概览
-                      </div>
-                      <div className="pb-2 text-sm whitespace-nowrap text-slate-500 hover:text-slate-900 cursor-pointer">
-                        云服务器
-                      </div>
-                      <div className="hidden pb-2 text-sm whitespace-nowrap text-slate-500 sm:block hover:text-slate-900 cursor-pointer">
-                        数据库
-                      </div>
-                      <div className="hidden pb-2 text-sm whitespace-nowrap text-slate-500 md:block hover:text-slate-900 cursor-pointer">
-                        网络
-                      </div>
-                      <div className="hidden pb-2 text-sm whitespace-nowrap text-slate-500 md:block hover:text-slate-900 cursor-pointer">
-                        监控
-                      </div>
-                    </div>
-
-                    {/* 统计卡片 */}
-                    <div className="mb-3 grid grid-cols-1 gap-2 sm:mb-4 sm:grid-cols-3 sm:gap-3">
-                      <div className="rounded-lg bg-white border border-slate-200 p-3 sm:p-4 shadow-sm">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <div className="text-xl font-bold text-[#0055ff] sm:text-2xl">
-                              24
-                            </div>
-                            <div className="text-xs text-slate-500 sm:text-sm">
-                              云服务器
-                            </div>
-                          </div>
-                          <ServerIcon className="h-6 w-6 text-[#0055ff] opacity-80 sm:h-8 sm:w-8" />
-                        </div>
-                      </div>
-                      <div className="rounded-lg bg-white border border-slate-200 p-3 sm:p-4 shadow-sm">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <div className="text-xl font-bold text-emerald-600 sm:text-2xl">
-                              12
-                            </div>
-                            <div className="text-xs text-slate-500 sm:text-sm">
-                              数据库实例
-                            </div>
-                          </div>
-                          <DocumentTextIcon className="h-6 w-6 text-emerald-500 opacity-80 sm:h-8 sm:w-8" />
-                        </div>
-                      </div>
-                      <div className="rounded-lg bg-white border border-slate-200 p-3 sm:p-4 shadow-sm">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <div className="text-xl font-bold text-purple-600 sm:text-2xl">
-                              8
-                            </div>
-                            <div className="text-xs text-slate-500 sm:text-sm">
-                              负载均衡
-                            </div>
-                          </div>
-                          <CloudArrowUpIcon className="h-6 w-6 text-purple-500 opacity-80 sm:h-8 sm:w-8" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 资源使用趋势图 */}
-                    <div className="mb-3 rounded-lg border border-slate-200 bg-white p-2 sm:mb-4 sm:p-3 shadow-sm">
-                      <div className="mb-2 text-sm font-semibold text-slate-900 sm:mb-3 sm:text-base">
-                        资源使用趋势
-                      </div>
-                      <div className="flex h-16 items-end justify-between rounded bg-slate-50 p-2 sm:h-20 sm:p-3">
-                        <div className="h-6 w-4 bg-blue-300 rounded-t-sm sm:h-10 sm:w-6"></div>
-                        <div className="h-8 w-4 bg-blue-400 rounded-t-sm sm:h-12 sm:w-6"></div>
-                        <div className="h-10 w-4 bg-blue-500 rounded-t-sm sm:h-14 sm:w-6"></div>
-                        <div className="h-12 w-4 bg-[#0055ff] rounded-t-sm sm:h-16 sm:w-6"></div>
-                        <div className="h-8 w-4 bg-blue-500 rounded-t-sm sm:h-12 sm:w-6"></div>
-                        <div className="h-10 w-4 bg-blue-400 rounded-t-sm sm:h-14 sm:w-6"></div>
-                        <div className="h-7 w-4 bg-blue-300 rounded-t-sm sm:h-11 sm:w-6"></div>
-                        <div className="h-9 w-4 bg-blue-400 rounded-t-sm sm:h-13 sm:w-6"></div>
-                        <div className="h-11 w-4 bg-blue-500 rounded-t-sm sm:h-15 sm:w-6"></div>
-                        <div className="h-10 w-4 bg-[#0055ff] rounded-t-sm sm:h-14 sm:w-6"></div>
-                      </div>
-                    </div>
-
-                    {/* 服务状态监控 */}
-                    <div className="space-y-2">
-                      <div className="text-sm font-semibold text-slate-900 sm:text-base">
-                        服务状态
-                      </div>
-                      <div className="flex items-center justify-between rounded-md bg-emerald-50 p-2 border border-emerald-100">
-                        <div className="flex items-center space-x-2">
-                          <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
-                          <span className="text-xs font-medium text-emerald-900 sm:text-sm">
-                            云服务器 ECS
-                          </span>
-                        </div>
-                        <span className="text-xs font-bold text-emerald-600">
-                          运行正常
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-md bg-emerald-50 p-2 border border-emerald-100">
-                        <div className="flex items-center space-x-2">
-                          <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
-                          <span className="text-xs font-medium text-emerald-900 sm:text-sm">
-                            云数据库 RDS
-                          </span>
-                        </div>
-                        <span className="text-xs font-bold text-emerald-600">
-                          运行正常
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-md bg-amber-50 p-2 border border-amber-100">
-                        <div className="flex items-center space-x-2">
-                          <div className="h-2 w-2 rounded-full bg-amber-500"></div>
-                          <span className="text-xs font-medium text-amber-900 sm:text-sm">
-                            CDN 加速
-                          </span>
-                        </div>
-                        <span className="text-xs font-bold text-amber-600">
-                          维护中
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* 统计数据展示 */}
-        <StatsSection />
-
-        {/* 愿景使命价值观 */}
-        <VisionMissionSection />
-
-        {/* 发展历程 */}
-        <TimelineSection />
-
-        {/* 荣誉资质 */}
-        <HonorsSection />
-
-        {/* 联系我们 */}
-        <ContactSection />
-
-        {/* 行动号召区域 */}
-        <div className="bg-[#0055ff] py-16 sm:py-24">
-          <Container>
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                准备好开始您的云计算之旅了吗？
-              </h2>
-              <p className="mt-4 text-lg text-blue-100">
-                立即联系我们，获取专业的云计算解决方案和技术支持
-              </p>
-
-              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-                <Button
-                  href="/register"
-                  variant="erlieSolid"
-                  color="white"
-                  className="w-full sm:w-auto"
-                >
-                  立即咨询
-                </Button>
-
-                <Button
-                  href="/product"
-                  variant="erlieOutline"
-                  color="white"
-                  className="w-full sm:w-auto"
-                >
-                  了解产品
-                </Button>
-              </div>
-            </div>
-          </Container>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <div className="bg-slate-50 font-sans selection:bg-brand-500/20 selection:text-brand-500">
+      <HeroSection />
+      <SectionNav />
+      <OverviewSection />
+      <StatsSection />
+      <VisionSection />
+      <TimelineSection />
+      <HonorsSection />
+      <ContactSection />
+      <CTASection />
+    </div>
   )
 }
+
+
+
+
+
+

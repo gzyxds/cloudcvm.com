@@ -6,7 +6,7 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react'
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import {
   ComputerDesktopIcon,
   CreditCardIcon,
@@ -18,6 +18,9 @@ import {
   KeyIcon,
 } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
+import { Container } from './Container'
+
+/* ─────────────────────── 类型定义 ─────────────────────── */
 
 interface FAQ {
   question: string
@@ -29,6 +32,8 @@ interface FAQCategory {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   faqs: FAQ[]
 }
+
+/* ─────────────────────── 数据 ─────────────────────── */
 
 const faqCategories: FAQCategory[] = [
   {
@@ -110,17 +115,17 @@ const faqCategories: FAQCategory[] = [
       {
         question: '支持IPv6吗？',
         answer:
-          '是的，CVM 全面支持 IPv6。您可以为实例分配 IPv6 地址，实现双栈网络访问。IPv6 支持包括：IPv6 公网地址分配、IPv6 安全组配置、IPv6 负载均衡等。这有助于您的应用适应未来网络发展趋势，同时解决 IPv4 地址不足的问题。',
+          'CVM 全面支持 IPv6。您可以在创建实例时为 VPC 开启 IPv6 CIDR，并为实例分配 IPv6 地址。IPv6 与 IPv4 双栈共存，不影响原有业务。支持 IPv6 公网带宽配置和安全组规则，满足 IPv6 合规和下一代互联网接入需求。',
       },
       {
-        question: '什么是私有网络（VPC）？它有什么优势？',
+        question: '弹性公网 IP 和普通公网 IP 有什么区别？',
         answer:
-          '私有网络（Virtual Private Cloud）是您在优刻云上的逻辑隔离网络空间。主要优势：1）自定义 IP 地址段、子网划分和路由策略，完全掌控网络拓扑；2）通过安全组和网络 ACL 实现精细流量控制；3）支持 VPN 和专线接入，构建混合云架构；4）同一 VPC 内实例默认内网互通，跨 VPC 可通过对等连接互通。VPC 免费使用，建议生产环境都在 VPC 内部署资源。',
+          '主要区别：1）弹性公网 IP（EIP）是独立的公网 IP 资源，可以随时解绑并重新绑定到不同实例，适合需要 IP 不变的高可用场景；2）普通公网 IP 与实例生命周期绑定，释放实例即释放 IP。如果您的业务需要 IP 固定不变或在实例间迁移 IP，建议使用 EIP。EIP 未绑定时会产生少量闲置费用。',
       },
       {
-        question: '如何为实例绑定和解绑弹性公网 IP？',
+        question: '什么是 VPC 私有网络？如何规划子网？',
         answer:
-          '弹性公网 IP（EIP）是可以独立申请和持有的公网 IP 地址：1）在控制台"弹性公网 IP"页面申请新的 EIP；2）选择目标 CVM 实例进行绑定，一个实例可绑定多个 EIP；3）解绑后 EIP 可释放或重新绑定到其他实例，实现 IP 资源灵活调配；4）未绑定实例的 EIP 会按小时收取闲置费，建议及时释放不使用的 EIP。',
+          'VPC（Virtual Private Cloud）是您在优刻云上的逻辑隔离网络空间：1）可自定义 IP 地址范围（CIDR），建议使用 10.0.0.0/8、172.16.0.0/12、192.168.0.0/16 等私有地址段；2）划分多个子网，建议按业务层级（Web 层、应用层、数据层）分别放置在不同子网；3）通过路由表和网络 ACL 控制子网间流量。合理的子网规划有助于安全隔离和故障域控制。',
       },
     ],
   },
@@ -131,12 +136,12 @@ const faqCategories: FAQCategory[] = [
       {
         question: 'CVM 支持哪些存储类型？',
         answer:
-          'CVM 支持多种存储类型：1）云硬盘CBS：包括高性能云硬盘、SSD云硬盘、增强型SSD云硬盘，提供不同的性能等级；2）本地存储：提供高IOPS和低延迟；3）对象存储COS：适合海量数据存储；4）文件存储CFS：提供共享文件系统。您可以根据应用的性能和容量需求选择合适的存储方案。',
+          'CVM 支持多种存储方案：1）云硬盘（CBS）：提供持久化的块存储，支持 SSD 和 HDD；2）本地盘：提供高 IOPS 的临时存储；3）对象存储（COS）：适合大规模非结构化数据；4）文件存储（CFS）：支持共享文件系统。您可以根据业务特点选择合适的存储方案。',
       },
       {
-        question: '如何扩容云硬盘？',
+        question: '云硬盘支持扩容吗？',
         answer:
-          '云硬盘支持在线扩容，无需停机。操作步骤：1）在控制台选择需要扩容的云硬盘；2）点击"扩容"并设置新的容量大小；3）在实例内部执行文件系统扩容命令。扩容过程中不会影响数据安全和业务运行。建议在扩容前做好数据备份，确保操作安全。',
+          '支持在线扩容，无需重启实例：1）在控制台选择云硬盘并执行扩容操作；2）扩容后需在操作系统内扩展文件系统（Linux 用 resize2fs/xfs_growfs，Windows 用磁盘管理）；3）支持扩容到最大 32TB。扩容过程不影响现有数据和业务运行。建议在扩容前做好数据备份，确保操作安全。',
       },
       {
         question: '数据备份策略是什么？',
@@ -255,17 +260,17 @@ const faqCategories: FAQCategory[] = [
       {
         question: '如何管理团队成员对不同资源的访问权限？',
         answer:
-          '通过访问管理（CAM）实现精细化权限控制：1）创建子账号，为每个团队成员分配独立账号；2）使用用户组统一管理相同角色的权限；3）通过策略（Policy）定义具体的资源访问权限，支持 JSON 格式自定义策略；4）支持基于标签的条件访问控制。遵循最小权限原则，定期审计用户权限。',
+          '通过访问管理（CAM）实现精细化权限控制：1）创建子账号，为每个团队成员分配独立账号；2）使用用户组统一管理相同角色的权限；3）通过策略（Policy）定义具体的资源访问权限，支持 JSON 格式自定义策略；4）遵循最小权限原则，定期审计账号权限。建议为主账号启用 MFA 多因素认证，增强安全性。',
       },
       {
-        question: '如何启用多因素认证（MFA）？',
+        question: '主账号和子账号有什么区别？',
         answer:
-          '在控制台"账号安全"页面即可启用 MFA：1）安装虚拟 MFA 应用（如 Google Authenticator）；2）扫描二维码绑定账号；3）输入两次动态验证码完成验证。启用后登录和敏感操作均需 MFA 验证。强烈建议为主账号和所有子账号启用 MFA，显著提升账户安全性。',
+          '主要区别：1）主账号：注册时创建，拥有所有产品和资源的完全访问权限，负责账号归属和计费；2）子账号：由主账号在 CAM 中创建，权限由主账号通过策略控制，无独立的计费能力。日常运维和开发工作建议使用子账号，避免主账号密钥泄露造成安全风险。',
       },
       {
-        question: '忘记密码或密钥丢失如何处理？',
+        question: '多因素认证（MFA）如何开启？',
         answer:
-          '1）密码找回：在登录页面点击"忘记密码"，通过绑定的手机号或邮箱重置；2）API 密钥丢失：登录控制台创建新的 AccessKey，旧的密钥会自动失效；3）实例密钥对丢失：Linux 实例可使用 VNC 登录救援模式重置；Windows 实例可提交工单联系技术支持。建议妥善保管密钥文件，避免泄露。',
+          '开启步骤：1）在控制台"账号安全"页面选择开启 MFA；2）使用 Google Authenticator、Microsoft Authenticator 或优刻云小程序扫描二维码绑定虚拟 MFA 设备；3）绑定后，登录时除密码外需输入 6 位动态验证码。强烈建议为主账号和有敏感权限的子账号开启 MFA，大幅降低账号被盗风险。',
       },
       {
         question: '子账号和协作者有什么区别？',
@@ -281,6 +286,8 @@ const faqCategories: FAQCategory[] = [
   },
 ]
 
+/* ─────────────────────── JSON-LD ─────────────────────── */
+
 const faqJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -292,114 +299,182 @@ const faqJsonLd = JSON.stringify({
         '@type': 'Answer',
         text: faq.answer,
       },
-    }))
+    })),
   ),
 })
 
+/* ─────────────────────── 主组件 ─────────────────────── */
+
+/**
+ * Faqs 组件 - 常见问题区块
+ *
+ * 采用分类筛选 + 手风琴展开的现代布局，替代传统侧边栏导航。
+ * 顶部为分类卡片选择器，下方为手风琴 FAQ 列表。
+ * 内置 FAQPage JSON-LD 结构化数据，利于搜索引擎展示富文本结果。
+ *
+ * @returns FAQ 区块 JSX
+ */
 export function Faqs() {
   const [selectedCategory, setSelectedCategory] = useState(0)
+  const currentCategory = faqCategories[selectedCategory]
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900">
+    <section className="bg-white py-20 sm:py-24 lg:py-28">
+      {/* JSON-LD 结构化数据 */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqJsonLd }}
       />
-      <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-        {/* 标题区 */}
-        <div className="text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
+
+      <Container>
+        {/* ─────── 标题区 ─────── */}
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
             常见问题
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-gray-500 dark:text-gray-400">
-            快速找到您需要的答案，如果您有其他问题，请随时联系我们的客服团队
+          <p className="mt-5 text-lg leading-relaxed text-gray-500 sm:text-xl">
+            快速找到您需要的答案，如果还有其他问题，请随时联系我们的客服团队
           </p>
         </div>
 
-        {/* 左右布局 */}
-        <div className="mt-10 sm:mt-12 bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 flex flex-col lg:flex-row min-h-[500px] overflow-hidden">
-          {/* 左侧分类导航 */}
-          <nav className="w-full lg:w-[220px] shrink-0 bg-gray-50 dark:bg-gray-800/50 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-700">
-            <div className="overflow-x-auto lg:overflow-y-auto no-scrollbar">
-              <div className="flex lg:flex-col p-0 min-w-max lg:min-w-0">
-                {faqCategories.map((category, idx) => (
-                  <button
-                    key={category.name}
-                    onClick={() => setSelectedCategory(idx)}
-                    className={clsx(
-                      'flex items-center gap-2.5 px-4 py-3 text-left transition-colors duration-150 outline-none border-r-2 lg:border-r-0 lg:border-l-[3px] border-transparent whitespace-nowrap',
-                      selectedCategory === idx
-                        ? 'text-blue-600 dark:text-blue-400 bg-white dark:bg-gray-800 border-blue-600 dark:border-blue-400 font-medium'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-100/60 dark:hover:bg-gray-700/40'
-                    )}
-                  >
-                    <category.icon className="h-5 w-5 shrink-0" />
-                    <span className="text-base">{category.name}</span>
-                  </button>
-                ))}
+        {/* ─────── 左右布局：分类导航 + FAQ列表 ─────── */}
+        <div className="mt-12 lg:mt-16">
+          <div className="flex flex-col gap-6 lg:flex-row lg:gap-10">
+            {/* 左侧分类导航 */}
+            <nav className="w-full shrink-0 lg:w-44">
+              {/* 移动端：横向滚动 */}
+              <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:gap-1 lg:overflow-visible lg:pb-0">
+                {faqCategories.map((category, idx) => {
+                  const Icon = category.icon
+                  const isActive = selectedCategory === idx
+                  return (
+                    <button
+                      key={category.name}
+                      onClick={() => setSelectedCategory(idx)}
+                      className={clsx(
+                        'flex shrink-0 items-center gap-2.5 rounded-md px-3 py-2.5 text-left text-sm font-medium transition-all duration-200 lg:w-full',
+                        isActive
+                          ? 'bg-brand-50 text-brand-600'
+                          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700',
+                      )}
+                    >
+                      <Icon
+                        className={clsx(
+                          'h-4 w-4 shrink-0',
+                          isActive ? 'text-brand-500' : 'text-gray-400',
+                        )}
+                      />
+                      <span className="whitespace-nowrap">{category.name}</span>
+                    </button>
+                  )
+                })}
               </div>
+            </nav>
+
+            {/* 右侧 FAQ 手风琴列表 */}
+            <div className="min-w-0 flex-1">
+              {currentCategory && (
+                <dl className="divide-y divide-gray-100 rounded-md border border-gray-100 bg-white">
+                  {currentCategory.faqs.map((faq, fi) => (
+                    <Disclosure key={fi} as="div">
+                      {({ open }) => (
+                        <div
+                          className={clsx(
+                            'transition-colors duration-300',
+                            open && 'bg-brand-50/40',
+                          )}
+                        >
+                          <dt>
+                            <DisclosureButton className="flex w-full items-center gap-4 px-5 py-5 text-left outline-none sm:px-6">
+                              {/* 序号 */}
+                              <span
+                                className={clsx(
+                                  'flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold tabular-nums transition-colors duration-300',
+                                  open
+                                    ? 'bg-brand-500 text-white'
+                                    : 'bg-gray-100 text-gray-400',
+                                )}
+                              >
+                                {String(fi + 1).padStart(2, '0')}
+                              </span>
+                              {/* 问题文本 */}
+                              <span className="flex-1 text-sm font-medium text-gray-900 sm:text-base">
+                                {faq.question}
+                              </span>
+                              {/* 展开/收起图标 */}
+                              <span
+                                className={clsx(
+                                  'flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300',
+                                  open
+                                    ? 'border-brand-200 bg-brand-50 text-brand-500'
+                                    : 'border-gray-200 bg-white text-gray-400',
+                                )}
+                              >
+                                <svg
+                                  className={clsx(
+                                    'h-3.5 w-3.5 transition-transform duration-300',
+                                    open && 'rotate-45',
+                                  )}
+                                  viewBox="0 0 14 14"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                >
+                                  <path d="M7 1v12M1 7h12" />
+                                </svg>
+                              </span>
+                            </DisclosureButton>
+                          </dt>
+                          <DisclosurePanel as="dd">
+                            <div className="px-5 pb-5 pl-[68px] sm:px-6 sm:pb-6 sm:pl-[72px]">
+                              <p className="text-sm leading-relaxed text-gray-500 sm:text-base">
+                                {faq.answer}
+                              </p>
+                            </div>
+                          </DisclosurePanel>
+                        </div>
+                      )}
+                    </Disclosure>
+                  ))}
+                </dl>
+              )}
             </div>
-          </nav>
-
-          {/* 右侧手风琴 */}
-          <div className="flex-1 min-w-0 p-5 lg:p-6">
-            {faqCategories[selectedCategory] && (
-              <dl className="space-y-2">
-                {faqCategories[selectedCategory].faqs.map((faq, fi) => (
-                  <Disclosure key={fi} as="div">
-                    <dt>
-                      <DisclosureButton className="group flex w-full items-center justify-between gap-4 px-4 py-4 text-left bg-gray-50/70 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-md hover:border-gray-200 dark:hover:border-gray-600 transition-colors outline-none data-[open]:rounded-b-none data-[open]:border-b-transparent data-[open]:bg-white dark:data-[open]:bg-gray-800 data-[open]:border-gray-200 dark:data-[open]:border-gray-700">
-                        <span className="text-base font-medium text-gray-900 dark:text-white">
-                          {faq.question}
-                        </span>
-                        <span className="shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-blue-500 transition-colors">
-                          <PlusIcon className="h-5 w-5 group-data-[open]:hidden" />
-                          <MinusIcon className="h-5 w-5 hidden group-data-[open]:block" />
-                        </span>
-                      </DisclosureButton>
-                    </dt>
-                    <DisclosurePanel as="dd" className="px-4 pb-4 bg-white dark:bg-gray-800 border-x border-b border-gray-200 dark:border-gray-700 rounded-b-md -mt-px">
-                      <div className="pt-3">
-                        <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </DisclosurePanel>
-                  </Disclosure>
-                ))}
-              </dl>
-            )}
           </div>
         </div>
 
-        {/* 底部联系卡片 */}
-        <div className="mt-12 sm:mt-16 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md px-6 py-8 sm:px-8 sm:py-10 text-center">
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
-            没有找到您要的答案？
-          </h3>
-          <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 mb-6">
-            我们的技术支持团队随时为您提供帮助
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3">
-            <button className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors shadow-sm">
-              联系客服
-            </button>
-            <button className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors">
-              提交工单
-            </button>
+        {/* ─────── 底部联系卡片 ─────── */}
+        <div className="mt-16 sm:mt-20">
+          <div className="rounded-md border border-gray-100 bg-gray-50/60 px-6 py-10 text-center sm:px-10 sm:py-12">
+            <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">
+              没有找到您要的答案？
+            </h3>
+            <p className="mt-2 text-sm text-gray-500 sm:text-base">
+              我们的技术支持团队随时为您提供帮助
+            </p>
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-md bg-brand-500 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
+              >
+                联系客服
+              </a>
+              <a
+                href="/support"
+                className="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
+              >
+                提交工单
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-
-      <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
-    </div>
+      </Container>
+    </section>
   )
 }
+
+export default Faqs
+
+
+
+
