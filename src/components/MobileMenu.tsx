@@ -34,10 +34,10 @@ const MobileMenuItem = React.memo(function MobileMenuItem({
   const badgeLabel = item.badgeType ? badgeLabels[item.badgeType] || item.tag : item.tag
 
   return (
-    <div className="flex flex-col rounded-md px-3 py-2 transition-colors hover:bg-brand-50/50">
+<div className="flex flex-col rounded-md border border-slate-100 px-3 py-2 transition-colors">
       <div className="mb-2 flex items-center">
         {item.icon && (
-          <div className="mr-2 flex size-7 items-center justify-center rounded-lg bg-neutral-50">
+          <div className="mr-2 flex size-7 items-center justify-center">
             <item.icon aria-hidden="true" className="size-4 text-brand-500" />
           </div>
         )}
@@ -108,7 +108,7 @@ export const MobileMenu = React.memo(function MobileMenu({
   sections,
 }: MobileMenuProps) {
   return (
-    <div className="space-y-1 py-4">
+    <div className="space-y-1">
       {sections.map((section) => {
         const allItems = flattenItems(section.categories)
 
@@ -119,8 +119,8 @@ export const MobileMenu = React.memo(function MobileMenu({
                 <DisclosureButton
                   className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${
                     open
-                      ? 'bg-brand-50 text-brand-500'
-                      : 'text-neutral-700 hover:bg-brand-50/50'
+                      ? 'text-brand-500'
+                      : 'text-neutral-700 hover:text-brand-500'
                   }`}
                 >
                   {section.label}

@@ -75,8 +75,6 @@ export interface MegaMenuProps {
    * @default '提示：鼠标悬停分类可快速切换，也可使用搜索查找产品'
    */
   tipText?: string
-  /** 触发按钮右上角的角标（如脉冲红点），传入 ReactNode */
-  triggerBadge?: React.ReactNode
 }
 
 /* ─────────────────────── 样式常量 ─────────────────────── */
@@ -145,7 +143,6 @@ export function MegaMenu({
   viewAllHref,
   panelAlign = 'left',
   tipText = '提示：鼠标悬停分类可快速切换，也可使用搜索查找产品',
-  triggerBadge,
 }: MegaMenuProps): React.ReactElement {
   /* 权限过滤 */
   const categories = useMemo(
@@ -263,18 +260,11 @@ export function MegaMenu({
               ref={buttonRef}
               className={`relative flex items-center gap-x-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 outline-none ${
                 open
-                  ? 'text-brand-500'
-                  : 'text-slate-700 hover:text-brand-500'
+                  ? 'bg-brand-50 text-brand-500'
+                  : 'text-slate-700 hover:bg-slate-50 hover:text-brand-500'
               } ${triggerClassName}`}
             >
-              <span className="relative inline-flex">
-                {triggerText}
-                {triggerBadge && (
-                  <span className="absolute -top-2 -right-4 flex size-5 items-center justify-center">
-                    {triggerBadge}
-                  </span>
-                )}
-              </span>
+              {triggerText}
               <ChevronDownIcon
                 aria-hidden="true"
                 className={`size-4 flex-none transition-transform duration-200 ${
@@ -317,7 +307,7 @@ export function MegaMenu({
                             className={`inline-flex items-center gap-2 shrink-0 rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 outline-none ${
                               isActive
                                 ? 'bg-brand-500 text-white shadow-sm'
-                                : 'text-slate-600 hover:text-slate-900'
+                                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                             }`}
                           >
                             {Icon && <Icon aria-hidden="true" className="size-4" />}
@@ -455,7 +445,7 @@ export function MegaMenu({
                                           key={action.name}
                                           href={action.href}
                                           onClick={() => close()}
-className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:text-brand-600"
+                                          className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-white hover:text-brand-600"
                                         >
                                           {Icon && <Icon aria-hidden="true" className="size-5 text-brand-500" />}
                                           {action.name}
@@ -572,7 +562,7 @@ const ProductLink = React.memo(function ProductLink({ item, onClick }: { item: M
     <Link
       href={item.href}
       onClick={onClick}
-className="group/link flex items-center gap-3 rounded-md border border-slate-100 px-3 py-2 transition-all duration-150 hover:border-slate-200"
+      className="group/link flex items-center gap-3 rounded-md px-3 py-2 transition-all duration-150 hover:bg-slate-50"
     >
       {item.icon && (
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-slate-100 text-slate-400 transition-colors duration-150 group-hover/link:bg-brand-50 group-hover/link:text-brand-500">

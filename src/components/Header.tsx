@@ -69,22 +69,11 @@ export function Header(): JSX.Element {
             {/* 最新活动菜单 - 带HOT标签的直链菜单 */}
             <a
               href="/new"
-              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
+              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
             >
               最新活动
               <span className="absolute -top-1 -right-1 rounded-full bg-red-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
                 HOT
-              </span>
-            </a>
-
-            {/* 电商云菜单 - 带HOT标签的直链菜单 */}
-            <a
-              href="/eccloud"
-              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
-            >
-              电商云
-              <span className="absolute -top-1 -right-1 rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
-                NEW
               </span>
             </a>
 
@@ -98,7 +87,32 @@ export function Header(): JSX.Element {
               footerActions={commonFooterActions}
               panelWidth={960}
               viewAllHref="/products"
+              triggerBadge={(
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="size-full">
+                  <circle cx="12" cy="12" r="5" fill="#ff4d4f" opacity="0.5">
+                    <animate attributeName="r" values="5;11" dur="1.6s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.5;0" dur="1.6s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="12" cy="12" r="5" fill="#ff4d4f" opacity="0.4">
+                    <animate attributeName="r" values="5;9" dur="1.6s" begin="0.3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.4;0" dur="1.6s" begin="0.3s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="12" cy="12" r="5" fill="#ff4d4f" />
+                  <circle cx="12" cy="12" r="2" fill="#fff" />
+                </svg>
+              )}
             />
+
+            {/* 电商云菜单 - 带NEW标签的直链菜单 */}
+            <a
+              href="/eccloud"
+              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
+            >
+              电商云
+              <span className="absolute -top-1 -right-1 rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
+                NEW
+              </span>
+            </a>
 
             {/* 人工智能与应用下拉菜单 - 企业级二级菜单 */}
             <MegaMenu
@@ -144,19 +158,18 @@ export function Header(): JSX.Element {
               panelWidth={720}
             />
 
-            {/* 电商云菜单已移至产品与服务下拉菜单中 */}
 
             {/* 艺创智能 */}
             {/* <a
               href="/yichuang-ai"
-              className="px-3 py-2 text-sm font-medium rounded-md text-neutral-700 hover:text-brand-500 hover:bg-brand-50/50 transition-colors"
+              className="px-3 py-2 text-sm font-medium rounded-md text-neutral-700 hover:text-brand-500 transition-colors"
             >
               艺创智能
             </a> */}
             {/* 172号卡菜单 */}
             {/* <a
               href="/172-card"
-              className="px-3 py-2 text-sm font-medium rounded-md text-neutral-700 hover:text-brand-500 hover:bg-brand-50/50 transition-colors"
+              className="px-3 py-2 text-sm font-medium rounded-md text-neutral-700 hover:text-brand-500 transition-colors"
             >
               172号卡
             </a> */}
@@ -193,7 +206,7 @@ export function Header(): JSX.Element {
           {/* 产品订购 */}
           <a
             href="https://console.cloudcvm.com/cart/goodsList.htm"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
           >
             产品订购
           </a>
@@ -203,7 +216,7 @@ export function Header(): JSX.Element {
           {/* 控制台 */}
           <a
             href="https://console.cloudcvm.com"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
           >
             控制台
           </a>
@@ -214,7 +227,7 @@ export function Header(): JSX.Element {
           {/* 登录 */}
           <a
             href="https://console.cloudcvm.com/login.htm"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
           >
             登录
           </a>
@@ -265,7 +278,7 @@ export function Header(): JSX.Element {
                 {/* 移动端最新活动链接 - 带HOT标签 */}
                 <a
                   href="/new"
-                  className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
+                  className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:text-brand-500"
                 >
                   最新活动
                   <span className="absolute top-1 right-3 rounded-full bg-red-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
@@ -273,19 +286,20 @@ export function Header(): JSX.Element {
                   </span>
                 </a>
 
-                {/* 移动端电商云链接 - 带HOT标签 */}
+
+                {/* 移动端产品分类菜单（数据驱动，与桌面端 MegaMenu 数据同步） */}
+                <MobileMenu sections={mobileMenuSections} />
+
+                {/* 移动端电商云链接 */}
                 <a
                   href="/eccloud"
-                  className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:bg-brand-50/50 hover:text-brand-500"
+                  className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:text-brand-500"
                 >
                   电商云
                   <span className="absolute top-1 right-3 rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
                     NEW
                   </span>
                 </a>
-
-                {/* 移动端产品分类菜单（数据驱动，与桌面端 MegaMenu 数据同步） */}
-                <MobileMenu sections={mobileMenuSections} />
 
                 {/* 移动端用户操作区：登录注册按钮组 */}
                 <div className="mt-2 flex gap-3">
