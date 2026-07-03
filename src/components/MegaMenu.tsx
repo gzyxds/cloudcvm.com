@@ -317,7 +317,7 @@ export function MegaMenu({
                             className={`inline-flex items-center gap-2 shrink-0 rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 outline-none ${
                               isActive
                                 ? 'bg-brand-500 text-white shadow-sm'
-                                : 'text-slate-600 hover:text-slate-900'
+                                : 'border border-slate-200 bg-white text-slate-600 hover:border-brand-200 hover:text-brand-600'
                             }`}
                           >
                             {Icon && <Icon aria-hidden="true" className="size-4" />}
