@@ -13,6 +13,7 @@ import {
 import Image from 'next/image'
 import { Container } from '@/components/Container'
 
+/** 服务卡片属性 */
 interface ServiceCardProps {
   icon: React.ComponentType<{ className?: string }>
   title: string
@@ -21,37 +22,35 @@ interface ServiceCardProps {
   onCtaClick: () => void
 }
 
+/** 服务卡片子组件 */
 function ServiceCard({ icon: Icon, title, description, cta, onCtaClick }: ServiceCardProps) {
   return (
-    <div className="group flex flex-col bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 transition-colors">
-      <div className="mb-4 w-10 h-10 rounded-md bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-        <Icon className="h-5 w-5" />
+    <div className="group flex flex-col rounded-xl bg-white p-6 ring-1 ring-black/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-black/[0.04] hover:ring-black/[0.10]">
+      <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-brand-500 text-white shadow-sm">
+        <Icon className="size-5" />
       </div>
-      <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
-        {title}
-      </h3>
-      <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-5 flex-1">
+      <h3 className="text-base font-semibold text-gray-900">{title}</h3>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">
         {description}
       </p>
       <button
+        type="button"
         onClick={onCtaClick}
-        className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+        className="mt-5 inline-flex items-center text-sm font-medium text-brand-600 transition-colors hover:text-brand-700"
       >
         {cta}
-        <ArrowRightIcon className="ml-1 h-4 w-4" />
+        <ArrowRightIcon className="ml-1 size-4" />
       </button>
     </div>
   )
 }
 
+/** 底部服务与 CTA 区块 */
 export default function CatSections() {
   const [showQRCode, setShowQRCode] = useState(false)
 
   return (
-    <section
-      className="bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-24"
-      style={{ backgroundImage: 'url("/images/background/background-5.webp")' }}
-    >
+    <section className="bg-[url('/images/background/background-5.webp')] bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <ServiceCard
@@ -71,32 +70,45 @@ export default function CatSections() {
           <ServiceCard
             icon={LifebuoyIcon}
             title="技术支持"
-            description="7×24小时技术支持，保障您的业务正常运行"
+            description="7×24 小时技术支持，保障您的业务正常运行"
             cta="了解详情"
             onCtaClick={() => setShowQRCode(true)}
           />
 
           {/* 免费体验横幅 */}
-          <div className="col-span-1 sm:col-span-2 lg:col-span-3 bg-blue-600 rounded-lg overflow-hidden">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 px-6 py-8 lg:px-10 lg:py-10">
+          <div className="col-span-1 relative overflow-hidden rounded-xl bg-brand-600 sm:col-span-2 lg:col-span-3">
+            {/* 视频背景（移动端隐藏） */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
+            >
+              <source src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4" type="video/mp4" />
+            </video>
+            {/* 暗色叠加层 */}
+            <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
+            <div className="relative flex flex-col justify-between gap-6 px-6 py-8 sm:flex-row sm:items-center lg:px-10 lg:py-10">
               <div className="flex-1">
-                <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-medium text-white mb-3">
-                  <RocketLaunchIcon className="mr-1.5 h-4 w-4" />
+                <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-medium text-white">
+                  <RocketLaunchIcon className="mr-1.5 size-4" />
                   限时优惠
                 </span>
-                <h2 className="text-2xl lg:text-3xl font-bold text-white">
+                <h2 className="mt-3 text-2xl font-bold text-white lg:text-3xl">
                   免费体验云计算服务
                 </h2>
-                <p className="mt-2 text-base text-blue-100">
+                <p className="mt-2 text-base text-brand-100">
                   无需前期投入，立即体验弹性计算、存储和网络服务
                 </p>
               </div>
               <a
                 href="https://console.cloudcvm.com/cart/goodsList.htm"
-                className="inline-flex shrink-0 items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
+                className="inline-flex shrink-0 items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-brand-600 shadow-sm transition-colors hover:bg-brand-50"
               >
                 立即体验
-                <ArrowRightIcon className="ml-2 h-4 w-4" />
+                <ArrowRightIcon className="ml-2 size-4" />
               </a>
             </div>
           </div>
@@ -120,24 +132,27 @@ export default function CatSections() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700"
+              className="relative w-full max-w-sm rounded-xl bg-white shadow-xl ring-1 ring-black/5"
               onClick={(e) => e.stopPropagation()}
             >
               <button
+                type="button"
                 onClick={() => setShowQRCode(false)}
-                className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-md text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-md text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
                 aria-label="关闭"
               >
-                <XMarkIcon className="h-5 w-5" />
+                <XMarkIcon className="size-5" />
               </button>
 
               <div className="p-8 text-center">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">联系我们</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">扫描二维码获取更多信息</p>
+                <h3 className="text-xl font-bold text-gray-900">联系我们</h3>
+                <p className="mt-2 text-sm text-gray-500">
+                  扫描二维码获取更多信息
+                </p>
 
-                <div className="grid grid-cols-2 gap-6 mb-4">
+                <div className="mt-6 grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="mb-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 p-2">
+                    <div className="rounded-lg border border-gray-200 bg-gray-50 p-2">
                       <Image
                         src="/images/contact/userhlc.png"
                         alt="客服二维码"
@@ -146,10 +161,12 @@ export default function CatSections() {
                         className="mx-auto h-auto w-full object-contain"
                       />
                     </div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">客服微信</p>
+                    <p className="mt-3 text-sm font-medium text-gray-600">
+                      客服微信
+                    </p>
                   </div>
                   <div className="text-center">
-                    <div className="mb-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 p-2">
+                    <div className="rounded-lg border border-gray-200 bg-gray-50 p-2">
                       <Image
                         src="/images/contact/gzh.png"
                         alt="公众号二维码"
@@ -158,10 +175,14 @@ export default function CatSections() {
                         className="mx-auto h-auto w-full object-contain"
                       />
                     </div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">微信公众号</p>
+                    <p className="mt-3 text-sm font-medium text-gray-600">
+                      微信公众号
+                    </p>
                   </div>
                 </div>
-                <p className="text-xs text-gray-400 dark:text-gray-500">长按二维码保存到相册</p>
+                <p className="mt-4 text-xs text-gray-400">
+                  长按二维码保存到相册
+                </p>
               </div>
             </motion.div>
           </motion.div>

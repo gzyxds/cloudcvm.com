@@ -94,7 +94,7 @@ export const productCategories: MegaMenuCategory[] = [
         name: '虚拟主机',
         description: '简单易用的建站服务，快速搭建企业官网',
         href: '/host',
-        icon: FingerPrintIcon,
+        icon: GlobeAltIcon,
       },
       {
         id: 'server',
@@ -105,6 +105,16 @@ export const productCategories: MegaMenuCategory[] = [
       },
     ],
     featured: [
+      {
+        id: 'ecs',
+        name: '云服务器ECS',
+        description: '安全稳定、弹性可扩展的云端计算服务，分钟级交付',
+        href: '/ecs',
+        badgeType: 'hot',
+        tag: 'HOT',
+        icon: ServerIcon,
+        index: 0,
+      },
       {
         id: 'gpu',
         name: 'GPU云服务器',
@@ -175,6 +185,36 @@ export const productCategories: MegaMenuCategory[] = [
     ],
   },
   {
+    id: 'storage',
+    name: '存储与数据库',
+    icon: CircleStackIcon,
+    items: [
+      {
+        id: 'cdn-storage',
+        name: '对象存储',
+        description: '安全稳定、弹性易用的海量云存储服务',
+        href: '/oss',
+        icon: CircleStackIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'cdn-storage',
+        name: '对象存储',
+        description: '安全稳定、弹性易用、低成本的海量云存储服务',
+        href: '/oss',
+        icon: CircleStackIcon,
+        index: 1,
+      },
+    ],
+  },
+]
+
+/**
+ * 人工智能与应用 - 二级菜单分类数据（从产品分类中独立）
+ */
+export const aiAppCategories: MegaMenuCategory[] = [
+  {
     id: 'ai',
     name: '人工智能',
     icon: BeakerIcon,
@@ -218,11 +258,11 @@ export const productCategories: MegaMenuCategory[] = [
         icon: SquaresPlusIcon,
       },
       {
-        id: 'api',
+        id: 'ai-model',
         name: 'AI大模型',
         description: '多模型AI大模型网关，一站式API接入',
         href: '/token',
-        icon: SquaresPlusIcon,
+        icon: SparklesIcon,
       },
       {
         id: 'demo',
@@ -261,31 +301,8 @@ export const productCategories: MegaMenuCategory[] = [
       },
     ],
   },
-  {
-    id: 'storage',
-    name: '存储与数据库',
-    icon: CircleStackIcon,
-    items: [
-      {
-        id: 'cdn-storage',
-        name: '对象存储',
-        description: '安全稳定、弹性易用的海量云存储服务',
-        href: '/oss',
-        icon: SquaresPlusIcon,
-      },
-    ],
-    featured: [
-      {
-        id: 'cdn-storage',
-        name: '对象存储',
-        description: '安全稳定、弹性易用、低成本的海量云存储服务',
-        href: '/oss',
-        icon: SquaresPlusIcon,
-        index: 1,
-      },
-    ],
-  },
 ]
+
 
 /**
  * AI解决方案 - 二级菜单分类数据
@@ -653,7 +670,7 @@ export const docsCategories: MegaMenuCategory[] = [
         name: 'SDK 文档',
         description: '多语言SDK使用指南与开发集成',
         href: '/sdk',
-        icon: SquaresPlusIcon,
+        icon: CommandLineIcon,
       },
       {
         id: 'changelog',
@@ -753,28 +770,28 @@ export interface MobileMenuSection {
 export const mobileMenuSections: MobileMenuSection[] = [
   {
     label: '产品与服务',
-    categories: productCategories.filter((c) => c.id !== 'ai'),
+    categories: productCategories,
     showFooter: true,
   },
   {
     label: '人工智能与应用',
-    categories: [productCategories.find((c) => c.id === 'ai')!],
-    showFooter: true,
+    categories: aiAppCategories,
+    showFooter: false,
   },
   {
     label: 'AI解决方案',
     categories: aiSolutionCategories,
-    showFooter: true,
+    showFooter: false,
   },
   {
     label: '企业解决方案',
     categories: enterpriseCategories,
-    showFooter: true,
+    showFooter: false,
   },
   {
     label: '关于我们',
     categories: companyCategories,
-    showFooter: true,
+    showFooter: false,
   },
   {
     label: '文档中心',

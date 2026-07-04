@@ -1,12 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   ComputerDesktopIcon,
   CreditCardIcon,
@@ -16,8 +11,8 @@ import {
   ChartBarIcon,
   CommandLineIcon,
   KeyIcon,
+  ChevronDownIcon,
 } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
 import { Container } from './Container'
 
 /* ─────────────────────── 类型定义 ─────────────────────── */
@@ -308,15 +303,16 @@ const faqJsonLd = JSON.stringify({
 /**
  * Faqs 组件 - 常见问题区块
  *
- * 采用分类筛选 + 手风琴展开的现代布局，替代传统侧边栏导航。
- * 顶部为分类卡片选择器，下方为手风琴 FAQ 列表。
- * 内置 FAQPage JSON-LD 结构化数据，利于搜索引擎展示富文本结果。
- *
- * @returns FAQ 区块 JSX
+ * 顶部分类标签 + 居中手风琴列表
  */
 export function Faqs() {
-  const [selectedCategory, setSelectedCategory] = useState(0)
-  const currentCategory = faqCategories[selectedCategory]
+  const [activeTab, setActiveTab] = useState(0)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const currentCategory = faqCategories[activeTab]
+
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
 
   return (
     <section className="bg-white py-20 sm:py-24 lg:py-28">
@@ -328,153 +324,167 @@ export function Faqs() {
 
       <Container>
         {/* ─────── 标题区 ─────── */}
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+        <div className="text-center">
+          <span className="inline-flex items-center rounded-md bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-brand-600/20">
             常见问题
+          </span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            快速找到您需要的答案
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-gray-500 sm:text-xl">
-            快速找到您需要的答案，如果还有其他问题，请随时联系我们的客服团队
+          <p className="mt-4 text-base leading-relaxed text-gray-500">
+            如果还有其他问题，请随时联系我们的客服团队
           </p>
         </div>
 
-        {/* ─────── 左右布局：分类导航 + FAQ列表 ─────── */}
+        {/* ─────── 分类标签 ─────── */}
         <div className="mt-12 lg:mt-16">
-          <div className="flex flex-col gap-6 lg:flex-row lg:gap-10">
-            {/* 左侧分类导航 */}
-            <nav className="w-full shrink-0 lg:w-44">
-              {/* 移动端：横向滚动 */}
-              <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:gap-1 lg:overflow-visible lg:pb-0">
-                {faqCategories.map((category, idx) => {
-                  const Icon = category.icon
-                  const isActive = selectedCategory === idx
-                  return (
-                    <button
-                      key={category.name}
-                      onClick={() => setSelectedCategory(idx)}
-                      className={clsx(
-                        'flex shrink-0 items-center gap-2.5 rounded-md px-3 py-2.5 text-left text-sm font-medium transition-all duration-200 lg:w-full',
-                        isActive
-                          ? 'bg-brand-50 text-brand-600'
-                          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700',
-                      )}
-                    >
-                      <Icon
-                        className={clsx(
-                          'h-4 w-4 shrink-0',
-                          isActive ? 'text-brand-500' : 'text-gray-400',
-                        )}
-                      />
-                      <span className="whitespace-nowrap">{category.name}</span>
-                    </button>
-                  )
-                })}
-              </div>
-            </nav>
-
-            {/* 右侧 FAQ 手风琴列表 */}
-            <div className="min-w-0 flex-1">
-              {currentCategory && (
-                <dl className="divide-y divide-gray-100 rounded-md border border-gray-100 bg-white">
-                  {currentCategory.faqs.map((faq, fi) => (
-                    <Disclosure key={fi} as="div">
-                      {({ open }) => (
-                        <div
-                          className={clsx(
-                            'transition-colors duration-300',
-                            open && 'bg-brand-50/40',
-                          )}
-                        >
-                          <dt>
-                            <DisclosureButton className="flex w-full items-center gap-4 px-5 py-5 text-left outline-none sm:px-6">
-                              {/* 序号 */}
-                              <span
-                                className={clsx(
-                                  'flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold tabular-nums transition-colors duration-300',
-                                  open
-                                    ? 'bg-brand-500 text-white'
-                                    : 'bg-gray-100 text-gray-400',
-                                )}
-                              >
-                                {String(fi + 1).padStart(2, '0')}
-                              </span>
-                              {/* 问题文本 */}
-                              <span className="flex-1 text-sm font-medium text-gray-900 sm:text-base">
-                                {faq.question}
-                              </span>
-                              {/* 展开/收起图标 */}
-                              <span
-                                className={clsx(
-                                  'flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300',
-                                  open
-                                    ? 'border-brand-200 bg-brand-50 text-brand-500'
-                                    : 'border-gray-200 bg-white text-gray-400',
-                                )}
-                              >
-                                <svg
-                                  className={clsx(
-                                    'h-3.5 w-3.5 transition-transform duration-300',
-                                    open && 'rotate-45',
-                                  )}
-                                  viewBox="0 0 14 14"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                >
-                                  <path d="M7 1v12M1 7h12" />
-                                </svg>
-                              </span>
-                            </DisclosureButton>
-                          </dt>
-                          <DisclosurePanel as="dd">
-                            <div className="px-5 pb-5 pl-[68px] sm:px-6 sm:pb-6 sm:pl-[72px]">
-                              <p className="text-sm leading-relaxed text-gray-500 sm:text-base">
-                                {faq.answer}
-                              </p>
-                            </div>
-                          </DisclosurePanel>
-                        </div>
-                      )}
-                    </Disclosure>
-                  ))}
-                </dl>
-              )}
-            </div>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+            {faqCategories.map((category, idx) => {
+              const Icon = category.icon
+              const isActive = activeTab === idx
+              return (
+                <button
+                  key={category.name}
+                  onClick={() => {
+                    setActiveTab(idx)
+                    setOpenIndex(null)
+                  }}
+                  className={`flex items-center justify-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'bg-brand-500 text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'
+                  }`}
+                >
+                  <Icon className="size-4" />
+                  <span>{category.name}</span>
+                </button>
+              )
+            })}
           </div>
         </div>
+
+        {/* ─────── FAQ 手风琴列表 ─────── */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mt-10"
+        >
+          {currentCategory && (
+            <div className="space-y-3">
+              {currentCategory.faqs.map((faq, fi) => {
+                const isOpen = openIndex === fi
+                return (
+                  <div
+                    key={fi}
+                    className={`rounded-md border border-gray-200 transition-all duration-300 ${
+                      !isOpen ? 'hover:border-gray-300' : ''
+                    }`}
+                  >
+                    <button
+                      onClick={() => handleToggle(fi)}
+                      className="flex w-full items-center gap-4 px-5 py-4 text-left sm:px-6"
+                    >
+                      <span className="flex flex-1 items-center gap-3">
+                        <span
+                          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors duration-300 ${
+                            isOpen
+                              ? 'bg-brand-500 text-white'
+                              : 'bg-gray-100 text-gray-400'
+                          }`}
+                        >
+                          {fi + 1}
+                        </span>
+                        <span className="text-sm font-medium text-gray-900 sm:text-base">
+                          {faq.question}
+                        </span>
+                      </span>
+                      <ChevronDownIcon
+                        className={`size-5 shrink-0 text-gray-400 transition-transform duration-300 ${
+                          isOpen ? 'rotate-180 text-brand-500' : ''
+                        }`}
+                      />
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          key="content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          <div className="border-t border-gray-100 px-5 py-4 pl-14 sm:px-6 sm:pl-14">
+                            <p className="text-sm leading-relaxed text-gray-500 sm:text-base">
+                              {faq.answer}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </motion.div>
 
         {/* ─────── 底部联系卡片 ─────── */}
-        <div className="mt-16 sm:mt-20">
-          <div className="rounded-md border border-gray-100 bg-gray-50/60 px-6 py-10 text-center sm:px-10 sm:py-12">
-            <h3 className="text-xl font-bold text-gray-900 sm:text-2xl">
-              没有找到您要的答案？
-            </h3>
-            <p className="mt-2 text-sm text-gray-500 sm:text-base">
-              我们的技术支持团队随时为您提供帮助
-            </p>
-            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-md bg-brand-500 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
-              >
-                联系客服
-              </a>
-              <a
-                href="/support"
-                className="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50"
-              >
-                提交工单
-              </a>
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="mt-16 sm:mt-20"
+        >
+          <div className="relative overflow-hidden rounded-xl bg-brand-600">
+            {/* 视频背景（移动端隐藏） */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
+            >
+              <source src="https://qcloudimg.tencent-cloud.cn/raw/29ff9f1992ee646ba2e623007beb3e97.mp4" type="video/mp4" />
+            </video>
+            {/* 暗色叠加层 */}
+            <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
+            <div className="relative flex flex-col justify-between gap-6 px-6 py-8 sm:flex-row sm:items-center lg:px-10 lg:py-10">
+              <div className="flex-1">
+                <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-medium text-white">
+                  联系我们
+                </span>
+                <h3 className="mt-3 text-xl font-bold text-white sm:text-2xl">
+                  没有找到您要的答案？
+                </h3>
+                <p className="mt-2 text-sm text-white/80 sm:text-base">
+                  我们的技术支持团队随时为您提供帮助
+                </p>
+              </div>
+              <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-md bg-white px-6 py-2.5 text-sm font-medium text-brand-600 shadow-sm transition-colors hover:bg-white/90"
+                >
+                  联系客服
+                </a>
+                <a
+                  href="/support"
+                  className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                >
+                  提交工单
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   )
 }
 
 export default Faqs
-
-
-
-

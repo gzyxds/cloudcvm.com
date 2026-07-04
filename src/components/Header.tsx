@@ -19,6 +19,7 @@ import { MegaMenu } from '@/components/MegaMenu'
 import { MobileMenu } from '@/components/MobileMenu'
 import {
   productCategories,
+  aiAppCategories,
   aiSolutionCategories,
   enterpriseCategories,
   companyCategories,
@@ -118,8 +119,8 @@ export function Header(): JSX.Element {
             <MegaMenu
               triggerText="人工智能与应用"
               title="人工智能与应用"
-              subtitle="AI 能力与智能服务"
-              categories={productCategories.filter((c) => c.id === 'ai')}
+            subtitle="AI 能力与智能服务"
+            categories={aiAppCategories}
               quickTags={aiQuickTags}
               footerActions={commonFooterActions}
               panelWidth={760}

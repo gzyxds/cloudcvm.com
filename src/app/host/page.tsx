@@ -191,101 +191,120 @@ const productAdvantages = [
 
 // ==================== 页面组件定义 ====================
 
-// Hero区域组件 - 页面顶部主要展示区域，采用双栏布局突出虚拟主机核心特性
+
+
+// Hero区域组件 - 页面顶部主要展示区域，双栏布局：左文案+右可视化预览
 function HeroSection() {
+  // 右侧亮点数据 - 与左侧功能列表互补，突出量化指标
+  const highlights = [
+    { label: '服务可用性', value: '99.9%', icon: ShieldCheckIcon },
+    { label: '大陆平均延迟', value: '20-70ms', icon: BoltIcon },
+    { label: '分钟级部署', value: '5min', icon: CloudArrowUpIcon },
+    { label: '网络带宽', value: '10Mbps', icon: ChartBarIcon },
+    { label: 'T3+机房', value: '专业级', icon: ServerIcon },
+    { label: '技术支持', value: '7×24h', icon: CogIcon },
+  ]
+
   return (
-    <div className="overflow-hidden bg-white py-24 sm:py-32">
+    <div className="overflow-hidden bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-          <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
-            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <h2 className="text-base/7 font-semibold text-[#0055ff]">
+        <div className="grid grid-cols-1 gap-x-12 gap-y-12 lg:grid-cols-2 lg:items-center">
+          {/* ── 左侧：文案区域 ── */}
+          <div className="px-6 lg:px-0">
+            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
+              {/* 品牌标签 */}
+              <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-brand-600/20">
                 优刻云虚拟主机
-              </h2>
-              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl">
-                虚拟主机系统
+              </span>
+
+              {/* 主标题 */}
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+                稳定、安全、易用的
+                <span className="text-brand-600">虚拟主机</span>
+              </h1>
+
+              {/* 副标题 */}
+              <p className="mt-5 text-lg leading-relaxed text-gray-500">
+                预装常见环境与数据库，通过控制面板即可便捷管理网站。
+                从注册到上线，仅需5分钟。
               </p>
-              <p className="mt-6 text-lg/8 text-slate-500">
-                虚拟主机，适合新手小白初次部署站点，预装了常见环境、数据库及管理工具，可以通过控制面板便捷地管理托管网站，仅需5分钟即可部署第一个站点！
-              </p>
-              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none">
-                {hostingFeatures.slice(0, 3).map((feature) => (
-                  <div key={feature.name} className="relative pl-9">
-                    <dt className="inline font-semibold text-slate-900">
-                      <feature.icon
-                        aria-hidden="true"
-                        className="absolute top-1 left-1 size-5 text-[#0055ff]"
-                      />
-                      {feature.name}
-                    </dt>{' '}
-                    <dd className="inline">{feature.description}</dd>
-                  </div>
+
+              {/* 三大核心卖点 */}
+              <div className="mt-8 flex flex-wrap gap-3">
+                {[
+                  { icon: ShieldCheckIcon, label: 'WAF + IPS 防护' },
+                  { icon: BoltIcon, label: '柠檬云防CDN加速' },
+                  { icon: CogIcon, label: '一键环境预装' },
+                ].map((item) => (
+                  <span
+                    key={item.label}
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-200"
+                  >
+                    <item.icon aria-hidden="true" className="size-3.5 text-brand-600" />
+                    {item.label}
+                  </span>
                 ))}
-              </dl>
-              <div className="mt-12 flex gap-x-8">
+              </div>
+
+              {/* CTA 按钮 */}
+              <div className="mt-10 flex items-center gap-x-5">
                 <Button
                   href="#pricing"
-                  className="rounded-lg bg-[#0055ff] px-8 py-4 text-lg hover:bg-[#0043cc] text-white"
+                  className="rounded-lg bg-brand-600 px-7 py-3 text-base font-semibold hover:bg-brand-700 text-white shadow-sm shadow-brand-500/20"
                 >
                   立即购买
                 </Button>
                 <Button
                   variant="outline"
                   href="#features"
-                  className="rounded-lg border-slate-200 px-8 py-4 text-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                  className="rounded-lg border-gray-200 px-7 py-3 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 >
-                  了解更多
+                  了解详情
                 </Button>
               </div>
             </div>
           </div>
 
+          {/* ── 右侧：白色面板数据展示 ── */}
           <div className="sm:px-6 lg:px-0">
-            <div className="relative isolate overflow-hidden bg-slate-50 border border-slate-200 rounded-2xl px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:pt-16 sm:pr-0 sm:pl-16 lg:mx-0 lg:max-w-none">
-              <div
-                aria-hidden="true"
-                className="absolute -inset-y-px -left-3 -z-10 w-full origin-bottom-left skew-x-[-30deg] bg-blue-50 opacity-20 ring-1 ring-slate-900/5"
-              />
-              <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-                <div className="w-full max-w-none bg-white rounded-md shadow-lg border border-slate-200 p-8">
-                  <div className="text-slate-900">
-                    <h3 className="mb-4 text-xl font-semibold flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-[#0055ff]"></span>
-                      优刻云虚拟主机优势
-                    </h3>
-                    <div className="space-y-3 text-sm text-slate-600">
-                      <p className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> 内置自研柠檬云防CDN，大陆延迟20-70MS左右
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> 支持实现重定向、实现伪静态等功能
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> 部署于专业级的T3+机房
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> 采用最新redis数据库管理
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> WAF智能防入侵系统、IPS防火墙系统
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> 防CC攻击模块
-                      </p>
-                      <p className="flex items-center gap-2">
-                         <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> 99.9%服务可用性保证
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#0055ff]" /> 7*24小时技术支持
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            <div className="relative overflow-hidden rounded-2xl bg-white ring-1 ring-black/[0.08] shadow-lg shadow-black/[0.04] p-6 sm:p-8">
+              {/* 面板标题 */}
+              <div className="mb-6 flex items-center gap-2">
+                <span className="size-2 rounded-full bg-brand-600" />
+                <span className="text-sm font-semibold text-gray-900">
+                  优刻云虚拟主机优势
+                </span>
               </div>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-slate-900/10 rounded-2xl"
-              />
+
+              {/* 亮点指标网格 */}
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {highlights.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex flex-col items-center rounded-xl bg-brand-50/60 px-3 py-4 text-center ring-1 ring-inset ring-brand-100 transition-colors hover:bg-brand-50 hover:ring-brand-200"
+                  >
+                    <item.icon
+                      aria-hidden="true"
+                      className="mb-2 size-5 text-brand-600"
+                    />
+                    <span className="text-lg font-bold tracking-tight text-gray-900">
+                      {item.value}
+                    </span>
+                    <span className="mt-0.5 text-[11px] text-gray-500">
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* 底部提示 */}
+              <div className="mt-5 flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5 text-xs text-gray-500 ring-1 ring-inset ring-gray-200/80">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircleIcon className="size-3.5 text-brand-600" />
+                  99.9% 可用性保障 · 7×24 技术支持
+                </span>
+                <span className="font-medium text-brand-600">已服务 10,000+ 站点</span>
+              </div>
             </div>
           </div>
         </div>
@@ -293,7 +312,6 @@ function HeroSection() {
     </div>
   )
 }
-
 // 特性展示组件 - 网格布局展示虚拟主机的8大核心特性，采用现代圆角卡片设计
 function FeaturesSection() {
   return (
@@ -390,108 +408,118 @@ function CheckIcon({
 }
 
 // 价格区域组件 - 展示所有虚拟主机套餐的价格方案
+
+// 套餐价格组件 - 三栏卡片对比，突出推荐套餐
 function PricingSection() {
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div id="pricing" className="bg-gray-50 py-24 sm:py-32">
       <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-[#0055ff]">
+        {/* ── 区域标题 ── */}
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-brand-600/20">
             套餐价格
+          </span>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+            选择适合您的套餐
           </h2>
-          <p className="mt-2 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            选择适合您的套餐 <br className="hidden sm:block" />
-            <span className="text-[#0055ff]">助力便捷上云服务</span>
-          </p>
-        </div>
-        <div className="mx-auto mt-6 max-w-2xl text-center">
-          <p className="text-lg text-slate-600 flex items-center justify-center gap-2">
+          <p className="mt-3 text-base text-gray-500">
             产品规格
-            <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+            <span className="inline-flex items-center rounded-lg bg-red-50 px-2 py-0.5 text-[11px] font-semibold text-red-600 ring-1 ring-inset ring-red-600/10 mx-2 align-middle">
               HOT
             </span>
-            官方自营 超高性价比！
+            官方自营 · 超高性价比
           </p>
         </div>
-        <div className="mt-20 flow-root">
-          <div className="isolate -mt-16 grid max-w-sm grid-cols-1 gap-8 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 xl:-mx-4">
-            {hostingPlans.map((plan) => (
-              <div
-                key={plan.name}
+
+        {/* ── 套餐卡片网格 ── */}
+        <div className="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-8">
+          {hostingPlans.map((plan) => (
+            <div
+              key={plan.name}
+              className={clsx(
+                'relative flex flex-col rounded-2xl bg-white p-8 ring-1 transition-all duration-300',
+                plan.featured
+                  ? 'ring-1 ring-black/[0.06] shadow-xl shadow-brand-500/10 scale-[1.03] z-10'
+                  : 'ring-black/[0.06] shadow-sm hover:shadow-lg hover:shadow-black/[0.04] hover:ring-black/[0.12]'
+              )}
+            >
+              {/* 推荐标签 */}
+              {plan.featured && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center rounded-full bg-brand-600 px-4 py-1 text-xs font-semibold text-white shadow-sm shadow-brand-500/30">
+                    最多用户选择
+                  </span>
+                </div>
+              )}
+
+              {/* 套餐名称 */}
+              <h3
                 className={clsx(
-                  "group relative flex flex-col overflow-hidden bg-white border rounded-md transition-all duration-300 hover:shadow-xl",
-                  plan.featured
-                    ? "border-[#0055ff] shadow-lg shadow-blue-500/10 z-10 scale-105"
-                    : "border-slate-200 hover:border-[#0055ff]/30 hover:shadow-slate-200/50"
+                  'text-center text-lg font-semibold',
+                  plan.featured ? 'text-brand-600' : 'text-gray-900'
                 )}
               >
-                {/* 推荐标签 */}
-                {plan.featured && (
-                  <div className="absolute top-0 inset-x-0 h-1 bg-[#0055ff]" />
-                )}
+                {plan.name}
+              </h3>
 
-                <div className="p-8 flex flex-col h-full">
-                  <div className="text-center mb-6">
-                    <h3 className={clsx(
-                      "text-xl font-bold mb-2",
-                      plan.featured ? "text-[#0055ff]" : "text-slate-900"
-                    )}>
-                      {plan.name}
-                    </h3>
-                    <div className="flex items-baseline justify-center gap-x-1 mb-3">
-                      <span className="text-4xl font-bold tracking-tight text-slate-900">
-                        {plan.price}
-                      </span>
-                      <span className="text-lg font-semibold text-slate-500">
-                        {plan.period}
-                      </span>
-                    </div>
-                    <p className="text-sm text-slate-500">
-                      {plan.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-2 mb-8">
-                    <a
-                      href={plan.href}
-                      className={clsx(
-                        "block w-full font-semibold py-3 px-6 text-center rounded-lg transition-all duration-300",
-                        plan.featured
-                          ? "bg-[#0055ff] text-white hover:bg-[#0043cc] shadow-md shadow-blue-500/20"
-                          : "bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200"
-                      )}
-                    >
-                      立即购买
-                    </a>
-                  </div>
-
-                  <p className="text-sm font-semibold text-slate-900 mb-6">
-                    套餐详情
-                  </p>
-
-                  <ul role="list" className="space-y-4 text-sm text-slate-600 flex-1">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-x-3">
-                        <CheckCircleIcon
-                          aria-hidden="true"
-                          className={clsx(
-                            "h-5 w-5 flex-shrink-0",
-                            plan.featured ? "text-[#0055ff]" : "text-slate-400"
-                          )}
-                        />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* 价格 */}
+              <div className="mt-5 flex items-baseline justify-center gap-x-1">
+                <span className="text-5xl font-bold tracking-tight text-gray-900">
+                  {plan.price}
+                </span>
+                <span className="text-base font-medium text-gray-400">
+                  {plan.period}
+                </span>
               </div>
-            ))}
-          </div>
+
+              {/* 描述 */}
+              <p className="mt-2 text-center text-sm text-gray-500">
+                {plan.description}
+              </p>
+
+              {/* 分隔线 */}
+              <div className="mt-6 border-t border-gray-100" />
+
+              {/* CTA 按钮 */}
+              <a
+                href={plan.href}
+                className={clsx(
+                  'mt-6 block w-full rounded-lg py-3 text-center text-sm font-semibold transition-all duration-200',
+                  plan.featured
+                    ? 'bg-brand-600 text-white hover:bg-brand-700 shadow-sm shadow-brand-500/20'
+                    : 'bg-gray-50 text-gray-700 ring-1 ring-inset ring-gray-200 hover:bg-gray-100 hover:text-gray-900'
+                )}
+              >
+                立即购买
+              </a>
+
+              {/* 套餐详情标题 */}
+              <p className="mt-7 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                套餐详情
+              </p>
+
+              {/* 功能列表 */}
+              <ul role="list" className="mt-4 flex-1 space-y-3">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-x-3">
+                    <CheckCircleIcon
+                      aria-hidden="true"
+                      className={clsx(
+                        'mt-0.5 size-4 flex-shrink-0',
+                        plan.featured ? 'text-brand-600' : 'text-gray-300'
+                      )}
+                    />
+                    <span className="text-sm text-gray-600">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   )
 }
-
 // 产品优势组件 - 展示虚拟主机的4大核心优势，包含详细功能列表
 function AdvantagesSection() {
   return (

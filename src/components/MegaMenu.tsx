@@ -293,7 +293,7 @@ export function MegaMenu({
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handlePanelLeave}
             style={{ maxWidth: panelWidth, width: '100vw' }}
-            className="z-50 origin-top overflow-visible transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+            className="z-50 origin-top overflow-visible rounded-b-lg shadow-[0_12px_28px_rgba(0,0,0,0.12)] transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
           >
             {/* ── 阴影层 ── */}
             <div aria-hidden="true" className="absolute inset-0 shadow-2xl ring-1 ring-black/5 rounded-lg" />
@@ -497,7 +497,7 @@ className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium te
                 </div>
 
                 {/* ── 底部提示（固定在面板底部，不滚动） ── */}
-                <div className="border-t border-slate-100 py-2 px-0">
+                <div className="border-t border-slate-100 py-3 px-0">
                   <p className="text-xs text-slate-400">
                     {tipText}
                   </p>
