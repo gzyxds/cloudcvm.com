@@ -148,23 +148,13 @@ interface SuperiorityProps {
 }
 
 /**
- * 产品优势展示组件 — 现代 SaaS 极简风格
- *
- * 设计参考 Linear / Vercel / Stripe：
- * - 专业蓝灰配色 + 高对比中性色
- * - Bento Grid 非对称网格布局（2-1-1-2 节奏）
- * - 无边框卡片 + 微阴影层次 + 微圆角(rounded-md)
- * - 图标渐变底色 + 度量标签
- * - 悬停上浮 + 阴影加深 + 品牌色顶边高亮
- * - 响应式：移动端 1 列 → 平板 2 列 → 桌面 3 列 Bento
- * - 可访问性：语义化 dl/dt/dd 结构
+ * 产品优势展示组件 — Bento Grid 非对称网格，现代 SaaS 风格
  *
  * @param title - 标题
  * @param subtitle - 副标题
  * @param description - 描述
  * @param className - 自定义类名
  * @param showBackground - 是否显示背景色
- * @returns {JSX.Element} 企业级产品优势展示组件
  */
 export function Superiority({
   title = '产品优势',
@@ -177,37 +167,30 @@ export function Superiority({
     <section
       className={clsx(
         'relative overflow-hidden py-20 sm:py-28',
-        showBackground && 'bg-cover bg-center bg-no-repeat',
+        showBackground && 'bg-gray-50',
         className,
       )}
-      style={showBackground ? { backgroundImage: 'url("/images/background/background-3.webp")' } : undefined}
       aria-label="产品优势展示"
     >
-      {/* 背景装饰 */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-[#0055ff]/[0.03] blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-[#0055ff]/[0.02] blur-3xl" />
-      </div>
-
       <Container className="relative">
-        {/* ===== 标题区域 ===== */}
+        {/* ── 标题区域 ── */}
         <div className="text-center">
           {/* 副标题徽章 */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-4 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#0055ff]" />
-            <span className="text-sm font-medium text-[#0055ff] tracking-wide">
+          <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 ring-1 ring-inset ring-brand-600/20">
+            <span className="size-1.5 rounded-full bg-brand-600" />
+            <span className="text-xs font-semibold text-brand-600 tracking-wide">
               {subtitle}
             </span>
-          </div>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl lg:text-5xl">
+          </span>
+          <h2 className="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
             {title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-[#64748B] sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-gray-500 sm:text-lg">
             {description}
           </p>
         </div>
 
-        {/* ===== Bento Grid 优势卡片网格 ===== */}
+        {/* ── Bento Grid 优势卡片网格 ── */}
         <div className="mt-14">
           <dl className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[minmax(200px,auto)]">
             {productAdvantages.map((advantage, index) => {
@@ -217,11 +200,8 @@ export function Superiority({
                 <div
                   key={advantage.id}
                   className={clsx(
-                    'group relative flex flex-col rounded-md bg-white transition-all duration-300',
-                    'shadow-[0_0_0_1px_rgba(15,23,42,0.04),0_1px_3px_rgba(15,23,42,0.03)]',
-                    'hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(0,85,255,0.1),0_8px_24px_rgba(15,23,42,0.06)]',
-                    'before:absolute before:inset-x-3 before:top-0 before:h-px before:rounded-full before:bg-gradient-to-r before:from-transparent before:via-[#0055ff]/0 before:to-transparent before:transition-colors before:duration-300',
-                    'hover:before:via-[#0055ff]/30',
+                    'group relative flex flex-col rounded-xl bg-white ring-1 ring-black/[0.06] transition-all duration-300',
+                    'hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/[0.04] hover:ring-black/[0.12]',
                     bentoLayout?.wrapper,
                   )}
                   role="article"
@@ -230,30 +210,30 @@ export function Superiority({
                   {/* 卡片内容 */}
                   <div className="flex flex-auto flex-col px-5 py-5">
                     {/* 图标 */}
-                    <div className="mb-3 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#0055ff]/10 to-[#0066ff]/5 text-[#0055ff] transition-all duration-300 group-hover:from-[#0055ff]/15 group-hover:to-[#0066ff]/10 group-hover:scale-110">
-                      <advantage.icon aria-hidden="true" className="h-5 w-5" />
+                    <div className="mb-3 flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-all duration-300 group-hover:bg-brand-600 group-hover:text-white">
+                      <advantage.icon aria-hidden="true" className="size-5" />
                     </div>
 
                     {/* 标题 */}
-                    <dt className="text-sm font-semibold text-[#0F172A]">
+                    <dt className="text-sm font-semibold text-gray-900">
                       {advantage.name}
                     </dt>
 
                     {/* 描述 */}
-                    <dd className="mt-1.5 flex-auto text-sm leading-relaxed text-[#64748B]">
+                    <dd className="mt-1.5 flex-auto text-sm leading-relaxed text-gray-500">
                       {advantage.description}
                     </dd>
 
                     {/* 底部：指标 + 操作 */}
                     <div className="mt-4 flex items-center justify-between">
                       {advantage.metricLabel && advantage.metricValue && (
-                        <span className="inline-flex items-center gap-1.5 rounded-md bg-[#F1F5F9] px-2 py-1 text-xs font-mono font-semibold text-[#0055ff]">
+                        <span className="inline-flex items-center rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-gray-200">
                           {advantage.metricValue}
                         </span>
                       )}
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-[#94A3B8] transition-colors duration-200 group-hover:text-[#0055ff] cursor-pointer">
-                        了解详情
-                        <ArrowRightIcon className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+                      <span className="inline-flex items-center gap-1 text-xs font-medium text-gray-400 transition-colors duration-200 group-hover:text-brand-600">
+                        {advantage.metricLabel}
+                        <ArrowRightIcon className="size-3 transition-transform duration-200 group-hover:translate-x-0.5" />
                       </span>
                     </div>
                   </div>
@@ -263,9 +243,9 @@ export function Superiority({
           </dl>
         </div>
 
-        {/* ===== 底部引导 ===== */}
+        {/* ── 底部引导语 ── */}
         <div className="mt-16 text-center">
-          <p className="text-sm text-[#94A3B8]">
+          <p className="text-sm text-gray-400">
             以上优势均源自优刻云基础设施与技术沉淀，持续为您提供稳定可靠的云服务
           </p>
         </div>
