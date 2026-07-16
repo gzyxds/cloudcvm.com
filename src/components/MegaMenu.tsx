@@ -444,7 +444,7 @@ export function MegaMenu({
                           {/* 右列：分割线 + 快速通道 */}
                           <div className="hidden lg:block lg:col-span-2">
                             <div className="border-l border-slate-100 pl-8 flex flex-col gap-4">
-                              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-5">
+                              <div className="rounded bg-white p-5 outline-1 -outline-offset-1 outline-slate-200/60">
                                 <SectionTitle text="快速通道" />
                                 <div className="mt-4 space-y-1">
                                   {footerActions && footerActions.length > 0 ? (
@@ -455,7 +455,7 @@ export function MegaMenu({
                                           key={action.name}
                                           href={action.href}
                                           onClick={() => close()}
-className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:text-brand-600"
+                                          className="flex items-center gap-3 rounded px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:text-brand-600"
                                         >
                                           {Icon && <Icon aria-hidden="true" className="size-5 text-brand-500" />}
                                           {action.name}
@@ -467,7 +467,7 @@ className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium te
                                   )}
                                 </div>
                               </div>
-                              <div className="rounded-lg border border-slate-100 bg-slate-50/50 p-5">
+                              <div className="rounded bg-white p-5 outline-1 -outline-offset-1 outline-slate-200/60">
                                 <SectionTitle text="产品分类" />
                                 <div className="mt-4 flex flex-wrap gap-2">
                                   {categories.map((cat) => (
@@ -476,10 +476,10 @@ className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium te
                                       type="button"
                                       onMouseEnter={() => handleCategoryChange(cat.id)}
                                       onClick={() => handleCategoryChange(cat.id)}
-                                      className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+                                      className={`rounded px-3 py-1.5 text-xs font-medium transition-colors ${
                                         cat.id === activeCategoryId
                                           ? 'bg-brand-500 text-white'
-                                          : 'bg-white text-slate-600 border border-slate-200 hover:border-brand-200 hover:text-brand-600'
+                                          : 'bg-white text-slate-600 outline-1 -outline-offset-1 outline-slate-200/60 hover:outline-brand-300/60 hover:text-brand-600'
                                       }`}
                                     >
                                       {cat.name}
@@ -536,7 +536,7 @@ const FeaturedProductCard = React.memo(function FeaturedProductCard({
     <Link
       href={item.href}
       onClick={onClick}
-      className="group/card flex items-start gap-4 rounded-md bg-white px-5 py-4 outline-1 -outline-offset-1 outline-slate-200 transition-colors duration-150 hover:bg-slate-50 hover:outline-slate-300"
+      className="group/card flex items-start gap-4 rounded bg-white px-5 py-4 outline-1 -outline-offset-1 outline-slate-200/60 transition-colors duration-150 hover:bg-gradient-to-b hover:from-brand-50/40 hover:to-white hover:outline-slate-300/60"
     >
       {item.icon && (
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-slate-100 text-slate-500 transition-colors duration-150 group-hover/card:bg-slate-200 group-hover/card:text-slate-700">
@@ -545,7 +545,7 @@ const FeaturedProductCard = React.memo(function FeaturedProductCard({
       )}
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-slate-800 transition-colors group-hover/card:text-slate-900 line-clamp-1">
+          <span className="text-sm font-medium text-slate-800 transition-colors group-hover/card:text-brand-600 line-clamp-1">
             {item.name}
           </span>
           {item.tag && (
@@ -572,7 +572,7 @@ const ProductLink = React.memo(function ProductLink({ item, onClick }: { item: M
     <Link
       href={item.href}
       onClick={onClick}
-      className="group/link flex items-center gap-3 rounded-md bg-white px-3 py-2 outline-1 -outline-offset-1 outline-slate-200 transition-colors duration-150 hover:bg-slate-50 hover:outline-slate-300"
+      className="group/link flex items-center gap-3 rounded bg-white px-3 py-2 outline-1 -outline-offset-1 outline-slate-200/60 transition-colors duration-150 hover:bg-gradient-to-b hover:from-brand-50/40 hover:to-white hover:outline-slate-300/60"
     >
       {item.icon && (
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-slate-400 transition-colors duration-150 group-hover/link:text-slate-600">
@@ -581,7 +581,7 @@ const ProductLink = React.memo(function ProductLink({ item, onClick }: { item: M
       )}
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-slate-700 transition-colors group-hover/link:text-slate-900 line-clamp-1">
+          <span className="text-sm font-medium text-slate-700 transition-colors group-hover/link:text-brand-600 line-clamp-1">
             {item.name}
           </span>
           {item.tag && (
