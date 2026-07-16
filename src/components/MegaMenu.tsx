@@ -518,8 +518,8 @@ className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium te
 const SectionTitle = React.memo(function SectionTitle({ text }: { text: string }) {
   return (
     <div className="mb-3 flex items-center gap-2">
-      <span className="h-3 w-[3px] rounded-full bg-brand-500" />
-      <h4 className="text-sm font-semibold text-slate-900">{text}</h4>
+      <span className="block h-3.5 w-[2px] rounded-full bg-slate-300" />
+      <h4 className="text-xs font-medium uppercase tracking-wide text-slate-400">{text}</h4>
     </div>
   )
 })
@@ -536,21 +536,21 @@ const FeaturedProductCard = React.memo(function FeaturedProductCard({
     <Link
       href={item.href}
       onClick={onClick}
-      className="group/card flex items-start gap-4 rounded-lg border border-slate-200 bg-white px-5 py-4 transition-all duration-200 hover:border-brand-200 hover:shadow-sm"
+      className="group/card flex items-start gap-4 rounded-md bg-white px-5 py-4 outline-1 -outline-offset-1 outline-slate-200 transition-colors duration-150 hover:bg-slate-50 hover:outline-slate-300"
     >
       {item.icon && (
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-colors duration-200 group-hover/card:bg-brand-500 group-hover/card:text-white">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-slate-100 text-slate-500 transition-colors duration-150 group-hover/card:bg-slate-200 group-hover/card:text-slate-700">
           <item.icon aria-hidden="true" className="size-5" />
         </span>
       )}
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-slate-900 transition-colors group-hover/card:text-brand-600 line-clamp-1">
+          <span className="text-sm font-medium text-slate-800 transition-colors group-hover/card:text-slate-900 line-clamp-1">
             {item.name}
           </span>
           {item.tag && (
             <span
-              className={`flex-shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] leading-none font-semibold ${
+              className={`flex-shrink-0 rounded px-1.5 py-0.5 text-[10px] leading-none font-medium ${
                 badgeStyles[item.badgeType || 'default']
               }`}
             >
@@ -559,7 +559,7 @@ const FeaturedProductCard = React.memo(function FeaturedProductCard({
           )}
         </div>
         {item.description && (
-          <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">{item.description}</p>
+          <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-slate-500">{item.description}</p>
         )}
       </div>
     </Link>
@@ -572,21 +572,21 @@ const ProductLink = React.memo(function ProductLink({ item, onClick }: { item: M
     <Link
       href={item.href}
       onClick={onClick}
-className="group/link flex items-center gap-3 rounded-md border border-slate-100 px-3 py-2 transition-all duration-150 hover:border-slate-200"
+      className="group/link flex items-center gap-3 rounded-md bg-white px-3 py-2 outline-1 -outline-offset-1 outline-slate-200 transition-colors duration-150 hover:bg-slate-50 hover:outline-slate-300"
     >
       {item.icon && (
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-slate-100 text-slate-400 transition-colors duration-150 group-hover/link:bg-brand-50 group-hover/link:text-brand-500">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-slate-400 transition-colors duration-150 group-hover/link:text-slate-600">
           <item.icon aria-hidden="true" className="size-4" />
         </span>
       )}
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-slate-900 transition-colors group-hover/link:text-brand-600 line-clamp-1">
+          <span className="text-sm font-medium text-slate-700 transition-colors group-hover/link:text-slate-900 line-clamp-1">
             {item.name}
           </span>
           {item.tag && (
             <span
-              className={`flex-shrink-0 rounded-sm px-1 py-0.5 text-[10px] leading-none font-medium ${
+              className={`flex-shrink-0 rounded px-1.5 py-0.5 text-[10px] leading-none font-medium ${
                 badgeStyles[item.badgeType || 'default']
               }`}
             >
