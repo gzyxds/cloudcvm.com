@@ -153,7 +153,7 @@ function WorldMap() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-40" />
               <span className="relative inline-flex h-3 w-3 rounded-full bg-brand-500 ring-2 ring-white dark:ring-gray-900" />
             </span>
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 whitespace-nowrap text-[11px] font-medium text-gray-400 dark:text-gray-500">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 whitespace-nowrap text-[11px] font-medium text-gray-400 dark:text-gray-500 hidden sm:inline">
               {node.name}
             </span>
           </div>
@@ -193,29 +193,29 @@ function InfoCard({
       animate="visible"
       transition={{ duration: 0.3, delay: index * 0.06 }}
     >
-      <div className="group rounded-md border border-gray-100 bg-white p-6 transition-all duration-300 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-500/[0.04]">
-        <div className="flex items-start gap-4">
-          <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 transition-colors group-hover:bg-brand-100">
-            <Icon className="h-5 w-5 text-brand-500" />
+      <div className="group rounded bg-white p-4 sm:p-5 outline-1 -outline-offset-1 outline-slate-200/60 transition-colors duration-150 hover:bg-gradient-to-b hover:from-brand-50/40 hover:to-white hover:outline-slate-300/60">
+        <div className="flex items-start gap-3 sm:gap-4">
+          <div className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded bg-slate-100 text-slate-500 transition-colors duration-150 group-hover:bg-slate-200 group-hover:text-slate-700">
+            <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="mb-1.5 flex flex-wrap items-center gap-2">
-              <h3 className="text-base font-semibold text-gray-900">
+            <div className="mb-1 flex flex-wrap items-center gap-2">
+              <h3 className="text-sm font-medium text-slate-800 transition-colors group-hover:text-brand-600">
                 {item.name}
               </h3>
               {item.zones && (
-                <span className="rounded-md bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-600">
+                <span className="rounded-sm bg-slate-100 px-1.5 py-0.5 text-[11px] font-medium text-slate-500">
                   {item.zones}
                 </span>
               )}
             </div>
             {item.description && (
-              <p className="text-sm leading-relaxed text-gray-500">
+              <p className="text-xs leading-relaxed text-slate-400">
                 {item.description}
               </p>
             )}
           </div>
-          <ChevronRightIcon className="mt-1.5 h-5 w-5 shrink-0 text-gray-200 transition-colors group-hover:text-brand-400" />
+          <ChevronRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-slate-300 transition-colors group-hover:text-slate-400" />
         </div>
       </div>
     </motion.div>
@@ -269,45 +269,10 @@ export default function Zone() {
           </p>
         </div>
 
-        {/* ─────── 统计数字栏 ─────── */}
-        <div className="mt-12 flex items-center justify-center gap-8 sm:gap-12 lg:mt-16">
-          {tabConfig.map((tab, idx) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className="group flex items-baseline gap-2 transition-colors"
-            >
-              <span
-                className={clsx(
-                  'text-3xl font-bold tabular-nums tracking-tight transition-colors duration-300 sm:text-4xl',
-                  activeTab === tab.id
-                    ? 'text-brand-600'
-                    : 'text-gray-300 group-hover:text-gray-400',
-                )}
-              >
-                {tab.value}
-              </span>
-              <span
-                className={clsx(
-                  'text-sm font-medium transition-colors duration-300',
-                  activeTab === tab.id
-                    ? 'text-gray-900'
-                    : 'text-gray-400 group-hover:text-gray-500',
-                )}
-              >
-                {tab.label}
-              </span>
-              {idx < tabConfig.length - 1 && (
-                <span className="mx-2 h-4 w-px bg-gray-200 last:hidden" />
-              )}
-            </button>
-          ))}
-        </div>
-
         {/* ─────── 视图切换标签栏 ─────── */}
         <div className="mt-10 flex justify-center">
           <div
-            className="inline-flex items-center rounded-lg border border-gray-100 bg-gray-50/80 p-1"
+            className="inline-flex items-center rounded bg-white p-1 outline-1 -outline-offset-1 outline-slate-200/60"
             role="tablist"
           >
             {tabConfig.map((tab) => {
@@ -319,14 +284,15 @@ export default function Zone() {
                   aria-selected={activeTab === tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={clsx(
-                    'flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200',
+                    'flex items-center gap-1.5 sm:gap-2 rounded-sm px-2.5 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-all duration-200',
                     activeTab === tab.id
-                      ? 'bg-white text-brand-600 shadow-sm'
-                      : 'text-gray-500 hover:text-gray-700',
+                      ? 'bg-slate-100 text-slate-900'
+                      : 'text-slate-500 hover:text-slate-700',
                   )}
                 >
                   <Icon className="h-4 w-4" />
-                  {tab.label}
+                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="ml-1 text-xs text-slate-400 tabular-nums">{tab.value}</span>
                 </button>
               )
             })}
@@ -375,43 +341,41 @@ export default function Zone() {
 
         {/* ─────── 底部全球节点总览 ─────── */}
         <div className="mt-16 sm:mt-20">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-5 w-1 rounded-full bg-brand-500" />
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
+          <div className="mb-5 flex items-center gap-2">
+            <span className="block h-3.5 w-[2px] rounded-full bg-slate-300" />
+            <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
               全球节点分布
             </p>
           </div>
-          <div className="overflow-hidden rounded-md border border-gray-100 bg-gray-50/50 px-1 py-1">
-            <div className="flex flex-wrap items-center gap-1">
+          <div className="overflow-hidden rounded bg-white p-3 sm:p-2 outline-1 -outline-offset-1 outline-slate-200/60">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-1">
               {mapNodes.map((node) => {
                 const isActive = currentTabNodes.some((n) => n.name === node.name)
                 return (
                   <div
                     key={node.name}
                     className={clsx(
-                      'flex items-center gap-2.5 rounded-md px-3 py-2 transition-all duration-300',
+                      'flex items-center gap-1.5 sm:gap-2 rounded-sm px-2.5 py-2 sm:py-1.5 transition-colors duration-200',
                       isActive
-                        ? 'bg-white shadow-sm'
+                        ? 'bg-slate-100'
                         : 'opacity-40 hover:opacity-70',
                     )}
                   >
                     <span
                       className={clsx(
-                        'h-2 w-2 rounded-full',
-                        isActive
-                          ? 'bg-brand-500 shadow-[0_0_6px_rgba(56,96,244,0.4)]'
-                          : 'bg-gray-300',
+                        'h-1.5 w-1.5 rounded-full shrink-0',
+                        isActive ? 'bg-brand-500' : 'bg-slate-300',
                       )}
                     />
                     <span
                       className={clsx(
-                        'text-sm font-medium',
-                        isActive ? 'text-gray-900' : 'text-gray-400',
+                        'text-xs sm:text-xs font-medium whitespace-nowrap',
+                        isActive ? 'text-slate-800' : 'text-slate-400',
                       )}
                     >
                       {node.name}
                     </span>
-                    <span className="text-xs text-gray-400">{node.region}</span>
+                    <span className="text-[10px] sm:text-[10px] text-slate-400 whitespace-nowrap hidden sm:inline">{node.region}</span>
                   </div>
                 )
               })}
@@ -422,7 +386,7 @@ export default function Zone() {
           <div className="mt-10 text-center">
             <a
               href="/about"
-              className="inline-flex items-center gap-2 text-sm font-medium text-brand-600 transition-colors hover:text-brand-700"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-brand-600"
             >
               了解更多关于我们的基础设施
               <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -433,8 +397,3 @@ export default function Zone() {
     </section>
   )
 }
-
-
-
-
-
