@@ -270,7 +270,7 @@ export function MegaMenu({
               <span className="relative inline-flex">
                 {triggerText}
                 {triggerBadge && (
-                  <span className="absolute -top-2 -right-4 flex size-5 items-center justify-center">
+                  <span className="absolute -top-3 -right-4 flex size-5 items-center justify-center">
                     {triggerBadge}
                   </span>
                 )}

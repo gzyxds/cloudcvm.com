@@ -1,11 +1,14 @@
 'use client'
 
-import React, { JSX, useState } from 'react'
+import React, { JSX, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   Dialog,
   DialogPanel,
   PopoverGroup,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
 } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -13,9 +16,14 @@ import {
   UserPlusIcon,
   ComputerDesktopIcon,
   UserIcon,
+  BeakerIcon,
+  SparklesIcon,
+  GlobeAltIcon,
+  SquaresPlusIcon,
 } from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Logo } from '@/components/Logo'
-import { MegaMenu } from '@/components/MegaMenu'
+import { MegaMenu, MegaMenuCategory } from '@/components/MegaMenu'
 import { MobileMenu } from '@/components/MobileMenu'
 import {
   productCategories,
@@ -32,11 +40,161 @@ import {
 } from '@/data/navigation'
 
 /**
+ * lg(1024-1279) 与 xl(1280-1535) 下隐藏左侧靠后的 MegaMenu，
+ * 统一收进「更多」下拉，避免窗口缩小时菜单栏被挤压、错位。
+ */
+const overflowCategoriesLg: MegaMenuCategory[] = [
+  {
+    id: 'more-lg',
+    name: '更多导航',
+    icon: SquaresPlusIcon,
+    items: [
+      {
+        name: '人工智能与应用',
+        description: 'AI 能力与智能服务',
+        href: '/ai',
+        icon: BeakerIcon,
+      },
+      {
+        name: 'AI解决方案',
+        description: '行业场景化解决方案',
+        href: '/ai',
+        icon: SparklesIcon,
+      },
+      {
+        name: '企业解决方案',
+        description: '企业级产品矩阵',
+        href: '/ecommerce',
+        icon: GlobeAltIcon,
+      },
+      {
+        name: '关于我们',
+        description: '了解公司与服务',
+        href: '/about',
+        icon: UserIcon,
+      },
+    ],
+  },
+]
+
+const overflowCategoriesXl: MegaMenuCategory[] = [
+  {
+    id: 'more-xl',
+    name: '更多导航',
+    icon: SquaresPlusIcon,
+    items: [
+      {
+        name: 'AI解决方案',
+        description: '行业场景化解决方案',
+        href: '/ai',
+        icon: SparklesIcon,
+      },
+      {
+        name: '企业解决方案',
+        description: '企业级产品矩阵',
+        href: '/ecommerce',
+        icon: GlobeAltIcon,
+      },
+      {
+        name: '关于我们',
+        description: '了解公司与服务',
+        href: '/about',
+        icon: UserIcon,
+      },
+    ],
+  },
+]
+
+/**
+ * 溢出菜单：鼠标悬停触发，收起项以卡片列表形式展示。
+ */
+function OverflowMenu({ categories }: { categories: MegaMenuCategory[] }) {
+  const [open, setOpen] = useState(false)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+  }
+
+  const handleOpen = () => {
+    clearCloseTimer()
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    closeTimerRef.current = setTimeout(() => {
+      setOpen(false)
+    }, 150)
+  }
+
+  useEffect(() => {
+    return () => clearCloseTimer()
+  }, [])
+
+  return (
+    <Popover className="relative">
+      <PopoverButton
+        ref={buttonRef}
+        onMouseEnter={handleOpen}
+        onMouseLeave={handleClose}
+        className={`relative flex items-center gap-x-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 outline-none lg:px-2 xl:px-2 2xl:px-3 ${
+          open
+            ? 'text-brand-500'
+            : 'text-slate-700 hover:text-brand-500'
+        }`}
+      >
+        更多
+        <ChevronDownIcon
+          className={`h-4 w-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        />
+      </PopoverButton>
+      {open && (
+        <PopoverPanel
+          static
+          onMouseEnter={clearCloseTimer}
+          onMouseLeave={handleClose}
+          anchor={{ to: 'bottom start', gap: '9px', padding: 16 }}
+          className="z-50 w-[280px] origin-top rounded-b-lg bg-white p-3 shadow-[0_12px_28px_rgba(0,0,0,0.12)] transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+        >
+          <div className="space-y-0.5">
+            {categories[0].items.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-slate-50"
+              >
+                {item.icon && (
+                  <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />
+                )}
+                <div>
+                  <p className="text-sm font-medium text-slate-900 group-hover:text-brand-500">
+                    {item.name}
+                  </p>
+                  {item.description && (
+                    <p className="mt-0.5 text-xs text-slate-500">{item.description}</p>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+        </PopoverPanel>
+      )}
+    </Popover>
+  )
+}
+
+/**
  * Header组件 - 网站顶部导航栏
  *
  * 功能特性：
  * - 响应式设计，支持桌面端和移动端
  * - 多级下拉菜单，包含产品、AI、解决方案、公司信息
+ * - 桌面端窗口缩小时，自动将靠后菜单收进「更多」下拉
  * - 移动端侧边栏菜单
  * - 用户登录/注册入口
  * - 无障碍访问支持
@@ -70,7 +228,7 @@ export function Header(): JSX.Element {
             {/* 最新活动菜单 - 带HOT标签的直链菜单 */}
             <a
               href="/new"
-              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
+              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500 lg:px-2 xl:px-2 2xl:px-3"
             >
               最新活动
               <span className="absolute -top-1 -right-1 rounded-full bg-red-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
@@ -88,76 +246,87 @@ export function Header(): JSX.Element {
               footerActions={commonFooterActions}
               panelWidth={960}
               viewAllHref="/products"
+              triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
               triggerBadge={(
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="size-full">
-                  <circle cx="12" cy="12" r="5" fill="#ff4d4f" opacity="0.5">
-                    <animate attributeName="r" values="5;11" dur="1.6s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.5;0" dur="1.6s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="12" cy="12" r="5" fill="#ff4d4f" opacity="0.4">
-                    <animate attributeName="r" values="5;9" dur="1.6s" begin="0.3s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.4;0" dur="1.6s" begin="0.3s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="12" cy="12" r="5" fill="#ff4d4f" />
-                  <circle cx="12" cy="12" r="2" fill="#fff" />
-                </svg>
+                <span className="rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
+                  NEW
+                </span>
               )}
             />
 
-            {/* 电商云菜单 - 带NEW标签的直链菜单 */}
+            {/* 电商云菜单 - 直链菜单 */}
             <a
               href="/eccloud"
-              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
+              className="relative rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500 lg:px-2 xl:px-2 2xl:px-3"
             >
               电商云
-              <span className="absolute -top-1 -right-1 rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
-                NEW
-              </span>
             </a>
 
             {/* 人工智能与应用下拉菜单 - 企业级二级菜单 */}
-            <MegaMenu
-              triggerText="人工智能与应用"
-              title="人工智能与应用"
-            subtitle="AI 能力与智能服务"
-            categories={aiAppCategories}
-              quickTags={aiQuickTags}
-              footerActions={commonFooterActions}
-              panelWidth={760}
-            />
+            <div className="hidden xl:block">
+              <MegaMenu
+                triggerText="人工智能与应用"
+                title="人工智能与应用"
+                subtitle="AI 能力与智能服务"
+                categories={aiAppCategories}
+                quickTags={aiQuickTags}
+                footerActions={commonFooterActions}
+                panelWidth={760}
+                triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
+              />
+            </div>
 
             {/* AI解决方案下拉菜单 - 企业级二级菜单 */}
-            <MegaMenu
-              triggerText="AI解决方案"
-              title="AI解决方案"
-              subtitle="行业场景化解决方案"
-              categories={aiSolutionCategories}
-              quickTags={aiQuickTags}
-              footerActions={commonFooterActions}
-              panelWidth={960}
-              viewAllHref="/solutions/ai"
-            />
+            <div className="hidden 2xl:block">
+              <MegaMenu
+                triggerText="AI解决方案"
+                title="AI解决方案"
+                subtitle="行业场景化解决方案"
+                categories={aiSolutionCategories}
+                quickTags={aiQuickTags}
+                footerActions={commonFooterActions}
+                panelWidth={960}
+                viewAllHref="/solutions/ai"
+                triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
+              />
+            </div>
 
             {/* 企业解决方案下拉菜单 - 企业级二级菜单 */}
-            <MegaMenu
-              triggerText="企业解决方案"
-              title="企业解决方案"
-              subtitle="企业级产品矩阵"
-              categories={enterpriseCategories}
-              quickTags={enterpriseQuickTags}
-              footerActions={commonFooterActions}
-              panelWidth={780}
-            />
+            <div className="hidden 2xl:block">
+              <MegaMenu
+                triggerText="企业解决方案"
+                title="企业解决方案"
+                subtitle="企业级产品矩阵"
+                categories={enterpriseCategories}
+                quickTags={enterpriseQuickTags}
+                footerActions={commonFooterActions}
+                panelWidth={780}
+                triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
+              />
+            </div>
 
             {/* 关于我们下拉菜单 - 企业级二级菜单 */}
-            <MegaMenu
-              triggerText="关于我们"
-              title="关于我们"
-              subtitle="了解公司与服务"
-              categories={companyCategories}
-              footerActions={commonFooterActions}
-              panelWidth={720}
-            />
+            <div className="hidden 2xl:block">
+              <MegaMenu
+                triggerText="关于我们"
+                title="关于我们"
+                subtitle="了解公司与服务"
+                categories={companyCategories}
+                footerActions={commonFooterActions}
+                panelWidth={720}
+                triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
+              />
+            </div>
+
+            {/* lg 断点溢出菜单 */}
+            <div className="hidden lg:block xl:hidden">
+              <OverflowMenu categories={overflowCategoriesLg} />
+            </div>
+
+            {/* xl 断点溢出菜单 */}
+            <div className="hidden xl:block 2xl:hidden">
+              <OverflowMenu categories={overflowCategoriesXl} />
+            </div>
 
 
             {/* 艺创智能 */}
@@ -189,7 +358,7 @@ export function Header(): JSX.Element {
           </button>
         </div>
         {/* 右侧：桌面端直链菜单和用户操作区 */}
-        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-1">
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-0.5 xl:gap-x-0.5 2xl:gap-x-1">
           {/* 文档中心 - 企业级二级菜单（右侧对齐，防止溢出右边缘） */}
           <MegaMenu
             triggerText="文档中心"
@@ -200,46 +369,47 @@ export function Header(): JSX.Element {
             panelWidth={720}
             viewAllHref="/docs"
             panelAlign="right"
+            triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
           />
 
           {/* 分割线 */}
-          <div className="mx-2 h-6 w-px bg-gray-200"></div>
+          <div className="mx-2 h-6 w-px bg-gray-200 lg:mx-1 xl:mx-1 2xl:mx-2"></div>
           {/* 产品订购 */}
           <a
             href="https://console.cloudcvm.com/cart/goodsList.htm"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500 lg:px-2 xl:px-2 2xl:px-3"
           >
             产品订购
           </a>
           {/* 分割线 */}
-          <div className="mx-2 h-6 w-px bg-gray-200"></div>
+          <div className="mx-2 h-6 w-px bg-gray-200 lg:mx-1 xl:mx-1 2xl:mx-2"></div>
 
           {/* 控制台 */}
           <a
             href="https://console.cloudcvm.com"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500 lg:px-2 xl:px-2 2xl:px-3"
           >
             控制台
           </a>
 
           {/* 分割线 */}
-          <div className="mx-2 h-6 w-px bg-gray-200"></div>
+          <div className="mx-2 h-6 w-px bg-gray-200 lg:mx-1 xl:mx-1 2xl:mx-2"></div>
 
           {/* 登录 */}
           <a
             href="https://console.cloudcvm.com/login.htm"
-            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500"
+            className="rounded-md px-3 py-2 text-sm font-medium text-neutral-700 transition-colors hover:text-brand-500 lg:px-2 xl:px-2 2xl:px-3"
           >
             登录
           </a>
 
           {/* 分割线 */}
-          <div className="mx-2 h-6 w-px bg-gray-200"></div>
+          <div className="mx-2 h-6 w-px bg-gray-200 lg:mx-1 xl:mx-1 2xl:mx-2"></div>
 
           {/* 免费注册 - 主要CTA按钮 */}
           <a
             href="https://console.cloudcvm.com/login.htm"
-            className="inline-flex items-center justify-center gap-2 border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+            className="inline-flex items-center justify-center gap-2 border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none lg:px-3 xl:px-3 2xl:px-4"
           >
             <UserPlusIcon className="h-4 w-4" aria-hidden="true" />
             免费注册
