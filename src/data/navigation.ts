@@ -767,6 +767,8 @@ export interface MobileMenuSection {
   label: string
   categories: MegaMenuCategory[]
   showFooter?: boolean
+  /** 分区标题角标（与桌面端触发按钮角标对齐，如 AI系统） */
+  badge?: { text: string; className?: string }
 }
 
 /**
@@ -779,31 +781,27 @@ export const mobileMenuSections: MobileMenuSection[] = [
   {
     label: '产品与服务',
     categories: productCategories,
-    showFooter: true,
+    badge: { text: 'NEW' },
   },
   {
     label: '人工智能与应用',
     categories: aiAppCategories,
-    showFooter: false,
+    badge: { text: 'AI系统', className: 'bg-brand-500/10 text-brand-500' },
   },
   {
     label: 'AI解决方案',
     categories: aiSolutionCategories,
-    showFooter: false,
   },
   {
     label: '企业解决方案',
     categories: enterpriseCategories,
-    showFooter: false,
   },
   {
     label: '关于我们',
     categories: companyCategories,
-    showFooter: false,
   },
   {
     label: '文档中心',
     categories: docsCategories,
-    showFooter: false,
   },
 ]

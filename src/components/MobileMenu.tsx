@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import type { MegaMenuItem, FooterAction } from '@/components/MegaMenu'
+import type { MegaMenuItem, FooterAction, MegaMenuCategory } from '@/components/MegaMenu'
 import type { MobileMenuSection } from '@/data/navigation'
 import { commonFooterActions } from '@/data/navigation'
 
@@ -16,16 +16,36 @@ const badgeLabels: Record<string, string> = {
   beta: 'BETA',
 }
 
+/** 徽章配色，与桌面端 MegaMenu 的 badgeStyles 保持一致 */
+const badgeColors: Record<string, string> = {
+  hot: 'bg-red-500 text-white',
+  new: 'bg-brand-500 text-white',
+  beta: 'bg-amber-500 text-white',
+  default: 'bg-slate-100 text-slate-600',
+}
+
 /* ─────────────────────── 辅助函数 ─────────────────────── */
 
-/** 从多个 category 中扁平化提取所有 items */
-function flattenItems(categories: { items: MegaMenuItem[] }[]): MegaMenuItem[] {
-  return categories.flatMap((cat) => cat.items)
+/**
+ * 合并分类下的常规项与精选项。
+ * 桌面端精选卡中可能存在未列入 items 的产品（如智言AI作图），
+ * 移动端需一并展示，保证与桌面端内容一致、不缺失。
+ */
+function mergeFeaturedItems(category: MegaMenuCategory): MegaMenuItem[] {
+  const items = [...category.items]
+  const ids = new Set(items.map((item) => item.id))
+  for (const featured of category.featured || []) {
+    if (featured.id && !ids.has(featured.id)) {
+      items.push(featured)
+      ids.add(featured.id)
+    }
+  }
+  return items
 }
 
 /* ─────────────────────── 子组件 ─────────────────────── */
 
-/** 移动端菜单项卡片 */
+/** 移动端菜单项卡片（整卡可点击） */
 const MobileMenuItem = React.memo(function MobileMenuItem({
   item,
 }: {
@@ -34,33 +54,31 @@ const MobileMenuItem = React.memo(function MobileMenuItem({
   const badgeLabel = item.badgeType ? badgeLabels[item.badgeType] || item.tag : item.tag
 
   return (
-<div className="flex flex-col rounded-md border border-slate-100 px-3 py-2 transition-colors">
-      <div className="mb-2 flex items-center">
+    <Link
+      href={item.href}
+      className="flex flex-col rounded-md border border-slate-200/60 px-3 py-2 transition-colors active:border-brand-300/60 active:bg-brand-50/40"
+    >
+      <div className="mb-1.5 flex items-center">
         {item.icon && (
-          <div className="mr-2 flex size-7 items-center justify-center">
+          <span className="mr-2 flex size-7 flex-none items-center justify-center rounded bg-slate-50">
             <item.icon aria-hidden="true" className="size-4 text-brand-500" />
-          </div>
+          </span>
         )}
-        <Link
-          href={item.href}
-          className="block font-medium text-slate-900 transition-colors hover:text-brand-600"
-        >
+        <span className="flex min-w-0 flex-wrap items-center font-medium text-slate-900">
           {item.name}
           {badgeLabel && (
             <span
-              className={`ml-1 inline-flex items-center rounded px-1.5 py-0.5 text-xs leading-none font-bold text-white ${
-                item.badgeType === 'new' ? 'bg-brand-500' : item.badgeType === 'beta' ? 'bg-amber-500' : 'bg-red-500'
-              }`}
+              className={`ml-1 inline-flex items-center rounded px-1.5 py-0.5 text-xs leading-none font-bold ${badgeColors[item.badgeType || 'default']}`}
             >
               {badgeLabel}
             </span>
           )}
-        </Link>
+        </span>
       </div>
       {item.description && (
         <p className="text-xs text-slate-500">{item.description}</p>
       )}
-    </div>
+    </Link>
   )
 })
 
@@ -79,7 +97,7 @@ const MobileMenuFooter = React.memo(function MobileMenuFooter({
             <Link
               key={action.name}
               href={action.href}
-              className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
+              className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-2 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
             >
               {Icon && <Icon aria-hidden="true" className="size-3" />}
               {action.name}
@@ -103,6 +121,7 @@ export interface MobileMenuProps {
  *
  * 数据驱动的移动端导航菜单，复用 navigation.ts 中的
  * MegaMenuCategory 数据，保证与桌面端 MegaMenu 同步。
+ * 多分类分区保留分类分组标题，与桌面端分类 Tab 的信息结构对齐。
  */
 export const MobileMenu = React.memo(function MobileMenu({
   sections,
@@ -110,7 +129,7 @@ export const MobileMenu = React.memo(function MobileMenu({
   return (
     <div className="space-y-1">
       {sections.map((section) => {
-        const allItems = flattenItems(section.categories)
+        const showCategoryHeader = section.categories.length > 1
 
         return (
           <Disclosure key={section.label} as="div" defaultOpen={false}>
@@ -123,7 +142,16 @@ export const MobileMenu = React.memo(function MobileMenu({
                       : 'text-neutral-700 hover:text-brand-500'
                   }`}
                 >
-                  {section.label}
+                  <span className="flex items-center">
+                    {section.label}
+                    {section.badge && (
+                      <span
+                        className={`ml-2 rounded-full px-1.5 py-0.5 text-xs font-bold ${section.badge.className || 'bg-brand-500 text-white'}`}
+                      >
+                        {section.badge.text}
+                      </span>
+                    )}
+                  </span>
                   <ChevronDownIcon
                     aria-hidden="true"
                     className={`size-5 flex-none transition-transform ${
@@ -132,14 +160,30 @@ export const MobileMenu = React.memo(function MobileMenu({
                   />
                 </DisclosureButton>
                 <DisclosurePanel className="mt-1 pr-1 pl-3">
-                  <div className="grid grid-cols-2 gap-2">
-                    {allItems.map((item) => (
-                      <MobileMenuItem
-                        key={item.id || item.name}
-                        item={item}
-                      />
-                    ))}
-                  </div>
+                  {section.categories.map((category) => {
+                    const items = mergeFeaturedItems(category)
+                    if (items.length === 0) return null
+                    return (
+                      <div key={category.id} className="mb-3 last:mb-0">
+                        {showCategoryHeader && (
+                          <div className="mb-1.5 flex items-center gap-1 px-1 text-xs font-semibold text-slate-400">
+                            {category.icon && (
+                              <category.icon aria-hidden="true" className="size-3.5" />
+                            )}
+                            {category.name}
+                          </div>
+                        )}
+                        <div className="grid grid-cols-2 gap-2">
+                          {items.map((item) => (
+                            <MobileMenuItem
+                              key={item.id || item.name}
+                              item={item}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  })}
                   {section.showFooter !== false && (
                     <MobileMenuFooter actions={commonFooterActions} />
                   )}

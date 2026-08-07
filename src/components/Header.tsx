@@ -517,15 +517,20 @@ export function Header(): JSX.Element {
                 {/* 移动端产品分类菜单（数据驱动，与桌面端 MegaMenu 数据同步） */}
                 <MobileMenu sections={mobileMenuSections} />
 
-                {/* 移动端电商云链接 */}
+                {/* 移动端电商云链接（与桌面端一致，无角标） */}
                 <a
                   href="/eccloud"
                   className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:text-brand-500"
                 >
                   电商云
-                  <span className="absolute top-1 right-3 rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
-                    NEW
-                  </span>
+                </a>
+
+                {/* 移动端产品订购链接（对齐桌面端右侧导航） */}
+                <a
+                  href="https://console.cloudcvm.com/cart/goodsList.htm"
+                  className="relative block rounded-md px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:text-brand-500"
+                >
+                  产品订购
                 </a>
 
                 {/* 移动端用户操作区：登录注册按钮组 */}
