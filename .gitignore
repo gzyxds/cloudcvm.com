@@ -37,3 +37,10 @@ next-env.d.ts
 
 # reference design
 /参考设计/
+
+# agent / IDE local artifacts (do not commit)
+.zcode
+.workbuddy/memory
+.trae
+.ohmyagent
+.agents/skills/design-taste-frontend
