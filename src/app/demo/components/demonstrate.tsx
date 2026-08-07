@@ -32,6 +32,25 @@ import { motion, AnimatePresence } from 'framer-motion'
  */
 const demoProducts = [
   {
+    id: 'zhiyan-aiimage',
+    name: '智言AI作图',
+    description:
+      '智言 AI 作图是集 AI 图像 / 视频 / 音乐 / 对话创作与商业运营于一体的多模态创作平台。支持智能体与 Skills、可视化工作流、积分商业化与开放 API，帮助创作者、站长与企业轻松创作并规模化变现。',
+    icon: Palette,
+    category: 'AI创作',
+    status: 'new' as const,
+    version: 'v1.0.0',
+    demos: [
+      {
+        title: '演示前台',
+        type: 'frontend' as const,
+        url: 'https://www.gmlart.cn/',
+        qrcode: '/images/contact/weixin.png',
+        credentials: { username: '自行注册', password: '自行注册' },
+      },
+    ],
+  },
+  {
     id: 'digital-human',
     name: '数字人SaaS系统',
     description:
@@ -454,9 +473,14 @@ function DemoCard({
             <ExternalLink className="h-3 w-3" />
             进入演示
           </a>
-          <button className="flex flex-1 items-center justify-center gap-1.5 rounded border border-slate-200 bg-white py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50">
+          <a
+            href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=61&spg_id=20"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-1 items-center justify-center gap-1.5 rounded border border-slate-200 bg-white py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50"
+          >
             立即购买
-          </button>
+          </a>
         </div>
       </div>
     </motion.div>
