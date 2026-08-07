@@ -222,7 +222,7 @@ export const aiAppCategories: MegaMenuCategory[] = [
     items: [
       {
         id: 'ai',
-        name: '艺创AI',
+        name: 'AI系统源码',
         description: '私有部署AI平台，支持个性化定制模型',
         href: '/ai',
         icon: CursorArrowRaysIcon,
@@ -275,7 +275,7 @@ export const aiAppCategories: MegaMenuCategory[] = [
     featured: [
       {
         id: 'ai',
-        name: '艺创AI',
+        name: 'AI系统源码',
         description: '私有部署AI平台，支持个性化定制',
         href: '/ai',
         badgeType: 'hot',

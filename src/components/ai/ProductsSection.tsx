@@ -148,7 +148,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
             <button
               onClick={() => window.open(product.buyLink, '_blank')}
-              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:shadow-blue-500/30 focus:ring-2 focus:ring-blue-500/40 focus:outline-none active:scale-[0.98]"
+              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition-all duration-200 hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:shadow-blue-500/30 focus:ring-2 focus:ring-blue-500/40 focus:outline-none active:scale-[0.98]"
               aria-label={`购买${product.title}`}
             >
               <ShoppingCartIcon className="h-4 w-4 transition-transform group-hover/btn:scale-110" />
