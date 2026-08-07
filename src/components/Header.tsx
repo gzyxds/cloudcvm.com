@@ -273,6 +273,11 @@ export function Header(): JSX.Element {
                 footerActions={commonFooterActions}
                 panelWidth={760}
                 triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
+                triggerBadge={(
+                  <span className="-translate-y-1 rounded-full bg-brand-500/10 px-1.5 py-0.5 text-xs font-bold text-brand-500">
+                    AI系统
+                  </span>
+                )}
               />
             </div>
 

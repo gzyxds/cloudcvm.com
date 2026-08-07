@@ -517,7 +517,7 @@ function HeroSection() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-              <Button href="/contact" color="blue" variant="erlieSolid" className="w-full rounded-lg sm:w-auto">
+              <Button href="/demo" color="blue" variant="erlieSolid" className="w-full rounded-lg sm:w-auto">
                 立即开始创作
                 <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Button>
