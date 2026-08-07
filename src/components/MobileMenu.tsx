@@ -48,8 +48,8 @@ const MobileMenuItem = React.memo(function MobileMenuItem({
           {item.name}
           {badgeLabel && (
             <span
-              className={`ml-1 inline-flex items-center rounded-full px-1.5 py-0.5 text-xs leading-none font-bold text-white ${
-                item.badgeType === 'new' ? 'bg-brand-500' : 'bg-red-500'
+              className={`ml-1 inline-flex items-center rounded px-1.5 py-0.5 text-xs leading-none font-bold text-white ${
+                item.badgeType === 'new' ? 'bg-brand-500' : item.badgeType === 'beta' ? 'bg-amber-500' : 'bg-red-500'
               }`}
             >
               {badgeLabel}

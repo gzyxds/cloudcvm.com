@@ -1,6 +1,6 @@
 'use client'
 
-import React, { JSX, useEffect, useRef, useState } from 'react'
+import React, { JSX, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
   Dialog,
@@ -106,12 +106,17 @@ const overflowCategoriesXl: MegaMenuCategory[] = [
 ]
 
 /**
- * 溢出菜单：鼠标悬停触发，收起项以卡片列表形式展示。
+ * 溢出菜单：与 MegaMenu 同构 —— Headless UI 状态为唯一来源，
+ * 鼠标悬停通过 aria-expanded 判断 + 程序化 click 打开/关闭；
+ * 点击/键盘/ Esc 均由 Headless UI 自身管理，行为与主菜单一致。
+ * 面板同样用 fixed 视口坐标钉住，滚动时零重算、零抖动。
  */
 function OverflowMenu({ categories }: { categories: MegaMenuCategory[] }) {
-  const [open, setOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  /** 双路 hover 状态：仅当两路都 false 才允许关闭 */
+  const hoverRef = useRef({ trigger: false, panel: false })
+  const [panelPos, setPanelPos] = useState<{ top: number; left: number } | null>(null)
 
   const clearCloseTimer = () => {
     if (closeTimerRef.current) {
@@ -120,69 +125,122 @@ function OverflowMenu({ categories }: { categories: MegaMenuCategory[] }) {
     }
   }
 
-  const handleOpen = () => {
+  /** 延迟关闭（如果两路鼠标都不在） */
+  const scheduleClose = useCallback(() => {
     clearCloseTimer()
-    setOpen(true)
-  }
-
-  const handleClose = () => {
     closeTimerRef.current = setTimeout(() => {
-      setOpen(false)
+      if (!hoverRef.current.trigger && !hoverRef.current.panel) {
+        if (buttonRef.current?.getAttribute('aria-expanded') === 'true') {
+          buttonRef.current?.click()
+        }
+      }
     }, 150)
-  }
+  }, [])
 
+  const handleOpen = useCallback(() => {
+    clearCloseTimer()
+    hoverRef.current.trigger = true
+    if (buttonRef.current?.getAttribute('aria-expanded') !== 'true') {
+      buttonRef.current?.click()
+    }
+  }, [])
+
+  const handleClose = useCallback(() => {
+    hoverRef.current.trigger = false
+    scheduleClose()
+  }, [scheduleClose])
+
+  const handlePanelEnter = useCallback(() => {
+    clearCloseTimer()
+    hoverRef.current.panel = true
+  }, [])
+
+  const handlePanelLeave = useCallback(() => {
+    hoverRef.current.panel = false
+    scheduleClose()
+  }, [scheduleClose])
+
+  // 组件卸载时清理定时器，防止内存泄漏
   useEffect(() => {
     return () => clearCloseTimer()
   }, [])
 
+  /* ── 面板定位（与 MegaMenu 一致：fixed 视口坐标，滚动时零重算） ── */
+  const updatePanelPos = useCallback(() => {
+    const btn = buttonRef.current
+    if (!btn) return
+    const rect = btn.getBoundingClientRect()
+    const width = 280
+    const pad = 16
+    const maxLeft = window.innerWidth - width - pad
+    const left = Math.min(Math.max(rect.left, pad), Math.max(maxLeft, pad))
+    setPanelPos({ top: rect.bottom + 9, left })
+  }, [])
+
+  // 触发按钮 aria-expanded 变化（hover/点击/键盘打开）时重测面板位置
+  useEffect(() => {
+    const btn = buttonRef.current
+    if (!btn) return
+    const observer = new MutationObserver(updatePanelPos)
+    observer.observe(btn, { attributes: true, attributeFilter: ['aria-expanded'] })
+    return () => observer.disconnect()
+  }, [updatePanelPos])
+
+  // 仅窗口尺寸变化时重测（不做 scroll 监听 → 滚动时零抖动）
+  useEffect(() => {
+    if (!panelPos) return
+    window.addEventListener('resize', updatePanelPos)
+    return () => window.removeEventListener('resize', updatePanelPos)
+  }, [panelPos, updatePanelPos])
+
   return (
     <Popover className="relative">
-      <PopoverButton
-        ref={buttonRef}
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
-        className={`relative flex items-center gap-x-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 outline-none lg:px-2 xl:px-2 2xl:px-3 ${
-          open
-            ? 'text-brand-500'
-            : 'text-slate-700 hover:text-brand-500'
-        }`}
-      >
-        更多
-        <ChevronDownIcon
-          className={`h-4 w-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-          aria-hidden="true"
-        />
-      </PopoverButton>
-      {open && (
-        <PopoverPanel
-          static
-          onMouseEnter={clearCloseTimer}
-          onMouseLeave={handleClose}
-          anchor={{ to: 'bottom start', gap: '9px', padding: 16 }}
-          className="z-50 w-[280px] origin-top rounded-b-lg bg-white p-3 shadow-[0_12px_28px_rgba(0,0,0,0.12)] transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
-        >
-          <div className="space-y-0.5">
-            {categories[0].items.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-slate-50"
-              >
-                {item.icon && (
-                  <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />
-                )}
-                <div>
-                  <p className="text-sm font-medium text-slate-900 group-hover:text-brand-500">
-                    {item.name}
-                  </p>
-                  {item.description && (
-                    <p className="mt-0.5 text-xs text-slate-500">{item.description}</p>
+      {({ open }) => (
+        <>
+          <PopoverButton
+            ref={buttonRef}
+            onMouseEnter={handleOpen}
+            onMouseLeave={handleClose}
+            className={`relative flex items-center gap-x-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 outline-none lg:px-2 xl:px-2 2xl:px-3 ${
+              open ? 'text-brand-500' : 'text-slate-700 hover:text-brand-500'
+            }`}
+          >
+            更多
+            <ChevronDownIcon
+              className={`h-4 w-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+              aria-hidden="true"
+            />
+          </PopoverButton>
+          <PopoverPanel
+            transition
+            onMouseEnter={handlePanelEnter}
+            onMouseLeave={handlePanelLeave}
+            style={panelPos ? { top: panelPos.top, left: panelPos.left } : undefined}
+            className="fixed z-50 w-[280px] origin-top rounded-b-lg bg-white p-3 shadow-[0_12px_28px_rgba(0,0,0,0.12)] ring-1 ring-black/5 transition-[opacity,transform] duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+          >
+            <div className="space-y-0.5">
+              {categories[0].items.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-slate-50"
+                >
+                  {item.icon && (
+                    <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-slate-400 group-hover:text-brand-500" />
                   )}
-                </div>
-              </a>
-            ))}
-          </div>
-        </PopoverPanel>
+                  <div>
+                    <p className="text-sm font-medium text-slate-900 group-hover:text-brand-500">
+                      {item.name}
+                    </p>
+                    {item.description && (
+                      <p className="mt-0.5 text-xs text-slate-500">{item.description}</p>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </PopoverPanel>
+        </>
       )}
     </Popover>
   )
@@ -204,10 +262,22 @@ function OverflowMenu({ categories }: { categories: MegaMenuCategory[] }) {
 export function Header(): JSX.Element {
   // 移动端菜单开关状态
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
-  // 移除横幅相关状态和事件监听
+  // 页面滚动后给固定头部加轻微阴影，与内容区分开
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <header className="scrollbar-width-none fixed top-0 right-0 left-0 z-50 box-border w-full bg-white font-[TTTGB-regular,pingfang_SC,helvetica_neue,arial,hiragino_sans_gb,microsoft_yahei_ui,microsoft_yahei,simsun,sans-serif] text-[14px] antialiased">
+    <header
+      className={`fixed top-0 right-0 left-0 z-50 box-border w-full bg-white font-[TTTGB-regular,pingfang_SC,helvetica_neue,arial,hiragino_sans_gb,microsoft_yahei_ui,microsoft_yahei,simsun,sans-serif] text-[14px] antialiased transition-shadow duration-200 ${
+        scrolled ? 'shadow-[0_2px_12px_rgba(0,0,0,0.08)]' : 'shadow-none'
+      }`}
+    >
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-full items-center justify-between px-4 py-2 lg:px-8"
@@ -239,12 +309,9 @@ export function Header(): JSX.Element {
             {/* 产品与服务下拉菜单 - 企业级二级菜单 */}
             <MegaMenu
               triggerText="产品与服务"
-              title="产品与服务"
-              subtitle="热门云服务产品"
               categories={productCategories}
               quickTags={productQuickTags}
               footerActions={commonFooterActions}
-              panelWidth={960}
               viewAllHref="/products"
               triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
               triggerBadge={(
@@ -266,15 +333,12 @@ export function Header(): JSX.Element {
             <div className="hidden xl:block">
               <MegaMenu
                 triggerText="人工智能与应用"
-                title="人工智能与应用"
-                subtitle="AI 能力与智能服务"
                 categories={aiAppCategories}
                 quickTags={aiQuickTags}
                 footerActions={commonFooterActions}
-                panelWidth={760}
                 triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
                 triggerBadge={(
-                  <span className="-translate-y-1 rounded-full bg-brand-500/10 px-1.5 py-0.5 text-xs font-bold text-brand-500">
+                  <span className="rounded-full bg-brand-500/10 px-1.5 py-0.5 text-xs font-bold text-brand-500">
                     AI系统
                   </span>
                 )}
@@ -285,13 +349,10 @@ export function Header(): JSX.Element {
             <div className="hidden 2xl:block">
               <MegaMenu
                 triggerText="AI解决方案"
-                title="AI解决方案"
-                subtitle="行业场景化解决方案"
                 categories={aiSolutionCategories}
                 quickTags={aiQuickTags}
                 footerActions={commonFooterActions}
-                panelWidth={960}
-                viewAllHref="/solutions/ai"
+                viewAllHref="/ai"
                 triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
               />
             </div>
@@ -300,12 +361,9 @@ export function Header(): JSX.Element {
             <div className="hidden 2xl:block">
               <MegaMenu
                 triggerText="企业解决方案"
-                title="企业解决方案"
-                subtitle="企业级产品矩阵"
                 categories={enterpriseCategories}
                 quickTags={enterpriseQuickTags}
                 footerActions={commonFooterActions}
-                panelWidth={780}
                 triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
               />
             </div>
@@ -314,11 +372,8 @@ export function Header(): JSX.Element {
             <div className="hidden 2xl:block">
               <MegaMenu
                 triggerText="关于我们"
-                title="关于我们"
-                subtitle="了解公司与服务"
                 categories={companyCategories}
                 footerActions={commonFooterActions}
-                panelWidth={720}
                 triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
               />
             </div>
@@ -367,13 +422,9 @@ export function Header(): JSX.Element {
           {/* 文档中心 - 企业级二级菜单（右侧对齐，防止溢出右边缘） */}
           <MegaMenu
             triggerText="文档中心"
-            title="文档中心"
-            subtitle="海量文档资源与工具"
             categories={docsCategories}
             showSearch={false}
-            panelWidth={720}
             viewAllHref="/docs"
-            panelAlign="right"
             triggerClassName="lg:px-2 xl:px-2 2xl:px-3"
           />
 
@@ -414,7 +465,7 @@ export function Header(): JSX.Element {
           {/* 免费注册 - 主要CTA按钮 */}
           <a
             href="https://console.cloudcvm.com/login.htm"
-            className="inline-flex items-center justify-center gap-2 border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none lg:px-3 xl:px-3 2xl:px-4"
+            className="inline-flex items-center justify-center gap-2 border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:outline-none lg:px-3 xl:px-3 2xl:px-4"
           >
             <UserPlusIcon className="h-4 w-4" aria-hidden="true" />
             免费注册
@@ -491,7 +542,7 @@ export function Header(): JSX.Element {
                   {/* 控制台按钮 - 主要CTA样式 */}
                   <a
                     href="https://console.cloudcvm.com/login.htm"
-                    className="flex flex-1 items-center justify-center gap-x-2 border border-transparent bg-brand-500 px-4 py-2.5 text-base font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                    className="flex flex-1 items-center justify-center gap-x-2 border border-transparent bg-brand-500 px-4 py-2.5 text-base font-medium text-white shadow-sm transition-colors hover:bg-brand-600 focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:outline-none"
                   >
                     <ComputerDesktopIcon className="h-5 w-5" />
                     控制台

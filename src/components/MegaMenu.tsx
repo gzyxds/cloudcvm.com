@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useCallback, useEffect, useMemo, useRef, useId } from 'react'
+import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
@@ -17,8 +17,6 @@ export interface MegaMenuItem {
   tag?: string
   badgeType?: 'hot' | 'new' | 'beta' | 'default'
   index?: number
-  requiredRole?: string[]
-  disabled?: boolean
 }
 
 export interface MegaMenuCategory {
@@ -28,8 +26,6 @@ export interface MegaMenuCategory {
   items: MegaMenuItem[]
   featured?: MegaMenuItem[]
   isHot?: boolean
-  requiredRole?: string[]
-  disabled?: boolean
 }
 
 export interface QuickTag {
@@ -45,37 +41,20 @@ export interface FooterAction {
 
 export interface MegaMenuProps {
   triggerText: string
-  title?: string
-  subtitle?: string
   categories: MegaMenuCategory[]
   quickTags?: QuickTag[]
   showSearch?: boolean
   searchPlaceholder?: string
   footerActions?: FooterAction[]
-  /**
-   * 面板宽度（像素数值）。
-   * Headless UI v2 将面板渲染到 portal，Tailwind max-w-* class 在 portal
-   * 内不生效，需通过内联 style 设置 maxWidth 才能正确约束面板宽度。
-   * @default 960
-   */
-  panelWidth?: number
-  userRoles?: string[]
   defaultActiveCategory?: string
   triggerClassName?: string
   viewAllHref?: string
   /**
-   * 面板对齐方式
-   * - 'left': 面板左边缘对齐触发按钮左边缘（适合左侧导航项）
-   * - 'right': 面板右边缘对齐触发按钮右边缘（适合右侧导航项）
-   * @default 'left'
-   */
-  panelAlign?: 'left' | 'right'
-  /**
-   * 底部提示文案，传入空字符串可隐藏提示条
-   * @default '提示：鼠标悬停分类可快速切换，也可使用搜索查找产品'
+   * 底部提示文案，默认不显示（传非空字符串才显示提示条）
+   * @default ''
    */
   tipText?: string
-  /** 触发按钮右上角的角标（如脉冲红点），传入 ReactNode */
+  /** 触发按钮右上角的角标（如 NEW / AI系统），传入 ReactNode */
   triggerBadge?: React.ReactNode
 }
 
@@ -89,16 +68,6 @@ const badgeStyles: Record<string, string> = {
 }
 
 /* ─────────────────────── 辅助函数 ─────────────────────── */
-
-function hasPermission(requiredRole?: string[], userRoles?: string[]): boolean {
-  if (!requiredRole || requiredRole.length === 0) return true
-  if (!userRoles || userRoles.length === 0) return false
-  return requiredRole.some((role) => userRoles.includes(role))
-}
-
-function filterByPermission<T extends { requiredRole?: string[] }>(items: T[], userRoles?: string[]): T[] {
-  return items.filter((item) => hasPermission(item.requiredRole, userRoles))
-}
 
 /** 从 items 中排除已在 featured 中出现的项目（以 id 为唯一键，无 id 则降级为 name） */
 function excludeFeaturedItems(items: MegaMenuItem[], featured?: MegaMenuItem[]): MegaMenuItem[] {
@@ -131,39 +100,22 @@ const itemVariants = {
 
 export function MegaMenu({
   triggerText,
-  title,
-  subtitle,
-  categories: rawCategories,
+  categories,
   quickTags,
   showSearch = true,
   searchPlaceholder = '搜索产品名称',
   footerActions,
-  panelWidth = 960,
-  userRoles,
   defaultActiveCategory,
   triggerClassName = '',
   viewAllHref,
-  panelAlign = 'left',
-  tipText = '提示：鼠标悬停分类可快速切换，也可使用搜索查找产品',
+  tipText = '',
   triggerBadge,
 }: MegaMenuProps): React.ReactElement {
-  /* 权限过滤 */
-  const categories = useMemo(
-    () =>
-      filterByPermission(rawCategories, userRoles).map((cat) => ({
-        ...cat,
-        items: filterByPermission(cat.items, userRoles),
-        featured: cat.featured ? filterByPermission(cat.featured, userRoles) : undefined,
-      })),
-    [rawCategories, userRoles]
-  )
-
   const [activeCategoryId, setActiveCategoryId] = useState<string>(
     defaultActiveCategory || categories[0]?.id || ''
   )
   const [searchQuery, setSearchQuery] = useState('')
   const [debouncedQuery, setDebouncedQuery] = useState('')
-  const indicatorId = useId() // 为每个 MegaMenu 实例生成唯一 ID，避免 layoutId 冲突
 
   // 防抖：用户停止输入 200ms 后再执行过滤
   useEffect(() => {
@@ -197,8 +149,8 @@ export function MegaMenu({
 
   /* ── 双路悬停驱动逻辑 ──
    *
-   * Headless UI v2 的 anchor 属性会将 PopoverPanel 渲染到 portal，
-   * 因此面板脱离了外层 wrapper div。需要分别追踪两路鼠标状态：
+   * 面板虽以 fixed 定位悬浮在视口坐标上，但仍是 wrapper div 的 DOM 子节点，
+   * 悬停面板同样算在 wrapper 内。仍追踪两路鼠标状态：
    *   - trigger 路由：wrapper div（包含触发按钮）
    *   - panel 路由：PopoverPanel 自身
    * 只有两路都报告离开时，才执行延迟关闭。
@@ -253,6 +205,41 @@ export function MegaMenu({
     scheduleClose()
   }, [scheduleClose])
 
+  /* ── 面板定位 ──
+   *
+   * 头部是 position: fixed，页面滚动时触发按钮的视口位置不变。
+   * 因此不再用 Headless UI anchor（Floating UI 会在滚动时重算 transform，
+   * 叠加 CSS transition 造成面板“追尾”抖动），改为打开时测量按钮视口坐标，
+   * 用 position: fixed + left:0/right:0 让面板满屏宽度并钉在视口固定位置；
+   * 内容在面板内用 max-w-[1800px] 居中，与页面容器对齐。
+   * 滚动时零重算，仅 resize 时重测。
+   */
+  const [panelPos, setPanelPos] = useState<{ top: number } | null>(null)
+
+  const updatePanelPos = useCallback(() => {
+    const btn = buttonRef.current
+    if (!btn) return
+    const rect = btn.getBoundingClientRect()
+    // 面板满屏宽度（left:0/right:0），只需记录距视口顶部的距离
+    setPanelPos({ top: rect.bottom + 9 })
+  }, [])
+
+  // 触发按钮 aria-expanded 变化（hover/点击/键盘打开）时重测面板位置
+  useEffect(() => {
+    const btn = buttonRef.current
+    if (!btn) return
+    const observer = new MutationObserver(updatePanelPos)
+    observer.observe(btn, { attributes: true, attributeFilter: ['aria-expanded'] })
+    return () => observer.disconnect()
+  }, [updatePanelPos])
+
+  // 仅窗口尺寸变化时重测（不做 scroll 监听 → 滚动时零抖动）
+  useEffect(() => {
+    if (!panelPos) return
+    window.addEventListener('resize', updatePanelPos)
+    return () => window.removeEventListener('resize', updatePanelPos)
+  }, [panelPos, updatePanelPos])
+
   return (
     <div className="relative" onMouseEnter={handleTriggerEnter} onMouseLeave={handleTriggerLeave}>
       <Popover className="contents">
@@ -283,231 +270,222 @@ export function MegaMenu({
               />
             </PopoverButton>
 
-          {/* 下拉面板 — Headless UI v2 anchor 渲染到 portal，需用 style 内联 maxWidth */}
+          {/* 下拉面板 — 基于 fixed 头部视口坐标定位，滚动时零重算、零抖动 */}
           <PopoverPanel
             transition
-            anchor={{
-              to: panelAlign === 'right' ? 'bottom end' : 'bottom start',
-              gap: '9px',
-            }}
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handlePanelLeave}
-            style={{ maxWidth: panelWidth, width: '100vw' }}
-            className="z-50 origin-top overflow-visible rounded-b-lg shadow-[0_12px_28px_rgba(0,0,0,0.12)] transition duration-200 ease-out data-[closed]:opacity-0"
+            style={panelPos ? { top: panelPos.top, left: 0, right: 0 } : undefined}
+            className="fixed z-50 origin-top overflow-visible rounded-b-lg border-t border-gray-200 bg-white shadow-[0_12px_28px_rgba(0,0,0,0.12)] ring-1 ring-black/5 transition-[opacity,transform] duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
           >
-            {/* ── 阴影层 ── */}
-            <div aria-hidden="true" className="absolute inset-0 shadow-2xl ring-1 ring-black/5 rounded-lg" />
-            {/* ── 面板主体 ── */}
-            <div className="relative bg-white border-t border-gray-200">
-              <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
-                <div className="max-h-[calc(100vh-80px)] min-h-[420px] overflow-y-auto" style={{ scrollbarGutter: "stable" }}>
-                  {/* ── 标题与分类导航 ── */}
-                  <div className="flex items-center justify-between border-b border-slate-100 py-4">
-                    <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-                      {categories.map((category) => {
-                        const isActive = category.id === activeCategoryId
-                        const Icon = category.icon
-                        return (
-                          <button
-                            key={category.id}
-                            type="button"
-                            aria-current={isActive ? 'true' : undefined}
-                            onMouseEnter={() => handleCategoryChange(category.id)}
-                            onClick={() => handleCategoryChange(category.id)}
-                            className={`inline-flex items-center gap-2 shrink-0 rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 outline-none ${
-                              isActive
-                                ? 'bg-brand-500 text-white shadow-sm'
-                                : 'border border-slate-200 bg-white text-slate-600 hover:border-brand-200 hover:text-brand-600'
-                            }`}
-                          >
-                            {Icon && <Icon aria-hidden="true" className="size-4" />}
-                            <span>{category.name}</span>
-                            {category.isHot && (
-                              <span className="rounded-sm bg-red-500 px-1 py-0.5 text-[10px] leading-none font-bold text-white">
-                                HOT
-                              </span>
-                            )}
-                          </button>
-                        )
-                      })}
-                    </div>
-                    <div className="flex items-center gap-3 shrink-0 ml-4">
-                      {showSearch && (
-                        <div className="relative min-w-0 w-[200px]">
-                          <MagnifyingGlassIcon className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-slate-400" />
-                          <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder={searchPlaceholder}
-                            className="h-8 w-full rounded-md border border-slate-200 bg-slate-50 py-1 pr-2.5 pl-8 text-xs text-slate-900 placeholder-slate-400 outline-none transition-all focus:border-brand-300 focus:bg-white focus:ring-[3px] focus:ring-brand-500/10"
-                          />
-                        </div>
-                      )}
-                      {viewAllHref && (
-                        <Link
-                          href={viewAllHref}
-                          onClick={() => close()}
-                          className="shrink-0 text-xs font-medium text-brand-500 transition-colors hover:text-brand-600"
+            <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
+              <div className="max-h-[calc(100vh-80px)] min-h-[420px] overflow-y-auto" style={{ scrollbarGutter: "stable" }}>
+                {/* ── 标题与分类导航 ── */}
+                <div className="flex items-center justify-between border-b border-slate-100 py-4">
+                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+                    {categories.map((category) => {
+                      const isActive = category.id === activeCategoryId
+                      const Icon = category.icon
+                      return (
+                        <button
+                          key={category.id}
+                          type="button"
+                          aria-current={isActive ? 'true' : undefined}
+                          onMouseEnter={() => handleCategoryChange(category.id)}
+                          onClick={() => handleCategoryChange(category.id)}
+                          className={`inline-flex items-center gap-2 shrink-0 rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 outline-none ${
+                            isActive
+                              ? 'bg-brand-500 text-white shadow-sm'
+                              : 'border border-slate-200 bg-white text-slate-600 hover:border-brand-200 hover:text-brand-600'
+                          }`}
                         >
-                          查看全部 →
+                          {Icon && <Icon aria-hidden="true" className="size-4" />}
+                          <span>{category.name}</span>
+                          {category.isHot && (
+                            <span className="rounded-sm bg-red-500 px-1 py-0.5 text-[10px] leading-none font-bold text-white">
+                              HOT
+                            </span>
+                          )}
+                        </button>
+                      )
+                    })}
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0 ml-4">
+                    {showSearch && (
+                      <div className="relative min-w-0 w-[200px]">
+                        <MagnifyingGlassIcon className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-slate-400" />
+                        <input
+                          type="text"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          placeholder={searchPlaceholder}
+                          className="h-8 w-full rounded-md border border-slate-200 bg-slate-50 py-1 pr-2.5 pl-8 text-xs text-slate-900 placeholder-slate-400 outline-none transition-all focus:border-brand-300 focus:bg-white focus:ring-[3px] focus:ring-brand-500/10"
+                        />
+                      </div>
+                    )}
+                    {viewAllHref && (
+                      <Link
+                        href={viewAllHref}
+                        onClick={() => close()}
+                        className="shrink-0 text-xs font-medium text-brand-500 transition-colors hover:text-brand-600"
+                      >
+                        查看全部 →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                {/* ── 快捷标签（可选） ── */}
+                {quickTags && quickTags.length > 0 && (
+                  <div className="flex items-center gap-2 py-3 border-b border-slate-100">
+                    <span className="text-xs text-slate-400 shrink-0">快速直达：</span>
+                    <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+                      {quickTags.map((tag) => (
+                        <Link
+                          key={tag.name}
+                          href={tag.href}
+                          onClick={() => close()}
+                          className="shrink-0 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-500 transition-all hover:border-brand-200 hover:text-brand-600"
+                        >
+                          {tag.name}
                         </Link>
-                      )}
+                      ))}
                     </div>
                   </div>
+                )}
 
-                  {/* ── 快捷标签（可选） ── */}
-                  {quickTags && quickTags.length > 0 && (
-                    <div className="flex items-center gap-2 py-3 border-t border-b border-slate-100">
-                      <span className="text-xs text-slate-400 shrink-0">快速直达：</span>
-                      <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-                        {quickTags.map((tag) => (
-                          <Link
-                            key={tag.name}
-                            href={tag.href}
-                            onClick={() => close()}
-                            className="shrink-0 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-500 transition-all hover:border-brand-200 hover:text-brand-600"
-                          >
-                            {tag.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                {/* ── 内容主体 ── */}
+                <div className="py-6">
+                  <AnimatePresence mode="wait">
+                    {activeCategory && (
+                      <motion.div
+                        key={activeCategory.id}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.2, ease: 'easeInOut' as const }}
+                        className="grid grid-cols-1 gap-8 lg:grid-cols-5"
+                      >
+                        {/* 左列：热门推荐 + 全部产品 */}
+                        <div className="lg:col-span-3">
+                          {/* 热门推荐 */}
+                          {activeCategory.featured && activeCategory.featured.length > 0 && !debouncedQuery && (
+                            <section className="mb-8">
+                              <SectionTitle text="热门推荐" />
+                              <motion.div
+                                className="grid grid-cols-2 gap-3"
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate="show"
+                                exit="exit"
+                              >
+                                {activeCategory.featured.map((item) => (
+                                  <motion.div key={item.id || item.name} variants={itemVariants}>
+                                    <FeaturedProductCard item={item} onClick={() => close()} />
+                                  </motion.div>
+                                ))}
+                              </motion.div>
+                            </section>
+                          )}
 
-                  {/* ── 内容主体 ── */}
-                  <div className="py-6">
-                    <AnimatePresence mode="wait">
-                      {activeCategory && (
-                        <motion.div
-                          key={activeCategory.id}
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -4 }}
-                          transition={{ duration: 0.2, ease: 'easeInOut' as const }}
-                          className="grid grid-cols-1 gap-8 lg:grid-cols-5"
-                        >
-                          {/* 左列：热门推荐 + 全部产品 */}
-                          <div className="lg:col-span-3">
-                            {/* 热门推荐 */}
-                            {activeCategory.featured && activeCategory.featured.length > 0 && !debouncedQuery && (
-                              <section className="mb-8">
-                                <SectionTitle text="热门推荐" />
-                                <motion.div
-                                  className="grid grid-cols-2 gap-3"
-                                  variants={containerVariants}
-                                  initial="hidden"
-                                  animate="show"
-                                  exit="exit"
-                                >
-                                  {activeCategory.featured.map((item) => (
-                                    <motion.div key={item.id || item.name} variants={itemVariants}>
-                                      <FeaturedProductCard item={item} onClick={() => close()} />
-                                    </motion.div>
-                                  ))}
-                                </motion.div>
-                              </section>
-                            )}
+                          {/* 全部产品 */}
+                          {filteredItems.length > 0 && (
+                            <section>
+                              {activeCategory.featured && activeCategory.featured.length > 0 && !debouncedQuery && (
+                                <SectionTitle text="全部产品" />
+                              )}
+                              <motion.div
+                                className="grid grid-cols-2 gap-x-4 gap-y-3"
+                                variants={containerVariants}
+                                initial="hidden"
+                                animate="show"
+                                exit="exit"
+                              >
+                                {filteredItems.map((item) => (
+                                  <motion.div key={item.id || item.name} variants={itemVariants}>
+                                    <ProductLink item={item} onClick={() => close()} />
+                                  </motion.div>
+                                ))}
+                              </motion.div>
+                            </section>
+                          )}
 
-                            {/* 全部产品 */}
-                            {filteredItems.length > 0 && (
-                              <section>
-                                {activeCategory.featured && activeCategory.featured.length > 0 && !debouncedQuery && (
-                                  <SectionTitle text="全部产品" />
+                          {/* 无结果 */}
+                          {filteredItems.length === 0 && debouncedQuery && (
+                            <div className="flex flex-col items-center justify-center py-16 text-slate-400">
+                              <MagnifyingGlassIcon className="mb-3 size-10 opacity-30" />
+                              <p className="text-sm font-medium">未找到相关产品</p>
+                              <p className="mt-1 text-xs text-slate-400">请尝试其他关键词搜索</p>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* 右列：分割线 + 快速通道 */}
+                        <div className="hidden lg:block lg:col-span-2">
+                          <div className="border-l border-slate-100 pl-8 flex flex-col gap-4">
+                            <div className="rounded border border-slate-200/60 bg-white p-5">
+                              <SectionTitle text="快速通道" />
+                              <div className="mt-4 space-y-1">
+                                {footerActions && footerActions.length > 0 ? (
+                                  footerActions.map((action) => {
+                                    const Icon = action.icon
+                                    return (
+                                      <Link
+                                        key={action.name}
+                                        href={action.href}
+                                        onClick={() => close()}
+                                        className="flex items-center gap-3 rounded px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:text-brand-600"
+                                      >
+                                        {Icon && <Icon aria-hidden="true" className="size-5 text-brand-500" />}
+                                        {action.name}
+                                      </Link>
+                                    )
+                                  })
+                                ) : (
+                                  <p className="text-sm text-slate-400 px-3 py-2">暂无快捷入口</p>
                                 )}
-                                <motion.div
-                                  className="grid grid-cols-2 gap-x-4 gap-y-3"
-                                  variants={containerVariants}
-                                  initial="hidden"
-                                  animate="show"
-                                  exit="exit"
-                                >
-                                  {filteredItems.map((item) => (
-                                    <motion.div key={item.id || item.name} variants={itemVariants}>
-                                      <ProductLink item={item} onClick={() => close()} />
-                                    </motion.div>
-                                  ))}
-                                </motion.div>
-                              </section>
-                            )}
-
-                            {/* 无结果 */}
-                            {filteredItems.length === 0 && debouncedQuery && (
-                              <div className="flex flex-col items-center justify-center py-16 text-slate-400">
-                                <MagnifyingGlassIcon className="mb-3 size-10 opacity-30" />
-                                <p className="text-sm font-medium">未找到相关产品</p>
-                                <p className="mt-1 text-xs text-slate-400">请尝试其他关键词搜索</p>
                               </div>
-                            )}
-                          </div>
-
-                          {/* 右列：分割线 + 快速通道 */}
-                          <div className="hidden lg:block lg:col-span-2">
-                            <div className="border-l border-slate-100 pl-8 flex flex-col gap-4">
-                              <div className="rounded bg-white p-5 outline-1 -outline-offset-1 outline-slate-200/60">
-                                <SectionTitle text="快速通道" />
-                                <div className="mt-4 space-y-1">
-                                  {footerActions && footerActions.length > 0 ? (
-                                    footerActions.map((action) => {
-                                      const Icon = action.icon
-                                      return (
-                                        <Link
-                                          key={action.name}
-                                          href={action.href}
-                                          onClick={() => close()}
-                                          className="flex items-center gap-3 rounded px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:text-brand-600"
-                                        >
-                                          {Icon && <Icon aria-hidden="true" className="size-5 text-brand-500" />}
-                                          {action.name}
-                                        </Link>
-                                      )
-                                    })
-                                  ) : (
-                                    <p className="text-sm text-slate-400 px-3 py-2">暂无快捷入口</p>
-                                  )}
-                                </div>
-                              </div>
-                              <div className="rounded bg-white p-5 outline-1 -outline-offset-1 outline-slate-200/60">
-                                <SectionTitle text="产品分类" />
-                                <div className="mt-4 flex flex-wrap gap-2">
-                                  {categories.map((cat) => (
-                                    <button
-                                      key={cat.id}
-                                      type="button"
-                                      onMouseEnter={() => handleCategoryChange(cat.id)}
-                                      onClick={() => handleCategoryChange(cat.id)}
-                                      className={`rounded px-3 py-1.5 text-xs font-medium transition-colors ${
-                                        cat.id === activeCategoryId
-                                          ? 'bg-brand-500 text-white'
-                                          : 'bg-white text-slate-600 outline-1 -outline-offset-1 outline-slate-200/60 hover:outline-brand-300/60 hover:text-brand-600'
-                                      }`}
-                                    >
-                                      {cat.name}
-                                    </button>
-                                  ))}
-                                </div>
+                            </div>
+                            <div className="rounded border border-slate-200/60 bg-white p-5">
+                              <SectionTitle text="产品分类" />
+                              <div className="mt-4 flex flex-wrap gap-2">
+                                {categories.map((cat) => (
+                                  <button
+                                    key={cat.id}
+                                    type="button"
+                                    onMouseEnter={() => handleCategoryChange(cat.id)}
+                                    onClick={() => handleCategoryChange(cat.id)}
+                                    className={`rounded px-3 py-1.5 text-xs font-medium transition-colors ${
+                                      cat.id === activeCategoryId
+                                        ? 'bg-brand-500 text-white'
+                                        : 'border border-slate-200/60 bg-white text-slate-600 hover:border-brand-300/60 hover:text-brand-600'
+                                    }`}
+                                  >
+                                    {cat.name}
+                                  </button>
+                                ))}
                               </div>
                             </div>
                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
-                {/* ── 底部提示（固定在面板底部，不滚动） ── */}
-                <div className="border-t border-slate-100 py-3 px-0">
-                  <p className="text-xs text-slate-400">
-                    {tipText}
-                  </p>
-                </div>
               </div>
+
+              {/* ── 底部提示（固定在面板底部，不滚动；tipText 为空时不显示） ── */}
+              {tipText && (
+                <div className="border-t border-slate-100 py-3">
+                  <p className="text-xs text-slate-400">{tipText}</p>
+                </div>
+              )}
             </div>
           </PopoverPanel>
         </>
       )}
-    </Popover>
+      </Popover>
     </div>
   )
 }
@@ -536,7 +514,7 @@ const FeaturedProductCard = React.memo(function FeaturedProductCard({
     <Link
       href={item.href}
       onClick={onClick}
-      className="group/card flex items-start gap-4 rounded bg-white px-5 py-4 outline-1 -outline-offset-1 outline-slate-200/60 transition-colors duration-150 hover:bg-gradient-to-b hover:from-brand-50/40 hover:to-white hover:outline-slate-300/60"
+      className="group/card flex items-start gap-4 rounded border border-slate-200/60 bg-white px-5 py-4 transition-colors duration-150 hover:bg-gradient-to-b hover:from-brand-50/40 hover:to-white hover:border-slate-300/60"
     >
       {item.icon && (
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-slate-100 text-slate-500 transition-colors duration-150 group-hover/card:bg-slate-200 group-hover/card:text-slate-700">
@@ -572,7 +550,7 @@ const ProductLink = React.memo(function ProductLink({ item, onClick }: { item: M
     <Link
       href={item.href}
       onClick={onClick}
-      className="group/link flex items-center gap-3 rounded bg-white px-3 py-2 outline-1 -outline-offset-1 outline-slate-200/60 transition-colors duration-150 hover:bg-gradient-to-b hover:from-brand-50/40 hover:to-white hover:outline-slate-300/60"
+      className="group/link flex items-center gap-3 rounded border border-slate-200/60 bg-white px-3 py-2 transition-colors duration-150 hover:bg-gradient-to-b hover:from-brand-50/40 hover:to-white hover:border-slate-300/60"
     >
       {item.icon && (
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-slate-400 transition-colors duration-150 group-hover/link:text-slate-600">

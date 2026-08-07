@@ -738,7 +738,7 @@ export const productQuickTags: QuickTag[] = [
   { name: '云服务器', href: '/ecs' },
   { name: 'CDN加速', href: '/cdn' },
   { name: '虚拟主机', href: '/host' },
-  { name: '云开发', href: '/ai' },
+  { name: '对象存储', href: '/oss' },
 ]
 
 /**
