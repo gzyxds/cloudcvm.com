@@ -299,6 +299,14 @@ export const aiAppCategories: MegaMenuCategory[] = [
         icon: FingerPrintIcon,
         index: 3,
       },
+      {
+        id: 'aiimage',
+        name: '智言AI作图',
+        description: 'AI图片视频创作平台，文生图图生视频智能创作',
+        href: '/aiimage',
+        icon: PhotoIcon,
+        index: 4,
+      },
     ],
   },
 ]
