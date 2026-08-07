@@ -293,14 +293,14 @@ export function MegaMenu({
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handlePanelLeave}
             style={{ maxWidth: panelWidth, width: '100vw' }}
-            className="z-50 origin-top overflow-visible rounded-b-lg shadow-[0_12px_28px_rgba(0,0,0,0.12)] transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+            className="z-50 origin-top overflow-visible rounded-b-lg shadow-[0_12px_28px_rgba(0,0,0,0.12)] transition duration-200 ease-out data-[closed]:opacity-0"
           >
             {/* ── 阴影层 ── */}
             <div aria-hidden="true" className="absolute inset-0 shadow-2xl ring-1 ring-black/5 rounded-lg" />
             {/* ── 面板主体 ── */}
             <div className="relative bg-white border-t border-gray-200">
               <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
-                <div className="max-h-[calc(100vh-80px)] overflow-y-auto scrollbar-hide">
+                <div className="max-h-[calc(100vh-80px)] min-h-[420px] overflow-y-auto" style={{ scrollbarGutter: "stable" }}>
                   {/* ── 标题与分类导航 ── */}
                   <div className="flex items-center justify-between border-b border-slate-100 py-4">
                     <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
