@@ -29,8 +29,8 @@ const BASE_BUY_LINK = "https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=61
  */
 export const products: Product[] = [
   {
-    image: "/images/product/智言AI作图.webp",
-    title: "智言AI作图",
+    image: "/images/product/小氢云.webp",
+    title: "智言AI作图/企业版GO",
     subtitle: "[图像视频]",
     description: "AI图片视频创作平台，支持文生图、图生图、文生视频、图生视频智能创作，集图像/视频/音乐/对话创作于一体的多模态创作平台。",
     features: ["文生图", "图生图", "文生视频", "图生视频"],
