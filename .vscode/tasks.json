@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npm: dev",
+      "type": "npm",
+      "script": "dev",
+      "detail": "npm run dev（已指定正常工作目录，避免 UNC 路径报错）",
+      "options": {
+        "cwd": "D:\\github\\cloudcvm.com"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "npm: build",
+      "type": "npm",
+      "script": "build",
+      "detail": "npm run build（已指定正常工作目录）",
+      "options": {
+        "cwd": "D:\\github\\cloudcvm.com"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "npm: lint",
+      "type": "npm",
+      "script": "lint",
+      "detail": "npm run lint（已指定正常工作目录）",
+      "options": {
+        "cwd": "D:\\github\\cloudcvm.com"
+      },
+      "problemMatcher": ["$eslint-stylish"]
+    }
+  ]
+}
