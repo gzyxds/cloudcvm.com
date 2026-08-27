@@ -108,21 +108,21 @@ const COMPANY_STATS: StatItem[] = [
  */
 const COMPANY_FEATURES: FeatureItem[] = [
   {
-    name: '专业服务商',
+    name: '专业云服务商',
     description:
-      '优刻云成立于2015年，是国内专业的大数据基础能力服务商，专注于通过数据激发生产力。',
+      '优刻云计算（CloudCVM）是专注云服务器与算力基础设施的专业服务商，提供计算、存储、网络、数据库一站式上云底座。',
     icon: BuildingOfficeIcon,
   },
   {
-    name: '丰富经验',
+    name: '稳定可靠',
     description:
-      '在大数据领域有丰富的经验，业务覆盖政府、财会、教育、工业、电商等多个行业。',
+      '自研资源调度与多可用区容灾架构，保障业务 7×24 稳定运行，让每一次发布与扩容都安心。',
     icon: ChartBarIcon,
   },
   {
     name: '技术前沿',
     description:
-      '积极推动技术研发与人才培养，确保始终处于数据领域的技术前沿，为客户提供最具竞争力的解决方案。',
+      '持续投入云原生、AI 算力与边缘计算研发，保持在云计算领域的技术前瞻性，为客户提供更优解。',
     icon: CpuChipIcon,
   },
 ]
@@ -131,12 +131,12 @@ const COMPANY_FEATURES: FeatureItem[] = [
  * 公司价值观
  */
 const COMPANY_VALUES: ValueItem[] = [
-  { title: '客户至上', description: '始终将客户的需求和利益置于首位' },
-  { title: '科技向善', description: '用科技的力量创造积极的社会价值' },
-  { title: '诚信协作', description: '诚信让协作更加高效' },
-  { title: '共同成长', description: '相互扶持，积极分享迈向卓越' },
-  { title: '结果导向', description: '追求目标实现以成果衡量价值' },
-  { title: '拥抱变化', description: '唯有变化是永恒不变的' },
+  { title: '客户至上', description: '把客户业务成功作为第一优先级' },
+  { title: '科技向善', description: '用技术创造真实可衡量的社会价值' },
+  { title: '诚信协作', description: '透明可信，让协作更高效' },
+  { title: '共同成长', description: '与客户、伙伴、团队彼此成就' },
+  { title: '结果导向', description: '用交付成果衡量价值' },
+  { title: '拥抱变化', description: '在变化中持续进化' },
 ]
 
 /**
@@ -147,31 +147,31 @@ const MILESTONES: MilestoneItem[] = [
     year: '2024-至今',
     title: '数实融合 破浪前行',
     description:
-      '优刻云成立九周年，迎来第七次办公室搬迁。团队规模接近百人，累计企业与开发者用户超过5万。我们将持续秉持用数据激发生产力的使命，通过数字技术助力实体经济的发展。',
+      '优刻云计算迎来第九年，团队规模接近百人，累计服务企业与开发者超 7 万。我们持续秉持「以算力激发生产力」的初心，用数字技术助力实体经济发展。',
   },
   {
     year: '2022-2023',
     title: '数智应用 激发产能',
     description:
-      '发布新产品自动化RPA和商业智能BI，公司先后被评为创新型中小企业、科技小巨人企业、丰泽区重点企业。推出飞跨浏览器，被评为"瞪羚"创新企业。',
+      '上线自动化 RPA 与商业智能 BI，先后获评创新型中小企业、科技小巨人企业、丰泽区重点企业；推出飞跨浏览器，获评「瞪羚」创新企业。',
   },
   {
     year: '2019-2021',
     title: '云网融合 赋能产业',
     description:
-      '获得工信部云计算和CDN资质，被评为国家高新技术企业。推出边缘网络PaaS产品，成立飞跨品牌，推出电商云产品。',
+      '取得工信部云计算与 CDN 资质，获评国家高新技术企业；推出边缘网络 PaaS，孵化飞跨品牌与电商云产品。',
   },
   {
     year: '2016-2018',
     title: '顺势而上 逐云向前',
     description:
-      '成为APNIC与CNNIC会员单位，发布QStack多云管理平台。获得IDC/ISP/IP-VPN资质，成为腾讯云、阿里云合作伙伴。',
+      '成为 APNIC 与 CNNIC 会员单位，发布 QStack 多云管理平台，取得 IDC/ISP/IP-VPN 资质，成为腾讯云、阿里云生态合作伙伴。',
   },
   {
     year: '2015',
     title: '与云结缘 扬帆起航',
     description:
-      '2015年4月1日，优刻云正式成立，开始为企业提供服务器托管和租用服务。',
+      '2015年4月，优刻云计算正式成立，面向企业提供服务器托管与租用服务，开启算力服务之路。',
   },
 ]
 
@@ -179,13 +179,13 @@ const MILESTONES: MilestoneItem[] = [
  * 荣誉资质
  */
 const HONORS: HonorItem[] = [
-  { title: '专精特新中小企业', date: '2024.05', description: '评为专精特新中小企业' },
+  { title: '专精特新中小企业', date: '2024.05', description: '入选省级专精特新中小企业名单' },
   { title: '区重点企业', date: '2023.06', description: '认定为丰泽区重点企业' },
-  { title: '科技小巨人企业', date: '2023.06', description: '荣获科技小巨人企业' },
-  { title: '创新型中小企业', date: '2023.01', description: '被评为创新型中小企业' },
-  { title: '"瞪羚"创新企业', date: '2022.07', description: '获评瞪羚企业' },
-  { title: '科技型中小企业', date: '2021.10', description: '评为科技型中小企业' },
-  { title: '高新技术企业', date: '2019.12', description: '荣获国家级高新技术企业称号' },
+  { title: '科技小巨人企业', date: '2023.06', description: '荣获科技小巨人企业称号' },
+  { title: '创新型中小企业', date: '2023.01', description: '获评创新型中小企业' },
+  { title: '"瞪羚"创新企业', date: '2022.07', description: '入选瞪羚企业榜单' },
+  { title: '科技型中小企业', date: '2021.10', description: '获评科技型中小企业' },
+  { title: '高新技术企业', date: '2019.12', description: '荣获国家级高新技术企业认定' },
 ]
 
 /**
@@ -361,16 +361,16 @@ function HeroSection() {
           className="max-w-3xl"
         >
           <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-[#eff6ff] px-3 text-xs font-semibold text-brand-500">
-            优刻云与您共创未来
+            优刻云计算 · 与您共创算力未来
           </span>
           <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl lg:leading-tight">
             优刻云计算
           </h1>
           <p className="mt-4 text-lg font-medium text-slate-600 sm:text-xl">
-            成为全球领先的数据驱动引擎
+            稳定 · 弹性 · 普惠的云计算服务
           </p>
           <p className="mt-2 text-base font-medium text-brand-500">
-            Leading Global Data-Driven Innovation
+            CloudCVM · Powering Your Business with Cloud
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-4">
             <Button href="#contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
@@ -395,8 +395,8 @@ function OverviewSection() {
       <Container>
         <SectionHeader
           eyebrow="Company Profile"
-          title="专业的大数据基础能力服务商"
-          description="专注于通过数据激发生产力，为企业与开发者提供大数据的基础技术底座，业务覆盖政府、财会、教育、工业、电商等多个行业。"
+          title="专注云算力的独立云计算品牌"
+          description="优刻云计算（CloudCVM）是一家独立运营的云计算服务品牌，专注为开发者和企业提供稳定、弹性、高性价比的云服务器与算力基础设施，业务覆盖政府、电商、教育、工业等多个行业。"
         />
 
         {/* 核心介绍卡片 */}
@@ -410,12 +410,11 @@ function OverviewSection() {
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
               <h3 className="text-xl font-bold tracking-tight sm:text-2xl lg:text-3xl">
-                用数据驱动生产力
+                让算力触手可及
               </h3>
               <p className="mt-4 text-base leading-relaxed text-white/80">
-                优刻云成立于2015年，是国内专业的大数据基础能力服务商。我们始终专注于通过数据激发生产力，
-                致力于成为全球领先的数据驱动引擎。公司拥有一支高素质的技术团队，技术人员占比超过50%，
-                为客户提供最优质的大数据基础设施服务。
+                优刻云计算成立于2015年，深耕云计算与算力基础设施领域。我们坚持自研调度与多可用区容灾架构，
+                技术人员占比超过50%，以稳定、弹性、普惠的云服务，帮助企业与开发者把更多精力投入到业务创新本身。
               </p>
             </div>
             <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
@@ -425,7 +424,7 @@ function OverviewSection() {
                   <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 云计算基础服务
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> AI 智能应用
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> AI 智能算力
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 大数据处理与分析
@@ -468,7 +467,7 @@ function StatsSection() {
         <SectionHeader
           eyebrow="Company Stats"
           title="数据见证实力"
-          description="用数字说话，用成果证明我们的专业能力与服务品质"
+          description="用真实的服务规模与运行指标，证明优刻云计算的可靠与专业"
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -500,7 +499,7 @@ function VisionSection() {
         <SectionHeader
           eyebrow="Vision & Mission"
           title="愿景 · 使命 · 价值观"
-          description="以清晰的愿景指引方向，以坚定的使命驱动前行，以共同的价值观凝聚力量"
+          description="以清晰的愿景锚定方向，以务实的使命驱动产品，以共同的价值观凝聚团队"
         />
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
@@ -512,8 +511,8 @@ function VisionSection() {
             <h3 className="text-2xl font-bold text-slate-900">
               愿景 <span className="text-sm font-medium text-slate-400">VISION</span>
             </h3>
-            <p className="mt-4 text-lg font-semibold text-slate-700">成为全球领先的数据驱动引擎</p>
-            <p className="mt-2 text-sm font-medium text-brand-500">Leading Global Data-Driven Innovation</p>
+            <p className="mt-4 text-lg font-semibold text-slate-700">成为开发者最信赖的云算力伙伴</p>
+            <p className="mt-2 text-sm font-medium text-brand-500">The Most Trusted Cloud Computing Partner</p>
           </GlassCard>
 
           {/* 使命 */}
@@ -524,8 +523,8 @@ function VisionSection() {
             <h3 className="text-2xl font-bold text-slate-900">
               使命 <span className="text-sm font-medium text-slate-400">MISSION</span>
             </h3>
-            <p className="mt-4 text-lg font-semibold text-slate-700">用数据驱动生产力</p>
-            <p className="mt-2 text-sm font-medium text-brand-500">Driving the Productivity Explosion with Data</p>
+            <p className="mt-4 text-lg font-semibold text-slate-700">以简单、稳定、普惠的云，加速业务创新</p>
+            <p className="mt-2 text-sm font-medium text-brand-500">Empowering Innovation with Simple, Reliable Cloud</p>
           </GlassCard>
 
           {/* 价值观 */}
@@ -561,7 +560,7 @@ function TimelineSection() {
         <SectionHeader
           eyebrow="Our History"
           title="发展历程"
-          description="见证我们从初创到行业领先的每一个重要时刻"
+          description="从云服务器托管起步，到智能算力平台，记录优刻云计算的每一步成长"
         />
 
         <div className="relative mt-16">
@@ -631,7 +630,7 @@ function HonorsSection() {
         <SectionHeader
           eyebrow="Honors & Awards"
           title="荣誉资质"
-          description="自成立以来，优刻云计算获得了众多企业、权威行业机构和知名媒体的关注与认可"
+          description="自成立以来，优刻云计算持续获得行业与权威机构的认可"
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -661,7 +660,7 @@ function ContactSection() {
         <SectionHeader
           eyebrow="Contact Us"
           title="联系我们"
-          description="我们在全国多个城市设有办公室，随时为您提供专业的服务支持"
+          description="优刻云计算在多地设有服务团队，随时为你提供上云咨询与专业技术支持"
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -771,9 +770,3 @@ export default function AboutPage() {
     </div>
   )
 }
-
-
-
-
-
-

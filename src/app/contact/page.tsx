@@ -7,7 +7,6 @@ import {
   TicketIcon,
   ChatBubbleLeftRightIcon,
   DocumentTextIcon,
-  PhoneIcon,
   ArrowRightIcon,
   EnvelopeIcon,
   UserGroupIcon,
@@ -394,7 +393,7 @@ function ContactInfoSection() {
             </div>
           </motion.div>
 
-          {/* 3. 电话咨询 */}
+          {/* 3. QQ 咨询 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -405,21 +404,21 @@ function ContactInfoSection() {
             {/* 卡片头部 */}
             <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:border-[#0055ff]/30 group-hover:bg-[#eff6ff]">
-                <PhoneIcon className="h-5 w-5" />
+                <ChatBubbleLeftRightIcon className="h-5 w-5" />
               </div>
               <span className="block text-base font-semibold text-[#0F172A] truncate">
-                电话咨询
+                QQ 咨询
               </span>
             </div>
 
             {/* 卡片主体 */}
             <div className="flex flex-auto flex-col px-5 py-4">
-              <p className="text-sm leading-relaxed text-[#64748B]">7×24 小时服务热线</p>
+              <p className="text-sm leading-relaxed text-[#64748B]">QQ 在线沟通</p>
               <a
-                href="tel:0595-22113999"
+                href="tencent://message/?uin=236749035"
                 className="mt-3 block text-xl font-bold text-[#0055ff] transition-colors hover:text-[#0043cc]"
               >
-                0595-22113999
+                236749035
               </a>
             </div>
 
