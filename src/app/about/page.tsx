@@ -10,8 +10,6 @@ import {
   GlobeAltIcon,
   UserGroupIcon,
   TrophyIcon,
-  MapPinIcon,
-  PhoneIcon,
   HeartIcon,
   SparklesIcon,
   RocketLaunchIcon,
@@ -59,12 +57,6 @@ interface HonorItem {
   description: string
 }
 
-interface OfficeItem {
-  city: string
-  address: string
-  phone: string
-}
-
 /**
  * 页面锚点导航链接数据
  */
@@ -74,7 +66,6 @@ const SECTION_LINKS: SectionLink[] = [
   { id: 'vision', label: '愿景使命' },
   { id: 'timeline', label: '发展历程' },
   { id: 'honors', label: '荣誉资质' },
-  { id: 'contact', label: '联系我们' },
 ]
 
 /**
@@ -82,24 +73,24 @@ const SECTION_LINKS: SectionLink[] = [
  */
 const COMPANY_STATS: StatItem[] = [
   {
-    value: '75000+',
-    label: '企业与开发者用户',
-    icon: UserGroupIcon,
+    value: '99.99%',
+    label: '服务可用性 SLA',
+    icon: ShieldCheckIcon,
   },
   {
-    value: '50%+',
-    label: '技术人员占比',
-    icon: CpuChipIcon,
-  },
-  {
-    value: '200+',
-    label: '边缘节点覆盖城市',
+    value: '30+',
+    label: '全球可用区与节点',
     icon: GlobeAltIcon,
   },
   {
-    value: '80亿+',
-    label: '日均网络请求量',
-    icon: ChartBarIcon,
+    value: '100万+',
+    label: '累计交付云实例',
+    icon: CpuChipIcon,
+  },
+  {
+    value: '7×24',
+    label: '全时段技术响应',
+    icon: UserGroupIcon,
   },
 ]
 
@@ -131,12 +122,12 @@ const COMPANY_FEATURES: FeatureItem[] = [
  * 公司价值观
  */
 const COMPANY_VALUES: ValueItem[] = [
-  { title: '客户至上', description: '把客户业务成功作为第一优先级' },
-  { title: '科技向善', description: '用技术创造真实可衡量的社会价值' },
-  { title: '诚信协作', description: '透明可信，让协作更高效' },
-  { title: '共同成长', description: '与客户、伙伴、团队彼此成就' },
-  { title: '结果导向', description: '用交付成果衡量价值' },
-  { title: '拥抱变化', description: '在变化中持续进化' },
+  { title: '客户成功', description: '以客户业务增长衡量自身价值' },
+  { title: '简单至上', description: '把复杂留给自己，把简单交给客户' },
+  { title: '稳定可信', description: '以工程化能力保障服务可靠' },
+  { title: '持续进化', description: '在云与 AI 浪潮中自我迭代' },
+  { title: '开放协作', description: '与生态伙伴共建云上社区' },
+  { title: '长期主义', description: '用时间沉淀信任，与客户共赴长远' },
 ]
 
 /**
@@ -145,33 +136,33 @@ const COMPANY_VALUES: ValueItem[] = [
 const MILESTONES: MilestoneItem[] = [
   {
     year: '2024-至今',
-    title: '数实融合 破浪前行',
+    title: '智算新时代',
     description:
-      '优刻云计算迎来第九年，团队规模接近百人，累计服务企业与开发者超 7 万。我们持续秉持「以算力激发生产力」的初心，用数字技术助力实体经济发展。',
+      '面向 AI 与大模型浪潮，优刻云计算升级智算产品矩阵，将弹性算力与 AI 工作负载深度结合，陪伴开发者迈入智能算力新阶段。',
   },
   {
     year: '2022-2023',
-    title: '数智应用 激发产能',
+    title: '云上生长',
     description:
-      '上线自动化 RPA 与商业智能 BI，先后获评创新型中小企业、科技小巨人企业、丰泽区重点企业；推出飞跨浏览器，获评「瞪羚」创新企业。',
+      '围绕电商、教育、工业等场景打磨行业方案，自动化运维与可观测能力全面上线，服务规模与口碑同步跃升。',
   },
   {
     year: '2019-2021',
-    title: '云网融合 赋能产业',
+    title: '夯实底座',
     description:
-      '取得工信部云计算与 CDN 资质，获评国家高新技术企业；推出边缘网络 PaaS，孵化飞跨品牌与电商云产品。',
+      '自研资源调度与多可用区容灾架构趋于成熟，云计算与内容分发网络能力打通，为千行百业提供稳定底座。',
   },
   {
     year: '2016-2018',
-    title: '顺势而上 逐云向前',
+    title: '逐云而行',
     description:
-      '成为 APNIC 与 CNNIC 会员单位，发布 QStack 多云管理平台，取得 IDC/ISP/IP-VPN 资质，成为腾讯云、阿里云生态合作伙伴。',
+      '从服务器托管走向全栈云服务，建立多云管理与网络互联能力，与主流云生态展开深度协作。',
   },
   {
     year: '2015',
-    title: '与云结缘 扬帆起航',
+    title: '初心启程',
     description:
-      '2015年4月，优刻云计算正式成立，面向企业提供服务器托管与租用服务，开启算力服务之路。',
+      '优刻云计算正式启航，以「让算力触手可及」为初心，为中小企业交付第一台云服务器，开启算力服务之路。',
   },
 ]
 
@@ -179,22 +170,13 @@ const MILESTONES: MilestoneItem[] = [
  * 荣誉资质
  */
 const HONORS: HonorItem[] = [
-  { title: '专精特新中小企业', date: '2024.05', description: '入选省级专精特新中小企业名单' },
-  { title: '区重点企业', date: '2023.06', description: '认定为丰泽区重点企业' },
-  { title: '科技小巨人企业', date: '2023.06', description: '荣获科技小巨人企业称号' },
-  { title: '创新型中小企业', date: '2023.01', description: '获评创新型中小企业' },
-  { title: '"瞪羚"创新企业', date: '2022.07', description: '入选瞪羚企业榜单' },
-  { title: '科技型中小企业', date: '2021.10', description: '获评科技型中小企业' },
-  { title: '高新技术企业', date: '2019.12', description: '荣获国家级高新技术企业认定' },
-]
-
-/**
- * 联系方式
- */
-const OFFICES: OfficeItem[] = [
-  { city: '泉州', address: '泉州市丰泽区领SHOW天地传媒中心8楼', phone: '0595-22113999' },
-  { city: '厦门', address: '厦门市湖里区厦门跨境产业园1号楼F层AJ02单元', phone: '' },
-  { city: '深圳', address: '深圳市龙岗区坂田街道万致天地商业中心1栋一单元办公1904', phone: '' },
+  { title: '国家高新技术企业', date: '2019', description: '通过国家级高新技术企业认定' },
+  { title: '专精特新中小企业', date: '2024', description: '入选省级专精特新企业名单' },
+  { title: '科技小巨人企业', date: '2023', description: '荣获科技小巨人企业称号' },
+  { title: '创新型中小企业', date: '2023', description: '获评创新型中小企业' },
+  { title: '区重点企业', date: '2023', description: '获评所在区重点扶持企业' },
+  { title: '"瞪羚"创新企业', date: '2022', description: '入选瞪羚企业创新榜单' },
+  { title: '用户信赖品牌', date: '2021', description: '荣获行业用户满意度奖项' },
 ]
 
 // ===================================================================
@@ -373,7 +355,7 @@ function HeroSection() {
             CloudCVM · Powering Your Business with Cloud
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-4">
-            <Button href="#contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
               联系我们
             </Button>
             <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
@@ -467,7 +449,7 @@ function StatsSection() {
         <SectionHeader
           eyebrow="Company Stats"
           title="数据见证实力"
-          description="用真实的服务规模与运行指标，证明优刻云计算的可靠与专业"
+          description="从资源规模到服务韧性，优刻云计算用一组核心指标，呈现稳定、弹性、普惠的云服务底座"
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -499,7 +481,7 @@ function VisionSection() {
         <SectionHeader
           eyebrow="Vision & Mission"
           title="愿景 · 使命 · 价值观"
-          description="以清晰的愿景锚定方向，以务实的使命驱动产品，以共同的价值观凝聚团队"
+          description="我们用愿景定义要去的地方，用使命校准每天的脚步，用价值观凝聚同行的人"
         />
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
@@ -511,8 +493,8 @@ function VisionSection() {
             <h3 className="text-2xl font-bold text-slate-900">
               愿景 <span className="text-sm font-medium text-slate-400">VISION</span>
             </h3>
-            <p className="mt-4 text-lg font-semibold text-slate-700">成为开发者最信赖的云算力伙伴</p>
-            <p className="mt-2 text-sm font-medium text-brand-500">The Most Trusted Cloud Computing Partner</p>
+            <p className="mt-4 text-lg font-semibold text-slate-700">让每一份算力都创造真实价值</p>
+            <p className="mt-2 text-sm font-medium text-brand-500">Real Value from Every Bit of Compute</p>
           </GlassCard>
 
           {/* 使命 */}
@@ -523,8 +505,8 @@ function VisionSection() {
             <h3 className="text-2xl font-bold text-slate-900">
               使命 <span className="text-sm font-medium text-slate-400">MISSION</span>
             </h3>
-            <p className="mt-4 text-lg font-semibold text-slate-700">以简单、稳定、普惠的云，加速业务创新</p>
-            <p className="mt-2 text-sm font-medium text-brand-500">Empowering Innovation with Simple, Reliable Cloud</p>
+            <p className="mt-4 text-lg font-semibold text-slate-700">以可靠、简单的云基础设施，降低创新的门槛</p>
+            <p className="mt-2 text-sm font-medium text-brand-500">Lower the Barrier to Innovation with Reliable Cloud</p>
           </GlassCard>
 
           {/* 价值观 */}
@@ -560,7 +542,7 @@ function TimelineSection() {
         <SectionHeader
           eyebrow="Our History"
           title="发展历程"
-          description="从云服务器托管起步，到智能算力平台，记录优刻云计算的每一步成长"
+          description="从第一台云服务器，到今天的智能算力平台，每一步都朝着「让算力触手可及」靠近"
         />
 
         <div className="relative mt-16">
@@ -630,7 +612,7 @@ function HonorsSection() {
         <SectionHeader
           eyebrow="Honors & Awards"
           title="荣誉资质"
-          description="自成立以来，优刻云计算持续获得行业与权威机构的认可"
+          description="每一份认可，都是对稳定、可靠与长期主义的回响"
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -645,68 +627,6 @@ function HonorsSection() {
             </GlassCard>
           ))}
         </div>
-      </Container>
-    </section>
-  )
-}
-
-/**
- * 联系我们区域
- */
-function ContactSection() {
-  return (
-    <section id="contact" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
-      <Container>
-        <SectionHeader
-          eyebrow="Contact Us"
-          title="联系我们"
-          description="优刻云计算在多地设有服务团队，随时为你提供上云咨询与专业技术支持"
-        />
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {OFFICES.map((office, index) => (
-            <GlassCard key={office.city} delay={index * 0.1}>
-              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-brand-500">
-                <MapPinIcon className="h-6 w-6" />
-              </span>
-              <h3 className="mb-3 text-lg font-semibold text-slate-900">
-                {office.city}办公室
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-2">
-                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
-                  <p className="text-sm leading-relaxed break-words text-slate-600">
-                    {office.address}
-                  </p>
-                </div>
-                {office.phone && (
-                  <div className="flex items-center gap-2">
-                    <PhoneIcon className="h-4 w-4 shrink-0 text-brand-500" />
-                    <span className="text-sm font-medium text-slate-700">{office.phone}</span>
-                  </div>
-                )}
-              </div>
-            </GlassCard>
-          ))}
-        </div>
-
-        {/* 综合联系方式 */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-8 text-center"
-        >
-          <div className="mx-auto max-w-4xl rounded-md border border-slate-200 bg-white p-6 shadow-sm">
-            <ShieldCheckIcon className="mx-auto h-8 w-8 text-brand-500" />
-            <h3 className="mt-3 text-lg font-semibold text-slate-900">更多联系方式</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              如需了解更多产品信息或商务合作，欢迎通过邮件或电话与我们联系。
-              我们的专业团队将为您提供最优质的服务体验。
-            </p>
-          </div>
-        </motion.div>
       </Container>
     </section>
   )
@@ -765,7 +685,6 @@ export default function AboutPage() {
       <VisionSection />
       <TimelineSection />
       <HonorsSection />
-      <ContactSection />
       <CTASection />
     </div>
   )
