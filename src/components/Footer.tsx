@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 
 const navigation = {
@@ -48,6 +49,9 @@ const navigation = {
     { name: '公司简介', href: '/about/' },
     { name: '技术支持', href: '/support/' },
     { name: '推广合作', href: '/agent/' },
+    { name: '隐私政策', href: '/privacy/' },
+    { name: '法律声明', href: '/legal/' },
+    { name: '服务条款', href: '/terms/' },
   ],
   friendlyLinks: [
     { name: '艺创AI', href: 'https://www.urlnet.cn' },
@@ -114,16 +118,30 @@ export function Footer() {
             }`}
         >
           <ul role="list" className="space-y-4 md:mt-6">
-            {items.map((item) => (
-              <li key={item.name}>
-                <a
-                  href={item.href}
-                  className="block py-1 text-sm/6 text-gray-600 hover:text-gray-900 md:py-0 dark:text-gray-400 dark:hover:text-white"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
+            {items.map((item) => {
+              const isInternal = item.href.startsWith('/')
+              const linkClassName =
+                'block py-1 text-sm/6 text-gray-600 hover:text-gray-900 md:py-0 dark:text-gray-400 dark:hover:text-white'
+
+              return (
+                <li key={item.name}>
+                  {isInternal ? (
+                    <Link href={item.href} className={linkClassName}>
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClassName}
+                    >
+                      {item.name}
+                    </a>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>
