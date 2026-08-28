@@ -1,19 +1,30 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
+  ArchiveBoxIcon,
   ArrowRightIcon,
+  BoltIcon,
   BuildingOfficeIcon,
   ChartBarIcon,
+  ChartPieIcon,
+  CircleStackIcon,
+  CogIcon,
   CpuChipIcon,
+  CubeIcon,
   GlobeAltIcon,
-  UserGroupIcon,
-  TrophyIcon,
-  HeartIcon,
-  SparklesIcon,
+  LifebuoyIcon,
+  LockClosedIcon,
+  PlusIcon,
   RocketLaunchIcon,
+  ServerIcon,
   ShieldCheckIcon,
+  SparklesIcon,
+  Squares2X2Icon,
+  UserGroupIcon,
+  VideoCameraIcon,
+  WifiIcon,
 } from '@heroicons/react/24/outline'
 import { Container } from '@/components/Container'
 import { Button } from '@/components/Button'
@@ -40,20 +51,14 @@ interface FeatureItem {
   description: string
 }
 
-interface ValueItem {
-  title: string
-  description: string
+interface ProductItem {
+  icon: IconComponent
+  name: string
 }
 
 interface MilestoneItem {
   year: string
   title: string
-  description: string
-}
-
-interface HonorItem {
-  title: string
-  date: string
   description: string
 }
 
@@ -63,9 +68,9 @@ interface HonorItem {
 const SECTION_LINKS: SectionLink[] = [
   { id: 'overview', label: '公司概况' },
   { id: 'stats', label: '数据实力' },
-  { id: 'vision', label: '愿景使命' },
+  { id: 'products', label: '产品矩阵' },
   { id: 'timeline', label: '发展历程' },
-  { id: 'honors', label: '荣誉资质' },
+  { id: 'honors', label: '五大理由' },
 ]
 
 /**
@@ -119,15 +124,20 @@ const COMPANY_FEATURES: FeatureItem[] = [
 ]
 
 /**
- * 公司价值观
+ * 全方位产品矩阵
  */
-const COMPANY_VALUES: ValueItem[] = [
-  { title: '客户成功', description: '以客户业务增长衡量自身价值' },
-  { title: '简单至上', description: '把复杂留给自己，把简单交给客户' },
-  { title: '稳定可信', description: '以工程化能力保障服务可靠' },
-  { title: '持续进化', description: '在云与 AI 浪潮中自我迭代' },
-  { title: '开放协作', description: '与生态伙伴共建云上社区' },
-  { title: '长期主义', description: '用时间沉淀信任，与客户共赴长远' },
+const PRODUCTS: ProductItem[] = [
+  { name: '人工智能', icon: SparklesIcon },
+  { name: '计算', icon: ServerIcon },
+  { name: '存储', icon: ArchiveBoxIcon },
+  { name: '数据库', icon: CircleStackIcon },
+  { name: '容器与中间件', icon: CubeIcon },
+  { name: '网络', icon: WifiIcon },
+  { name: '视频与边缘', icon: VideoCameraIcon },
+  { name: '大数据', icon: ChartPieIcon },
+  { name: '安全', icon: LockClosedIcon },
+  { name: '企业服务与云通信', icon: BuildingOfficeIcon },
+  { name: '管理与治理', icon: CogIcon },
 ]
 
 /**
@@ -167,16 +177,39 @@ const MILESTONES: MilestoneItem[] = [
 ]
 
 /**
- * 荣誉资质
+ * 选择优刻云计算的五大理由
  */
-const HONORS: HonorItem[] = [
-  { title: '国家高新技术企业', date: '2019', description: '通过国家级高新技术企业认定' },
-  { title: '专精特新中小企业', date: '2024', description: '入选省级专精特新企业名单' },
-  { title: '科技小巨人企业', date: '2023', description: '荣获科技小巨人企业称号' },
-  { title: '创新型中小企业', date: '2023', description: '获评创新型中小企业' },
-  { title: '区重点企业', date: '2023', description: '获评所在区重点扶持企业' },
-  { title: '"瞪羚"创新企业', date: '2022', description: '入选瞪羚企业创新榜单' },
-  { title: '用户信赖品牌', date: '2021', description: '荣获行业用户满意度奖项' },
+const REASONS: FeatureItem[] = [
+  {
+    name: '高效稳定',
+    description:
+      '深厚的基础架构、自研的操作系统，多年技术锤炼和海量服务经验，为客户提供高性能、易运维、智能化、弹性化的云服务。',
+    icon: BoltIcon,
+  },
+  {
+    name: '安全可靠',
+    description:
+      '七大安全联合实验室团队，一体化智慧安全管理体系，助您建立系统性的安全防御机制。',
+    icon: ShieldCheckIcon,
+  },
+  {
+    name: '丰富场景',
+    description:
+      '从基础设施到行业应用领域，提供完善的产品体系，为各种业务场景提供全栈解决方案，助力业务腾飞。',
+    icon: Squares2X2Icon,
+  },
+  {
+    name: '开放生态',
+    description:
+      '完整的合作伙伴生态体系，与产业链上下游通力合作，提供优质的服务和丰富的产品满足您全方位的业务需求。',
+    icon: GlobeAltIcon,
+  },
+  {
+    name: '服务保障',
+    description:
+      '7×24 小时高效服务保障，多元化的服务支持，提供专业的上云前、中、后全流程技术服务，让您的云上之旅更安心。',
+    icon: LifebuoyIcon,
+  },
 ]
 
 // ===================================================================
@@ -292,7 +325,10 @@ function SectionHeader({
  * 页面锚点导航组件
  */
 function SectionNav() {
-  const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
+  // 使用 useMemo 稳定依赖引用，避免每次渲染生成新数组
+  // 导致 useActiveSection 内的 IntersectionObserver 反复重建
+  const sectionIds = useMemo(() => SECTION_LINKS.map((item) => item.id), [])
+  const activeSection = useActiveSection(sectionIds)
 
   return (
     <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
@@ -472,60 +508,52 @@ function StatsSection() {
 }
 
 /**
- * 愿景使命区域
+ * 全方位产品矩阵区域
  */
-function VisionSection() {
+function ProductsSection() {
   return (
-    <section id="vision" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="products" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
       <Container>
         <SectionHeader
-          eyebrow="Vision & Mission"
-          title="愿景 · 使命 · 价值观"
-          description="我们用愿景定义要去的地方，用使命校准每天的脚步，用价值观凝聚同行的人"
+          eyebrow="Product Matrix"
+          title="全方位产品矩阵"
+          description="提供云基础到智能应用的全链路支撑"
         />
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
-          {/* 愿景 */}
-          <GlassCard className="flex min-h-[300px] flex-col justify-center" delay={0}>
-            <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
-              <RocketLaunchIcon className="h-7 w-7" />
-            </span>
-            <h3 className="text-2xl font-bold text-slate-900">
-              愿景 <span className="text-sm font-medium text-slate-400">VISION</span>
-            </h3>
-            <p className="mt-4 text-lg font-semibold text-slate-700">让每一份算力都创造真实价值</p>
-            <p className="mt-2 text-sm font-medium text-brand-500">Real Value from Every Bit of Compute</p>
-          </GlassCard>
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {PRODUCTS.map((product, index) => {
+            const Icon = product.icon
+            return (
+              <motion.div
+                key={product.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="group flex items-center gap-3 rounded-md border border-slate-200 bg-white p-4 transition-all duration-300 hover:border-brand-300 hover:shadow-sm sm:p-5"
+              >
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span className="text-sm font-semibold text-slate-900 transition-colors duration-300 group-hover:text-brand-500">
+                  {product.name}
+                </span>
+              </motion.div>
+            )
+          })}
 
-          {/* 使命 */}
-          <GlassCard className="flex min-h-[300px] flex-col justify-center" delay={0.1}>
-            <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
-              <SparklesIcon className="h-7 w-7" />
-            </span>
-            <h3 className="text-2xl font-bold text-slate-900">
-              使命 <span className="text-sm font-medium text-slate-400">MISSION</span>
-            </h3>
-            <p className="mt-4 text-lg font-semibold text-slate-700">以可靠、简单的云基础设施，降低创新的门槛</p>
-            <p className="mt-2 text-sm font-medium text-brand-500">Lower the Barrier to Innovation with Reliable Cloud</p>
-          </GlassCard>
-
-          {/* 价值观 */}
-          <GlassCard className="flex min-h-[300px] flex-col justify-center" delay={0.2}>
-            <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
-              <HeartIcon className="h-7 w-7" />
-            </span>
-            <h3 className="text-2xl font-bold text-slate-900">
-              价值观 <span className="text-sm font-medium text-slate-400">VALUES</span>
-            </h3>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              {COMPANY_VALUES.map((v) => (
-                <div key={v.title} className="text-center">
-                  <div className="text-sm font-semibold text-slate-900">{v.title}</div>
-                  <p className="mt-0.5 text-xs leading-relaxed text-slate-500">{v.description}</p>
-                </div>
-              ))}
-            </div>
-          </GlassCard>
+          {/* 查看全部产品 */}
+          <motion.a
+            href="/ecs"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5, delay: PRODUCTS.length * 0.05 }}
+            className="group flex items-center justify-center gap-2 rounded-md border border-dashed border-brand-300 bg-brand-50/60 p-4 text-sm font-semibold text-brand-500 transition-colors duration-300 hover:bg-brand-500 hover:text-white sm:p-5"
+          >
+            <PlusIcon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-90" />
+            查看全部产品
+          </motion.a>
         </div>
       </Container>
     </section>
@@ -603,29 +631,41 @@ function TimelineSection() {
 }
 
 /**
- * 荣誉资质区域
+ * 选择优刻云计算的五大理由区域
  */
-function HonorsSection() {
+function ReasonsSection() {
   return (
     <section id="honors" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
       <Container>
         <SectionHeader
-          eyebrow="Honors & Awards"
-          title="荣誉资质"
-          description="每一份认可，都是对稳定、可靠与长期主义的回响"
+          eyebrow="Why CloudCVM"
+          title="选择优刻云计算的五大理由"
+          description="从技术底座到服务保障，我们用五大核心优势，护航您的每一次云端选择"
         />
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {HONORS.map((honor, index) => (
-            <GlassCard key={honor.title} delay={index * 0.05}>
-              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-brand-500">
-                <TrophyIcon className="h-6 w-6" />
-              </span>
-              <div className="mb-2 text-sm font-mono font-semibold text-brand-500">{honor.date}</div>
-              <h3 className="text-lg font-semibold text-slate-900">{honor.title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-slate-500">{honor.description}</p>
-            </GlassCard>
-          ))}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {REASONS.map((reason, index) => {
+            const Icon = reason.icon
+            // 平板断点下第 5 张卡片跨两列居中收尾，桌面端恢复单列
+            const isLast = index === REASONS.length - 1
+            return (
+              <GlassCard
+                key={reason.name}
+                delay={index * 0.08}
+                className={`flex flex-col text-center ${
+                  isLast ? 'sm:col-span-2 sm:mx-auto sm:max-w-xl lg:col-span-1 lg:mx-0 lg:max-w-none' : ''
+                }`}
+              >
+                <span className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="text-base font-semibold text-slate-900">{reason.name}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                  {reason.description}
+                </p>
+              </GlassCard>
+            )
+          })}
         </div>
       </Container>
     </section>
@@ -633,35 +673,71 @@ function HonorsSection() {
 }
 
 /**
- * 行动号召区域
+ * 行动号召区域（视频横幅卡片，参考 CatSections 免费体验横幅设计）
  */
 function CTASection() {
   return (
-    <section className="bg-brand-500 py-16 md:py-24 text-center relative overflow-hidden">
-      <Container className="relative z-10">
+    <section className="py-16 md:py-24">
+      <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mx-auto max-w-3xl"
+          className="relative overflow-hidden rounded-xl bg-brand-600"
         >
-          <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
-            立即咨询
-          </span>
-          <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            准备好开始您的云计算之旅了吗？
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
-            立即联系我们，获取专业的云计算解决方案和技术支持，让您的业务在云端腾飞
-          </p>
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-md px-8 py-3 font-medium text-brand-500">
-              立即咨询
-            </Button>
-            <Button href="/ecs" variant="erlieOutline" color="white" className="rounded-md border-white/30 px-8 py-3 font-medium hover:bg-white/10">
-              了解产品
-            </Button>
+          {/* 视频背景（移动端隐藏） */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
+          >
+            <source
+              src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4"
+              type="video/mp4"
+            />
+          </video>
+          {/* 暗色叠加层 */}
+          <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
+
+          <div className="relative flex flex-col justify-between gap-6 px-6 py-8 sm:flex-row sm:items-center lg:px-10 lg:py-10">
+            {/* 左侧文案区 */}
+            <div className="flex-1">
+              <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-medium text-white">
+                <RocketLaunchIcon className="mr-1.5 size-4" />
+                立即咨询
+              </span>
+              <h2 className="mt-3 text-2xl font-bold text-white lg:text-3xl">
+                准备好开始您的云计算之旅了吗？
+              </h2>
+              <p className="mt-2 text-base text-brand-100">
+                立即联系我们，获取专业的云计算解决方案和技术支持，让您的业务在云端腾飞
+              </p>
+            </div>
+
+            {/* 右侧按钮区 */}
+            <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+              <Button
+                href="/contact"
+                color="white"
+                variant="erlieSolid"
+                className="rounded-md px-6 py-3 text-sm font-semibold text-brand-600 shadow-sm hover:bg-brand-50"
+              >
+                立即咨询
+                <ArrowRightIcon className="ml-2 size-4" />
+              </Button>
+              <Button
+                href="/ecs"
+                variant="erlieOutline"
+                color="white"
+                className="rounded-md border-white/40 px-6 py-3 text-sm font-semibold hover:bg-white/10"
+              >
+                了解产品
+              </Button>
+            </div>
           </div>
         </motion.div>
       </Container>
@@ -682,9 +758,9 @@ export default function AboutPage() {
       <SectionNav />
       <OverviewSection />
       <StatsSection />
-      <VisionSection />
+      <ProductsSection />
       <TimelineSection />
-      <HonorsSection />
+      <ReasonsSection />
       <CTASection />
     </div>
   )
