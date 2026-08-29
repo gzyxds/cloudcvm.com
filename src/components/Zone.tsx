@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRightIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
@@ -43,21 +42,20 @@ const STATS: StatItem[] = [
 
 /**
  * 地区（大区）标注点
- * 用聚合后的大区标签清晰呈现全球覆盖的「地区」维度，避免逐个城市标签在缩略地图上重叠。
- * top/left 为该大区代表城市相对地图容器的百分比；featured 大区在移动端也显示标签。
+ * 标签在上、蓝色脉冲点紧贴标签下方；top/left 为标注点位置。
  */
 const regionLabels: RegionLabel[] = [
-  { name: '华北', top: '22%', left: '69%', featured: true },
-  { name: '东北', top: '13%', left: '74%' },
-  { name: '华东', top: '36%', left: '76%', featured: true },
-  { name: '华中', top: '47%', left: '67%' },
-  { name: '华南', top: '57%', left: '66%', featured: true },
-  { name: '西南', top: '45%', left: '55%', featured: true },
-  { name: '亚太', top: '61%', left: '64%', featured: true },
-  { name: '东南亚', top: '66%', left: '52%' },
-  { name: '南亚', top: '51%', left: '46%' },
-  { name: '欧洲', top: '18%', left: '43%', featured: true },
-  { name: '北美', top: '26%', left: '11%', featured: true },
+  { name: '华北', top: '28%', left: '72%', featured: true },
+  { name: '东北', top: '14%', left: '90%' },
+  { name: '华东', top: '42%', left: '90%', featured: true },
+  { name: '欧洲', top: '24%', left: '48%', featured: true },
+  { name: '华中', top: '52%', left: '78%' },
+  { name: '北美', top: '34%', left: '12%', featured: true },
+  { name: '西南', top: '60%', left: '60%', featured: true },
+  { name: '亚太', top: '90%', left: '92%', featured: true },
+  { name: '华南', top: '68%', left: '78%', featured: true },
+  { name: '东南亚', top: '78%', left: '66%' },
+  { name: '南亚', top: '44%', left: '46%' },
 ]
 
 /* ─────────────────────── 点阵世界地图 ─────────────────────── */
@@ -70,17 +68,8 @@ const regionLabels: RegionLabel[] = [
  */
 function DotMatrixMap() {
   return (
-    <div className="relative aspect-[4/3] w-full sm:aspect-[16/10]">
-      {/* 底层：淡地球轮廓，仅用于暗示大陆形状 */}
-      <Image
-        src="/images/screenshots/zone-earth.webp"
-        alt=""
-        role="presentation"
-        fill
-        loading="lazy"
-        className="object-contain opacity-[0.05] dark:opacity-[0.08]"
-      />
-      {/* 中层：圆点矩阵（点阵世界地图的科技质感来源） */}
+    <div className="relative aspect-[12/5] w-full">
+      {/* 点阵世界地图：圆点矩阵背景 */}
       <div
         className="absolute inset-0"
         aria-hidden="true"
@@ -90,28 +79,26 @@ function DotMatrixMap() {
           backgroundSize: '14px 14px',
         }}
       />
-      {/* 上层：大区节点（蓝色脉冲定位点 + 白色圆角地区标签） */}
+      {/* 地区节点：白色地区标签在上，蓝色脉冲点紧贴标签下方 */}
       {regionLabels.map((region) => {
-        const toLeft = parseFloat(region.left) > 62
         return (
           <div
             key={region.name}
             className="absolute -translate-x-1/2 -translate-y-1/2"
             style={{ top: region.top, left: region.left }}
           >
-            <div className="relative flex items-center justify-center">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-60" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-500 ring-2 ring-white dark:ring-slate-900" />
-              </span>
+            <div className="flex flex-col items-center">
               <span
                 className={clsx(
-                  'absolute top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700 sm:px-2.5 sm:py-1 sm:text-xs',
+                  'z-10 whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-[10px] font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700 sm:px-3 sm:py-1 sm:text-xs',
                   region.featured ? 'inline-flex' : 'hidden sm:inline-flex',
-                  toLeft ? 'right-full mr-2' : 'left-full ml-2',
                 )}
               >
                 {region.name}
+              </span>
+              <span className="relative z-0 mt-1 flex h-2.5 w-2.5 sm:h-3 sm:w-3">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-20" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-500 ring-2 ring-white dark:ring-slate-900 sm:h-3 sm:w-3" />
               </span>
             </div>
           </div>
@@ -162,7 +149,7 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
  */
 export default function Zone() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 dark:bg-slate-950 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-slate-50 py-10 dark:bg-slate-950 sm:py-12 lg:py-14">
       <Container>
         {/* ─────── 顶部：标题（左） + CTA（右），构成 F 型视觉起点 ─────── */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -171,10 +158,10 @@ export default function Zone() {
               <GlobeAltIcon className="h-3.5 w-3.5" />
               全球基础设施
             </span>
-            <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl lg:text-5xl">
               遍布全球的云计算基础设施
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-500 dark:text-slate-400 sm:text-lg">
+            <p className="mt-3 text-base leading-relaxed text-slate-500 dark:text-slate-400 sm:text-lg">
               覆盖亚洲、欧洲、北美、大洋洲等核心区域，以稳定、弹性、合规的云底座，
               为企业业务出海与全球化部署提供坚实支撑。
             </p>
@@ -189,7 +176,7 @@ export default function Zone() {
         </div>
 
         {/* ─────── 主体：左中指标矩阵 + 右侧点阵地图 ─────── */}
-        <div className="mt-12 grid items-center gap-12 lg:mt-16 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-6 grid items-center gap-10 lg:mt-8 lg:grid-cols-2 lg:gap-16">
           {/* 左：2 行 3 列大数字指标矩阵 */}
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-10">
             {STATS.map((stat, i) => (
@@ -200,17 +187,17 @@ export default function Zone() {
           {/* 右：点阵世界地图（视觉重心） */}
           <div className="relative">
             <DotMatrixMap />
-            <div className="mt-4">
+            <div className="mt-3">
               <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
                 <span className="h-2 w-2 rounded-full bg-brand-500" />
                 节点覆盖 {regionLabels.length} 个大区
               </div>
-              {/* 移动端大区图例：补全小屏未显示标签的地区 */}
-              <div className="mt-3 flex flex-wrap gap-1.5 sm:hidden">
+              {/* 大区图例：底部统一展示全部地区 */}
+              <div className="mt-3 flex flex-wrap gap-1.5 sm:gap-2">
                 {regionLabels.map((region) => (
                   <span
                     key={region.name}
-                    className="rounded-full bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-500 ring-1 ring-slate-100 dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-700"
+                    className="rounded-full bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-500 ring-1 ring-slate-100 dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-700 sm:px-3 sm:text-xs"
                   >
                     {region.name}
                   </span>

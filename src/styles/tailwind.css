@@ -2,6 +2,14 @@
 
 @plugin '@tailwindcss/forms';
 
+/* 防止元素水平溢出产生横向滚动条（如轮播渐变卡片延伸到视口右缘的场景） */
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
 /* ================================================================
    CloudCVM Design System — Unified Design Tokens
    ================================================================ */
