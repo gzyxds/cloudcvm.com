@@ -349,7 +349,7 @@ const Carousel = memo(function Carousel({
   height,
   theme = 'light',
   textModeButton = false,
-  showOverlay = true,
+  showOverlay = false,
   showProgress = true,
   showPlayButton = false,
   showNavigation = false,

@@ -5,6 +5,18 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, ChevronRight, Server, Zap, ShieldCheck } from 'lucide-react'
 
 // ============================================================
+// 动画常量 — 统一的缓动曲线与入场变体
+// ============================================================
+const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
+/** 上浮淡入变体，delay 控制各区块入场时序 */
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: EASE_OUT_EXPO },
+})
+
+// ============================================================
 // 动画背景 — 动态网格点阵 + 光晕
 // 移动端：减少光晕数量，降低渲染负担
 // ============================================================
@@ -119,18 +131,18 @@ function CloudVisualization() {
 
   return (
     <div
-      className="relative w-full min-h-[340px] sm:min-h-[440px] lg:min-h-[580px]"
+      className="relative w-full min-h-[320px] sm:min-h-[440px] lg:min-h-[380px] xl:min-h-[440px] 2xl:min-h-[520px]"
       aria-hidden="true"
     >
       {/* 固定尺寸 + scale 等比缩放，flex 居中 */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-        <div className="scale-[0.62] sm:scale-75 lg:scale-100 origin-center">
+        <div className="scale-[0.58] sm:scale-75 lg:scale-[0.6] xl:scale-[0.75] 2xl:scale-90 origin-center">
           <div className="relative" style={{ width: '900px', height: '580px' }}>
             {/* 中央 Hub 节点 */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
             >
               <div className="relative flex h-24 w-24 items-center justify-center rounded-md border-2 border-primary-300/50 bg-white/90 shadow-xl shadow-primary-500/8 backdrop-blur-sm">
@@ -146,7 +158,7 @@ function CloudVisualization() {
                 />
                 <div className="relative flex flex-col items-center">
                   <Zap className="h-7 w-7 text-primary-500" strokeWidth={1.5} />
-                  <span className="mt-1 text-[10px] font-bold tracking-wider text-primary-500 font-mono">CLOUD</span>
+                  <span className="mt-1 text-[10px] font-bold tracking-wider text-primary-500 font-mono">CLOUDCVM</span>
                 </div>
               </div>
             </motion.div>
@@ -157,7 +169,7 @@ function CloudVisualization() {
                 key={node.id}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: node.delay, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.5, delay: node.delay, ease: EASE_OUT_EXPO }}
                 className="absolute z-10"
                 style={{ left: node.x, top: node.y, transform: 'translate(-50%, -50%)' }}
               >
@@ -253,19 +265,14 @@ export default function Hero() {
     <section className="relative isolate overflow-hidden bg-white">
       <AnimatedGrid />
 
-      <div className="mx-auto max-w-[1800px] px-5 pt-10 pb-8 sm:px-8 sm:pt-20 sm:pb-14 lg:grid lg:grid-cols-12 lg:gap-6 lg:px-10 lg:pt-28 lg:pb-16 xl:gap-10">
+      <div className="mx-auto max-w-[1800px] px-4 pt-12 pb-10 sm:px-6 sm:pt-24 sm:pb-16 lg:grid lg:grid-cols-12 lg:gap-6 lg:px-8 lg:pt-28 lg:pb-24 xl:gap-10">
         {/* ====== 左列：文字内容 ====== */}
         <div className="lg:col-span-5 lg:flex lg:flex-col lg:justify-center">
           {/* 状态标签 — 移动端隐藏 */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="hidden sm:block"
-          >
+          <motion.div {...fadeUp(0.1)} className="hidden sm:block">
             <a
               href="#"
-              className="group inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white/70 px-4 py-1.5 text-sm font-medium text-slate-500 backdrop-blur-sm transition-all hover:border-primary-200 hover:text-primary-600 hover:bg-primary-50/50"
+              className="group inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white/70 px-4 py-1.5 text-sm font-medium text-slate-500 backdrop-blur-sm transition-all hover:border-primary-200 hover:text-primary-600 hover:bg-primary-50/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2"
             >
               <span className="relative flex h-2 w-2 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -279,38 +286,36 @@ export default function Hero() {
 
           {/* 主标题 */}
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-3xl/[1.1] font-extrabold tracking-tight text-slate-900 sm:mt-8 sm:text-5xl/[1.05] lg:text-6xl/[1.05] xl:text-7xl/[1.05] font-display"
+            {...fadeUp(0.2)}
+            className="mt-6 text-3xl font-extrabold tracking-tight text-slate-900 text-balance sm:mt-8 sm:text-4xl lg:text-5xl xl:text-6xl font-display"
           >
-            新一代
-            <span className="relative ml-2 inline-block text-primary-500 sm:ml-3">
-              云服务器
-              <svg
-                className="absolute -bottom-1 left-0 w-full sm:-bottom-1.5"
-                viewBox="0 0 180 10"
-                fill="none"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M0 5 Q 45 0, 90 5 T 180 5"
-                  stroke="rgba(0,85,255,0.3)"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                />
-              </svg>
+            <span className="block text-[0.85em]">
+              新一代
+              <span className="relative ml-2 inline-block text-primary-500 sm:ml-3">
+                云服务器
+                <svg
+                  className="absolute -bottom-1 left-0 w-full sm:-bottom-1.5"
+                  viewBox="0 0 180 10"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0 5 Q 45 0, 90 5 T 180 5"
+                    stroke="rgba(0,85,255,0.3)"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
             </span>
             <br />
-            <span className="text-slate-700">弹性伸缩，按需付费</span>
+            <span className="block text-slate-700">弹性伸缩，按需付费</span>
           </motion.h1>
 
           {/* 描述 */}
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-4 max-w-[54ch] text-sm/[1.7] text-slate-500 sm:mt-6 sm:text-lg/[1.7]"
+            {...fadeUp(0.35)}
+            className="mt-5 max-w-xl text-sm/[1.7] text-slate-500 sm:mt-7 sm:text-lg/[1.7]"
           >
             安全稳定、可弹性伸缩的云计算服务。支持秒级部署，提供超强算力，
             助力企业数字化转型，让业务快速响应市场变化。
@@ -318,21 +323,19 @@ export default function Hero() {
 
           {/* CTA 按钮组 — 移动端纵向堆叠、全宽 */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3"
+            {...fadeUp(0.5)}
+            className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
           >
             <a
-              href="#"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-3.5 text-sm font-semibold text-white shadow-sm shadow-primary-500/20 transition-all hover:bg-primary-600 hover:shadow-md hover:shadow-primary-500/25 active:scale-[0.98] sm:px-7"
+              href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=103&spg_id=147"
+              className="group inline-flex items-center justify-center gap-2 rounded-md bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-primary-500/20 transition-all hover:bg-primary-600 hover:shadow-md hover:shadow-primary-500/25 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 sm:px-6"
             >
               开始使用
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
             </a>
             <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 active:scale-[0.98] sm:px-7"
+              href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=103&spg_id=147"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2 sm:px-6"
             >
               了解详情
               <ChevronRight className="h-4 w-4" strokeWidth={2} />
@@ -344,15 +347,15 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="mt-8 grid grid-cols-3 gap-3 border-t border-slate-100 pt-6 sm:mt-10 sm:flex sm:flex-wrap sm:items-center sm:gap-6 sm:pt-8"
+            className="mt-9 grid grid-cols-3 gap-3 border-t border-slate-100 pt-6 sm:mt-11 sm:flex sm:flex-wrap sm:items-center sm:gap-7 sm:pt-8"
           >
             {trustMetrics.map((metric, i) => (
               <div key={metric.label} className="flex items-center gap-2 sm:gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 sm:h-10 sm:w-10 sm:rounded-xl">
-                  <metric.icon className="h-3.5 w-3.5 text-primary-500 sm:h-4.5 sm:w-4.5" strokeWidth={1.5} />
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary-50 sm:h-10 sm:w-10 sm:rounded-xl">
+                  <metric.icon className="h-3 w-3 text-primary-500 sm:h-4.5 sm:w-4.5" strokeWidth={1.5} />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-base font-bold tabular-nums tracking-tight text-slate-900 sm:text-lg">
+                  <div className="text-sm font-bold tabular-nums tracking-tight text-slate-900 sm:text-lg">
                     {metric.value}
                   </div>
                   <div className="text-[11px] text-slate-400 sm:text-xs">{metric.label}</div>
@@ -369,7 +372,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 0.4, ease: EASE_OUT_EXPO }}
           className="mt-8 sm:mt-14 lg:col-span-7 lg:mt-0 lg:flex lg:items-center"
         >
           <CloudVisualization />
