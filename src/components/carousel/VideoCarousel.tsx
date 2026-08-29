@@ -680,27 +680,62 @@ const Carousel = memo(function Carousel({
                   target="_blank"
                   rel="noopener noreferrer"
                   className={clsx(
-                    "relative flex flex-col justify-center px-8 py-4 transition-colors duration-200 group hover:bg-[#F0F5FF]",
+                    "relative flex flex-col justify-center px-8 py-4 transition-all duration-200 group",
+                    index === entryCards.length - 1
+                      ? "bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 hover:from-brand-300 hover:via-brand-400 hover:to-brand-500 lg:-mr-8"
+                      : "hover:bg-[#F0F5FF]",
                     index < entryCards.length - 1 && "border-r border-[#eee]"
                   )}
+                  style={
+                    index === entryCards.length - 1
+                      ? { marginRight: 'calc(-1 * max(0px, (100vw - 1800px) / 2) - 32px)' }
+                      : undefined
+                  }
                 >
                   {/* 标签 */}
-                  <span className="inline-flex self-start text-sm text-[#0055ff] font-medium tracking-wider mb-1.5">
+                  <span
+                    className={clsx(
+                      "inline-flex self-start text-sm font-medium tracking-wider mb-1.5",
+                      index === entryCards.length - 1 ? "text-white" : "text-[#0055ff]"
+                    )}
+                  >
                     {card.tag}
                   </span>
 
                   {/* 标题 */}
-                  <p className="text-lg font-medium text-[#0F172A] leading-snug mb-0.5">
+                  <p
+                    className={clsx(
+                      "text-lg font-medium leading-snug mb-0.5",
+                      index === entryCards.length - 1 ? "text-white" : "text-[#0F172A]"
+                    )}
+                  >
                     {card.title}
                   </p>
 
                   {/* 副标题 */}
-                  <p className="text-sm text-[#8C8C8C] leading-relaxed">
+                  <p
+                    className={clsx(
+                      "text-sm leading-relaxed",
+                      index === entryCards.length - 1 ? "text-blue-100" : "text-[#8C8C8C]"
+                    )}
+                  >
                     {card.subtitle}
                   </p>
 
                   {/* 箭头 - 始终可见，hover时增强 */}
-                  <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[#D9D9D9] group-hover:text-[#0055ff] transition-colors duration-200">
+                  <span
+                    className={clsx(
+                      "absolute top-1/2 -translate-y-1/2 transition-colors duration-200",
+                      index === entryCards.length - 1
+                        ? "text-white/80 group-hover:text-white"
+                        : "right-5 text-[#D9D9D9] group-hover:text-[#0055ff]"
+                    )}
+                    style={
+                      index === entryCards.length - 1
+                        ? { right: 'calc(52px + max(0px, (100vw - 1800px) / 2))' }
+                        : undefined
+                    }
+                  >
                     <svg className="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
