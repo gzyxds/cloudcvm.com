@@ -406,15 +406,18 @@ export function Rightleft() {
             {/* 右侧媒体区域（移动端在上，高 240px） */}
             <div
               key={`media-${active.id}`}
-              className="relative h-[240px] w-full shrink-0 animate-fade-in overflow-hidden bg-[#DDE7F7] lg:ml-8 lg:h-auto lg:flex-1"
+              className="relative h-[240px] w-full shrink-0 animate-fade-in overflow-hidden bg-[#EAF1FF] lg:ml-8 lg:h-auto lg:flex-1"
             >
-              <Image
-                src={active.image}
-                alt={active.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
+              {/* 图片缩小居中显示，四周留出浅蓝背景 */}
+              <div className="absolute inset-3 sm:inset-4 lg:inset-6">
+                <Image
+                  src={active.image}
+                  alt={active.imageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
