@@ -281,15 +281,15 @@ function CDNVideoHero() {
   const cdnVideoSlide = [
     {
       id: 1,
+      order: 1,
       title: '全球CDN加速',
       subtitle: '重新定义内容分发',
       description:
         'CDN内容分发网络安全高效，支持全球加速和智能缓存，访问极速，资源就近分发，适用于网站、视频、下载等场景。',
-      backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.webp',
-      textPosition: 'left' as const,
-      buttonText: '开始体验CDN加速',
-      buttonLink: 'https://console.cloudcvm.com/regist.htm',
+      imagePath: '/images/carousel/HeaderCarousel.webp',
+      imageAlt: 'CDN内容分发网络加速服务',
+      primaryButtonText: '开始体验CDN加速',
+      primaryButtonHref: 'https://console.cloudcvm.com/regist.htm',
     },
   ]
 
@@ -299,7 +299,7 @@ function CDNVideoHero() {
       showProgress={false}
       showPlayButton={false}
       showNavigation={false}
-      height={{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[550px]' }}
+      heightClass="h-[400px] md:h-[450px] lg:h-[550px]"
       theme="light"
       textModeButton={true}
       showOverlay={false}

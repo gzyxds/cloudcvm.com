@@ -64,7 +64,7 @@ const defaultSlides: CarouselSlide[] = [
     title: '轻量服务器',
     subtitle: '优刻云计算',
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
-    imagePath: '/images/screenshots/carousel -2.webp',
+    imagePath: '/images/screenshots/carousel-2.webp',
     videoPath: '/images/screenshots/VideoCarousel.mp4',
     imageAlt: '全方位支付解决方案',
     primaryButtonText: '立即领取',
@@ -78,7 +78,7 @@ const defaultSlides: CarouselSlide[] = [
     title: '专属福利活动',
     subtitle: '优刻云计算',
     description: '安全稳定、可弹性伸缩的云计算服务，为企业数字化转型提供强大技术支撑，助力业务快速发展',
-    imagePath: '/images/screenshots/carousel -5.webp',
+    imagePath: '/images/screenshots/carousel-5.webp',
     videoPath: '/images/screenshots/VideoCarousel1.mp4',
     imageAlt: '云计算解决方案',
     primaryButtonText: '立即查看',
@@ -92,7 +92,7 @@ const defaultSlides: CarouselSlide[] = [
     title: '年终钜惠狂欢',
     subtitle: '智聚优刻云 年中钜惠狂欢',
     description: '智聚优刻云 年中钜惠狂欢 优惠商品与活动合集!',
-    imagePath: '/images/screenshots/carousel -7.webp',
+    imagePath: '/images/screenshots/carousel-7.webp',
     videoPath: '/images/screenshots/VideoCarousel2.mp4',
     imageAlt: 'GPU云服务器平台',
     primaryButtonText: '立即查看',
@@ -106,7 +106,7 @@ const defaultSlides: CarouselSlide[] = [
     title: '全球化部署',
     subtitle: '弹性伸缩服务',
     description: '智能化、自动化的计算资源管理策略，具备计划性调度和高容错性，为您提供低成本、高效率的云端解决方案',
-    imagePath: '/images/screenshots/carousel -9.webp',
+    imagePath: '/images/screenshots/carousel-9.webp',
     videoPath: '/images/screenshots/VideoCarousel3.mp4',
     imageAlt: '全球化部署解决方案',
     primaryButtonText: '立即查看',
@@ -151,6 +151,35 @@ const entryCards = [
 ]
 
 /**
+ * height 对象形式支持的高度组合。
+ * Tailwind 只会生成源码中出现过的完整类名，因此这里集中以字面量声明，
+ * 运行时再按 { base, md, lg } 组合查表，避免动态拼接导致样式丢失。
+ */
+const HEIGHT_CLASS_MAP: Record<string, string> = {
+  '400|450|550': 'h-[400px] md:h-[450px] lg:h-[550px]',
+  '400|500|600': 'h-[400px] md:h-[500px] lg:h-[600px]',
+}
+
+/**
+ * 将 height 对象解析为 Tailwind 高度类；无法匹配预设时回退到 heightClass。
+ */
+function resolveHeightClass(
+  height: CarouselProps['height'],
+  heightClass: string
+): string {
+  if (typeof height === 'string' && height) return height
+  if (height && typeof height === 'object') {
+    const key = [
+      (height.base || '').replace(/^h-\[|\]$/g, ''),
+      (height.md || '').replace(/^h-\[|\]$/g, ''),
+      (height.lg || '').replace(/^h-\[|\]$/g, ''),
+    ].join('|')
+    return HEIGHT_CLASS_MAP[key] || heightClass
+  }
+  return heightClass
+}
+
+/**
  * 预定义样式类 - 遵循 Bento Linear Design 风格
  * 去除圆角 (rounded-none)，使用边框 (border)，去除阴影
  */
@@ -170,59 +199,81 @@ const styles = {
 /**
  * 轮播图片组件 - 使用memo优化性能
  */
-const CarouselImage = memo(({ slide, isActive, index, active }: {
+const CarouselImage = memo(({ slide, isActive, showOverlay = true, forceImageMode = false }: {
   slide: CarouselSlide
   isActive: boolean
-  index: number
-  active: number
-}) => (
-  <div
-    className={`${styles.imageContainer} ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-  >
-    {slide.videoPath && slide.imagePath ? (
-      <>
-        {/* PC端：视频 */}
+  showOverlay?: boolean
+  forceImageMode?: boolean
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // 只播放当前可见项，避免多个视频同时解码占用 GPU/带宽
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (isActive) {
+      video.play().catch(() => {})
+    } else {
+      video.pause()
+    }
+  }, [isActive])
+
+  const videoProps = {
+    autoPlay: isActive,
+    loop: true,
+    muted: true,
+    playsInline: true,
+    preload: (isActive ? 'auto' : 'metadata') as 'auto' | 'metadata',
+    poster: slide.imagePath,
+  }
+
+  return (
+    <div
+      className={`${styles.imageContainer} ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+    >
+      {slide.videoPath && slide.imagePath && !forceImageMode ? (
+        <>
+          {/* PC端：视频 */}
+          <video
+            ref={videoRef}
+            src={slide.videoPath}
+            {...videoProps}
+            className="hidden lg:block absolute inset-0 object-cover w-full h-full"
+          />
+          {/* 移动端：图片 */}
+          <Image
+            src={slide.imagePath}
+            alt={slide.imageAlt}
+            fill
+            className={`${styles.image} lg:hidden`}
+            priority={isActive}
+            loading={isActive ? 'eager' : 'lazy'}
+          />
+        </>
+      ) : slide.videoPath && !forceImageMode ? (
         <video
+          ref={videoRef}
           src={slide.videoPath}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="hidden lg:block absolute inset-0 object-cover w-full h-full"
+          {...videoProps}
+          className="absolute inset-0 object-cover w-full h-full"
         />
-        {/* 移动端：图片 */}
+      ) : slide.imagePath ? (
         <Image
           src={slide.imagePath}
           alt={slide.imageAlt}
           fill
-          className={`${styles.image} lg:hidden`}
+          className={styles.image}
           priority={isActive}
           loading={isActive ? 'eager' : 'lazy'}
         />
-      </>
-    ) : slide.videoPath ? (
-      <video
-        src={slide.videoPath}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 object-cover w-full h-full"
-      />
-    ) : slide.imagePath ? (
-      <Image
-        src={slide.imagePath}
-        alt={slide.imageAlt}
-        fill
-        className={styles.image}
-        priority={isActive}
-        loading={isActive ? 'eager' : 'lazy'}
-      />
-    ) : null}
-    {/* 添加一个轻微的遮罩，确保文字可读性 */}
-    <div className="absolute inset-0 bg-white/30 dark:bg-black/30" />
-  </div>
-))
+      ) : null}
+      {/* 添加一个轻微的遮罩，确保文字可读性；可通过 showOverlay 关闭 */}
+      {showOverlay && (
+        <div className="absolute inset-0 bg-white/30 dark:bg-black/30" />
+      )}
+    </div>
+  )
+})
 
 CarouselImage.displayName = 'CarouselImage'
 
@@ -230,13 +281,14 @@ CarouselImage.displayName = 'CarouselImage'
  * 标题按钮组件 - 使用memo优化性能
  * 遵循 Bento 风格：直角，边框，无阴影
  */
-const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, interval, onTitleClick }: {
+const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, interval, showProgress, onTitleClick }: {
   slideItem: CarouselSlide
   index: number
   active: number
   progressKey: number
   isPlaying: boolean
   interval: number
+  showProgress: boolean
   onTitleClick: (index: number) => void
 }) => {
   const isActive = active === index
@@ -245,6 +297,7 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
       onClick={() => onTitleClick(index)}
       className={`${styles.titleButton} ${isActive ? styles.titleButtonActive : ''} font-sans`}
       aria-label={`切换到 ${slideItem.title}`}
+      aria-current={isActive ? 'true' : undefined}
       style={{
         fontVariant: 'tabular-nums',
         fontFeatureSettings: '"tnum"'
@@ -259,15 +312,12 @@ const TitleButton = memo(({ slideItem, index, active, progressKey, isPlaying, in
       </div>
 
       {/* 竖向进度条指示器 - 覆盖在父容器边框上 */}
-      {isActive && (
+      {isActive && showProgress && (
         <div className="absolute right-0 top-0 bottom-0 w-px overflow-hidden">
           <div
             key={progressKey}
             className="absolute top-0 left-0 w-full bg-primary-500"
-            style={{
-              height: isPlaying ? '100%' : '100%',
-              animation: isPlaying ? `verticalProgressBar ${interval}ms linear` : 'none'
-            }}
+            style={{ height: '100%', animation: isPlaying ? `verticalProgressBar ${interval}ms linear` : 'none' }}
           />
         </div>
       )}
@@ -295,18 +345,38 @@ const Carousel = memo(function Carousel({
   interval = 8000,
   heightClass = 'h-[400px] sm:h-[500px] lg:h-[600px]',
   slides: propSlides,
-  className
+  className,
+  height,
+  theme = 'light',
+  textModeButton = false,
+  showOverlay = true,
+  showProgress = true,
+  showPlayButton = false,
+  showNavigation = false,
+  customSlides,
+  forceImageMode = false,
 }: CarouselProps) {
-  const slides = useMemo(() => (propSlides || defaultSlides).sort((a, b) => a.order - b.order), [propSlides])
+  // 统一数据源：customSlides 兼容旧调用方，按 order 排序（缺失时按原顺序）
+  const slides = useMemo(
+    () => (customSlides || propSlides || defaultSlides).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+    [customSlides, propSlides]
+  )
+  // 高度解析：height 对象/字符串优先于 heightClass
+  const resolvedHeightClass = useMemo(
+    () => resolveHeightClass(height, heightClass),
+    [height, heightClass]
+  )
   const [active, setActive] = useState(0)
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
   const resumePlayTimerRef = useRef<NodeJS.Timeout | null>(null) // 用于恢复播放的定时器
   const [progressKey, setProgressKey] = useState(0) // 用于重置进度条动画
+  const [intervalTick, setIntervalTick] = useState(0) // 用于重建自动播放定时器，保证与进度条动画同步
+  const prevPlayingRef = useRef(isPlaying)
 
   // 触摸滑动相关状态
-  const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const touchStartRef = useRef<number | null>(null)
+  const touchEndRef = useRef<number | null>(null)
 
   // 最小滑动距离（像素）
   const minSwipeDistance = 50
@@ -327,6 +397,8 @@ const Carousel = memo(function Carousel({
     })
     // 重置进度条动画
     setProgressKey(prev => prev + 1)
+    // 重置自动播放计时，使定时器与进度条动画从同一起点开始
+    setIntervalTick(prev => prev + 1)
   }, [slides.length])
 
   /**
@@ -358,6 +430,15 @@ const Carousel = memo(function Carousel({
     }
   }, [])
 
+  // 播放状态从暂停恢复时，同步重置进度条动画与自动播放计时
+  useEffect(() => {
+    if (isPlaying && !prevPlayingRef.current) {
+      setProgressKey(prev => prev + 1)
+      setIntervalTick(prev => prev + 1)
+    }
+    prevPlayingRef.current = isPlaying
+  }, [isPlaying])
+
   // 合并的定时器管理
   useEffect(() => {
     if (!autoPlay || !isPlaying || slides.length <= 1) {
@@ -375,7 +456,7 @@ const Carousel = memo(function Carousel({
         timerRef.current = null
       }
     }
-  }, [autoPlay, isPlaying, slides.length, interval, navigate])
+  }, [autoPlay, isPlaying, slides.length, interval, navigate, intervalTick])
 
   // 悬停控制 - 优化
   const handleMouseEnter = useCallback(() => setIsPlaying(false), [])
@@ -386,8 +467,8 @@ const Carousel = memo(function Carousel({
    * @param {React.TouchEvent} e - 触摸事件对象。
    */
   const onTouchStart = useCallback((e: React.TouchEvent) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
+    touchEndRef.current = null
+    touchStartRef.current = e.targetTouches[0].clientX
   }, [])
 
   /**
@@ -395,30 +476,42 @@ const Carousel = memo(function Carousel({
    * @param {React.TouchEvent} e - 触摸事件对象。
    */
   const onTouchMove = useCallback((e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
+    touchEndRef.current = e.targetTouches[0].clientX
   }, [])
 
   /**
    * 触摸结束事件处理，判断滑动距离并执行导航。
    */
   const onTouchEnd = useCallback(() => {
-    if (!touchStart || !touchEnd) return
+    const touchStart = touchStartRef.current
+    const touchEnd = touchEndRef.current
+    if (touchStart === null || touchEnd === null) return
 
     const distance = touchStart - touchEnd
     if (Math.abs(distance) > minSwipeDistance) {
       navigate(distance > 0 ? 'next' : 'prev')
     }
 
-    setTouchStart(null)
-    setTouchEnd(null)
-  }, [touchStart, touchEnd, navigate, minSwipeDistance])
+    touchStartRef.current = null
+    touchEndRef.current = null
+  }, [navigate, minSwipeDistance])
 
   const currentSlide = slides[active]
+  const isDark = theme === 'dark'
+  const primaryBtnClass = textModeButton
+    ? 'inline-flex items-center gap-2 text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors'
+    : styles.primaryButton
+  const secondaryBtnClass = textModeButton
+    ? 'inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors'
+    : styles.secondaryButton
 
   return (
     <div className="relative">
       <section
-        className={clsx(styles.section, heightClass, className)}
+        role="region"
+        aria-roledescription="轮播"
+        aria-label="活动轮播"
+        className={clsx(styles.section, resolvedHeightClass, className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onTouchStart={onTouchStart}
@@ -432,14 +525,19 @@ const Carousel = memo(function Carousel({
               key={slide.id}
               slide={slide}
               isActive={index === active}
-              index={index}
-              active={active}
+              showOverlay={showOverlay}
+              forceImageMode={forceImageMode}
             />
           ))}
         </div>
 
         {/* 轮播内容叠加层 - 响应式优化 */}
-        <div className={styles.content}>
+        <div
+          className={styles.content}
+          role="group"
+          aria-label={`第 ${active + 1} 张，共 ${slides.length} 张`}
+          aria-live="off"
+        >
           <Container className="w-full flex flex-col lg:flex-row px-0 sm:px-2 lg:px-4">
             {/* 左侧标题列表 - 移动端隐藏，PC端显示 */}
             <div className="hidden lg:block w-auto flex-shrink-0">
@@ -459,6 +557,7 @@ const Carousel = memo(function Carousel({
                     progressKey={progressKey}
                     isPlaying={isPlaying}
                     interval={interval}
+                    showProgress={showProgress}
                     onTitleClick={handleTitleClick}
                   />
                 ))}
@@ -475,11 +574,17 @@ const Carousel = memo(function Carousel({
                 </div>
               )}
 
-              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-slate-900 dark:text-white leading-[1.05] tracking-tight">
+              <h1
+                className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-slate-900 dark:text-white leading-[1.05] tracking-tight"
+                style={isDark ? { color: '#ffffff' } : undefined}
+              >
                 {currentSlide.title}
               </h1>
 
-              <p className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+              <p
+                className="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl"
+                style={isDark ? { color: 'rgba(255,255,255,0.85)' } : undefined}
+              >
                 {currentSlide.description}
               </p>
 
@@ -489,7 +594,7 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.primaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={clsx(styles.primaryButton, "flex-1 sm:flex-none max-w-[50%] sm:max-w-none")}
+                  className={clsx(primaryBtnClass, "flex-1 sm:flex-none max-w-[50%] sm:max-w-none")}
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
@@ -501,7 +606,7 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.secondaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={clsx(styles.secondaryButton, "flex-1 sm:flex-none max-w-[50%] sm:max-w-none")}
+                  className={clsx(secondaryBtnClass, "flex-1 sm:flex-none max-w-[50%] sm:max-w-none")}
                 >
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -509,9 +614,55 @@ const Carousel = memo(function Carousel({
                   {currentSlide.secondaryButtonText || '立即购买'}
                 </a>
               </div>
+
+              {/* 播放/暂停按钮（可选，默认不显示） */}
+              {showPlayButton && (
+                <button
+                  type="button"
+                  onClick={() => setIsPlaying(prev => !prev)}
+                  aria-label={isPlaying ? '暂停自动播放' : '开始自动播放'}
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 p-2 text-slate-700 transition-colors hover:bg-white hover:text-primary-500"
+                >
+                  {isPlaying ? (
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
+                    </svg>
+                  ) : (
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </button>
+              )}
             </div>
           </Container>
         </div>
+
+        {/* 左右切换按钮（可选，默认不显示） */}
+        {showNavigation && slides.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={() => navigate('prev')}
+              aria-label="上一张"
+              className="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-slate-300 bg-white/80 p-2 text-slate-700 transition-colors hover:bg-white hover:text-primary-500 lg:block"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('next')}
+              aria-label="下一张"
+              className="absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-slate-300 bg-white/80 p-2 text-slate-700 transition-colors hover:bg-white hover:text-primary-500 lg:block"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </>
+        )}
 
         {/* 移动端底部指示器 - 已移除，因为卡片布局遮挡了指示器 */}
       </section>
