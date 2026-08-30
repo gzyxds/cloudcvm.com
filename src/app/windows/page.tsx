@@ -289,21 +289,6 @@ const rightLeftFeatures = [
  * 展示 ECS 云计算服务的主要图片内容
  */
 function ECSVideoHero() {
-  const ecsVideoSlide = [
-    {
-      id: 1,
-      title: '全新金牌CPU',
-      subtitle: '重新定义云端计算',
-      description:
-        '云电脑企业版安全高效，支持快速部署和统一管理，访问灵活，资源弹性调整，适用于办公、教育、协作等场景。',
-      backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.webp',
-      textPosition: 'left' as const,
-      buttonText: '开始体验云电脑',
-      buttonLink: 'https://console.cloudcvm.com/regist.htm',
-    },
-  ]
-
   return (
     <VideoCarousel
       autoPlay={false}
@@ -311,10 +296,6 @@ function ECSVideoHero() {
       showPlayButton={false}
       showNavigation={false}
       height={{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[550px]' }}
-      theme="light"
-      textModeButton={true}
-      showOverlay={false}
-      customSlides={ecsVideoSlide}
       className=""
     />
   )

@@ -300,9 +300,6 @@ function CDNVideoHero() {
       showPlayButton={false}
       showNavigation={false}
       heightClass="h-[400px] md:h-[450px] lg:h-[550px]"
-      theme="light"
-      textModeButton={true}
-      showOverlay={false}
       customSlides={cdnVideoSlide}
       className=""
     />

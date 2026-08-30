@@ -361,11 +361,10 @@ function SSLVideoHero() {
       subtitle: '重新定义网站安全',
       description:
         '体验专业的SSL证书服务，让HTTPS加密为您的网站提供强大的安全保障。从证书申请到自动部署，SSL证书让网站安全变得前所未有的简单。',
-      backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.webp',
-      textPosition: 'left' as const,
-      buttonText: '立即申请SSL证书',
-      buttonLink: 'https://console.cloudcvm.com/regist.htm',
+      imagePath: '/images/carousel/HeaderCarousel.webp',
+      imageAlt: 'SSL证书服务',
+      primaryButtonText: '立即申请SSL证书',
+      primaryButtonHref: 'https://console.cloudcvm.com/regist.htm',
     },
   ]
 
@@ -376,9 +375,6 @@ function SSLVideoHero() {
       showPlayButton={false}
       showNavigation={false}
       height={{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[550px]' }}
-      theme="light"
-      textModeButton={true}
-      showOverlay={false}
       customSlides={sslVideoSlide}
       className=""
     />

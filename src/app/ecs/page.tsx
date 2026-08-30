@@ -327,21 +327,6 @@ const rightLeftFeatures = [
 
 // ECS 图片轮播 Hero 组件 - 展示 ECS 云计算服务的主要图片内容
 function ECSVideoHero() {
- const ecsVideoSlide = [
- {
- id: 1,
- title: 'ECS 云计算服务',
- subtitle: '重新定义云端计算',
- description:
- '体验下一代云计算服务，让弹性计算为您的业务发展提供强大支持。从基础设施管理到应用部署，ECS 让云端计算变得前所未有的简单。',
- backgroundType: 'image' as const,
- backgroundImage: '/images/carousel/HeaderCarousel.webp',
- textPosition: 'left' as const,
- buttonText: '开始体验 ECS',
- buttonLink: 'https://console.cloudcvm.com/regist.htm',
- },
- ]
-
  return (
  <VideoCarousel
  autoPlay={false}
@@ -349,10 +334,6 @@ function ECSVideoHero() {
  showPlayButton={false}
  showNavigation={false}
  height={{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[550px]' }}
- theme="light"
- textModeButton={true}
- showOverlay={false}
- customSlides={ecsVideoSlide}
  className=""
  />
  )

@@ -278,21 +278,6 @@ const rightLeftFeatures = [
 
 // 独立物理服务器图片轮播 Hero 组件 - 展示独立物理服务器的主要图片内容
 function BareMetalVideoHero() {
-  const bareMetalVideoSlide = [
-    {
-      id: 1,
-      title: '独立物理服务器',
-      subtitle: '重新定义专属计算',
-      description:
-        '体验下一代独立物理服务器，让专属硬件资源为您的业务发展提供强大支持。从裸金属部署到应用优化，独立服务器让高性能计算变得前所未有的简单。',
-      backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.webp',
-      textPosition: 'left' as const,
-      buttonText: '开始体验独立服务器',
-      buttonLink: 'https://console.cloudcvm.com/regist.htm',
-    },
-  ]
-
   return (
     <VideoCarousel
       autoPlay={false}
@@ -300,10 +285,6 @@ function BareMetalVideoHero() {
       showPlayButton={false}
       showNavigation={false}
       height={{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[550px]' }}
-      theme="light"
-      textModeButton={true}
-      showOverlay={false}
-      customSlides={bareMetalVideoSlide}
       className=""
     />
   )

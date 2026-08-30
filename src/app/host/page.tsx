@@ -671,21 +671,6 @@ function BottomFeaturesSection() {
 
 // 图片轮播 Hero 组件
 function ECSVideoHero() {
-  const ecsVideoSlide = [
-    {
-      id: 1,
-      title: '优刻云虚拟主机',
-      subtitle: '为您的网站保驾护航',
-      description:
-        '专业的虚拟主机服务，为您提供安全、稳定、高性能的网站托管方案。从个人博客到企业网站，我们都能满足您的需求。',
-      backgroundType: 'image' as const,
-      backgroundImage: '/images/carousel/HeaderCarousel.webp',
-      textPosition: 'left' as const,
-      buttonText: '开始体验',
-      buttonLink: 'https://console.cloudcvm.com/regist.htm',
-    },
-  ]
-
   return (
     <VideoCarousel
       autoPlay={false}
@@ -693,10 +678,6 @@ function ECSVideoHero() {
       showPlayButton={false}
       showNavigation={false}
       height={{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[550px]' }}
-      theme="light"
-      textModeButton={true}
-      showOverlay={false}
-      customSlides={ecsVideoSlide}
       className=""
     />
   )

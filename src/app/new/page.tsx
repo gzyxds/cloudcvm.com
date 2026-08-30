@@ -43,9 +43,6 @@ function VideoHero() {
       showProgress={false} // 不显示进度条
       showNavigation={false} // 不显示导航按钮
       heightClass="h-[400px] md:h-[450px] lg:h-[600px]"
-      theme="light"
-      textModeButton={false} // 使用实心按钮样式（蓝底 / 白底描边）
-      showOverlay={false} // 不显示遮罩
       className=""
     />
   )
