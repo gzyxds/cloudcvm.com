@@ -34,44 +34,18 @@ export const metadata: Metadata = {
 
 /**
  * 视频轮播 Hero 组件
- * 使用 VideoCarousel 组件，配置为单个视频展示
+ * 使用 VideoCarousel 组件内置的默认轮播数据展示
  */
 function VideoHero() {
-  // 自定义单个视频的轮播数据
-  const singleVideoSlide = [
-    {
-      id: 1,
-      title: '优刻云新用户',
-      subtitle: '新用户特惠专场',
-      description:
-        '优刻云新用户特惠专场，新用户专享优惠，云服务器、云主机、云计算等云服务产品，欢迎来到优刻云官网。',
-      backgroundType: 'video' as const,
-      backgroundVideo: {
-        src: 'https://lf6-cdn-tos.huoshanstatic.com/obj/inspirecloud-file/baas/tt502102w0zm96mm30/48fc7d2b04a1c55b_1736500004142.mp4',
-        autoPlay: true,
-        muted: true,
-        loop: true,
-        controls: false,
-        preload: 'auto' as const,
-      },
-      backgroundImage: '/images/carousel/HeaderCarousel1.webp',
-      textPosition: 'left' as const,
-      buttonText: '立即参与',
-      buttonLink: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
-    },
-  ]
-
   return (
     <VideoCarousel
-      autoPlay={false} // 单个视频不需要自动切换
-      showProgress={false} // 单个视频不需要进度条
-      showPlayButton={true} // 显示播放控制按钮
+      autoPlay={false} // 默认数据共 4 张，需要自动轮播时改为 true
+      showProgress={false} // 不显示进度条
       showNavigation={false} // 不显示导航按钮
-      height={{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[600px]' }}
+      heightClass="h-[400px] md:h-[450px] lg:h-[600px]"
       theme="light"
-      textModeButton={true}
+      textModeButton={false} // 使用实心按钮样式（蓝底 / 白底描边）
       showOverlay={false} // 不显示遮罩
-      customSlides={singleVideoSlide}
       className=""
     />
   )

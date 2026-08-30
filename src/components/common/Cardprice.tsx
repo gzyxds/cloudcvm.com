@@ -563,28 +563,28 @@ export default function Cardprice() {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-            <div className="relative z-10 flex h-full min-h-[350px] flex-col justify-between p-8">
+            <div className="relative z-10 flex h-full min-h-[170px] flex-col justify-center p-5 sm:min-h-[350px] sm:justify-between sm:p-8">
               <div>
-                <span className="mb-5 inline-block rounded-md bg-[#0055ff] px-4 py-1.5 text-sm font-semibold text-white shadow-sm">
+                <span className="mb-3 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-5 sm:px-4 sm:py-1.5 sm:text-sm">
                   {largeCard.tag}
                 </span>
-                <h3 className="mb-3 text-2xl font-bold leading-tight text-[#0F172A]">
+                <h3 className="mb-2 hidden text-lg font-bold leading-tight text-[#0F172A] sm:mb-3 sm:block sm:text-2xl">
                   {largeCard.title}
                 </h3>
                 {largeCard.desc.map((line, i) => (
-                  <p key={i} className="text-base leading-relaxed text-[#64748B]">
+                  <p key={i} className="text-sm leading-relaxed text-[#64748B] sm:text-base">
                     {line}
                   </p>
                 ))}
               </div>
-              <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
+              <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1 sm:mt-6">
                 立即抢购 <span aria-hidden="true">→</span>
               </span>
             </div>
           </a>
 
-          {/* ---- 右侧 2×2 小卡片 ---- */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2">
+          {/* ---- 右侧 2×2 小卡片（移动端 2 列网格） ---- */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-2">
             {smallCards.map((card) => (
               <a key={card.tag} href={card.href} className={cardBase}>
                 <div
@@ -593,21 +593,21 @@ export default function Cardprice() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                <div className="relative z-10 flex h-full min-h-[168px] flex-col justify-between p-6">
+                <div className="relative z-10 flex h-full min-h-[110px] flex-col justify-center p-4 sm:min-h-[168px] sm:justify-between sm:p-6">
                   <div>
-                    <span className="mb-4 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm">
+                    <span className="mb-2 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-4">
                       {card.tag}
                     </span>
-                    <h3 className="mb-2 text-lg font-bold leading-snug text-[#0F172A]">
+                    <h3 className="mb-1 hidden text-sm font-bold leading-snug text-[#0F172A] sm:mb-2 sm:block sm:text-lg">
                       {card.title}
                     </h3>
                     {card.desc.map((line, i) => (
-                      <p key={i} className="text-sm leading-relaxed text-[#64748B]">
+                      <p key={i} className="text-xs leading-relaxed text-[#64748B] sm:text-sm">
                         {line}
                       </p>
                     ))}
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="mt-2 hidden items-center gap-1 text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1 sm:mt-4 sm:inline-flex">
                     立即查看 <span aria-hidden="true">→</span>
                   </span>
                 </div>
