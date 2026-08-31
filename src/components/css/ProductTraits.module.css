@@ -1,0 +1,762 @@
+/* ================================================================
+   ProductTraits 组件样式模块
+   依据参考设计（腾讯云门户 AI 全栈能力区块 tpm-portal-introduce）
+   原始 CSS 100% 复刻：
+   - 区块：白底 + 顶部/底部背景装饰图（2560px，≥2560 遮罩）
+   - 头部：tag + 大标题（渐变关键词 .linear）
+   - 桌面端：Swiper 轮播，每屏 4.3 张，卡片双结构（card 隐藏 /
+     card--active 显示），hover 按钮滑入 + 流光边框 + 阴影
+   - 移动端：2 列 → 1 列网格，media 上图下文字，按钮常显
+   断点对齐参考页：769 / 1400 / 1600 / 1920 / 2560
+   ================================================================ */
+
+/* ── 区块骨架（tpm-portal-section / tpm-portal-introduce__section）── */
+.section {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+}
+
+/* 顶部/底部背景装饰（参考页 2560px 背景图） */
+.section::before,
+.section::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    max-width: 2560px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: 2560px auto;
+    background-repeat: no-repeat;
+}
+
+.section::before {
+    background-image: url(/images/reference/tpm-portal-introduce-bg-top-new.png);
+    background-position: top;
+}
+
+.section::after {
+    background-image: url(/images/reference/tpm-portal-introduce-bg-bottom-new.png);
+    background-position: bottom;
+}
+
+/* 超宽屏（≥2560）两侧渐隐 */
+@media (min-width: 2560px) {
+    .section::before,
+    .section::after {
+        -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+        mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+}
+
+/* 区块内容层（tpm-portal-section__inner） */
+.inner {
+    position: relative;
+    z-index: 1;
+    padding: 60px 0 0;
+}
+
+/* ── 区块头部（tpm-portal-section__hd）── */
+.hd {
+    margin-bottom: 32px;
+    padding: 0 48px;
+}
+
+.hdContent {
+    max-width: 1680px;
+    margin: 0 auto;
+}
+
+.tag {
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #a7a7a7;
+}
+
+.hdMain {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    flex: 1;
+    min-width: 0;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 500;
+    color: #000;
+}
+
+/* 标题渐变关键词（参考页 .linear） */
+.linear {
+    background: linear-gradient(90deg, #00a2ed 1.42%, #166cf7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* 描述文案（保留现有文案，参考页头部无此元素） */
+.desc {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #6f7988;
+}
+
+/* ── 区块主体（tpm-portal-section__bd）── */
+.bd {
+    padding: 0 48px;
+}
+
+/* ── 轮播（tpm-portal-introduce）── */
+.cardsWrapper {
+    position: relative;
+}
+
+.swiper {
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.track {
+    display: flex;
+    align-items: stretch;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 左右淡出遮罩（--has-next / --has-prev 组合） */
+.cardsWrapper.hasNext .swiper {
+    -webkit-mask: linear-gradient(90deg, #000 0, #000 95%, transparent);
+    mask: linear-gradient(90deg, #000 0, #000 95%, transparent);
+}
+
+.cardsWrapper.hasPrev .swiper {
+    -webkit-mask: linear-gradient(90deg, transparent 0, #000 5%, #000);
+    mask: linear-gradient(90deg, transparent 0, #000 5%, #000);
+}
+
+.cardsWrapper.hasNext.hasPrev .swiper {
+    -webkit-mask: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent);
+    mask: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent);
+}
+
+.slide {
+    box-sizing: border-box;
+    display: flex;
+    width: 23.25581%;
+    flex: none;
+}
+
+.cardWrap {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+}
+
+/* ── 卡片（tpm-portal-introduce__card：桌面端隐藏）── */
+.card {
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ── 激活卡（tpm-portal-introduce__card--active：桌面端显示）── */
+.cardActive {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    padding: 1px;
+    display: flex;
+}
+
+/* 流光边框（hover 旋转） */
+.cardActive::after {
+    opacity: 0;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 0;
+    padding-top: 200%;
+    background: conic-gradient(
+        transparent 0deg,
+        transparent 240deg,
+        rgba(27, 110, 247, 0.4) 300deg,
+        rgba(127, 178, 255, 0.4) 330deg,
+        rgba(27, 110, 247, 0.4) 1turn
+    );
+}
+
+.cardWrap:hover .cardActive::after {
+    opacity: 1;
+    animation: introduce-card-flow 5s linear infinite;
+}
+
+@keyframes introduce-card-flow {
+    to {
+        transform: translate(-50%, -50%) rotate(1turn);
+    }
+}
+
+/* 激活卡内容层（tpm-portal-introduce__card-inner） */
+.cardInner {
+    position: relative;
+    z-index: 1;
+    min-width: 100%;
+    min-height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.cardWrap:hover .cardInner {
+    background: #fff;
+}
+
+/* ── 卡片内容（tpm-portal-introduce__card-header）── */
+.cardHeader {
+    margin-bottom: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardIcon {
+    width: 16px;
+    height: 16px;
+    color: #1b6ef7;
+}
+
+.cardTitle {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #000;
+}
+
+/* 标题行（移动端：标题 + 指标值并排） */
+.cardTitleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* 标题行右侧指标值（仅移动端显示） */
+.titleMetric {
+    display: none;
+    margin-left: 8px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #1b6ef7;
+    white-space: nowrap;
+}
+
+.cardDesc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #6f7988;
+    line-height: 22px;
+    margin-top: 8px;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-height: 44px;
+}
+
+/* ── 卡片媒体区（tpm-portal-introduce__card-media）──
+   参考页为产品截图/动画；本项目以指标数据做视觉占位，结构完全一致 */
+.cardMedia {
+    margin-top: 16px;
+    position: relative;
+    width: 100%;
+}
+
+.mediaVisual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f2f7ff, #e5eeff);
+}
+
+.mediaValue {
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 700;
+    color: #1b6ef7;
+}
+
+.mediaLabel {
+    font-size: 14px;
+    line-height: 22px;
+    color: #6f7988;
+    white-space: nowrap;
+}
+
+/* ── 卡片操作按钮（hover 展开）── */
+.actions {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transform: translateY(8px);
+    transition:
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cardWrap:hover .actions {
+    opacity: 1;
+    max-height: 36px;
+    margin-top: 12px;
+    transform: translateY(0);
+}
+
+.btnPrimary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 8px);
+    height: 36px;
+    padding: 0 16px;
+    background: linear-gradient(90deg, #0059eb, #2677ff);
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 主按钮鼠标光晕（跟随指针，参考页 --introduce-btn-mx/my） */
+.btnPrimary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    background: radial-gradient(
+        200px circle at var(--introduce-btn-mx, 50%) var(--introduce-btn-my, 50%),
+        hsla(0, 0%, 100%, 0.28),
+        hsla(0, 0%, 100%, 0) 65%
+    );
+    transition: opacity 0.25s ease;
+}
+
+.btnPrimary:hover::before {
+    opacity: 1;
+}
+
+.btnPrimaryText {
+    position: relative;
+    z-index: 2;
+}
+
+.btnWeak {
+    margin-left: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 8px);
+    height: 36px;
+    padding: 0 15px;
+    background: transparent;
+    border: 1px solid #e5e6eb;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ── 轮播导航（tpm-portal-introduce__navigation）── */
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    top: -72px;
+    right: 0;
+    z-index: 10;
+}
+
+.navPrev,
+.navNext {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #dfe4ec;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+    cursor: pointer;
+    box-sizing: border-box;
+    user-select: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 箭头三态图标（normal / active / disabled） */
+.navPrev::before,
+.navPrev::after,
+.navNext::before,
+.navNext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.navPrev::before,
+.navNext::before {
+    background-image: url(/images/reference/tpm-portal-introduce-arrow-left-normal.svg);
+}
+
+.navPrev::after,
+.navNext::after {
+    opacity: 0;
+}
+
+.navPrev::after {
+    background-image: url(/images/reference/tpm-portal-introduce-arrow-left-active.svg);
+}
+
+.navNext::before {
+    background-image: url(/images/reference/tpm-portal-introduce-arrow-right-normal.svg);
+}
+
+.navNext::after {
+    background-image: url(/images/reference/tpm-portal-introduce-arrow-right-active.svg);
+}
+
+.navPrev:disabled::before {
+    background-image: url(/images/reference/tpm-portal-introduce-arrow-left-disabled.svg);
+}
+
+.navPrev:disabled::after,
+.navNext:disabled::after {
+    opacity: 0;
+}
+
+.navNext:disabled::before {
+    background-image: url(/images/reference/tpm-portal-introduce-arrow-right-disabled.svg);
+}
+
+.navPrev:disabled,
+.navNext:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── 移动端网格（≤768：2 列 → 1 列）── */
+.mobileGrid {
+    display: none;
+}
+
+.mobileCard {
+    box-sizing: border-box;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── 桌面端细节（≥769）── */
+@media (min-width: 769px) {
+    /* 卡片 hover 阴影与背景 */
+    .cardWrap:hover .cardActive {
+        box-shadow: 0 4px 32px 0 rgba(16, 52, 113, 0.1);
+    }
+
+    /* 媒体区 16:9（参考页 has-media） */
+    .cardMedia {
+        height: 0;
+        padding-top: 59.13978%;
+        overflow: hidden;
+    }
+
+    /* 导航 hover 态 */
+    .navPrev:hover,
+    .navNext:hover {
+        background: #f4f8ff;
+        border-color: #d5e4fc;
+    }
+
+    .navPrev:hover::before,
+    .navNext:hover::before {
+        opacity: 0;
+    }
+
+    .navPrev:hover::after,
+    .navNext:hover::after {
+        opacity: 1;
+    }
+
+    /* 弱按钮 hover */
+    .btnWeak:hover {
+        border-color: #0052d9;
+        color: #0052d9;
+    }
+}
+
+/* ── ≥1400px 细节增强 ── */
+@media (min-width: 1400px) {
+    .hd,
+    .bd {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .cardInner {
+        padding: 19px;
+    }
+
+    .cardTitle {
+        margin-top: 12px;
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .cardDesc {
+        margin-top: 12px;
+    }
+
+    .cardMedia {
+        margin-top: 20px;
+    }
+}
+
+/* ── ≥1600px 细节增强 ── */
+@media (min-width: 1600px) {
+    .hdMain {
+        margin-top: 12px;
+    }
+
+    .title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    .cardInner {
+        padding: 23px;
+    }
+
+    .cardIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cardTitle {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .cardMedia {
+        margin-top: 24px;
+    }
+}
+
+/* ── ≥1920px 头部/主体加宽 ── */
+@media (min-width: 1920px) {
+    .hd,
+    .bd {
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+}
+
+/* ── ≤768px 移动端 ── */
+@media (max-width: 768px) {
+    .section {
+        background: #fdfdfd;
+        background-image: none !important;
+    }
+
+    .section::before,
+    .section::after {
+        display: none;
+    }
+
+    .inner {
+        padding: 32px 0;
+    }
+
+    .hd {
+        margin-bottom: 24px;
+        padding: 0 24px;
+    }
+
+    .hdContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tag {
+        display: none;
+    }
+
+    .hdMain {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .title {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .desc {
+        margin-top: 8px;
+        font-size: 13px;
+        line-height: 20px;
+        text-align: center;
+    }
+
+    .bd {
+        padding: 0 24px;
+    }
+
+    /* 轮播切换为网格 */
+    .swiper,
+    .navigation {
+        display: none;
+    }
+
+    .mobileGrid {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .mobileCard {
+        visibility: visible;
+        opacity: 1;
+        flex: none;
+        width: calc(50% - 6px);
+        padding: 10px;
+        border: 1px solid #dfe4ec;
+    }
+
+    /* 简化：移动端去掉大媒体区 */
+    .mobileCard .cardMedia {
+        display: none;
+    }
+
+    .mobileCard .cardHeader {
+        margin-top: 0;
+    }
+
+    .mobileCard .cardIcon {
+        display: none;
+    }
+
+    .mobileCard .cardTitle {
+        margin-top: 0;
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 500;
+    }
+
+    /* 指标值显示在标题行右侧 */
+    .mobileCard .titleMetric {
+        display: inline;
+    }
+
+    .mobileCard .cardDesc {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 6px;
+        max-height: 36px;
+    }
+
+    .mobileCard .actions {
+        margin-top: 10px;
+        max-height: none;
+        opacity: 1;
+        transform: none;
+        gap: 8px;
+    }
+
+    .mobileCard .btnPrimary,
+    .mobileCard .btnWeak {
+        width: calc(50% - 4px);
+        height: 32px;
+        padding: 0 6px;
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .mobileCard .btnWeak {
+        margin-left: 0;
+    }
+}
+
+/* ── ≤600px：保持 2 列，仅缩边距 ── */
+@media (max-width: 600px) {
+    .inner {
+        padding: 24px 0;
+    }
+
+    .hd,
+    .bd {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
