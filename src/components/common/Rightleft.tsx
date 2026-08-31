@@ -261,6 +261,7 @@ export function Rightleft() {
                 key={item.id}
                 type="button"
                 onClick={() => setActiveId(item.id)}
+                onMouseEnter={() => setActiveId(item.id)}
                 aria-pressed={isActive}
                 className={clsx(
                   'group relative flex shrink-0 items-center gap-2 px-4 py-[13px] text-sm leading-[22px] font-medium transition-colors duration-300',
