@@ -390,7 +390,7 @@ const ServerCard = memo(function ServerCard({ plan }: ServerCardProps) {
         infoBox={
           <div className="flex items-center gap-2">
             <ShieldCheckIcon className="h-4 w-4 text-[#1664ff]" />
-            <span>100G 防护 • NAT转发 x3</span>
+            <span>BGP智能路由+精品网混合接入</span>
           </div>
         }
         buttons={
