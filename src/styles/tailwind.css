@@ -45,9 +45,17 @@
   --text-9xl--line-height: 1;
 
   /* ---- Font Families ---- */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-display:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono:
+    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+    'DejaVu Sans Mono', monospace;
 
   /* ---- Max Width ---- */
   --container-2xl: 80rem;
@@ -60,7 +68,7 @@
   --color-brand-200: #bcc9fb;
   --color-brand-300: #9db6fa;
   --color-brand-400: #6b8df7;
-  --color-brand-500: #3860F4;
+  --color-brand-500: #3860f4;
   --color-brand-600: #3052d8;
   --color-brand-700: #2845b8;
   --color-brand-800: #1f3798;
@@ -97,17 +105,17 @@
      title: #1D273F, body: #50627F, remark: #C3CAD9
      border: #DDE3F2, bg: #F6F8FD / #ECF0FF
      ================================================================ */
-  --color-neutral-50: #F6F8FD;
-  --color-neutral-100: #ECF0FF;
-  --color-neutral-200: #DDE3F2;
-  --color-neutral-300: #C3CAD9;
-  --color-neutral-400: #C3CAD9;
-  --color-neutral-500: #50627F;
-  --color-neutral-600: #50627F;
-  --color-neutral-700: #2A315F;
-  --color-neutral-800: #1D273F;
-  --color-neutral-900: #1D273F;
-  --color-neutral-950: #0F172A;
+  --color-neutral-50: #f6f8fd;
+  --color-neutral-100: #ecf0ff;
+  --color-neutral-200: #dde3f2;
+  --color-neutral-300: #c3cad9;
+  --color-neutral-400: #c3cad9;
+  --color-neutral-500: #50627f;
+  --color-neutral-600: #50627f;
+  --color-neutral-700: #2a315f;
+  --color-neutral-800: #1d273f;
+  --color-neutral-900: #1d273f;
+  --color-neutral-950: #0f172a;
 
   /* ================================================================
      Radius Hierarchy
@@ -124,12 +132,20 @@
      Shadows — Layered depth system
      ================================================================ */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-sm:
+    0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   --shadow-glow: 0 0 40px -12px rgba(56, 96, 244, 0.15);
   --shadow-glow-sm: 0 0 20px -6px rgba(56, 96, 244, 0.12);
+  --shadow-panel:
+    0 24px 60px -20px rgba(15, 23, 42, 0.2),
+    0 12px 28px -12px rgba(15, 23, 42, 0.08);
+  --shadow-brand-md: 0 8px 24px -12px rgba(56, 96, 244, 0.5);
 
   /* ================================================================
      Animations
@@ -141,39 +157,75 @@
   --animate-fade-in: fade-in 0.4s ease-out;
 
   @keyframes scan {
-    0% { top: 0; opacity: 0; }
-    50% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
+    0% {
+      top: 0;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   @keyframes pulse-soft {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 
   @keyframes slide-up {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes progressBar {
-    0% { width: 0%; }
-    100% { width: 100%; }
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
   }
 
   @keyframes verticalProgressBar {
-    0% { height: 0%; }
-    100% { height: 100%; }
+    0% {
+      height: 0%;
+    }
+    100% {
+      height: 100%;
+    }
   }
 }
 
@@ -191,14 +243,13 @@
 }
 
 @layer components {
-
   /* ---- Glass Surface — subtle glassmorphism card ---- */
   .glass-surface {
-    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-sm;
+    @apply border border-white/20 bg-white/80 shadow-sm backdrop-blur-xl;
   }
 
   .glass-surface-strong {
-    @apply bg-white/90 backdrop-blur-2xl border border-white/30 shadow-md;
+    @apply border border-white/30 bg-white/90 shadow-md backdrop-blur-2xl;
   }
 
   /* ---- Glow Border — blue glow on hover ---- */
@@ -207,18 +258,19 @@
     box-shadow: 0 0 0 0 rgba(0, 85, 255, 0);
   }
   .glow-border:hover {
-    box-shadow: 0 0 0 1px rgba(0, 85, 255, 0.15),
-                0 0 40px -12px rgba(0, 85, 255, 0.12);
+    box-shadow:
+      0 0 0 1px rgba(0, 85, 255, 0.15),
+      0 0 40px -12px rgba(0, 85, 255, 0.12);
     border-color: rgba(0, 85, 255, 0.25);
   }
 
   /* ---- Standard section gradient backgrounds ---- */
   .section-gradient-light {
-    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #FFFFFF 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
   }
 
   .section-gradient-brand {
-    background: linear-gradient(180deg, #FFFFFF 0%, #eff6ff 40%, #FFFFFF 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 40%, #ffffff 100%);
   }
 
   /* ---- Base card ---- */
@@ -238,18 +290,20 @@
   }
   .card-interactive:hover {
     border-color: var(--color-brand-200);
-    box-shadow: 0 0 0 1px rgba(0, 85, 255, 0.08),
-                0 10px 25px -5px rgba(0, 0, 0, 0.06);
+    box-shadow:
+      0 0 0 1px rgba(0, 85, 255, 0.08),
+      0 10px 25px -5px rgba(0, 0, 0, 0.06);
   }
   .card-interactive.is-active {
     border-color: var(--color-brand-300);
-    box-shadow: 0 0 0 1px rgba(0, 85, 255, 0.12),
-                0 0 30px -8px rgba(0, 85, 255, 0.12);
+    box-shadow:
+      0 0 0 1px rgba(0, 85, 255, 0.12),
+      0 0 30px -8px rgba(0, 85, 255, 0.12);
   }
 
   /* ---- Bento card (sharp variant) ---- */
   .bento-card {
-    @apply border border-neutral-200 bg-white rounded-md;
+    @apply rounded-md border border-neutral-200 bg-white;
   }
   .dark .bento-card {
     @apply border-neutral-800 bg-neutral-900;
@@ -261,7 +315,7 @@
 
   /* ---- Corner markers (industrial feel) ---- */
   .corner-marker {
-    @apply absolute w-3 h-3 border-neutral-400;
+    @apply absolute h-3 w-3 border-neutral-400;
   }
   .dark .corner-marker {
     @apply border-neutral-600;
@@ -269,20 +323,15 @@
 
   /* ---- Standard button base ---- */
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium
-           transition-all duration-200 focus-visible:outline-none
-           focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
-           disabled:pointer-events-none disabled:opacity-50 rounded-md;
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-primary {
-    @apply bg-brand-500 text-white hover:bg-brand-600
-           shadow-sm hover:shadow-md border border-transparent;
+    @apply border border-transparent bg-brand-500 text-white shadow-sm hover:bg-brand-600 hover:shadow-md;
   }
 
   .btn-secondary {
-    @apply bg-white text-neutral-700 border border-neutral-200
-           hover:bg-neutral-50 hover:border-neutral-300 hover:text-neutral-900;
+    @apply border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900;
   }
 
   .btn-ghost {
@@ -290,7 +339,6 @@
   }
 
   .btn-glass {
-    @apply bg-white/80 backdrop-blur-xl border border-white/30 text-neutral-800
-           hover:bg-white/95 hover:shadow-md;
+    @apply border border-white/30 bg-white/80 text-neutral-800 backdrop-blur-xl hover:bg-white/95 hover:shadow-md;
   }
 }

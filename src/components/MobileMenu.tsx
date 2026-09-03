@@ -2,11 +2,20 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import type { MegaMenuItem, FooterAction, MegaMenuCategory } from '@/components/MegaMenu'
+import type {
+  MegaMenuItem,
+  FooterAction,
+  MegaMenuCategory,
+} from '@/components/MegaMenu'
 import type { MobileMenuSection } from '@/data/navigation'
 import { commonFooterActions } from '@/data/navigation'
+import { badgeStyles, compactPrimaryButton } from '@/components/navStyles'
 
 /* ─────────────────────── 样式常量 ─────────────────────── */
 
@@ -14,14 +23,6 @@ const badgeLabels: Record<string, string> = {
   hot: 'HOT',
   new: 'NEW',
   beta: 'BETA',
-}
-
-/** 徽章配色，与桌面端 MegaMenu 的 badgeStyles 保持一致 */
-const badgeColors: Record<string, string> = {
-  hot: 'bg-red-500 text-white',
-  new: 'bg-brand-500 text-white',
-  beta: 'bg-amber-500 text-white',
-  default: 'bg-slate-100 text-slate-600',
 }
 
 /* ─────────────────────── 辅助函数 ─────────────────────── */
@@ -51,24 +52,26 @@ const MobileMenuItem = React.memo(function MobileMenuItem({
 }: {
   item: MegaMenuItem
 }) {
-  const badgeLabel = item.badgeType ? badgeLabels[item.badgeType] || item.tag : item.tag
+  const badgeLabel = item.badgeType
+    ? badgeLabels[item.badgeType] || item.tag
+    : item.tag
 
   return (
     <Link
       href={item.href}
-      className="flex flex-col rounded-md border border-slate-200/60 px-3 py-2 transition-colors active:border-brand-300/60 active:bg-brand-50/40"
+      className="flex flex-col rounded-lg border border-neutral-200 px-3 py-2.5 transition-colors hover:bg-neutral-50 active:border-brand-300 active:bg-brand-50"
     >
       <div className="mb-1.5 flex items-center">
         {item.icon && (
-          <span className="mr-2 flex size-7 flex-none items-center justify-center rounded bg-slate-50">
-            <item.icon aria-hidden="true" className="size-4 text-brand-500" />
+          <span className="mr-2 flex size-7 flex-none items-center justify-center rounded-md bg-brand-50 text-brand-500">
+            <item.icon aria-hidden="true" className="size-4" />
           </span>
         )}
-        <span className="flex min-w-0 flex-wrap items-center font-medium text-slate-900">
+        <span className="flex min-w-0 flex-wrap items-center font-medium text-neutral-800">
           {item.name}
           {badgeLabel && (
             <span
-              className={`ml-1 inline-flex items-center rounded px-1.5 py-0.5 text-xs leading-none font-bold ${badgeColors[item.badgeType || 'default']}`}
+              className={`ml-1 inline-flex items-center rounded px-1.5 py-0.5 text-xs leading-none font-bold ${badgeStyles[item.badgeType || 'default']}`}
             >
               {badgeLabel}
             </span>
@@ -76,7 +79,7 @@ const MobileMenuItem = React.memo(function MobileMenuItem({
         </span>
       </div>
       {item.description && (
-        <p className="text-xs text-slate-500">{item.description}</p>
+        <p className="text-xs text-neutral-500">{item.description}</p>
       )}
     </Link>
   )
@@ -89,7 +92,7 @@ const MobileMenuFooter = React.memo(function MobileMenuFooter({
   actions: FooterAction[]
 }) {
   return (
-    <div className="mt-3 border-t border-gray-200 pt-3">
+    <div className="mt-4 border-t border-neutral-200 pt-4">
       <div className="grid grid-cols-2 gap-2">
         {actions.map((action) => {
           const Icon = action.icon
@@ -97,7 +100,7 @@ const MobileMenuFooter = React.memo(function MobileMenuFooter({
             <Link
               key={action.name}
               href={action.href}
-              className="flex items-center justify-center gap-x-1.5 bg-brand-500 px-2.5 py-2 text-xs font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
+              className={compactPrimaryButton}
             >
               {Icon && <Icon aria-hidden="true" className="size-3" />}
               {action.name}
@@ -128,18 +131,20 @@ export const MobileMenu = React.memo(function MobileMenu({
 }: MobileMenuProps) {
   return (
     <div className="space-y-1">
-      {sections.map((section) => {
+      {sections.map((section, index) => {
         const showCategoryHeader = section.categories.length > 1
+        /** 底部 CTA 只在最后一个分区渲染，避免同一组按钮重复出现多次 */
+        const isLastSection = index === sections.length - 1
 
         return (
           <Disclosure key={section.label} as="div" defaultOpen={false}>
             {({ open }) => (
               <>
                 <DisclosureButton
-                  className={`group flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium transition-colors ${
+                  className={`group flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-medium transition-colors ${
                     open
-                      ? 'text-brand-500'
-                      : 'text-neutral-700 hover:text-brand-500'
+                      ? 'text-brand-600'
+                      : 'text-neutral-700 hover:text-brand-600'
                   }`}
                 >
                   <span className="flex items-center">
@@ -155,7 +160,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                   <ChevronDownIcon
                     aria-hidden="true"
                     className={`size-5 flex-none transition-transform ${
-                      open ? 'rotate-180 text-brand-500' : 'text-gray-400'
+                      open ? 'rotate-180 text-brand-600' : 'text-neutral-500'
                     }`}
                   />
                 </DisclosureButton>
@@ -166,9 +171,12 @@ export const MobileMenu = React.memo(function MobileMenu({
                     return (
                       <div key={category.id} className="mb-3 last:mb-0">
                         {showCategoryHeader && (
-                          <div className="mb-1.5 flex items-center gap-1 px-1 text-xs font-semibold text-slate-400">
+                          <div className="mb-1.5 flex items-center gap-1 px-1 text-xs font-semibold text-neutral-500">
                             {category.icon && (
-                              <category.icon aria-hidden="true" className="size-3.5" />
+                              <category.icon
+                                aria-hidden="true"
+                                className="size-3.5"
+                              />
                             )}
                             {category.name}
                           </div>
@@ -184,7 +192,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                       </div>
                     )
                   })}
-                  {section.showFooter !== false && (
+                  {isLastSection && section.showFooter !== false && (
                     <MobileMenuFooter actions={commonFooterActions} />
                   )}
                 </DisclosurePanel>
