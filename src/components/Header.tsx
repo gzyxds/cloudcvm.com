@@ -525,7 +525,7 @@ export function Header(): JSX.Element {
       {/* 导航行：鼠标离开整行才进入延迟关闭，跨菜单横向移动不抖动 */}
       <nav
         aria-label="Global"
-        className="mx-auto max-w-full px-5 lg:px-8 2xl:px-[120px]"
+        className="mx-auto max-w-full px-5 lg:px-8"
         onMouseLeave={handleNavRowLeave}
       >
         <div className="flex h-[62px] items-center justify-between">
@@ -592,8 +592,7 @@ export function Header(): JSX.Element {
             </button>
           </div>
           {/* 右侧：桌面端直链菜单和用户操作区 */}
-          {/* 2xl 容器有 px-[120px] gutter，用负右边距抵消，使整组贴到视口右缘 */}
-          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-1 2xl:-mr-[120px]">
+          <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-1">
             {rightMenuConfigs.map((menu) => (
               <div key={menu.id} className={menu.wrapClass || undefined}>
                 {renderTrigger(menu)}
