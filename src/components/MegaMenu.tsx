@@ -375,23 +375,24 @@ export function MegaMenuPanel({
               {/* 白蓝推广卡：整卡可点，浅蓝底 + 细蓝边，不与主内容抢视觉 */}
               {viewAllHref && (
                 <Link href={viewAllHref} onClick={handleNavigate} className={megaPromoCard}>
-                  <span aria-hidden="true" className={megaPromoIcon}>
-                    <Squares2X2Icon className="size-5" />
+                  {/* 第一行：图标与标题并排 */}
+                  <span className="flex items-center gap-2.5">
+                    <span aria-hidden="true" className={megaPromoIcon}>
+                      <Squares2X2Icon className="size-5" />
+                    </span>
+                    <span className={megaPromoTitle}>还有更多选择</span>
                   </span>
-                  <span className="min-w-0">
-                    <span className={`block ${megaPromoTitle}`}>
-                      还有更多选择
-                    </span>
-                    <span className={`block ${megaPromoDesc}`}>
-                      查看完整目录，找到适合业务的产品与服务。
-                    </span>
-                    <span className={megaPromoLink}>
-                      查看全部
-                      <ArrowRightIcon
-                        aria-hidden="true"
-                        className="size-3.5 transition-transform duration-150 group-hover/promo:translate-x-0.5"
-                      />
-                    </span>
+                  {/* 第二行：描述贴左对齐 */}
+                  <span className={`block ${megaPromoDesc}`}>
+                    查看完整目录，找到适合业务的产品与服务。
+                  </span>
+                  {/* 第三行：整行直角按钮 */}
+                  <span className={megaPromoLink}>
+                    查看全部
+                    <ArrowRightIcon
+                      aria-hidden="true"
+                      className="size-3.5 transition-transform duration-150 group-hover/promo:translate-x-0.5"
+                    />
                   </span>
                 </Link>
               )}

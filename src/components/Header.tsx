@@ -688,14 +688,15 @@ export function Header(): JSX.Element {
                     aria-current={
                       item.href === pathname ? 'page' : undefined
                     }
-                    className="group flex items-start gap-3 rounded-md p-2.5 transition-colors hover:bg-neutral-50"
+                    className="group block rounded-md p-2.5 transition-colors hover:bg-neutral-50"
                   >
-                    {item.icon && (
-                      <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-neutral-400 transition-colors group-hover:text-brand-500" />
-                    )}
-                    <div>
+                    {/* 第一行：图标与名称并排 */}
+                    <div className="flex items-center gap-2.5">
+                      {item.icon && (
+                        <item.icon className="h-5 w-5 shrink-0 text-neutral-400 transition-colors group-hover:text-brand-500" />
+                      )}
                       <p
-                        className={`text-sm font-medium transition-colors ${
+                        className={`line-clamp-1 min-w-0 text-sm font-medium transition-colors ${
                           item.href === pathname
                             ? 'text-brand-600'
                             : 'text-neutral-800 group-hover:text-brand-600'
@@ -703,12 +704,13 @@ export function Header(): JSX.Element {
                       >
                         {item.name}
                       </p>
-                      {item.description && (
-                        <p className="mt-0.5 text-xs text-neutral-500">
-                          {item.description}
-                        </p>
-                      )}
                     </div>
+                    {/* 第二行：描述贴左对齐 */}
+                    {item.description && (
+                      <p className="mt-1 text-left text-xs text-neutral-500">
+                        {item.description}
+                      </p>
+                    )}
                   </Link>
                 ))}
               </div>

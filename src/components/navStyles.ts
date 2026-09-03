@@ -81,13 +81,14 @@ export const quickActionLink =
 
 /** 右侧「还有更多选择」白蓝推广卡（白底 + 细蓝边 + 轻投影，hover 才显浅蓝，简洁不抢视觉） */
 export const megaPromoCard =
-  'group/promo flex items-start gap-4 rounded-md border border-brand-100 bg-white p-5 shadow-sm transition-colors duration-150 hover:border-brand-200 hover:bg-brand-50/60'
+  'group/promo block border border-brand-100 bg-white p-5 shadow-sm transition-colors duration-150 hover:border-brand-200 hover:bg-brand-50/60'
 export const megaPromoIcon =
-  'flex size-10 shrink-0 items-center justify-center rounded-md bg-brand-500/10 text-brand-600 transition-colors duration-150 group-hover/promo:bg-brand-500/15 group-hover/promo:text-brand-700'
+  'flex size-10 shrink-0 items-center justify-center bg-brand-500/10 text-brand-600 transition-colors duration-150 group-hover/promo:bg-brand-500/15 group-hover/promo:text-brand-700'
 export const megaPromoTitle = 'text-sm font-medium text-neutral-900'
-export const megaPromoDesc = 'mt-1 text-xs leading-relaxed text-neutral-500'
+export const megaPromoDesc =
+  'mt-2 text-left text-xs leading-relaxed text-neutral-500'
 export const megaPromoLink =
-  'mt-3 inline-flex items-center gap-1 rounded-md bg-brand-500 px-3 py-1.5 text-xs font-medium text-white transition-colors duration-150 group-hover/promo:bg-brand-600'
+  'mt-3 flex w-full items-center justify-center gap-1 bg-brand-500 px-3 py-2 text-xs font-medium text-white transition-colors duration-150 group-hover/promo:bg-brand-600'
 
 /** 主 CTA 按钮（直角设计，无圆角） */
 export const primaryButton =
