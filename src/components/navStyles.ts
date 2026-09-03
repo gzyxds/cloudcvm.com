@@ -31,22 +31,20 @@ export const popoverPanelBase =
   'fixed z-50 origin-top overflow-visible bg-white shadow-panel transition-[opacity,transform] duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0'
 
 /** 三段式面板公共容器 */
-export const megaPanelContainer = 'mx-auto max-w-[1680px] px-8 2xl:px-[120px]'
+export const megaPanelContainer = 'mx-auto max-w-[1720px] px-8 2xl:px-16'
 export const megaPanelScroll =
   'max-h-[calc(100vh-62px-60px)] min-h-[480px] overflow-y-auto'
 export const megaSideRail = 'shrink-0 bg-white'
 export const megaSideLeft = 'w-52 border-r border-neutral-200 py-7 pr-6'
 export const megaSideRight =
   'hidden w-[360px] flex-col gap-6 border-l border-neutral-200 py-7 pl-8 xl:flex 2xl:w-[400px]'
-export const megaMain = 'min-w-0 flex-1 px-8 py-7'
+export const megaMain = 'min-w-0 flex-1 px-7 py-7'
 
 /** 左侧分类按钮 */
 export const categoryButtonBase =
-  'group relative flex w-full items-center px-0 py-2.5 text-left text-sm transition-colors duration-150 outline-none'
+  'flex w-full items-center gap-2.5 border-b border-transparent px-0 py-2.5 text-left text-sm transition-colors duration-150 outline-none hover:border-neutral-100'
 export const categoryButtonIdle = 'text-neutral-700 hover:text-brand-600'
 export const categoryButtonActive = 'font-medium text-brand-600'
-export const categoryUnderline =
-  'pointer-events-none absolute inset-x-0 bottom-0 h-0.5 bg-brand-500 transition-opacity duration-150 group-hover:bg-brand-300'
 
 /** 搜索与快捷标签 */
 export const searchInput =
@@ -61,11 +59,11 @@ export const sectionTitleText = 'text-sm font-medium text-neutral-800'
 
 /** 产品卡片 */
 export const featuredCard =
-  'group/card flex items-start gap-3 rounded-md px-3 py-3 transition-colors hover:bg-neutral-50'
+  'group/card block rounded-md px-3 py-3 transition-colors hover:bg-neutral-50'
 export const featuredCardIcon =
-  'mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center text-brand-500'
+  'flex h-6 w-6 shrink-0 items-center justify-center text-brand-500'
 export const productLink =
-  'group/link flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-neutral-50'
+  'group/link block rounded-md px-3 py-2 transition-colors hover:bg-neutral-50'
 export const productLinkIcon =
   'flex h-5 w-5 shrink-0 items-center justify-center text-brand-500'
 

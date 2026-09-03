@@ -37,14 +37,22 @@ import type {
 } from '@/components/MegaMenu'
 
 /**
+ * 导航分类设计约定
+ * - 每类 2~5 项：避免“分类下只有一个产品”造成左侧与中间区域大面积空白的突兀感；
+ * - 分类语义互斥、命名简洁成对；
+ * - 产品归属与页面实际路由一一对应，不虚构条目。
+ */
+
+/**
  * 云计算产品与服务 - 二级菜单分类数据
  *
- * 参考腾讯云产品菜单结构，按功能领域组织产品
+ * 按“计算形态 / 办公与建站 / 网络与数据”三大使用场景划分，
+ * 对象存储不再被单独撑作“存储与数据库”。
  */
 export const productCategories: MegaMenuCategory[] = [
   {
     id: 'compute',
-    name: '计算',
+    name: '云服务器',
     icon: CpuChipIcon,
     isHot: true,
     items: [
@@ -81,20 +89,6 @@ export const productCategories: MegaMenuCategory[] = [
         description: '独享物理资源，兼具云端弹性与裸机高性能',
         href: '/cbm',
         icon: RectangleGroupIcon,
-      },
-      {
-        id: 'windows',
-        name: '云电脑桌面',
-        description: '便捷安全的远程办公，随时随地云端工作',
-        href: '/windows',
-        icon: ComputerDesktopIcon,
-      },
-      {
-        id: 'host',
-        name: '虚拟主机',
-        description: '简单易用的建站服务，快速搭建企业官网',
-        href: '/host',
-        icon: GlobeAltIcon,
       },
       {
         id: 'server',
@@ -144,8 +138,47 @@ export const productCategories: MegaMenuCategory[] = [
     ],
   },
   {
-    id: 'network',
-    name: '网络与加速',
+    id: 'desktop-web',
+    name: '云电脑与建站',
+    icon: ComputerDesktopIcon,
+    items: [
+      {
+        id: 'windows',
+        name: '云电脑桌面',
+        description: '便捷安全的远程办公，随时随地云端工作',
+        href: '/windows',
+        icon: ComputerDesktopIcon,
+      },
+      {
+        id: 'host',
+        name: '虚拟主机',
+        description: '简单易用的建站服务，快速搭建企业官网',
+        href: '/host',
+        icon: GlobeAltIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'windows',
+        name: '云电脑桌面',
+        description: '便捷安全的远程办公，随时随地云端工作',
+        href: '/windows',
+        icon: ComputerDesktopIcon,
+        index: 1,
+      },
+      {
+        id: 'host',
+        name: '虚拟主机',
+        description: '简单易用的建站服务，快速搭建企业官网',
+        href: '/host',
+        icon: GlobeAltIcon,
+        index: 2,
+      },
+    ],
+  },
+  {
+    id: 'network-data',
+    name: '网络与存储',
     icon: CloudIcon,
     items: [
       {
@@ -163,6 +196,13 @@ export const productCategories: MegaMenuCategory[] = [
         icon: ShieldCheckIcon,
         badgeType: 'new',
         tag: 'NEW',
+      },
+      {
+        id: 'oss',
+        name: '对象存储',
+        description: '安全稳定、弹性易用的海量云存储服务',
+        href: '/oss',
+        icon: CircleStackIcon,
       },
     ],
     featured: [
@@ -184,39 +224,18 @@ export const productCategories: MegaMenuCategory[] = [
       },
     ],
   },
-  {
-    id: 'storage',
-    name: '存储与数据库',
-    icon: CircleStackIcon,
-    items: [
-      {
-        id: 'cdn-storage',
-        name: '对象存储',
-        description: '安全稳定、弹性易用的海量云存储服务',
-        href: '/oss',
-        icon: CircleStackIcon,
-      },
-    ],
-    featured: [
-      {
-        id: 'cdn-storage',
-        name: '对象存储',
-        description: '安全稳定、弹性易用、低成本的海量云存储服务',
-        href: '/oss',
-        icon: CircleStackIcon,
-        index: 1,
-      },
-    ],
-  },
 ]
 
 /**
- * 人工智能与应用 - 二级菜单分类数据（从产品分类中独立）
+ * 人工智能与应用 - 二级菜单分类数据
+ *
+ * 拆为“系统与模型 / 应用与体验”两层：平台类产品与面向个人的
+ * AI 应用分开，避免原先单一分类把所有产品混在一起。
  */
 export const aiAppCategories: MegaMenuCategory[] = [
   {
-    id: 'ai',
-    name: '人工智能',
+    id: 'ai-platform',
+    name: 'AI系统与模型',
     icon: BeakerIcon,
     isHot: true,
     items: [
@@ -230,11 +249,30 @@ export const aiAppCategories: MegaMenuCategory[] = [
         tag: 'HOT',
       },
       {
-        id: 'human',
-        name: '数字分身',
-        description: 'AI虚拟数字人服务，打造专属IP形象',
-        href: '/human',
-        icon: ChartPieIcon,
+        id: 'work',
+        name: '数企知识库',
+        description: '企业级智能知识管理，提升办公效率',
+        href: '/work',
+        icon: FingerPrintIcon,
+      },
+      {
+        id: 'ai-model',
+        name: 'AI大模型',
+        description: '多模型AI大模型网关，一站式API接入',
+        href: '/token',
+        icon: SparklesIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'ai',
+        name: 'AI系统源码',
+        description: '私有部署AI平台，支持个性化定制',
+        href: '/ai',
+        badgeType: 'hot',
+        tag: 'HOT',
+        icon: CursorArrowRaysIcon,
+        index: 1,
       },
       {
         id: 'work',
@@ -242,6 +280,29 @@ export const aiAppCategories: MegaMenuCategory[] = [
         description: '企业级智能知识管理，提升办公效率',
         href: '/work',
         icon: FingerPrintIcon,
+        index: 2,
+      },
+      {
+        id: 'ai-model',
+        name: 'AI大模型',
+        description: '多模型AI大模型网关，一站式API接入',
+        href: '/token',
+        icon: SparklesIcon,
+        index: 3,
+      },
+    ],
+  },
+  {
+    id: 'ai-apps',
+    name: 'AI应用与体验',
+    icon: SparklesIcon,
+    items: [
+      {
+        id: 'human',
+        name: '数字分身',
+        description: 'AI虚拟数字人服务，打造专属IP形象',
+        href: '/human',
+        icon: ChartPieIcon,
       },
       {
         id: 'chat',
@@ -258,11 +319,11 @@ export const aiAppCategories: MegaMenuCategory[] = [
         icon: SquaresPlusIcon,
       },
       {
-        id: 'ai-model',
-        name: 'AI大模型',
-        description: '多模型AI大模型网关，一站式API接入',
-        href: '/token',
-        icon: SparklesIcon,
+        id: 'aiimage',
+        name: '智言AI作图',
+        description: 'AI图片视频创作平台，文生图图生视频智能创作',
+        href: '/aiimage',
+        icon: PhotoIcon,
       },
       {
         id: 'demo',
@@ -274,30 +335,12 @@ export const aiAppCategories: MegaMenuCategory[] = [
     ],
     featured: [
       {
-        id: 'ai',
-        name: 'AI系统源码',
-        description: '私有部署AI平台，支持个性化定制',
-        href: '/ai',
-        badgeType: 'hot',
-        tag: 'HOT',
-        icon: CursorArrowRaysIcon,
-        index: 1,
-      },
-      {
         id: 'human',
         name: '数字分身',
         description: 'AI虚拟数字人服务，打造专属IP形象',
         href: '/human',
         icon: ChartPieIcon,
-        index: 2,
-      },
-      {
-        id: 'work',
-        name: '数企知识库',
-        description: '企业级智能知识管理，提升办公效率',
-        href: '/work',
-        icon: FingerPrintIcon,
-        index: 3,
+        index: 1,
       },
       {
         id: 'aiimage',
@@ -305,21 +348,31 @@ export const aiAppCategories: MegaMenuCategory[] = [
         description: 'AI图片视频创作平台，文生图图生视频智能创作',
         href: '/aiimage',
         icon: PhotoIcon,
-        index: 4,
+        index: 2,
+      },
+      {
+        id: 'demo',
+        name: '体验产品',
+        description: '在线体验AI产品，直观感受智能能力',
+        href: '/demo',
+        icon: PlayCircleIcon,
+        index: 3,
       },
     ],
   },
 ]
 
-
 /**
  * AI解决方案 - 二级菜单分类数据
+ *
+ * 按产出形态分为“图像 / 影音 / 写作办公”，视频类产品集中到同一
+ * 分类，消除原先“AI创作”与“视频处理”的交叉与歧义。
  */
 export const aiSolutionCategories: MegaMenuCategory[] = [
   {
-    id: 'ai-creation',
-    name: 'AI创作',
-    icon: SparklesIcon,
+    id: 'ai-image',
+    name: 'AI图像生成',
+    icon: PhotoIcon,
     isHot: true,
     items: [
       {
@@ -330,13 +383,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         icon: PhotoIcon,
       },
       {
-        id: 'jimeng',
-        name: '即梦AI视频',
-        description: 'AI视频生成系统，文字描述一键生成视频',
-        href: '/jimeng',
-        icon: VideoCameraIcon,
-      },
-      {
         id: 'jmdraw',
         name: '即梦AI绘画',
         description: 'AI绘画生成系统，释放创意无限可能',
@@ -344,11 +390,11 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         icon: SparklesIcon,
       },
       {
-        id: 'manju',
-        name: '漫剧创作',
-        description: '角色模板视频生成，快速创作漫剧内容',
-        href: '/manju',
-        icon: FilmIcon,
+        id: 'model',
+        name: '电商试衣换装',
+        description: 'AI模特换装系统，快速生成商品展示图',
+        href: '/model',
+        icon: UserIcon,
       },
     ],
     featured: [
@@ -361,20 +407,48 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         index: 1,
       },
       {
-        id: 'jimeng',
-        name: '即梦AI视频',
-        description: 'AI视频生成系统，文字描述一键生成视频',
-        href: '/jimeng',
-        icon: VideoCameraIcon,
+        id: 'jmdraw',
+        name: '即梦AI绘画',
+        description: 'AI绘画生成系统，释放创意无限可能',
+        href: '/jmdraw',
+        icon: SparklesIcon,
         index: 2,
       },
     ],
   },
   {
-    id: 'content-production',
-    name: '内容生产',
-    icon: MusicalNoteIcon,
+    id: 'ai-media',
+    name: 'AI影音创作',
+    icon: VideoCameraIcon,
     items: [
+      {
+        id: 'jimeng',
+        name: '即梦AI视频',
+        description: 'AI视频生成系统，文字描述一键生成视频',
+        href: '/jimeng',
+        icon: VideoCameraIcon,
+      },
+      {
+        id: 'sora',
+        name: 'Sora视频生成',
+        description: 'AI视频创作系统，文本描述生成高质量视频',
+        href: '/sora',
+        icon: VideoCameraIcon,
+      },
+      {
+        id: 'manju',
+        name: '漫剧创作',
+        description: '角色模板视频生成，快速创作漫剧内容',
+        href: '/manju',
+        icon: FilmIcon,
+      },
+      {
+        id: 'videoclip',
+        name: '视频混剪助手',
+        description: '智能视频剪辑工具，快速完成视频混剪',
+        href: '/videoclip',
+        icon: ScissorsIcon,
+      },
       {
         id: 'music',
         name: 'AI音乐',
@@ -382,13 +456,39 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         href: '/music',
         icon: MusicalNoteIcon,
       },
+    ],
+    featured: [
       {
-        id: 'ppt',
-        name: 'AI PPT',
-        description: '智能演示文稿制作，一键生成精美幻灯片',
-        href: '/ppt',
-        icon: PresentationChartBarIcon,
+        id: 'jimeng',
+        name: '即梦AI视频',
+        description: 'AI视频生成系统，文字描述一键生成视频',
+        href: '/jimeng',
+        icon: VideoCameraIcon,
+        index: 1,
       },
+      {
+        id: 'sora',
+        name: 'Sora视频生成',
+        description: 'AI视频创作系统，文本描述生成高质量视频',
+        href: '/sora',
+        icon: VideoCameraIcon,
+        index: 2,
+      },
+      {
+        id: 'music',
+        name: 'AI音乐',
+        description: 'AI智能音乐生成，自定义风格旋律创作',
+        href: '/music',
+        icon: MusicalNoteIcon,
+        index: 3,
+      },
+    ],
+  },
+  {
+    id: 'ai-writing',
+    name: 'AI写作办公',
+    icon: DocumentTextIcon,
+    items: [
       {
         id: 'drama',
         name: '短剧小说创作',
@@ -396,37 +496,12 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         href: '/drama',
         icon: PencilSquareIcon,
       },
-    ],
-    featured: [
-      {
-        id: 'music',
-        name: 'AI音乐',
-        description: 'AI智能音乐生成，自定义风格旋律创作',
-        href: '/music',
-        icon: MusicalNoteIcon,
-        index: 1,
-      },
       {
         id: 'ppt',
         name: 'AI PPT',
         description: '智能演示文稿制作，一键生成精美幻灯片',
         href: '/ppt',
         icon: PresentationChartBarIcon,
-        index: 2,
-      },
-    ],
-  },
-  {
-    id: 'marketing',
-    name: '营销工具',
-    icon: UserIcon,
-    items: [
-      {
-        id: 'model',
-        name: '电商试衣换装',
-        description: 'AI模特换装系统，快速生成商品展示图',
-        href: '/model',
-        icon: UserIcon,
       },
       {
         id: 'resume',
@@ -445,43 +520,28 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
     ],
     featured: [
       {
-        id: 'model',
-        name: '电商试衣换装',
-        description: 'AI模特换装系统，快速生成商品展示图',
-        href: '/model',
-        icon: UserIcon,
+        id: 'ppt',
+        name: 'AI PPT',
+        description: '智能演示文稿制作，一键生成精美幻灯片',
+        href: '/ppt',
+        icon: PresentationChartBarIcon,
         index: 1,
       },
-    ],
-  },
-  {
-    id: 'video',
-    name: '视频处理',
-    icon: VideoCameraIcon,
-    items: [
       {
-        id: 'sora',
-        name: 'Sora视频生成',
-        description: 'AI视频创作系统，文本描述生成高质量视频',
-        href: '/sora',
-        icon: VideoCameraIcon,
+        id: 'resume',
+        name: 'AI简历',
+        description: '智能简历生成系统，助力职业发展',
+        href: '/resume',
+        icon: DocumentDuplicateIcon,
+        index: 2,
       },
       {
-        id: 'videoclip',
-        name: '视频混剪助手',
-        description: '智能视频剪辑工具，快速完成视频混剪',
-        href: '/videoclip',
-        icon: ScissorsIcon,
-      },
-    ],
-    featured: [
-      {
-        id: 'sora',
-        name: 'Sora视频生成',
-        description: 'AI视频创作系统',
-        href: '/sora',
-        icon: VideoCameraIcon,
-        index: 1,
+        id: 'xhs',
+        name: '小红书助手',
+        description: '热门内容创作工具，提升社交媒体影响力',
+        href: '/xhs',
+        icon: DocumentTextIcon,
+        index: 3,
       },
     ],
   },
@@ -489,86 +549,22 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
 
 /**
  * 企业解决方案 - 二级菜单分类数据
+ *
+ * 站点方案页面不多，按“目标行业域”两两成组，每组数量一致（2 项），
+ * 左侧导航因此整齐均衡；“视频”不再被错误地塞进“政务与零售”。
  */
 export const enterpriseCategories: MegaMenuCategory[] = [
   {
-    id: 'industry',
-    name: '行业解决方案',
-    icon: GlobeAltIcon,
+    id: 'ecommerce-retail',
+    name: '电商与零售',
+    icon: ChartPieIcon,
     items: [
-      {
-        id: 'mobile',
-        name: '移动解决方案',
-        description: '移动应用云上部署，弹性扩展高可用',
-        href: '/mobile',
-        icon: DevicePhoneMobileIcon,
-      },
-      {
-        id: 'game',
-        name: '游戏解决方案',
-        description: '低延迟高防护游戏云，畅玩无忧',
-        href: '/game',
-        icon: GlobeAltIcon,
-      },
-      {
-        id: 'finance',
-        name: '金融解决方案',
-        description: '安全合规金融云方案，稳定可靠',
-        href: '/finance',
-        icon: BanknotesIcon,
-      },
       {
         id: 'ecommerce',
         name: '电商解决方案',
         description: '全场景电商云方案，智能高效运营',
         href: '/ecommerce',
         icon: ChartPieIcon,
-      },
-      {
-        id: 'cms',
-        name: 'CMS解决方案',
-        description: '内容管理系统上云，高效管理数字内容',
-        href: '/cms',
-        icon: DocumentTextIcon,
-      },
-    ],
-    featured: [
-      {
-        id: 'ecommerce',
-        name: '电商解决方案',
-        description: '全场景电商云方案，智能高效运营',
-        href: '/ecommerce',
-        icon: ChartPieIcon,
-        index: 1,
-      },
-      {
-        id: 'game',
-        name: '游戏解决方案',
-        description: '低延迟高防护游戏云，畅玩无忧',
-        href: '/game',
-        icon: GlobeAltIcon,
-        index: 2,
-      },
-    ],
-  },
-  {
-    id: 'gov-retail',
-    name: '政务与零售',
-    icon: ShieldCheckIcon,
-    items: [
-      {
-        id: 'video',
-        name: '视频解决方案',
-        description: '视频行业专属方案，海量数据高效处理',
-        href: '/video',
-        icon: ShieldCheckIcon,
-      },
-      {
-        id: 'gov',
-        name: '政府解决方案',
-        description: '数字政府场景化方案，安全合规',
-        href: '/gov',
-        icon: ShieldCheckIcon,
       },
       {
         id: 'retail',
@@ -580,12 +576,137 @@ export const enterpriseCategories: MegaMenuCategory[] = [
     ],
     featured: [
       {
+        id: 'ecommerce',
+        name: '电商解决方案',
+        description: '全场景电商云方案，智能高效运营',
+        href: '/ecommerce',
+        icon: ChartPieIcon,
+        index: 1,
+      },
+      {
+        id: 'retail',
+        name: '零售解决方案',
+        description: '零售行业数字化方案，线上线下融合',
+        href: '/retail',
+        icon: SquaresPlusIcon,
+        index: 2,
+      },
+    ],
+  },
+  {
+    id: 'gaming-media',
+    name: '游戏与媒体',
+    icon: GlobeAltIcon,
+    items: [
+      {
+        id: 'game',
+        name: '游戏解决方案',
+        description: '低延迟高防护游戏云，畅玩无忧',
+        href: '/game',
+        icon: GlobeAltIcon,
+      },
+      {
+        id: 'video',
+        name: '视频解决方案',
+        description: '视频行业专属方案，海量数据高效处理',
+        href: '/video',
+        icon: PlayCircleIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'game',
+        name: '游戏解决方案',
+        description: '低延迟高防护游戏云，畅玩无忧',
+        href: '/game',
+        icon: GlobeAltIcon,
+        index: 1,
+      },
+      {
+        id: 'video',
+        name: '视频解决方案',
+        description: '视频行业专属方案，海量数据高效处理',
+        href: '/video',
+        icon: PlayCircleIcon,
+        index: 2,
+      },
+    ],
+  },
+  {
+    id: 'finance-gov',
+    name: '金融与政务',
+    icon: BanknotesIcon,
+    items: [
+      {
+        id: 'finance',
+        name: '金融解决方案',
+        description: '安全合规金融云方案，稳定可靠',
+        href: '/finance',
+        icon: BanknotesIcon,
+      },
+      {
         id: 'gov',
         name: '政府解决方案',
         description: '数字政府场景化方案，安全合规',
         href: '/gov',
         icon: ShieldCheckIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'finance',
+        name: '金融解决方案',
+        description: '安全合规金融云方案，稳定可靠',
+        href: '/finance',
+        icon: BanknotesIcon,
         index: 1,
+      },
+      {
+        id: 'gov',
+        name: '政府解决方案',
+        description: '数字政府场景化方案，安全合规',
+        href: '/gov',
+        icon: ShieldCheckIcon,
+        index: 2,
+      },
+    ],
+  },
+  {
+    id: 'mobile-web',
+    name: '移动与网站',
+    icon: DevicePhoneMobileIcon,
+    items: [
+      {
+        id: 'mobile',
+        name: '移动解决方案',
+        description: '移动应用云上部署，弹性扩展高可用',
+        href: '/mobile',
+        icon: DevicePhoneMobileIcon,
+      },
+      {
+        id: 'cms',
+        name: 'CMS解决方案',
+        description: '内容管理系统上云，高效管理数字内容',
+        href: '/cms',
+        icon: DocumentTextIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'mobile',
+        name: '移动解决方案',
+        description: '移动应用云上部署，弹性扩展高可用',
+        href: '/mobile',
+        icon: DevicePhoneMobileIcon,
+        index: 1,
+      },
+      {
+        id: 'cms',
+        name: 'CMS解决方案',
+        description: '内容管理系统上云，高效管理数字内容',
+        href: '/cms',
+        icon: DocumentTextIcon,
+        index: 2,
       },
     ],
   },
@@ -593,11 +714,13 @@ export const enterpriseCategories: MegaMenuCategory[] = [
 
 /**
  * 关于我们 - 二级菜单分类数据
+ *
+ * 拆成“了解公司 / 服务与合作”两组，避免单分类造成的左侧空白。
  */
 export const companyCategories: MegaMenuCategory[] = [
   {
-    id: 'company-info',
-    name: '公司信息',
+    id: 'company-about',
+    name: '了解公司',
     icon: UserIcon,
     items: [
       {
@@ -607,6 +730,38 @@ export const companyCategories: MegaMenuCategory[] = [
         href: '/about',
         icon: UserIcon,
       },
+      {
+        id: 'contact',
+        name: '联系我们',
+        description: '售前咨询与商务合作联系方式',
+        href: '/contact',
+        icon: PhoneIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'about',
+        name: '关于我们',
+        description: '了解公司历史与文化',
+        href: '/about',
+        icon: UserIcon,
+        index: 1,
+      },
+      {
+        id: 'contact',
+        name: '联系我们',
+        description: '售前咨询与商务合作联系方式',
+        href: '/contact',
+        icon: PhoneIcon,
+        index: 2,
+      },
+    ],
+  },
+  {
+    id: 'company-service',
+    name: '服务与合作',
+    icon: ShieldCheckIcon,
+    items: [
       {
         id: 'support',
         name: '技术支持',
@@ -621,29 +776,22 @@ export const companyCategories: MegaMenuCategory[] = [
         href: '/agent',
         icon: DocumentTextIcon,
       },
-      {
-        id: 'contact',
-        name: '联系我们',
-        description: '售前咨询与商务合作联系方式',
-        href: '/contact',
-        icon: UserIcon,
-      },
     ],
     featured: [
-      {
-        id: 'about',
-        name: '关于我们',
-        description: '了解公司历史与文化',
-        href: '/about',
-        icon: UserIcon,
-        index: 1,
-      },
       {
         id: 'support',
         name: '技术支持',
         description: '获取专业技术帮助',
         href: '/support',
         icon: PhoneIcon,
+        index: 1,
+      },
+      {
+        id: 'agent',
+        name: '推广合作',
+        description: '合作伙伴计划，携手共拓商业新机遇',
+        href: '/agent',
+        icon: DocumentTextIcon,
         index: 2,
       },
     ],
@@ -652,12 +800,15 @@ export const companyCategories: MegaMenuCategory[] = [
 
 /**
  * 文档中心 - 二级菜单分类数据
+ *
+ * 分为面向所有用户的“帮助与更新”与面向开发者的“开发者文档”，
+ * 使用者可按身份快速定位。
  */
 export const docsCategories: MegaMenuCategory[] = [
   {
-    id: 'docs-all',
-    name: '文档资源',
-    icon: DocumentTextIcon,
+    id: 'docs-help',
+    name: '帮助与更新',
+    icon: PlayCircleIcon,
     items: [
       {
         id: 'help',
@@ -666,6 +817,45 @@ export const docsCategories: MegaMenuCategory[] = [
         href: '/help',
         icon: PhoneIcon,
       },
+      {
+        id: 'quickstart',
+        name: '快速入门',
+        description: '5分钟快速部署首个云服务器实例',
+        href: '/quickstart',
+        icon: PlayCircleIcon,
+      },
+      {
+        id: 'changelog',
+        name: '产品动态',
+        description: '最新产品更新公告与新功能发布',
+        href: '/changelog',
+        icon: SparklesIcon,
+      },
+    ],
+    featured: [
+      {
+        id: 'quickstart',
+        name: '快速入门',
+        description: '5分钟快速部署首个云服务器',
+        href: '/quickstart',
+        icon: PlayCircleIcon,
+        index: 1,
+      },
+      {
+        id: 'help',
+        name: '帮助文档',
+        description: '快速入门指南、常见问题与操作教程',
+        href: '/help',
+        icon: PhoneIcon,
+        index: 2,
+      },
+    ],
+  },
+  {
+    id: 'docs-dev',
+    name: '开发者文档',
+    icon: CommandLineIcon,
+    items: [
       {
         id: 'api',
         name: 'API 文档',
@@ -681,20 +871,6 @@ export const docsCategories: MegaMenuCategory[] = [
         icon: CommandLineIcon,
       },
       {
-        id: 'changelog',
-        name: '产品动态',
-        description: '最新产品更新公告与新功能发布',
-        href: '/changelog',
-        icon: SparklesIcon,
-      },
-      {
-        id: 'quickstart',
-        name: '快速入门',
-        description: '5分钟快速部署首个云服务器实例',
-        href: '/quickstart',
-        icon: PlayCircleIcon,
-      },
-      {
         id: 'cli',
         name: 'CLI 工具',
         description: '云命令行工具，高效管理云资源',
@@ -704,19 +880,19 @@ export const docsCategories: MegaMenuCategory[] = [
     ],
     featured: [
       {
-        id: 'quickstart',
-        name: '快速入门',
-        description: '5分钟快速部署首个云服务器',
-        href: '/quickstart',
-        icon: PlayCircleIcon,
-        index: 1,
-      },
-      {
         id: 'api',
         name: 'API 文档',
         description: '完整的API参考与示例',
         href: '/api',
         icon: DocumentTextIcon,
+        index: 1,
+      },
+      {
+        id: 'sdk',
+        name: 'SDK 文档',
+        description: '多语言SDK使用指南与开发集成',
+        href: '/sdk',
+        icon: CommandLineIcon,
         index: 2,
       },
     ],
