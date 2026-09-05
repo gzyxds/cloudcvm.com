@@ -13,20 +13,13 @@
    category → 导航阶段名 / 卡片顶部编号行
    metric   → 导航副标题 / 顶部说明 / 底部“核心指标”
    title/description/highlights → 场景卡正文
-   iconType → 场景卡右侧视觉区图标（原参考为产品截图）
+   视觉区 → public/images/screenshots/Advantage-N.svg 界面截图
+   （文件名编号与卡片顺序一一对应，1:1 映射）
    卡片间距、字号、圆角等布局参数取自参考页 solution.css。
    ================================================================ */
 
 import { useEffect, useRef, useState } from 'react'
-import type { ComponentType, SVGProps } from 'react'
 import clsx from 'clsx'
-import {
-    CpuChipIcon,
-    CurrencyDollarIcon,
-    GlobeAltIcon,
-    LockClosedIcon,
-    ShieldCheckIcon,
-} from '@heroicons/react/24/outline'
 import { Container } from '@/components/Container'
 import styles from './css/Advantage.module.css'
 
@@ -38,7 +31,6 @@ import styles from './css/Advantage.module.css'
  * @property {string[]} highlights - 核心亮点
  * @property {string} category - 优势类别
  * @property {string} metric - 关键指标
- * @property {string} iconType - 图标类型
  */
 interface AdvantageCard {
     title: string
@@ -46,7 +38,6 @@ interface AdvantageCard {
     highlights: string[]
     category: string
     metric: string
-    iconType: string
 }
 
 /**
@@ -60,7 +51,6 @@ const advantages: AdvantageCard[] = [
         highlights: ['SLA达99.975%', '宕机自动迁移', '跨可用区高可用'],
         category: '稳定性保障',
         metric: '99.975%',
-        iconType: 'shield',
     },
     {
         title: '灵活计费',
@@ -69,7 +59,6 @@ const advantages: AdvantageCard[] = [
         highlights: ['多种付费方式', '分钟级创建', '弹性扩容'],
         category: '成本优化',
         metric: '分钟级',
-        iconType: 'currency',
     },
     {
         title: '全球云基础设施',
@@ -78,7 +67,6 @@ const advantages: AdvantageCard[] = [
         highlights: ['29地域', '87可用区', '500万+'],
         category: '全球覆盖',
         metric: '29个地域',
-        iconType: 'globe',
     },
     {
         title: '自研CIPU架构',
@@ -87,7 +75,6 @@ const advantages: AdvantageCard[] = [
         highlights: ['400G带宽', '6000万PPS', '8微秒时延'],
         category: '性能领先',
         metric: '400G',
-        iconType: 'cpu',
     },
     {
         title: '多层防护',
@@ -96,36 +83,26 @@ const advantages: AdvantageCard[] = [
         highlights: ['安全认证', 'DDoS防护', '数据加密'],
         category: '安全防护',
         metric: '多层防护',
-        iconType: 'lock',
     },
 ]
-
-/**
- * 图标类型映射表
- * @type {Record<string, ComponentType<SVGProps<SVGSVGElement>>>}
- */
-const iconMap: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
-    shield: ShieldCheckIcon,
-    currency: CurrencyDollarIcon,
-    globe: GlobeAltIcon,
-    cpu: CpuChipIcon,
-    lock: LockClosedIcon,
-}
-
-/**
- * 根据图标类型获取对应图标组件（未知类型回退到盾牌图标）
- * @param {string} iconType - 图标类型标识
- * @returns {ComponentType<SVGProps<SVGSVGElement>>} 对应图标组件
- */
-function getIconByType(iconType: string): ComponentType<SVGProps<SVGSVGElement>> {
-    return iconMap[iconType] ?? ShieldCheckIcon
-}
 
 /**
  * 视觉区鼠标视差深度（对应参考页 data-solution-depth）
  * @type {number[]}
  */
 const visualDepths = [18, -16, 20, -18, 16]
+
+/**
+ * 视觉区界面截图路径（public/images/screenshots，文件名编号与卡片顺序一致）
+ * @type {string[]}
+ */
+const advantageShots = [
+    '/images/screenshots/Advantage-1.svg',
+    '/images/screenshots/Advantage-2.svg',
+    '/images/screenshots/Advantage-3.svg',
+    '/images/screenshots/Advantage-4.svg',
+    '/images/screenshots/Advantage-5.svg',
+]
 
 /**
  * 产品优势展示组件（solution-journey 复刻版）
@@ -561,7 +538,7 @@ export default function Advantage() {
                     {advantages.map((advantage, index) => {
                         const code = String(index + 1).padStart(2, '0')
                         const isActive = index === activeIndex
-                        const IconComponent = getIconByType(advantage.iconType)
+                        const shot = advantageShots[index]
                         return (
                             <article
                                 key={advantage.title}
@@ -598,17 +575,19 @@ export default function Advantage() {
                                         </ul>
                                     </div>
 
-                                    {/* 视觉区（参考页为产品截图，此处放图标） */}
+                                    {/* 视觉区：产品界面截图（SVG） */}
                                     <div
                                         className={styles.visual}
                                         data-advantage-depth={visualDepths[index]}
                                         aria-hidden="true"
                                     >
-                                        <div className={styles.visualCore}>
-                                            <span className={styles.visualRing}>
-                                                <IconComponent />
-                                            </span>
-                                        </div>
+                                        <img
+                                            src={shot}
+                                            alt=""
+                                            className={styles.shot}
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
                                     </div>
                                 </div>
 
