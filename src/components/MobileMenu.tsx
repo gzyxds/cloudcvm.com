@@ -1,31 +1,34 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+  ArrowLeftIcon,
+  ChevronRightIcon,
+} from '@heroicons/react/20/solid'
+import {
+  ComputerDesktopIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline'
 import type {
   MegaMenuItem,
-  FooterAction,
   MegaMenuCategory,
 } from '@/components/MegaMenu'
 import type { MobileMenuSection } from '@/data/navigation'
-import { commonFooterActions } from '@/data/navigation'
-import { badgeStyles, compactPrimaryButton } from '@/components/navStyles'
+import {
+  badgeStyles,
+  mobilePrimaryButton,
+  mobileSecondaryButton,
+} from '@/components/navStyles'
 
-/* ─────────────────────── 样式常量 ─────────────────────── */
+/* ─────────────────────── 样式与辅助函数 ─────────────────────── */
 
 const badgeLabels: Record<string, string> = {
   hot: 'HOT',
   new: 'NEW',
   beta: 'BETA',
 }
-
-/* ─────────────────────── 辅助函数 ─────────────────────── */
 
 /**
  * 合并分类下的常规项与精选项。
@@ -44,13 +47,25 @@ function mergeFeaturedItems(category: MegaMenuCategory): MegaMenuItem[] {
   return items
 }
 
-/* ─────────────────────── 子组件 ─────────────────────── */
+/** 直链菜单的当前页判断（首页除外，避免 '/' 误伤所有路径） */
+function isLinkCurrent(href: string, pathname: string): boolean {
+  if (href === '/') return pathname === '/'
+  return href === pathname || pathname.startsWith(`${href}/`)
+}
 
-/** 移动端菜单项卡片（整卡可点击） */
-const MobileMenuItem = React.memo(function MobileMenuItem({
+/* ─────────────────────── 产品行（右栏） ─────────────────────── */
+
+/**
+ * 移动端产品入口行。
+ * 对齐桌面端 ProductLink：图标 + 名称 + 角标一行，描述一行省略，
+ * 不加边框和底色，仅保留悬停反馈，保证左右布局下足够简洁。
+ */
+const MobileProductRow = React.memo(function MobileProductRow({
   item,
+  onNavigate,
 }: {
   item: MegaMenuItem
+  onNavigate?: () => void
 }) {
   const badgeLabel = item.badgeType
     ? badgeLabels[item.badgeType] || item.tag
@@ -59,57 +74,37 @@ const MobileMenuItem = React.memo(function MobileMenuItem({
   return (
     <Link
       href={item.href}
-      className="flex flex-col rounded-lg border border-neutral-200 px-3 py-2.5 transition-colors hover:bg-neutral-50 active:border-brand-300 active:bg-brand-50"
+      onClick={onNavigate}
+      className="group flex items-start gap-2 rounded-md px-2 py-2 transition-colors hover:bg-neutral-50 active:bg-brand-50"
     >
-      <div className="mb-1.5 flex items-center gap-1.5">
-        {item.icon && (
+      {item.icon && (
+        <span className="mt-0.5 flex size-5 flex-none items-center justify-center">
           <item.icon
             aria-hidden="true"
             className="size-4 shrink-0 text-brand-500"
           />
-        )}
-        <span className="flex min-w-0 flex-wrap items-center font-medium text-neutral-800">
-          {item.name}
+        </span>
+      )}
+      <span className="min-w-0 flex-1">
+        <span className="flex min-w-0 items-center gap-1.5">
+          <span className="truncate text-sm font-medium text-neutral-800 transition-colors group-hover:text-brand-600">
+            {item.name}
+          </span>
           {badgeLabel && (
             <span
-              className={`ml-1 inline-flex items-center rounded px-1.5 py-0.5 text-xs leading-none font-bold ${badgeStyles[item.badgeType || 'default']}`}
+              className={`flex-none rounded px-1.5 py-0.5 text-[10px] leading-none font-bold ${badgeStyles[item.badgeType || 'default']}`}
             >
               {badgeLabel}
             </span>
           )}
         </span>
-      </div>
-      {item.description && (
-        <p className="text-xs text-neutral-500">{item.description}</p>
-      )}
+        {item.description && (
+          <span className="mt-0.5 block truncate text-xs text-neutral-500">
+            {item.description}
+          </span>
+        )}
+      </span>
     </Link>
-  )
-})
-
-/** 移动端菜单底部 CTA 按钮 */
-const MobileMenuFooter = React.memo(function MobileMenuFooter({
-  actions,
-}: {
-  actions: FooterAction[]
-}) {
-  return (
-    <div className="mt-4 border-t border-neutral-200 pt-4">
-      <div className="grid grid-cols-2 gap-2">
-        {actions.map((action) => {
-          const Icon = action.icon
-          return (
-            <Link
-              key={action.name}
-              href={action.href}
-              className={compactPrimaryButton}
-            >
-              {Icon && <Icon aria-hidden="true" className="size-3" />}
-              {action.name}
-            </Link>
-          )
-        })}
-      </div>
-    </div>
   )
 })
 
@@ -118,96 +113,218 @@ const MobileMenuFooter = React.memo(function MobileMenuFooter({
 export interface MobileMenuProps {
   /** 菜单分区配置（从 navigation.ts 导入） */
   sections: MobileMenuSection[]
+  /** 菜单内任意导航触发后的回调（Header 用它关闭抽屉） */
+  onNavigate?: () => void
 }
 
 /**
  * 移动端侧边栏菜单组件
  *
- * 数据驱动的移动端导航菜单，复用 navigation.ts 中的
- * MegaMenuCategory 数据，保证与桌面端 MegaMenu 同步。
- * 多分类分区保留分类分组标题，与桌面端分类 Tab 的信息结构对齐。
+ * 参考桌面端 MegaMenu 的左右结构重新设计：
+ * - 一级：六个分区（icon + 标题）列表；
+ * - 二级：选中分区后进入“左窄右宽”双栏，左侧为分类导航，
+ *   右侧为当前分类的产品列表，去掉手风琴与卡片网格，保持简洁。
  */
 export const MobileMenu = React.memo(function MobileMenu({
   sections,
+  onNavigate,
 }: MobileMenuProps) {
-  return (
-    <div className="space-y-1">
-      {sections.map((section, index) => {
-        const showCategoryHeader = section.categories.length > 1
-        /** 底部 CTA 只在最后一个分区渲染，避免同一组按钮重复出现多次 */
-        const isLastSection = index === sections.length - 1
+  const pathname = usePathname()
+  /** 当前展开的分区（null = 一级列表） */
+  const [activeSection, setActiveSection] =
+    useState<MobileMenuSection | null>(null)
+  /** 二级左侧当前选中的分类 id */
+  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null)
 
-        return (
-          <Disclosure key={section.label} as="div" defaultOpen={false}>
-            {({ open }) => (
-              <>
-                <DisclosureButton
-                  className={`group flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-medium transition-colors ${
-                    open
-                      ? 'text-brand-600'
-                      : 'text-neutral-700 hover:text-brand-600'
-                  }`}
-                >
-                  <span className="flex items-center gap-1.5">
-                    {section.icon && (
-                      <section.icon
+  const activeCategory = activeSection
+    ? activeSection.categories.find(
+        (category) => category.id === activeCategoryId,
+      ) ?? activeSection.categories[0]
+    : null
+
+  const openSection = (section: MobileMenuSection) => {
+    setActiveSection(section)
+    setActiveCategoryId(section.categories[0]?.id ?? null)
+  }
+
+  const newActive = isLinkCurrent('/new', pathname)
+  const eccloudActive = isLinkCurrent('/eccloud', pathname)
+
+  /* ── 二级：左右双栏 ── */
+  if (activeSection) {
+    return (
+      <div>
+        {/* 顶部返回条 + 当前分区名 */}
+        <div className="flex items-center gap-2 border-b border-neutral-200 pb-2">
+          <button
+            type="button"
+            aria-label="返回上级菜单"
+            onClick={() => setActiveSection(null)}
+            className="flex size-8 flex-none items-center justify-center rounded-md text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-brand-600"
+          >
+            <ArrowLeftIcon aria-hidden="true" className="size-4" />
+          </button>
+          <span className="flex min-w-0 items-center gap-2">
+            {activeSection.icon && (
+              <activeSection.icon
+                aria-hidden="true"
+                className="size-4 shrink-0 text-brand-500"
+              />
+            )}
+            <span className="truncate text-sm font-semibold text-neutral-900">
+              {activeSection.label}
+            </span>
+          </span>
+        </div>
+
+        {/* 左窄右宽：分类栏 + 产品列表 */}
+        <div className="mt-3 flex items-stretch">
+          <aside className="w-32 shrink-0">
+            <div className="space-y-1">
+              {activeSection.categories.map((category) => {
+                const isActive = category.id === activeCategory?.id
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    aria-current={isActive ? 'true' : undefined}
+                    onClick={() => setActiveCategoryId(category.id)}
+                    className={`flex w-full items-center gap-2 rounded-md px-2 py-2 text-left text-[13px] leading-tight font-medium transition-colors ${
+                      isActive
+                        ? 'bg-brand-50 text-brand-600'
+                        : 'text-neutral-600 hover:bg-neutral-50 hover:text-brand-600'
+                    }`}
+                  >
+                    {category.icon && (
+                      <category.icon
                         aria-hidden="true"
-                        className="size-4 shrink-0"
+                        className={`size-4 shrink-0 ${
+                          isActive ? 'text-brand-600' : 'text-neutral-400'
+                        }`}
                       />
                     )}
-                    {section.label}
-                    {section.badge && (
-                      <span
-                        className={`rounded-full px-1.5 py-0.5 text-xs font-bold ${section.badge.className || 'bg-brand-500 text-white'}`}
-                      >
-                        {section.badge.text}
-                      </span>
-                    )}
-                  </span>
-                  <ChevronDownIcon
-                    aria-hidden="true"
-                    className={`size-5 flex-none transition-transform ${
-                      open ? 'rotate-180 text-brand-600' : 'text-neutral-500'
-                    }`}
+                    <span className="min-w-0 break-words">
+                      {category.name}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </aside>
+
+          <main className="ml-3 min-w-0 flex-1 border-l border-neutral-200 pl-3">
+            {activeCategory ? (
+              <div className="space-y-0.5">
+                {mergeFeaturedItems(activeCategory).map((item) => (
+                  <MobileProductRow
+                    key={item.id || item.name}
+                    item={item}
+                    onNavigate={onNavigate}
                   />
-                </DisclosureButton>
-                <DisclosurePanel className="mt-1 pr-1 pl-3">
-                  {section.categories.map((category) => {
-                    const items = mergeFeaturedItems(category)
-                    if (items.length === 0) return null
-                    return (
-                      <div key={category.id} className="mb-3 last:mb-0">
-                        {showCategoryHeader && (
-                          <div className="mb-1.5 flex items-center gap-1 px-1 text-xs font-semibold text-neutral-500">
-                            {category.icon && (
-                              <category.icon
-                                aria-hidden="true"
-                                className="size-4"
-                              />
-                            )}
-                            {category.name}
-                          </div>
-                        )}
-                        <div className="grid grid-cols-2 gap-2">
-                          {items.map((item) => (
-                            <MobileMenuItem
-                              key={item.id || item.name}
-                              item={item}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )
-                  })}
-                  {isLastSection && section.showFooter !== false && (
-                    <MobileMenuFooter actions={commonFooterActions} />
-                  )}
-                </DisclosurePanel>
-              </>
+                ))}
+              </div>
+            ) : (
+              <p className="px-2 py-6 text-center text-xs text-neutral-400">
+                该分区暂无内容
+              </p>
             )}
-          </Disclosure>
-        )
-      })}
+          </main>
+        </div>
+      </div>
+    )
+  }
+
+  /* ── 一级：分区列表 + 常用直链 + 账号操作 ── */
+  return (
+    <div>
+      {/* 六个菜单分区（点击进入二级左右布局） */}
+      <div className="space-y-0.5">
+        {sections.map((section) => (
+          <button
+            key={section.label}
+            type="button"
+            onClick={() => openSection(section)}
+            className="group flex w-full items-center justify-between rounded-md py-2 pr-1 pl-2 text-left transition-colors hover:bg-neutral-50 active:bg-brand-50"
+          >
+            <span className="flex min-w-0 items-center gap-2">
+              {section.icon && (
+                <section.icon
+                  aria-hidden="true"
+                  className="size-4 shrink-0 text-neutral-400 transition-colors group-hover:text-brand-500"
+                />
+              )}
+              <span className="truncate text-sm font-medium text-neutral-800 transition-colors group-hover:text-brand-600">
+                {section.label}
+              </span>
+              {section.badge && (
+                <span
+                  className={`rounded-full px-1.5 py-0.5 text-[10px] leading-none font-bold ${section.badge.className || 'bg-brand-500 text-white'}`}
+                >
+                  {section.badge.text}
+                </span>
+              )}
+            </span>
+            <ChevronRightIcon
+              aria-hidden="true"
+              className="size-4 shrink-0 text-neutral-300 transition-colors group-hover:text-brand-500"
+            />
+          </button>
+        ))}
+      </div>
+
+      {/* 常用直链：与桌面端导航保持一致，不进入双栏 */}
+      <div className="mt-3 space-y-0.5 border-t border-neutral-200 pt-3">
+        <Link
+          href="/new"
+          onClick={onNavigate}
+          className={`flex w-full items-center justify-between rounded-md py-2 pr-1 pl-2 text-sm font-medium transition-colors hover:bg-neutral-50 ${
+            newActive ? 'text-brand-600' : 'text-neutral-700 hover:text-brand-600'
+          }`}
+        >
+          <span>最新活动</span>
+          <span className="rounded-full bg-red-500 px-1.5 py-0.5 text-[10px] leading-none font-bold text-white">
+            HOT
+          </span>
+        </Link>
+        <Link
+          href="/eccloud"
+          onClick={onNavigate}
+          className={`block w-full rounded-md py-2 pr-1 pl-2 text-sm font-medium transition-colors hover:bg-neutral-50 ${
+            eccloudActive
+              ? 'text-brand-600'
+              : 'text-neutral-700 hover:text-brand-600'
+          }`}
+        >
+          电商云
+        </Link>
+        <a
+          href="https://console.cloudcvm.com/cart/goodsList.htm"
+          onClick={onNavigate}
+          className="block w-full rounded-md py-2 pr-1 pl-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-brand-600"
+        >
+          产品订购
+        </a>
+      </div>
+
+      {/* 账号操作区 */}
+      <div className="mt-4 flex gap-3">
+        <a
+          href="https://console.cloudcvm.com/login.htm"
+          onClick={onNavigate}
+          className={mobileSecondaryButton}
+        >
+          <UserIcon aria-hidden="true" className="size-4" />
+          登录/注册
+        </a>
+        <a
+          href="https://console.cloudcvm.com/login.htm"
+          onClick={onNavigate}
+          className={mobilePrimaryButton}
+        >
+          <ComputerDesktopIcon aria-hidden="true" className="size-4" />
+          控制台
+        </a>
+      </div>
     </div>
   )
 })

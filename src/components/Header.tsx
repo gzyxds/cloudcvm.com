@@ -14,7 +14,6 @@ import {
   Bars3Icon,
   XMarkIcon,
   UserPlusIcon,
-  ComputerDesktopIcon,
   UserIcon,
   BeakerIcon,
   SparklesIcon,
@@ -38,8 +37,6 @@ import {
   navLinkBase,
   navDividerBase,
   primaryButton,
-  mobileSecondaryButton,
-  mobilePrimaryButton,
 } from '@/components/navStyles'
 import {
   productCategories,
@@ -742,68 +739,12 @@ export function Header(): JSX.Element {
             </button>
           </div>
 
-          {/* 移动端菜单内容区域 */}
+          {/* 移动端菜单内容区域：新版 MobileMenu 统一渲染分区、直链与账号操作 */}
           <div className="mt-4 flow-root">
-            <div className="-my-2 divide-y divide-neutral-200">
-              <div className="space-y-1 py-4">
-                {/* 移动端最新活动链接 - 带HOT标签 */}
-                <Link
-                  href="/new"
-                  aria-current={newLinkActive ? 'page' : undefined}
-                  className={`relative block rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-brand-600 ${
-                    newLinkActive ? 'text-brand-600' : 'text-neutral-700'
-                  }`}
-                >
-                  最新活动
-                  <span className="absolute top-2 right-3 rounded-full bg-red-500 px-1.5 py-0.5 text-[10px] leading-none font-bold text-white">
-                    HOT
-                  </span>
-                </Link>
-
-                {/* 移动端产品分类菜单（数据驱动，与桌面端 MegaMenu 数据同步） */}
-                <MobileMenu sections={mobileMenuSections} />
-
-                {/* 移动端电商云链接（与桌面端一致，无角标） */}
-                <Link
-                  href="/eccloud"
-                  aria-current={eccloudLinkActive ? 'page' : undefined}
-                  className={`relative block rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-brand-600 ${
-                    eccloudLinkActive ? 'text-brand-600' : 'text-neutral-700'
-                  }`}
-                >
-                  电商云
-                </Link>
-
-                {/* 移动端产品订购链接（对齐桌面端右侧导航） */}
-                <a
-                  href="https://console.cloudcvm.com/cart/goodsList.htm"
-                  className="relative block rounded-lg px-3 py-2 text-base font-medium text-neutral-700 transition-colors hover:text-brand-600"
-                >
-                  产品订购
-                </a>
-
-                {/* 移动端用户操作区：登录注册按钮组 */}
-                <div className="mt-4 flex gap-3">
-                  {/* 登录注册按钮 - 次要样式 */}
-                  <a
-                    href="https://console.cloudcvm.com/login.htm"
-                    className={mobileSecondaryButton}
-                  >
-                    <UserIcon className="h-5 w-5" />
-                    登录/注册
-                  </a>
-
-                  {/* 控制台按钮 - 主要CTA样式 */}
-                  <a
-                    href="https://console.cloudcvm.com/login.htm"
-                    className={mobilePrimaryButton}
-                  >
-                    <ComputerDesktopIcon className="h-5 w-5" />
-                    控制台
-                  </a>
-                </div>
-              </div>
-            </div>
+            <MobileMenu
+              sections={mobileMenuSections}
+              onNavigate={() => setMobileMenuOpen(false)}
+            />
           </div>
         </DialogPanel>
       </Dialog>
