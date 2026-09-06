@@ -941,6 +941,8 @@ export const enterpriseQuickTags: QuickTag[] = [
 
 export interface MobileMenuSection {
   label: string
+  /** 移动端一级手风琴标题前置的小图标（可省略） */
+  icon?: MegaMenuCategory['icon']
   categories: MegaMenuCategory[]
   showFooter?: boolean
   /** 分区标题角标（与桌面端触发按钮角标对齐，如 AI系统） */
@@ -956,28 +958,34 @@ export interface MobileMenuSection {
 export const mobileMenuSections: MobileMenuSection[] = [
   {
     label: '产品与服务',
+    icon: SquaresPlusIcon,
     categories: productCategories,
     badge: { text: 'NEW' },
   },
   {
     label: '人工智能与应用',
+    icon: BeakerIcon,
     categories: aiAppCategories,
     badge: { text: 'AI系统', className: 'bg-brand-500/10 text-brand-500' },
   },
   {
     label: 'AI解决方案',
+    icon: SparklesIcon,
     categories: aiSolutionCategories,
   },
   {
     label: '企业解决方案',
+    icon: GlobeAltIcon,
     categories: enterpriseCategories,
   },
   {
     label: '关于我们',
+    icon: UserIcon,
     categories: companyCategories,
   },
   {
     label: '文档中心',
+    icon: PlayCircleIcon,
     categories: docsCategories,
   },
 ]

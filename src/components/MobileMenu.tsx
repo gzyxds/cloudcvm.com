@@ -61,11 +61,12 @@ const MobileMenuItem = React.memo(function MobileMenuItem({
       href={item.href}
       className="flex flex-col rounded-lg border border-neutral-200 px-3 py-2.5 transition-colors hover:bg-neutral-50 active:border-brand-300 active:bg-brand-50"
     >
-      <div className="mb-1.5 flex items-center">
+      <div className="mb-1.5 flex items-center gap-1.5">
         {item.icon && (
-          <span className="mr-2 flex size-7 flex-none items-center justify-center rounded-md bg-brand-50 text-brand-500">
-            <item.icon aria-hidden="true" className="size-4" />
-          </span>
+          <item.icon
+            aria-hidden="true"
+            className="size-4 shrink-0 text-brand-500"
+          />
         )}
         <span className="flex min-w-0 flex-wrap items-center font-medium text-neutral-800">
           {item.name}
@@ -147,11 +148,17 @@ export const MobileMenu = React.memo(function MobileMenu({
                       : 'text-neutral-700 hover:text-brand-600'
                   }`}
                 >
-                  <span className="flex items-center">
+                  <span className="flex items-center gap-1.5">
+                    {section.icon && (
+                      <section.icon
+                        aria-hidden="true"
+                        className="size-4 shrink-0"
+                      />
+                    )}
                     {section.label}
                     {section.badge && (
                       <span
-                        className={`ml-2 rounded-full px-1.5 py-0.5 text-xs font-bold ${section.badge.className || 'bg-brand-500 text-white'}`}
+                        className={`rounded-full px-1.5 py-0.5 text-xs font-bold ${section.badge.className || 'bg-brand-500 text-white'}`}
                       >
                         {section.badge.text}
                       </span>
@@ -175,7 +182,7 @@ export const MobileMenu = React.memo(function MobileMenu({
                             {category.icon && (
                               <category.icon
                                 aria-hidden="true"
-                                className="size-3.5"
+                                className="size-4"
                               />
                             )}
                             {category.name}
