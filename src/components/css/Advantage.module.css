@@ -627,6 +627,9 @@
         min-height: 0;
         max-width: none;
         padding: 22px 20px 24px;
+        /* 移动端卡片统一纯白：去掉半透明底、径向渐变与底部投影阴影 */
+        background: var(--paper);
+        box-shadow: none;
         scroll-snap-align: start;
     }
 
@@ -690,6 +693,7 @@
 
     .bottomPill {
         padding: 5px 9px;
+        background: var(--paper);
         font-size: 10px;
     }
 

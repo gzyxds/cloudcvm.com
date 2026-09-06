@@ -44,3 +44,6 @@ next-env.d.ts
 .trae
 .ohmyagent
 .agents/skills/design-taste-frontend
+
+# Edge temporary browser profiles (created by preview tooling)
+.tmp-edge-profile*
