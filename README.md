@@ -1,13 +1,13 @@
 # CloudCVM - 优刻云计算官方网站
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
 ![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?style=flat-square&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?style=flat-square&logo=tailwind-css)
 ![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square)
 ![Code Quality](https://img.shields.io/badge/Code_Quality-A+-brightgreen?style=flat-square)
 
-优刻云计算官方网站是一个现代化的云计算服务平台，专为中小微企业和开发者提供全球化云服务解决方案。基于 Next.js 15 + React 19 + TypeScript 5.8 + Tailwind CSS 4.1 构建，展示了企业级 Web 应用开发的最佳实践。
+优刻云计算官方网站是一个现代化的云计算服务平台，专为中小微企业和开发者提供全球化云服务解决方案。基于 Next.js 16 + React 19 + TypeScript 5.8 + Tailwind CSS 4.1 构建，展示了企业级 Web 应用开发的最佳实践。
 
 ## 🚀 项目概述
 
@@ -16,7 +16,7 @@
 ### 核心特性
 
 - 🎨 **现代化设计**: 基于 Tailwind CSS 4.1 的响应式设计
-- ⚡ **高性能**: Next.js 15 App Router 架构，支持 SSR 和 SSG
+- ⚡ **高性能**: Next.js 16 App Router 架构，支持 SSR 和 SSG
 - 🔒 **用户认证**: 完整的登录和注册系统
 - 📱 **移动优先**: 完全响应式设计，适配所有设备
 - 🎯 **SEO 优化**: 内置 SEO 最佳实践和元数据管理
@@ -27,7 +27,7 @@
 
 ### 核心框架
 
-- **Next.js 15**: React 全栈框架，支持 App Router
+- **Next.js 16**: React 全栈框架，支持 App Router
 - **React 19**: 最新版本的 React 库
 - **TypeScript 5.8**: 静态类型检查
 
@@ -60,7 +60,7 @@ cloudcvm.com/
 │   ├── favicon.ico        # 网站图标
 │   └── images/           # 公共图片资源
 ├── src/                   # 源代码目录
-│   ├── app/              # Next.js 15 App Router 页面
+│   ├── app/              # Next.js 16 App Router 页面
 │   │   ├── (auth)/       # 路由组：认证相关页面
 │   │   │   ├── login/    # 登录页面
 │   │   │   │   └── page.tsx
@@ -114,7 +114,7 @@ cloudcvm.com/
 
 ### 环境要求
 
-- Node.js 18.0 或更高版本
+- Node.js 20.9 或更高版本（Next.js 16 的最低要求）
 - npm 或 yarn 包管理器
 
 ### 安装步骤
@@ -193,7 +193,7 @@ npm run lint
 
 ### ✅ 项目优势
 
-- **现代技术栈**：使用最新的 Next.js 15、React 19、TypeScript 5.8
+- **现代技术栈**：使用最新的 Next.js 16、React 19、TypeScript 5.8
 - **代码规范**：通过 ESLint、Prettier 确保代码质量
 - **组件化设计**：良好的组件分层和复用性
 - **响应式设计**：完整的移动端适配
@@ -204,26 +204,31 @@ npm run lint
 ### 🔍 发现的问题和改进建议
 
 #### 1. 配置文件缺失
+
 - **问题**：缺少 `tailwind.config.js` 配置文件
 - **影响**：无法自定义 Tailwind CSS 主题和扩展
 - **建议**：创建 `tailwind.config.js` 文件，配置自定义主题
 
 #### 2. 代码格式化问题
+
 - **问题**：78 个文件存在格式化问题（已修复）
 - **影响**：代码风格不一致，影响可读性
 - **解决方案**：已运行 `prettier --write .` 修复所有格式化问题
 
 #### 3. 图片优化限制
+
 - **问题**：静态导出模式禁用了 Next.js 图片优化
 - **影响**：图片加载性能可能不佳
 - **建议**：手动优化图片格式（WebP）和尺寸
 
 #### 4. 组件文档缺失
+
 - **问题**：组件缺少详细的 JSDoc 注释
 - **影响**：开发者体验和代码维护性
 - **建议**：为所有组件添加完整的函数级注释
 
 #### 5. 错误处理机制
+
 - **问题**：缺少全局错误边界和错误处理
 - **影响**：用户体验和调试困难
 - **建议**：添加 `error.tsx` 和全局错误处理机制

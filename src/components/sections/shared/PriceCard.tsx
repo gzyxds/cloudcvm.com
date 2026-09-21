@@ -482,7 +482,7 @@ export default function PriceCard() {
    * @param {number} productId - 产品ID
    */
   const handleAddToCart = (productId: number) => {
-    window.location.href = resolveProductLinkUrl(productId)
+    window.location.assign(resolveProductLinkUrl(productId))
   }
 
   /**
@@ -490,7 +490,7 @@ export default function PriceCard() {
    * @param {number} productId - 产品ID
    */
   const handleBuyNow = (productId: number) => {
-    window.location.href = resolveProductLinkUrl(productId)
+    window.location.assign(resolveProductLinkUrl(productId))
   }
   /**
    * 热门活动精选卡片数据

@@ -65,6 +65,76 @@ const navigation = {
   ],
 }
 
+type AccordionSectionProps = {
+  title: string
+  items: { name: string; href: string }[]
+  sectionKey: string
+  isExpanded: boolean
+  onToggle: (sectionKey: string) => void
+}
+
+function AccordionSection({
+  title,
+  items,
+  sectionKey,
+  isExpanded,
+  onToggle,
+}: AccordionSectionProps) {
+  return (
+    <div className="border-b border-gray-200 md:border-none dark:border-gray-700">
+      <button
+        onClick={() => onToggle(sectionKey)}
+        className="flex w-full items-center justify-between py-4 text-left md:pointer-events-none md:cursor-default"
+        aria-expanded={isExpanded}
+      >
+        <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">{title}</h3>
+        <svg
+          className={`h-5 w-5 transform transition-transform duration-200 md:hidden ${
+            isExpanded ? 'rotate-180' : ''
+          }`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out md:block ${
+          isExpanded ? 'max-h-96 pb-4' : 'max-h-0 md:max-h-none md:pb-0'
+        }`}
+      >
+        <ul role="list" className="space-y-4 md:mt-6">
+          {items.map((item) => {
+            const isInternal = item.href.startsWith('/')
+            const linkClassName =
+              'block py-1 text-sm/6 text-gray-600 hover:text-gray-900 md:py-0 dark:text-gray-400 dark:hover:text-white'
+
+            return (
+              <li key={item.name}>
+                {isInternal ? (
+                  <Link href={item.href} className={linkClassName}>
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClassName}
+                  >
+                    {item.name}
+                  </a>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </div>
+  )
+}
+
 export function Footer() {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({})
 
@@ -73,72 +143,6 @@ export function Footer() {
       ...prev,
       [sectionKey]: !prev[sectionKey],
     }))
-  }
-
-  const AccordionSection = ({
-    title,
-    items,
-    sectionKey,
-  }: {
-    title: string
-    items: { name: string; href: string }[]
-    sectionKey: string
-  }) => {
-    const isExpanded = expandedSections[sectionKey]
-
-    return (
-      <div className="border-b border-gray-200 md:border-none dark:border-gray-700">
-        <button
-          onClick={() => toggleSection(sectionKey)}
-          className="flex w-full items-center justify-between py-4 text-left md:pointer-events-none md:cursor-default"
-          aria-expanded={isExpanded}
-        >
-          <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">{title}</h3>
-          <svg
-            className={`h-5 w-5 transform transition-transform duration-200 md:hidden ${
-              isExpanded ? 'rotate-180' : ''
-            }`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out md:block ${
-            isExpanded ? 'max-h-96 pb-4' : 'max-h-0 md:max-h-none md:pb-0'
-          }`}
-        >
-          <ul role="list" className="space-y-4 md:mt-6">
-            {items.map((item) => {
-              const isInternal = item.href.startsWith('/')
-              const linkClassName =
-                'block py-1 text-sm/6 text-gray-600 hover:text-gray-900 md:py-0 dark:text-gray-400 dark:hover:text-white'
-
-              return (
-                <li key={item.name}>
-                  {isInternal ? (
-                    <Link href={item.href} className={linkClassName}>
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={linkClassName}
-                    >
-                      {item.name}
-                    </a>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -154,28 +158,44 @@ export function Footer() {
                 title="基础云计算"
                 items={navigation.products}
                 sectionKey="products"
+                isExpanded={!!expandedSections.products}
+                onToggle={toggleSection}
               />
               <AccordionSection
                 title="人工智能"
                 items={navigation.aiServices}
                 sectionKey="aiServices"
+                isExpanded={!!expandedSections.aiServices}
+                onToggle={toggleSection}
               />
               <AccordionSection
                 title="AI解决方案"
                 items={navigation.aiSolutions}
                 sectionKey="aiSolutions"
+                isExpanded={!!expandedSections.aiSolutions}
+                onToggle={toggleSection}
               />
               <AccordionSection
                 title="行业解决方案"
                 items={navigation.solutions}
                 sectionKey="solutions"
+                isExpanded={!!expandedSections.solutions}
+                onToggle={toggleSection}
               />
               <AccordionSection
                 title="支持与服务"
                 items={navigation.support}
                 sectionKey="support"
+                isExpanded={!!expandedSections.support}
+                onToggle={toggleSection}
               />
-              <AccordionSection title="关于我们" items={navigation.about} sectionKey="about" />
+              <AccordionSection
+                title="关于我们"
+                items={navigation.about}
+                sectionKey="about"
+                isExpanded={!!expandedSections.about}
+                onToggle={toggleSection}
+              />
             </div>
             <div className="mt-10 xl:col-span-1 xl:mt-0">
               <div className="flex justify-center xl:justify-start">

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import type { ComponentType } from 'react'
 import Image from 'next/image'
 import {
   ArrowTrendingUpIcon,
@@ -475,6 +476,51 @@ function TrendsSection() {
   )
 }
 
+type CardItem = {
+  icon: ComponentType<{ className?: string }>
+  title: string
+  description: string
+}
+
+/**
+ * 技术框架/技术亮点双列卡片 - 复刻 HTML 设计
+ */
+function CardList({ title, items }: { title: string; items: CardItem[] }) {
+  return (
+    <div className="relative h-full overflow-hidden rounded-lg bg-white p-0">
+      {/* 标题区域 */}
+      <div className="mb-2 pt-7 pl-10">
+        <h3 className="text-xl font-bold text-slate-900">{title}</h3>
+        <div className="mt-2 h-1 w-10 bg-[#0055ff]"></div>
+      </div>
+
+      {/* 装饰背景 - 右上角立方体效果模拟 */}
+      <div className="pointer-events-none absolute top-0 right-0 h-48 w-48 opacity-10">
+        <div className="absolute top-4 right-4 h-32 w-32 rounded-full bg-gradient-to-br from-[#0055ff]/20 to-[#0055ff]/40 opacity-20 blur-2xl"></div>
+        <CloudArrowUpIcon className="absolute top-8 right-8 h-24 w-24 text-[#0055ff]/10" />
+      </div>
+
+      {/* 列表内容 */}
+      <div className="pr-8 pb-10">
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className="group flex items-start pt-10 pl-10 transition-all duration-300 hover:-translate-y-1"
+          >
+            <div className="mr-3 flex-shrink-0">
+              <item.icon className="h-8 w-8 text-[#0055ff]" />
+            </div>
+            <div className="flex-1">
+              <p className="mb-2.5 text-base font-bold text-slate-900">{item.title}</p>
+              <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 /**
  * 技术框架及技术亮点区域 - 复刻 HTML 设计
  */
@@ -536,40 +582,6 @@ function ScenariosSection() {
       description: '用来增加静态资源加载速度，便于维护和部署，可以享受速度和敏感数据的控制优势',
     },
   ]
-
-  const CardList = ({ title, items }: { title: string; items: typeof frameworks }) => (
-    <div className="relative h-full overflow-hidden rounded-lg bg-white p-0">
-      {/* 标题区域 */}
-      <div className="mb-2 pt-7 pl-10">
-        <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-        <div className="mt-2 h-1 w-10 bg-[#0055ff]"></div>
-      </div>
-
-      {/* 装饰背景 - 右上角立方体效果模拟 */}
-      <div className="pointer-events-none absolute top-0 right-0 h-48 w-48 opacity-10">
-        <div className="absolute top-4 right-4 h-32 w-32 rounded-full bg-gradient-to-br from-[#0055ff]/20 to-[#0055ff]/40 opacity-20 blur-2xl"></div>
-        <CloudArrowUpIcon className="absolute top-8 right-8 h-24 w-24 text-[#0055ff]/10" />
-      </div>
-
-      {/* 列表内容 */}
-      <div className="pr-8 pb-10">
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="group flex items-start pt-10 pl-10 transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="mr-3 flex-shrink-0">
-              <item.icon className="h-8 w-8 text-[#0055ff]" />
-            </div>
-            <div className="flex-1">
-              <p className="mb-2.5 text-base font-bold text-slate-900">{item.title}</p>
-              <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
 
   return (
     <section className="bg-slate-100 py-20">

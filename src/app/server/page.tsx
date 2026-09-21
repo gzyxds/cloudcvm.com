@@ -287,14 +287,127 @@ function BareMetalVideoHero() {
     />
   )
 }
+// 移动端功能特性展示组件
+function FeaturesMobile() {
+  return (
+    <div className="lg:hidden">
+      <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+          <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">更快部署</h2>
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
+            独立服务器让业务更强大
+          </p>
+          <p className="mt-6 text-lg/8 text-slate-600 dark:text-gray-300">
+            借助独立物理服务器技术，轻松实现高性能计算与专业应用部署，提升企业核心竞争力。
+          </p>
+          <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-600 lg:max-w-none dark:text-gray-400">
+            {leftRightFeatures.map((feature) => {
+              const IconComponent = feature.icon
+              return (
+                <div key={feature.name} className="relative pl-9">
+                  <dt className="inline font-semibold text-slate-900 dark:text-white">
+                    <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                        <IconComponent />
+                      </svg>
+                    </div>
+                    {feature.name}
+                  </dt>{' '}
+                  <dd className="inline">{feature.description}</dd>
+                </div>
+              )
+            })}
+          </dl>
+        </div>
+        <div className="mt-16 sm:mt-20">
+          <div className="relative w-full max-w-lg overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg sm:max-w-xl sm:p-6 dark:border-gray-700/30 dark:bg-white/10">
+            {/* 模拟界面头部 */}
+            <div className="mb-4 flex items-center justify-between sm:mb-6">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
+              </div>
+              <div className="text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
+                服务器控制台
+              </div>
+            </div>
 
-// Leftright 组件 - 左右分栏展示
-function BareMetalLeftrightSection() {
-  // 移动端功能特性展示组件
-  function FeaturesMobile() {
-    return (
-      <div className="lg:hidden">
-        <div className="mx-auto max-w-2xl">
+            {/* 模拟界面标题栏 */}
+            <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+              <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
+                服务器管理中心
+              </h3>
+              <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
+                实时监控和管理您的独立物理服务器资源
+              </p>
+            </div>
+
+            {/* 模拟功能模块 */}
+            <div className="mb-3 grid grid-cols-1 gap-3 sm:mb-4 sm:gap-4">
+              {leftRightFeatures.slice(0, 4).map((feature, index) => (
+                <div
+                  key={feature.name}
+                  className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                >
+                  <div className="flex items-start space-x-2 sm:space-x-3">
+                    <div className="flex-shrink-0">
+                      <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
+                        <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
+                      </div>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="truncate text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
+                        {feature.name}
+                      </h4>
+                      <p className="mt-0.5 truncate text-xs text-slate-600 sm:mt-1 dark:text-gray-300">
+                        {feature.description.slice(0, 25)}...
+                      </p>
+                      <div className="mt-1.5 sm:mt-2">
+                        <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
+                          <div
+                            className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
+                            style={{ width: `${60 + index * 10}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 模拟状态栏 */}
+            <div className="flex flex-col space-y-2 rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                <span className="flex items-center space-x-1">
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
+                  <span>系统正常</span>
+                </span>
+                <span className="hidden sm:inline">CPU: 35%</span>
+                <span className="hidden sm:inline">内存: 48%</span>
+              </div>
+              <div className="flex items-center justify-between sm:block">
+                <div className="flex space-x-2 sm:hidden">
+                  <span>CPU: 35%</span>
+                  <span>内存: 48%</span>
+                </div>
+                <span className="text-right">最后更新: 刚刚</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// 桌面端功能特性展示组件
+function FeaturesDesktop() {
+  return (
+    <div className="hidden lg:block">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+        <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
             <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
               更快部署
@@ -324,256 +437,135 @@ function BareMetalLeftrightSection() {
               })}
             </dl>
           </div>
-          <div className="mt-16 sm:mt-20">
-            <div className="relative w-full max-w-lg overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg sm:max-w-xl sm:p-6 dark:border-gray-700/30 dark:bg-white/10">
-              {/* 模拟界面头部 */}
-              <div className="mb-4 flex items-center justify-between sm:mb-6">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
-                </div>
-                <div className="text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
-                  服务器控制台
-                </div>
+        </div>
+        <div className="sm:px-6 lg:px-0">
+          <div className="relative w-full overflow-hidden rounded-md border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg sm:p-6 lg:p-8 dark:border-gray-700/30 dark:bg-white/10">
+            {/* 模拟界面头部 */}
+            <div className="mb-4 flex items-center justify-between sm:mb-6">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
               </div>
-
-              {/* 模拟界面标题栏 */}
-              <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
-                <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
-                  服务器管理中心
-                </h3>
-                <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
-                  实时监控和管理您的独立物理服务器资源
-                </p>
-              </div>
-
-              {/* 模拟功能模块 */}
-              <div className="mb-3 grid grid-cols-1 gap-3 sm:mb-4 sm:gap-4">
-                {leftRightFeatures.slice(0, 4).map((feature, index) => (
-                  <div
-                    key={feature.name}
-                    className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
-                  >
-                    <div className="flex items-start space-x-2 sm:space-x-3">
-                      <div className="flex-shrink-0">
-                        <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
-                          <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
-                        </div>
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
-                          {feature.name}
-                        </h4>
-                        <p className="mt-0.5 truncate text-xs text-slate-600 sm:mt-1 dark:text-gray-300">
-                          {feature.description.slice(0, 25)}...
-                        </p>
-                        <div className="mt-1.5 sm:mt-2">
-                          <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
-                            <div
-                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
-                              style={{ width: `${60 + index * 10}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* 模拟状态栏 */}
-              <div className="flex flex-col space-y-2 rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
-                <div className="flex items-center space-x-2 sm:space-x-4">
-                  <span className="flex items-center space-x-1">
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
-                    <span>系统正常</span>
-                  </span>
-                  <span className="hidden sm:inline">CPU: 35%</span>
-                  <span className="hidden sm:inline">内存: 48%</span>
-                </div>
-                <div className="flex items-center justify-between sm:block">
-                  <div className="flex space-x-2 sm:hidden">
-                    <span>CPU: 35%</span>
-                    <span>内存: 48%</span>
-                  </div>
-                  <span className="text-right">最后更新: 刚刚</span>
-                </div>
+              <div className="text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
+                服务器控制台
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
 
-  // 桌面端功能特性展示组件
-  function FeaturesDesktop() {
-    return (
-      <div className="hidden lg:block">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-          <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
-            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
-                更快部署
-              </h2>
-              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
-                独立服务器让业务更强大
+            {/* 模拟界面标题栏 */}
+            <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+              <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
+                服务器管理中心
+              </h3>
+              <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
+                实时监控和管理您的独立物理服务器资源
               </p>
-              <p className="mt-6 text-lg/8 text-slate-600 dark:text-gray-300">
-                借助独立物理服务器技术，轻松实现高性能计算与专业应用部署，提升企业核心竞争力。
-              </p>
-              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-600 lg:max-w-none dark:text-gray-400">
-                {leftRightFeatures.map((feature) => {
-                  const IconComponent = feature.icon
-                  return (
-                    <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-slate-900 dark:text-white">
-                        <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
-                          <svg
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 36 36"
-                            aria-hidden="true"
-                          >
-                            <IconComponent />
-                          </svg>
-                        </div>
+            </div>
+
+            {/* 模拟功能模块 */}
+            <div className="mb-3 grid grid-cols-2 gap-3 sm:mb-4 sm:gap-4">
+              {leftRightFeatures.slice(0, 4).map((feature, index) => (
+                <div
+                  key={feature.name}
+                  className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                >
+                  <div className="flex items-start space-x-2 sm:space-x-3">
+                    <div className="flex-shrink-0">
+                      <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
+                        <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
+                      </div>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="truncate text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
                         {feature.name}
-                      </dt>{' '}
-                      <dd className="inline">{feature.description}</dd>
+                      </h4>
+                      <p className="mt-0.5 truncate text-xs text-slate-600 sm:mt-1 dark:text-gray-300">
+                        {feature.description.slice(0, 25)}...
+                      </p>
+                      <div className="mt-1.5 sm:mt-2">
+                        <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
+                          <div
+                            className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
+                            style={{ width: `${60 + index * 10}%` }}
+                          ></div>
+                        </div>
+                      </div>
                     </div>
-                  )
-                })}
-              </dl>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-          <div className="sm:px-6 lg:px-0">
-            <div className="relative w-full overflow-hidden rounded-md border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg sm:p-6 lg:p-8 dark:border-gray-700/30 dark:bg-white/10">
-              {/* 模拟界面头部 */}
-              <div className="mb-4 flex items-center justify-between sm:mb-6">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
+
+            {/* 模拟服务器状态监控 */}
+            <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+              <h4 className="mb-2 text-sm font-semibold text-slate-800 sm:text-base dark:text-white">
+                服务器性能监控
+              </h4>
+              <div className="space-y-3">
+                <div>
+                  <div className="mb-1 flex items-center justify-between">
+                    <span className="text-xs text-slate-700 dark:text-gray-300">CPU 使用率</span>
+                    <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                      35%
+                    </span>
+                  </div>
+                  <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
+                    <div
+                      className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
+                      style={{ width: '35%' }}
+                    ></div>
+                  </div>
                 </div>
-                <div className="text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
-                  服务器控制台
+                <div>
+                  <div className="mb-1 flex items-center justify-between">
+                    <span className="text-xs text-slate-700 dark:text-gray-300">内存使用率</span>
+                    <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                      48%
+                    </span>
+                  </div>
+                  <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
+                    <div
+                      className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
+                      style={{ width: '48%' }}
+                    ></div>
+                  </div>
                 </div>
-              </div>
-
-              {/* 模拟界面标题栏 */}
-              <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
-                <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
-                  服务器管理中心
-                </h3>
-                <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
-                  实时监控和管理您的独立物理服务器资源
-                </p>
-              </div>
-
-              {/* 模拟功能模块 */}
-              <div className="mb-3 grid grid-cols-2 gap-3 sm:mb-4 sm:gap-4">
-                {leftRightFeatures.slice(0, 4).map((feature, index) => (
-                  <div
-                    key={feature.name}
-                    className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
-                  >
-                    <div className="flex items-start space-x-2 sm:space-x-3">
-                      <div className="flex-shrink-0">
-                        <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
-                          <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
-                        </div>
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
-                          {feature.name}
-                        </h4>
-                        <p className="mt-0.5 truncate text-xs text-slate-600 sm:mt-1 dark:text-gray-300">
-                          {feature.description.slice(0, 25)}...
-                        </p>
-                        <div className="mt-1.5 sm:mt-2">
-                          <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
-                            <div
-                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
-                              style={{ width: `${60 + index * 10}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div>
+                  <div className="mb-1 flex items-center justify-between">
+                    <span className="text-xs text-slate-700 dark:text-gray-300">存储使用率</span>
+                    <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                      62%
+                    </span>
                   </div>
-                ))}
-              </div>
-
-              {/* 模拟服务器状态监控 */}
-              <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
-                <h4 className="mb-2 text-sm font-semibold text-slate-800 sm:text-base dark:text-white">
-                  服务器性能监控
-                </h4>
-                <div className="space-y-3">
-                  <div>
-                    <div className="mb-1 flex items-center justify-between">
-                      <span className="text-xs text-slate-700 dark:text-gray-300">CPU 使用率</span>
-                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
-                        35%
-                      </span>
-                    </div>
-                    <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
-                      <div
-                        className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
-                        style={{ width: '35%' }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="mb-1 flex items-center justify-between">
-                      <span className="text-xs text-slate-700 dark:text-gray-300">内存使用率</span>
-                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
-                        48%
-                      </span>
-                    </div>
-                    <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
-                      <div
-                        className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
-                        style={{ width: '48%' }}
-                      ></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="mb-1 flex items-center justify-between">
-                      <span className="text-xs text-slate-700 dark:text-gray-300">存储使用率</span>
-                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
-                        62%
-                      </span>
-                    </div>
-                    <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
-                      <div
-                        className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
-                        style={{ width: '62%' }}
-                      ></div>
-                    </div>
+                  <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
+                    <div
+                      className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
+                      style={{ width: '62%' }}
+                    ></div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* 模拟状态栏 */}
-              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
-                <div className="flex items-center space-x-2 sm:space-x-4">
-                  <span className="flex items-center space-x-1">
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
-                    <span>系统正常</span>
-                  </span>
-                </div>
-                <span>最后更新: 刚刚</span>
+            {/* 模拟状态栏 */}
+            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                <span className="flex items-center space-x-1">
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
+                  <span>系统正常</span>
+                </span>
               </div>
+              <span>最后更新: 刚刚</span>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
+// Leftright 组件 - 左右分栏展示
+function BareMetalLeftrightSection() {
   return (
     <section
       id="secondary-features"

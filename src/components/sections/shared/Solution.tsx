@@ -72,20 +72,21 @@ const solutions: SolutionCard[] = [
  * @param {string} title - 卡片标题
  * @returns {React.ComponentType} 对应的图标组件
  */
-function getIconByTitle(title: string) {
+// 返回 JSX 元素而非组件引用：渲染期取到的组件引用会被 react-hooks/static-components 判为动态组件
+function renderIconByTitle(title: string, className: string) {
   switch (title) {
     case '音视频':
-      return VideoCameraIcon
+      return <VideoCameraIcon className={className} />
     case '互动直播':
-      return RadioIcon
+      return <RadioIcon className={className} />
     case '在线教育':
-      return AcademicCapIcon
+      return <AcademicCapIcon className={className} />
     case '游戏':
-      return PuzzlePieceIcon
+      return <PuzzlePieceIcon className={className} />
     case '游戏媒体':
-      return FilmIcon
+      return <FilmIcon className={className} />
     default:
-      return ChartBarIcon
+      return <ChartBarIcon className={className} />
   }
 }
 
@@ -185,17 +186,13 @@ function SolutionCard({
 
         {/* 左下角图标 - 根据标题动态显示 */}
         <div className="absolute bottom-4 left-4">
-          {(() => {
-            const IconComponent = getIconByTitle(solution.title)
-            return (
-              <IconComponent
-                className={clsx(
-                  'h-6 w-6 text-white drop-shadow-md transition-opacity duration-300',
-                  isExpanded ? 'opacity-100' : 'opacity-60'
-                )}
-              />
+          {renderIconByTitle(
+            solution.title,
+            clsx(
+              'h-6 w-6 text-white drop-shadow-md transition-opacity duration-300',
+              isExpanded ? 'opacity-100' : 'opacity-60'
             )
-          })()}
+          )}
         </div>
       </div>
     </div>
@@ -234,10 +231,7 @@ function MobileSolutionCard({ solution }: { solution: SolutionCard }) {
           <h3 className="font-display text-lg font-bold text-white drop-shadow-md sm:text-xl">
             {solution.title}
           </h3>
-          {(() => {
-            const IconComponent = getIconByTitle(solution.title)
-            return <IconComponent className="h-5 w-5 text-white drop-shadow-md sm:h-6 sm:w-6" />
-          })()}
+          {renderIconByTitle(solution.title, 'h-5 w-5 text-white drop-shadow-md sm:h-6 sm:w-6')}
         </div>
 
         {/* 描述文本 */}

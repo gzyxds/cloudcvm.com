@@ -490,15 +490,138 @@ function SSLGuideTable() {
     </div>
   )
 }
+// 移动端功能特性展示组件
+function FeaturesMobile() {
+  return (
+    <div className="lg:hidden">
+      <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+          <h2 className="text-sm font-semibold text-[#0055ff] sm:text-base/7 dark:text-blue-400">
+            全方位安全保障
+          </h2>
+          <p className="mt-2 text-2xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl dark:text-white">
+            为您的网站保驾护航
+          </p>
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg/8 dark:text-gray-300">
+            通过SSL证书加密技术，全面保护您的网站数据传输安全，建立可信赖的网络环境，提升品牌价值。
+          </p>
+          <dl className="mt-8 max-w-xl space-y-6 text-sm leading-6 text-slate-600 sm:mt-10 sm:space-y-8 sm:text-base/7 lg:max-w-none dark:text-gray-400">
+            {leftRightFeatures.map((feature) => {
+              const IconComponent = feature.icon
+              return (
+                <div key={feature.name} className="relative pl-8 sm:pl-9">
+                  <dt className="inline font-semibold text-slate-900 dark:text-white">
+                    <IconComponent
+                      aria-hidden="true"
+                      className="absolute top-0.5 left-0.5 size-4 text-[#0055ff] sm:top-1 sm:left-1 sm:size-5 dark:text-blue-400"
+                    />
+                    {feature.name}
+                  </dt>{' '}
+                  <dd className="inline">{feature.description}</dd>
+                </div>
+              )
+            })}
+          </dl>
+        </div>
+        <div className="mt-16 sm:mt-20">
+          <div className="relative overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            {/* 移动端模拟界面头部 */}
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
+              </div>
+              <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                SSL证书控制台
+              </div>
+            </div>
 
-// Leftright 组件 - 左文右图分栏展示
-function SSLLeftrightSection() {
-  // 移动端功能特性展示组件
-  function FeaturesMobile() {
-    return (
-      <div className="lg:hidden">
-        <div className="mx-auto max-w-2xl">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+            {/* 移动端模拟界面标题栏 */}
+            <div className="mb-3 rounded-lg border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+              <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
+                证书管理中心
+              </h3>
+              <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
+                实时监控SSL证书状态
+              </p>
+            </div>
+
+            {/* SSL证书列表 */}
+            <div className="mb-3 space-y-3">
+              {sslProducts.slice(0, 3).map((product, index) => (
+                <div
+                  key={product.id}
+                  className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                >
+                  <div className="flex items-center space-x-3">
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border border-green-200/50 bg-green-100/80 dark:border-green-800/50 dark:bg-green-900/50">
+                      <LockClosedIcon className="h-4 w-4 text-green-600 dark:text-green-400" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                        {product.name}
+                      </h4>
+                      <p className="text-xs text-slate-600 dark:text-gray-400">
+                        {product.specs.type} • {product.specs.domains}
+                      </p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span
+                        className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
+                          index === 0
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                            : index === 1
+                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+                              : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+                        }`}
+                      >
+                        {index === 0 ? '已签发' : index === 1 ? '验证中' : '待续费'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 快速操作区域 */}
+            <div className="mb-3 grid grid-cols-3 gap-2">
+              <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
+                <CloudArrowUpIcon className="mb-1 h-4 w-4 text-[#0055ff] dark:text-blue-400" />
+                <span className="text-slate-700 dark:text-gray-300">快速签发</span>
+              </button>
+              <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
+                <DocumentTextIcon className="mb-1 h-4 w-4 text-green-600 dark:text-green-400" />
+                <span className="text-slate-700 dark:text-gray-300">证书管理</span>
+              </button>
+              <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
+                <ServerIcon className="mb-1 h-4 w-4 text-purple-600 dark:text-purple-400" />
+                <span className="text-slate-700 dark:text-gray-300">技术支持</span>
+              </button>
+            </div>
+
+            {/* 移动端模拟状态栏 */}
+            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center space-x-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
+                <span>3个证书正常运行</span>
+              </div>
+              <span>最后检查: 刚刚</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// 桌面端功能特性展示组件
+function FeaturesDesktop() {
+  return (
+    <div className="hidden lg:block">
+      <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-12 sm:gap-x-8 sm:gap-y-16 md:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+        <div className="lg:ml-auto lg:pt-4 lg:pl-4">
+          <div className="lg:max-w-lg">
             <h2 className="text-sm font-semibold text-[#0055ff] sm:text-base/7 dark:text-blue-400">
               全方位安全保障
             </h2>
@@ -526,252 +649,129 @@ function SSLLeftrightSection() {
               })}
             </dl>
           </div>
-          <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
-              {/* 移动端模拟界面头部 */}
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
-                </div>
-                <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
-                  SSL证书控制台
-                </div>
-              </div>
-
-              {/* 移动端模拟界面标题栏 */}
-              <div className="mb-3 rounded-lg border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
-                <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
-                  证书管理中心
-                </h3>
-                <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
-                  实时监控SSL证书状态
-                </p>
-              </div>
-
-              {/* SSL证书列表 */}
-              <div className="mb-3 space-y-3">
-                {sslProducts.slice(0, 3).map((product, index) => (
-                  <div
-                    key={product.id}
-                    className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border border-green-200/50 bg-green-100/80 dark:border-green-800/50 dark:bg-green-900/50">
-                        <LockClosedIcon className="h-4 w-4 text-green-600 dark:text-green-400" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
-                          {product.name}
-                        </h4>
-                        <p className="text-xs text-slate-600 dark:text-gray-400">
-                          {product.specs.type} • {product.specs.domains}
-                        </p>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <span
-                          className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
-                            index === 0
-                              ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
-                              : index === 1
-                                ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
-                                : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
-                          }`}
-                        >
-                          {index === 0 ? '已签发' : index === 1 ? '验证中' : '待续费'}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* 快速操作区域 */}
-              <div className="mb-3 grid grid-cols-3 gap-2">
-                <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
-                  <CloudArrowUpIcon className="mb-1 h-4 w-4 text-[#0055ff] dark:text-blue-400" />
-                  <span className="text-slate-700 dark:text-gray-300">快速签发</span>
-                </button>
-                <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
-                  <DocumentTextIcon className="mb-1 h-4 w-4 text-green-600 dark:text-green-400" />
-                  <span className="text-slate-700 dark:text-gray-300">证书管理</span>
-                </button>
-                <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
-                  <ServerIcon className="mb-1 h-4 w-4 text-purple-600 dark:text-purple-400" />
-                  <span className="text-slate-700 dark:text-gray-300">技术支持</span>
-                </button>
-              </div>
-
-              {/* 移动端模拟状态栏 */}
-              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                <div className="flex items-center space-x-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
-                  <span>3个证书正常运行</span>
-                </div>
-                <span>最后检查: 刚刚</span>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    )
-  }
-  // 桌面端功能特性展示组件
-  function FeaturesDesktop() {
-    return (
-      <div className="hidden lg:block">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-12 sm:gap-x-8 sm:gap-y-16 md:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-          <div className="lg:ml-auto lg:pt-4 lg:pl-4">
-            <div className="lg:max-w-lg">
-              <h2 className="text-sm font-semibold text-[#0055ff] sm:text-base/7 dark:text-blue-400">
-                全方位安全保障
-              </h2>
-              <p className="mt-2 text-2xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl dark:text-white">
-                为您的网站保驾护航
-              </p>
-              <p className="mt-4 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg/8 dark:text-gray-300">
-                通过SSL证书加密技术，全面保护您的网站数据传输安全，建立可信赖的网络环境，提升品牌价值。
-              </p>
-              <dl className="mt-8 max-w-xl space-y-6 text-sm leading-6 text-slate-600 sm:mt-10 sm:space-y-8 sm:text-base/7 lg:max-w-none dark:text-gray-400">
-                {leftRightFeatures.map((feature) => {
-                  const IconComponent = feature.icon
-                  return (
-                    <div key={feature.name} className="relative pl-8 sm:pl-9">
-                      <dt className="inline font-semibold text-slate-900 dark:text-white">
-                        <IconComponent
-                          aria-hidden="true"
-                          className="absolute top-0.5 left-0.5 size-4 text-[#0055ff] sm:top-1 sm:left-1 sm:size-5 dark:text-blue-400"
-                        />
-                        {feature.name}
-                      </dt>{' '}
-                      <dd className="inline">{feature.description}</dd>
-                    </div>
-                  )
-                })}
-              </dl>
+        <div className="flex items-start justify-center lg:order-first lg:justify-end">
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            {/* 桌面端模拟界面头部 */}
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
+                <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
+              </div>
+              <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                SSL证书管理平台
+              </div>
             </div>
-          </div>
-          <div className="flex items-start justify-center lg:order-first lg:justify-end">
-            <div className="relative w-full max-w-2xl overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
-              {/* 桌面端模拟界面头部 */}
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center space-x-2 sm:space-x-3">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
+
+            {/* 桌面端模拟界面内容区 */}
+            <div className="flex">
+              {/* 左侧导航 */}
+              <div className="mr-3 w-40 shrink-0 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+                <div className="mb-3">
+                  <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
+                    证书管理
+                  </h4>
+                  <div className="space-y-1">
+                    {leftRightFeatures.slice(0, 3).map((feature, index) => (
+                      <div
+                        key={index}
+                        className={`text-xs ${index === 0 ? 'bg-[#eff6ff] text-[#0055ff] dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-gray-400'} rounded px-2 py-1`}
+                      >
+                        {feature.name}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
-                  SSL证书管理平台
+                <div>
+                  <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
+                    系统设置
+                  </h4>
+                  <div className="space-y-1">
+                    <div className="rounded px-2 py-1 text-xs text-slate-600 dark:text-gray-400">
+                      账户设置
+                    </div>
+                    <div className="rounded px-2 py-1 text-xs text-slate-600 dark:text-gray-400">
+                      通知管理
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* 桌面端模拟界面内容区 */}
-              <div className="flex">
-                {/* 左侧导航 */}
-                <div className="mr-3 w-40 shrink-0 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                  <div className="mb-3">
-                    <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
-                      证书管理
-                    </h4>
-                    <div className="space-y-1">
-                      {leftRightFeatures.slice(0, 3).map((feature, index) => (
-                        <div
-                          key={index}
-                          className={`text-xs ${index === 0 ? 'bg-[#eff6ff] text-[#0055ff] dark:bg-blue-900/30 dark:text-blue-400' : 'text-slate-600 dark:text-gray-400'} rounded px-2 py-1`}
-                        >
-                          {feature.name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
-                      系统设置
-                    </h4>
-                    <div className="space-y-1">
-                      <div className="rounded px-2 py-1 text-xs text-slate-600 dark:text-gray-400">
-                        账户设置
-                      </div>
-                      <div className="rounded px-2 py-1 text-xs text-slate-600 dark:text-gray-400">
-                        通知管理
-                      </div>
-                    </div>
-                  </div>
+              {/* 右侧内容 */}
+              <div className="flex-1">
+                {/* 标题栏 */}
+                <div className="mb-3 rounded-lg border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+                  <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
+                    SSL证书管理
+                  </h3>
+                  <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
+                    管理您的所有SSL证书，监控到期时间和状态
+                  </p>
                 </div>
 
-                {/* 右侧内容 */}
-                <div className="flex-1">
-                  {/* 标题栏 */}
-                  <div className="mb-3 rounded-lg border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
-                    <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
-                      SSL证书管理
-                    </h3>
-                    <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
-                      管理您的所有SSL证书，监控到期时间和状态
-                    </p>
-                  </div>
-
-                  {/* 证书列表 */}
-                  <div className="mb-3 space-y-2">
-                    {leftRightFeatures.slice(0, 3).map((feature, index) => {
-                      const IconComponent = feature.icon
-                      return (
-                        <div
-                          key={feature.name}
-                          className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-3">
-                              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
-                                <IconComponent className="h-4 w-4 text-[#0055ff] dark:text-blue-400" />
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-medium text-slate-900 dark:text-white">
-                                  {feature.name}
-                                </h4>
-                                <p className="text-xs text-slate-600 dark:text-gray-400">
-                                  {index === 0
-                                    ? '有效期: 11个月'
-                                    : index === 1
-                                      ? '有效期: 8个月'
-                                      : '有效期: 3个月'}
-                                </p>
-                              </div>
+                {/* 证书列表 */}
+                <div className="mb-3 space-y-2">
+                  {leftRightFeatures.slice(0, 3).map((feature, index) => {
+                    const IconComponent = feature.icon
+                    return (
+                      <div
+                        key={feature.name}
+                        className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+                              <IconComponent className="h-4 w-4 text-[#0055ff] dark:text-blue-400" />
                             </div>
-                            <div className="flex items-center space-x-2">
-                              <span
-                                className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${index === 2 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}
-                              >
-                                {index === 2 ? '即将到期' : '有效'}
-                              </span>
-                              <button className="rounded bg-[#eff6ff] px-2 py-1 text-xs font-medium text-[#0055ff] hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50">
-                                管理
-                              </button>
+                            <div>
+                              <h4 className="text-sm font-medium text-slate-900 dark:text-white">
+                                {feature.name}
+                              </h4>
+                              <p className="text-xs text-slate-600 dark:text-gray-400">
+                                {index === 0
+                                  ? '有效期: 11个月'
+                                  : index === 1
+                                    ? '有效期: 8个月'
+                                    : '有效期: 3个月'}
+                              </p>
                             </div>
                           </div>
+                          <div className="flex items-center space-x-2">
+                            <span
+                              className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${index === 2 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}
+                            >
+                              {index === 2 ? '即将到期' : '有效'}
+                            </span>
+                            <button className="rounded bg-[#eff6ff] px-2 py-1 text-xs font-medium text-[#0055ff] hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50">
+                              管理
+                            </button>
+                          </div>
                         </div>
-                      )
-                    })}
-                  </div>
+                      </div>
+                    )
+                  })}
+                </div>
 
-                  {/* 状态栏 */}
-                  <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                    <div className="flex items-center space-x-2">
-                      <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
-                      <span>系统正常</span>
-                    </div>
-                    <span>最后更新: 2分钟前</span>
+                {/* 状态栏 */}
+                <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+                  <div className="flex items-center space-x-2">
+                    <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
+                    <span>系统正常</span>
                   </div>
+                  <span>最后更新: 2分钟前</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
+// Leftright 组件 - 左文右图分栏展示
+function SSLLeftrightSection() {
   return (
     <section id="secondary-features" aria-label="SSL证书功能特性展示">
       <div className="overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-32 dark:bg-gray-900">

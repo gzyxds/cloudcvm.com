@@ -145,11 +145,10 @@ export function MegaMenuPanel({
       : excludeFeaturedItems(activeCategory.items, activeCategory.featured)
   }, [debouncedQuery, activeCategory])
 
-  useEffect(() => {
-    if (categories.length > 0 && !categories.find((c) => c.id === activeCategoryId)) {
-      setActiveCategoryId(categories[0].id)
-    }
-  }, [categories, activeCategoryId])
+  // 分类数据变化导致当前选中项失效时，渲染期同步回退到首个分类（避免 effect 级联渲染）
+  if (categories.length > 0 && !categories.find((c) => c.id === activeCategoryId)) {
+    setActiveCategoryId(categories[0].id)
+  }
 
   const handleNavigate = useCallback(() => {
     onNavigate?.()

@@ -422,10 +422,12 @@ export function Header(): JSX.Element {
     ? (allMenuConfigs.find((menu) => menu.id === activeMenuId) ?? null)
     : null
 
-  // 路由变化时收起面板
-  useEffect(() => {
-    closeMenu()
-  }, [pathname, closeMenu])
+  // 路由变化时收起面板（渲染期同步重置，避免 effect 级联渲染）
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
+    setActiveMenuId(null)
+  }
 
   // 面板打开期间：Esc 关闭、点击/焦点移出 header 时关闭
   useEffect(() => {

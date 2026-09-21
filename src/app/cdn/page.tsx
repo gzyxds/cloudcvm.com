@@ -299,14 +299,118 @@ function CDNVideoHero() {
     />
   )
 }
+// 移动端功能特性展示组件
+function FeaturesMobile() {
+  return (
+    <div className="lg:hidden">
+      <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
+          <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">更快加速</h2>
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
+            CDN让访问更极速
+          </p>
+          <p className="mt-6 text-lg/8 text-slate-600 dark:text-gray-300">
+            借助全球CDN技术，轻松实现内容加速与性能优化，提升用户访问体验。
+          </p>
+          <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-600 lg:max-w-none dark:text-gray-400">
+            {leftRightFeatures.map((feature) => {
+              const IconComponent = feature.icon
+              return (
+                <div key={feature.name} className="relative pl-9">
+                  <dt className="inline font-semibold text-slate-900 dark:text-white">
+                    <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                        <IconComponent />
+                      </svg>
+                    </div>
+                    {feature.name}
+                  </dt>{' '}
+                  <dd className="inline">{feature.description}</dd>
+                </div>
+              )
+            })}
+          </dl>
+        </div>
+        <div className="mt-16 sm:mt-20">
+          <div className="relative overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            {/* 移动端模拟界面头部 */}
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="h-3 w-3 rounded-full bg-red-400"></div>
+                <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
+                <div className="h-3 w-3 rounded-full bg-green-400"></div>
+              </div>
+              <div className="text-sm font-medium text-slate-700 dark:text-gray-300">CDN控制台</div>
+            </div>
 
-// Leftright 组件 - 左右分栏展示
-function CDNLeftrightSection() {
-  // 移动端功能特性展示组件
-  function FeaturesMobile() {
-    return (
-      <div className="lg:hidden">
-        <div className="mx-auto max-w-2xl">
+            {/* 移动端模拟界面标题栏 */}
+            <div className="mb-4 rounded-lg border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+              <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
+                CDN管理中心
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-gray-400">实时监控CDN加速服务</p>
+            </div>
+
+            {/* 移动端模拟功能模块 */}
+            <div className="mb-4 space-y-4">
+              {leftRightFeatures.slice(0, 2).map((feature, index) => {
+                const IconComponent = feature.icon
+                return (
+                  <div
+                    key={feature.name}
+                    className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <svg
+                          className="h-5 w-5 text-[#0055ff] dark:text-blue-400"
+                          fill="none"
+                          viewBox="0 0 36 36"
+                          aria-hidden="true"
+                        >
+                          <IconComponent />
+                        </svg>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                          {feature.name}
+                        </h4>
+                        <div className="mt-2">
+                          <div className="h-1.5 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
+                            <div
+                              className="h-1.5 rounded-full bg-[#0055ff] transition-all duration-1000 dark:bg-blue-400"
+                              style={{ width: `${60 + index * 15}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* 移动端模拟状态栏 */}
+            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center space-x-3">
+                <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
+                <span>CDN正常</span>
+              </div>
+              <span>刚刚更新</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// 桌面端功能特性展示组件
+function FeaturesDesktop() {
+  return (
+    <div className="hidden lg:block">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
+        <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
             <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
               更快加速
@@ -336,39 +440,41 @@ function CDNLeftrightSection() {
               })}
             </dl>
           </div>
-          <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
-              {/* 移动端模拟界面头部 */}
-              <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="h-3 w-3 rounded-full bg-red-400"></div>
-                  <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
-                  <div className="h-3 w-3 rounded-full bg-green-400"></div>
-                </div>
-                <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
-                  CDN控制台
-                </div>
+        </div>
+        <div className="sm:px-6 lg:px-0">
+          <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+            {/* 模拟界面头部 */}
+            <div className="mb-6 flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="h-3 w-3 rounded-full bg-red-400"></div>
+                <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
+                <div className="h-3 w-3 rounded-full bg-green-400"></div>
               </div>
+              <div className="text-sm font-medium text-slate-700 dark:text-gray-300">CDN控制台</div>
+            </div>
 
-              {/* 移动端模拟界面标题栏 */}
-              <div className="mb-4 rounded-lg border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
-                  CDN管理中心
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-gray-400">实时监控CDN加速服务</p>
-              </div>
+            {/* 模拟界面标题栏 */}
+            <div className="mb-4 rounded-lg border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+              <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
+                CDN管理中心
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-gray-400">
+                实时监控和管理您的CDN加速服务
+              </p>
+            </div>
 
-              {/* 移动端模拟功能模块 */}
-              <div className="mb-4 space-y-4">
-                {leftRightFeatures.slice(0, 2).map((feature, index) => {
-                  const IconComponent = feature.icon
-                  return (
-                    <div
-                      key={feature.name}
-                      className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+            {/* 模拟功能模块 */}
+            <div className="mb-4 grid grid-cols-1 gap-4">
+              {leftRightFeatures.slice(0, 3).map((feature, index) => {
+                const IconComponent = feature.icon
+                return (
+                  <div
+                    key={feature.name}
+                    className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className="flex-shrink-0">
+                        <div className="flex h-8 w-8 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
                           <svg
                             className="h-5 w-5 text-[#0055ff] dark:text-blue-400"
                             fill="none"
@@ -378,170 +484,52 @@ function CDNLeftrightSection() {
                             <IconComponent />
                           </svg>
                         </div>
-                        <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
-                            {feature.name}
-                          </h4>
-                          <div className="mt-2">
-                            <div className="h-1.5 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
-                              <div
-                                className="h-1.5 rounded-full bg-[#0055ff] transition-all duration-1000 dark:bg-blue-400"
-                                style={{ width: `${60 + index * 15}%` }}
-                              ></div>
-                            </div>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                          {feature.name}
+                        </h4>
+                        <p className="mt-1 truncate text-xs text-slate-600 dark:text-gray-400">
+                          {feature.summary}
+                        </p>
+                        <div className="mt-2">
+                          <div className="h-1.5 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
+                            <div
+                              className="h-1.5 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                              style={{ width: `${60 + index * 10}%` }}
+                            ></div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  )
-                })}
-              </div>
+                  </div>
+                )
+              })}
+            </div>
 
-              {/* 移动端模拟状态栏 */}
-              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                <div className="flex items-center space-x-3">
+            {/* 模拟状态栏 */}
+            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center space-x-4">
+                <span className="flex items-center space-x-1">
                   <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
                   <span>CDN正常</span>
-                </div>
-                <span>刚刚更新</span>
+                </span>
+                <span>带宽: 85%</span>
+                <span>命中率: 92%</span>
+              </div>
+              <div className="text-right">
+                <span>最后更新: 刚刚</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
-  // 桌面端功能特性展示组件
-  function FeaturesDesktop() {
-    return (
-      <div className="hidden lg:block">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-          <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
-            <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
-                更快加速
-              </h2>
-              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
-                CDN让访问更极速
-              </p>
-              <p className="mt-6 text-lg/8 text-slate-600 dark:text-gray-300">
-                借助全球CDN技术，轻松实现内容加速与性能优化，提升用户访问体验。
-              </p>
-              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-600 lg:max-w-none dark:text-gray-400">
-                {leftRightFeatures.map((feature) => {
-                  const IconComponent = feature.icon
-                  return (
-                    <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-slate-900 dark:text-white">
-                        <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
-                          <svg
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 36 36"
-                            aria-hidden="true"
-                          >
-                            <IconComponent />
-                          </svg>
-                        </div>
-                        {feature.name}
-                      </dt>{' '}
-                      <dd className="inline">{feature.description}</dd>
-                    </div>
-                  )
-                })}
-              </dl>
-            </div>
-          </div>
-          <div className="sm:px-6 lg:px-0">
-            <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
-              {/* 模拟界面头部 */}
-              <div className="mb-6 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="h-3 w-3 rounded-full bg-red-400"></div>
-                  <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
-                  <div className="h-3 w-3 rounded-full bg-green-400"></div>
-                </div>
-                <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
-                  CDN控制台
-                </div>
-              </div>
-
-              {/* 模拟界面标题栏 */}
-              <div className="mb-4 rounded-lg border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
-                  CDN管理中心
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-gray-400">
-                  实时监控和管理您的CDN加速服务
-                </p>
-              </div>
-
-              {/* 模拟功能模块 */}
-              <div className="mb-4 grid grid-cols-1 gap-4">
-                {leftRightFeatures.slice(0, 3).map((feature, index) => {
-                  const IconComponent = feature.icon
-                  return (
-                    <div
-                      key={feature.name}
-                      className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
-                    >
-                      <div className="flex items-start space-x-3">
-                        <div className="flex-shrink-0">
-                          <div className="flex h-8 w-8 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
-                            <svg
-                              className="h-5 w-5 text-[#0055ff] dark:text-blue-400"
-                              fill="none"
-                              viewBox="0 0 36 36"
-                              aria-hidden="true"
-                            >
-                              <IconComponent />
-                            </svg>
-                          </div>
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
-                            {feature.name}
-                          </h4>
-                          <p className="mt-1 truncate text-xs text-slate-600 dark:text-gray-400">
-                            {feature.summary}
-                          </p>
-                          <div className="mt-2">
-                            <div className="h-1.5 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
-                              <div
-                                className="h-1.5 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
-                                style={{ width: `${60 + index * 10}%` }}
-                              ></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-
-              {/* 模拟状态栏 */}
-              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                <div className="flex items-center space-x-4">
-                  <span className="flex items-center space-x-1">
-                    <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
-                    <span>CDN正常</span>
-                  </span>
-                  <span>带宽: 85%</span>
-                  <span>命中率: 92%</span>
-                </div>
-                <div className="text-right">
-                  <span>最后更新: 刚刚</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
+// Leftright 组件 - 左右分栏展示
+function CDNLeftrightSection() {
   return (
     <section
       id="secondary-features"

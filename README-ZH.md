@@ -1,5 +1,3 @@
-
-
 ## 1. 项目基本信息
 
 - **项目名称**：cloudcvm.com
@@ -9,15 +7,15 @@
 
 ## 2. 技术栈
 
-| 技术 | 版本 | 用途 |
-|------|------|------|
-| Next.js | ^15 | 前端框架 |
-| React | ^19 | UI 库 |
-| TypeScript | ^5.8.3 | 类型系统 |
-| Tailwind CSS | ^4.1.11 | CSS 框架 |
-| Framer Motion | ^12.23.12 | 动画库 |
-| Headless UI | ^2.2.6 | UI 组件库 |
-| Heroicons | ^2.2.0 | 图标库 |
+| 技术          | 版本      | 用途      |
+| ------------- | --------- | --------- |
+| Next.js       | ^16.3.5   | 前端框架  |
+| React         | ^19       | UI 库     |
+| TypeScript    | ^5.8.3    | 类型系统  |
+| Tailwind CSS  | ^4.1.11   | CSS 框架  |
+| Framer Motion | ^12.23.12 | 动画库    |
+| Headless UI   | ^2.2.6    | UI 组件库 |
+| Heroicons     | ^2.2.0    | 图标库    |
 
 ## 3. 项目结构
 
@@ -87,7 +85,7 @@ cloudcvm.com/
 
 ### 4.1 架构设计
 
-- **App Router**：使用 Next.js 15 的 App Router 架构，支持服务端渲染和静态生成
+- **App Router**：使用 Next.js 16 的 App Router 架构，支持服务端渲染和静态生成
 - **静态导出**：配置为静态导出模式，生成的文件可部署到任何静态托管服务
 - **组件化设计**：高度模块化的组件设计，便于维护和扩展
 - **TypeScript**：全面使用 TypeScript，提供类型安全
@@ -96,11 +94,11 @@ cloudcvm.com/
 
 ```javascript
 const nextConfig = {
-  output: 'export',          // 静态导出
+  output: 'export', // 静态导出
   images: {
-    unoptimized: true,       // 禁用图片优化以支持静态导出
+    unoptimized: true, // 禁用图片优化以支持静态导出
   },
-  trailingSlash: true,       // 启用 trailingSlash 以确保静态部署兼容性
+  trailingSlash: true, // 启用 trailingSlash 以确保静态部署兼容性
 }
 ```
 
@@ -156,7 +154,7 @@ npm run seo:check # SEO 验证
 
 ## 7. 项目优势
 
-1. **现代化技术栈**：使用最新的 Next.js 15 和 React 19，提供良好的开发体验和性能
+1. **现代化技术栈**：使用最新的 Next.js 16 和 React 19，提供良好的开发体验和性能
 2. **静态导出**：构建为静态网站，加载速度快，部署简单
 3. **响应式设计**：使用 Tailwind CSS 实现全响应式布局，适配各种设备
 4. **良好的 SEO 支持**：优化的元数据和站点地图，有利于搜索引擎收录
@@ -165,6 +163,6 @@ npm run seo:check # SEO 验证
 
 ## 8. 总结
 
-cloudcvm.com 是一个基于 Next.js 15 构建的现代化云计算服务提供商官方网站。它采用了最新的前端技术栈，具有良好的性能、SEO 支持和用户体验。项目结构清晰，模块化设计便于维护和扩展，适合作为云计算服务提供商的线上展示平台。
+cloudcvm.com 是一个基于 Next.js 16 构建的现代化云计算服务提供商官方网站。它采用了最新的前端技术栈，具有良好的性能、SEO 支持和用户体验。项目结构清晰，模块化设计便于维护和扩展，适合作为云计算服务提供商的线上展示平台。
 
 该项目的静态导出特性使其可以部署到任何静态托管服务，降低了部署和维护成本，同时保持了良好的性能和用户体验。

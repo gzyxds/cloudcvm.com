@@ -76,9 +76,15 @@ const services: ServiceItem[] = [
 function useTypewriter(text: string, speed: number = 100) {
   const [displayText, setDisplayText] = useState('')
 
+  // 文本变化时立即清空重打（渲染期同步重置，避免 effect 级联渲染）
+  const [renderedText, setRenderedText] = useState(text)
+  if (renderedText !== text) {
+    setRenderedText(text)
+    setDisplayText('')
+  }
+
   useEffect(() => {
     let i = 0
-    setDisplayText('')
     const typing = setInterval(() => {
       if (i < text.length) {
         setDisplayText(text.slice(0, i + 1))

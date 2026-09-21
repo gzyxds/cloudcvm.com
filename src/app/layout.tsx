@@ -58,7 +58,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" className={clsx('h-full scroll-smooth bg-white antialiased')}>
+    <html
+      lang="zh-CN"
+      data-scroll-behavior="smooth"
+      className={clsx('h-full scroll-smooth bg-white antialiased')}
+    >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#3860F4" />

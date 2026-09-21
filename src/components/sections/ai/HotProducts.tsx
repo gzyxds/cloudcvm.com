@@ -268,10 +268,12 @@ export default function HotProducts() {
     }
   }, [checkScrollPosition])
 
-  // 场景切换时重置图片状态
-  useEffect(() => {
+  // 场景切换时重置图片错误状态（渲染期同步重置，避免 effect 级联渲染）
+  const [prevScenario, setPrevScenario] = useState(activeScenario)
+  if (prevScenario !== activeScenario) {
+    setPrevScenario(activeScenario)
     setImageError(false)
-  }, [activeScenario])
+  }
 
   /**
    * 渲染标签项组件

@@ -1,18 +1,14 @@
-import { FlatCompat } from '@eslint/eslintrc'
-import typescriptEslint from '@typescript-eslint/eslint-plugin'
-import tsParser from '@typescript-eslint/parser'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import nextVitals from 'eslint-config-next/core-web-vitals'
+import nextTs from 'eslint-config-next/typescript'
 
-// ESLint 9 默认只认 flat config，而 eslint-config-next 的预设仍是 eslintrc 格式，
-// 用官方 FlatCompat 做桥接，避免迁移后丢失 Next 官方规则。
-const compat = new FlatCompat()
-
-export default [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+export default defineConfig([
+  // eslint-config-next v16 起原生提供 flat config，无需再用 FlatCompat 桥接
+  ...nextVitals,
+  ...nextTs,
 
   {
     files: ['**/*.{ts,tsx}'],
-    languageOptions: { parser: tsParser },
-    plugins: { '@typescript-eslint': typescriptEslint },
     rules: {
       // ── 类型安全（§4.3）：已清零，此后新增即报错 ──
       '@typescript-eslint/no-explicit-any': 'error',
@@ -37,7 +33,14 @@ export default [
     },
   },
 
-  {
-    ignores: ['.next/**', 'out/**', 'node_modules/**', 'public/**', 'scripts/**'],
-  },
-]
+  // globalIgnores 会覆盖 eslint-config-next 的默认忽略项，故需连默认项一起列出
+  globalIgnores([
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+    'node_modules/**',
+    'public/**',
+    'scripts/**',
+  ]),
+])
