@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # 类型检查：任何 any / 断言 / 类型错误都在此拦截
+      - run: npm run typecheck
+
+      # ESLint flat config（eslint.config.mjs）
+      - run: npm run lint
+
+      # 静态导出构建，验证 output: 'export' 可用
+      - run: npm run build
+
+      # SEO 元数据校验（scripts/validate-seo.js）
+      - run: npm run validate-seo

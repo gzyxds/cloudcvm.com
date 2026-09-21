@@ -44,6 +44,7 @@ next-env.d.ts
 .trae
 .ohmyagent
 .agents/skills/design-taste-frontend
+.vscode/cata-notes.json
 
 # Edge temporary browser profiles (created by preview tooling)
 .tmp-edge-profile*

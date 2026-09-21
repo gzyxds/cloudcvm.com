@@ -7,6 +7,14 @@
       "runtimeArgs": ["run", "dev"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "static",
+      "comment": "预览静态导出产物 out/（首屏/加载态问题必须验产物，dev 不走同一路径）",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve-out.js"],
+      "port": 8099,
+      "autoPort": true
     }
   ]
 }
