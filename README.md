@@ -174,34 +174,14 @@ npm run lint
 - **类型安全**：严格的 TypeScript 配置
 - **性能优化**：静态导出配置，适合 CDN 部署
 
-### 🔍 发现的问题和改进建议
+### 🔍 现状说明
 
-#### 1. Tailwind v4 主题配置位置
-
-- **说明**：项目使用 Tailwind CSS **v4**，主题 token（brand 色阶、radius、shadow、keyframes）直接定义在
+- **Tailwind v4 主题配置位置**：主题 token（brand 色阶、radius、shadow、keyframes）定义在
   `src/styles/tailwind.css` 的 `@theme` 段——**没有也不需要 `tailwind.config.js`**（v4 起配置文件不再必需）
-
-#### 2. 代码格式化问题
-
-- **问题**：78 个文件存在格式化问题（已修复）
-- **影响**：代码风格不一致，影响可读性
-- **解决方案**：已运行 `prettier --write .` 修复所有格式化问题
-
-#### 3. 图片优化限制
-
-- **问题**：静态导出模式禁用了 Next.js 图片优化
-- **影响**：图片加载性能可能不佳
-- **建议**：手动优化图片格式（WebP）和尺寸
-
-#### 4. 组件文档缺失
-
-- **问题**：组件缺少详细的 JSDoc 注释
-- **影响**：开发者体验和代码维护性
-- **建议**：为所有组件添加完整的函数级注释
-
-#### 5. 错误处理机制
-
-- **现状**：已有 `src/app/error.tsx`（错误边界）与 `src/app/not-found.tsx`（404 页），静态导出产物中同时生成 `out/404.html`
+- **图片优化**：静态导出禁用了 Next.js 图片优化（`images.unoptimized: true`），图片必须在构建前用
+  `scripts/` 流水线处理（见「性能优化建议 §1」）
+- **组件注释**：45 个组件中 41 个已带函数级 JSDoc；新增代码沿用同一约定
+- **错误处理**：已有 `src/app/error.tsx`（错误边界）与 `src/app/not-found.tsx`（404 页），静态导出产物中同时生成 `out/404.html`
 
 ## 🔧 自定义指南
 
@@ -276,10 +256,8 @@ git commit -m "refactor(components): 优化按钮组件结构"
 
 ### 分支管理
 
-- `main`: 生产环境分支
-- `develop`: 开发分支
-- `feature/*`: 功能开发分支
-- `hotfix/*`: 紧急修复分支
+- `main`：唯一长期分支；**push 即触发 CI 与 Cloudflare 生产构建发布**
+- 需要评审的改动：开 `feature/*` 分支 → PR（CI + Vercel 预览）→ 合回 main
 
 ## 🚀 性能优化建议
 

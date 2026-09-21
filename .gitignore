@@ -13,6 +13,9 @@
 /.next/
 /out/
 
+# cloudflare wrangler（本地状态，部署配置见 wrangler.jsonc）
+/.wrangler/
+
 # production
 /build
 
