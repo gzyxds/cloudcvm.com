@@ -33,7 +33,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+# next-env.d.ts 需要提交：它提供 next/image 的类型声明，
+# 不提交会导致全新 clone 上 `npm run typecheck`（CI 第一步）失败
 
 # reference design
 /参考设计/
