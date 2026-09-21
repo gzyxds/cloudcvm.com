@@ -62,6 +62,7 @@ const navigation = {
     { name: '企业知识库', href: 'https://www.cnai.art' },
     { name: '聊天绘画', href: 'https://cnai.art' },
     { name: '免费领卡', href: 'https://urlka.cn/' },
+    { name: '宠选Petpick', href: 'https://www.urlnet.cn/' },
   ],
 }
 
