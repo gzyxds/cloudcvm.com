@@ -33,6 +33,12 @@ import {
 import type { MegaMenuCategory, FooterAction, QuickTag } from '@/components/layout/MegaMenu'
 
 /**
+ * 控制台商品列表——/products、/oss、/docs 三个页面尚未建页，暂统一指向这里。
+ * 对应页面做好后，把下面的引用逐个换回站内路径即可。
+ */
+export const GOODS_LIST_URL = 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50'
+
+/**
  * 导航分类设计约定
  * - 每类 2~5 项：避免“分类下只有一个产品”造成左侧与中间区域大面积空白的突兀感；
  * - 分类语义互斥、命名简洁成对；
@@ -197,7 +203,7 @@ export const productCategories: MegaMenuCategory[] = [
         id: 'oss',
         name: '对象存储',
         description: '安全稳定、弹性易用的海量云存储服务',
-        href: '/oss',
+        href: GOODS_LIST_URL,
         icon: CircleStackIcon,
       },
     ],
@@ -899,7 +905,7 @@ export const docsCategories: MegaMenuCategory[] = [
  * 通用底部操作按钮
  */
 export const commonFooterActions: FooterAction[] = [
-  { name: '产品文档', href: '/docs', icon: PlayCircleIcon },
+  { name: '产品文档', href: GOODS_LIST_URL, icon: PlayCircleIcon },
   { name: '联系销售', href: '/contact', icon: PhoneIcon },
 ]
 
@@ -910,7 +916,7 @@ export const productQuickTags: QuickTag[] = [
   { name: '云服务器', href: '/ecs' },
   { name: 'CDN加速', href: '/cdn' },
   { name: '虚拟主机', href: '/host' },
-  { name: '对象存储', href: '/oss' },
+  { name: '对象存储', href: GOODS_LIST_URL },
 ]
 
 /**

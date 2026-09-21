@@ -42,6 +42,7 @@ import {
   docsCategories,
   commonFooterActions,
   productQuickTags,
+  GOODS_LIST_URL,
   aiQuickTags,
   enterpriseQuickTags,
   mobileMenuSections,
@@ -160,7 +161,7 @@ const leftMenuConfigs: NavMenuConfig[] = [
       categories: productCategories,
       quickTags: productQuickTags,
       footerActions: commonFooterActions,
-      viewAllHref: '/products',
+      viewAllHref: GOODS_LIST_URL,
     },
   },
   {
@@ -237,7 +238,7 @@ const rightMenuConfigs: NavMenuConfig[] = [
     options: {
       categories: docsCategories,
       showSearch: false,
-      viewAllHref: '/docs',
+      viewAllHref: GOODS_LIST_URL,
     },
   },
 ]
