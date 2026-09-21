@@ -29,7 +29,7 @@ interface StatItem {
 
 /**
  * 核心基础设施指标（大数字矩阵）
- * 注：以下为品牌示意值，上线前请替换为优刻云计算真实数据
+ * 注：以下为品牌示意值，
  */
 const STATS: StatItem[] = [
   { value: '22', label: '国内区域' },
