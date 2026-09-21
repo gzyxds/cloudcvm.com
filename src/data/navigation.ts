@@ -30,11 +30,7 @@ import {
   BeakerIcon,
   RectangleGroupIcon,
 } from '@heroicons/react/24/outline'
-import type {
-  MegaMenuCategory,
-  FooterAction,
-  QuickTag,
-} from '@/components/MegaMenu'
+import type { MegaMenuCategory, FooterAction, QuickTag } from '@/components/layout/MegaMenu'
 
 /**
  * 导航分类设计约定

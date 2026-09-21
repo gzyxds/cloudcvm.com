@@ -1,3 +1,4 @@
+import { formatPriceWithDecimals } from '@/lib/format'
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import {
@@ -14,24 +15,24 @@ import {
   GlobeAltIcon,
 } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 import { VideoCarousel } from '@/components/carousel/VideoCarousel'
-import { Container } from '@/components/Container'
+import { Container } from '@/components/ui/Container'
 
 import screenshotContacts from '@/images/screenshots/achievements.png'
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
-import { Solution } from '@/components/Solution' // 解决方案
-import ProductTraits from '@/components/common/ProductTraits' // 产品特性
-import Superiority from '@/components/common/Superiority' // 产品优势
-import Advantage from '@/components/Advantage' // 优势展示
+import { Solution } from '@/components/sections/shared/Solution' // 解决方案
+import ProductTraits from '@/components/sections/shared/ProductTraits' // 产品特性
+import Superiority from '@/components/sections/shared/Superiority' // 产品优势
+import Advantage from '@/components/sections/shared/Advantage' // 优势展示
 // === 客户与信任建立 ===
-import Customer from '@/components/common/Customer' // 客户案例
+import Customer from '@/components/sections/shared/Customer' // 客户案例
 // === 支持与帮助 ===
-import { Faqs } from '@/components/Faqs' // 常见问题
+import { Faqs } from '@/components/sections/shared/Faqs' // 常见问题
 // === 页面底部 ===
-import CatSections from '@/components/CatSections' // 底部行动区域
+import CatSections from '@/components/sections/shared/CatSections' // 底部行动区域
 
 // SSL证书产品接口定义
 interface SSLProduct {
@@ -215,20 +216,17 @@ export const metadata: Metadata = {
 const sslFeatures = [
   {
     name: '数据加密',
-    description:
-      '采用256位SSL加密技术，确保网站数据传输过程中的安全性，防止数据被窃取或篡改。',
+    description: '采用256位SSL加密技术，确保网站数据传输过程中的安全性，防止数据被窃取或篡改。',
     icon: LockClosedIcon,
   },
   {
     name: '身份验证',
-    description:
-      '通过权威CA机构验证网站身份，提升用户信任度，显示绿色地址栏和安全锁标识。',
+    description: '通过权威CA机构验证网站身份，提升用户信任度，显示绿色地址栏和安全锁标识。',
     icon: ShieldCheckIcon,
   },
   {
     name: '兼容性保障',
-    description:
-      '支持99.9%的浏览器和移动设备，确保所有用户都能安全访问您的网站，提升用户体验。',
+    description: '支持99.9%的浏览器和移动设备，确保所有用户都能安全访问您的网站，提升用户体验。',
     icon: ChartBarIcon,
   },
 ]
@@ -237,22 +235,19 @@ const leftRightFeatures = [
   {
     name: '全球节点',
     summary: '全球多地域节点分布，提供就近接入服务。',
-    description:
-      '依托全球分布式节点网络,为用户提供就近快速接入,显著提升访问速度和用户体验。',
+    description: '依托全球分布式节点网络,为用户提供就近快速接入,显著提升访问速度和用户体验。',
     icon: ChartBarIcon,
   },
   {
     name: '智能调度',
     summary: '智能DNS调度系统，自动选择最优节点。',
-    description:
-      '基于智能DNS调度技术,自动分析用户位置信息,选择最优接入节点,实现访问加速。',
+    description: '基于智能DNS调度技术,自动分析用户位置信息,选择最优接入节点,实现访问加速。',
     icon: ArrowsPointingOutIcon,
   },
   {
     name: '安全防护',
     summary: '多层安全防护体系，全方位保障业务安全。',
-    description:
-      '提供DDoS防护、CC防护、WAF等多层安全防护,有效抵御各类网络攻击,保障业务稳定运行。',
+    description: '提供DDoS防护、CC防护、WAF等多层安全防护,有效抵御各类网络攻击,保障业务稳定运行。',
     icon: ShieldCheckIcon,
   },
 ]
@@ -267,8 +262,7 @@ const rightLeftFeatures = [
   },
   {
     name: '证书管理',
-    description:
-      '提供证书安装、配置、更新等一站式管理服务，为您的网站提供全方位的HTTPS安全保护。',
+    description: '提供证书安装、配置、更新等一站式管理服务，为您的网站提供全方位的HTTPS安全保护。',
     icon: LockClosedIcon,
   },
   {
@@ -319,9 +313,7 @@ function SSLRisksSection() {
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             不使用SSL证书的风险
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
-            了解网站缺乏SSL证书保护可能面临的安全威胁
-          </p>
+          <p className="mt-4 text-lg text-slate-600">了解网站缺乏SSL证书保护可能面临的安全威胁</p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -333,16 +325,12 @@ function SSLRisksSection() {
                 className="group rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 <div className="mb-4 flex items-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100 group-hover:bg-[#eff6ff] transition-colors">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100 transition-colors group-hover:bg-[#eff6ff]">
                     <IconComponent className="h-6 w-6 text-[#0055ff]" />
                   </div>
                 </div>
-                <h3 className="mb-3 text-lg font-semibold text-slate-900">
-                  {risk.title}
-                </h3>
-                <p className="leading-relaxed text-slate-600">
-                  {risk.description}
-                </p>
+                <h3 className="mb-3 text-lg font-semibold text-slate-900">{risk.title}</h3>
+                <p className="leading-relaxed text-slate-600">{risk.description}</p>
               </div>
             )
           })}
@@ -424,41 +412,27 @@ function SSLGuideTable() {
           {guideData.map((item, index) => (
             <div
               key={index}
-              className="border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#0055ff] rounded-md"
+              className="rounded-md border border-slate-200 bg-white p-6 transition-colors duration-200 hover:border-[#0055ff]"
             >
               <div className="mb-4">
-                <h3 className="mb-2 text-xl font-semibold text-slate-900">
-                  {item.domainType}
-                </h3>
-                <p className="text-sm font-medium text-[#0055ff]">
-                  {item.quantity}
-                </p>
+                <h3 className="mb-2 text-xl font-semibold text-slate-900">{item.domainType}</h3>
+                <p className="text-sm font-medium text-[#0055ff]">{item.quantity}</p>
               </div>
 
               <div className="space-y-3">
                 <div>
-                  <dt className="mb-1 text-sm font-medium text-slate-500">
-                    支持内容
-                  </dt>
-                  <dd className="text-base text-slate-700">
-                    {item.supportContent}
-                  </dd>
+                  <dt className="mb-1 text-sm font-medium text-slate-500">支持内容</dt>
+                  <dd className="text-base text-slate-700">{item.supportContent}</dd>
                 </div>
 
                 <div>
-                  <dt className="mb-1 text-sm font-medium text-slate-500">
-                    适用场景
-                  </dt>
+                  <dt className="mb-1 text-sm font-medium text-slate-500">适用场景</dt>
                   <dd className="text-base text-slate-700">{item.scenario}</dd>
                 </div>
 
                 <div>
-                  <dt className="mb-1 text-sm font-medium text-slate-500">
-                    域名举例
-                  </dt>
-                  <dd className="text-base font-medium text-slate-700">
-                    {item.domainExample}
-                  </dd>
+                  <dt className="mb-1 text-sm font-medium text-slate-500">域名举例</dt>
+                  <dd className="text-base font-medium text-slate-700">{item.domainExample}</dd>
                 </div>
               </div>
             </div>
@@ -466,7 +440,7 @@ function SSLGuideTable() {
         </div>
 
         {/* 桌面端表格布局 */}
-        <div className="hidden overflow-hidden border border-slate-200 lg:block rounded-md">
+        <div className="hidden overflow-hidden rounded-md border border-slate-200 lg:block">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-slate-200">
               <thead className="bg-slate-50">
@@ -490,10 +464,7 @@ function SSLGuideTable() {
               </thead>
               <tbody className="divide-y divide-slate-200 bg-white">
                 {guideData.map((item, index) => (
-                  <tr
-                    key={index}
-                    className="transition-colors duration-200 hover:bg-slate-50"
-                  >
+                  <tr key={index} className="transition-colors duration-200 hover:bg-slate-50">
                     <td className="px-8 py-5 text-base font-semibold whitespace-nowrap text-slate-900 xl:px-10 xl:py-6 xl:text-lg">
                       {item.domainType}
                     </td>
@@ -556,7 +527,7 @@ function SSLLeftrightSection() {
             </dl>
           </div>
           <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-2 sm:space-x-3">
@@ -570,7 +541,7 @@ function SSLLeftrightSection() {
               </div>
 
               {/* 移动端模拟界面标题栏 */}
-              <div className="mb-3 border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 rounded-lg dark:border-gray-600/20 dark:bg-gray-800/30">
+              <div className="mb-3 rounded-lg border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
                 <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
                   证书管理中心
                 </h3>
@@ -584,10 +555,10 @@ function SSLLeftrightSection() {
                 {sslProducts.slice(0, 3).map((product, index) => (
                   <div
                     key={product.id}
-                    className="border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center border border-green-200/50 bg-green-100/80 rounded dark:border-green-800/50 dark:bg-green-900/50">
+                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border border-green-200/50 bg-green-100/80 dark:border-green-800/50 dark:bg-green-900/50">
                         <LockClosedIcon className="h-4 w-4 text-green-600 dark:text-green-400" />
                       </div>
                       <div className="min-w-0 flex-1">
@@ -599,11 +570,15 @@ function SSLLeftrightSection() {
                         </p>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <span className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
-                          index === 0 ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
-                          index === 1 ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' :
-                          'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
-                        }`}>
+                        <span
+                          className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
+                            index === 0
+                              ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                              : index === 1
+                                ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+                                : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+                          }`}
+                        >
                           {index === 0 ? '已签发' : index === 1 ? '验证中' : '待续费'}
                         </span>
                       </div>
@@ -615,21 +590,21 @@ function SSLLeftrightSection() {
               {/* 快速操作区域 */}
               <div className="mb-3 grid grid-cols-3 gap-2">
                 <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
-                  <CloudArrowUpIcon className="h-4 w-4 text-[#0055ff] dark:text-blue-400 mb-1" />
+                  <CloudArrowUpIcon className="mb-1 h-4 w-4 text-[#0055ff] dark:text-blue-400" />
                   <span className="text-slate-700 dark:text-gray-300">快速签发</span>
                 </button>
                 <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
-                  <DocumentTextIcon className="h-4 w-4 text-green-600 dark:text-green-400 mb-1" />
+                  <DocumentTextIcon className="mb-1 h-4 w-4 text-green-600 dark:text-green-400" />
                   <span className="text-slate-700 dark:text-gray-300">证书管理</span>
                 </button>
                 <button className="flex flex-col items-center rounded border border-slate-200/30 bg-white/60 p-2 text-xs backdrop-blur-sm hover:bg-white/80 dark:border-gray-700/30 dark:bg-white/10 dark:hover:bg-white/20">
-                  <ServerIcon className="h-4 w-4 text-purple-600 dark:text-purple-400 mb-1" />
+                  <ServerIcon className="mb-1 h-4 w-4 text-purple-600 dark:text-purple-400" />
                   <span className="text-slate-700 dark:text-gray-300">技术支持</span>
                 </button>
               </div>
 
               {/* 移动端模拟状态栏 */}
-              <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                 <div className="flex items-center space-x-2">
                   <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
                   <span>3个证书正常运行</span>
@@ -678,7 +653,7 @@ function SSLLeftrightSection() {
             </div>
           </div>
           <div className="flex items-start justify-center lg:order-first lg:justify-end">
-            <div className="relative w-full max-w-2xl overflow-hidden border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative w-full max-w-2xl overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
               {/* 桌面端模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center space-x-2 sm:space-x-3">
@@ -694,9 +669,11 @@ function SSLLeftrightSection() {
               {/* 桌面端模拟界面内容区 */}
               <div className="flex">
                 {/* 左侧导航 */}
-                <div className="mr-3 w-40 shrink-0 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
+                <div className="mr-3 w-40 shrink-0 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
                   <div className="mb-3">
-                    <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">证书管理</h4>
+                    <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
+                      证书管理
+                    </h4>
                     <div className="space-y-1">
                       {leftRightFeatures.slice(0, 3).map((feature, index) => (
                         <div
@@ -709,10 +686,16 @@ function SSLLeftrightSection() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">系统设置</h4>
+                    <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
+                      系统设置
+                    </h4>
                     <div className="space-y-1">
-                      <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1">账户设置</div>
-                      <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1">通知管理</div>
+                      <div className="rounded px-2 py-1 text-xs text-slate-600 dark:text-gray-400">
+                        账户设置
+                      </div>
+                      <div className="rounded px-2 py-1 text-xs text-slate-600 dark:text-gray-400">
+                        通知管理
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -720,7 +703,7 @@ function SSLLeftrightSection() {
                 {/* 右侧内容 */}
                 <div className="flex-1">
                   {/* 标题栏 */}
-                  <div className="mb-3 border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 rounded-lg dark:border-gray-600/20 dark:bg-gray-800/30">
+                  <div className="mb-3 rounded-lg border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
                     <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
                       SSL证书管理
                     </h3>
@@ -736,7 +719,7 @@ function SSLLeftrightSection() {
                       return (
                         <div
                           key={feature.name}
-                          className="border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                          className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                         >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
@@ -748,12 +731,18 @@ function SSLLeftrightSection() {
                                   {feature.name}
                                 </h4>
                                 <p className="text-xs text-slate-600 dark:text-gray-400">
-                                  {index === 0 ? '有效期: 11个月' : index === 1 ? '有效期: 8个月' : '有效期: 3个月'}
+                                  {index === 0
+                                    ? '有效期: 11个月'
+                                    : index === 1
+                                      ? '有效期: 8个月'
+                                      : '有效期: 3个月'}
                                 </p>
                               </div>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <span className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${index === 2 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}>
+                              <span
+                                className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${index === 2 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}
+                              >
                                 {index === 2 ? '即将到期' : '有效'}
                               </span>
                               <button className="rounded bg-[#eff6ff] px-2 py-1 text-xs font-medium text-[#0055ff] hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50">
@@ -767,7 +756,7 @@ function SSLLeftrightSection() {
                   </div>
 
                   {/* 状态栏 */}
-                  <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+                  <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                     <div className="flex items-center space-x-2">
                       <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
                       <span>系统正常</span>
@@ -802,7 +791,7 @@ function SSLRightleftSection() {
       <div className="overflow-hidden bg-white py-16 sm:py-20 md:py-24 lg:py-32 dark:bg-gray-900">
         <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-            <div className="lg:pl-8 lg:pt-4">
+            <div className="lg:pt-4 lg:pl-8">
               <div className="lg:max-w-lg">
                 <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
                   更安全防护
@@ -830,7 +819,7 @@ function SSLRightleftSection() {
               </div>
             </div>
             <div className="flex items-start justify-end">
-              <div className="relative w-full max-w-2xl overflow-hidden border border-slate-200/50 bg-white/80 p-3 sm:p-4 md:p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
+              <div className="relative w-full max-w-2xl overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-3 shadow-xl backdrop-blur-lg sm:p-4 md:p-6 dark:border-gray-700/50 dark:bg-white/10">
                 {/* 桌面端模拟界面头部 */}
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex items-center space-x-2 sm:space-x-3">
@@ -846,34 +835,50 @@ function SSLRightleftSection() {
                 {/* 模拟界面内容区 - 添加响应式布局 */}
                 <div className="flex flex-col sm:flex-row">
                   {/* 左侧导航 - 移动端适配 */}
-                  <div className="mb-3 w-full sm:mb-0 sm:mr-3 sm:w-40 shrink-0 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
+                  <div className="mb-3 w-full shrink-0 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mr-3 sm:mb-0 sm:w-40 dark:border-gray-700/50 dark:bg-gray-800/50">
                     <div className="mb-3">
-                      <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">证书管理</h4>
-                      <div className="flex flex-wrap gap-1 sm:flex-col sm:space-y-1 sm:gap-0">
-                        <div className="text-xs bg-[#eff6ff] text-[#0055ff] dark:bg-blue-900/30 dark:text-blue-400 rounded px-2 py-1">
+                      <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
+                        证书管理
+                      </h4>
+                      <div className="flex flex-wrap gap-1 sm:flex-col sm:gap-0 sm:space-y-1">
+                        <div className="rounded bg-[#eff6ff] px-2 py-1 text-xs text-[#0055ff] dark:bg-blue-900/30 dark:text-blue-400">
                           我的证书
                         </div>
-                        <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1 hover:bg-slate-100/50 dark:hover:bg-gray-700/30">
+                        <div className="rounded px-2 py-1 text-xs text-slate-600 hover:bg-slate-100/50 dark:text-gray-400 dark:hover:bg-gray-700/30">
                           申请证书
                         </div>
-                        <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1 hover:bg-slate-100/50 dark:hover:bg-gray-700/30">
+                        <div className="rounded px-2 py-1 text-xs text-slate-600 hover:bg-slate-100/50 dark:text-gray-400 dark:hover:bg-gray-700/30">
                           证书续费
                         </div>
                       </div>
                     </div>
                     <div className="mb-3">
-                      <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">证书类型</h4>
-                      <div className="flex flex-wrap gap-1 sm:flex-col sm:space-y-1 sm:gap-0">
-                        <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1 hover:bg-slate-100/50 dark:hover:bg-gray-700/30">DV证书</div>
-                        <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1 hover:bg-slate-100/50 dark:hover:bg-gray-700/30">OV证书</div>
-                        <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1 hover:bg-slate-100/50 dark:hover:bg-gray-700/30">EV证书</div>
+                      <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
+                        证书类型
+                      </h4>
+                      <div className="flex flex-wrap gap-1 sm:flex-col sm:gap-0 sm:space-y-1">
+                        <div className="rounded px-2 py-1 text-xs text-slate-600 hover:bg-slate-100/50 dark:text-gray-400 dark:hover:bg-gray-700/30">
+                          DV证书
+                        </div>
+                        <div className="rounded px-2 py-1 text-xs text-slate-600 hover:bg-slate-100/50 dark:text-gray-400 dark:hover:bg-gray-700/30">
+                          OV证书
+                        </div>
+                        <div className="rounded px-2 py-1 text-xs text-slate-600 hover:bg-slate-100/50 dark:text-gray-400 dark:hover:bg-gray-700/30">
+                          EV证书
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">系统设置</h4>
-                      <div className="flex flex-wrap gap-1 sm:flex-col sm:space-y-1 sm:gap-0">
-                        <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1 hover:bg-slate-100/50 dark:hover:bg-gray-700/30">账户设置</div>
-                        <div className="text-xs text-slate-600 dark:text-gray-400 rounded px-2 py-1 hover:bg-slate-100/50 dark:hover:bg-gray-700/30">通知管理</div>
+                      <h4 className="mb-2 text-xs font-semibold text-slate-900 dark:text-white">
+                        系统设置
+                      </h4>
+                      <div className="flex flex-wrap gap-1 sm:flex-col sm:gap-0 sm:space-y-1">
+                        <div className="rounded px-2 py-1 text-xs text-slate-600 hover:bg-slate-100/50 dark:text-gray-400 dark:hover:bg-gray-700/30">
+                          账户设置
+                        </div>
+                        <div className="rounded px-2 py-1 text-xs text-slate-600 hover:bg-slate-100/50 dark:text-gray-400 dark:hover:bg-gray-700/30">
+                          通知管理
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -881,7 +886,7 @@ function SSLRightleftSection() {
                   {/* 右侧内容 */}
                   <div className="flex-1">
                     {/* 标题栏 */}
-                    <div className="mb-3 border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 rounded-lg dark:border-gray-600/20 dark:bg-gray-800/30">
+                    <div className="mb-3 rounded-lg border border-white/20 bg-white/30 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
                       <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
                         SSL证书管理
                       </h3>
@@ -895,10 +900,10 @@ function SSLRightleftSection() {
                       {sslProducts.slice(0, 3).map((product, index) => (
                         <div
                           key={product.id}
-                          className="border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                          className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                         >
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                            <div className="flex items-center space-x-3 mb-2 sm:mb-0">
+                            <div className="mb-2 flex items-center space-x-3 sm:mb-0">
                               <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-green-200/50 bg-green-100/80 dark:border-green-800/50 dark:bg-green-900/50">
                                 <LockClosedIcon className="h-4 w-4 text-green-600 dark:text-green-400" />
                               </div>
@@ -907,11 +912,12 @@ function SSLRightleftSection() {
                                   {product.name}
                                 </h4>
                                 <p className="text-xs text-slate-600 dark:text-gray-400">
-                                  {product.specs.type} • {product.specs.domains} • {product.specs.warranty}
+                                  {product.specs.type} • {product.specs.domains} •{' '}
+                                  {product.specs.warranty}
                                 </p>
                               </div>
                             </div>
-                            <div className="flex items-center space-x-2 ml-11 sm:ml-0">
+                            <div className="ml-11 flex items-center space-x-2 sm:ml-0">
                               <div className="text-right">
                                 <div className="text-sm font-medium text-slate-900 dark:text-white">
                                   ¥{product.currentPrice}
@@ -920,12 +926,20 @@ function SSLRightleftSection() {
                                   ¥{product.originalPrice}
                                 </div>
                               </div>
-                              <span className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
-                                index === 0 ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' :
-                                index === 1 ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' :
-                                'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
-                              }`}>
-                                {index === 0 ? product.discount : index === 1 ? product.discount : product.discount}
+                              <span
+                                className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
+                                  index === 0
+                                    ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+                                    : index === 1
+                                      ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+                                      : 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
+                                }`}
+                              >
+                                {index === 0
+                                  ? product.discount
+                                  : index === 1
+                                    ? product.discount
+                                    : product.discount}
                               </span>
                               <button className="rounded bg-[#eff6ff] px-2 py-1 text-xs font-medium text-[#0055ff] hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50">
                                 立即购买
@@ -937,8 +951,8 @@ function SSLRightleftSection() {
                     </div>
 
                     {/* 状态栏 */}
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                      <div className="flex items-center space-x-2 mb-1 sm:mb-0">
+                    <div className="flex flex-col rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+                      <div className="mb-1 flex items-center space-x-2 sm:mb-0">
                         <div className="h-1.5 w-1.5 rounded-full bg-green-400"></div>
                         <span>系统正常运行中</span>
                       </div>
@@ -968,12 +982,12 @@ export default function SSLPage() {
           {/* 页面标题 */}
           <div className="border-b border-slate-200 bg-white">
             <div className="mx-auto max-w-[1800px] px-4 pt-24 pb-6 sm:px-6 lg:px-8">
-              <h1 className="text-2xl font-bold text-slate-900 tracking-tight">SSL证书专区</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-slate-900">SSL证书专区</h1>
               <p className="mt-2 text-sm text-slate-600">
                 <span className="font-medium text-[#F59E0B]">DV证书起步</span>
                 ，新用户低至
                 <span className="font-medium text-[#F59E0B]">79元/年</span>
-                <span className="ml-2 cursor-pointer text-[#0055ff] hover:text-[#0043cc] underline">
+                <span className="ml-2 cursor-pointer text-[#0055ff] underline hover:text-[#0043cc]">
                   活动规则&gt;
                 </span>
               </p>
@@ -986,18 +1000,16 @@ export default function SSLPage() {
               {sslProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   {/* Hover Gradient Background */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  
-                  <div className="relative z-10 flex flex-col h-full">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  <div className="relative z-10 flex h-full flex-col">
                     {/* 产品标题和标签 */}
                     <div className="border-b border-slate-100 p-6">
                       <div className="mb-4 flex items-center justify-between">
-                        <h3 className="text-lg font-medium text-slate-900">
-                          {product.name}
-                        </h3>
+                        <h3 className="text-lg font-medium text-slate-900">{product.name}</h3>
                         <svg
                           className="h-5 w-5 text-slate-400"
                           fill="none"
@@ -1012,17 +1024,17 @@ export default function SSLPage() {
                           />
                         </svg>
                       </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xl font-bold text-slate-900 tracking-tight">
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="text-xl font-bold tracking-tight text-slate-900">
                           {product.subtitle}
                         </span>
                         {product.isHot && (
-                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="rounded border border-red-100 bg-red-50 px-2 py-0.5 text-xs text-red-600">
                             申请特惠
                           </span>
                         )}
                         {product.isRecommended && (
-                          <span className="rounded bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff] border border-blue-100">
+                          <span className="rounded border border-blue-100 bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff]">
                             申请特惠
                           </span>
                         )}
@@ -1033,13 +1045,11 @@ export default function SSLPage() {
                     </div>
 
                     {/* 产品规格信息 */}
-                    <div className="space-y-4 p-6 flex-grow">
+                    <div className="flex-grow space-y-4 p-6">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">类型</span>
                         <div className="flex items-center gap-1">
-                          <span className="font-medium text-slate-900">
-                            {product.specs.type}
-                          </span>
+                          <span className="font-medium text-slate-900">{product.specs.type}</span>
                           <svg
                             className="h-4 w-4 text-slate-400"
                             fill="none"
@@ -1058,32 +1068,24 @@ export default function SSLPage() {
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">域名</span>
-                        <span className="text-sm text-slate-900">
-                          {product.specs.domains}
-                        </span>
+                        <span className="text-sm text-slate-900">{product.specs.domains}</span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">验证</span>
-                        <span className="text-sm text-slate-900">
-                          {product.specs.validation}
-                        </span>
+                        <span className="text-sm text-slate-900">{product.specs.validation}</span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">保障</span>
-                        <span className="text-sm text-slate-900">
-                          {product.specs.warranty}
-                        </span>
+                        <span className="text-sm text-slate-900">{product.specs.warranty}</span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">时长</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-slate-900">
-                            {product.duration}
-                          </span>
-                          <span className="rounded bg-red-50 px-1.5 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="text-sm text-slate-900">{product.duration}</span>
+                          <span className="rounded border border-red-100 bg-red-50 px-1.5 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
                         </div>
@@ -1092,11 +1094,11 @@ export default function SSLPage() {
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">数量</span>
                         <div className="flex items-center gap-2">
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
                             −
                           </button>
                           <span className="w-8 text-center text-sm text-slate-900">1</span>
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
                             +
                           </button>
                         </div>
@@ -1104,10 +1106,10 @@ export default function SSLPage() {
                     </div>
 
                     {/* 价格和折扣信息 */}
-                    <div className="border-t border-slate-100 p-6 bg-slate-50/50">
+                    <div className="border-t border-slate-100 bg-slate-50/50 p-6">
                       {product.discount && (
                         <div className="mb-3 flex items-center gap-2">
-                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="rounded border border-red-100 bg-red-50 px-2 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
                           <span className="text-xs text-slate-500">限1个</span>
@@ -1117,12 +1119,12 @@ export default function SSLPage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm text-slate-500">活动价:</span>
-                          <span className="text-2xl font-bold text-[#EF4444] tracking-tight">
+                          <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
                             {product.currentPrice}
                           </span>
                           <span className="text-sm text-slate-500">元</span>
-                          <span className="text-xs text-slate-400 line-through ml-1">
-                            ¥{product.originalPrice.toFixed(2)}/月
+                          <span className="ml-1 text-xs text-slate-400 line-through">
+                            {formatPriceWithDecimals(product.originalPrice)}/月
                           </span>
                         </div>
                         <div className="mt-1 flex items-center gap-2">
@@ -1138,7 +1140,7 @@ export default function SSLPage() {
                           href="https://console.cloudcvm.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-medium text-slate-600 transition-all hover:text-slate-900 hover:border-slate-300 hover:bg-slate-50"
+                          className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-medium text-slate-600 transition-all hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
                         >
                           加入购物车
                         </a>

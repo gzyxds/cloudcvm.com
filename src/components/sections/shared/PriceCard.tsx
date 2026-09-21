@@ -1,0 +1,1578 @@
+'use client'
+
+/**
+ * 云服务器产品展示组件
+ * 展示轻量应用服务器产品、热门活动和促销信息
+ * 包含产品卡片、价格展示和购买功能
+ * 遵循 Linear Design 风格：Light Mode, 细边框, 工业科技感
+ */
+
+import React from 'react'
+
+/**
+ * 服务器产品数据类型定义
+ * 包含产品基本信息、规格配置、区域、价格和促销信息
+ */
+interface ServerProduct {
+  /** 产品唯一标识 */
+  id: number
+  /** 产品名称 */
+  name: string
+  /** 产品副标题/简短描述 */
+  subtitle: string
+  /** 产品规格配置 */
+  specs: {
+    /** CPU配置 */
+    cpu: string
+    /** 内存大小 */
+    memory: string
+    /** 存储容量 */
+    storage: string
+    /** 带宽 */
+    bandwidth: string
+  }
+  /** 可用区域列表 */
+  regions: string[]
+  /** 购买时长 */
+  duration: string
+  /** 原价 */
+  originalPrice: number
+  /** 当前促销价 */
+  currentPrice: number
+  /** 折扣信息 */
+  discount: string
+  /** 是否热门产品 */
+  isHot?: boolean
+  /** 是否推荐产品 */
+  isRecommended?: boolean
+  /** 活动结束时间 */
+  activityEndDate?: string
+  /** 活动说明 */
+  activityNote?: string
+  /** 网络类型 */
+  networkType?: string
+  /** IP配置 */
+  ipConfig?: string
+  /** 防御配置 */
+  defense?: string
+  /** 注意事项 */
+  note?: string
+  /** 商品链接地址 */
+  linkUrl?: string
+}
+
+/**
+ * 轻量应用服务器产品列表数据
+ * 包含多种配置规格的轻量应用服务器产品
+ */
+const serverProducts: ServerProduct[] = [
+  {
+    id: 1,
+    name: '香港 · 轻量云',
+    subtitle: 'CN2优化 无需备案',
+    specs: {
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '3 ~ 5Mbps',
+    },
+    regions: ['香港'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
+    isHot: true,
+    isRecommended: false,
+    activityNote: 'Linux系统可选，CN2优化，无需备案，开箱即用',
+    networkType: 'CN2优化',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+  {
+    id: 2,
+    name: '日本 · 轻量云',
+    subtitle: '回国优化 无需备案',
+    specs: {
+      cpu: '2 ~ 4核心 Gold',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '5 ~ 8Mbps',
+    },
+    regions: ['日本'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
+    isHot: true,
+    isRecommended: false,
+    activityNote: 'Linux系统可选，回国优化，无需备案，开箱即用',
+    networkType: '回国优化',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+  {
+    id: 3,
+    name: '韩国 · 轻量云',
+    subtitle: '回国优化 无需备案',
+    specs: {
+      cpu: '2 ~ 4核心 V2处理器',
+      memory: '2 ~ 4GB DDR3',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '3 ~ 5Mbps',
+    },
+    regions: ['韩国'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
+    isHot: false,
+    isRecommended: true,
+    activityNote: 'Linux系统可选，回国优化，无需备案，开箱即用',
+    networkType: '回国优化',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+  {
+    id: 4,
+    name: '美国 · 轻量云',
+    subtitle: '精品线路 无需备案',
+    specs: {
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '10 ~ 20Mbps',
+    },
+    regions: ['美国'],
+    duration: '月付',
+    originalPrice: 35,
+    currentPrice: 21.89,
+    discount: '特惠',
+    isHot: true,
+    isRecommended: false,
+    activityNote: 'Linux系统可选，精品线路，无需备案，开箱即用',
+    networkType: '精品线路',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+  {
+    id: 5,
+    name: '德国 · 轻量云',
+    subtitle: 'CN2优化 无需备案',
+    specs: {
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '3 ~ 5Mbps',
+    },
+    regions: ['德国'],
+    duration: '月付',
+    originalPrice: 18,
+    currentPrice: 10.39,
+    discount: '特惠',
+    isHot: false,
+    isRecommended: true,
+    activityNote: 'Linux系统可选，CN2优化，无需备案，开箱即用',
+    networkType: 'CN2优化',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+  {
+    id: 6,
+    name: '美国高防 · 轻量云',
+    subtitle: '9929线路 200G防御',
+    specs: {
+      cpu: '4核心 V4处理器',
+      memory: '4GB DDR4',
+      storage: '50G 高速存储',
+      bandwidth: '30Mbps',
+    },
+    regions: ['美国'],
+    duration: '月付',
+    originalPrice: 68,
+    currentPrice: 43.89,
+    discount: '特惠',
+    isHot: true,
+    isRecommended: false,
+    activityNote: 'Linux系统可选，9929线路，无需备案，200G防御',
+    networkType: '9929线路',
+    ipConfig: '原生IP：1个',
+    defense: '200G防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+  {
+    id: 7,
+    name: '新加坡 · 轻量云',
+    subtitle: 'CN2优化 无需备案',
+    specs: {
+      cpu: '2 ~ 4核心 V4处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '5 ~ 10Mbps',
+    },
+    regions: ['新加坡'],
+    duration: '月付',
+    originalPrice: 38,
+    currentPrice: 25.99,
+    discount: '特惠',
+    isHot: false,
+    isRecommended: true,
+    activityNote: 'Linux系统可选，CN2优化，无需备案，开箱即用',
+    networkType: 'CN2优化',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+  {
+    id: 8,
+    name: '台湾 · 轻量云',
+    subtitle: '回国优化 无需备案',
+    specs: {
+      cpu: '2 ~ 4核心 V3处理器',
+      memory: '2 ~ 4GB DDR4',
+      storage: '30 ~ 50G 高速存储',
+      bandwidth: '5 ~ 8Mbps',
+    },
+    regions: ['台湾'],
+    duration: '月付',
+    originalPrice: 32,
+    currentPrice: 19.99,
+    discount: '特惠',
+    isHot: true,
+    isRecommended: false,
+    activityNote: 'Linux系统可选，回国优化，无需备案，开箱即用',
+    networkType: '回国优化',
+    ipConfig: '原生IP：1个',
+    defense: '标准防御',
+    note: '',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=69',
+  },
+]
+
+/**
+ * 云挂机宝产品系列数据
+ * 包含云挂机宝和云电脑的多种配置规格
+ */
+const cloudVmProducts: ServerProduct[] = [
+  {
+    id: 201,
+    name: '云挂机宝-高性能',
+    subtitle: '1核2G',
+    specs: {
+      cpu: '至强E5处理器 1核',
+      memory: '2G DDR4 ECC',
+      storage: 'Intel P4510 企业级固态',
+      bandwidth: '上行2Mbps/下行20Mbps 电信专线',
+    },
+    regions: ['枣庄云电脑'],
+    duration: '月付',
+    originalPrice: 9.99,
+    currentPrice: 7.2,
+    discount: '7.2折',
+    isHot: true,
+    isRecommended: true,
+    activityNote: '【静态内存，绝不超开】挂机宝 - 1核2G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=54&spg_id=49',
+  },
+  {
+    id: 202,
+    name: '挂机宝 - 1核2G',
+    subtitle: '1核2G',
+    specs: {
+      cpu: '至强E5处理器 1核',
+      memory: '2G DDR4 ECC',
+      storage: 'Intel P4510 企业级固态',
+      bandwidth: '上行2Mbps/下行20Mbps 电信专线',
+    },
+    regions: ['枣庄云电脑'],
+    duration: '月付',
+    originalPrice: 9.99,
+    currentPrice: 7.2,
+    discount: '7.2折',
+    isHot: true,
+    isRecommended: true,
+    activityNote: '【静态内存，绝不超开】挂机宝 - 1核2G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=54&spg_id=49',
+  },
+  {
+    id: 203,
+    name: '云电脑 - 2核4G',
+    subtitle: '2核4G',
+    specs: {
+      cpu: '至强E5处理器 2核',
+      memory: '4G DDR4 ECC',
+      storage: 'Intel P4510 企业级固态',
+      bandwidth: '上行2Mbps/下行20Mbps 电信专线',
+    },
+    regions: ['枣庄云电脑'],
+    duration: '月付',
+    originalPrice: 10.5,
+    currentPrice: 10.5,
+    discount: '无折扣',
+    isRecommended: true,
+    activityNote: '【静态内存，绝不超开】云电脑 - 2核4G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=54&spg_id=49',
+  },
+  {
+    id: 204,
+    name: '云电脑 - 4核6G',
+    subtitle: '4核6G',
+    specs: {
+      cpu: '至强E5处理器 4核',
+      memory: '6G DDR4 ECC',
+      storage: 'Intel P4510 企业级固态',
+      bandwidth: '上行2Mbps/下行20Mbps 电信专线',
+    },
+    regions: ['枣庄云电脑'],
+    duration: '月付',
+    originalPrice: 42.0,
+    currentPrice: 42.0,
+    discount: '无折扣',
+    activityNote: '【静态内存，绝不超开】云电脑 - 4核6G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=54&spg_id=49',
+  },
+]
+
+/**
+ * 热销产品推荐第二组
+ * 独立于主要产品数据，用于展示特别促销的产品
+ */
+const promotionProducts: ServerProduct[] = [
+  {
+    id: 101,
+    name: '昆明电信通用型服务器',
+    subtitle: 'kcs.ga2.c4m4 高性能',
+    specs: {
+      cpu: '4 vCPU (AMD EYPC 7662)',
+      memory: '4-8GB',
+      storage: '40GB+10GB (可升级)',
+      bandwidth: '20-1000Mbps',
+    },
+    regions: ['昆明电信'],
+    duration: '日常价',
+    originalPrice: 699,
+    currentPrice: 499,
+    discount: '7.1折',
+    isHot: true,
+    activityEndDate: '2024年12月31日',
+    activityNote: '高性能云服务器，适合中小型应用部署',
+    networkType: '经典网络/VPC网络',
+    ipConfig: '1个公网IP/自动白名单',
+    defense: 'DDoS：10G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=70',
+  },
+  {
+    id: 102,
+    name: '昆明电信通用型服务器',
+    subtitle: 'kcs.ga2.c8m8 高性能',
+    specs: {
+      cpu: '8 vCPU (AMD EYPC 7662)',
+      memory: '8-16GB',
+      storage: '40GB+10GB (可升级)',
+      bandwidth: '20-1000Mbps',
+    },
+    regions: ['昆明电信'],
+    duration: '日常价',
+    originalPrice: 999,
+    currentPrice: 799,
+    discount: '8折',
+    isRecommended: true,
+    activityEndDate: '2024年12月31日',
+    activityNote: '推荐配置，性价比高，适合企业级应用',
+    networkType: '经典网络/VPC网络',
+    ipConfig: '1个公网IP/自动白名单',
+    defense: 'DDoS：10G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=70',
+  },
+  {
+    id: 103,
+    name: '昆明电信峰驰型服务器',
+    subtitle: 'kcs.pa2.c4m4 高性能',
+    specs: {
+      cpu: '4 vCPU (AMD EYPC 7662)',
+      memory: '4-8GB',
+      storage: '40GB+10GB (可升级)',
+      bandwidth: '500Mbps (流量1T 双向计费)',
+    },
+    regions: ['昆明电信'],
+    duration: '日常价',
+    originalPrice: 699,
+    currentPrice: 499,
+    discount: '7.1折',
+    isRecommended: true,
+    activityEndDate: '2024年12月31日',
+    activityNote: '峰驰型服务器，高带宽配置，适合流量密集型应用',
+    networkType: '经典网络/VPC网络',
+    ipConfig: '1个公网IP/自动白名单',
+    defense: 'DDoS：10G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=70',
+  },
+  {
+    id: 105,
+    name: '昆明电信峰驰型服务器',
+    subtitle: 'kcs.pa2.c8m8 高性能',
+    specs: {
+      cpu: '8 vCPU (AMD EYPC 7662)',
+      memory: '8-16GB',
+      storage: '40GB+10GB (可升级)',
+      bandwidth: '500Mbps (流量1T 双向计费)',
+    },
+    regions: ['昆明电信'],
+    duration: '日常价',
+    originalPrice: 799,
+    currentPrice: 799,
+    discount: '无折扣',
+    isHot: true,
+    activityEndDate: '2024年12月31日',
+    activityNote: '高配置峰驰型服务器，适合大型应用和高并发场景',
+    networkType: '经典网络/VPC网络',
+    ipConfig: '1个公网IP/自动白名单',
+    defense: 'DDoS：10G',
+    linkUrl: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=70',
+  },
+]
+
+const DEFAULT_CART_URL = 'https://console.cloudcvm.com/cart/goodsList.htm'
+
+const productLinkUrlById = new Map<number, string>(
+  [...serverProducts, ...cloudVmProducts, ...promotionProducts]
+    .filter(
+      (product): product is ServerProduct & { linkUrl: string } =>
+        typeof product.linkUrl === 'string' && product.linkUrl.length > 0
+    )
+    .map((product) => [product.id, product.linkUrl])
+)
+
+/**
+ * 获取产品购买链接
+ * @param {number} productId - 产品ID
+ * @returns {string} 购买链接URL
+ */
+const resolveProductLinkUrl = (productId: number) =>
+  productLinkUrlById.get(productId) ?? DEFAULT_CART_URL
+
+/**
+ * 云服务器产品展示组件
+ *
+ * 功能特点：
+ * - 云服务器产品卡片布局，展示多种配置的轻量应用服务器
+ * - 响应式网格布局，适配不同屏幕尺寸（手机、平板、桌面）
+ * - 包含服务器规格、地域、价格、折扣等完整信息展示
+ * - 支持热门标签和推荐标签显示
+ * - 购买按钮交互功能
+ * - 热门活动和促销信息展示
+ * - 遵循 Linear Design 风格：Light Mode, 细边框, 工业科技感
+ *
+ * @returns {JSX.Element} 云服务器产品展示组件
+ */
+export default function PriceCard() {
+  /**
+   * 添加到购物车处理函数
+   * @param {number} productId - 产品ID
+   */
+  const handleAddToCart = (productId: number) => {
+    window.location.href = resolveProductLinkUrl(productId)
+  }
+
+  /**
+   * 立即购买处理函数
+   * @param {number} productId - 产品ID
+   */
+  const handleBuyNow = (productId: number) => {
+    window.location.href = resolveProductLinkUrl(productId)
+  }
+  /**
+   * 热门活动精选卡片数据
+   */
+  const hotCards = [
+    {
+      variant: 'large' as const,
+      tag: '精选特惠 新老同享',
+      title: '热门产品优惠套餐',
+      desc: ['新老用户同价秒杀', '性能稳定 等你来抢'],
+      bg: '/images/carousel/new.webp',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: '云计算产品热销榜',
+      title: '云服务器热销榜单',
+      desc: ['云服务器热销榜单上架'],
+      bg: '/images/carousel/new-1.webp',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: '人工智能超级品类季',
+      title: '人工智能超级品类季',
+      desc: ['文字、人脸、语音、图像识别 低至1折'],
+      bg: '/images/carousel/new-2.webp',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: '语音技术品类季',
+      title: '语音技术品类季',
+      desc: ['语音合成转换等多项功能', '自选应用场景'],
+      bg: '/images/carousel/new-3.webp',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+    {
+      variant: 'small' as const,
+      tag: 'AI智能助手',
+      title: '智能对话',
+      desc: ['企业级AI助手'],
+      bg: '/images/carousel/new-4.webp',
+      href: 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all',
+    },
+  ]
+
+  // 分离大卡片和小卡片
+  const largeCard = hotCards[0]
+  const smallCards = hotCards.slice(1)
+
+  /**
+   * 公共卡片容器样式
+   */
+  const cardBase = `group relative block overflow-hidden rounded-xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50 cursor-pointer`
+
+  /**
+   * 热门活动精选区域
+   */
+  return (
+    <div
+      className="min-h-screen bg-cover bg-fixed bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url("/images/background/Cardprice.webp")' }}
+    >
+      <div className="mx-auto max-w-[1800px] px-4 py-8 pt-24 sm:px-6 lg:px-8">
+        {/* 热门活动精选 — 左侧大卡片 + 右侧 2×2 网格 */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {/* ---- 左侧大卡片 ---- */}
+          <a href={largeCard.href} className={cardBase}>
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url('${largeCard.bg}')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+            <div className="relative z-10 flex h-full min-h-[170px] flex-col justify-center p-5 sm:min-h-[350px] sm:justify-between sm:p-8">
+              <div>
+                <span className="mb-3 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-5 sm:px-4 sm:py-1.5 sm:text-sm">
+                  {largeCard.tag}
+                </span>
+                <h3 className="mb-2 hidden text-lg leading-tight font-bold text-[#0F172A] sm:mb-3 sm:block sm:text-2xl">
+                  {largeCard.title}
+                </h3>
+                {largeCard.desc.map((line, i) => (
+                  <p key={i} className="text-sm leading-relaxed text-[#64748B] sm:text-base">
+                    {line}
+                  </p>
+                ))}
+              </div>
+              <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1 sm:mt-6">
+                立即抢购 <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </a>
+
+          {/* ---- 右侧 2×2 小卡片（移动端 2 列网格） ---- */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-2">
+            {smallCards.map((card) => (
+              <a key={card.tag} href={card.href} className={cardBase}>
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url('${card.bg}')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                <div className="relative z-10 flex h-full min-h-[110px] flex-col justify-center p-4 sm:min-h-[168px] sm:justify-between sm:p-6">
+                  <div>
+                    <span className="mb-2 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-4">
+                      {card.tag}
+                    </span>
+                    <h3 className="mb-1 hidden text-sm leading-snug font-bold text-[#0F172A] sm:mb-2 sm:block sm:text-lg">
+                      {card.title}
+                    </h3>
+                    {card.desc.map((line, i) => (
+                      <p key={i} className="text-xs leading-relaxed text-[#64748B] sm:text-sm">
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                  <span className="mt-2 hidden items-center gap-1 text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1 sm:mt-4 sm:inline-flex">
+                    立即查看 <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+        {/* 热门活动精选区域结束 */}
+
+        {/* 云计算产品网格数据区域 */}
+        <div className="mt-12 mb-6">
+          <h2 className="text-3xl font-bold text-[#0F172A]">轻量应用服务器</h2>
+          <p className="mt-1 text-[#64748B]">
+            新用户首购专享，老用户续费同价，全场配置限购1次，更多优惠详见活动规则
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {serverProducts.map((product) => (
+            <div
+              key={product.id}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+            >
+              <div className="p-6">
+                <div className="mb-3 flex items-center gap-2">
+                  {product.isHot && (
+                    <span className="rounded-sm bg-red-500 px-2 py-1 text-xs font-medium text-white">
+                      热销
+                    </span>
+                  )}
+                  {product.isRecommended && (
+                    <span className="rounded-sm bg-[#0055ff] px-2 py-1 text-xs font-medium text-white">
+                      推荐
+                    </span>
+                  )}
+                  {product.discount && (
+                    <span className="rounded-sm bg-orange-500 px-2 py-1 text-xs font-medium text-white">
+                      {product.discount}
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="mb-1 text-xl font-bold text-[#0F172A]">{product.name}</h3>
+                <p className="mb-4 text-sm text-[#64748B]">{product.subtitle}</p>
+                <div className="sr-only">
+                  {product.activityNote && <span>活动说明：{product.activityNote}</span>}
+                  {product.activityEndDate && <span>活动截止：{product.activityEndDate}</span>}
+                </div>
+
+                <div className="mb-4 divide-y divide-[#f2f3f5] overflow-hidden rounded-md border border-[#f2f3f5]">
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[#64748B]">CPU: {product.specs.cpu}</span>
+                  </div>
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[#64748B]">内存: {product.specs.memory}</span>
+                  </div>
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[#64748B]">存储: {product.specs.storage}</span>
+                  </div>
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[#64748B]">带宽: {product.specs.bandwidth}</span>
+                  </div>
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[#64748B]">地域: {product.regions.join('/')}</span>
+                  </div>
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[#64748B]">时长: {product.duration}</span>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-[#0055ff]">
+                      ¥{product.currentPrice}
+                    </span>
+                    <span className="text-sm text-[#64748B]">/ {product.duration}</span>
+                  </div>
+                  <div className="mt-1 flex items-center gap-1">
+                    <span className="text-sm text-[#64748B]">日常价:</span>
+                    <span className="text-sm text-[#94A3B8] line-through">
+                      ¥{product.originalPrice}
+                    </span>
+                  </div>
+                </div>
+
+                {product.networkType && (
+                  <div className="mt-3 text-sm text-[#64748B]">
+                    网络: <span className="text-[#0F172A]">{product.networkType}</span>
+                  </div>
+                )}
+                {product.ipConfig && (
+                  <div className="mt-2 text-sm text-[#64748B]">
+                    IP配置: <span className="text-[#0F172A]">{product.ipConfig}</span>
+                  </div>
+                )}
+                {product.defense && (
+                  <div className="mt-2 text-sm text-[#64748B]">
+                    防御: <span className="text-[#0F172A]">{product.defense}</span>
+                  </div>
+                )}
+                {product.note && (
+                  <div className="mt-3">
+                    <p className="rounded-md border border-yellow-200 bg-yellow-50 px-3 py-2 text-xs text-yellow-800">
+                      <span className="font-medium">注意：</span>
+                      {product.note}
+                    </p>
+                  </div>
+                )}
+
+                <div className="mt-5 flex gap-2">
+                  <button
+                    onClick={() => handleAddToCart(product.id)}
+                    className="flex-1 rounded-md border border-[#e5e6eb] bg-white px-3 py-2 text-sm font-medium text-[#1d2129] transition-all hover:border-[#1664ff] hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+                  >
+                    加入购物车
+                  </button>
+                  <button
+                    onClick={() => handleBuyNow(product.id)}
+                    className="flex-1 rounded-md bg-[#1664ff] px-3 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
+                  >
+                    立即购买
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* 产品网格数据 */}
+
+        {/* 活动推广卡片区域 */}
+        <section className="mt-8" aria-labelledby="promotion-title">
+          <div
+            className="relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-[#0055ff] bg-cover bg-center transition-colors duration-300"
+            style={{
+              backgroundImage: 'url("/images/carousel/HeaderCarousel.webp")',
+            }}
+          >
+            {/* 半透明遮罩层 */}
+            <div className="absolute inset-0 bg-[#0055ff]/70"></div>
+            {/* 内容容器 - 三栏布局 */}
+            <div className="relative z-10 grid grid-cols-1 gap-4 p-6 sm:grid-cols-3 sm:items-center">
+              {/* 左侧：活动信息区域 */}
+              <div className="sm:col-span-1">
+                {/* 活动标签 */}
+                <div className="inline-flex items-center gap-1.5 rounded-sm bg-white px-3 py-1 text-sm font-medium text-[#0055ff]">
+                  <span>限时特惠</span>
+                </div>
+
+                {/* 主标题 */}
+                <h2 id="promotion-title" className="mt-3 text-xl font-bold text-white sm:text-2xl">
+                  轻量应用服务器特惠
+                </h2>
+              </div>
+
+              {/* 中间：核心卖点 */}
+              <div className="flex flex-col items-center justify-center sm:col-span-1">
+                <div className="flex flex-wrap items-baseline justify-center gap-2">
+                  <span className="text-3xl font-bold text-white sm:text-4xl">¥79</span>
+                  <span className="text-white/80">/年起</span>
+                  <span className="ml-1 rounded-sm bg-red-500 px-2 py-0.5 text-xs font-medium text-white">
+                    1折
+                  </span>
+                  <span className="text-sm text-white/80">4核4G · 80GB SSD · 3Mbps</span>
+                </div>
+              </div>
+
+              {/* 右侧：行动按钮区域 */}
+              <div className="flex items-center justify-end sm:col-span-1">
+                <button
+                  className="w-full rounded-sm border border-white bg-white px-6 py-3 text-base font-medium text-[#0055ff] shadow-sm hover:bg-white/90 focus:outline-none sm:w-auto sm:px-8"
+                  aria-label="立即购买轻量应用服务器特惠套餐"
+                >
+                  立即抢购
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* 活动推广卡片区域结束 */}
+
+        {/*  4个卡片区域  */}
+        <section className="mt-8" aria-labelledby="hot-activities-title">
+          <div className="mx-auto max-w-[1800px] px-0 sm:px-1 lg:px-1">
+            {/* 标题和文案 */}
+            <div className="mb-6">
+              <div className="relative inline-block">
+                <h2
+                  id="hot-activities-title"
+                  className="relative z-10 mb-2 text-2xl font-bold text-[#0055ff]"
+                >
+                  热门活动精选
+                </h2>
+                <div className="absolute bottom-1 left-0 h-3 w-full bg-[#0055ff]/10 opacity-60"></div>
+              </div>
+              <p className="text-[#64748B]">汇聚当前最热门活动精选推荐</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {/* 精选特惠 新老同享 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+                <div className="relative p-5">
+                  {/* 背景图形元素 - 使用绝对定位的蓝色立方体图形 */}
+                  <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
+                    <svg
+                      viewBox="0 0 200 200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-full w-full text-[#0055ff]"
+                    >
+                      <path fill="currentColor" d="M40,40 L160,40 L160,160 L40,160 Z" />
+                    </svg>
+                  </div>
+
+                  <div className="mb-3">
+                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                      精选特惠 新老同享
+                    </span>
+                  </div>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-[#0F172A]">4核4G云服务器套餐</h3>
+                    <div className="mt-2">
+                      <p className="text-sm text-[#64748B]">新老用户同价秒杀</p>
+                    </div>
+                  </div>
+                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                    立即抢购
+                    <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* 云计算产品热销榜 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+                <div className="relative p-5">
+                  {/* 背景图形元素 - 使用绝对定位的图表图形 */}
+                  <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
+                    <svg
+                      viewBox="0 0 200 200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-full w-full text-[#0055ff]"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M40,160 L40,80 L80,80 L80,160 Z M90,160 L90,40 L130,40 L130,160 Z M140,160 L140,100 L180,100 L180,160 Z"
+                      />
+                    </svg>
+                  </div>
+
+                  <div className="mb-3">
+                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                      云计算产品热销榜
+                    </span>
+                  </div>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-[#0F172A]">云服务器热销榜单</h3>
+                    <div className="mt-2">
+                      <p className="text-sm text-[#64748B]">云服务器热销榜单上架</p>
+                    </div>
+                  </div>
+                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                    立即查看
+                    <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* 文字识别品类季 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+                <div className="relative p-5">
+                  {/* 背景图形元素 - 使用绝对定位的文字图标 */}
+                  <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
+                    <svg
+                      viewBox="0 0 200 200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-full w-full text-[#0055ff]"
+                    >
+                      <text x="50" y="120" fontSize="80" fontWeight="bold" fill="currentColor">
+                        T
+                      </text>
+                    </svg>
+                  </div>
+
+                  <div className="mb-3">
+                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                      文字识别品类季
+                    </span>
+                  </div>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-[#0F172A]">通用文字识别1元起</h3>
+                    <div className="mt-2">
+                      <p className="text-sm text-[#64748B]">通用文字识别1元起</p>
+                    </div>
+                  </div>
+                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                    立即查看
+                    <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* 语音技术品类季 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+                <div className="relative p-5">
+                  {/* 背景图形元素 - 使用绝对定位的声波图标 */}
+                  <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
+                    <svg
+                      viewBox="0 0 200 200"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-full w-full text-[#0055ff]"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M100,40 L100,160 M80,60 L80,140 M60,80 L60,120 M120,60 L120,140 M140,80 L140,120"
+                        stroke="currentColor"
+                        strokeWidth="8"
+                      />
+                    </svg>
+                  </div>
+
+                  <div className="mb-3">
+                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                      语音技术品类季
+                    </span>
+                  </div>
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-[#0F172A]">语音技术品类季</h3>
+                    <div className="mt-2">
+                      <p className="text-sm text-[#64748B]">语音合成转换等多项功能</p>
+                    </div>
+                  </div>
+                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                    立即查看
+                    <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 云挂机宝产品区域 */}
+        <div className="mx-auto mt-8 max-w-[1800px] px-0 sm:px-1 lg:px-1">
+          {/* 云挂机宝产品标题和描述 */}
+          <div className="mb-6">
+            <h2 className="mb-2 text-2xl font-bold text-[#0055ff]">云挂机宝产品系列</h2>
+            <p className="text-[#64748B]">
+              高性能云挂机宝，静态内存绝不超开，稳定可靠的云端解决方案
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {cloudVmProducts.map((product) => (
+              <div
+                key={product.id}
+                className="group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+              >
+                {/* 产品标签 */}
+                <div className="mb-3 flex items-center gap-2">
+                  {product.isHot && (
+                    <span className="rounded-sm bg-red-500 px-2 py-1 text-xs font-medium text-white">
+                      热销
+                    </span>
+                  )}
+                  {product.isRecommended && (
+                    <span className="rounded-sm bg-[#0055ff] px-2 py-1 text-xs font-medium text-white">
+                      推荐
+                    </span>
+                  )}
+                  {product.discount && (
+                    <span className="rounded-sm bg-orange-500 px-2 py-1 text-xs font-medium text-white">
+                      {product.discount}折
+                    </span>
+                  )}
+                </div>
+
+                {/* 产品名称 */}
+                <h3 className="mb-2 text-xl font-bold text-[#0F172A]">{product.name}</h3>
+                <p className="mb-4 text-sm text-[#64748B]">
+                  {product.activityNote || product.subtitle}
+                </p>
+
+                {/* 产品规格 */}
+                <div className="mb-4 divide-y divide-[#f2f3f5] overflow-hidden rounded-md border border-[#f2f3f5]">
+                  {/* CPU */}
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-sm text-[#64748B]">CPU: {product.specs.cpu}</span>
+                  </div>
+
+                  {/* 内存 */}
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-sm text-[#64748B]">内存: {product.specs.memory}</span>
+                  </div>
+
+                  {/* 带宽 */}
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-sm text-[#64748B]">带宽: {product.specs.bandwidth}</span>
+                  </div>
+
+                  {/* 存储 */}
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-sm text-[#64748B]">存储: {product.specs.storage}</span>
+                  </div>
+                </div>
+
+                {/* 价格信息 */}
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-[#0055ff]">
+                      ¥{product.currentPrice}
+                    </span>
+                    <span className="text-sm text-[#64748B]">/ 月</span>
+                  </div>
+                  {product.originalPrice && (
+                    <div className="mt-1 flex items-center gap-1">
+                      <span className="text-sm text-[#64748B]">日常价:</span>
+                      <span className="text-sm text-[#94A3B8] line-through">
+                        ¥{product.originalPrice} / 月
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* 购买按钮 */}
+                <a href={product.linkUrl} className="block w-full">
+                  <button className="w-full rounded-md bg-[#1664ff] px-4 py-2 text-white shadow-sm transition-all duration-300 hover:bg-[#4086ff] hover:shadow-md">
+                    立即购买
+                  </button>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 热销产品推荐区域 */}
+        <div className="mx-auto mt-8 max-w-[1800px] px-0 sm:px-1 lg:px-1">
+          {/* 热销产品标题和描述 */}
+          <div className="mb-6">
+            <h2 className="mb-2 text-2xl font-bold text-[#0055ff]">热销产品推荐</h2>
+            <p className="text-[#64748B]">精选优质轻量应用服务器，助力您的业务快速发展</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {promotionProducts.map((product) => (
+              <div
+                key={product.id}
+                className="group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+              >
+                {/* 产品标签 */}
+                <div className="mb-3 flex items-center gap-2">
+                  {product.isHot && (
+                    <span className="rounded-sm bg-red-500 px-2 py-1 text-xs font-medium text-white">
+                      热销
+                    </span>
+                  )}
+                  {product.isRecommended && (
+                    <span className="rounded-sm bg-[#0055ff] px-2 py-1 text-xs font-medium text-white">
+                      推荐
+                    </span>
+                  )}
+                  {product.discount && (
+                    <span className="rounded-sm bg-orange-500 px-2 py-1 text-xs font-medium text-white">
+                      {product.discount}
+                    </span>
+                  )}
+                </div>
+
+                {/* 产品名称和副标题 */}
+                <div className="mb-4">
+                  <h3 className="mb-1 text-lg font-semibold text-[#0F172A]">{product.name}</h3>
+                  <p className="text-sm text-[#64748B]">{product.subtitle}</p>
+                </div>
+
+                {/* 产品规格 */}
+                <div className="mb-4 divide-y divide-[#f2f3f5] overflow-hidden rounded-md border border-[#f2f3f5]">
+                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <span className="text-[#64748B]">CPU/内存/带宽:</span>
+                    <span className="font-medium text-[#0F172A]">{product.specs.cpu}</span>
+                  </div>
+                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <span className="text-[#64748B]">存储:</span>
+                    <span className="font-medium text-[#0F172A]">{product.specs.storage}</span>
+                  </div>
+                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                    <span className="text-[#64748B]">可用地域:</span>
+                    <span className="font-medium text-[#0F172A]">
+                      {product.regions.slice(0, 2).join('、')}等
+                    </span>
+                  </div>
+                  {/* 网络类型 - 条件渲染 */}
+                  {product.networkType && (
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                      <span className="text-[#64748B]">网络类型:</span>
+                      <span className="font-medium text-[#0F172A]">{product.networkType}</span>
+                    </div>
+                  )}
+                  {/* IP配置 - 条件渲染 */}
+                  {product.ipConfig && (
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                      <span className="text-[#64748B]">IP配置:</span>
+                      <span className="font-medium text-[#0F172A]">{product.ipConfig}</span>
+                    </div>
+                  )}
+                  {/* 防御配置 - 条件渲染 */}
+                  {product.defense && (
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                      <span className="text-[#64748B]">防御配置:</span>
+                      <span className="font-medium text-[#0F172A]">{product.defense}</span>
+                    </div>
+                  )}
+                  {/* 注意事项 - 条件渲染 */}
+                  {product.note && (
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
+                      <span className="text-[#64748B]">注意事项:</span>
+                      <span className="font-medium text-[#0F172A]">{product.note}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* 价格信息 */}
+                <div className="mb-6">
+                  <div className="mb-1 flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-red-600">¥{product.currentPrice}</span>
+                    <span className="text-sm text-[#94A3B8] line-through">
+                      ¥{product.originalPrice}/{product.duration}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 操作按钮 */}
+                <div className="flex gap-2">
+                  <button
+                    className="flex-1 rounded-md border border-[#e5e6eb] bg-white px-4 py-2 text-sm font-medium text-[#1d2129] transition-all hover:border-[#1664ff] hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+                    onClick={() => handleAddToCart(product.id)}
+                  >
+                    加入购物车
+                  </button>
+                  <button
+                    className="flex-1 rounded-md bg-[#1664ff] px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:bg-[#4086ff] hover:shadow-md"
+                    onClick={() => handleBuyNow(product.id)}
+                  >
+                    立即购买
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* 热销产品推荐区域结束 */}
+
+        {/* 活动推广卡片区域 - 宽屏设计 */}
+        <section className="mt-1 py-16">
+          <div className="mx-auto max-w-[1800px] px-0 sm:px-1 lg:px-1">
+            {/* 轻量应用服务器特惠卡片 - 宽屏设计 */}
+            <div className="mx-auto w-full overflow-hidden rounded-sm border border-[#E2E8F0]">
+              <div className="flex flex-col lg:flex-row">
+                {/* 左侧：产品信息区域（蓝色背景） */}
+                <div className="bg-[#0055ff] p-4 text-white sm:p-6 lg:w-[40%] lg:p-8">
+                  <div className="flex h-full flex-col justify-center">
+                    <div>
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                        <h3 className="text-xl font-bold sm:text-2xl">轻量应用服务器 2核2G</h3>
+                        <span className="inline-flex w-fit items-center rounded-sm bg-red-100 px-2.5 py-0.5 text-sm font-medium text-red-800">
+                          限时特惠
+                        </span>
+                      </div>
+                      <p className="mt-2 text-sm text-white/80 sm:text-base">
+                        200M静态页面，助你1秒部署，Webshell，有效备案，出海安全保障
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 右侧：购买信息区域（白色背景） */}
+                <div className="bg-white p-4 sm:p-6 lg:w-[60%] lg:p-8">
+                  <div className="flex h-full flex-col items-center justify-between gap-4 lg:flex-row">
+                    <div className="w-full flex-1">
+                      <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-4 lg:mb-0">
+                        <div className="text-center">
+                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">2</div>
+                          <div className="text-xs text-[#64748B] sm:text-sm">CPU核数</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">2GB</div>
+                          <div className="text-xs text-[#64748B] sm:text-sm">内存</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">40GB</div>
+                          <div className="text-xs text-[#64748B] sm:text-sm">SSD存储</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">3Mbps</div>
+                          <div className="text-xs text-[#64748B] sm:text-sm">带宽</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex w-full flex-col justify-center lg:ml-8 lg:w-auto">
+                      <div className="flex flex-col items-center lg:items-end">
+                        <div className="flex items-baseline text-center lg:text-right">
+                          <span className="mr-1 text-sm text-orange-500">¥</span>
+                          <span className="text-3xl font-bold text-orange-500 sm:text-4xl">38</span>
+                          <span className="ml-1 text-sm text-orange-500">/月起</span>
+                        </div>
+                        <p className="mt-1 text-xs text-[#94A3B8]">原价 ¥640/年</p>
+                      </div>
+
+                      <div className="mt-4 flex w-full flex-col gap-2 sm:flex-row lg:w-auto">
+                        <button className="flex-1 rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all hover:bg-[#0043cc] sm:flex-none">
+                          立即购买
+                        </button>
+                        <button className="flex-1 rounded-sm border border-[#E2E8F0] bg-white px-4 py-2 text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff] sm:flex-none">
+                          加入购物车
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 优惠码卡片模块 */}
+          <div className="mt-12 mb-6">
+            <h2 className="flex items-center gap-2 text-2xl font-bold text-[#0055ff]">
+              <span className="relative">
+                艺创AI-专属优惠码
+                <span className="absolute -bottom-1 left-0 h-1 w-full bg-[#0055ff]/20"></span>
+              </span>
+              <svg
+                className="h-6 w-6 animate-bounce text-[#0055ff]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                />
+              </svg>
+            </h2>
+            <p className="mt-1 font-medium text-[#64748B]">
+              限时可用，立即复制使用，一次购买，终身免费更新升级
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {/* 数字分身优惠码卡片 */}
+            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-[#0F172A]">数字分身</h3>
+                <div className="mt-2 flex items-baseline gap-2">
+                  <span className="text-2xl font-bold text-red-600">¥4,999</span>
+                  <span className="text-sm text-[#94A3B8] line-through">¥6,800</span>
+                </div>
+                <div className="mt-4">
+                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
+                    <code className="text-sm font-medium text-[#0F172A]">oXu3x1IZD</code>
+                    <button
+                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      onClick={(e) => {
+                        navigator.clipboard.writeText('oXu3x1IZD')
+                        const btn = e.currentTarget
+                        const originalText = btn.textContent
+                        btn.textContent = '已复制'
+                        setTimeout(() => {
+                          btn.textContent = originalText
+                        }, 1500)
+                      }}
+                    >
+                      复制
+                    </button>
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                    >
+                      去使用
+                    </a>
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                    >
+                      立即购买
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 企业知识库优惠码卡片 */}
+            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-[#0F172A]">企业知识库</h3>
+                <div className="mt-2 flex items-baseline gap-2">
+                  <span className="text-2xl font-bold text-red-600">¥6,600</span>
+                  <span className="text-sm text-[#94A3B8] line-through">¥9,800</span>
+                </div>
+                <div className="mt-4">
+                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
+                    <code className="text-sm font-medium text-[#0F172A]">Ju9han9Z6</code>
+                    <button
+                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      onClick={(e) => {
+                        navigator.clipboard.writeText('Ju9han9Z6')
+                        const btn = e.currentTarget
+                        const originalText = btn.textContent
+                        btn.textContent = '已复制'
+                        setTimeout(() => {
+                          btn.textContent = originalText
+                        }, 1500)
+                      }}
+                    >
+                      复制
+                    </button>
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                    >
+                      去使用
+                    </a>
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                    >
+                      立即购买
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 聊天绘画优惠码卡片 */}
+            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-[#0F172A]">聊天绘画</h3>
+                <div className="mt-2 flex items-baseline gap-2">
+                  <span className="text-2xl font-bold text-red-600">¥2,999</span>
+                  <span className="text-sm text-[#94A3B8] line-through">¥3,800</span>
+                </div>
+                <div className="mt-4">
+                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
+                    <code className="text-sm font-medium text-[#0F172A]">4ZKgZfv9M</code>
+                    <button
+                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      onClick={(e) => {
+                        navigator.clipboard.writeText('4ZKgZfv9M')
+                        const btn = e.currentTarget
+                        const originalText = btn.textContent
+                        btn.textContent = '已复制'
+                        setTimeout(() => {
+                          btn.textContent = originalText
+                        }, 1500)
+                      }}
+                    >
+                      复制
+                    </button>
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                    >
+                      去使用
+                    </a>
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                    >
+                      立即购买
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 论文写作优惠码卡片 */}
+            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-[#0F172A]">论文写作</h3>
+                <div className="mt-2 flex items-baseline gap-2">
+                  <span className="text-2xl font-bold text-red-600">¥3,200</span>
+                  <span className="text-sm text-[#94A3B8] line-through">¥4,698</span>
+                </div>
+                <div className="mt-4">
+                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
+                    <code className="text-sm font-medium text-[#0F172A]">lbCG2L0Fq</code>
+                    <button
+                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      onClick={(e) => {
+                        navigator.clipboard.writeText('lbCG2L0Fq')
+                        const btn = e.currentTarget
+                        const originalText = btn.textContent
+                        btn.textContent = '已复制'
+                        setTimeout(() => {
+                          btn.textContent = originalText
+                        }, 1500)
+                      }}
+                    >
+                      复制
+                    </button>
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                    >
+                      去使用
+                    </a>
+                    <a
+                      href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
+                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                    >
+                      立即购买
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  )
+}

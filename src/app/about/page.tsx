@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -26,8 +27,8 @@ import {
   VideoCameraIcon,
   WifiIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 通用数据类型定义
@@ -188,8 +189,7 @@ const REASONS: FeatureItem[] = [
   },
   {
     name: '安全可靠',
-    description:
-      '七大安全联合实验室团队，一体化智慧安全管理体系，助您建立系统性的安全防御机制。',
+    description: '七大安全联合实验室团队，一体化智慧安全管理体系，助您建立系统性的安全防御机制。',
     icon: ShieldCheckIcon,
   },
   {
@@ -215,42 +215,6 @@ const REASONS: FeatureItem[] = [
 // ===================================================================
 // 通用 Hooks 与组件
 // ===================================================================
-
-/**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      },
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
 
 /**
  * 玻璃拟态卡片组件
@@ -331,9 +295,9 @@ function SectionNav() {
   const activeSection = useActiveSection(sectionIds)
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -343,7 +307,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-brand-500 text-brand-500'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -367,7 +331,7 @@ function HeroSection() {
   return (
     <section className="relative flex min-h-[520px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
       {/* 背景图片 */}
-      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/about.jpg')] bg-cover bg-center bg-no-repeat" />
+      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/about.webp')] bg-cover bg-center bg-no-repeat" />
       {/* 渐变覆盖 */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white/70 via-white/20 to-transparent" />
 
@@ -391,10 +355,20 @@ function HeroSection() {
             CloudCVM · Powering Your Business with Cloud
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-4">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               联系我们
             </Button>
-            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#overview"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               了解更多 <span aria-hidden="true">→</span>
             </Button>
           </div>
@@ -423,7 +397,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-md bg-brand-500 p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-brand-500/20"
+          className="mt-12 rounded-md bg-brand-500 p-6 text-white shadow-xl shadow-brand-500/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
@@ -465,7 +439,9 @@ function OverviewSection() {
                   <Icon className="h-6 w-6" />
                 </span>
                 <h3 className="text-lg font-semibold text-slate-900">{item.name}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                  {item.description}
+                </p>
               </GlassCard>
             )
           })}
@@ -480,7 +456,7 @@ function OverviewSection() {
  */
 function StatsSection() {
   return (
-    <section id="stats" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section id="stats" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Company Stats"
@@ -565,7 +541,10 @@ function ProductsSection() {
  */
 function TimelineSection() {
   return (
-    <section id="timeline" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="timeline"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Our History"
@@ -575,7 +554,7 @@ function TimelineSection() {
 
         <div className="relative mt-16">
           {/* 中心分割线（桌面端） */}
-          <div className="absolute left-1/2 top-0 bottom-0 hidden w-px -translate-x-1/2 bg-slate-200 lg:block" />
+          <div className="absolute top-0 bottom-0 left-1/2 hidden w-px -translate-x-1/2 bg-slate-200 lg:block" />
 
           <div className="relative space-y-12 lg:space-y-16">
             {MILESTONES.map((milestone, index) => {
@@ -591,11 +570,11 @@ function TimelineSection() {
                   className="relative grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-center"
                 >
                   {/* 时间线圆点 */}
-                  <div className="absolute top-6 left-4 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-brand-500 shadow-sm lg:block lg:left-1/2" />
+                  <div className="absolute top-6 left-4 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-brand-500 shadow-sm lg:left-1/2 lg:block" />
 
                   {/* 内容卡片 */}
-                  <div className={`lg:pr-12 ${isEven ? '' : 'lg:order-2 lg:pl-12 lg:pr-0'}`}>
-                    <div className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 hover:border-brand-200">
+                  <div className={`lg:pr-12 ${isEven ? '' : 'lg:order-2 lg:pr-0 lg:pl-12'}`}>
+                    <div className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-brand-200 hover:shadow-lg hover:shadow-slate-200/50">
                       <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       <div className="relative z-10">
                         {/* 移动端年份标记 */}
@@ -603,19 +582,25 @@ function TimelineSection() {
                           <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white">
                             {index + 1}
                           </span>
-                          <span className="text-sm font-mono font-semibold text-brand-500">
+                          <span className="font-mono text-sm font-semibold text-brand-500">
                             {milestone.year}
                           </span>
                         </div>
                         {/* 桌面端年份标记 */}
-                        <h3 className="mb-2 text-lg font-semibold text-slate-900">{milestone.title}</h3>
-                        <p className="text-sm leading-relaxed text-slate-500">{milestone.description}</p>
+                        <h3 className="mb-2 text-lg font-semibold text-slate-900">
+                          {milestone.title}
+                        </h3>
+                        <p className="text-sm leading-relaxed text-slate-500">
+                          {milestone.description}
+                        </p>
                       </div>
                     </div>
                   </div>
 
                   {/* 年份数字（桌面端） */}
-                  <div className={`hidden lg:flex ${isEven ? 'lg:order-2 lg:pl-12' : 'lg:order-1 lg:pr-12'} h-full items-center`}>
+                  <div
+                    className={`hidden lg:flex ${isEven ? 'lg:order-2 lg:pl-12' : 'lg:order-1 lg:pr-12'} h-full items-center`}
+                  >
                     <span className="font-mono text-3xl font-bold text-slate-200 lg:text-4xl">
                       {milestone.year}
                     </span>
@@ -653,7 +638,9 @@ function ReasonsSection() {
                 key={reason.name}
                 delay={index * 0.08}
                 className={`flex flex-col text-center ${
-                  isLast ? 'sm:col-span-2 sm:mx-auto sm:max-w-xl lg:col-span-1 lg:mx-0 lg:max-w-none' : ''
+                  isLast
+                    ? 'sm:col-span-2 sm:mx-auto sm:max-w-xl lg:col-span-1 lg:mx-0 lg:max-w-none'
+                    : ''
                 }`}
               >
                 <span className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
@@ -692,7 +679,7 @@ function CTASection() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
           >
             <source

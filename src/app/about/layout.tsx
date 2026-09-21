@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { SiteShell } from '@/components/layout/SiteShell'
 
 // ==================== 关于我们页面 SEO 元数据配置 ====================
 export const metadata: Metadata = {
@@ -35,16 +34,6 @@ export const metadata: Metadata = {
  * 关于我们页面布局组件
  * 提供统一的导航栏、页脚和 SEO 配置
  */
-export default function AboutLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900">
-      <Header />
-      <main className="flex-grow">{children}</main>
-      <Footer />
-    </div>
-  )
+export default function AboutLayout({ children }: { children: React.ReactNode }) {
+  return <SiteShell>{children}</SiteShell>
 }

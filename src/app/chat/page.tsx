@@ -1,9 +1,9 @@
-import { JSX } from 'react'
+import type { JSX } from 'react'
 import { type Metadata } from 'next'
 import Image from 'next/image'
-import { FAQSection } from '@/components/ai/FAQSection'
-import Aisd from '@/components/ai/Aisd'
-import { AIscene } from '@/components/ai/AIscene'
+import { FAQSection } from '@/components/sections/ai/FAQSection'
+import AiSolutionSection from '@/components/sections/ai/AiSolutionSection'
+import { AiScene } from '@/components/sections/ai/AiScene'
 import {
   ChatBubbleLeftRightIcon,
   CpuChipIcon,
@@ -21,10 +21,10 @@ import {
   PlayIcon,
   ChevronRightIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 
 // ==================== 页面SEO元数据配置 ====================
 export const metadata: Metadata = {
@@ -52,7 +52,6 @@ interface Scenario {
   description: string
   features: string[]
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  video: string
 }
 
 // 功能特色卡片接口
@@ -114,7 +113,6 @@ const scenarios: Scenario[] = [
     description: '数字人主播，24小时不间断直播带货',
     features: ['品牌代言', '内容创作', '社交互动'],
     icon: TvIcon,
-    video: '/videos/live-streaming.mp4',
   },
   {
     id: 'digital-employee',
@@ -122,7 +120,6 @@ const scenarios: Scenario[] = [
     description: '智能客服助手，提供专业咨询服务',
     features: ['智能问答', '情感识别', '多语言支持'],
     icon: UserGroupIcon,
-    video: '/videos/digital-employee.mp4',
   },
   {
     id: 'content-creation',
@@ -130,7 +127,6 @@ const scenarios: Scenario[] = [
     description: 'AI驱动的内容生成和创意制作',
     features: ['脚本生成', '视频制作', '多媒体输出'],
     icon: AcademicCapIcon,
-    video: '/videos/content-creation.mp4',
   },
   {
     id: 'virtual-broadcast',
@@ -138,7 +134,6 @@ const scenarios: Scenario[] = [
     description: '虚拟主播直播，降低运营成本',
     features: ['实时互动', '自动回复', '数据分析'],
     icon: MegaphoneIcon,
-    video: '/videos/virtual-broadcast.mp4',
   },
 ]
 
@@ -207,10 +202,7 @@ function FeaturesSection(): JSX.Element {
             提供智能助手、内容创作、虚拟直播、AI对话等多维度的功能，满足不同行业的业务需求。
           </p>
         </div>
-        <ul
-          role="list"
-          className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 xl:gap-x-8"
-        >
+        <ul role="list" className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 xl:gap-x-8">
           {featureCards.map((feature) => {
             const IconComponent = feature.icon
             return (
@@ -220,27 +212,18 @@ function FeaturesSection(): JSX.Element {
               >
                 <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
                   <div className="flex h-12 w-12 flex-none items-center justify-center rounded-lg bg-white ring-1 ring-gray-900/10">
-                    <IconComponent
-                      className="h-6 w-6 text-blue-600"
-                      aria-hidden="true"
-                    />
+                    <IconComponent className="h-6 w-6 text-blue-600" aria-hidden="true" />
                   </div>
-                  <div className="text-sm leading-6 font-medium text-gray-900">
-                    {feature.name}
-                  </div>
+                  <div className="text-sm leading-6 font-medium text-gray-900">{feature.name}</div>
                 </div>
 
                 <div className="px-6 py-4">
-                  <p className="mb-4 text-sm leading-6 text-gray-700">
-                    {feature.description}
-                  </p>
+                  <p className="mb-4 text-sm leading-6 text-gray-700">{feature.description}</p>
                   <div className="mb-6 space-y-2">
                     {feature.features.map((featureItem, index) => (
                       <div key={index} className="flex items-start gap-x-2">
                         <div className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-blue-600" />
-                        <span className="text-sm leading-5 text-gray-600">
-                          {featureItem}
-                        </span>
+                        <span className="text-sm leading-5 text-gray-600">{featureItem}</span>
                       </div>
                     ))}
                   </div>
@@ -282,12 +265,7 @@ function AdvantagesSection(): JSX.Element {
     'from-blue-400 to-blue-500',
     'from-blue-700 to-blue-800',
   ]
-  const bulletColors = [
-    'bg-blue-600',
-    'bg-blue-500',
-    'bg-blue-400',
-    'bg-blue-700',
-  ]
+  const bulletColors = ['bg-blue-600', 'bg-blue-500', 'bg-blue-400', 'bg-blue-700']
 
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24 dark:bg-gray-900">
@@ -346,9 +324,7 @@ function AdvantagesSection(): JSX.Element {
                       {advantage.title}
                     </h3>
                     <div className="flex items-baseline">
-                      <span className="text-3xl font-bold sm:text-5xl">
-                        {advantage.stats}
-                      </span>
+                      <span className="text-3xl font-bold sm:text-5xl">{advantage.stats}</span>
                       {advantage.unit && (
                         <span className="ml-2 text-lg font-medium sm:text-xl">
                           {advantage.unit}
@@ -444,9 +420,7 @@ function DemoSection(): JSX.Element {
                 <div className="mr-2 flex h-8 w-8 items-center justify-center bg-blue-50 sm:mr-3 sm:h-10 sm:w-10">
                   <PlayIcon className="h-4 w-4 text-blue-600 sm:h-5 sm:w-5" />
                 </div>
-                <h3 className="text-base font-medium sm:text-lg">
-                  演示账号信息
-                </h3>
+                <h3 className="text-base font-medium sm:text-lg">演示账号信息</h3>
               </div>
 
               <div className="space-y-3 sm:space-y-4">
@@ -465,20 +439,12 @@ function DemoSection(): JSX.Element {
                     </div>
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">
-                          账号:
-                        </span>
-                        <span className="text-xs font-medium">
-                          {account.username}
-                        </span>
+                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">账号:</span>
+                        <span className="text-xs font-medium">{account.username}</span>
                       </div>
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">
-                          密码:
-                        </span>
-                        <span className="text-xs font-medium">
-                          {account.password}
-                        </span>
+                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">密码:</span>
+                        <span className="text-xs font-medium">{account.password}</span>
                       </div>
                       <Button
                         href={account.url}
@@ -515,7 +481,7 @@ function DemoSection(): JSX.Element {
               {/* 主要演示图片 */}
               <div className="bg-white p-4 shadow-lg sm:p-6">
                 <Image
-                  src="/images/product/ai.svg"
+                  src="/images/product/ai.webp"
                   alt="AI智能系统演示"
                   width={600}
                   height={400}
@@ -524,12 +490,8 @@ function DemoSection(): JSX.Element {
                 />
                 <div className="mt-3 flex items-center justify-between sm:mt-4">
                   <div>
-                    <h4 className="text-xs font-medium text-gray-900 sm:text-sm">
-                      AI聊天绘画平台
-                    </h4>
-                    <p className="text-xs text-gray-500">
-                      一站式AI创作与智能对话体验
-                    </p>
+                    <h4 className="text-xs font-medium text-gray-900 sm:text-sm">AI聊天绘画平台</h4>
+                    <p className="text-xs text-gray-500">一站式AI创作与智能对话体验</p>
                   </div>
                   <div className="flex space-x-1 sm:space-x-2">
                     <div className="h-1.5 w-1.5 bg-red-500 sm:h-2 sm:w-2"></div>
@@ -561,9 +523,7 @@ function DemoSection(): JSX.Element {
                     <p className="text-sm font-medium tracking-wide text-white sm:text-base">
                       在线演示
                     </p>
-                    <p className="text-xs text-blue-100/90 sm:text-sm">
-                      实时体验
-                    </p>
+                    <p className="text-xs text-blue-100/90 sm:text-sm">实时体验</p>
                   </div>
                 </div>
               </div>
@@ -604,8 +564,7 @@ function CoreFeaturesSection(): JSX.Element {
     },
     {
       name: 'AI绘画',
-      description:
-        '只需一句话，让文字秒变精美画作。支持多种绘画风格，一键快速生成高质量画作。',
+      description: '只需一句话，让文字秒变精美画作。支持多种绘画风格，一键快速生成高质量画作。',
       icon: PencilIcon,
       image: '/images/product/AI绘画.webp',
       stats: [
@@ -634,9 +593,7 @@ function CoreFeaturesSection(): JSX.Element {
       <Container>
         {/* 标题区域 */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            核心功能
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">核心功能</h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
             强大的AI技术能力，为您提供全方位的智能创作解决方案
           </p>
@@ -656,32 +613,20 @@ function CoreFeaturesSection(): JSX.Element {
                 <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="mb-6 flex items-center space-x-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                      <feature.icon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
+                      <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {feature.name}
-                    </h3>
+                    <h3 className="text-2xl font-bold text-gray-900">{feature.name}</h3>
                   </div>
 
-                  <p className="mb-8 text-lg leading-8 text-gray-600">
-                    {feature.description}
-                  </p>
+                  <p className="mb-8 text-lg leading-8 text-gray-600">{feature.description}</p>
 
                   {/* 特性列表 */}
                   <div className="mb-8 space-y-4">
                     {feature.stats.map((stat) => (
-                      <div
-                        key={stat.label}
-                        className="flex items-start space-x-3"
-                      >
+                      <div key={stat.label} className="flex items-start space-x-3">
                         <div className="mt-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-600"></div>
                         <div>
-                          <dt className="font-semibold text-gray-900">
-                            {stat.label}
-                          </dt>
+                          <dt className="font-semibold text-gray-900">{stat.label}</dt>
                           <dd className="text-gray-600">{stat.value}</dd>
                         </div>
                       </div>
@@ -780,7 +725,7 @@ function CoreFeaturesSection(): JSX.Element {
                 {/* 媒体区域 */}
                 <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                   <div className="relative">
-                    <div className="aspect-video overflow-hidden rounded-lg bg-gray-100 border border-gray-200 shadow-sm p-2">
+                    <div className="aspect-video overflow-hidden rounded-lg border border-gray-200 bg-gray-100 p-2 shadow-sm">
                       <Image
                         src={feature.image}
                         alt={`${feature.name}功能演示`}
@@ -830,17 +775,17 @@ export default function KnowledgeBasePage(): JSX.Element {
                 backgroundSize: '40px 40px',
               }}
             />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-500/[0.04] rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/[0.03] rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-brand-500/[0.04] blur-3xl" />
+            <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-purple-500/[0.03] blur-3xl" />
           </div>
 
           <Container className="relative z-10 pt-20 pb-16 sm:pt-28 sm:pb-24 lg:pt-36">
             {/* 在线状态指示 */}
-            <div className="mb-8 flex justify-center lg:justify-start animate-slide-up">
+            <div className="mb-8 flex animate-slide-up justify-center lg:justify-start">
               <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/80 px-4 py-1.5 shadow-sm backdrop-blur-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                 </span>
                 <span className="text-sm font-medium text-neutral-700">AI服务正常运行中</span>
               </div>
@@ -852,11 +797,9 @@ export default function KnowledgeBasePage(): JSX.Element {
                 <div>
                   <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl xl:text-6xl">
                     <span className="block">艺创AI</span>
-                    <span className="block text-brand-500 mt-1">
-                      聊天绘画
-                    </span>
+                    <span className="mt-1 block text-brand-500">聊天绘画</span>
                   </h1>
-                  <p className="mt-5 text-sm sm:text-base lg:text-lg text-neutral-500 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                  <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-neutral-500 sm:text-base lg:mx-0 lg:text-lg">
                     集成最新 GPT-4、DALL·E 3、Midjourney 等顶级 AI 模型，
                     <span className="font-semibold text-brand-500"> 一站式 AI 创作平台</span>，
                     让创意无限可能
@@ -875,9 +818,9 @@ export default function KnowledgeBasePage(): JSX.Element {
                       key={i}
                       className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-2 text-sm transition-all duration-200 hover:border-brand-200 hover:shadow-sm"
                     >
-                      <f.icon className="w-4 h-4 text-neutral-500" />
+                      <f.icon className="h-4 w-4 text-neutral-500" />
                       <span className="font-medium text-neutral-800">{f.name}</span>
-                      <span className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-mono font-semibold text-brand-500">
+                      <span className="rounded-full bg-brand-50 px-2 py-0.5 font-mono text-xs font-semibold text-brand-500">
                         {f.time}
                       </span>
                     </div>
@@ -885,19 +828,19 @@ export default function KnowledgeBasePage(): JSX.Element {
                 </div>
 
                 {/* CTA 按钮 */}
-                <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
                   <a
                     href="/demo"
-                    className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-brand-500 hover:bg-brand-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:shadow-md transition-all duration-200"
+                    className="inline-flex items-center justify-center gap-2 rounded-[10px] bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-600 hover:shadow-md"
                   >
-                    <RocketLaunchIcon className="w-4 h-4" />
+                    <RocketLaunchIcon className="h-4 w-4" />
                     立即体验
                   </a>
                   <a
                     href="/contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-200"
+                    className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-neutral-200 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-700 transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-50"
                   >
-                    <ChatBubbleLeftRightIcon className="w-4 h-4" />
+                    <ChatBubbleLeftRightIcon className="h-4 w-4" />
                     联系客服
                   </a>
                 </div>
@@ -910,22 +853,23 @@ export default function KnowledgeBasePage(): JSX.Element {
                     { value: '99.9%', label: '系统稳定' },
                   ].map((m, i) => (
                     <div key={i} className="text-center">
-                      <div className="text-2xl sm:text-3xl font-bold text-brand-500 tracking-tight">{m.value}</div>
-                      <div className="text-xs sm:text-sm text-neutral-500 mt-0.5">{m.label}</div>
+                      <div className="text-2xl font-bold tracking-tight text-brand-500 sm:text-3xl">
+                        {m.value}
+                      </div>
+                      <div className="mt-0.5 text-xs text-neutral-500 sm:text-sm">{m.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* 右侧：演示卡片 */}
-              <div className="relative"
-              >
-                <div className="relative rounded-md border border-neutral-200 bg-white p-5 sm:p-6 shadow-sm">
+              <div className="relative">
+                <div className="relative rounded-md border border-neutral-200 bg-white p-5 shadow-sm sm:p-6">
                   {/* 卡片头部 */}
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="mb-5 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center">
-                        <ChatBubbleLeftRightIcon className="w-5 h-5 text-white" />
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500">
+                        <ChatBubbleLeftRightIcon className="h-5 w-5 text-white" />
                       </div>
                       <div>
                         <h3 className="text-sm font-bold text-neutral-900">艺创AI助手</h3>
@@ -934,29 +878,31 @@ export default function KnowledgeBasePage(): JSX.Element {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                       </span>
                       <span className="text-xs text-neutral-500">在线</span>
                     </div>
                   </div>
 
                   {/* 对话区 */}
-                  <div className="rounded-xl bg-brand-50/50 p-4 mb-5 space-y-4 min-h-[200px] sm:min-h-[260px]">
+                  <div className="mb-5 min-h-[200px] space-y-4 rounded-xl bg-brand-50/50 p-4 sm:min-h-[260px]">
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center flex-shrink-0">
-                        <ChatBubbleLeftRightIcon className="w-4 h-4 text-white" />
+                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-brand-500">
+                        <ChatBubbleLeftRightIcon className="h-4 w-4 text-white" />
                       </div>
-                      <div className="bg-white rounded-xl rounded-tl-sm px-4 py-2.5 max-w-[75%] shadow-sm">
-                        <p className="text-sm text-neutral-700">您好！我可以帮您进行AI创作、图片生成等服务</p>
+                      <div className="max-w-[75%] rounded-xl rounded-tl-sm bg-white px-4 py-2.5 shadow-sm">
+                        <p className="text-sm text-neutral-700">
+                          您好！我可以帮您进行AI创作、图片生成等服务
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start justify-end gap-3">
-                      <div className="bg-brand-500 rounded-xl rounded-tr-sm px-4 py-2.5 max-w-[75%]">
+                      <div className="max-w-[75%] rounded-xl rounded-tr-sm bg-brand-500 px-4 py-2.5">
                         <p className="text-sm text-white">请帮我生成一张未来科技城市的图片</p>
                       </div>
-                      <div className="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center flex-shrink-0">
-                        <UsersIcon className="w-4 h-4 text-white" />
+                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-800">
+                        <UsersIcon className="h-4 w-4 text-white" />
                       </div>
                     </div>
                   </div>
@@ -964,14 +910,32 @@ export default function KnowledgeBasePage(): JSX.Element {
                   {/* 功能网格 */}
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { label: 'AI创作', desc: '智能文案', icon: PencilIcon, g: 'from-brand-500 to-brand-400' },
-                      { label: 'AI绘画', desc: '图像生成', icon: SparklesIcon, g: 'from-purple-500 to-purple-400' },
-                      { label: '语音助手', desc: '语音交互', icon: MicrophoneIcon, g: 'from-indigo-500 to-indigo-400' },
+                      {
+                        label: 'AI创作',
+                        desc: '智能文案',
+                        icon: PencilIcon,
+                        g: 'from-brand-500 to-brand-400',
+                      },
+                      {
+                        label: 'AI绘画',
+                        desc: '图像生成',
+                        icon: SparklesIcon,
+                        g: 'from-purple-500 to-purple-400',
+                      },
+                      {
+                        label: '语音助手',
+                        desc: '语音交互',
+                        icon: MicrophoneIcon,
+                        g: 'from-indigo-500 to-indigo-400',
+                      },
                     ].map((item, i) => (
-                      <div key={i} className={`rounded-xl bg-gradient-to-br ${item.g} p-3.5 text-white transition-transform duration-200 hover:scale-[1.03]`}>
-                        <item.icon className="w-5 h-5 mb-2" />
+                      <div
+                        key={i}
+                        className={`rounded-xl bg-gradient-to-br ${item.g} p-3.5 text-white transition-transform duration-200 hover:scale-[1.03]`}
+                      >
+                        <item.icon className="mb-2 h-5 w-5" />
                         <h4 className="text-sm font-semibold">{item.label}</h4>
-                        <p className="text-[11px] text-white/70 mt-0.5">{item.desc}</p>
+                        <p className="mt-0.5 text-[11px] text-white/70">{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -980,17 +944,16 @@ export default function KnowledgeBasePage(): JSX.Element {
             </div>
 
             {/* 技术优势 */}
-            <div className="mt-16 sm:mt-24"
-            >
-              <div className="text-center mb-8">
-                <h3 className="text-lg sm:text-xl font-semibold text-neutral-900 tracking-tight">
+            <div className="mt-16 sm:mt-24">
+              <div className="mb-8 text-center">
+                <h3 className="text-lg font-semibold tracking-tight text-neutral-900 sm:text-xl">
                   核心技术优势
                 </h3>
                 <p className="mt-2 text-sm text-neutral-500">
                   基于前沿AI技术，为企业提供专业可靠的智能化解决方案
                 </p>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
                 {[
                   { name: '自然语言处理', code: 'NLP' },
                   { name: '计算机视觉', code: 'CV' },
@@ -1002,7 +965,9 @@ export default function KnowledgeBasePage(): JSX.Element {
                     key={i}
                     className="group rounded-md border border-neutral-200 bg-white p-4 text-center transition-all duration-200 hover:border-brand-200 hover:shadow-sm"
                   >
-                    <div className="text-xs font-mono font-bold text-brand-500 mb-1 tracking-wide">{tech.code}</div>
+                    <div className="mb-1 font-mono text-xs font-bold tracking-wide text-brand-500">
+                      {tech.code}
+                    </div>
                     <div className="text-sm font-medium text-neutral-700">{tech.name}</div>
                   </div>
                 ))}
@@ -1012,13 +977,13 @@ export default function KnowledgeBasePage(): JSX.Element {
         </section>
         {/* 英雄区块结束 */}
 
-        <Aisd />
+        <AiSolutionSection />
 
         <AdvantagesSection />
         <DemoSection />
         <CoreFeaturesSection />
         {/* 应用场景区域 */}
-        <AIscene />
+        <AiScene />
         {/* 功能特色区块 */}
         <FeaturesSection />
 
@@ -1029,9 +994,7 @@ export default function KnowledgeBasePage(): JSX.Element {
               {/* 标题区域 */}
               <div className="mb-12 text-center">
                 <h2 className="mb-4 text-2xl font-bold">接入流程</h2>
-                <p className="mb-3 text-sm text-gray-600">
-                  为你提供快速、便捷的接入服务
-                </p>
+                <p className="mb-3 text-sm text-gray-600">为你提供快速、便捷的接入服务</p>
                 <Button
                   href="https://v.cnai.art"
                   target="_blank"
@@ -1066,9 +1029,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                   </div>
                   <h3 className="mb-2 text-base font-bold">确认合作</h3>
                   <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    通过控制台直接下单，或线下沟通商务合作
-                  </p>
+                  <p className="text-xs text-gray-600">通过控制台直接下单，或线下沟通商务合作</p>
                 </div>
 
                 {/* 步骤3：资产制作 */}
@@ -1080,9 +1041,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                   </div>
                   <h3 className="mb-2 text-base font-bold">资产制作</h3>
                   <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    采集数据，制作数字人形象和声音资产
-                  </p>
+                  <p className="text-xs text-gray-600">采集数据，制作数字人形象和声音资产</p>
                 </div>
 
                 {/* 步骤4：正式上线 */}
@@ -1136,55 +1095,107 @@ export default function KnowledgeBasePage(): JSX.Element {
                       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">高清还原</h4>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                              高清还原
+                            </h4>
                             <p className="text-xs text-gray-500 sm:text-sm">100%真实感官体验</p>
                           </div>
                         </div>
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">专业服务</h4>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                              专业服务
+                            </h4>
                             <p className="text-xs text-gray-500 sm:text-sm">7×24小时技术支持</p>
                           </div>
                         </div>
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">数据安全</h4>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                              数据安全
+                            </h4>
                             <p className="text-xs text-gray-500 sm:text-sm">企业级安全保障</p>
                           </div>
                         </div>
                         <div className="flex items-start">
                           <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              />
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">持续更新</h4>
+                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                              持续更新
+                            </h4>
                             <p className="text-xs text-gray-500 sm:text-sm">定期功能迭代升级</p>
                           </div>
                         </div>
                       </div>
 
                       <div className="flex flex-col gap-3 sm:flex-row">
-                        <Button href="#demo" className="w-full rounded-none bg-blue-600 px-6 py-3 font-bold text-white shadow-lg hover:bg-blue-700 sm:w-auto sm:py-4">
+                        <Button
+                          href="#demo"
+                          className="w-full rounded-none bg-blue-600 px-6 py-3 font-bold text-white shadow-lg hover:bg-blue-700 sm:w-auto sm:py-4"
+                        >
                           立即体验
                         </Button>
-                        <Button href="https://v.cnai.art" target="_blank" variant="outline" className="w-full rounded-none border-blue-600 px-6 py-3 text-blue-600 hover:bg-blue-50 sm:w-auto sm:py-4">
+                        <Button
+                          href="https://v.cnai.art"
+                          target="_blank"
+                          variant="outline"
+                          className="w-full rounded-none border-blue-600 px-6 py-3 text-blue-600 hover:bg-blue-50 sm:w-auto sm:py-4"
+                        >
                           咨询价格
                         </Button>
                       </div>
@@ -1196,38 +1207,90 @@ export default function KnowledgeBasePage(): JSX.Element {
                       <div className="grid grid-cols-2 gap-3">
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                              />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">AI知识库</h4>
+                          <h4 className="text-center text-sm font-medium text-gray-900">
+                            AI知识库
+                          </h4>
                           <p className="mt-1 text-center text-xs text-gray-500">三版本支持</p>
                         </div>
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                              />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">私有部署</h4>
+                          <h4 className="text-center text-sm font-medium text-gray-900">
+                            私有部署
+                          </h4>
                           <p className="mt-1 text-center text-xs text-gray-500">安全可控</p>
                         </div>
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                              />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">专业团队</h4>
+                          <h4 className="text-center text-sm font-medium text-gray-900">
+                            专业团队
+                          </h4>
                           <p className="mt-1 text-center text-xs text-gray-500">一对一支持</p>
                         </div>
                         <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
                           <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-blue-600"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                              />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">开源方案</h4>
+                          <h4 className="text-center text-sm font-medium text-gray-900">
+                            开源方案
+                          </h4>
                           <p className="mt-1 text-center text-xs text-gray-500">灵活定制</p>
                         </div>
                       </div>
@@ -1239,39 +1302,91 @@ export default function KnowledgeBasePage(): JSX.Element {
                           <div className="grid h-full grid-cols-2 gap-4">
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-6 w-6 text-blue-600"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                  />
                                 </svg>
                               </div>
                               <h4 className="text-lg font-medium text-gray-900">AI知识库</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">PHP/Java双版本支持</p>
+                              <p className="mt-1 text-center text-sm text-gray-500">
+                                PHP/Java双版本支持
+                              </p>
                             </div>
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-6 w-6 text-blue-600"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                                  />
                                 </svg>
                               </div>
                               <h4 className="text-lg font-medium text-gray-900">私有部署</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">安全可控的私有化部署</p>
+                              <p className="mt-1 text-center text-sm text-gray-500">
+                                安全可控的私有化部署
+                              </p>
                             </div>
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-6 w-6 text-blue-600"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                  />
                                 </svg>
                               </div>
                               <h4 className="text-lg font-medium text-gray-900">专业团队</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">一对一技术支持</p>
+                              <p className="mt-1 text-center text-sm text-gray-500">
+                                一对一技术支持
+                              </p>
                             </div>
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
                               <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-6 w-6 text-blue-600"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                                  />
                                 </svg>
                               </div>
                               <h4 className="text-lg font-medium text-gray-900">开源方案</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">灵活定制，售后无忧</p>
+                              <p className="mt-1 text-center text-sm text-gray-500">
+                                灵活定制，售后无忧
+                              </p>
                             </div>
                           </div>
                         </div>

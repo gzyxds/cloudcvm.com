@@ -1,15 +1,18 @@
 import type { Metadata } from 'next'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import BananaProductPage from '@/components/ai/BananaProductPage'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import BananaProductPage from '@/components/sections/ai/BananaProductPage'
 
 export const metadata: Metadata = {
   title: { absolute: '即梦AI绘画 - AI绘画系统,AI系统源码,AI绘画生成系统 | 智言AI' },
-  description: '智言AI 即梦AI绘画是一个基于即梦AI绘画的快速绘图工具,能够通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词或参考图来生成图片,支持多种图片比例以及1K和2K分辨率设置。基于开源技术构建,提供完整源码与私有化部署支持。',
-  keywords: '即梦AI,AI绘画,文生图,图生图,AI绘画工具,必定AI,智言AI,图片生成,开源AI系统,私有化部署,即梦4.0,绘画源码',
+  description:
+    '智言AI 即梦AI绘画是一个基于即梦AI绘画的快速绘图工具,能够通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词或参考图来生成图片,支持多种图片比例以及1K和2K分辨率设置。基于开源技术构建,提供完整源码与私有化部署支持。',
+  keywords:
+    '即梦AI,AI绘画,文生图,图生图,AI绘画工具,必定AI,智言AI,图片生成,开源AI系统,私有化部署,即梦4.0,绘画源码',
   openGraph: {
     title: '即梦AI绘画 - 一键生成 AI 图片 | 智言AI',
-    description: '通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词、多种图片比例和分辨率,让创作更简单。',
+    description:
+      '通过简单提示词快速生成高质量图像,风格覆盖广泛,写实、卡通、插画等皆可驾驭。支持纯文本提示词、多种图片比例和分辨率,让创作更简单。',
     images: ['/product/jmdraw.webp'],
     type: 'website',
   },
@@ -28,18 +31,52 @@ export default function JmdrawPage() {
       <main>
         <BananaProductPage
           badgeText="即梦AI 2.0 发布"
-          heroTitle={<>打造您的 <span className="text-[#0055ff]">专属 AI 绘画</span></>}
-          heroDesc={<>新一代 AI 绘画生成工具，输入文字描述或上传参考图即可快速生成高质量图像。<br className="hidden sm:block" />风格覆盖广泛，写实、卡通、插画等皆可驾驭，充分释放您的创作潜能。</>}
+          heroTitle={
+            <>
+              打造您的 <span className="text-[#0055ff]">专属 AI 绘画</span>
+            </>
+          }
+          heroDesc={
+            <>
+              新一代 AI 绘画生成工具，输入文字描述或上传参考图即可快速生成高质量图像。
+              <br className="hidden sm:block" />
+              风格覆盖广泛，写实、卡通、插画等皆可驾驭，充分释放您的创作潜能。
+            </>
+          }
           heroImage="/images/aisolution/jmdraw-4.webp"
           featuresTitle=""
           featuresDesc="集文生图、图生图、多种分辨率于一体，为您提供一站式绘画生成解决方案。"
           features={[
-            { title: '文生图', desc: '支持纯文本提示词来生成图片，用户只需输入文字描述，即可快速生成高质量图像。', icon: 'DocumentText' },
-            { title: '图生图', desc: '支持上传参考图来生成图片，并可进行多张图片融合，让创作更加灵活多样。', icon: 'Photo' },
-            { title: '多种分辨率', desc: '支持生成不同的图片比例和分辨率，包括 1K、2K 等，满足不同场景需求。', icon: 'AdjustmentsHorizontal' },
-            { title: '批量生成', desc: '用户可以选择每次生成 1-4 张图片，对应不同积分消耗，大幅提升创作效率。', icon: 'QueueList' },
-            { title: '提示词示例', desc: '后台可以配置提示词示例，方便用户一键试用，降低创作门槛。', icon: 'LightBulb' },
-            { title: '灵感广场', desc: '后台可配置灵感广场示例图片，为用户提供创作灵感和参考。', icon: 'Sparkles' },
+            {
+              title: '文生图',
+              desc: '支持纯文本提示词来生成图片，用户只需输入文字描述，即可快速生成高质量图像。',
+              icon: 'DocumentText',
+            },
+            {
+              title: '图生图',
+              desc: '支持上传参考图来生成图片，并可进行多张图片融合，让创作更加灵活多样。',
+              icon: 'Photo',
+            },
+            {
+              title: '多种分辨率',
+              desc: '支持生成不同的图片比例和分辨率，包括 1K、2K 等，满足不同场景需求。',
+              icon: 'AdjustmentsHorizontal',
+            },
+            {
+              title: '批量生成',
+              desc: '用户可以选择每次生成 1-4 张图片，对应不同积分消耗，大幅提升创作效率。',
+              icon: 'QueueList',
+            },
+            {
+              title: '提示词示例',
+              desc: '后台可以配置提示词示例，方便用户一键试用，降低创作门槛。',
+              icon: 'LightBulb',
+            },
+            {
+              title: '灵感广场',
+              desc: '后台可配置灵感广场示例图片，为用户提供创作灵感和参考。',
+              icon: 'Sparkles',
+            },
           ]}
           featureDetails={[
             {
@@ -47,10 +84,22 @@ export default function JmdrawPage() {
               desc: '支持纯文本提示词来生成图片，用户只需输入文字描述，即可快速生成高质量图像。风格覆盖广泛，写实、卡通、插画等皆可驾驭，充分释放您的创作潜能。',
               activePoint: 0,
               points: [
-                { title: '纯文本提示词', desc: '支持纯文本提示词来生成图片，只需输入文字描述，即可快速生成高质量图像。' },
-                { title: '风格多样', desc: '支持多种图片风格，如写实、卡通、插画等，满足不同场景和创作需求。' },
-                { title: '快速生成', desc: '生成速度非常快，大幅缩短等待时间，提升创作效率，让创意快速落地。' },
-                { title: '高质量输出', desc: '生成的图片质量高，细节丰富、色彩饱满，满足专业级创作需求。' },
+                {
+                  title: '纯文本提示词',
+                  desc: '支持纯文本提示词来生成图片，只需输入文字描述，即可快速生成高质量图像。',
+                },
+                {
+                  title: '风格多样',
+                  desc: '支持多种图片风格，如写实、卡通、插画等，满足不同场景和创作需求。',
+                },
+                {
+                  title: '快速生成',
+                  desc: '生成速度非常快，大幅缩短等待时间，提升创作效率，让创意快速落地。',
+                },
+                {
+                  title: '高质量输出',
+                  desc: '生成的图片质量高，细节丰富、色彩饱满，满足专业级创作需求。',
+                },
               ],
               image: '/images/aisolution/jmdraw-1.webp',
             },
@@ -59,10 +108,22 @@ export default function JmdrawPage() {
               desc: '支持上传参考图来生成图片，并支持多张图片智能融合，让创作更加灵活多样，轻松实现从一张图片到多张图片的创意转换。',
               activePoint: 0,
               points: [
-                { title: '多图参考输入', desc: '支持上传多张参考图来生成图片，提供更丰富的创作素材和灵感来源。' },
-                { title: '智能图片融合', desc: '支持多张图片智能融合，理解图片中物体的逻辑关系，生成更加丰富的画面。' },
-                { title: '风格保持一致', desc: '从参考图中学习风格、构图和细节，生成与原图风格协调的新图片。' },
-                { title: '灵活创作方式', desc: '同时支持纯文本提示词和上传参考图两种方式，满足不同用户的创作习惯。' },
+                {
+                  title: '多图参考输入',
+                  desc: '支持上传多张参考图来生成图片，提供更丰富的创作素材和灵感来源。',
+                },
+                {
+                  title: '智能图片融合',
+                  desc: '支持多张图片智能融合，理解图片中物体的逻辑关系，生成更加丰富的画面。',
+                },
+                {
+                  title: '风格保持一致',
+                  desc: '从参考图中学习风格、构图和细节，生成与原图风格协调的新图片。',
+                },
+                {
+                  title: '灵活创作方式',
+                  desc: '同时支持纯文本提示词和上传参考图两种方式，满足不同用户的创作习惯。',
+                },
               ],
               image: '/images/aisolution/jmdraw-2.webp',
             },
@@ -71,10 +132,22 @@ export default function JmdrawPage() {
               desc: '后台可以配置提示词示例和灵感广场，支持自定义积分消耗，并可自由修改应用在前台显示的名称，提供完整的后台管理功能，满足企业级应用需求。',
               activePoint: 0,
               points: [
-                { title: '提示词示例配置', desc: '后台可以配置提示词示例，方便用户试用，降低创作门槛，提升用户体验。' },
-                { title: '灵感广场示例', desc: '后台可配置灵感广场示例图片，为用户提供创作灵感和参考，激发创意灵感。' },
-                { title: '生成记录与积分管理', desc: '后台可查看生成记录和积分消耗情况，支持自定义积分消耗策略，方便运营管理。' },
-                { title: '自定义应用名称', desc: '后台可自由修改应用在前台显示的名称，打造品牌专属体验，满足个性化需求。' },
+                {
+                  title: '提示词示例配置',
+                  desc: '后台可以配置提示词示例，方便用户试用，降低创作门槛，提升用户体验。',
+                },
+                {
+                  title: '灵感广场示例',
+                  desc: '后台可配置灵感广场示例图片，为用户提供创作灵感和参考，激发创意灵感。',
+                },
+                {
+                  title: '生成记录与积分管理',
+                  desc: '后台可查看生成记录和积分消耗情况，支持自定义积分消耗策略，方便运营管理。',
+                },
+                {
+                  title: '自定义应用名称',
+                  desc: '后台可自由修改应用在前台显示的名称，打造品牌专属体验，满足个性化需求。',
+                },
               ],
               image: '/images/aisolution/jmdraw-3.webp',
             },

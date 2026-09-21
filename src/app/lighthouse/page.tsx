@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -17,8 +18,8 @@ import {
   Squares2X2Icon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 图标组件类型定义
@@ -68,7 +69,8 @@ const OVERVIEW_ITEMS: CommonCardItem[] = [
     icon: BoltIcon,
     eyebrow: '高性价比',
     title: '套餐化计费，成本可控',
-    description: '提供多种高性价比套餐选择，计算、存储、流量一体化打包计费，中小企业与开发者轻松上云。',
+    description:
+      '提供多种高性价比套餐选择，计算、存储、流量一体化打包计费，中小企业与开发者轻松上云。',
   },
   {
     icon: GlobeAltIcon,
@@ -92,7 +94,8 @@ const OVERVIEW_ITEMS: CommonCardItem[] = [
     icon: ShieldCheckIcon,
     eyebrow: '安全可靠',
     title: '企业级安全防护',
-    description: '基于成熟云服务器架构构建，提供快照备份、安全防护与监控告警能力，保障业务稳定运行。',
+    description:
+      '基于成熟云服务器架构构建，提供快照备份、安全防护与监控告警能力，保障业务稳定运行。',
   },
 ]
 
@@ -287,43 +290,6 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
 ]
 
 /**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- * @param sectionIds - 需要监听的 section id 数组
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
-
-/**
  * 动画卡片组件 - 实现玻璃拟态与微交互
  * @param children - 子组件内容
  * @param className - 额外的 CSS 类名
@@ -407,9 +373,9 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -419,7 +385,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -459,11 +425,21 @@ function HeroSection() {
             新一代开箱即用、面向轻量应用场景的云服务器产品，助力中小企业和开发者便捷高效地在云端构建网站、Web
             应用、小程序、电商应用、云盘图床与各类开发测试环境，精选应用镜像实现一键部署，享受极简上云体验。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               立即选购
             </Button>
-            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#overview"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               了解产品详情
             </Button>
           </div>
@@ -493,7 +469,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-[#0055ff]/20"
+          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
@@ -535,9 +511,13 @@ function OverviewSection() {
               <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                 <item.icon className="h-6 w-6" />
               </span>
-              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">{item.eyebrow}</span>
+              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">
+                {item.eyebrow}
+              </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
             </GlassCard>
           ))}
         </div>
@@ -552,7 +532,10 @@ function OverviewSection() {
  */
 function ScenariosSection() {
   return (
-    <section id="scenarios" className="scroll-mt-32 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="scenarios"
+      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
           <motion.div
@@ -596,7 +579,7 @@ function ScenariosSection() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-white px-2 py-0.5 text-xs font-medium text-slate-600 border border-slate-200"
+                        className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600"
                       >
                         {tag}
                       </span>
@@ -639,23 +622,23 @@ function PackagesSection() {
               <div className="mt-5 space-y-3 border-t border-slate-200 pt-5 text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">vCPU</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.cpu}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.cpu}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">内存</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.memory}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.memory}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">系统盘</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.storage}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.storage}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">带宽</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.bandwidth}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.bandwidth}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">流量包</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.traffic}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.traffic}</span>
                 </div>
               </div>
               <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-[#0055ff]">
@@ -676,7 +659,7 @@ function PackagesSection() {
  */
 function ImagesSection() {
   return (
-    <section id="images" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section id="images" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Application Images"
@@ -747,7 +730,10 @@ function AdvantagesSection() {
  */
 function ProductsSection() {
   return (
-    <section id="products" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="products"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Related Products"
@@ -762,7 +748,9 @@ function ProductsSection() {
                 <item.icon className="h-6 w-6" />
               </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
               {item.tags && item.tags.length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
@@ -789,7 +777,10 @@ function ProductsSection() {
  */
 function CTASection() {
   return (
-    <section id="cta" className="scroll-mt-20 bg-[#0055ff] py-16 md:py-24 text-center relative overflow-hidden">
+    <section
+      id="cta"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+    >
       <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -805,14 +796,24 @@ function CTASection() {
             开启极简上云体验
           </h2>
           <p className="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
-            精选应用镜像一键部署，高性价比套餐灵活选购，香港及海外多地域节点可选，
-            为您的网站、Web 应用、小程序与电商业务提供稳定可靠的云端支撑。
+            精选应用镜像一键部署，高性价比套餐灵活选购，香港及海外多地域节点可选， 为您的网站、Web
+            应用、小程序与电商业务提供稳定可靠的云端支撑。
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-xl px-8 py-3 font-medium text-[#0055ff]">
+            <Button
+              href="/contact"
+              color="white"
+              variant="erlieSolid"
+              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+            >
               立即选购套餐
             </Button>
-            <Button href="/demo" variant="erlieOutline" color="white" className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+            <Button
+              href="/demo"
+              variant="erlieOutline"
+              color="white"
+              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
+            >
               咨询定制方案
             </Button>
           </div>

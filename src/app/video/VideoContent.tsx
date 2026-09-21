@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -42,10 +43,10 @@ import {
   UserGroupIcon,
   UsersIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import clsx from 'clsx'
 import Image from 'next/image'
 
@@ -129,43 +130,38 @@ function HeroSection() {
           </p>
           <div className="mt-6 grid grid-cols-2 gap-4 text-sm sm:mt-8">
             <div className="flex items-center text-slate-600">
-              <CheckCircleIcon
-                className="mr-2 h-5 w-5 text-green-500"
-                aria-hidden="true"
-              />
+              <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               750+上线案例
             </div>
             <div className="flex items-center text-slate-600">
-              <CheckCircleIcon
-                className="mr-2 h-5 w-5 text-green-500"
-                aria-hidden="true"
-              />
+              <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               开源可二开
             </div>
             <div className="flex items-center text-slate-600">
-              <CheckCircleIcon
-                className="mr-2 h-5 w-5 text-green-500"
-                aria-hidden="true"
-              />
+              <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               多端同步
             </div>
             <div className="flex items-center text-slate-600">
-              <CheckCircleIcon
-                className="mr-2 h-5 w-5 text-green-500"
-                aria-hidden="true"
-              />
+              <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               广告回传
             </div>
           </div>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-4 sm:flex-wrap">
-            <Button href="#demo" variant="erlieSolid" color="blue" className="rounded-lg w-full sm:w-auto">
-              <PlayCircleIcon
-                className="mr-2 h-5 w-5"
-                aria-hidden="true"
-              />
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="#demo"
+              variant="erlieSolid"
+              color="blue"
+              className="w-full rounded-lg sm:w-auto"
+            >
+              <PlayCircleIcon className="mr-2 h-5 w-5" aria-hidden="true" />
               查看演示
             </Button>
-            <Button href="#advantages" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#advantages"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               了解更多
             </Button>
           </div>
@@ -190,15 +186,13 @@ function AdvantagesSection() {
     {
       icon: CodeBracketIcon,
       title: '开源可二开',
-      description:
-        '源代码开源可二开，稳定迭代更新，进行系统化升级，带给每一位用户更好的开发体验。',
+      description: '源代码开源可二开，稳定迭代更新，进行系统化升级，带给每一位用户更好的开发体验。',
       color: 'text-green-600',
     },
     {
       icon: CurrencyDollarIcon,
       title: '营销充值体系完善',
-      description:
-        '拥有积分、VIP、分销、媒资、裂变等多种功能，支持矩阵式玩法。',
+      description: '拥有积分、VIP、分销、媒资、裂变等多种功能，支持矩阵式玩法。',
       color: 'text-yellow-600',
     },
     {
@@ -211,8 +205,7 @@ function AdvantagesSection() {
     {
       icon: SpeakerWaveIcon,
       title: '广告回传',
-      description:
-        '提供巨量、微信、快手等平台的广告数据回传功能，优化投放效果。',
+      description: '提供巨量、微信、快手等平台的广告数据回传功能，优化投放效果。',
       color: 'text-red-600',
     },
     {
@@ -240,20 +233,11 @@ function AdvantagesSection() {
       <Container>
         <div className="text-center">
           <h2
-            className={clsx(
-              'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-slate-900',
-            )}
+            className={clsx('mb-4 text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}
           >
-            <StarIcon
-              className="mr-2 inline h-8 w-8 text-[#0055ff]"
-              aria-hidden="true"
-            />
+            <StarIcon className="mr-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
             产品优势
-            <StarIcon
-              className="ml-2 inline h-8 w-8 text-[#0055ff]"
-              aria-hidden="true"
-            />
+            <StarIcon className="ml-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
           </h2>
         </div>
 
@@ -266,32 +250,24 @@ function AdvantagesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={clsx(
-                'group relative border p-6 transition-all duration-300 rounded-xl overflow-hidden',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+                'group relative overflow-hidden rounded-xl border p-6 transition-all duration-300',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
               )}
             >
               {/* 选中时的背景渐变 */}
-              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
+              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
               <div className="relative z-10 text-center">
                 <h3
                   className={clsx(
                     'mb-3 flex items-center justify-center text-lg font-semibold',
-                    'text-slate-900',
+                    'text-slate-900'
                   )}
                 >
-                  <advantage.icon
-                    className="mr-2 h-6 w-6 text-[#0055ff]"
-                    aria-hidden="true"
-                  />
+                  <advantage.icon className="mr-2 h-6 w-6 text-[#0055ff]" aria-hidden="true" />
                   {advantage.title}
                 </h3>
-                <p
-                  className={clsx(
-                    'text-sm leading-relaxed',
-                    'text-slate-600',
-                  )}
-                >
+                <p className={clsx('text-sm leading-relaxed', 'text-slate-600')}>
                   {advantage.description}
                 </p>
               </div>
@@ -329,14 +305,11 @@ function DemoSection() {
   ]
 
   return (
-    <section id="demo" className="scroll-mt-20 py-16 bg-white">
+    <section id="demo" className="scroll-mt-20 bg-white py-16">
       <Container>
         <div className="text-center">
           <h2
-            className={clsx(
-              'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-slate-900',
-            )}
+            className={clsx('mb-4 text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}
           >
             <ComputerDesktopIcon
               className="mr-2 inline h-8 w-8 text-[#0055ff]"
@@ -359,16 +332,11 @@ function DemoSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={clsx(
-                'group overflow-hidden border transition-all duration-300 rounded-xl',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+                'group overflow-hidden rounded-xl border transition-all duration-300',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
               )}
             >
-              <div
-                className={clsx(
-                  'relative aspect-video overflow-hidden',
-                  'bg-slate-100',
-                )}
-              >
+              <div className={clsx('relative aspect-video overflow-hidden', 'bg-slate-100')}>
                 <Image
                   src={demo.image}
                   alt={demo.title}
@@ -378,27 +346,11 @@ function DemoSection() {
                 />
               </div>
               <div className="p-6">
-                <h3
-                  className={clsx(
-                    'mb-2 text-lg font-semibold',
-                    'text-slate-900',
-                  )}
-                >
+                <h3 className={clsx('mb-2 text-lg font-semibold', 'text-slate-900')}>
                   {demo.title}
                 </h3>
-                <p
-                  className={clsx(
-                    'mb-4 text-sm',
-                    'text-slate-600',
-                  )}
-                >
-                  {demo.description}
-                </p>
-                <div
-                  className="flex items-center"
-                  role="img"
-                  aria-label={`评分 ${demo.rating} 分`}
-                >
+                <p className={clsx('mb-4 text-sm', 'text-slate-600')}>{demo.description}</p>
+                <div className="flex items-center" role="img" aria-label={`评分 ${demo.rating} 分`}>
                   {[...Array(5)].map((_, i) => (
                     <StarIcon
                       key={i}
@@ -408,7 +360,7 @@ function DemoSection() {
                           ? 'text-[#0055ff]'
                           : i < demo.rating
                             ? 'text-[#0055ff]'
-                            : 'text-slate-300',
+                            : 'text-slate-300'
                       )}
                       aria-hidden="true"
                     />
@@ -545,8 +497,7 @@ function FeaturesSection() {
     {
       icon: CheckBadgeIcon,
       title: '任务体系',
-      description:
-        '绑定昵称、分享好友、激励广告、拉新注册等都可设置一定的积分赠送活动',
+      description: '绑定昵称、分享好友、激励广告、拉新注册等都可设置一定的积分赠送活动',
       color: 'text-blue-600',
     },
     {
@@ -558,8 +509,7 @@ function FeaturesSection() {
     {
       icon: TagIcon,
       title: '一键设置价格',
-      description:
-        '不用再对每部剧进行一集一集价格设置，可批量设置VIP价格、免费集数等',
+      description: '不用再对每部剧进行一集一集价格设置，可批量设置VIP价格、免费集数等',
       color: 'text-blue-600',
     },
     {
@@ -631,24 +581,15 @@ function FeaturesSection() {
   ]
 
   return (
-    <section id="features" className="scroll-mt-20 py-16 bg-slate-50">
+    <section id="features" className="scroll-mt-20 bg-slate-50 py-16">
       <Container>
         <div className="text-center">
           <h2
-            className={clsx(
-              'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-slate-900',
-            )}
+            className={clsx('mb-4 text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}
           >
-            <CogIcon
-              className="mr-2 inline h-8 w-8 text-[#0055ff]"
-              aria-hidden="true"
-            />
+            <CogIcon className="mr-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
             系统特色功能
-            <CogIcon
-              className="ml-2 inline h-8 w-8 text-[#0055ff]"
-              aria-hidden="true"
-            />
+            <CogIcon className="ml-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
           </h2>
         </div>
 
@@ -661,30 +602,17 @@ function FeaturesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: (index % 8) * 0.05 }}
               className={clsx(
-                'group relative border p-6 transition-all duration-300 rounded-xl',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+                'group relative rounded-xl border p-6 transition-all duration-300',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
               )}
             >
               <div className="mb-4">
-                <feature.icon
-                  className="h-8 w-8 text-[#0055ff]"
-                  aria-hidden="true"
-                />
+                <feature.icon className="h-8 w-8 text-[#0055ff]" aria-hidden="true" />
               </div>
-              <h3
-                className={clsx(
-                  'mb-2 text-lg font-semibold',
-                  'text-slate-900',
-                )}
-              >
+              <h3 className={clsx('mb-2 text-lg font-semibold', 'text-slate-900')}>
                 {feature.title}
               </h3>
-              <p
-                className={clsx(
-                  'text-sm leading-relaxed',
-                  'text-slate-600',
-                )}
-              >
+              <p className={clsx('text-sm leading-relaxed', 'text-slate-600')}>
                 {feature.description}
               </p>
             </motion.div>
@@ -736,25 +664,12 @@ function FAQSection() {
     <section id="faq" className={clsx('scroll-mt-20 py-16', 'bg-white')}>
       <Container>
         <div className="text-center">
-          <h2
-            className={clsx(
-              'text-3xl font-bold tracking-tight sm:text-4xl',
-              'text-slate-900',
-            )}
-          >
+          <h2 className={clsx('text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}>
             常见问题
           </h2>
-          <p
-            className={clsx('mt-4 text-lg', 'text-slate-600')}
-          >
-            解答您关于短剧系统的疑问
-          </p>
+          <p className={clsx('mt-4 text-lg', 'text-slate-600')}>解答您关于短剧系统的疑问</p>
         </div>
-        <div
-          className="mt-12 grid gap-6 md:grid-cols-2"
-          role="list"
-          aria-label="常见问题列表"
-        >
+        <div className="mt-12 grid gap-6 md:grid-cols-2" role="list" aria-label="常见问题列表">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -763,22 +678,15 @@ function FAQSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={clsx(
-                'border p-6 rounded-xl transition-all duration-300',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50',
+                'rounded-xl border p-6 transition-all duration-300',
+                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
               )}
               role="listitem"
             >
-              <h3
-                className={clsx(
-                  'mb-3 text-lg font-semibold',
-                  'text-slate-900',
-                )}
-              >
+              <h3 className={clsx('mb-3 text-lg font-semibold', 'text-slate-900')}>
                 {faq.question}
               </h3>
-              <p className={clsx('text-slate-600')}>
-                {faq.answer}
-              </p>
+              <p className={clsx('text-slate-600')}>{faq.answer}</p>
             </motion.div>
           ))}
         </div>
@@ -788,44 +696,15 @@ function FAQSection() {
 }
 
 /**
- * 监听当前活跃section的hook
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState<string>('')
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
-
-/**
  * 页面锚点导航组件
  */
 function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -835,7 +714,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}

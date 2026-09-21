@@ -15,10 +15,10 @@ import {
   ChevronDownIcon,
 } from '@heroicons/react/20/solid'
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Button } from '@/components/ui/Button'
+import { Container } from '@/components/ui/Container'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 
 // Note: Metadata is handled by layout.tsx for client components
 
@@ -168,7 +168,7 @@ function HeroBanner() {
   return (
     <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
       {/* 背景图片 */}
-      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/agent.png')] bg-cover bg-center bg-no-repeat opacity-20" />
+      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/agent.webp')] bg-cover bg-center bg-no-repeat opacity-20" />
 
       <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
         <motion.div
@@ -184,13 +184,25 @@ function HeroBanner() {
             代理合作
           </h1>
           <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
-            加入优刻云代理合作伙伴计划，享受 <span className="font-semibold text-[#0055ff]">5-7折优惠价格</span>，获得全方位销售支持和技术支持，共同开拓云计算市场，实现互利共赢。
+            加入优刻云代理合作伙伴计划，享受{' '}
+            <span className="font-semibold text-[#0055ff]">5-7折优惠价格</span>
+            ，获得全方位销售支持和技术支持，共同开拓云计算市场，实现互利共赢。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               立即申请代理
             </Button>
-            <Button href="#faq" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#faq"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               了解详情
             </Button>
           </div>
@@ -237,7 +249,11 @@ function AgentAdvantagesSection() {
             </div>
 
             <div className="mt-8">
-              <Button variant="solid" color="blue" className="rounded-md bg-[#0055ff] hover:bg-[#0043cc]">
+              <Button
+                variant="solid"
+                color="blue"
+                className="rounded-md bg-[#0055ff] hover:bg-[#0043cc]"
+              >
                 <Link href="/contact" className="flex items-center">
                   <span className="mr-3">立即申请代理</span>
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
@@ -271,12 +287,8 @@ function AgentAdvantagesSection() {
                     </div>
 
                     {/* 内容 */}
-                    <h4 className="mb-2 text-lg font-semibold text-slate-900">
-                      {advantage.title}
-                    </h4>
-                    <p className="mb-2 font-medium text-slate-700">
-                      {advantage.description}
-                    </p>
+                    <h4 className="mb-2 text-lg font-semibold text-slate-900">{advantage.title}</h4>
+                    <p className="mb-2 font-medium text-slate-700">{advantage.description}</p>
                     <p className="text-sm leading-relaxed text-slate-500">
                       {advantage.subDescription}
                     </p>
@@ -321,24 +333,18 @@ function AgentSupportSection() {
                 className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
               >
                 {/* 悬停时的背景装饰 */}
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#0055ff]/5 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100"></div>
+                <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#0055ff]/5 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100"></div>
 
                 <div className="relative z-10">
-                    {/* 图标 */}
-                    <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-slate-50 text-slate-600 transition-colors group-hover:bg-[#0055ff] group-hover:text-white">
+                  {/* 图标 */}
+                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-slate-50 text-slate-600 transition-colors group-hover:bg-[#0055ff] group-hover:text-white">
                     <Icon className="h-6 w-6" />
-                    </div>
+                  </div>
 
-                    {/* 内容 */}
-                    <h4 className="mb-3 text-lg font-semibold text-slate-900">
-                    {support.title}
-                    </h4>
-                    <p className="mb-2 font-medium text-slate-700">
-                    {support.description}
-                    </p>
-                    <p className="text-sm leading-relaxed text-slate-500">
-                    {support.subDescription}
-                    </p>
+                  {/* 内容 */}
+                  <h4 className="mb-3 text-lg font-semibold text-slate-900">{support.title}</h4>
+                  <p className="mb-2 font-medium text-slate-700">{support.description}</p>
+                  <p className="text-sm leading-relaxed text-slate-500">{support.subDescription}</p>
                 </div>
               </motion.div>
             )
@@ -357,9 +363,7 @@ function JoinConditionsSection() {
     <div className="bg-white py-16 sm:py-24">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            加入条件
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">加入条件</h2>
           <div className="mx-auto mt-4 max-w-4xl text-lg text-slate-600">
             我们欢迎具备一定资质和服务能力的企业加入我们的代理合作伙伴计划，
             共同为客户提供优质的云计算服务。
@@ -384,15 +388,9 @@ function JoinConditionsSection() {
                 </div>
 
                 {/* 内容 */}
-                <h4 className="mb-4 text-xl font-semibold text-slate-900">
-                  {condition.title}
-                </h4>
-                <p className="mb-3 font-medium text-slate-700">
-                  {condition.description}
-                </p>
-                <p className="leading-relaxed text-slate-500">
-                  {condition.subDescription}
-                </p>
+                <h4 className="mb-4 text-xl font-semibold text-slate-900">{condition.title}</h4>
+                <p className="mb-3 font-medium text-slate-700">{condition.description}</p>
+                <p className="leading-relaxed text-slate-500">{condition.subDescription}</p>
               </motion.div>
             )
           })}
@@ -410,9 +408,7 @@ function PromotionProcessSection() {
     <div className="bg-slate-50 py-16 sm:py-24">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            推广流程
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">推广流程</h2>
           <div className="mx-auto mt-4 max-w-4xl text-lg text-slate-600">
             简单四步，轻松成为主题云代理合作伙伴，开启您的云计算代理业务。
           </div>
@@ -426,7 +422,7 @@ function PromotionProcessSection() {
             >
               {/* 连接线 (仅在桌面端显示，且不是最后一个) */}
               {index < promotionSteps.length - 1 && (
-                <div className="absolute -right-4 top-12 hidden h-0.5 w-8 bg-slate-200 lg:block group-hover:bg-[#0055ff]/30" />
+                <div className="absolute top-12 -right-4 hidden h-0.5 w-8 bg-slate-200 group-hover:bg-[#0055ff]/30 lg:block" />
               )}
 
               {/* 步骤图标 */}
@@ -436,12 +432,8 @@ function PromotionProcessSection() {
 
               {/* 步骤内容 */}
               <div className="mb-6 flex-1">
-                <h5 className="mb-3 text-lg font-semibold text-slate-900">
-                  {step.title}
-                </h5>
-                <p className="mb-4 text-sm leading-relaxed text-slate-500">
-                  {step.description}
-                </p>
+                <h5 className="mb-3 text-lg font-semibold text-slate-900">{step.title}</h5>
+                <p className="mb-4 text-sm leading-relaxed text-slate-500">{step.description}</p>
               </div>
 
               {/* 操作按钮 */}
@@ -467,7 +459,7 @@ function FAQSection() {
 
   const toggleItem = (index: number) => {
     setOpenItems((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     )
   }
 
@@ -475,9 +467,7 @@ function FAQSection() {
     <div className="bg-white py-16 sm:py-24">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            常见问题
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">常见问题</h2>
           <div className="mx-auto mt-4 max-w-4xl text-lg text-slate-600">
             解答您在代理合作过程中可能遇到的常见问题，帮助您更好地了解我们的合作模式。
           </div>
@@ -493,9 +483,7 @@ function FAQSection() {
                 onClick={() => toggleItem(index)}
                 className="flex w-full items-center justify-between px-6 py-4 text-left"
               >
-                <h3 className="text-lg font-medium text-slate-900">
-                  {faq.question}
-                </h3>
+                <h3 className="text-lg font-medium text-slate-900">{faq.question}</h3>
                 <ChevronDownIcon
                   className={`h-5 w-5 text-slate-500 transition-transform duration-200 ${
                     openItems.includes(index) ? 'rotate-180' : ''

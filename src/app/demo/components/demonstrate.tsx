@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useMemo } from 'react'
 import Image from 'next/image'
-import { Container } from '@/components/Container'
+import { Container } from '@/components/ui/Container'
 import {
   X,
   ExternalLink,
@@ -314,16 +314,20 @@ const demoProducts = [
 
 /** 版本类型标签样式映射 */
 const statusConfig = {
-  stable: { label: '稳定版', icon: CheckCircle2, className: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-  new:    { label: '最新',   icon: AlertCircle,  className: 'bg-blue-50 text-blue-700 border-blue-200' },
-  beta:   { label: 'Beta',   icon: Clock,        className: 'bg-amber-50 text-amber-700 border-amber-200' },
+  stable: {
+    label: '稳定版',
+    icon: CheckCircle2,
+    className: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  },
+  new: { label: '最新', icon: AlertCircle, className: 'bg-blue-50 text-blue-700 border-blue-200' },
+  beta: { label: 'Beta', icon: Clock, className: 'bg-amber-50 text-amber-700 border-amber-200' },
 }
 
 /** 演示类型标签配置 */
 const demoTypeConfig = {
-  frontend: { label: '前台',   className: 'bg-slate-100 text-slate-600' },
-  admin:    { label: '管理端', className: 'bg-violet-50 text-violet-600' },
-  mobile:   { label: '移动端', className: 'bg-sky-50 text-sky-600' },
+  frontend: { label: '前台', className: 'bg-slate-100 text-slate-600' },
+  admin: { label: '管理端', className: 'bg-violet-50 text-violet-600' },
+  mobile: { label: '移动端', className: 'bg-sky-50 text-sky-600' },
 }
 
 /** 产品分类列表（去重） */
@@ -368,7 +372,11 @@ function CredentialRow({
         className="flex-none text-slate-400 transition-colors hover:text-brand-500"
         title="复制"
       >
-        {copied ? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
+        {copied ? (
+          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+        ) : (
+          <Copy className="h-3.5 w-3.5" />
+        )}
       </button>
     </div>
   )
@@ -424,7 +432,7 @@ function DemoCard({
               className="h-24 w-24 rounded object-cover"
               unoptimized
             />
-            <span className="absolute -bottom-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 shadow">
+            <span className="absolute -right-1.5 -bottom-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand-500 shadow">
               <Smartphone className="h-2.5 w-2.5 text-white" />
             </span>
           </div>
@@ -510,11 +518,15 @@ function NavItem({
           : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
       }`}
     >
-      <Icon className={`h-4 w-4 flex-none transition-colors ${active ? 'text-brand-500' : 'text-slate-400 group-hover:text-slate-600'}`} />
+      <Icon
+        className={`h-4 w-4 flex-none transition-colors ${active ? 'text-brand-500' : 'text-slate-400 group-hover:text-slate-600'}`}
+      />
       <span className="min-w-0 flex-1 truncate text-sm font-medium">{product.name}</span>
       {active && <ChevronRight className="h-3.5 w-3.5 flex-none text-brand-400" />}
       {!active && (
-        <span className={`hidden rounded border px-1 py-0.5 text-[10px] font-medium leading-none group-hover:inline-block ${st.className}`}>
+        <span
+          className={`hidden rounded border px-1 py-0.5 text-[10px] leading-none font-medium group-hover:inline-block ${st.className}`}
+        >
           {st.label}
         </span>
       )}
@@ -527,18 +539,18 @@ function NavItem({
  * 采用企业级云控制台三栏布局：左侧分类导航 + 产品列表，右侧主内容区
  */
 const Demonstrate: React.FC = () => {
-  const [activeId, setActiveId]       = useState(demoProducts[0].id)
+  const [activeId, setActiveId] = useState(demoProducts[0].id)
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('全部')
   const [showQRModal, setShowQRModal] = useState(false)
-  const [modalType, setModalType]     = useState<'demo' | 'service'>('demo')
-  const { copiedKey, copy }           = useCopyText()
+  const [modalType, setModalType] = useState<'demo' | 'service'>('demo')
+  const { copiedKey, copy } = useCopyText()
 
   /** 过滤后的产品列表 */
   const filteredProducts = useMemo(() => {
     return demoProducts.filter((p) => {
       const matchCategory = activeCategory === '全部' || p.category === activeCategory
-      const matchSearch   = !searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchSearch = !searchQuery || p.name.toLowerCase().includes(searchQuery.toLowerCase())
       return matchCategory && matchSearch
     })
   }, [activeCategory, searchQuery])
@@ -593,7 +605,7 @@ const Demonstrate: React.FC = () => {
       {/* ── 移动端产品切换（lg 以下显示） ────────────────── */}
       <div className="border-b border-slate-100 bg-white lg:hidden">
         <Container>
-          <div className="flex items-center gap-2 overflow-x-auto py-3 scrollbar-hide">
+          <div className="scrollbar-hide flex items-center gap-2 overflow-x-auto py-3">
             <span className="flex-none text-xs text-slate-400">产品:</span>
             {demoProducts.map((p) => (
               <button
@@ -616,7 +628,6 @@ const Demonstrate: React.FC = () => {
       <Container>
         <div className="py-6">
           <div className="flex gap-5 lg:items-stretch">
-
             {/* ── 左侧导航栏 ──────────────────────────────── */}
             <aside className="hidden w-60 flex-none lg:block xl:w-64">
               <div className="flex h-full flex-col rounded-md border border-slate-200 bg-white shadow-sm">
@@ -631,14 +642,14 @@ const Demonstrate: React.FC = () => {
                       placeholder="搜索产品..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full rounded border border-slate-200 bg-slate-50 py-2 pl-8 pr-3 text-xs text-slate-700 placeholder-slate-400 outline-none transition-all focus:border-brand-400 focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,85,255,0.08)]"
+                      className="w-full rounded border border-slate-200 bg-slate-50 py-2 pr-3 pl-8 text-xs text-slate-700 placeholder-slate-400 transition-all outline-none focus:border-brand-400 focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,85,255,0.08)]"
                     />
                   </label>
                 </div>
 
                 {/* 分类筛选 */}
                 <div className="flex-none border-b border-slate-100 p-3">
-                  <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+                  <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
                     <Tag className="h-3 w-3" />
                     分类筛选
                   </div>
@@ -700,13 +711,17 @@ const Demonstrate: React.FC = () => {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h2 className="text-base font-bold text-slate-900">{activeProduct.name}</h2>
+                            <h2 className="text-base font-bold text-slate-900">
+                              {activeProduct.name}
+                            </h2>
                             {/* 状态徽标 */}
                             {(() => {
                               const st = statusConfig[activeProduct.status]
                               const Icon = st.icon
                               return (
-                                <span className={`flex items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-medium ${st.className}`}>
+                                <span
+                                  className={`flex items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-medium ${st.className}`}
+                                >
                                   <Icon className="h-3 w-3" />
                                   {st.label}
                                 </span>

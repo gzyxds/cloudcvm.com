@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Container } from '@/components/Container'
+import { Container } from '@/components/ui/Container'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -134,9 +134,9 @@ const sections = [
 
 function SectionNav() {
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto">
           {sections.map((item) => (
             <a
               key={item.id}
@@ -156,7 +156,7 @@ function HeroSection() {
   return (
     <section className="relative isolate overflow-hidden bg-white pt-28 pb-16 sm:pt-36 sm:pb-20">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-0 h-[40rem] w-[80rem] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(56,96,244,0.06),transparent)]" />
+        <div className="absolute top-0 left-1/2 h-[40rem] w-[80rem] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(56,96,244,0.06),transparent)]" />
       </div>
       <Container className="relative">
         <motion.div
@@ -200,7 +200,7 @@ function ContentSection() {
                   <span className="mr-3 text-brand-500">{String(index + 1).padStart(2, '0')}</span>
                   {section.title}
                 </h2>
-                <div className="mt-4 whitespace-pre-line text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
+                <div className="mt-4 text-sm leading-7 whitespace-pre-line text-slate-600 sm:text-base sm:leading-8">
                   {section.content}
                 </div>
               </motion.div>

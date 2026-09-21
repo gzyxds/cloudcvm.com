@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -21,8 +22,8 @@ import {
   UserGroupIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 图标组件类型定义
@@ -110,12 +111,14 @@ const CHALLENGE_ITEMS: CommonCardItem[] = [
   {
     icon: ChartBarIcon,
     title: '流量洪峰难以预测',
-    description: '新游上线、活动推广、节假日峰值流量爆发式增长，传统 IDC 资源调度慢，难以快速响应。',
+    description:
+      '新游上线、活动推广、节假日峰值流量爆发式增长，传统 IDC 资源调度慢，难以快速响应。',
   },
   {
     icon: WrenchScrewdriverIcon,
     title: '多区域部署运维复杂',
-    description: '全球化运营需要多地部署，版本同步、数据一致性、运维管理难度成倍增加，人力成本高企。',
+    description:
+      '全球化运营需要多地部署，版本同步、数据一致性、运维管理难度成倍增加，人力成本高企。',
   },
 ]
 
@@ -180,13 +183,15 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: CpuChipIcon,
     title: '云服务器 CVM',
-    description: '承载游戏大厅、战斗逻辑与后端服务，支持高性能实例与 GPU 渲染型实例，满足不同类型游戏需求。',
+    description:
+      '承载游戏大厅、战斗逻辑与后端服务，支持高性能实例与 GPU 渲染型实例，满足不同类型游戏需求。',
     tags: ['高性能', 'GPU 渲染'],
   },
   {
     icon: CircleStackIcon,
     title: '云数据库',
-    description: 'MySQL/Redis/MongoDB 多种数据库选型，满足玩家数据、排行榜、匹配队列等多样化业务需求。',
+    description:
+      'MySQL/Redis/MongoDB 多种数据库选型，满足玩家数据、排行榜、匹配队列等多样化业务需求。',
     tags: ['读写分离', '自动备份'],
   },
   {
@@ -252,43 +257,6 @@ const CAPABILITY_ITEMS: CommonCardItem[] = [
     description: '适配 MMORPG、MOBA、FPS、棋牌、休闲游戏等不同游戏类型的架构与性能需求。',
   },
 ]
-
-/**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- * @param sectionIds - 需要监听的 section id 数组
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
 
 /**
  * 动画卡片组件 - 实现玻璃拟态与微交互
@@ -374,9 +342,9 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -386,7 +354,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -407,7 +375,7 @@ function HeroSection() {
   return (
     <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
       {/* 背景图片 */}
-      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/game.png')] bg-cover bg-center bg-no-repeat opacity-20" />
+      <div className="absolute inset-0 z-0 bg-[url('/images/solutions/game.webp')] bg-cover bg-center bg-no-repeat opacity-20" />
 
       <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
         <motion.div
@@ -425,11 +393,21 @@ function HeroSection() {
           <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             为游戏开发者提供稳定、低延迟、高防护的云上部署方案，覆盖开服、扩容、安全防护与全球运营全生命周期，让游戏运行更流畅。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               获取定制方案
             </Button>
-            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#overview"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               查看方案详情
             </Button>
           </div>
@@ -459,7 +437,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-[#0055ff]/20"
+          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_300px] lg:gap-12">
             <div>
@@ -467,7 +445,8 @@ function OverviewSection() {
                 覆盖游戏全生命周期的云上解决方案
               </h3>
               <p className="mt-4 text-base leading-relaxed text-white/80">
-                方案围绕低延迟网络、DDoS 防护、弹性扩缩与全球部署展开，适用于游戏开服、版本更新、全球同服、跨区对战等典型游戏运营场景。
+                方案围绕低延迟网络、DDoS
+                防护、弹性扩缩与全球部署展开，适用于游戏开服、版本更新、全球同服、跨区对战等典型游戏运营场景。
               </p>
             </div>
             <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
@@ -518,7 +497,10 @@ function OverviewSection() {
  */
 function ChallengesSection() {
   return (
-    <section id="challenges" className="scroll-mt-32 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="challenges"
+      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
           <motion.div
@@ -554,12 +536,8 @@ function ChallengesSection() {
                 <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-[#0055ff] shadow-sm">
                   <item.icon className="h-5 w-5" />
                 </span>
-                <h3 className="text-base font-semibold text-slate-900">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                  {item.description}
-                </p>
+                <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.description}</p>
               </GlassCard>
             ))}
           </div>
@@ -590,9 +568,7 @@ function AdvantagesSection() {
                 <item.icon className="h-7 w-7" />
               </span>
               <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-slate-500">
-                {item.description}
-              </p>
+              <p className="mt-3 text-base leading-relaxed text-slate-500">{item.description}</p>
             </GlassCard>
           ))}
         </div>
@@ -607,7 +583,10 @@ function AdvantagesSection() {
  */
 function ArchitectureSection() {
   return (
-    <section id="architecture" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="architecture"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Architecture Design"
@@ -620,9 +599,7 @@ function ArchitectureSection() {
             {ARCHITECTURE_POINTS.map((point, index) => (
               <GlassCard key={point.label} delay={index * 0.1} className="bg-slate-50/50">
                 <h3 className="text-base font-bold text-[#0055ff]">{point.label}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                  {point.description}
-                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{point.description}</p>
               </GlassCard>
             ))}
           </div>
@@ -633,7 +610,7 @@ function ArchitectureSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-4 rounded-2xl bg-slate-900 p-6 sm:p-8 shadow-2xl"
+            className="flex flex-col gap-4 rounded-2xl bg-slate-900 p-6 shadow-2xl sm:p-8"
           >
             <div className="flex h-14 items-center justify-center rounded-xl bg-white font-bold text-slate-900 shadow-sm">
               游戏接入层
@@ -720,7 +697,7 @@ function ProductsSection() {
  */
 function CapabilitySection() {
   return (
-    <section className="bg-white py-16 md:py-24 border-t border-slate-200">
+    <section className="border-t border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Extended Capabilities"
@@ -730,15 +707,17 @@ function CapabilitySection() {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CAPABILITY_ITEMS.map((item, index) => (
-            <GlassCard key={item.title} delay={index * 0.1} className="flex items-start gap-4 p-5 bg-slate-50/50">
+            <GlassCard
+              key={item.title}
+              delay={index * 0.1}
+              className="flex items-start gap-4 bg-slate-50/50 p-5"
+            >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                 <item.icon className="h-6 w-6" />
               </span>
               <div className="min-w-0">
                 <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                  {item.description}
-                </p>
+                <p className="mt-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
               </div>
             </GlassCard>
           ))}
@@ -754,11 +733,14 @@ function CapabilitySection() {
  */
 function CTASection() {
   return (
-    <section id="cta" className="scroll-mt-20 bg-[#0055ff] py-16 md:py-24 text-center relative overflow-hidden">
+    <section
+      id="cta"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+    >
       {/* 背景装饰 */}
       <div className="absolute inset-0 z-0 opacity-10">
         <div className="absolute top-0 left-0 h-64 w-64 rounded-full bg-white blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-white blur-3xl" />
+        <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-white blur-3xl" />
       </div>
 
       <Container className="relative z-10">
@@ -779,10 +761,20 @@ function CTASection() {
             联系我们的游戏行业方案顾问，获取专属架构规划与测试资源，让游戏运营更流畅。
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-xl px-8 py-3 font-medium text-[#0055ff]">
+            <Button
+              href="/contact"
+              color="white"
+              variant="erlieSolid"
+              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+            >
               联系专属顾问
             </Button>
-            <Button href="/demo" variant="erlieOutline" color="white" className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+            <Button
+              href="/demo"
+              variant="erlieOutline"
+              color="white"
+              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
+            >
               预约产品演示
             </Button>
           </div>

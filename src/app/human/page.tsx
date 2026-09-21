@@ -1,6 +1,7 @@
 'use client'
 
-import { JSX, useState } from 'react'
+import type { JSX } from 'react'
+import { useState } from 'react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import {
   ChatBubbleLeftRightIcon,
@@ -22,13 +23,19 @@ import {
   CreditCardIcon,
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import { AIscene } from '@/components/ai/AIscene'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { AiScene } from '@/components/sections/ai/AiScene'
 import { Menu, MenuButton } from '@headlessui/react'
-import PixelBlast from '@/components/common/PixelBlast'
+import dynamic from 'next/dynamic'
+
+// three.js + postprocessing 约 200KB(gzip)，仅本页用作装饰背景。
+// 动态导入且不参与 SSR，避免拖慢首屏与构建产物体积。
+const PixelBlast = dynamic(() => import('@/components/effects/PixelBlast'), {
+  ssr: false,
+})
 
 // 产品优势配置数据
 interface Advantage {
@@ -77,7 +84,6 @@ interface Scenario {
   description: string
   features: string[]
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  video: string
 }
 
 const scenarios: Scenario[] = [
@@ -87,7 +93,6 @@ const scenarios: Scenario[] = [
     description: '数字人主播，24小时不间断直播带货',
     features: ['品牌代言', '内容创作', '社交互动'],
     icon: TvIcon,
-    video: '/videos/live-streaming.mp4',
   },
   {
     id: 'digital-employee',
@@ -95,7 +100,6 @@ const scenarios: Scenario[] = [
     description: '智能客服助手，提供专业咨询服务',
     features: ['智能问答', '情感识别', '多语言支持'],
     icon: UserGroupIcon,
-    video: '/videos/digital-employee.mp4',
   },
   {
     id: 'content-creation',
@@ -103,7 +107,6 @@ const scenarios: Scenario[] = [
     description: 'AI驱动的内容生成和创意制作',
     features: ['脚本生成', '视频制作', '多媒体输出'],
     icon: AcademicCapIcon,
-    video: '/videos/content-creation.mp4',
   },
   {
     id: 'virtual-broadcast',
@@ -111,7 +114,6 @@ const scenarios: Scenario[] = [
     description: '虚拟主播直播，降低运营成本',
     features: ['实时互动', '自动回复', '数据分析'],
     icon: MegaphoneIcon,
-    video: '/videos/virtual-broadcast.mp4',
   },
 ]
 
@@ -206,9 +208,7 @@ function HeroSection(): JSX.Element {
 
               {/* 主标题 */}
               <h1 className="text-3xl leading-tight font-bold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                <span className="mb-1 block text-[#0055ff] sm:mb-2">
-                  数字分身
-                </span>
+                <span className="mb-1 block text-[#0055ff] sm:mb-2">数字分身</span>
                 <span className="text-xl leading-tight font-semibold text-gray-900 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl dark:text-white">
                   赋能企业智能化转型
                 </span>
@@ -327,12 +327,7 @@ function AdvantagesSection(): JSX.Element {
     'from-blue-400 to-blue-500',
     'from-blue-700 to-blue-800',
   ]
-  const bulletColors = [
-    'bg-blue-600',
-    'bg-blue-500',
-    'bg-blue-400',
-    'bg-blue-700',
-  ]
+  const bulletColors = ['bg-blue-600', 'bg-blue-500', 'bg-blue-400', 'bg-blue-700']
 
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24 dark:bg-gray-900">
@@ -365,9 +360,7 @@ function AdvantagesSection(): JSX.Element {
                       {advantage.title}
                     </h3>
                     <div className="flex items-baseline">
-                      <span className="text-3xl font-bold sm:text-5xl">
-                        {advantage.stats}
-                      </span>
+                      <span className="text-3xl font-bold sm:text-5xl">{advantage.stats}</span>
                       {advantage.unit && (
                         <span className="ml-2 text-lg font-medium sm:text-xl">
                           {advantage.unit}
@@ -474,9 +467,7 @@ function DemoSection(): JSX.Element {
                 <div className="mr-2 flex h-8 w-8 items-center justify-center bg-blue-50 sm:mr-3 sm:h-10 sm:w-10">
                   <PlayIcon className="h-4 w-4 text-blue-600 sm:h-5 sm:w-5" />
                 </div>
-                <h3 className="text-base font-medium sm:text-lg">
-                  演示账号信息
-                </h3>
+                <h3 className="text-base font-medium sm:text-lg">演示账号信息</h3>
               </div>
 
               <div className="space-y-3 sm:space-y-4">
@@ -495,20 +486,12 @@ function DemoSection(): JSX.Element {
                     </div>
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">
-                          账号:
-                        </span>
-                        <span className="text-xs font-medium">
-                          {account.username}
-                        </span>
+                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">账号:</span>
+                        <span className="text-xs font-medium">{account.username}</span>
                       </div>
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">
-                          密码:
-                        </span>
-                        <span className="text-xs font-medium">
-                          {account.password}
-                        </span>
+                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">密码:</span>
+                        <span className="text-xs font-medium">{account.password}</span>
                       </div>
                       <Button
                         href={account.url}
@@ -557,12 +540,8 @@ function DemoSection(): JSX.Element {
                 />
                 <div className="mt-3 flex items-center justify-between sm:mt-4">
                   <div>
-                    <h4 className="text-xs font-medium text-gray-900 sm:text-sm">
-                      数字人管理平台
-                    </h4>
-                    <p className="text-xs text-gray-500">
-                      一站式管理您的所有数字人资产
-                    </p>
+                    <h4 className="text-xs font-medium text-gray-900 sm:text-sm">数字人管理平台</h4>
+                    <p className="text-xs text-gray-500">一站式管理您的所有数字人资产</p>
                   </div>
                   <div className="flex space-x-1 sm:space-x-2">
                     <div className="h-1.5 w-1.5 bg-red-500 sm:h-2 sm:w-2"></div>
@@ -594,9 +573,7 @@ function DemoSection(): JSX.Element {
                     <p className="text-sm font-medium tracking-wide text-white sm:text-base">
                       在线演示
                     </p>
-                    <p className="text-xs text-blue-100/90 sm:text-sm">
-                      实时体验
-                    </p>
+                    <p className="text-xs text-blue-100/90 sm:text-sm">实时体验</p>
                   </div>
                 </div>
               </div>
@@ -610,8 +587,7 @@ function DemoSection(): JSX.Element {
 
 // 应用场景展示组件
 function ScenariosSection(): JSX.Element {
-  const [activeScenario, setActiveScenario] =
-    useState<keyof typeof scenarioData>('virtualIP')
+  const [activeScenario, setActiveScenario] = useState<keyof typeof scenarioData>('virtualIP')
 
   // 场景数据配置
   const scenarioData = {
@@ -650,8 +626,7 @@ function ScenariosSection(): JSX.Element {
     contentCreation: {
       title: '内容创作',
       subtitle: '创意应用',
-      description:
-        '为媒体、自媒体、营销团队提供智能内容创作解决方案，提高内容生产效率和质量。',
+      description: '为媒体、自媒体、营销团队提供智能内容创作解决方案，提高内容生产效率和质量。',
       features: [
         { name: '视频脚本', desc: '专业视频脚本' },
         { name: '营销文案', desc: '提高转化率' },
@@ -666,8 +641,7 @@ function ScenariosSection(): JSX.Element {
     virtualLive: {
       title: '虚拟直播',
       subtitle: '直播应用',
-      description:
-        '提供24小时不间断的虚拟主播直播服务，降低直播成本，提升直播效果和用户粘性。',
+      description: '提供24小时不间断的虚拟主播直播服务，降低直播成本，提升直播效果和用户粘性。',
       features: [
         { name: '24小时直播', desc: '全天候在线' },
         { name: '互动问答', desc: '智能回复观众' },
@@ -692,9 +666,7 @@ function ScenariosSection(): JSX.Element {
             <span className="mr-2 h-2 w-2 rounded-full bg-blue-600"></span>
             <span className="text-sm font-medium text-blue-700">场景应用</span>
           </div>
-          <h2 className="mb-6 text-4xl font-bold tracking-tight text-gray-900">
-            应用场景
-          </h2>
+          <h2 className="mb-6 text-4xl font-bold tracking-tight text-gray-900">应用场景</h2>
           <div className="mx-auto mb-6 h-0.5 w-20 bg-blue-600"></div>
           <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">
             丰富的应用场景和解决方案，满足多种业务需求
@@ -800,15 +772,11 @@ function ScenariosSection(): JSX.Element {
                   <div key={index} className="flex items-center space-x-3">
                     <div className="h-2 w-2 flex-shrink-0 rounded-full bg-blue-600"></div>
                     <div>
-                      <span className="font-medium text-gray-900">
-                        {feature.name}
-                      </span>
-                      <span className="ml-2 text-gray-500">
-                        - {feature.desc}
-                      </span>
+                      <span className="font-medium text-gray-900">{feature.name}</span>
+                      <span className="ml-2 text-gray-500">- {feature.desc}</span>
                     </div>
                   </div>
-                ),
+                )
               )}
             </div>
 
@@ -855,9 +823,7 @@ function ScenariosSection(): JSX.Element {
             {/* 悬浮标签 */}
             <div
               className={`absolute rounded-md border border-gray-100 bg-white p-4 shadow-lg ${
-                activeScenario === 'digitalEmployee'
-                  ? '-top-4 -left-4'
-                  : '-top-4 -right-4'
+                activeScenario === 'digitalEmployee' ? '-top-4 -left-4' : '-top-4 -right-4'
               }`}
             >
               <div className="flex items-center space-x-3">
@@ -865,12 +831,8 @@ function ScenariosSection(): JSX.Element {
                   <currentScenario.icon className="h-6 w-6 text-blue-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900">
-                    {currentScenario.tagText}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    {currentScenario.tagDesc}
-                  </p>
+                  <p className="font-semibold text-gray-900">{currentScenario.tagText}</p>
+                  <p className="text-sm text-gray-500">{currentScenario.tagDesc}</p>
                 </div>
               </div>
             </div>
@@ -913,8 +875,7 @@ function CoreFeaturesSection(): JSX.Element {
   const coreFeatures: CoreFeature[] = [
     {
       name: '数字分身',
-      description:
-        '轻松创建你的AI虚拟数字人！只需上传一段视频，即可高品质、批量克隆你的形象！',
+      description: '轻松创建你的AI虚拟数字人！只需上传一段视频，即可高品质、批量克隆你的形象！',
       icon: FaceSmileIcon,
       image: '/images/product/human1.webp',
       stats: [
@@ -937,8 +898,7 @@ function CoreFeaturesSection(): JSX.Element {
     },
     {
       name: '用户管理',
-      description:
-        '基于可定制的多层分站，输入用户相关信息系统后，即可创建新分站与管理账号。',
+      description: '基于可定制的多层分站，输入用户相关信息系统后，即可创建新分站与管理账号。',
       icon: UserGroupIcon,
       image: '/images/product/human2.webp',
       stats: [
@@ -952,7 +912,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         'AI一键自动生成视频，从容应对内容创作和营销需求，助力商家和创作者提升视频生成的效率。',
       icon: VideoCameraIcon,
-      image: '/images/product/saas.svg',
+      image: '/images/product/saas.webp',
       videoUrl:
         'https://portal.volccdn.com/obj/volcfe-scm/wanyou/static/media/ai-video.a4cd977a.mp4',
       stats: [
@@ -968,9 +928,7 @@ function CoreFeaturesSection(): JSX.Element {
       <Container>
         {/* 标题区域 */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            核心功能
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">核心功能</h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
             强大的AI技术能力，为您提供全方位的数字人解决方案
           </p>
@@ -990,32 +948,20 @@ function CoreFeaturesSection(): JSX.Element {
                 <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="mb-6 flex items-center space-x-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                      <feature.icon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
+                      <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {feature.name}
-                    </h3>
+                    <h3 className="text-2xl font-bold text-gray-900">{feature.name}</h3>
                   </div>
 
-                  <p className="mb-8 text-lg leading-8 text-gray-600">
-                    {feature.description}
-                  </p>
+                  <p className="mb-8 text-lg leading-8 text-gray-600">{feature.description}</p>
 
                   {/* 特性列表 */}
                   <div className="mb-8 space-y-4">
                     {feature.stats.map((stat) => (
-                      <div
-                        key={stat.label}
-                        className="flex items-start space-x-3"
-                      >
+                      <div key={stat.label} className="flex items-start space-x-3">
                         <div className="mt-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-600"></div>
                         <div>
-                          <dt className="font-semibold text-gray-900">
-                            {stat.label}
-                          </dt>
+                          <dt className="font-semibold text-gray-900">{stat.label}</dt>
                           <dd className="text-gray-600">{stat.value}</dd>
                         </div>
                       </div>
@@ -1123,111 +1069,121 @@ export default function DigitalHumanPage(): JSX.Element {
         <DemoSection />
         <ScenariosSection />
         <CoreFeaturesSection />
-        <AIscene />
+        <AiScene />
 
         {/* 接入流程 Section */}
         <section className="bg-[#F8FAFC] py-16 md:py-24">
           <Container>
-              {/* 标题区域 */}
-              <div className="mb-12 md:mb-16 text-center">
-                <div className="mb-4 inline-flex items-center rounded-sm border border-[#E2E8F0] bg-[#eff6ff] px-3 py-1">
-                  <span className="text-xs font-semibold text-[#0055ff] font-mono">快速部署</span>
+            {/* 标题区域 */}
+            <div className="mb-12 text-center md:mb-16">
+              <div className="mb-4 inline-flex items-center rounded-sm border border-[#E2E8F0] bg-[#eff6ff] px-3 py-1">
+                <span className="font-mono text-xs font-semibold text-[#0055ff]">快速部署</span>
+              </div>
+              <h2 className="mb-4 font-sans text-2xl font-bold text-[#0F172A] md:text-3xl">
+                接入流程
+              </h2>
+              <p className="mx-auto mb-8 max-w-2xl font-sans text-base font-medium text-[#64748B] md:text-lg">
+                标准化服务流程，助您快速完成数字人系统部署
+              </p>
+              <Button
+                variant="solid"
+                color="blue"
+                onClick={() => window.open('https://v.cnai.art', '_blank')}
+              >
+                立即接入
+              </Button>
+            </div>
+
+            {/* 流程步骤 */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+              {/* 步骤1：需求沟通 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+                {/* 序号水印 */}
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                  01
                 </div>
-                <h2 className="mb-4 text-2xl md:text-3xl font-bold text-[#0F172A] font-sans">接入流程</h2>
-                <p className="mx-auto mb-8 max-w-2xl text-base md:text-lg font-medium text-[#64748B] font-sans">
-                  标准化服务流程，助您快速完成数字人系统部署
-                </p>
-                <Button
-                  variant="solid"
-                  color="blue"
-                  onClick={() => window.open('https://v.cnai.art', '_blank')}
-                >
-                  立即接入
-                </Button>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                      01
+                    </span>
+                  </div>
+                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                    需求沟通
+                  </h3>
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                    提供产品信息，沟通数字人类型、使用场景和交付形式
+                  </p>
+                </div>
               </div>
 
-              {/* 流程步骤 */}
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-                {/* 步骤1：需求沟通 */}
-                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
-                  {/* 序号水印 */}
-                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-7xl md:text-9xl font-bold text-[#F8FAFC]">
-                    01
-                  </div>
-                  <div className="relative z-10">
-                    <div className="mb-4 md:mb-6 flex h-10 md:h-12 w-10 md:w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
-                      <span className="text-base md:text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
-                        01
-                      </span>
-                    </div>
-                    <h3 className="mb-2 md:mb-3 text-lg md:text-xl font-bold text-[#0F172A] font-sans">需求沟通</h3>
-                    <div className="mb-3 md:mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
-                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
-                      提供产品信息，沟通数字人类型、使用场景和交付形式
-                    </p>
-                  </div>
+              {/* 步骤2：确认合作 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+                {/* 序号水印 */}
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                  02
                 </div>
-
-                {/* 步骤2：确认合作 */}
-                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
-                  {/* 序号水印 */}
-                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-7xl md:text-9xl font-bold text-[#F8FAFC]">
-                    02
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                      02
+                    </span>
                   </div>
-                  <div className="relative z-10">
-                    <div className="mb-4 md:mb-6 flex h-10 md:h-12 w-10 md:w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
-                      <span className="text-base md:text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
-                        02
-                      </span>
-                    </div>
-                    <h3 className="mb-2 md:mb-3 text-lg md:text-xl font-bold text-[#0F172A] font-sans">确认合作</h3>
-                    <div className="mb-3 md:mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
-                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
-                      通过控制台直接下单，或线下沟通商务合作
-                    </p>
-                  </div>
-                </div>
-
-                {/* 步骤3：资产制作 */}
-                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
-                  {/* 序号水印 */}
-                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-7xl md:text-9xl font-bold text-[#F8FAFC]">
-                    03
-                  </div>
-                  <div className="relative z-10">
-                    <div className="mb-4 md:mb-6 flex h-10 md:h-12 w-10 md:w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
-                      <span className="text-base md:text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
-                        03
-                      </span>
-                    </div>
-                    <h3 className="mb-2 md:mb-3 text-lg md:text-xl font-bold text-[#0F172A] font-sans">资产制作</h3>
-                    <div className="mb-3 md:mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
-                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
-                      采集数据，制作数字人形象和声音资产
-                    </p>
-                  </div>
-                </div>
-
-                {/* 步骤4：正式上线 */}
-                <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:-translate-y-1">
-                  {/* 序号水印 */}
-                  <div className="pointer-events-none absolute -right-4 -top-4 select-none font-mono text-7xl md:text-9xl font-bold text-[#F8FAFC]">
-                    04
-                  </div>
-                  <div className="relative z-10">
-                    <div className="mb-4 md:mb-6 flex h-10 md:h-12 w-10 md:w-12 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff]">
-                      <span className="text-base md:text-lg font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white font-mono">
-                        04
-                      </span>
-                    </div>
-                    <h3 className="mb-2 md:mb-3 text-lg md:text-xl font-bold text-[#0F172A] font-sans">正式上线</h3>
-                    <div className="mb-3 md:mb-4 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30"></div>
-                    <p className="text-sm leading-relaxed text-[#64748B] font-sans">
-                      数字人上线，调用接口驱动或通过平台直接使用
-                    </p>
-                  </div>
+                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                    确认合作
+                  </h3>
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                    通过控制台直接下单，或线下沟通商务合作
+                  </p>
                 </div>
               </div>
+
+              {/* 步骤3：资产制作 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+                {/* 序号水印 */}
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                  03
+                </div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                      03
+                    </span>
+                  </div>
+                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                    资产制作
+                  </h3>
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                    采集数据，制作数字人形象和声音资产
+                  </p>
+                </div>
+              </div>
+
+              {/* 步骤4：正式上线 */}
+              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+                {/* 序号水印 */}
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                  04
+                </div>
+                <div className="relative z-10">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                      04
+                    </span>
+                  </div>
+                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                    正式上线
+                  </h3>
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                    数字人上线，调用接口驱动或通过平台直接使用
+                  </p>
+                </div>
+              </div>
+            </div>
           </Container>
         </section>
 
@@ -1244,34 +1200,10 @@ export default function DigitalHumanPage(): JSX.Element {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="80"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="300"
-                      cy="300"
-                      r="150"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="250"
-                      cy="150"
-                      r="50"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="150"
-                      cy="250"
-                      r="30"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
+                    <circle cx="100" cy="100" r="80" fill="black" fillOpacity="0.02" />
+                    <circle cx="300" cy="300" r="150" fill="black" fillOpacity="0.02" />
+                    <circle cx="250" cy="150" r="50" fill="black" fillOpacity="0.02" />
+                    <circle cx="150" cy="250" r="30" fill="black" fillOpacity="0.02" />
                   </svg>
                 </div>
 
@@ -1308,9 +1240,7 @@ export default function DigitalHumanPage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               高清还原
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              100%真实感官体验
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">100%真实感官体验</p>
                           </div>
                         </div>
                         <div className="flex items-start">
@@ -1332,9 +1262,7 @@ export default function DigitalHumanPage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               专业服务
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              7×24小时技术支持
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">7×24小时技术支持</p>
                           </div>
                         </div>
                         <div className="flex items-start">
@@ -1356,9 +1284,7 @@ export default function DigitalHumanPage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               数据安全
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              企业级安全保障
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">企业级安全保障</p>
                           </div>
                         </div>
                         <div className="flex items-start">
@@ -1380,9 +1306,7 @@ export default function DigitalHumanPage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               持续更新
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              定期功能迭代升级
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">定期功能迭代升级</p>
                           </div>
                         </div>
                       </div>
@@ -1427,9 +1351,7 @@ export default function DigitalHumanPage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             AI数字人
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            双版本支持
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">双版本支持</p>
                         </div>
 
                         {/* 私有部署 */}
@@ -1453,9 +1375,7 @@ export default function DigitalHumanPage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             私有部署
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            安全可控
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">安全可控</p>
                         </div>
 
                         {/* 专业团队 */}
@@ -1479,9 +1399,7 @@ export default function DigitalHumanPage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             专业团队
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            一对一支持
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">一对一支持</p>
                         </div>
 
                         {/* 开源方案 */}
@@ -1505,9 +1423,7 @@ export default function DigitalHumanPage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             开源方案
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            灵活定制
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">灵活定制</p>
                         </div>
                       </div>
                     </div>
@@ -1535,9 +1451,7 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                AI数字人
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">AI数字人</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 PHP/Java双版本支持
                               </p>
@@ -1561,9 +1475,7 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                私有部署
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">私有部署</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 安全可控的私有化部署
                               </p>
@@ -1587,9 +1499,7 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                专业团队
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">专业团队</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 一对一技术支持
                               </p>
@@ -1613,9 +1523,7 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                开源方案
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">开源方案</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 灵活定制，售后无忧
                               </p>

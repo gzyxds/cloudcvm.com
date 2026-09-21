@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 import { seoConfig } from './seo.config'
 
 /**
@@ -13,14 +13,7 @@ export function generateRobots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/', // 允许所有目录
-        disallow: [
-          '/api/',
-          '/_next/',
-          '/admin/',
-          '/private/',
-          '/.git/',
-          '/node_modules/',
-        ],
+        disallow: ['/api/', '/_next/', '/admin/', '/private/', '/.git/', '/node_modules/'],
         crawlDelay: 1,
       },
       {

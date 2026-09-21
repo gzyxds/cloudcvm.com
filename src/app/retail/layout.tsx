@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { SiteShell } from '@/components/layout/SiteShell'
 
 // ==================== 零售行业页面SEO元数据配置 ====================
 export const metadata: Metadata = {
@@ -37,18 +36,6 @@ export const metadata: Metadata = {
  * 包含统一的导航栏和页脚
  * @param children - 子组件内容
  */
-export default function RetailLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
-      <Header />
-      <main className="flex-grow">
-        {children}
-      </main>
-      <Footer />
-    </div>
-  )
+export default function RetailLayout({ children }: { children: React.ReactNode }) {
+  return <SiteShell className="bg-white">{children}</SiteShell>
 }

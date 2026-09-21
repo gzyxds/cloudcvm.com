@@ -54,8 +54,8 @@ import {
   ChatBubbleLeftRightIcon as ChatIcon,
   ArrowUpCircleIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 
@@ -148,11 +148,21 @@ function HeroSection() {
           <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             为零售企业提供从基础设施到业务应用的全栈云解决方案，应对高并发大促，实现全渠道营销，数据驱动业务增长。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               获取定制方案
             </Button>
-            <Button href="#scenarios" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#scenarios"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               查看方案详情
             </Button>
           </div>
@@ -201,7 +211,11 @@ function TrendsSection() {
       icon: UserGroupIcon,
       features: [
         { icon: ShoppingCartIcon, title: '在线商城', desc: '高品质会员商城，集零售集采于一体' },
-        { icon: ChatBubbleOvalLeftEllipsisIcon, title: '企微SCRM', desc: '连接企业微信，精细化客户运营' },
+        {
+          icon: ChatBubbleOvalLeftEllipsisIcon,
+          title: '企微SCRM',
+          desc: '连接企业微信，精细化客户运营',
+        },
         { icon: ShareIcon, title: '分销裂变', desc: '多模式分销，助力业务指数级增长' },
         { icon: UserIcon, title: '会员管理', desc: '深度挖掘会员价值，提升复购率' },
         { icon: GiftIcon, title: '营销转化', desc: '全面营销工具，促进用户活跃转化' },
@@ -253,7 +267,11 @@ function TrendsSection() {
         { icon: BookOpenIcon, title: '知识付费', desc: '文章、音频、图文等多种付费形式' },
         { icon: PlayCircleIcon, title: '视频课程', desc: '高清视频点播，防录屏安全加密' },
         { icon: UserPlusIcon, title: '专栏订阅', desc: '持续更新内容，建立长期订阅关系' },
-        { icon: ChatBubbleBottomCenterTextIcon, title: '社群互动', desc: '学员互动问答，营造良好学习氛围' },
+        {
+          icon: ChatBubbleBottomCenterTextIcon,
+          title: '社群互动',
+          desc: '学员互动问答，营造良好学习氛围',
+        },
       ],
     },
   }
@@ -279,18 +297,22 @@ function TrendsSection() {
   }) => (
     <div className="flex flex-col items-start gap-1 sm:gap-2 lg:gap-3">
       <div className="flex items-center justify-center">
-        <Icon className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white" />
+        <Icon className="h-4 w-4 text-white sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
       </div>
-      <div className="text-xs sm:text-sm lg:text-base leading-5 sm:leading-6 text-gray-300">
-        <div className="font-medium text-white text-xs sm:text-sm lg:text-base mb-0.5 sm:mb-1">{title}</div>
-        <div className="text-white text-xs sm:text-xs lg:text-sm leading-4 sm:leading-5">{desc}</div>
+      <div className="text-xs leading-5 text-gray-300 sm:text-sm sm:leading-6 lg:text-base">
+        <div className="mb-0.5 text-xs font-medium text-white sm:mb-1 sm:text-sm lg:text-base">
+          {title}
+        </div>
+        <div className="text-xs leading-4 text-white sm:text-xs sm:leading-5 lg:text-sm">
+          {desc}
+        </div>
       </div>
     </div>
   )
 
   return (
     <div
-      className="w-full relative min-h-[60vh] sm:min-h-screen lg:min-h-[75vh]"
+      className="relative min-h-[60vh] w-full sm:min-h-screen lg:min-h-[75vh]"
       style={{
         fontFamily: 'Microsoft YaHei, Arial, sans-serif',
       }}
@@ -321,124 +343,131 @@ function TrendsSection() {
         }}
       />
       {/* 顶部标题 */}
-      <div className="mx-auto max-w-[1800px] px-4 sm:px-6 py-14 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-[1800px] px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
         <div className="text-center">
-          <span className="mb-5 sm:mb-6 inline-block text-xs sm:text-sm font-semibold tracking-[0.2em] text-[#0055ff] uppercase">
+          <span className="mb-5 inline-block text-xs font-semibold tracking-[0.2em] text-[#0055ff] uppercase sm:mb-6 sm:text-sm">
             新零售解决方案
           </span>
-          <h1 className="mb-5 sm:mb-6 font-bold text-gray-900 tracking-tight text-2xl sm:text-3xl md:text-5xl lg:text-6xl leading-tight">
+          <h1 className="mb-5 text-2xl leading-tight font-bold tracking-tight text-gray-900 sm:mb-6 sm:text-3xl md:text-5xl lg:text-6xl">
             电商领域全行业解决方案
           </h1>
-          <p className="mx-auto max-w-2xl text-gray-600 font-normal text-base sm:text-lg md:text-xl leading-relaxed">
+          <p className="mx-auto max-w-2xl text-base leading-relaxed font-normal text-gray-600 sm:text-lg md:text-xl">
             构建全领域多渠道线上线下智慧新零售体系
           </p>
         </div>
       </div>
 
       {/* 主体响应式布局 */}
-      <div className="mx-auto mt-3 sm:mt-4 max-w-[1800px] px-4 sm:px-6 pb-8 sm:pb-20">
+      <div className="mx-auto mt-3 max-w-[1800px] px-4 pb-8 sm:mt-4 sm:px-6 sm:pb-20">
         <div className="flex flex-row gap-0 sm:gap-4 lg:gap-0">
-           {/* 导航区域 - 移动端左侧，桌面端左侧 - 添加半透明遮罩和毛玻璃效果 */}
-           <aside
-             className="shrink-0 text-sm rounded-none order-1 w-[35%] sm:w-[32%] lg:w-[28%] p-2 sm:p-4 lg:py-6 lg:px-6 lg:pr-0 min-h-auto lg:min-h-[450px]"
-             style={{
-               fontFamily: 'Poppins, sans-serif',
-               background: 'rgba(0,0,0,.35)',
-               backdropFilter: 'blur(10px)',
-               fontWeight: 400,
-               lineHeight: 1.5,
-               color: '#fff',
-               WebkitFontSmoothing: 'antialiased',
-               boxSizing: 'border-box',
-               margin: 0,
-               listStyleType: 'none',
-             }}
-           >
-             {/* 移动端和桌面端：垂直导航 */}
-             <div className="flex flex-col gap-1 sm:gap-2 lg:gap-2 px-1 sm:px-2 lg:px-0 lg:pr-0">
-               {Object.values(solutions).map((feature, idx) => {
-                 const isActive = feature.id === activeTab
-                 const IconComponent = feature.icon
-                 return (
-                   <div
-                     key={feature.id}
-                     onClick={() => setActiveTab(feature.id)}
-                     onMouseEnter={() => handleMouseEnter(feature.id)}
-                     className={[
-                       'relative flex cursor-pointer items-center justify-start lg:justify-end px-2 sm:px-3 lg:px-3 lg:pr-6',
-                       'h-10 sm:h-12 lg:h-14 min-h-[40px] sm:min-h-[44px]', // 移动端减小高度
-                       'mb-1 sm:mb-2 lg:mb-3', // 调整间距
-                       'lg:rounded-none', // 移动端和桌面端都不使用圆角
-                       'whitespace-nowrap', // 防止文字换行
-                       isActive
-                         ? 'text-white bg-[linear-gradient(270deg,#0055FF_0%,rgba(0,85,255,0)_100%)]'
-                         : 'hover:bg-white/10 bg-white/5 lg:bg-transparent',
-                     ].join(' ')}
-                     style={{
-                       fontFamily: 'Poppins, sans-serif',
-                       fontWeight: 400,
-                       lineHeight: 1.5,
-                       color: '#fff'
-                     }}
-                   >
-                     <div className="flex items-center gap-1 sm:gap-2 lg:gap-2">
-                       <IconComponent className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-white flex-shrink-0" />
-                       <span className="truncate text-xs sm:text-sm lg:text-base">{feature.name}</span>
-                       <ChevronRightIcon className="h-3 w-3 sm:h-4 sm:w-4 text-white hidden sm:block lg:hidden ml-auto" />
-                     </div>
-                   </div>
-                 )
-               })}
-             </div>
-           </aside>
+          {/* 导航区域 - 移动端左侧，桌面端左侧 - 添加半透明遮罩和毛玻璃效果 */}
+          <aside
+            className="order-1 min-h-auto w-[35%] shrink-0 rounded-none p-2 text-sm sm:w-[32%] sm:p-4 lg:min-h-[450px] lg:w-[28%] lg:px-6 lg:py-6 lg:pr-0"
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              background: 'rgba(0,0,0,.35)',
+              backdropFilter: 'blur(10px)',
+              fontWeight: 400,
+              lineHeight: 1.5,
+              color: '#fff',
+              WebkitFontSmoothing: 'antialiased',
+              boxSizing: 'border-box',
+              margin: 0,
+              listStyleType: 'none',
+            }}
+          >
+            {/* 移动端和桌面端：垂直导航 */}
+            <div className="flex flex-col gap-1 px-1 sm:gap-2 sm:px-2 lg:gap-2 lg:px-0 lg:pr-0">
+              {Object.values(solutions).map((feature, idx) => {
+                const isActive = feature.id === activeTab
+                const IconComponent = feature.icon
+                return (
+                  <div
+                    key={feature.id}
+                    onClick={() => setActiveTab(feature.id)}
+                    onMouseEnter={() => handleMouseEnter(feature.id)}
+                    className={[
+                      'relative flex cursor-pointer items-center justify-start px-2 sm:px-3 lg:justify-end lg:px-3 lg:pr-6',
+                      'h-10 min-h-[40px] sm:h-12 sm:min-h-[44px] lg:h-14', // 移动端减小高度
+                      'mb-1 sm:mb-2 lg:mb-3', // 调整间距
+                      'lg:rounded-none', // 移动端和桌面端都不使用圆角
+                      'whitespace-nowrap', // 防止文字换行
+                      isActive
+                        ? 'bg-[linear-gradient(270deg,#0055FF_0%,rgba(0,85,255,0)_100%)] text-white'
+                        : 'bg-white/5 hover:bg-white/10 lg:bg-transparent',
+                    ].join(' ')}
+                    style={{
+                      fontFamily: 'Poppins, sans-serif',
+                      fontWeight: 400,
+                      lineHeight: 1.5,
+                      color: '#fff',
+                    }}
+                  >
+                    <div className="flex items-center gap-1 sm:gap-2 lg:gap-2">
+                      <IconComponent className="h-3 w-3 flex-shrink-0 text-white sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+                      <span className="truncate text-xs sm:text-sm lg:text-base">
+                        {feature.name}
+                      </span>
+                      <ChevronRightIcon className="ml-auto hidden h-3 w-3 text-white sm:block sm:h-4 sm:w-4 lg:hidden" />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </aside>
 
-           {/* 内容面板 - 移动端右侧，桌面端右侧 - 增强半透明遮罩和毛玻璃效果 */}
-           <section
-             className="flex-1 text-gray-300 rounded-none flex flex-col justify-between order-2 w-[65%] sm:w-[68%] lg:w-[72%] p-2 sm:p-4 lg:py-6 lg:px-10 min-h-auto lg:min-h-[450px]"
-             style={{
-               background: 'rgba(0,0,0,.30)',
-               backdropFilter: 'blur(15px)',
-             }}
-           >
-             {/* 头部标题区域 - 响应式优化 */}
-             <div className="flex-shrink-0 mb-2 sm:mb-4 lg:mb-6">
-               <div className="text-sm sm:text-lg lg:text-2xl xl:text-3xl font-bold text-white mb-1 sm:mb-2 lg:mb-3 tracking-wide leading-tight">{currentFeature.title}</div>
-               <div className="w-12 sm:w-16 lg:w-24 h-0.5 sm:h-0.5 lg:h-1 bg-gradient-to-r from-[#0055ff] to-[#3388ff] mb-2 sm:mb-3 lg:mb-4 rounded-full"></div>
-             </div>
+          {/* 内容面板 - 移动端右侧，桌面端右侧 - 增强半透明遮罩和毛玻璃效果 */}
+          <section
+            className="order-2 flex min-h-auto w-[65%] flex-1 flex-col justify-between rounded-none p-2 text-gray-300 sm:w-[68%] sm:p-4 lg:min-h-[450px] lg:w-[72%] lg:px-10 lg:py-6"
+            style={{
+              background: 'rgba(0,0,0,.30)',
+              backdropFilter: 'blur(15px)',
+            }}
+          >
+            {/* 头部标题区域 - 响应式优化 */}
+            <div className="mb-2 flex-shrink-0 sm:mb-4 lg:mb-6">
+              <div className="mb-1 text-sm leading-tight font-bold tracking-wide text-white sm:mb-2 sm:text-lg lg:mb-3 lg:text-2xl xl:text-3xl">
+                {currentFeature.title}
+              </div>
+              <div className="mb-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-[#0055ff] to-[#3388ff] sm:mb-3 sm:h-0.5 sm:w-16 lg:mb-4 lg:h-1 lg:w-24"></div>
+            </div>
 
-             {/* 主要内容区域 - 响应式网格优化 */}
-             <div className="flex-1 flex flex-col justify-center py-1 sm:py-2">
-               <div className="grid grid-cols-1 gap-2 sm:gap-4 lg:grid-cols-2 lg:gap-8 xl:gap-10 items-start">
-                 {currentFeature.features.map((f, i) => (
-                   <Feature key={i} icon={f.icon} title={f.title} desc={f.desc} />
-                 ))}
-               </div>
-             </div>
+            {/* 主要内容区域 - 响应式网格优化 */}
+            <div className="flex flex-1 flex-col justify-center py-1 sm:py-2">
+              <div className="grid grid-cols-1 items-start gap-2 sm:gap-4 lg:grid-cols-2 lg:gap-8 xl:gap-10">
+                {currentFeature.features.map((f, i) => (
+                  <Feature key={i} icon={f.icon} title={f.title} desc={f.desc} />
+                ))}
+              </div>
+            </div>
 
-             {/* 底部操作区域 - 响应式按钮优化 */}
-             <div className="flex-shrink-0 pt-2 sm:pt-4 lg:pt-6 mt-2 sm:mt-3 lg:mt-4">
-               {/* 分隔线效果 */}
-               <div className="mb-2 sm:mb-4 lg:mb-6 w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent" style={{ height: '1px' }} />
+            {/* 底部操作区域 - 响应式按钮优化 */}
+            <div className="mt-2 flex-shrink-0 pt-2 sm:mt-3 sm:pt-4 lg:mt-4 lg:pt-6">
+              {/* 分隔线效果 */}
+              <div
+                className="mb-2 w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent sm:mb-4 lg:mb-6"
+                style={{ height: '1px' }}
+              />
 
-               <div className="flex flex-col gap-2 sm:flex-row sm:justify-start sm:items-center sm:gap-3 lg:gap-4">
-                 {/* 免费试用按钮 */}
-                 <button
-                   className="bg-gradient-to-r from-[#0055ff] to-[#0043cc] px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-base font-medium text-white shadow-lg hover:from-[#0043cc] hover:to-[#0033aa] hover:shadow-xl transition-all duration-200 min-h-[36px] sm:min-h-[44px] flex items-center justify-center gap-1 sm:gap-2"
-                   type="button"
-                 >
-                   免费试用
-                 </button>
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-start sm:gap-3 lg:gap-4">
+                {/* 免费试用按钮 */}
+                <button
+                  className="flex min-h-[36px] items-center justify-center gap-1 bg-gradient-to-r from-[#0055ff] to-[#0043cc] px-3 py-2 text-xs font-medium text-white shadow-lg transition-all duration-200 hover:from-[#0043cc] hover:to-[#0033aa] hover:shadow-xl sm:min-h-[44px] sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm lg:px-8 lg:py-3 lg:text-base"
+                  type="button"
+                >
+                  免费试用
+                </button>
 
-                 {/* 查看详情按钮 */}
-                 <button
-                   className="border border-gray-300 bg-white px-3 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm lg:text-base font-medium text-gray-900 shadow-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 min-h-[36px] sm:min-h-[44px] flex items-center justify-center gap-1 sm:gap-2"
-                   type="button"
-                 >
-                   查看详情
-                   <ArrowRightIcon className="h-3 w-3 sm:h-4 sm:w-4" />
-                 </button>
-               </div>
-             </div>
+                {/* 查看详情按钮 */}
+                <button
+                  className="flex min-h-[36px] items-center justify-center gap-1 border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 shadow-lg transition-all duration-200 hover:border-gray-400 hover:bg-gray-50 sm:min-h-[44px] sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm lg:px-8 lg:py-3 lg:text-base"
+                  type="button"
+                >
+                  查看详情
+                  <ArrowRightIcon className="h-3 w-3 sm:h-4 sm:w-4" />
+                </button>
+              </div>
+            </div>
           </section>
         </div>
       </div>
@@ -454,70 +483,72 @@ function ScenariosSection() {
     {
       icon: CpuChipIcon,
       title: 'Swoole4框架',
-      description: '框架结合Swoole4突显卓越性能，提供PHP协程、高性能网络编程'
+      description: '框架结合Swoole4突显卓越性能，提供PHP协程、高性能网络编程',
     },
     {
       icon: ShareIcon,
       title: '分布式部署',
-      description: '分布式部署多台计算机，地域分散，构成松散耦合系统'
+      description: '分布式部署多台计算机，地域分散，构成松散耦合系统',
     },
     {
       icon: ServerIcon,
       title: '集群部署',
-      description: '集群部署扩展能力强、高可用、易管理'
+      description: '集群部署扩展能力强、高可用、易管理',
     },
     {
       icon: BoltIcon,
       title: 'Redis',
-      description: '结合Redis原子特性，保证数据完整性，Redis能读的速度是11万次/s,写的速度是8.1万次/s 。'
+      description:
+        '结合Redis原子特性，保证数据完整性，Redis能读的速度是11万次/s,写的速度是8.1万次/s 。',
     },
     {
       icon: CircleStackIcon,
       title: '数据库连接池',
-      description: '内置数据库连接池，资源重复利用、以更快的响应速度，实现统一的连接管理，避免数据库连接泄露'
-    }
+      description:
+        '内置数据库连接池，资源重复利用、以更快的响应速度，实现统一的连接管理，避免数据库连接泄露',
+    },
   ]
 
   const highlights = [
     {
       icon: QueueListIcon,
       title: '消息队列',
-      description: '使用消息队列异步处理事件，高效解耦，提升系统访问速度'
+      description: '使用消息队列异步处理事件，高效解耦，提升系统访问速度',
     },
     {
       icon: ClockIcon,
       title: '定时任务',
-      description: '无需手动触发，执行事件精准，低耦合'
+      description: '无需手动触发，执行事件精准，低耦合',
     },
     {
       icon: ArrowsRightLeftIcon,
       title: '负载均衡',
-      description: '利用多台服务器，分配网络请求到其他服务器，减少单服务器压力'
+      description: '利用多台服务器，分配网络请求到其他服务器，减少单服务器压力',
     },
     {
       icon: ShieldCheckIcon,
       title: '独立数据库部署',
-      description: '系统独立部署，具备独立数据库，有效提高数据安全'
+      description: '系统独立部署，具备独立数据库，有效提高数据安全',
     },
     {
       icon: CloudIcon,
       title: '云存储',
-      description: '用来增加静态资源加载速度，便于维护和部署，可以享受速度和敏感数据的控制优势'
-    }
+      description: '用来增加静态资源加载速度，便于维护和部署，可以享受速度和敏感数据的控制优势',
+    },
   ]
 
-  const CardList = ({ title, items }: { title: string, items: typeof frameworks }) => (
-    <div className="bg-white rounded-lg p-0 relative overflow-hidden h-full">
+  const CardList = ({ title, items }: { title: string; items: typeof frameworks }) => (
+    <div className="relative h-full overflow-hidden rounded-lg bg-white p-0">
       {/* 标题区域 */}
-      <div className="pt-7 pl-10 mb-2">
+      <div className="mb-2 pt-7 pl-10">
         <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-        <div className="w-10 h-1 bg-[#0055ff] mt-2"></div>
+        <div className="mt-2 h-1 w-10 bg-[#0055ff]"></div>
       </div>
 
       {/* 装饰背景 - 右上角立方体效果模拟 */}
-      <div className="absolute top-0 right-0 w-48 h-48 opacity-10 pointer-events-none">
-         <div className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-[#0055ff]/20 to-[#0055ff]/40 blur-2xl rounded-full opacity-20"></div>
-         <CloudArrowUpIcon className="absolute top-8 right-8 w-24 h-24 text-[#0055ff]/10" />
+      <div className="pointer-events-none absolute top-0 right-0 h-48 w-48 opacity-10">
+        <div className="absolute top-4 right-4 h-32 w-32 rounded-full bg-gradient-to-br from-[#0055ff]/20 to-[#0055ff]/40 opacity-20 blur-2xl"></div>
+        <CloudArrowUpIcon className="absolute top-8 right-8 h-24 w-24 text-[#0055ff]/10" />
       </div>
 
       {/* 列表内容 */}
@@ -525,14 +556,14 @@ function ScenariosSection() {
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex items-start pl-10 pt-10 group transition-all duration-300 hover:-translate-y-1"
+            className="group flex items-start pt-10 pl-10 transition-all duration-300 hover:-translate-y-1"
           >
             <div className="mr-3 flex-shrink-0">
-               <item.icon className="w-8 h-8 text-[#0055ff]" />
+              <item.icon className="h-8 w-8 text-[#0055ff]" />
             </div>
             <div className="flex-1">
-              <p className="font-bold text-slate-900 mb-2.5 text-base">{item.title}</p>
-              <p className="text-sm text-slate-500 leading-relaxed">{item.description}</p>
+              <p className="mb-2.5 text-base font-bold text-slate-900">{item.title}</p>
+              <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
             </div>
           </div>
         ))}
@@ -541,18 +572,20 @@ function ScenariosSection() {
   )
 
   return (
-    <section className="py-20 bg-slate-100">
+    <section className="bg-slate-100 py-20">
       <Container>
         {/* 顶部标题 */}
-        <div className="text-center mb-16 pt-8">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-5">技术框架及技术亮点</h2>
-          <p className="text-base text-slate-600 max-w-3xl mx-auto">
+        <div className="mb-16 pt-8 text-center">
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-slate-900">
+            技术框架及技术亮点
+          </h2>
+          <p className="mx-auto max-w-3xl text-base text-slate-600">
             系统采用高性能框架开发，保障系统整体性能，为品牌连锁企业商业拓展保驾护航
           </p>
         </div>
 
         {/* 双列布局 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <CardList title="技术框架" items={frameworks} />
           <CardList title="技术亮点" items={highlights} />
         </div>
@@ -599,30 +632,35 @@ function FeaturesSection() {
   ]
 
   return (
-    <section id="features" className="py-24 bg-white">
+    <section id="features" className="bg-white py-24">
       <Container>
         <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-5">助力开发者，提速企业数字化</h2>
-          <p className="text-base text-slate-600">系统性能优越，开发技术先进，有效助力开发者，提速企业数字化</p>
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-slate-900">
+            助力开发者，提速企业数字化
+          </h2>
+          <p className="text-base text-slate-600">
+            系统性能优越，开发技术先进，有效助力开发者，提速企业数字化
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-lg bg-slate-100 p-8 h-[220px] group"
+              className="group relative h-[220px] overflow-hidden rounded-lg bg-slate-100 p-8"
             >
-
               {/* 内容区域 */}
               <div className="relative z-10">
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                <div className="w-8 h-1 bg-[#0055ff] mb-4"></div>
-                <p className="text-sm leading-relaxed text-slate-500 pr-10">{feature.description}</p>
+                <h3 className="mb-3 text-xl font-bold text-slate-900">{feature.title}</h3>
+                <div className="mb-4 h-1 w-8 bg-[#0055ff]"></div>
+                <p className="pr-10 text-sm leading-relaxed text-slate-500">
+                  {feature.description}
+                </p>
               </div>
 
               {/* 悬浮时的装饰图标 */}
-              <div className="absolute bottom-6 right-6 p-3 rounded-full bg-[#eff6ff] text-[#0055ff] opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 shadow-sm">
-                <feature.icon className="w-6 h-6" />
+              <div className="absolute right-6 bottom-6 translate-y-4 transform rounded-full bg-[#eff6ff] p-3 text-[#0055ff] opacity-0 shadow-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <feature.icon className="h-6 w-6" />
               </div>
             </div>
           ))}
@@ -646,46 +684,42 @@ function StatsSection() {
   return (
     <section className="border-b border-slate-200 bg-white py-12 sm:py-20">
       <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-[#0055ff]">
-              数据驱动增长
-            </span>
-            <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
-              为零售业务提供高可靠基础设施保障
-            </h2>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center"
+        >
+          <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-[#0055ff]">
+            数据驱动增长
+          </span>
+          <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+            为零售业务提供高可靠基础设施保障
+          </h2>
+        </motion.div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
-              >
-                <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative z-10">
-                  <span className="text-3xl font-bold tracking-tight text-[#0055ff] sm:text-4xl">
-                    {stat.value}
-                  </span>
-                  <h3 className="mt-2 text-base font-semibold text-slate-900">
-                    {stat.label}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                    {stat.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="relative z-10">
+                <span className="text-3xl font-bold tracking-tight text-[#0055ff] sm:text-4xl">
+                  {stat.value}
+                </span>
+                <h3 className="mt-2 text-base font-semibold text-slate-900">{stat.label}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-slate-500">{stat.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </Container>
     </section>
   )
@@ -729,10 +763,12 @@ function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-24 bg-slate-100">
+    <section className="bg-slate-100 py-24">
       <Container>
         <div className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 mb-5">全面售后服务，再无后顾之忧</h2>
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-slate-900">
+            全面售后服务，再无后顾之忧
+          </h2>
           <p className="text-base text-slate-600">两种授权模式可选，根据您的需求灵活选择</p>
         </div>
 
@@ -740,17 +776,17 @@ function TestimonialsSection() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex items-center p-8 bg-white rounded-lg border border-slate-100"
+              className="flex items-center rounded-lg border border-slate-100 bg-white p-8"
             >
               {/* 图标区域 */}
-              <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-[#eff6ff] text-[#0055ff]">
-                <service.icon className="w-8 h-8" />
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-[#eff6ff] text-[#0055ff]">
+                <service.icon className="h-8 w-8" />
               </div>
 
               {/* 文本区域 */}
               <div className="ml-6">
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{service.description}</p>
+                <h3 className="mb-2 text-lg font-bold text-slate-900">{service.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-500">{service.description}</p>
               </div>
             </div>
           ))}
@@ -767,10 +803,10 @@ function CTASection() {
   return (
     <section className="relative overflow-hidden bg-[#0055ff] py-24 text-center">
       {/* 装饰背景：微弱的网格纹理 + 径向渐变遮罩 */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] bg-[size:40px_40px]"></div>
 
       {/* 装饰光晕 */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/10 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-[120px]"></div>
 
       <Container className="relative z-10">
         <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -783,11 +819,14 @@ function CTASection() {
           <Button
             href="/contact"
             color="white"
-            className="rounded-lg px-8 py-3 text-base font-semibold !text-[#0055ff] hover:!bg-[#eff6ff] hover:!text-[#0043cc] shadow-xl shadow-blue-900/10 transition-all"
+            className="rounded-lg px-8 py-3 text-base font-semibold !text-[#0055ff] shadow-xl shadow-blue-900/10 transition-all hover:!bg-[#eff6ff] hover:!text-[#0043cc]"
           >
             联系销售
           </Button>
-          <Button href="/demo" className="rounded-lg border border-white/30 bg-transparent px-8 py-3 text-base font-semibold text-white hover:bg-white/10 transition-all">
+          <Button
+            href="/demo"
+            className="rounded-lg border border-white/30 bg-transparent px-8 py-3 text-base font-semibold text-white transition-all hover:bg-white/10"
+          >
             预约演示
           </Button>
         </div>
@@ -801,50 +840,53 @@ function CTASection() {
  */
 function ConsultSection() {
   return (
-    <section className="bg-gradient-to-b from-[#eef2ff] to-[#f5f7ff] py-20 lg:py-28 relative overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#eef2ff] to-[#f5f7ff] py-20 lg:py-28">
       {/* 装饰背景图 */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-50" style={{
-        backgroundImage: 'url(/_nuxt/img/consult_icon.1f4d6cc.png)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '100% 100%',
-      }}></div>
+      <div
+        className="pointer-events-none absolute inset-0 z-0 opacity-50"
+        style={{
+          backgroundImage: 'url(/_nuxt/img/consult_icon.1f4d6cc.png)',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '100% 100%',
+        }}
+      ></div>
 
       <Container className="relative z-10">
         <div className="mx-auto">
           {/* 标题区域 */}
           <div className="mb-10">
-            <h2 className="text-3xl font-medium text-slate-900 mb-3">立即咨询</h2>
+            <h2 className="mb-3 text-3xl font-medium text-slate-900">立即咨询</h2>
             <p className="text-base text-slate-500">联系我们，竭诚为您提供数字化资讯服务</p>
           </div>
 
           {/* 内容卡片区域 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {/* 微信联系卡片 */}
-            <div className="bg-white/60 backdrop-blur-sm rounded-md p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex flex-col items-center justify-between gap-8 rounded-md border border-white bg-white/60 p-8 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md sm:flex-row lg:p-10">
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="text-2xl font-medium text-slate-900 mb-2">微信联系</h3>
+                <h3 className="mb-2 text-2xl font-medium text-slate-900">微信联系</h3>
                 <p className="text-base text-slate-500">扫码添加企业客服了解更多优惠信息</p>
               </div>
-              <div className="w-[150px] h-[150px] shrink-0 bg-white p-2 rounded-lg shadow-sm">
+              <div className="h-[150px] w-[150px] shrink-0 rounded-lg bg-white p-2 shadow-sm">
                 <Image
                   src="/images/contact/userhlc.png"
                   alt="企业微信二维码"
                   width={150}
                   height={150}
-                  className="w-full h-full object-cover rounded-md"
+                  className="h-full w-full rounded-md object-cover"
                   unoptimized={true}
                 />
               </div>
             </div>
 
             {/* 合作咨询卡片 */}
-            <div className="bg-white/60 backdrop-blur-sm rounded-md p-8 lg:p-10 flex flex-col sm:flex-row items-center justify-between gap-8 border border-white shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex flex-col items-center justify-between gap-8 rounded-md border border-white bg-white/60 p-8 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md sm:flex-row lg:p-10">
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="text-2xl font-medium text-slate-900 mb-2">合作咨询</h3>
+                <h3 className="mb-2 text-2xl font-medium text-slate-900">合作咨询</h3>
                 <p className="text-base text-slate-500">工作日：9:00—18:15</p>
               </div>
               <div className="text-center sm:text-right">
-                <span className="block text-3xl font-medium text-slate-900 mb-2">236749035</span>
+                <span className="mb-2 block text-3xl font-medium text-slate-900">236749035</span>
                 <span className="text-base text-slate-500">联系QQ</span>
               </div>
             </div>

@@ -13,10 +13,10 @@ import {
   QrCodeIcon,
 } from '@heroicons/react/24/outline'
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Button } from '@/components/ui/Button'
+import { Container } from '@/components/ui/Container'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 
 /**
  * 官方线上支持渠道配置
@@ -87,7 +87,7 @@ function HeroBanner() {
           <h1 className="text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl lg:text-6xl">
             联系我们
           </h1>
-          <p className="mt-5 text-base leading-relaxed text-[#64748B] sm:text-lg max-w-2xl mx-auto">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#64748B] sm:text-lg">
             优刻云拥有专业的售前咨询、1v1 资深顾问指导、热情的售后支持，
             随时等候您的垂询，助您轻松上云，技术无忧。
           </p>
@@ -118,7 +118,7 @@ function HeroBanner() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-14 flex items-center justify-center gap-4 text-sm text-[#94A3B8] sm:text-base sm:gap-6"
+          className="mt-14 flex items-center justify-center gap-4 text-sm text-[#94A3B8] sm:gap-6 sm:text-base"
         >
           <span>
             <span className="font-semibold text-[#0F172A]">&lt; 3 min</span> 平均响应
@@ -160,9 +160,7 @@ function OnlineSupportSection() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-[#0055ff]" />
-            <span className="text-sm font-medium text-[#0055ff] tracking-wide">
-              官方线上支持
-            </span>
+            <span className="text-sm font-medium tracking-wide text-[#0055ff]">官方线上支持</span>
           </div>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl lg:text-5xl">
             全渠道服务
@@ -190,7 +188,7 @@ function OnlineSupportSection() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:border-[#0055ff]/30 group-hover:bg-[#eff6ff]">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <span className="block text-base font-semibold text-[#0F172A] truncate">
+                  <span className="block truncate text-base font-semibold text-[#0F172A]">
                     {support.title}
                   </span>
                 </div>
@@ -206,7 +204,7 @@ function OnlineSupportSection() {
                 <div className="flex items-center justify-between border-t border-[#F1F5F9] bg-[#F8FAFC] px-5 py-3">
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-[#94A3B8]">{support.metricLabel}</span>
-                    <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 text-xs font-mono font-semibold text-[#0055ff]">
+                    <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 font-mono text-xs font-semibold text-[#0055ff]">
                       {support.metricValue}
                     </span>
                   </div>
@@ -250,9 +248,7 @@ function ContactInfoSection() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-[#0055ff]" />
-            <span className="text-sm font-medium text-[#0055ff] tracking-wide">
-              联系方式
-            </span>
+            <span className="text-sm font-medium tracking-wide text-[#0055ff]">联系方式</span>
           </div>
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl lg:text-5xl">
             多渠道直达
@@ -270,7 +266,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 lg:row-span-2 group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
+            className="group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60 lg:col-span-2 lg:row-span-2"
           >
             {/* 卡片头部 */}
             <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
@@ -278,9 +274,7 @@ function ContactInfoSection() {
                 <QrCodeIcon className="h-5 w-5" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="block text-base font-semibold text-[#0F172A]">
-                  扫码快速联系
-                </span>
+                <span className="block text-base font-semibold text-[#0F172A]">扫码快速联系</span>
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
                 <span className="relative flex h-2 w-2">
@@ -300,7 +294,7 @@ function ContactInfoSection() {
                     src="/images/contact/Tencent.png"
                     alt="微信客服"
                     fill
-                    className="object-contain rounded-lg"
+                    className="rounded-lg object-contain"
                     unoptimized
                   />
                 </div>
@@ -312,12 +306,12 @@ function ContactInfoSection() {
 
               {/* 公众号 */}
               <div className="flex flex-col items-center gap-2">
-                <div className="relative h-32 w-32 overflow-hidden rounded-lg border border-[#E2E8F0] bg-white p-2 shadow-sm transition-transform duration-500 delay-100 group-hover:scale-105 sm:h-36 sm:w-36 sm:p-3">
+                <div className="relative h-32 w-32 overflow-hidden rounded-lg border border-[#E2E8F0] bg-white p-2 shadow-sm transition-transform delay-100 duration-500 group-hover:scale-105 sm:h-36 sm:w-36 sm:p-3">
                   <Image
                     src="/images/contact/gzh.png"
                     alt="微信公众号"
                     fill
-                    className="object-contain rounded-lg"
+                    className="rounded-lg object-contain"
                     unoptimized
                   />
                 </div>
@@ -330,9 +324,7 @@ function ContactInfoSection() {
 
             {/* 卡片底部 */}
             <div className="border-t border-[#F1F5F9] bg-[#F8FAFC] px-5 py-3">
-              <p className="text-center text-xs text-[#94A3B8]">
-                微信扫一扫，直连人工客服
-              </p>
+              <p className="text-center text-xs text-[#94A3B8]">微信扫一扫，直连人工客服</p>
             </div>
           </motion.div>
 
@@ -342,7 +334,7 @@ function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 group relative flex flex-col rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60"
+            className="group relative flex flex-col rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:shadow-md hover:shadow-slate-200/60 lg:col-span-2"
           >
             {/* 卡片头部 */}
             <div className="flex items-center gap-x-3 border-b border-[#F1F5F9] px-5 py-4">
@@ -369,7 +361,7 @@ function ContactInfoSection() {
               <div className="mt-4">
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-[#94A3B8]">平均响应</span>
-                  <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 text-xs font-mono font-semibold text-[#0055ff]">
+                  <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 font-mono text-xs font-semibold text-[#0055ff]">
                     &lt; 3 min
                   </span>
                 </div>
@@ -406,9 +398,7 @@ function ContactInfoSection() {
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:border-[#0055ff]/30 group-hover:bg-[#eff6ff]">
                 <ChatBubbleLeftRightIcon className="h-5 w-5" />
               </div>
-              <span className="block text-base font-semibold text-[#0F172A] truncate">
-                QQ 咨询
-              </span>
+              <span className="block truncate text-base font-semibold text-[#0F172A]">QQ 咨询</span>
             </div>
 
             {/* 卡片主体 */}
@@ -426,7 +416,7 @@ function ContactInfoSection() {
             <div className="border-t border-[#F1F5F9] bg-[#F8FAFC] px-5 py-3">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-[#94A3B8]">服务时间</span>
-                <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 text-xs font-mono font-semibold text-[#0055ff]">
+                <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 font-mono text-xs font-semibold text-[#0055ff]">
                   7×24h
                 </span>
               </div>
@@ -446,7 +436,7 @@ function ContactInfoSection() {
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] text-[#0055ff] transition-colors group-hover:border-[#0055ff]/30 group-hover:bg-[#eff6ff]">
                 <EnvelopeIcon className="h-5 w-5" />
               </div>
-              <span className="block text-base font-semibold text-[#0F172A] truncate">
+              <span className="block truncate text-base font-semibold text-[#0F172A]">
                 邮件咨询
               </span>
             </div>
@@ -456,7 +446,7 @@ function ContactInfoSection() {
               <p className="text-sm leading-relaxed text-[#64748B]">商务合作 / 建议反馈</p>
               <a
                 href="mailto:contact@cloudcvm.com"
-                className="mt-3 block text-sm font-medium text-[#0F172A] transition-colors hover:text-[#0055ff] truncate"
+                className="mt-3 block truncate text-sm font-medium text-[#0F172A] transition-colors hover:text-[#0055ff]"
                 title="contact@cloudcvm.com"
               >
                 contact@cloudcvm.com
@@ -467,7 +457,7 @@ function ContactInfoSection() {
             <div className="border-t border-[#F1F5F9] bg-[#F8FAFC] px-5 py-3">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-[#94A3B8]">响应时间</span>
-                <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 text-xs font-mono font-semibold text-[#0055ff]">
+                <span className="rounded-md border border-[#E2E8F0] bg-white px-2 py-0.5 font-mono text-xs font-semibold text-[#0055ff]">
                   &lt; 24h
                 </span>
               </div>
@@ -486,7 +476,7 @@ function CTASection() {
   return (
     <section className="relative isolate overflow-hidden bg-[#0055ff] py-16 sm:py-20">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-[50%] top-0 h-[40rem] w-[80rem] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(255,255,255,0.1),transparent)] opacity-100" />
+        <div className="absolute top-0 left-[50%] h-[40rem] w-[80rem] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(255,255,255,0.1),transparent)] opacity-100" />
       </div>
       <Container>
         <motion.div
@@ -502,7 +492,7 @@ function CTASection() {
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-blue-100 sm:text-lg">
             如果您有任何其他问题或需要更详细的信息，请随时联系我们的客户服务团队，我们将竭诚为您服务。
           </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6 flex-wrap gap-y-4">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
             <Button
               href="mailto:contact@cloudcvm.com"
               color="white"

@@ -14,24 +14,24 @@ import {
 } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Button } from '@/components/ui/Button'
+import { Container } from '@/components/ui/Container'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
-import { Solution } from '@/components/Solution' // 解决方案
-import Advantage from '@/components/Advantage' // 优势展示
+import { Solution } from '@/components/sections/shared/Solution' // 解决方案
+import Advantage from '@/components/sections/shared/Advantage' // 优势展示
 
 // === 客户与信任建立 ===
-import Customer from '@/components/common/Customer' // 客户案例
+import Customer from '@/components/sections/shared/Customer' // 客户案例
 
 // === 支持与帮助 ===
-import { Faqs } from '@/components/Faqs' // 常见问题
+import { Faqs } from '@/components/sections/shared/Faqs' // 常见问题
 
 // === 页面底部 ===
-import CatSections from '@/components/CatSections' // 底部行动区域
+import CatSections from '@/components/sections/shared/CatSections' // 底部行动区域
 
 // === 轮播组件 ===
 import { VideoCarousel } from '@/components/carousel/VideoCarousel' // 视频轮播组件
@@ -86,8 +86,7 @@ const hostingFeatures = [
   },
   {
     name: '可靠',
-    description:
-      '部署于专业级T3+机房；采用最新redis数据库管理；确保业务连续性和数据安全',
+    description: '部署于专业级T3+机房；采用最新redis数据库管理；确保业务连续性和数据安全',
     icon: ServerIcon,
   },
   {
@@ -191,8 +190,6 @@ const productAdvantages = [
 
 // ==================== 页面组件定义 ====================
 
-
-
 // Hero区域组件 - 页面顶部主要展示区域，双栏布局：左文案+右可视化预览
 function HeroSection() {
   // 右侧亮点数据 - 与左侧功能列表互补，突出量化指标
@@ -213,7 +210,7 @@ function HeroSection() {
           <div className="px-6 lg:px-0">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
               {/* 品牌标签 */}
-              <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-brand-600/20">
+              <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-brand-600/20 ring-inset">
                 优刻云虚拟主机
               </span>
 
@@ -225,8 +222,7 @@ function HeroSection() {
 
               {/* 副标题 */}
               <p className="mt-5 text-lg leading-relaxed text-gray-500">
-                预装常见环境与数据库，通过控制面板即可便捷管理网站。
-                从注册到上线，仅需5分钟。
+                预装常见环境与数据库，通过控制面板即可便捷管理网站。 从注册到上线，仅需5分钟。
               </p>
 
               {/* 三大核心卖点 */}
@@ -238,7 +234,7 @@ function HeroSection() {
                 ].map((item) => (
                   <span
                     key={item.label}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-200"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 ring-1 ring-gray-200 ring-inset"
                   >
                     <item.icon aria-hidden="true" className="size-3.5 text-brand-600" />
                     {item.label}
@@ -250,14 +246,14 @@ function HeroSection() {
               <div className="mt-10 flex items-center gap-x-5">
                 <Button
                   href="#pricing"
-                  className="rounded-lg bg-brand-600 px-7 py-3 text-base font-semibold hover:bg-brand-700 text-white shadow-sm shadow-brand-500/20"
+                  className="rounded-lg bg-brand-600 px-7 py-3 text-base font-semibold text-white shadow-sm shadow-brand-500/20 hover:bg-brand-700"
                 >
                   立即购买
                 </Button>
                 <Button
                   variant="outline"
                   href="#features"
-                  className="rounded-lg border-gray-200 px-7 py-3 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                  className="rounded-lg border-gray-200 px-7 py-3 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 >
                   了解详情
                 </Button>
@@ -267,13 +263,11 @@ function HeroSection() {
 
           {/* ── 右侧：白色面板数据展示 ── */}
           <div className="sm:px-6 lg:px-0">
-            <div className="relative overflow-hidden rounded-2xl bg-white ring-1 ring-black/[0.08] shadow-lg shadow-black/[0.04] p-6 sm:p-8">
+            <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg ring-1 shadow-black/[0.04] ring-black/[0.08] sm:p-8">
               {/* 面板标题 */}
               <div className="mb-6 flex items-center gap-2">
                 <span className="size-2 rounded-full bg-brand-600" />
-                <span className="text-sm font-semibold text-gray-900">
-                  优刻云虚拟主机优势
-                </span>
+                <span className="text-sm font-semibold text-gray-900">优刻云虚拟主机优势</span>
               </div>
 
               {/* 亮点指标网格 */}
@@ -281,24 +275,19 @@ function HeroSection() {
                 {highlights.map((item) => (
                   <div
                     key={item.label}
-                    className="flex flex-col items-center rounded-xl bg-brand-50/60 px-3 py-4 text-center ring-1 ring-inset ring-brand-100 transition-colors hover:bg-brand-50 hover:ring-brand-200"
+                    className="flex flex-col items-center rounded-xl bg-brand-50/60 px-3 py-4 text-center ring-1 ring-brand-100 transition-colors ring-inset hover:bg-brand-50 hover:ring-brand-200"
                   >
-                    <item.icon
-                      aria-hidden="true"
-                      className="mb-2 size-5 text-brand-600"
-                    />
+                    <item.icon aria-hidden="true" className="mb-2 size-5 text-brand-600" />
                     <span className="text-lg font-bold tracking-tight text-gray-900">
                       {item.value}
                     </span>
-                    <span className="mt-0.5 text-[11px] text-gray-500">
-                      {item.label}
-                    </span>
+                    <span className="mt-0.5 text-[11px] text-gray-500">{item.label}</span>
                   </div>
                 ))}
               </div>
 
               {/* 底部提示 */}
-              <div className="mt-5 flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5 text-xs text-gray-500 ring-1 ring-inset ring-gray-200/80">
+              <div className="mt-5 flex items-center justify-between rounded-lg bg-gray-50 px-4 py-2.5 text-xs text-gray-500 ring-1 ring-gray-200/80 ring-inset">
                 <span className="flex items-center gap-1.5">
                   <CheckCircleIcon className="size-3.5 text-brand-600" />
                   99.9% 可用性保障 · 7×24 技术支持
@@ -333,26 +322,24 @@ function FeaturesSection() {
             {hostingFeatures.map((feature, index) => (
               <li
                 key={feature.name}
-                className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group relative flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 {/* Hover Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                <div className="relative z-10 flex flex-col h-full">
+                <div className="relative z-10 flex h-full flex-col">
                   {/* 顶部图标和标题区域 */}
                   <div className="flex items-center gap-x-4 border-b border-slate-100 p-6">
-                    <div className="flex h-12 w-12 items-center justify-center bg-[#eff6ff] rounded-lg transition-colors duration-300 group-hover:bg-[#0055ff]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] transition-colors duration-300 group-hover:bg-[#0055ff]">
                       <feature.icon
                         className="h-6 w-6 text-[#0055ff] transition-colors duration-300 group-hover:text-white"
                         aria-hidden="true"
                       />
                     </div>
-                    <div className="text-base font-semibold text-slate-900">
-                      {feature.name}
-                    </div>
+                    <div className="text-base font-semibold text-slate-900">{feature.name}</div>
                     {/* 序号标识 */}
                     <div className="ml-auto">
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 border border-slate-200 text-xs font-bold text-slate-400 group-hover:text-[#0055ff] group-hover:border-[#0055ff]/30 transition-colors">
+                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-xs font-bold text-slate-400 transition-colors group-hover:border-[#0055ff]/30 group-hover:text-[#0055ff]">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
@@ -360,9 +347,7 @@ function FeaturesSection() {
 
                   {/* 描述内容区域 */}
                   <div className="px-6 py-4">
-                    <p className="text-sm/6 text-slate-500">
-                      {feature.description}
-                    </p>
+                    <p className="text-sm/6 text-slate-500">{feature.description}</p>
                   </div>
                 </div>
               </li>
@@ -377,17 +362,11 @@ function FeaturesSection() {
 // ==================== 价格方案相关组件 ====================
 
 // 勾选图标组件 - 用于价格方案中的功能列表标识
-function CheckIcon({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<'svg'>) {
+function CheckIcon({ className, ...props }: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg
       aria-hidden="true"
-      className={clsx(
-        'h-6 w-6 flex-none fill-current stroke-current',
-        className,
-      )}
+      className={clsx('h-6 w-6 flex-none fill-current stroke-current', className)}
       {...props}
     >
       <path
@@ -416,7 +395,7 @@ function PricingSection() {
       <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
         {/* ── 区域标题 ── */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-inset ring-brand-600/20">
+          <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-brand-600/20 ring-inset">
             套餐价格
           </span>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
@@ -424,7 +403,7 @@ function PricingSection() {
           </h2>
           <p className="mt-3 text-base text-gray-500">
             产品规格
-            <span className="inline-flex items-center rounded-lg bg-red-50 px-2 py-0.5 text-[11px] font-semibold text-red-600 ring-1 ring-inset ring-red-600/10 mx-2 align-middle">
+            <span className="mx-2 inline-flex items-center rounded-lg bg-red-50 px-2 py-0.5 align-middle text-[11px] font-semibold text-red-600 ring-1 ring-red-600/10 ring-inset">
               HOT
             </span>
             官方自营 · 超高性价比
@@ -439,8 +418,8 @@ function PricingSection() {
               className={clsx(
                 'relative flex flex-col rounded-2xl bg-white p-8 ring-1 transition-all duration-300',
                 plan.featured
-                  ? 'ring-1 ring-black/[0.06] shadow-xl shadow-brand-500/10 scale-[1.03] z-10'
-                  : 'ring-black/[0.06] shadow-sm hover:shadow-lg hover:shadow-black/[0.04] hover:ring-black/[0.12]'
+                  ? 'z-10 scale-[1.03] shadow-xl ring-1 shadow-brand-500/10 ring-black/[0.06]'
+                  : 'shadow-sm ring-black/[0.06] hover:shadow-lg hover:shadow-black/[0.04] hover:ring-black/[0.12]'
               )}
             >
               {/* 推荐标签 */}
@@ -467,15 +446,11 @@ function PricingSection() {
                 <span className="text-5xl font-bold tracking-tight text-gray-900">
                   {plan.price}
                 </span>
-                <span className="text-base font-medium text-gray-400">
-                  {plan.period}
-                </span>
+                <span className="text-base font-medium text-gray-400">{plan.period}</span>
               </div>
 
               {/* 描述 */}
-              <p className="mt-2 text-center text-sm text-gray-500">
-                {plan.description}
-              </p>
+              <p className="mt-2 text-center text-sm text-gray-500">{plan.description}</p>
 
               {/* 分隔线 */}
               <div className="mt-6 border-t border-gray-100" />
@@ -486,15 +461,15 @@ function PricingSection() {
                 className={clsx(
                   'mt-6 block w-full rounded-lg py-3 text-center text-sm font-semibold transition-all duration-200',
                   plan.featured
-                    ? 'bg-brand-600 text-white hover:bg-brand-700 shadow-sm shadow-brand-500/20'
-                    : 'bg-gray-50 text-gray-700 ring-1 ring-inset ring-gray-200 hover:bg-gray-100 hover:text-gray-900'
+                    ? 'bg-brand-600 text-white shadow-sm shadow-brand-500/20 hover:bg-brand-700'
+                    : 'bg-gray-50 text-gray-700 ring-1 ring-gray-200 ring-inset hover:bg-gray-100 hover:text-gray-900'
                 )}
               >
                 立即购买
               </a>
 
               {/* 套餐详情标题 */}
-              <p className="mt-7 text-xs font-semibold uppercase tracking-wider text-gray-400">
+              <p className="mt-7 text-xs font-semibold tracking-wider text-gray-400 uppercase">
                 套餐详情
               </p>
 
@@ -523,44 +498,37 @@ function PricingSection() {
 // 产品优势组件 - 展示虚拟主机的4大核心优势，包含详细功能列表
 function AdvantagesSection() {
   return (
-    <section className="py-20 sm:py-32 bg-slate-50">
+    <section className="bg-slate-50 py-20 sm:py-32">
       <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
             虚拟主机产品优势
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
-            为您的业务提供全方位的云端解决方案
-          </p>
+          <p className="mt-4 text-lg text-slate-600">为您的业务提供全方位的云端解决方案</p>
         </div>
         <div className="mt-16 sm:mt-20 lg:mt-24">
-          <ul
-            role="list"
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2"
-          >
+          <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
             {productAdvantages.map((advantage, index) => (
               <li
                 key={advantage.name}
-                className="group relative flex flex-col overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group relative flex flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
               >
                 {/* 顶部标题和图标区域 */}
-                <div className="flex w-full items-center justify-between space-x-6 p-6 border-b border-slate-100">
+                <div className="flex w-full items-center justify-between space-x-6 border-b border-slate-100 p-6">
                   <div className="flex-1 truncate">
                     <div className="flex items-center space-x-3">
                       <h3 className="truncate text-base font-semibold text-slate-900">
                         {advantage.name}
                       </h3>
-                      <span className="inline-flex shrink-0 items-center bg-[#eff6ff] px-1.5 py-0.5 text-xs font-medium text-[#0055ff] rounded">
+                      <span className="inline-flex shrink-0 items-center rounded bg-[#eff6ff] px-1.5 py-0.5 text-xs font-medium text-[#0055ff]">
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
-                    <p className="mt-1 truncate text-sm text-slate-500">
-                      {advantage.description}
-                    </p>
+                    <p className="mt-1 truncate text-sm text-slate-500">{advantage.description}</p>
                   </div>
-                  <div className="flex h-10 w-10 items-center justify-center bg-[#eff6ff] rounded-lg group-hover:bg-[#0055ff] transition-colors duration-300">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#eff6ff] transition-colors duration-300 group-hover:bg-[#0055ff]">
                     <advantage.icon
-                      className="h-6 w-6 text-[#0055ff] group-hover:text-white transition-colors duration-300"
+                      className="h-6 w-6 text-[#0055ff] transition-colors duration-300 group-hover:text-white"
                       aria-hidden="true"
                     />
                   </div>
@@ -570,10 +538,7 @@ function AdvantagesSection() {
                 <div className="p-6">
                   <ul className="space-y-3">
                     {advantage.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-center text-sm text-slate-600"
-                      >
+                      <li key={feature} className="flex items-center text-sm text-slate-600">
                         <CheckIcon className="h-4 w-4 text-[#0055ff]" />
                         <span className="ml-3">{feature}</span>
                       </li>
@@ -594,38 +559,32 @@ function BottomFeaturesSection() {
   const bottomFeatures = [
     {
       name: '一键部署',
-      description:
-        '通过控制面板一键部署网站，无需复杂配置，5分钟即可上线您的第一个站点。',
+      description: '通过控制面板一键部署网站，无需复杂配置，5分钟即可上线您的第一个站点。',
       icon: CloudArrowUpIcon,
     },
     {
       name: 'SSL证书',
-      description:
-        '免费提供SSL证书，确保网站数据传输安全，提升用户信任度和SEO排名。',
+      description: '免费提供SSL证书，确保网站数据传输安全，提升用户信任度和SEO排名。',
       icon: LockClosedIcon,
     },
     {
       name: '简单队列',
-      description:
-        '内置消息队列系统，轻松处理异步任务，提升网站性能和用户体验。',
+      description: '内置消息队列系统，轻松处理异步任务，提升网站性能和用户体验。',
       icon: ServerIcon,
     },
     {
       name: '高级安全',
-      description:
-        '多层安全防护体系，包括WAF防火墙、DDoS防护和实时监控预警系统。',
+      description: '多层安全防护体系，包括WAF防火墙、DDoS防护和实时监控预警系统。',
       icon: ShieldCheckIcon,
     },
     {
       name: '强大API',
-      description:
-        '提供完整的RESTful API接口，支持自定义开发和第三方系统集成。',
+      description: '提供完整的RESTful API接口，支持自定义开发和第三方系统集成。',
       icon: CogIcon,
     },
     {
       name: '数据备份',
-      description:
-        '自动定时备份网站数据和数据库，多重备份策略确保数据安全无忧。',
+      description: '自动定时备份网站数据和数据库，多重备份策略确保数据安全无忧。',
       icon: DocumentTextIcon,
     },
   ]
@@ -634,9 +593,7 @@ function BottomFeaturesSection() {
     <div className="bg-white py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-base/7 font-semibold text-[#0055ff]">
-            您需要的一切功能
-          </h2>
+          <h2 className="text-base/7 font-semibold text-[#0055ff]">您需要的一切功能</h2>
           <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl">
             无服务器？没问题。
           </p>
@@ -646,21 +603,20 @@ function BottomFeaturesSection() {
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8">
           {bottomFeatures.map((feature) => (
-            <div key={feature.name} className="group relative flex flex-col overflow-hidden bg-white border border-slate-200 rounded-md p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
-              <div className="flex items-center mb-4">
-                <div className="flex h-10 w-10 items-center justify-center bg-[#eff6ff] rounded-lg group-hover:bg-[#0055ff] transition-colors duration-300">
+            <div
+              key={feature.name}
+              className="group relative flex flex-col overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+            >
+              <div className="mb-4 flex items-center">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#eff6ff] transition-colors duration-300 group-hover:bg-[#0055ff]">
                   <feature.icon
                     aria-hidden="true"
-                    className="h-5 w-5 text-[#0055ff] group-hover:text-white transition-colors duration-300"
+                    className="h-5 w-5 text-[#0055ff] transition-colors duration-300 group-hover:text-white"
                   />
                 </div>
-                <h3 className="ml-3 text-lg font-semibold text-slate-900">
-                  {feature.name}
-                </h3>
+                <h3 className="ml-3 text-lg font-semibold text-slate-900">{feature.name}</h3>
               </div>
-              <p className="text-base text-slate-500">
-                {feature.description}
-              </p>
+              <p className="text-base text-slate-500">{feature.description}</p>
             </div>
           ))}
         </div>

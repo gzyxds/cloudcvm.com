@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -18,8 +19,8 @@ import {
   WrenchScrewdriverIcon,
   RectangleStackIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 图标组件类型定义
@@ -63,37 +64,43 @@ const OVERVIEW_ITEMS: CommonCardItem[] = [
     icon: BoltIcon,
     eyebrow: '超强算力',
     title: 'NVIDIA GPU 并行计算',
-    description: '搭载 NVIDIA Tesla / A 系列 GPU，提供数千核心级并行算力，显著加速深度学习训练与推理任务。',
+    description:
+      '搭载 NVIDIA Tesla / A 系列 GPU，提供数千核心级并行算力，显著加速深度学习训练与推理任务。',
   },
   {
     icon: SparklesIcon,
     eyebrow: '异构加速',
     title: 'CUDA / Tensor Core 加速',
-    description: '全面支持 NVIDIA CUDA、Tensor Core、RT Core 等硬件加速技术，满足 AI 训练、科学计算与图形渲染需求。',
+    description:
+      '全面支持 NVIDIA CUDA、Tensor Core、RT Core 等硬件加速技术，满足 AI 训练、科学计算与图形渲染需求。',
   },
   {
     icon: ArrowPathIcon,
     eyebrow: '弹性灵活',
     title: '按需弹性，灵活扩缩容',
-    description: '支持按秒计费与包年包月等多种计费方式，实例规格可按需调整，GPU 数量灵活配置，匹配业务算力需求。',
+    description:
+      '支持按秒计费与包年包月等多种计费方式，实例规格可按需调整，GPU 数量灵活配置，匹配业务算力需求。',
   },
   {
     icon: RectangleStackIcon,
     eyebrow: '丰富框架',
     title: '主流深度学习框架支持',
-    description: '预置 TensorFlow、PyTorch、MXNet、PaddlePaddle 等主流深度学习框架镜像，开箱即用快速开始模型训练。',
+    description:
+      '预置 TensorFlow、PyTorch、MXNet、PaddlePaddle 等主流深度学习框架镜像，开箱即用快速开始模型训练。',
   },
   {
     icon: GlobeAltIcon,
     eyebrow: '多地域部署',
     title: '全球多地域节点覆盖',
-    description: '覆盖中国大陆及海外多地域节点，就近部署低延迟访问，满足跨境 AI 业务与海外用户访问需求。',
+    description:
+      '覆盖中国大陆及海外多地域节点，就近部署低延迟访问，满足跨境 AI 业务与海外用户访问需求。',
   },
   {
     icon: ShieldCheckIcon,
     eyebrow: '稳定可靠',
     title: '企业级 SLA 保障',
-    description: '基于成熟云服务器架构构建，提供快照备份、安全防护与监控告警能力，为 AI 训练任务提供稳定算力支撑。',
+    description:
+      '基于成熟云服务器架构构建，提供快照备份、安全防护与监控告警能力，为 AI 训练任务提供稳定算力支撑。',
   },
 ]
 
@@ -104,7 +111,8 @@ const SCENARIO_ITEMS: CommonCardItem[] = [
   {
     icon: SparklesIcon,
     title: '深度学习训练',
-    description: '面向大模型训练、图像识别、语音识别等深度学习场景，提供高带宽 NVLink 互联的多 GPU 并行算力。',
+    description:
+      '面向大模型训练、图像识别、语音识别等深度学习场景，提供高带宽 NVLink 互联的多 GPU 并行算力。',
     tags: ['大模型', '训练', 'Transformer'],
   },
   {
@@ -116,25 +124,29 @@ const SCENARIO_ITEMS: CommonCardItem[] = [
   {
     icon: BeakerIcon,
     title: '科学计算',
-    description: '为计算流体力学、分子动力学、金融分析、气象模拟等科学计算场景提供超强浮点并行算力。',
+    description:
+      '为计算流体力学、分子动力学、金融分析、气象模拟等科学计算场景提供超强浮点并行算力。',
     tags: ['HPC', '分子动力学', 'CFD'],
   },
   {
     icon: CpuChipIcon,
     title: '图形图像处理',
-    description: '支持专业图形渲染、影视特效制作、三维建模等图形处理任务，兼容 OpenGL / Vulkan 等图形 API。',
+    description:
+      '支持专业图形渲染、影视特效制作、三维建模等图形处理任务，兼容 OpenGL / Vulkan 等图形 API。',
     tags: ['渲染', '图形工作站', 'OpenGL'],
   },
   {
     icon: DocumentTextIcon,
     title: '视频编解码',
-    description: '面向视频转码、直播推流、超分辨率等视频处理场景，提供 NVENC / NVDEC 硬件编解码加速。',
+    description:
+      '面向视频转码、直播推流、超分辨率等视频处理场景，提供 NVENC / NVDEC 硬件编解码加速。',
     tags: ['转码', '直播', '超分'],
   },
   {
     icon: CursorArrowRaysIcon,
     title: '云游戏',
-    description: '提供云端游戏渲染与实时串流能力，为云游戏平台提供高性能 GPU 渲染与低延迟音视频传输方案。',
+    description:
+      '提供云端游戏渲染与实时串流能力，为云游戏平台提供高性能 GPU 渲染与低延迟音视频传输方案。',
     tags: ['云游戏', '串流', '低延迟'],
   },
 ]
@@ -258,13 +270,15 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: Squares2X2Icon,
     title: '容器服务',
-    description: '基于 Kubernetes 的容器编排服务，支持 GPU 资源调度与隔离，快速部署分布式训练集群。',
+    description:
+      '基于 Kubernetes 的容器编排服务，支持 GPU 资源调度与隔离，快速部署分布式训练集群。',
     tags: ['Kubernetes', 'GPU 调度', '分布式'],
   },
   {
     icon: ShieldCheckIcon,
     title: 'Web 应用防火墙',
-    description: '为 GPU 推理服务提供 SQL 注入、XSS 攻击等常见 Web 威胁防护，保障线上推理业务安全。',
+    description:
+      '为 GPU 推理服务提供 SQL 注入、XSS 攻击等常见 Web 威胁防护，保障线上推理业务安全。',
     tags: ['安全防护', 'WAF'],
   },
   {
@@ -282,47 +296,11 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: RectangleStackIcon,
     title: '弹性云服务器',
-    description: '业务规模增长后，可平滑迁移至高规格 GPU 实例或弹性云服务器集群，享受更灵活的计算能力。',
+    description:
+      '业务规模增长后，可平滑迁移至高规格 GPU 实例或弹性云服务器集群，享受更灵活的计算能力。',
     tags: ['升级', '弹性扩展'],
   },
 ]
-
-/**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- * @param sectionIds - 需要监听的 section id 数组
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
 
 /**
  * 动画卡片组件 - 实现玻璃拟态与微交互
@@ -408,9 +386,9 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -420,7 +398,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -457,14 +435,25 @@ function HeroSection() {
             GPU云服务器
           </h1>
           <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
-            提供 GPU 算力的弹性计算服务，具有超强的并行计算能力，作为 IaaS 层的尖兵利器，服务于深度学习训练推理、
+            提供 GPU 算力的弹性计算服务，具有超强的并行计算能力，作为 IaaS
+            层的尖兵利器，服务于深度学习训练推理、
             科学计算、图形图像处理、视频编解码与云游戏等场景，支持多种 NVIDIA GPU 实例规格灵活选择。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               立即选购
             </Button>
-            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#overview"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               了解产品详情
             </Button>
           </div>
@@ -494,7 +483,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-[#0055ff]/20"
+          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
@@ -536,9 +525,13 @@ function OverviewSection() {
               <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                 <item.icon className="h-6 w-6" />
               </span>
-              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">{item.eyebrow}</span>
+              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">
+                {item.eyebrow}
+              </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
             </GlassCard>
           ))}
         </div>
@@ -553,7 +546,10 @@ function OverviewSection() {
  */
 function ScenariosSection() {
   return (
-    <section id="scenarios" className="scroll-mt-32 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="scenarios"
+      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
           <motion.div
@@ -569,7 +565,8 @@ function ScenariosSection() {
               六大典型使用场景
             </h2>
             <p className="mt-5 text-base leading-relaxed text-slate-600">
-              从深度学习训练推理到大模型分布式训练，从科学计算到图形图像处理与视频编解码，GPU 云服务器覆盖丰富的并行算力业务场景。
+              从深度学习训练推理到大模型分布式训练，从科学计算到图形图像处理与视频编解码，GPU
+              云服务器覆盖丰富的并行算力业务场景。
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
               {['AI 训练', '推理加速', 'HPC', '渲染', '视频', '云游戏'].map((tag) => (
@@ -596,7 +593,7 @@ function ScenariosSection() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-white px-2 py-0.5 text-xs font-medium text-slate-600 border border-slate-200"
+                        className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600"
                       >
                         {tag}
                       </span>
@@ -639,23 +636,23 @@ function PackagesSection() {
               <div className="mt-5 space-y-3 border-t border-slate-200 pt-5 text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">vCPU</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.cpu}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.cpu}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">内存</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.memory}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.memory}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">系统盘</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.storage}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.storage}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">带宽</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.bandwidth}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.bandwidth}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">流量包</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.traffic}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.traffic}</span>
                 </div>
               </div>
               <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-[#0055ff]">
@@ -676,7 +673,7 @@ function PackagesSection() {
  */
 function ImagesSection() {
   return (
-    <section id="images" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section id="images" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Framework Images"
@@ -747,7 +744,10 @@ function AdvantagesSection() {
  */
 function ProductsSection() {
   return (
-    <section id="products" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="products"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Related Products"
@@ -762,7 +762,9 @@ function ProductsSection() {
                 <item.icon className="h-6 w-6" />
               </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
               {item.tags && item.tags.length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
@@ -789,7 +791,10 @@ function ProductsSection() {
  */
 function CTASection() {
   return (
-    <section id="cta" className="scroll-mt-20 bg-[#0055ff] py-16 md:py-24 text-center relative overflow-hidden">
+    <section
+      id="cta"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+    >
       <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -809,10 +814,20 @@ function CTASection() {
             为您的 AI 训练推理、科学计算、图形图像处理与视频编解码业务提供稳定算力支撑。
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-xl px-8 py-3 font-medium text-[#0055ff]">
+            <Button
+              href="/contact"
+              color="white"
+              variant="erlieSolid"
+              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+            >
               立即选购实例
             </Button>
-            <Button href="/demo" variant="erlieOutline" color="white" className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+            <Button
+              href="/demo"
+              variant="erlieOutline"
+              color="white"
+              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
+            >
               咨询定制方案
             </Button>
           </div>

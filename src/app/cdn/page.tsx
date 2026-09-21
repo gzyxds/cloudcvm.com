@@ -1,3 +1,4 @@
+import { formatPriceWithDecimals } from '@/lib/format'
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import {
@@ -10,24 +11,24 @@ import {
   ShieldCheckIcon,
 } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 import { VideoCarousel } from '@/components/carousel/VideoCarousel'
-import { Container } from '@/components/Container'
+import { Container } from '@/components/ui/Container'
 
 import screenshotContacts from '@/images/screenshots/achievements.png'
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
-import { Solution } from '@/components/Solution' // 解决方案
-import ProductTraits from '@/components/common/ProductTraits' // 产品特性
-import Superiority from '@/components/common/Superiority' // 产品优势
-import Advantage from '@/components/Advantage' // 优势展示
+import { Solution } from '@/components/sections/shared/Solution' // 解决方案
+import ProductTraits from '@/components/sections/shared/ProductTraits' // 产品特性
+import Superiority from '@/components/sections/shared/Superiority' // 产品优势
+import Advantage from '@/components/sections/shared/Advantage' // 优势展示
 // === 客户与信任建立 ===
-import Customer from '@/components/common/Customer' // 客户案例
+import Customer from '@/components/sections/shared/Customer' // 客户案例
 // === 支持与帮助 ===
-import { Faqs } from '@/components/Faqs' // 常见问题
+import { Faqs } from '@/components/sections/shared/Faqs' // 常见问题
 // === 页面底部 ===
-import CatSections from '@/components/CatSections' // 底部行动区域
+import CatSections from '@/components/sections/shared/CatSections' // 底部行动区域
 
 // CDN产品接口定义
 interface CDNProduct {
@@ -217,14 +218,12 @@ const cdnFeatures = [
   },
   {
     name: '高可用保障',
-    description:
-      '99.9% 的服务可用性保障，多节点冗余备份，自动故障切换，确保内容分发服务稳定可靠。',
+    description: '99.9% 的服务可用性保障，多节点冗余备份，自动故障切换，确保内容分发服务稳定可靠。',
     icon: DocumentTextIcon,
   },
   {
     name: '安全防护',
-    description:
-      '提供DDoS防护、防盗链、访问控制等多重安全机制，全方位保护您的内容资源安全。',
+    description: '提供DDoS防护、防盗链、访问控制等多重安全机制，全方位保护您的内容资源安全。',
     icon: LockClosedIcon,
   },
 ]
@@ -241,15 +240,13 @@ const leftRightFeatures = [
   {
     name: '智能缓存',
     summary: '根据访问模式自动优化缓存策略，确保最佳加速效果。',
-    description:
-      '智能识别热点内容，自动调整缓存时间和策略，既保证内容新鲜度，又最大化缓存命中率。',
+    description: '智能识别热点内容，自动调整缓存时间和策略，既保证内容新鲜度，又最大化缓存命中率。',
     icon: ArrowsPointingOutIcon,
   },
   {
     name: '安全防护',
     summary: '全方位的CDN安全防护，为您的内容保驾护航。',
-    description:
-      '提供多层次安全防护，包括防盗链、访问控制、DDoS防护等，全面保障您的内容资源安全。',
+    description: '提供多层次安全防护，包括防盗链、访问控制、DDoS防护等，全面保障您的内容资源安全。',
     icon: ShieldCheckIcon,
   },
 ]
@@ -258,20 +255,17 @@ const leftRightFeatures = [
 const rightLeftFeatures = [
   {
     name: '一键接入',
-    description:
-      '通过简单的CNAME配置即可完成CDN接入，快速启用全球加速服务，让您的网站瞬间提速。',
+    description: '通过简单的CNAME配置即可完成CDN接入，快速启用全球加速服务，让您的网站瞬间提速。',
     icon: CloudArrowUpIcon,
   },
   {
     name: 'HTTPS加速',
-    description:
-      '支持HTTPS协议加速，提供免费SSL证书，确保数据传输安全的同时享受极速访问体验。',
+    description: '支持HTTPS协议加速，提供免费SSL证书，确保数据传输安全的同时享受极速访问体验。',
     icon: LockClosedIcon,
   },
   {
     name: '缓存优化',
-    description:
-      '智能缓存策略，支持多种缓存规则配置，最大化提升内容分发效率和用户访问速度。',
+    description: '智能缓存策略，支持多种缓存规则配置，最大化提升内容分发效率和用户访问速度。',
     icon: ServerIcon,
   },
 ]
@@ -330,12 +324,7 @@ function CDNLeftrightSection() {
                   <div key={feature.name} className="relative pl-9">
                     <dt className="inline font-semibold text-slate-900 dark:text-white">
                       <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
-                        <svg
-                          className="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 36 36"
-                          aria-hidden="true"
-                        >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
                           <IconComponent />
                         </svg>
                       </div>
@@ -348,7 +337,7 @@ function CDNLeftrightSection() {
             </dl>
           </div>
           <div className="mt-16 sm:mt-20">
-            <div className="relative overflow-hidden border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
+            <div className="relative overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
               {/* 移动端模拟界面头部 */}
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -362,13 +351,11 @@ function CDNLeftrightSection() {
               </div>
 
               {/* 移动端模拟界面标题栏 */}
-              <div className="mb-4 border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
+              <div className="mb-4 rounded-lg border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
                 <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
                   CDN管理中心
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-gray-400">
-                  实时监控CDN加速服务
-                </p>
+                <p className="text-sm text-slate-600 dark:text-gray-400">实时监控CDN加速服务</p>
               </div>
 
               {/* 移动端模拟功能模块 */}
@@ -378,10 +365,10 @@ function CDNLeftrightSection() {
                   return (
                     <div
                       key={feature.name}
-                      className="border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                      className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
                           <svg
                             className="h-5 w-5 text-[#0055ff] dark:text-blue-400"
                             fill="none"
@@ -396,9 +383,9 @@ function CDNLeftrightSection() {
                             {feature.name}
                           </h4>
                           <div className="mt-2">
-                            <div className="h-1.5 w-full bg-slate-200/60 rounded-full dark:bg-gray-700/60">
+                            <div className="h-1.5 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
                               <div
-                                className="h-1.5 bg-[#0055ff] rounded-full transition-all duration-1000 dark:bg-blue-400"
+                                className="h-1.5 rounded-full bg-[#0055ff] transition-all duration-1000 dark:bg-blue-400"
                                 style={{ width: `${60 + index * 15}%` }}
                               ></div>
                             </div>
@@ -411,7 +398,7 @@ function CDNLeftrightSection() {
               </div>
 
               {/* 移动端模拟状态栏 */}
-              <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
                 <div className="flex items-center space-x-3">
                   <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
                   <span>CDN正常</span>
@@ -467,88 +454,88 @@ function CDNLeftrightSection() {
             </div>
           </div>
           <div className="sm:px-6 lg:px-0">
-            <div className="relative overflow-hidden border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur-lg rounded-md dark:border-gray-700/50 dark:bg-white/10">
-               {/* 模拟界面头部 */}
-               <div className="mb-6 flex items-center justify-between">
-                 <div className="flex items-center space-x-3">
-                   <div className="h-3 w-3 rounded-full bg-red-400"></div>
-                   <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
-                   <div className="h-3 w-3 rounded-full bg-green-400"></div>
-                 </div>
-                 <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
-                   CDN控制台
-                 </div>
-               </div>
+            <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+              {/* 模拟界面头部 */}
+              <div className="mb-6 flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="h-3 w-3 rounded-full bg-red-400"></div>
+                  <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
+                  <div className="h-3 w-3 rounded-full bg-green-400"></div>
+                </div>
+                <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
+                  CDN控制台
+                </div>
+              </div>
 
-               {/* 模拟界面标题栏 */}
-               <div className="mb-4 border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm rounded-lg dark:border-gray-700/50 dark:bg-gray-800/50">
-                 <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
-                   CDN管理中心
-                 </h3>
-                 <p className="text-sm text-slate-600 dark:text-gray-400">
-                   实时监控和管理您的CDN加速服务
-                 </p>
-               </div>
+              {/* 模拟界面标题栏 */}
+              <div className="mb-4 rounded-lg border border-slate-200/50 bg-slate-50/80 p-4 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
+                <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
+                  CDN管理中心
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-gray-400">
+                  实时监控和管理您的CDN加速服务
+                </p>
+              </div>
 
-               {/* 模拟功能模块 */}
-               <div className="mb-4 grid grid-cols-1 gap-4">
-                 {leftRightFeatures.slice(0, 3).map((feature, index) => {
-                   const IconComponent = feature.icon
-                   return (
-                     <div
-                       key={feature.name}
-                       className="group border border-slate-200/30 bg-slate-50/60 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
-                     >
-                       <div className="flex items-start space-x-3">
-                         <div className="flex-shrink-0">
-                           <div className="flex h-8 w-8 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded dark:border-blue-800/50 dark:bg-blue-900/50">
-                             <svg
-                               className="h-5 w-5 text-[#0055ff] dark:text-blue-400"
-                               fill="none"
-                               viewBox="0 0 36 36"
-                               aria-hidden="true"
-                             >
-                               <IconComponent />
-                             </svg>
-                           </div>
-                         </div>
-                         <div className="min-w-0 flex-1">
-                           <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
-                             {feature.name}
-                           </h4>
-                           <p className="mt-1 truncate text-xs text-slate-600 dark:text-gray-400">
-                             {feature.summary}
-                           </p>
-                           <div className="mt-2">
-                             <div className="h-1.5 w-full bg-slate-200/60 rounded-full dark:bg-gray-700/60">
-                               <div
-                                 className="h-1.5 bg-[#0055ff] rounded-full transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
-                                 style={{ width: `${60 + index * 10}%` }}
-                               ></div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   )
-                 })}
-               </div>
+              {/* 模拟功能模块 */}
+              <div className="mb-4 grid grid-cols-1 gap-4">
+                {leftRightFeatures.slice(0, 3).map((feature, index) => {
+                  const IconComponent = feature.icon
+                  return (
+                    <div
+                      key={feature.name}
+                      className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    >
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0">
+                          <div className="flex h-8 w-8 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+                            <svg
+                              className="h-5 w-5 text-[#0055ff] dark:text-blue-400"
+                              fill="none"
+                              viewBox="0 0 36 36"
+                              aria-hidden="true"
+                            >
+                              <IconComponent />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                            {feature.name}
+                          </h4>
+                          <p className="mt-1 truncate text-xs text-slate-600 dark:text-gray-400">
+                            {feature.summary}
+                          </p>
+                          <div className="mt-2">
+                            <div className="h-1.5 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
+                              <div
+                                className="h-1.5 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                                style={{ width: `${60 + index * 10}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
 
-               {/* 模拟状态栏 */}
-               <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm rounded-lg dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
-                 <div className="flex items-center space-x-4">
-                   <span className="flex items-center space-x-1">
-                     <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
-                     <span>CDN正常</span>
-                   </span>
-                   <span>带宽: 85%</span>
-                   <span>命中率: 92%</span>
-                 </div>
-                 <div className="text-right">
-                   <span>最后更新: 刚刚</span>
-                 </div>
-               </div>
-             </div>
+              {/* 模拟状态栏 */}
+              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+                <div className="flex items-center space-x-4">
+                  <span className="flex items-center space-x-1">
+                    <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
+                    <span>CDN正常</span>
+                  </span>
+                  <span>带宽: 85%</span>
+                  <span>命中率: 92%</span>
+                </div>
+                <div className="text-right">
+                  <span>最后更新: 刚刚</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -604,82 +591,82 @@ function CDNRightleftSection() {
               </div>
             </div>
             <div className="flex items-start justify-center lg:order-first lg:justify-end">
-              <div className="relative w-full max-w-lg overflow-hidden border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-xl rounded-md sm:max-w-xl lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
-                 {/* 模拟界面头部 */}
-                 <div className="mb-6 flex items-center justify-between">
-                   <div className="flex items-center space-x-3">
-                     <div className="h-3 w-3 rounded-full bg-red-400"></div>
-                     <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
-                     <div className="h-3 w-3 rounded-full bg-green-400"></div>
-                   </div>
-                   <div className="text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
-                     CDN控制台
-                   </div>
-                 </div>
+              <div className="relative w-full max-w-lg overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-xl sm:max-w-xl lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
+                {/* 模拟界面头部 */}
+                <div className="mb-6 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="h-3 w-3 rounded-full bg-red-400"></div>
+                    <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
+                    <div className="h-3 w-3 rounded-full bg-green-400"></div>
+                  </div>
+                  <div className="text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
+                    CDN控制台
+                  </div>
+                </div>
 
-                 {/* 模拟界面标题栏 */}
-                 <div className="mb-3 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
-                   <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
-                     CDN管理中心
-                   </h3>
-                   <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
-                     实时监控和管理您的CDN加速服务
-                   </p>
-                 </div>
+                {/* 模拟界面标题栏 */}
+                <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+                  <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
+                    CDN管理中心
+                  </h3>
+                  <p className="text-xs text-slate-600 sm:text-sm dark:text-gray-300">
+                    实时监控和管理您的CDN加速服务
+                  </p>
+                </div>
 
-                 {/* 模拟功能模块 */}
-                 <div className="mb-3 grid grid-cols-1 gap-3 sm:mb-4 sm:gap-4">
-                   {rightLeftFeatures.slice(0, 3).map((feature, index) => (
-                     <div
-                       key={feature.name}
-                       className="group border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm rounded-lg transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
-                     >
-                       <div className="flex items-start space-x-3">
-                         <div className="flex-shrink-0">
-                           <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
-                             <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
-                           </div>
-                         </div>
-                         <div className="min-w-0 flex-1">
-                           <h4 className="truncate text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
-                             {feature.name}
-                           </h4>
-                           <p className="mt-0.5 truncate text-xs text-slate-600 sm:mt-1 dark:text-gray-300">
-                             {feature.description.slice(0, 25)}...
-                           </p>
-                           <div className="mt-1.5 sm:mt-2">
-                             <div className="h-1 w-full bg-slate-200/50 rounded-full sm:h-1.5 dark:bg-gray-600/50">
-                               <div
-                                 className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
-                                 style={{ width: `${60 + index * 10}%` }}
-                               ></div>
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   ))}
-                 </div>
+                {/* 模拟功能模块 */}
+                <div className="mb-3 grid grid-cols-1 gap-3 sm:mb-4 sm:gap-4">
+                  {rightLeftFeatures.slice(0, 3).map((feature, index) => (
+                    <div
+                      key={feature.name}
+                      className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                    >
+                      <div className="flex items-start space-x-3">
+                        <div className="flex-shrink-0">
+                          <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
+                            <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
+                          </div>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h4 className="truncate text-xs font-medium text-slate-800 sm:text-sm dark:text-white">
+                            {feature.name}
+                          </h4>
+                          <p className="mt-0.5 truncate text-xs text-slate-600 sm:mt-1 dark:text-gray-300">
+                            {feature.description.slice(0, 25)}...
+                          </p>
+                          <div className="mt-1.5 sm:mt-2">
+                            <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
+                              <div
+                                className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
+                                style={{ width: `${60 + index * 10}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-                 {/* 模拟状态栏 */}
-                 <div className="flex flex-col space-y-2 border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
-                   <div className="flex items-center space-x-2 sm:space-x-4">
-                     <span className="flex items-center space-x-1">
-                       <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
-                       <span>CDN正常</span>
-                     </span>
-                     <span className="hidden sm:inline">带宽: 85%</span>
-                     <span className="hidden sm:inline">命中率: 92%</span>
-                   </div>
-                   <div className="flex items-center justify-between sm:block">
-                     <div className="flex space-x-2 sm:hidden">
-                       <span>带宽: 85%</span>
-                       <span>命中率: 92%</span>
-                     </div>
-                     <span className="text-right">最后更新: 刚刚</span>
-                   </div>
-                 </div>
-               </div>
+                {/* 模拟状态栏 */}
+                <div className="flex flex-col space-y-2 rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+                  <div className="flex items-center space-x-2 sm:space-x-4">
+                    <span className="flex items-center space-x-1">
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
+                      <span>CDN正常</span>
+                    </span>
+                    <span className="hidden sm:inline">带宽: 85%</span>
+                    <span className="hidden sm:inline">命中率: 92%</span>
+                  </div>
+                  <div className="flex items-center justify-between sm:block">
+                    <div className="flex space-x-2 sm:hidden">
+                      <span>带宽: 85%</span>
+                      <span>命中率: 92%</span>
+                    </div>
+                    <span className="text-right">最后更新: 刚刚</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -701,33 +688,31 @@ export default function CDNPage() {
           {/* 产品网格 */}
           <div className="mx-auto max-w-[1800px] px-4 py-8 sm:px-6 lg:px-8">
             {/* 页面标题 */}
-             <div className="mb-4 text-left pt-16 pb-8">
-                <h1 className="text-3xl font-bold text-slate-900 mb-6">CDN加速专区</h1>
-                <p className="text-lg text-slate-600">
-                  <span className="font-medium text-[#F59E0B]">全球加速</span>
-                  ，新用户低至
-                  <span className="font-medium text-[#F59E0B]">79元/年</span>
-                  <span className="ml-2 cursor-pointer text-[#0055ff] underline hover:text-[#0043cc]">
-                    活动规则&gt;
-                  </span>
-                </p>
-              </div>
+            <div className="mb-4 pt-16 pb-8 text-left">
+              <h1 className="mb-6 text-3xl font-bold text-slate-900">CDN加速专区</h1>
+              <p className="text-lg text-slate-600">
+                <span className="font-medium text-[#F59E0B]">全球加速</span>
+                ，新用户低至
+                <span className="font-medium text-[#F59E0B]">79元/年</span>
+                <span className="ml-2 cursor-pointer text-[#0055ff] underline hover:text-[#0043cc]">
+                  活动规则&gt;
+                </span>
+              </p>
+            </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {cdnProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   {/* Hover Gradient Background */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  
-                  <div className="relative z-10 flex flex-col h-full">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  <div className="relative z-10 flex h-full flex-col">
                     {/* 产品标题和标签 */}
                     <div className="border-b border-slate-100 p-6">
                       <div className="mb-4 flex items-center justify-between">
-                        <h3 className="text-lg font-medium text-slate-900">
-                          {product.name}
-                        </h3>
+                        <h3 className="text-lg font-medium text-slate-900">{product.name}</h3>
                         <svg
                           className="h-5 w-5 text-slate-400"
                           fill="none"
@@ -742,17 +727,15 @@ export default function CDNPage() {
                           />
                         </svg>
                       </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xl font-bold text-slate-900">
-                          {product.subtitle}
-                        </span>
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="text-xl font-bold text-slate-900">{product.subtitle}</span>
                         {product.isHot && (
-                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="rounded border border-red-100 bg-red-50 px-2 py-0.5 text-xs text-red-600">
                             申请特惠
                           </span>
                         )}
                         {product.isRecommended && (
-                          <span className="rounded bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff] border border-blue-100">
+                          <span className="rounded border border-blue-100 bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff]">
                             申请特惠
                           </span>
                         )}
@@ -763,11 +746,11 @@ export default function CDNPage() {
                     </div>
 
                     {/* 产品规格信息 */}
-                    <div className="space-y-4 p-6 flex-grow">
+                    <div className="flex-grow space-y-4 p-6">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">带宽</span>
                         <div className="flex items-center gap-1">
-                          <span className="font-medium text-slate-900 font-mono text-sm">
+                          <span className="font-mono text-sm font-medium text-slate-900">
                             {product.specs.bandwidth}
                           </span>
                           <svg
@@ -788,39 +771,31 @@ export default function CDNPage() {
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">流量</span>
-                        <span className="font-medium text-slate-900 font-mono text-sm">
+                        <span className="font-mono text-sm font-medium text-slate-900">
                           {product.specs.traffic}
                         </span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">节点</span>
-                        <span className="font-medium text-slate-900">
-                          {product.specs.nodes}
-                        </span>
+                        <span className="font-medium text-slate-900">{product.specs.nodes}</span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">HTTPS</span>
-                        <span className="font-medium text-slate-900">
-                          {product.specs.https}
-                        </span>
+                        <span className="font-medium text-slate-900">{product.specs.https}</span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">地域</span>
-                        <span className="text-sm text-slate-900">
-                          {product.regions.join('/')}
-                        </span>
+                        <span className="text-sm text-slate-900">{product.regions.join('/')}</span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">时长</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-slate-900">
-                            {product.duration}
-                          </span>
-                          <span className="rounded bg-red-50 px-1.5 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="text-sm text-slate-900">{product.duration}</span>
+                          <span className="rounded border border-red-100 bg-red-50 px-1.5 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
                         </div>
@@ -829,11 +804,11 @@ export default function CDNPage() {
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">数量</span>
                         <div className="flex items-center gap-2">
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
                             −
                           </button>
                           <span className="w-8 text-center text-sm text-slate-900">1</span>
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
                             +
                           </button>
                         </div>
@@ -841,10 +816,10 @@ export default function CDNPage() {
                     </div>
 
                     {/* 价格和折扣信息 */}
-                    <div className="border-t border-slate-100 p-6 bg-slate-50/50">
+                    <div className="border-t border-slate-100 bg-slate-50/50 p-6">
                       {product.discount && (
                         <div className="mb-3 flex items-center gap-2">
-                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="rounded border border-red-100 bg-red-50 px-2 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
                           <span className="text-xs text-slate-500">限1个</span>
@@ -854,12 +829,12 @@ export default function CDNPage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm text-slate-500">活动价:</span>
-                          <span className="text-2xl font-bold text-[#EF4444] tracking-tight">
+                          <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
                             {product.currentPrice}
                           </span>
                           <span className="text-sm text-slate-500">元</span>
-                          <span className="text-xs text-slate-400 line-through ml-1">
-                            ¥{product.originalPrice.toFixed(2)}/月
+                          <span className="ml-1 text-xs text-slate-400 line-through">
+                            {formatPriceWithDecimals(product.originalPrice)}/月
                           </span>
                         </div>
                         <div className="mt-1 flex items-center gap-2">

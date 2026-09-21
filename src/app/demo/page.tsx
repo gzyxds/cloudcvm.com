@@ -2,10 +2,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Star, ArrowRight } from 'lucide-react'
-import { Button } from '@/components/Button'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import { Container } from '@/components/Container'
+import { Button } from '@/components/ui/Button'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { Container } from '@/components/ui/Container'
 import DemoShowcase from './components/demo'
 /**
  * 产品演示页面
@@ -32,12 +32,21 @@ const DemoPage = () => {
         {/* 背景装饰光晕 */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-1/4 h-80 w-80 rounded-full bg-[#0055ff]/[0.06] blur-3xl sm:h-96 sm:w-96" />
-          <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-blue-400/[0.06] blur-3xl sm:h-80 sm:w-80" />
+          <div className="absolute right-1/4 bottom-0 h-64 w-64 rounded-full bg-blue-400/[0.06] blur-3xl sm:h-80 sm:w-80" />
         </div>
         {/* 底部波浪分隔 */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0 60V20C240 0 480 40 720 30C960 20 1200 0 1440 20V60H0Z" fill="white" className="dark:fill-gray-900" />
+        <div className="absolute right-0 bottom-0 left-0">
+          <svg
+            viewBox="0 0 1440 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full"
+          >
+            <path
+              d="M0 60V20C240 0 480 40 720 30C960 20 1200 0 1440 20V60H0Z"
+              fill="white"
+              className="dark:fill-gray-900"
+            />
           </svg>
         </div>
         <Container className="relative py-14 lg:py-18">
@@ -70,7 +79,12 @@ const DemoPage = () => {
             >
               <Button
                 className="bg-blue-600 px-8 py-3 font-medium text-white hover:bg-blue-700"
-                onClick={() => window.open('https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=61&spg_id=20/', '_blank')}
+                onClick={() =>
+                  window.open(
+                    'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=61&spg_id=20/',
+                    '_blank'
+                  )
+                }
               >
                 立即购买
                 <ArrowRight className="ml-2 h-4 w-4" />

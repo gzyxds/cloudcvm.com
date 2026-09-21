@@ -1,9 +1,9 @@
-import { JSX } from 'react'
+import type { JSX } from 'react'
 import { type Metadata } from 'next'
 import Image from 'next/image'
-import { FAQSection } from '@/components/ai/FAQSection'
-import Aisd from '@/components/ai/Aisd'
-import { AIscene } from '@/components/ai/AIscene'
+import { FAQSection } from '@/components/sections/ai/FAQSection'
+import AiSolutionSection from '@/components/sections/ai/AiSolutionSection'
+import { AiScene } from '@/components/sections/ai/AiScene'
 import {
   ChatBubbleLeftRightIcon,
   CpuChipIcon,
@@ -22,10 +22,10 @@ import {
   PlayIcon,
   ChevronRightIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 // ==================== 页面SEO元数据配置 ====================
 export const metadata: Metadata = {
   title: { absolute: '艺创AI_全能AI知识库系统_数字人解决方案_企业级AI平台' },
@@ -57,7 +57,6 @@ interface Scenario {
   description: string
   features: string[]
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  video: string
 }
 
 // 功能特色卡片接口
@@ -118,7 +117,6 @@ const scenarios: Scenario[] = [
     description: '数字人主播，24小时不间断直播带货',
     features: ['品牌代言', '内容创作', '社交互动'],
     icon: TvIcon,
-    video: '/videos/live-streaming.mp4',
   },
   {
     id: 'digital-employee',
@@ -126,7 +124,6 @@ const scenarios: Scenario[] = [
     description: '智能客服助手，提供专业咨询服务',
     features: ['智能问答', '情感识别', '多语言支持'],
     icon: UserGroupIcon,
-    video: '/videos/digital-employee.mp4',
   },
   {
     id: 'content-creation',
@@ -134,7 +131,6 @@ const scenarios: Scenario[] = [
     description: 'AI驱动的内容生成和创意制作',
     features: ['脚本生成', '视频制作', '多媒体输出'],
     icon: AcademicCapIcon,
-    video: '/videos/content-creation.mp4',
   },
   {
     id: 'virtual-broadcast',
@@ -142,7 +138,6 @@ const scenarios: Scenario[] = [
     description: '虚拟主播直播，降低运营成本',
     features: ['实时互动', '自动回复', '数据分析'],
     icon: MegaphoneIcon,
-    video: '/videos/virtual-broadcast.mp4',
   },
 ]
 
@@ -153,10 +148,7 @@ const featureCards: FeatureCard[] = [
     name: '机器人管理',
     description:
       '创建机器人，可单独创建和设置私有机器人。发布机器人，支持发布多种渠道，如网页、JS嵌入、API接口、微信公众号等等。',
-    features: [
-      '支持私有机器人独立配置',
-      '多渠道发布：网页、JS嵌入、API、公众号等',
-    ],
+    features: ['支持私有机器人独立配置', '多渠道发布：网页、JS嵌入、API、公众号等'],
     icon: ChatBubbleLeftRightIcon,
   },
   {
@@ -198,10 +190,7 @@ function FeaturesSection(): JSX.Element {
             全面的AI解决方案，为您的业务提供强大的智能化支持
           </p>
         </div>
-        <ul
-          role="list"
-          className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 xl:gap-x-8"
-        >
+        <ul role="list" className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 xl:gap-x-8">
           {featureCards.map((feature) => {
             const IconComponent = feature.icon
             return (
@@ -211,27 +200,18 @@ function FeaturesSection(): JSX.Element {
               >
                 <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
                   <div className="flex h-12 w-12 flex-none items-center justify-center bg-white ring-1 ring-gray-900/10">
-                    <IconComponent
-                      className="h-6 w-6 text-blue-600"
-                      aria-hidden="true"
-                    />
+                    <IconComponent className="h-6 w-6 text-blue-600" aria-hidden="true" />
                   </div>
-                  <div className="text-sm leading-6 font-medium text-gray-900">
-                    {feature.name}
-                  </div>
+                  <div className="text-sm leading-6 font-medium text-gray-900">{feature.name}</div>
                 </div>
 
                 <div className="px-6 py-4">
-                  <p className="mb-4 text-sm leading-6 text-gray-700">
-                    {feature.description}
-                  </p>
+                  <p className="mb-4 text-sm leading-6 text-gray-700">{feature.description}</p>
                   <div className="mb-6 space-y-2">
                     {feature.features.map((featureItem, index) => (
                       <div key={index} className="flex items-start gap-x-2">
                         <div className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-blue-600" />
-                        <span className="text-sm leading-5 text-gray-600">
-                          {featureItem}
-                        </span>
+                        <span className="text-sm leading-5 text-gray-600">{featureItem}</span>
                       </div>
                     ))}
                   </div>
@@ -273,12 +253,7 @@ function AdvantagesSection(): JSX.Element {
     'from-blue-400 to-blue-500',
     'from-blue-700 to-blue-800',
   ]
-  const bulletColors = [
-    'bg-blue-600',
-    'bg-blue-500',
-    'bg-blue-400',
-    'bg-blue-700',
-  ]
+  const bulletColors = ['bg-blue-600', 'bg-blue-500', 'bg-blue-400', 'bg-blue-700']
 
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24 dark:bg-gray-900">
@@ -337,9 +312,7 @@ function AdvantagesSection(): JSX.Element {
                       {advantage.title}
                     </h3>
                     <div className="flex items-baseline">
-                      <span className="text-3xl font-bold sm:text-5xl">
-                        {advantage.stats}
-                      </span>
+                      <span className="text-3xl font-bold sm:text-5xl">{advantage.stats}</span>
                       {advantage.unit && (
                         <span className="ml-2 text-lg font-medium sm:text-xl">
                           {advantage.unit}
@@ -435,9 +408,7 @@ function DemoSection(): JSX.Element {
                 <div className="mr-2 flex h-8 w-8 items-center justify-center bg-blue-50 sm:mr-3 sm:h-10 sm:w-10">
                   <PlayIcon className="h-4 w-4 text-blue-600 sm:h-5 sm:w-5" />
                 </div>
-                <h3 className="text-base font-medium sm:text-lg">
-                  演示账号信息
-                </h3>
+                <h3 className="text-base font-medium sm:text-lg">演示账号信息</h3>
               </div>
 
               <div className="space-y-3 sm:space-y-4">
@@ -456,20 +427,12 @@ function DemoSection(): JSX.Element {
                     </div>
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">
-                          账号:
-                        </span>
-                        <span className="text-xs font-medium">
-                          {account.username}
-                        </span>
+                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">账号:</span>
+                        <span className="text-xs font-medium">{account.username}</span>
                       </div>
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">
-                          密码:
-                        </span>
-                        <span className="text-xs font-medium">
-                          {account.password}
-                        </span>
+                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">密码:</span>
+                        <span className="text-xs font-medium">{account.password}</span>
                       </div>
                       <Button
                         href={account.url}
@@ -506,7 +469,7 @@ function DemoSection(): JSX.Element {
               {/* 主要演示视频 */}
               <div className="border border-gray-200 bg-white p-4 sm:p-6">
                 <Image
-                  src="/images/product/work.svg"
+                  src="/images/product/work.webp"
                   alt="工作演示"
                   width={600}
                   height={400}
@@ -514,12 +477,8 @@ function DemoSection(): JSX.Element {
                 />
                 <div className="mt-3 flex items-center justify-between sm:mt-4">
                   <div>
-                    <h4 className="text-xs font-medium text-gray-900 sm:text-sm">
-                      数字人管理平台
-                    </h4>
-                    <p className="text-xs text-gray-500">
-                      一站式管理您的所有数字人资产
-                    </p>
+                    <h4 className="text-xs font-medium text-gray-900 sm:text-sm">数字人管理平台</h4>
+                    <p className="text-xs text-gray-500">一站式管理您的所有数字人资产</p>
                   </div>
                   <div className="flex space-x-1 sm:space-x-2">
                     <div className="h-1.5 w-1.5 bg-red-500 sm:h-2 sm:w-2"></div>
@@ -551,9 +510,7 @@ function DemoSection(): JSX.Element {
                     <p className="text-sm font-medium tracking-wide text-white sm:text-base">
                       在线演示
                     </p>
-                    <p className="text-xs text-blue-100/90 sm:text-sm">
-                      实时体验
-                    </p>
+                    <p className="text-xs text-blue-100/90 sm:text-sm">实时体验</p>
                   </div>
                 </div>
               </div>
@@ -597,7 +554,8 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         '为内容创作者提供全网灵感洞察、智能文案生成服务，结合AI大语言模型和创意写作能力，一键生成爆款内容。',
       icon: PencilIcon,
-      videoUrl: 'https://portal.volccdn.com/obj/volcfe-scm/wanyou/static/media/ai-writing.37942fd6.mp4',
+      videoUrl:
+        'https://portal.volccdn.com/obj/volcfe-scm/wanyou/static/media/ai-writing.37942fd6.mp4',
       stats: [
         { label: '短视频剧本', value: '智能生成爆款视频文案和直播话术' },
         { label: '平台适配', value: '小红书/抖音等平台风格文案生成' },
@@ -609,7 +567,7 @@ function CoreFeaturesSection(): JSX.Element {
       description:
         'AI一键自动生成视频，从容应对内容创作和营销需求，助力商家和创作者提升视频生成的效率。',
       icon: VideoCameraIcon,
-      image: '/images/product/saas.svg',
+      image: '/images/product/saas.webp',
       videoUrl:
         'https://portal.volccdn.com/obj/volcfe-scm/wanyou/static/media/ai-video.a4cd977a.mp4',
       stats: [
@@ -625,9 +583,7 @@ function CoreFeaturesSection(): JSX.Element {
       <Container>
         {/* 标题区域 */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            核心功能
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">核心功能</h2>
           <p className="mt-4 text-lg leading-8 text-gray-600">
             强大的AI技术能力，为您提供全方位的数字人解决方案
           </p>
@@ -647,32 +603,20 @@ function CoreFeaturesSection(): JSX.Element {
                 <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="mb-6 flex items-center space-x-3">
                     <div className="flex h-10 w-10 items-center justify-center bg-blue-600">
-                      <feature.icon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
+                      <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {feature.name}
-                    </h3>
+                    <h3 className="text-2xl font-bold text-gray-900">{feature.name}</h3>
                   </div>
 
-                  <p className="mb-8 text-lg leading-8 text-gray-600">
-                    {feature.description}
-                  </p>
+                  <p className="mb-8 text-lg leading-8 text-gray-600">{feature.description}</p>
 
                   {/* 特性列表 */}
                   <div className="mb-8 space-y-4">
                     {feature.stats.map((stat) => (
-                      <div
-                        key={stat.label}
-                        className="flex items-start space-x-3"
-                      >
+                      <div key={stat.label} className="flex items-start space-x-3">
                         <div className="mt-3 h-2 w-2 flex-shrink-0 bg-blue-600"></div>
                         <div>
-                          <dt className="font-semibold text-gray-900">
-                            {stat.label}
-                          </dt>
+                          <dt className="font-semibold text-gray-900">{stat.label}</dt>
                           <dd className="text-gray-600">{stat.value}</dd>
                         </div>
                       </div>
@@ -795,9 +739,9 @@ function CoreFeaturesSection(): JSX.Element {
                         />
                       </div>
                     ) : (
-                      <div className="aspect-video overflow-hidden bg-gray-100 flex items-center justify-center">
+                      <div className="flex aspect-video items-center justify-center overflow-hidden bg-gray-100">
                         <div className="text-center text-gray-500">
-                          <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-gray-200 flex items-center justify-center">
+                          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-200">
                             <feature.icon className="h-8 w-8 text-gray-400" />
                           </div>
                           <p className="text-sm">功能演示图片</p>
@@ -867,9 +811,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                 <div className="xs:space-y-4 space-y-3 sm:space-y-6">
                   <h1 className="xs:text-3xl text-2xl leading-tight font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl">
                     <span className="block">企业级AI</span>
-                    <span className="block text-blue-600">
-                      智能知识库
-                    </span>
+                    <span className="block text-blue-600">智能知识库</span>
                     <span className="block">企业AI解决方案</span>
                   </h1>
                   <p className="xs:text-base xs:px-0 mx-auto max-w-2xl px-2 text-sm leading-relaxed text-gray-600 sm:text-lg lg:mx-0 lg:text-xl">
@@ -878,7 +820,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                 </div>
 
                 {/* 核心功能标签 - 优化移动端显示 */}
-                <div className="mx-auto flex max-w-2xl flex-wrap justify-center gap-2 px-3 xs:gap-3 xs:px-0 sm:gap-4 lg:mx-0 lg:justify-start">
+                <div className="xs:gap-3 xs:px-0 mx-auto flex max-w-2xl flex-wrap justify-center gap-2 px-3 sm:gap-4 lg:mx-0 lg:justify-start">
                   {[
                     {
                       name: '智能问答',
@@ -893,13 +835,13 @@ export default function KnowledgeBasePage(): JSX.Element {
                     return (
                       <div
                         key={index}
-                        className="group inline-flex touch-manipulation items-center gap-2 border border-gray-200 bg-white/90 px-3 py-2.5 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-sm xs:gap-3 xs:px-4 xs:py-3 xs:rounded-none sm:rounded-lg"
+                        className="group xs:gap-3 xs:px-4 xs:py-3 xs:rounded-none inline-flex touch-manipulation items-center gap-2 border border-gray-200 bg-white/90 px-3 py-2.5 backdrop-blur-sm transition-all duration-200 hover:bg-white hover:shadow-sm sm:rounded-lg"
                       >
-                        <Icon className="h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-600 xs:h-5 xs:w-5" />
-                        <span className="text-sm font-medium text-gray-800 xs:text-base">
+                        <Icon className="xs:h-5 xs:w-5 h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-600" />
+                        <span className="xs:text-base text-sm font-medium text-gray-800">
                           {feature.name}
                         </span>
-                        <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-xs text-blue-600 xs:px-2.5 xs:text-sm">
+                        <span className="xs:px-2.5 xs:text-sm rounded bg-blue-50 px-2 py-0.5 font-mono text-xs text-blue-600">
                           {feature.time}
                         </span>
                       </div>
@@ -912,7 +854,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                     href="#demo"
                     variant="solid"
                     color="blue"
-                    className="xs:px-6 xs:py-3 xs:text-base min-h-[44px] touch-manipulation xs:rounded-none sm:rounded-xl px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-4"
+                    className="xs:px-6 xs:py-3 xs:text-base xs:rounded-none min-h-[44px] touch-manipulation px-5 py-2.5 text-sm font-semibold sm:rounded-xl sm:px-8 sm:py-4"
                   >
                     立即体验
                   </Button>
@@ -933,17 +875,13 @@ export default function KnowledgeBasePage(): JSX.Element {
                     <div className="xs:text-2xl xs:mb-1 mb-0.5 text-xl font-bold text-blue-600 sm:text-3xl">
                       100万+
                     </div>
-                    <div className="xs:text-sm text-xs text-gray-600">
-                      企业用户
-                    </div>
+                    <div className="xs:text-sm text-xs text-gray-600">企业用户</div>
                   </div>
                   <div className="text-center">
                     <div className="xs:text-2xl xs:mb-1 mb-0.5 text-xl font-bold text-blue-600 sm:text-3xl">
                       99.9%
                     </div>
-                    <div className="xs:text-sm text-xs text-gray-600">
-                      可用性
-                    </div>
+                    <div className="xs:text-sm text-xs text-gray-600">可用性</div>
                   </div>
                   <div className="text-center">
                     <div className="xs:text-2xl xs:mb-1 mb-0.5 text-xl font-bold text-blue-600 sm:text-3xl">
@@ -980,9 +918,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                         <span className="xs:text-xs xs:inline hidden text-[10px] text-gray-600 sm:text-sm">
                           在线服务中
                         </span>
-                        <span className="xs:hidden text-[10px] text-gray-600">
-                          在线
-                        </span>
+                        <span className="xs:hidden text-[10px] text-gray-600">在线</span>
                       </div>
                     </div>
 
@@ -990,7 +926,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                     <div className="xs:p-3 xs:mb-4 xs:min-h-[170px] mb-3 min-h-[140px] border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 p-2.5 transition-all duration-300 sm:mb-6 sm:min-h-[220px] sm:p-5 md:min-h-[250px]">
                       <div className="xs:space-y-3 space-y-2.5 sm:space-y-5">
                         {/* AI消息 */}
-                        <div className="xs:gap-2 animate-fade-in flex items-start gap-1.5 sm:gap-3">
+                        <div className="xs:gap-2 flex animate-fade-in items-start gap-1.5 sm:gap-3">
                           <div className="xs:w-6 xs:h-6 flex h-5 w-5 flex-shrink-0 items-center justify-center border border-blue-700 bg-blue-600 sm:h-8 sm:w-8">
                             <ChatBubbleLeftRightIcon
                               className="xs:w-3 xs:h-3 h-2.5 w-2.5 text-white sm:h-4 sm:w-4"
@@ -1006,7 +942,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                         </div>
 
                         {/* 用户消息 */}
-                        <div className="xs:gap-2 animate-fade-in animation-delay-300 flex items-start justify-end gap-1.5 sm:gap-3">
+                        <div className="xs:gap-2 animation-delay-300 flex animate-fade-in items-start justify-end gap-1.5 sm:gap-3">
                           <div className="xs:p-2.5 xs:max-w-[calc(100%-3rem)] max-w-[calc(100%-2.5rem)] border border-blue-700 bg-blue-600 p-2 sm:max-w-xs sm:p-3.5">
                             <p className="xs:text-xs text-[10px] leading-relaxed text-white sm:text-sm">
                               我需要为公司培训部门定制一个专业的数字人讲师
@@ -1070,7 +1006,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                   </div>
 
                   {/* 装饰浮动元素 - 全面优化移动端位置和大小 */}
-                  <div className="xs:-top-2 xs:-right-2 xs:p-2 animate-float absolute -top-1.5 -right-1.5 transform border border-gray-200 bg-white p-1.5 transition-all duration-300 hover:-translate-y-1 hover:scale-105 sm:-top-3 sm:-right-3 sm:p-3 md:-top-4 md:-right-4">
+                  <div className="xs:-top-2 xs:-right-2 xs:p-2 absolute -top-1.5 -right-1.5 transform animate-float border border-gray-200 bg-white p-1.5 transition-all duration-300 hover:-translate-y-1 hover:scale-105 sm:-top-3 sm:-right-3 sm:p-3 md:-top-4 md:-right-4">
                     <div className="xs:gap-1 flex items-center justify-center gap-0.5 sm:gap-2">
                       <svg
                         className="xs:w-3 xs:h-3 h-2.5 w-2.5 text-blue-600 sm:h-4 sm:w-4"
@@ -1084,7 +1020,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                       </span>
                     </div>
                   </div>
-                  <div className="xs:-bottom-2 xs:-left-2 xs:p-2 animate-float animation-delay-2000 absolute -bottom-1.5 -left-1.5 transform border border-gray-200 bg-white p-1.5 transition-all duration-300 hover:-translate-y-1 hover:scale-105 sm:-bottom-3 sm:-left-3 sm:p-3 md:-bottom-4 md:-left-4">
+                  <div className="xs:-bottom-2 xs:-left-2 xs:p-2 animation-delay-2000 absolute -bottom-1.5 -left-1.5 transform animate-float border border-gray-200 bg-white p-1.5 transition-all duration-300 hover:-translate-y-1 hover:scale-105 sm:-bottom-3 sm:-left-3 sm:p-3 md:-bottom-4 md:-left-4">
                     <div className="xs:gap-1 flex items-center justify-center gap-0.5 sm:gap-2">
                       <VideoCameraIcon className="xs:w-3 xs:h-3 h-2.5 w-2.5 text-black sm:h-4 sm:w-4" />
                       <span className="xs:text-[10px] text-[8px] font-medium whitespace-nowrap text-black sm:text-sm">
@@ -1186,13 +1122,13 @@ export default function KnowledgeBasePage(): JSX.Element {
         </section>
         {/* 英雄区块结束 */}
 
-        <Aisd />
+        <AiSolutionSection />
 
         <AdvantagesSection />
         <DemoSection />
         <CoreFeaturesSection />
         {/* 应用场景区域 */}
-        <AIscene />
+        <AiScene />
         {/* 功能特色区块 */}
         <FeaturesSection />
 
@@ -1203,9 +1139,7 @@ export default function KnowledgeBasePage(): JSX.Element {
               {/* 标题区域 */}
               <div className="mb-12 text-center">
                 <h2 className="mb-4 text-2xl font-bold">接入流程</h2>
-                <p className="mb-3 text-sm text-gray-600">
-                  为你提供快速、便捷的接入服务
-                </p>
+                <p className="mb-3 text-sm text-gray-600">为你提供快速、便捷的接入服务</p>
                 <Button
                   href="https://v.cnai.art"
                   target="_blank"
@@ -1240,9 +1174,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                   </div>
                   <h3 className="mb-2 text-base font-bold">确认合作</h3>
                   <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    通过控制台直接下单，或线下沟通商务合作
-                  </p>
+                  <p className="text-xs text-gray-600">通过控制台直接下单，或线下沟通商务合作</p>
                 </div>
 
                 {/* 步骤3：资产制作 */}
@@ -1254,9 +1186,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                   </div>
                   <h3 className="mb-2 text-base font-bold">资产制作</h3>
                   <div className="mx-auto my-3 w-16 border-t border-gray-200"></div>
-                  <p className="text-xs text-gray-600">
-                    采集数据，制作数字人形象和声音资产
-                  </p>
+                  <p className="text-xs text-gray-600">采集数据，制作数字人形象和声音资产</p>
                 </div>
 
                 {/* 步骤4：正式上线 */}
@@ -1290,34 +1220,10 @@ export default function KnowledgeBasePage(): JSX.Element {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="80"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="300"
-                      cy="300"
-                      r="150"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="250"
-                      cy="150"
-                      r="50"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
-                    <circle
-                      cx="150"
-                      cy="250"
-                      r="30"
-                      fill="black"
-                      fillOpacity="0.02"
-                    />
+                    <circle cx="100" cy="100" r="80" fill="black" fillOpacity="0.02" />
+                    <circle cx="300" cy="300" r="150" fill="black" fillOpacity="0.02" />
+                    <circle cx="250" cy="150" r="50" fill="black" fillOpacity="0.02" />
+                    <circle cx="150" cy="250" r="30" fill="black" fillOpacity="0.02" />
                   </svg>
                 </div>
 
@@ -1354,9 +1260,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               高清还原
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              100%真实感官体验
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">100%真实感官体验</p>
                           </div>
                         </div>
                         <div className="flex items-start">
@@ -1378,9 +1282,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               专业服务
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              7×24小时技术支持
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">7×24小时技术支持</p>
                           </div>
                         </div>
                         <div className="flex items-start">
@@ -1402,9 +1304,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               数据安全
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              企业级安全保障
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">企业级安全保障</p>
                           </div>
                         </div>
                         <div className="flex items-start">
@@ -1426,9 +1326,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                             <h4 className="text-sm font-medium text-gray-900 sm:text-base">
                               持续更新
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">
-                              定期功能迭代升级
-                            </p>
+                            <p className="text-xs text-gray-500 sm:text-sm">定期功能迭代升级</p>
                           </div>
                         </div>
                       </div>
@@ -1478,9 +1376,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             AI知识库
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            三版本支持
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">三版本支持</p>
                         </div>
 
                         {/* 私有部署 */}
@@ -1504,9 +1400,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             私有部署
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            安全可控
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">安全可控</p>
                         </div>
 
                         {/* 专业团队 */}
@@ -1530,9 +1424,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             专业团队
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            一对一支持
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">一对一支持</p>
                         </div>
 
                         {/* 开源方案 */}
@@ -1556,9 +1448,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                           <h4 className="text-center text-sm font-medium text-gray-900">
                             开源方案
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">
-                            灵活定制
-                          </p>
+                          <p className="mt-1 text-center text-xs text-gray-500">灵活定制</p>
                         </div>
                       </div>
                     </div>
@@ -1586,9 +1476,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                AI知识库
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">AI知识库</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 PHP/Java双版本支持
                               </p>
@@ -1612,9 +1500,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                私有部署
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">私有部署</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 安全可控的私有化部署
                               </p>
@@ -1638,9 +1524,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                专业团队
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">专业团队</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 一对一技术支持
                               </p>
@@ -1664,9 +1548,7 @@ export default function KnowledgeBasePage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">
-                                开源方案
-                              </h4>
+                              <h4 className="text-lg font-medium text-gray-900">开源方案</h4>
                               <p className="mt-1 text-center text-sm text-gray-500">
                                 灵活定制，售后无忧
                               </p>

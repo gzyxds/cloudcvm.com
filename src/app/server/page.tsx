@@ -1,3 +1,4 @@
+import { formatPriceWithDecimals } from '@/lib/format'
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import {
@@ -11,24 +12,24 @@ import {
   ShieldCheckIcon,
 } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 import { VideoCarousel } from '@/components/carousel/VideoCarousel'
-import { Container } from '@/components/Container'
+import { Container } from '@/components/ui/Container'
 
 import screenshotContacts from '@/images/screenshots/achievements.png'
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
-import { Solution } from '@/components/Solution' // 解决方案
-import ProductTraits from '@/components/common/ProductTraits' // 产品特性
-import Superiority from '@/components/common/Superiority' // 产品优势
-import Advantage from '@/components/Advantage' // 优势展示
+import { Solution } from '@/components/sections/shared/Solution' // 解决方案
+import ProductTraits from '@/components/sections/shared/ProductTraits' // 产品特性
+import Superiority from '@/components/sections/shared/Superiority' // 产品优势
+import Advantage from '@/components/sections/shared/Advantage' // 优势展示
 // === 客户与信任建立 ===
-import Customer from '@/components/common/Customer' // 客户案例
+import Customer from '@/components/sections/shared/Customer' // 客户案例
 // === 支持与帮助 ===
-import { Faqs } from '@/components/Faqs' // 常见问题
+import { Faqs } from '@/components/sections/shared/Faqs' // 常见问题
 // === 页面底部 ===
-import CatSections from '@/components/CatSections' // 底部行动区域
+import CatSections from '@/components/sections/shared/CatSections' // 底部行动区域
 // 独立物理服务器产品接口定义
 interface ServerProduct {
   id: number
@@ -185,8 +186,7 @@ const serverProducts: ServerProduct[] = [
 // 页面元数据配置
 export const metadata: Metadata = {
   title: '独立服务器_裸金属云服务器_物理服务器_专用服务器_高性能服务器',
-  description:
-    '优刻云独立物理服务器，提供专属硬件资源，支持多种配置规格，满足高性能业务需求。',
+  description: '优刻云独立物理服务器，提供专属硬件资源，支持多种配置规格，满足高性能业务需求。',
   keywords: [
     '独立服务器',
     '裸金属服务器',
@@ -211,8 +211,7 @@ export const metadata: Metadata = {
 const bareMetalFeatures = [
   {
     name: '专属硬件',
-    description:
-      '提供完全独占的物理服务器资源，无虚拟化开销，确保最佳性能表现和资源利用率。',
+    description: '提供完全独占的物理服务器资源，无虚拟化开销，确保最佳性能表现和资源利用率。',
     icon: ChartBarIcon,
   },
   {
@@ -270,8 +269,7 @@ const rightLeftFeatures = [
   },
   {
     name: '数据保护',
-    description:
-      '提供RAID配置、数据备份、灾难恢复等数据保护方案，确保您的关键数据安全可靠。',
+    description: '提供RAID配置、数据备份、灾难恢复等数据保护方案，确保您的关键数据安全可靠。',
     icon: ServerIcon,
   },
 ]
@@ -314,12 +312,7 @@ function BareMetalLeftrightSection() {
                   <div key={feature.name} className="relative pl-9">
                     <dt className="inline font-semibold text-slate-900 dark:text-white">
                       <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
-                        <svg
-                          className="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 36 36"
-                          aria-hidden="true"
-                        >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
                           <IconComponent />
                         </svg>
                       </div>
@@ -332,7 +325,7 @@ function BareMetalLeftrightSection() {
             </dl>
           </div>
           <div className="mt-16 sm:mt-20">
-            <div className="relative w-full max-w-lg overflow-hidden border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-md sm:max-w-xl sm:p-6 dark:border-gray-700/30 dark:bg-white/10">
+            <div className="relative w-full max-w-lg overflow-hidden rounded-md border border-slate-200/50 bg-white/80 p-4 shadow-xl backdrop-blur-lg sm:max-w-xl sm:p-6 dark:border-gray-700/30 dark:bg-white/10">
               {/* 模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between sm:mb-6">
                 <div className="flex items-center space-x-2 sm:space-x-3">
@@ -346,7 +339,7 @@ function BareMetalLeftrightSection() {
               </div>
 
               {/* 模拟界面标题栏 */}
-              <div className="mb-3 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+              <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
                 <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
                   服务器管理中心
                 </h3>
@@ -360,11 +353,11 @@ function BareMetalLeftrightSection() {
                 {leftRightFeatures.slice(0, 4).map((feature, index) => (
                   <div
                     key={feature.name}
-                    className="group border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm rounded-lg transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                    className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
                   >
                     <div className="flex items-start space-x-2 sm:space-x-3">
                       <div className="flex-shrink-0">
-                        <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
+                        <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
                           <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
                         </div>
                       </div>
@@ -376,9 +369,9 @@ function BareMetalLeftrightSection() {
                           {feature.description.slice(0, 25)}...
                         </p>
                         <div className="mt-1.5 sm:mt-2">
-                          <div className="h-1 w-full bg-slate-200/50 rounded-full sm:h-1.5 dark:bg-gray-600/50">
+                          <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
                             <div
-                              className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
+                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
                               style={{ width: `${60 + index * 10}%` }}
                             ></div>
                           </div>
@@ -390,7 +383,7 @@ function BareMetalLeftrightSection() {
               </div>
 
               {/* 模拟状态栏 */}
-              <div className="flex flex-col space-y-2 border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+              <div className="flex flex-col space-y-2 rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
                 <div className="flex items-center space-x-2 sm:space-x-4">
                   <span className="flex items-center space-x-1">
                     <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
@@ -456,7 +449,7 @@ function BareMetalLeftrightSection() {
             </div>
           </div>
           <div className="sm:px-6 lg:px-0">
-            <div className="relative w-full overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg rounded-md sm:p-6 lg:p-8 dark:border-gray-700/30 dark:bg-white/10">
+            <div className="relative w-full overflow-hidden rounded-md border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg sm:p-6 lg:p-8 dark:border-gray-700/30 dark:bg-white/10">
               {/* 模拟界面头部 */}
               <div className="mb-4 flex items-center justify-between sm:mb-6">
                 <div className="flex items-center space-x-2 sm:space-x-3">
@@ -470,7 +463,7 @@ function BareMetalLeftrightSection() {
               </div>
 
               {/* 模拟界面标题栏 */}
-              <div className="mb-3 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+              <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
                 <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
                   服务器管理中心
                 </h3>
@@ -484,11 +477,11 @@ function BareMetalLeftrightSection() {
                 {leftRightFeatures.slice(0, 4).map((feature, index) => (
                   <div
                     key={feature.name}
-                    className="group border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm rounded-lg transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                    className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
                   >
                     <div className="flex items-start space-x-2 sm:space-x-3">
                       <div className="flex-shrink-0">
-                        <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
+                        <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
                           <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
                         </div>
                       </div>
@@ -500,9 +493,9 @@ function BareMetalLeftrightSection() {
                           {feature.description.slice(0, 25)}...
                         </p>
                         <div className="mt-1.5 sm:mt-2">
-                          <div className="h-1 w-full bg-slate-200/50 rounded-full sm:h-1.5 dark:bg-gray-600/50">
+                          <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
                             <div
-                              className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
+                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
                               style={{ width: `${60 + index * 10}%` }}
                             ></div>
                           </div>
@@ -514,7 +507,7 @@ function BareMetalLeftrightSection() {
               </div>
 
               {/* 模拟服务器状态监控 */}
-              <div className="mb-3 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+              <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
                 <h4 className="mb-2 text-sm font-semibold text-slate-800 sm:text-base dark:text-white">
                   服务器性能监控
                 </h4>
@@ -522,35 +515,50 @@ function BareMetalLeftrightSection() {
                   <div>
                     <div className="mb-1 flex items-center justify-between">
                       <span className="text-xs text-slate-700 dark:text-gray-300">CPU 使用率</span>
-                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">35%</span>
+                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                        35%
+                      </span>
                     </div>
                     <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
-                      <div className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400" style={{ width: '35%' }}></div>
+                      <div
+                        className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
+                        style={{ width: '35%' }}
+                      ></div>
                     </div>
                   </div>
                   <div>
                     <div className="mb-1 flex items-center justify-between">
                       <span className="text-xs text-slate-700 dark:text-gray-300">内存使用率</span>
-                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">48%</span>
+                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                        48%
+                      </span>
                     </div>
                     <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
-                      <div className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400" style={{ width: '48%' }}></div>
+                      <div
+                        className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
+                        style={{ width: '48%' }}
+                      ></div>
                     </div>
                   </div>
                   <div>
                     <div className="mb-1 flex items-center justify-between">
                       <span className="text-xs text-slate-700 dark:text-gray-300">存储使用率</span>
-                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">62%</span>
+                      <span className="text-xs font-medium text-slate-700 dark:text-gray-300">
+                        62%
+                      </span>
                     </div>
                     <div className="h-1.5 w-full rounded-full bg-slate-200/50 dark:bg-gray-600/50">
-                      <div className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400" style={{ width: '62%' }}></div>
+                      <div
+                        className="h-1.5 rounded-full bg-[#0055ff] dark:bg-blue-400"
+                        style={{ width: '62%' }}
+                      ></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* 模拟状态栏 */}
-              <div className="flex items-center justify-between border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+              <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
                 <div className="flex items-center space-x-2 sm:space-x-4">
                   <span className="flex items-center space-x-1">
                     <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
@@ -615,7 +623,7 @@ function BareMetalRightleftSection() {
               </div>
             </div>
             <div className="flex items-start justify-center lg:order-first lg:justify-end">
-              <div className="relative w-full max-w-lg overflow-hidden border border-slate-200 bg-white/80 p-4 shadow-lg backdrop-blur-xl rounded-md sm:max-w-xl sm:p-6 lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
+              <div className="relative w-full max-w-lg overflow-hidden rounded-md border border-slate-200 bg-white/80 p-4 shadow-lg backdrop-blur-xl sm:max-w-xl sm:p-6 lg:max-w-2xl dark:border-gray-700/30 dark:bg-gray-900/20">
                 {/* 模拟界面头部 */}
                 <div className="mb-4 flex items-center justify-between sm:mb-6">
                   <div className="flex items-center space-x-2 sm:space-x-3">
@@ -629,7 +637,7 @@ function BareMetalRightleftSection() {
                 </div>
 
                 {/* 模拟界面标题栏 */}
-                <div className="mb-3 border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm rounded-lg sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
+                <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm sm:mb-4 sm:p-4 dark:border-gray-600/20 dark:bg-gray-800/30">
                   <h3 className="mb-1 text-base font-semibold text-slate-800 sm:mb-2 sm:text-lg dark:text-white">
                     服务器资源管理中心
                   </h3>
@@ -643,11 +651,11 @@ function BareMetalRightleftSection() {
                   {rightLeftFeatures.slice(0, 4).map((feature, index) => (
                     <div
                       key={feature.name}
-                      className="group border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm rounded-lg transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
+                      className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 sm:p-4 dark:border-gray-600/10 dark:bg-gray-800/20 dark:hover:bg-gray-800/30"
                     >
                       <div className="flex items-start space-x-2 sm:space-x-3">
                         <div className="flex-shrink-0">
-                          <div className="flex h-6 w-6 items-center justify-center border border-blue-200/50 bg-[#eff6ff] rounded backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
+                          <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] backdrop-blur-sm sm:h-8 sm:w-8 dark:bg-blue-600/80">
                             <feature.icon className="h-3 w-3 text-[#0055ff] sm:h-5 sm:w-5" />
                           </div>
                         </div>
@@ -659,9 +667,9 @@ function BareMetalRightleftSection() {
                             {feature.description.slice(0, 25)}...
                           </p>
                           <div className="mt-1.5 sm:mt-2">
-                            <div className="h-1 w-full bg-slate-200/50 rounded-full sm:h-1.5 dark:bg-gray-600/50">
+                            <div className="h-1 w-full rounded-full bg-slate-200/50 sm:h-1.5 dark:bg-gray-600/50">
                               <div
-                                className="h-1 bg-[#0055ff] rounded-full transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
+                                className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full sm:h-1.5 dark:bg-blue-400"
                                 style={{ width: `${60 + index * 10}%` }}
                               ></div>
                             </div>
@@ -672,7 +680,7 @@ function BareMetalRightleftSection() {
                   ))}
                 </div>
                 {/* 模拟状态栏 */}
-                <div className="flex flex-col space-y-2 border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm rounded-lg sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
+                <div className="flex flex-col space-y-2 rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-gray-600/20 dark:bg-gray-800/30 dark:text-gray-300">
                   <div className="flex items-center space-x-2 sm:space-x-4">
                     <span className="flex items-center space-x-1">
                       <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
@@ -711,14 +719,14 @@ export default function BareMetalPage() {
           {/* 页面标题 */}
           <div className="border-b border-slate-200 bg-white">
             <div className="mx-auto max-w-[1800px] px-4 pt-24 pb-6 sm:px-6 lg:px-8">
-              <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+              <h1 className="text-2xl font-bold tracking-tight text-slate-900">
                 独立物理服务器专区
               </h1>
               <p className="mt-2 text-sm text-slate-500">
                 <span className="font-medium text-[#F59E0B]">4核4G起步</span>
                 ，新用户低至
                 <span className="font-medium text-[#F59E0B]">79元/年</span>
-                <span className="ml-2 cursor-pointer text-[#0055ff] hover:text-[#0043cc] underline">
+                <span className="ml-2 cursor-pointer text-[#0055ff] underline hover:text-[#0043cc]">
                   活动规则&gt;
                 </span>
               </p>
@@ -731,18 +739,16 @@ export default function BareMetalPage() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col h-full overflow-hidden bg-white border border-slate-200 rounded-md transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
                 >
                   {/* Hover Gradient Background */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  <div className="relative z-10 flex flex-col h-full">
+                  <div className="relative z-10 flex h-full flex-col">
                     {/* 产品标题和标签 */}
                     <div className="border-b border-slate-100 p-6">
                       <div className="mb-4 flex items-center justify-between">
-                        <h3 className="text-lg font-medium text-slate-900">
-                          {product.name}
-                        </h3>
+                        <h3 className="text-lg font-medium text-slate-900">{product.name}</h3>
                         <svg
                           className="h-5 w-5 text-slate-400"
                           fill="none"
@@ -757,17 +763,17 @@ export default function BareMetalPage() {
                           />
                         </svg>
                       </div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xl font-bold text-slate-900 tracking-tight">
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="text-xl font-bold tracking-tight text-slate-900">
                           {product.subtitle}
                         </span>
                         {product.isHot && (
-                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="rounded border border-red-100 bg-red-50 px-2 py-0.5 text-xs text-red-600">
                             申请特惠
                           </span>
                         )}
                         {product.isRecommended && (
-                          <span className="rounded bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff] border border-blue-100">
+                          <span className="rounded border border-blue-100 bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff]">
                             申请特惠
                           </span>
                         )}
@@ -778,11 +784,11 @@ export default function BareMetalPage() {
                     </div>
 
                     {/* 产品规格信息 */}
-                    <div className="space-y-4 p-6 flex-grow">
+                    <div className="flex-grow space-y-4 p-6">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">规格</span>
                         <div className="flex items-center gap-1">
-                          <span className="font-medium text-slate-900 font-mono text-sm">
+                          <span className="font-mono text-sm font-medium text-slate-900">
                             {product.specs.cpu}
                           </span>
                           <svg
@@ -803,18 +809,14 @@ export default function BareMetalPage() {
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">地域</span>
-                        <span className="text-sm text-slate-900">
-                          {product.regions.join('/')}
-                        </span>
+                        <span className="text-sm text-slate-900">{product.regions.join('/')}</span>
                       </div>
 
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">时长</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-slate-900">
-                            {product.duration}
-                          </span>
-                          <span className="rounded bg-red-50 px-1.5 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="text-sm text-slate-900">{product.duration}</span>
+                          <span className="rounded border border-red-100 bg-red-50 px-1.5 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
                         </div>
@@ -823,11 +825,11 @@ export default function BareMetalPage() {
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-slate-500">数量</span>
                         <div className="flex items-center gap-2">
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
                             −
                           </button>
                           <span className="w-8 text-center text-sm text-slate-900">1</span>
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
                             +
                           </button>
                         </div>
@@ -835,10 +837,10 @@ export default function BareMetalPage() {
                     </div>
 
                     {/* 价格和折扣信息 */}
-                    <div className="border-t border-slate-100 p-6 bg-slate-50/50">
+                    <div className="border-t border-slate-100 bg-slate-50/50 p-6">
                       {product.discount && (
                         <div className="mb-3 flex items-center gap-2">
-                          <span className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100">
+                          <span className="rounded border border-red-100 bg-red-50 px-2 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
                           <span className="text-xs text-slate-500">限1个</span>
@@ -848,12 +850,12 @@ export default function BareMetalPage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm text-slate-500">活动价:</span>
-                          <span className="text-2xl font-bold text-[#EF4444] tracking-tight">
+                          <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
                             {product.currentPrice}
                           </span>
                           <span className="text-sm text-slate-500">元</span>
-                          <span className="text-xs text-slate-400 line-through ml-1">
-                            ¥{product.originalPrice.toFixed(2)}/月
+                          <span className="ml-1 text-xs text-slate-400 line-through">
+                            {formatPriceWithDecimals(product.originalPrice)}/月
                           </span>
                         </div>
                         <div className="mt-1 flex items-center gap-2">
@@ -869,7 +871,7 @@ export default function BareMetalPage() {
                           href="https://console.cloudcvm.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-medium text-slate-600 transition-all hover:text-slate-900 hover:border-slate-300 hover:bg-slate-50"
+                          className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-medium text-slate-600 transition-all hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
                         >
                           加入购物车
                         </a>

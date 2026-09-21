@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -16,8 +17,8 @@ import {
   Squares2X2Icon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 图标组件类型定义
@@ -61,37 +62,43 @@ const OVERVIEW_ITEMS: CommonCardItem[] = [
     icon: CpuChipIcon,
     eyebrow: '物理性能',
     title: '无虚拟化开销，性能无损',
-    description: '独占物理服务器资源，无虚拟化层性能损耗，CPU、内存、网络全面释放裸金属级算力，满足高性能计算场景需求。',
+    description:
+      '独占物理服务器资源，无虚拟化层性能损耗，CPU、内存、网络全面释放裸金属级算力，满足高性能计算场景需求。',
   },
   {
     icon: LockClosedIcon,
     eyebrow: '安全隔离',
     title: '单租户物理隔离，安全合规',
-    description: '计算、存储、网络资源完全独占，满足金融、政务等高合规行业要求，从物理层面保障数据安全与业务隔离。',
+    description:
+      '计算、存储、网络资源完全独占，满足金融、政务等高合规行业要求，从物理层面保障数据安全与业务隔离。',
   },
   {
     icon: BoltIcon,
     eyebrow: '弹性交付',
     title: '分钟级交付，弹性伸缩',
-    description: '将物理服务器采购周期从数周缩短至分钟级，支持按需创建与退还，灵活匹配业务波峰波谷，从容应对流量高峰。',
+    description:
+      '将物理服务器采购周期从数周缩短至分钟级，支持按需创建与退还，灵活匹配业务波峰波谷，从容应对流量高峰。',
   },
   {
     icon: CircleStackIcon,
     eyebrow: '高性能存储',
     title: '极速 IO，海量吞吐',
-    description: '支持本地 NVMe SSD 与高性能云硬盘，提供数百万 IOPS、亚毫秒级延迟，轻松承载数据库、大数据等高 IO 负载。',
+    description:
+      '支持本地 NVMe SSD 与高性能云硬盘，提供数百万 IOPS、亚毫秒级延迟，轻松承载数据库、大数据等高 IO 负载。',
   },
   {
     icon: CloudIcon,
     eyebrow: '网络增强',
     title: 'VPC 私有网络，高带宽低延迟',
-    description: '支持高达数十 Gbps 的内网带宽，搭配 VPC 私有网络实现安全互通，满足分布式集群、微服务架构的通信需求。',
+    description:
+      '支持高达数十 Gbps 的内网带宽，搭配 VPC 私有网络实现安全互通，满足分布式集群、微服务架构的通信需求。',
   },
   {
     icon: WrenchScrewdriverIcon,
     eyebrow: '便捷运维',
     title: '统一管理，API 驱动',
-    description: '支持控制台、API、CLI 多维度管理，提供带外监控、自动化告警与生命周期管理能力，运维效率倍增。',
+    description:
+      '支持控制台、API、CLI 多维度管理，提供带外监控、自动化告警与生命周期管理能力，运维效率倍增。',
   },
 ]
 
@@ -102,37 +109,43 @@ const SCENARIO_ITEMS: CommonCardItem[] = [
   {
     icon: CpuChipIcon,
     title: '高性能计算（HPC）',
-    description: '为基因测序、气象模拟、工业仿真等计算密集型场景提供极致算力，支持大规模并行计算与低延迟通信。',
+    description:
+      '为基因测序、气象模拟、工业仿真等计算密集型场景提供极致算力，支持大规模并行计算与低延迟通信。',
     tags: ['HPC', '仿真', '基因测序'],
   },
   {
     icon: ChartBarIcon,
     title: '大数据分析',
-    description: '高性能 CPU 与海量存储结合，支撑 Hadoop、Spark、Flink 等大数据引擎，加速海量数据挖掘与实时分析。',
+    description:
+      '高性能 CPU 与海量存储结合，支撑 Hadoop、Spark、Flink 等大数据引擎，加速海量数据挖掘与实时分析。',
     tags: ['Hadoop', 'Spark', '实时计算'],
   },
   {
     icon: Squares2X2Icon,
     title: '游戏业务',
-    description: '独占物理资源无抖动，保障游戏战斗服、大厅服务稳定运行。高并发承载与低延迟网络提升玩家对战体验。',
+    description:
+      '独占物理资源无抖动，保障游戏战斗服、大厅服务稳定运行。高并发承载与低延迟网络提升玩家对战体验。',
     tags: ['游戏服', '战斗服', '大厅服务'],
   },
   {
     icon: ShieldCheckIcon,
     title: '金融与合规行业',
-    description: '满足金融、保险、政务等行业对物理隔离与数据主权的要求，提供等保合规支持与审计能力。',
+    description:
+      '满足金融、保险、政务等行业对物理隔离与数据主权的要求，提供等保合规支持与审计能力。',
     tags: ['金融', '保险', '政务', '等保'],
   },
   {
     icon: CircleStackIcon,
     title: '核心数据库',
-    description: '为 Oracle、SQL Server、MySQL 等关键业务数据库提供独占物理资源，保障高并发、低延迟的数据访问体验。',
+    description:
+      '为 Oracle、SQL Server、MySQL 等关键业务数据库提供独占物理资源，保障高并发、低延迟的数据访问体验。',
     tags: ['Oracle', 'SQL Server', 'MySQL'],
   },
   {
     icon: ServerStackIcon,
     title: '容器与 AI 平台',
-    description: '支持 Kubernetes、Docker 等容器编排平台，为 AI 模型训练与推理提供 GPU 直通的高性能计算环境。',
+    description:
+      '支持 Kubernetes、Docker 等容器编排平台，为 AI 模型训练与推理提供 GPU 直通的高性能计算环境。',
     tags: ['Kubernetes', 'GPU', 'AI 训练'],
   },
 ]
@@ -238,19 +251,22 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: ShieldCheckIcon,
     title: 'DDoS 高防',
-    description: '为大规格裸金属服务器提供 T 级 DDoS 防护能力，保障游戏、金融等业务免受流量攻击影响。',
+    description:
+      '为大规格裸金属服务器提供 T 级 DDoS 防护能力，保障游戏、金融等业务免受流量攻击影响。',
     tags: ['DDoS', '流量清洗'],
   },
   {
     icon: CircleStackIcon,
     title: '高性能云硬盘',
-    description: '配套超高 IOPS 云硬盘，支持弹性扩容与快照备份，满足数据库与大数据场景的存储弹性需求。',
+    description:
+      '配套超高 IOPS 云硬盘，支持弹性扩容与快照备份，满足数据库与大数据场景的存储弹性需求。',
     tags: ['高性能存储', '弹性扩容'],
   },
   {
     icon: GlobeAltIcon,
     title: '专线接入',
-    description: '通过物理专线将裸金属服务器与本地数据中心打通，构建低延迟、高可靠的混合云网络架构。',
+    description:
+      '通过物理专线将裸金属服务器与本地数据中心打通，构建低延迟、高可靠的混合云网络架构。',
     tags: ['混合云', '专线'],
   },
   {
@@ -268,46 +284,11 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: LockClosedIcon,
     title: '密钥管理 KMS',
-    description: '提供加密密钥的集中管理与硬件安全模块（HSM）支持，满足金融级数据加密与合规审计需求。',
+    description:
+      '提供加密密钥的集中管理与硬件安全模块（HSM）支持，满足金融级数据加密与合规审计需求。',
     tags: ['加密', 'HSM'],
   },
 ]
-
-/**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
 
 /**
  * 动画卡片组件
@@ -385,9 +366,9 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -397,7 +378,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -435,11 +416,21 @@ function HeroSection() {
             兼具物理服务器性能与云服务器弹性的高性能计算实例。独占物理资源，无虚拟化损耗；分钟级交付，弹性伸缩。
             为高性能计算、大数据、核心数据库、游戏、金融等关键业务场景提供极致算力与安全合规保障。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               立即选购
             </Button>
-            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#overview"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               了解产品详情
             </Button>
           </div>
@@ -468,7 +459,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-[#0055ff]/20"
+          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
@@ -490,7 +481,8 @@ function OverviewSection() {
                   <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 单租户物理隔离
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 超大规格实例（最高数百核）
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" />{' '}
+                  超大规格实例（最高数百核）
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 本地 NVMe 极速存储
@@ -510,9 +502,13 @@ function OverviewSection() {
               <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                 <item.icon className="h-6 w-6" />
               </span>
-              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">{item.eyebrow}</span>
+              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">
+                {item.eyebrow}
+              </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
             </GlassCard>
           ))}
         </div>
@@ -526,7 +522,10 @@ function OverviewSection() {
  */
 function ScenariosSection() {
   return (
-    <section id="scenarios" className="scroll-mt-32 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="scenarios"
+      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
           <motion.div
@@ -570,7 +569,7 @@ function ScenariosSection() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-white px-2 py-0.5 text-xs font-medium text-slate-600 border border-slate-200"
+                        className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600"
                       >
                         {tag}
                       </span>
@@ -612,23 +611,23 @@ function PackagesSection() {
               <div className="mt-5 space-y-3 border-t border-slate-200 pt-5 text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">vCPU</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.cpu}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.cpu}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">内存</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.memory}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.memory}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">存储</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.storage}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.storage}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">网络</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.network}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.network}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">GPU</span>
-                  <span className="font-semibold text-slate-900 font-mono">{item.gpu}</span>
+                  <span className="font-mono font-semibold text-slate-900">{item.gpu}</span>
                 </div>
               </div>
               <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-[#0055ff]">
@@ -648,7 +647,7 @@ function PackagesSection() {
  */
 function OSSection() {
   return (
-    <section id="os" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section id="os" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Operating System"
@@ -717,7 +716,10 @@ function AdvantagesSection() {
  */
 function ProductsSection() {
   return (
-    <section id="products" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="products"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Related Products"
@@ -732,7 +734,9 @@ function ProductsSection() {
                 <item.icon className="h-6 w-6" />
               </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
               {item.tags && item.tags.length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
@@ -758,7 +762,10 @@ function ProductsSection() {
  */
 function CTASection() {
   return (
-    <section id="cta" className="scroll-mt-20 bg-[#0055ff] py-16 md:py-24 text-center relative overflow-hidden">
+    <section
+      id="cta"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+    >
       <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -774,14 +781,24 @@ function CTASection() {
             释放裸金属极致算力
           </h2>
           <p className="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
-            分钟级交付，物理性能无损，覆盖华北、华东、华南及香港等核心地域。
-            为您的 HPC、数据库、游戏与 AI 业务提供企业级算力基础。
+            分钟级交付，物理性能无损，覆盖华北、华东、华南及香港等核心地域。 为您的
+            HPC、数据库、游戏与 AI 业务提供企业级算力基础。
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-xl px-8 py-3 font-medium text-[#0055ff]">
+            <Button
+              href="/contact"
+              color="white"
+              variant="erlieSolid"
+              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+            >
               立即选购实例
             </Button>
-            <Button href="/demo" variant="erlieOutline" color="white" className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+            <Button
+              href="/demo"
+              variant="erlieOutline"
+              color="white"
+              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
+            >
               预约方案演示
             </Button>
           </div>

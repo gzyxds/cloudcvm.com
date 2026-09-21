@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -23,8 +24,8 @@ import {
   SwatchIcon,
   ChartBarIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 图标组件类型定义
@@ -68,37 +69,43 @@ const OVERVIEW_ITEMS: CommonCardItem[] = [
     icon: PuzzlePieceIcon,
     eyebrow: '统一入口',
     title: '一站式 API 接入',
-    description: '统一的 API 接口与 Token 管理，一次接入即可调用多个大模型，无需逐一适配各厂商的接口规范与认证体系。',
+    description:
+      '统一的 API 接口与 Token 管理，一次接入即可调用多个大模型，无需逐一适配各厂商的接口规范与认证体系。',
   },
   {
     icon: Squares2X2Icon,
     eyebrow: '多模型聚合',
     title: '主流及第三方模型全覆盖',
-    description: '整合优质自研与第三方大模型，覆盖通用对话、深度推理、代码生成、视觉理解、图像与视频生成等多类场景能力。',
+    description:
+      '整合优质自研与第三方大模型，覆盖通用对话、深度推理、代码生成、视觉理解、图像与视频生成等多类场景能力。',
   },
   {
     icon: BoltIcon,
     eyebrow: '高性能',
     title: '低延迟、高并发推理',
-    description: '基于高性能 GPU 推理集群，提供毫秒级响应与万级并发承载能力，满足生产环境对实时性与稳定性的严格要求。',
+    description:
+      '基于高性能 GPU 推理集群，提供毫秒级响应与万级并发承载能力，满足生产环境对实时性与稳定性的严格要求。',
   },
   {
     icon: ShieldCheckIcon,
     eyebrow: '安全合规',
     title: '企业级数据安全',
-    description: '支持私有网络部署、数据加密传输与访问控制策略，确保企业数据在调用过程中的安全性与合规性。',
+    description:
+      '支持私有网络部署、数据加密传输与访问控制策略，确保企业数据在调用过程中的安全性与合规性。',
   },
   {
     icon: CommandLineIcon,
     eyebrow: '灵活集成',
     title: 'SDK + API 无缝嵌入',
-    description: '提供多语言 SDK、RESTful API 与 WebSocket 流式接口，轻松嵌入现有业务系统与开发工作流。',
+    description:
+      '提供多语言 SDK、RESTful API 与 WebSocket 流式接口，轻松嵌入现有业务系统与开发工作流。',
   },
   {
     icon: ChartBarIcon,
     eyebrow: '可观测性',
     title: '用量监控与成本管理',
-    description: '实时监控 API 调用量、Token 消耗与响应延迟，提供多维度报表与预算告警，帮助企业精细化运营 AI 成本。',
+    description:
+      '实时监控 API 调用量、Token 消耗与响应延迟，提供多维度报表与预算告警，帮助企业精细化运营 AI 成本。',
   },
 ]
 
@@ -109,13 +116,15 @@ const SCENARIO_ITEMS: CommonCardItem[] = [
   {
     icon: ChatBubbleLeftRightIcon,
     title: '通用对话',
-    description: '构建智能客服、AI 助手、虚拟角色等对话式 AI 应用，支持多轮对话、上下文记忆与个性化指令。',
+    description:
+      '构建智能客服、AI 助手、虚拟角色等对话式 AI 应用，支持多轮对话、上下文记忆与个性化指令。',
     tags: ['智能客服', 'AI 助手', '虚拟角色'],
   },
   {
     icon: LightBulbIcon,
     title: '深度推理',
-    description: '面向复杂逻辑推理、数学解题、代码审计等场景，调用具有深度思考能力的模型，输出结构化分析结果。',
+    description:
+      '面向复杂逻辑推理、数学解题、代码审计等场景，调用具有深度思考能力的模型，输出结构化分析结果。',
     tags: ['逻辑推理', '数学', '代码审计'],
   },
   {
@@ -133,7 +142,8 @@ const SCENARIO_ITEMS: CommonCardItem[] = [
   {
     icon: PaintBrushIcon,
     title: '图像生成',
-    description: '基于文本描述生成高质量图像，支持风格定制、分辨率调节与批量生成，满足设计与创意需求。',
+    description:
+      '基于文本描述生成高质量图像，支持风格定制、分辨率调节与批量生成，满足设计与创意需求。',
     tags: ['文生图', '风格定制', '批量生成'],
   },
   {
@@ -268,46 +278,11 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: GlobeAltIcon,
     title: 'CDN 加速',
-    description: '将生成内容分发至全球边缘节点，加速 AI 生成图片与视频的交付速度，提升最终用户体验。',
+    description:
+      '将生成内容分发至全球边缘节点，加速 AI 生成图片与视频的交付速度，提升最终用户体验。',
     tags: ['加速', '分发', '全球'],
   },
 ]
-
-/**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
 
 /**
  * 动画卡片组件
@@ -385,9 +360,9 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -397,7 +372,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -436,11 +411,21 @@ function HeroSection() {
             覆盖通用对话、深度推理、代码生成、视觉理解、图像生成、视频生成等多类场景。
             支持按量调用、保障型资源与专属部署三种服务模式，帮助您简单、高效地获取 AI 算力。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               立即接入
             </Button>
-            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#overview"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               Explore API Docs
             </Button>
           </div>
@@ -469,7 +454,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-[#0055ff]/20"
+          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
@@ -477,8 +462,8 @@ function OverviewSection() {
                 一个 Token 调用所有模型
               </h3>
               <p className="mt-4 text-base leading-relaxed text-white/80">
-                无需逐一对接各模型厂商的接口规范与认证体系。通过 TokenHub 统一 API，
-                即可访问 DeepSeek、Qwen、GLM、Claude 等主流模型，自动路由与负载调度，开发效率大幅提升。
+                无需逐一对接各模型厂商的接口规范与认证体系。通过 TokenHub 统一 API， 即可访问
+                DeepSeek、Qwen、GLM、Claude 等主流模型，自动路由与负载调度，开发效率大幅提升。
               </p>
             </div>
             <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
@@ -511,9 +496,13 @@ function OverviewSection() {
               <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                 <item.icon className="h-6 w-6" />
               </span>
-              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">{item.eyebrow}</span>
+              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">
+                {item.eyebrow}
+              </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
             </GlassCard>
           ))}
         </div>
@@ -527,7 +516,10 @@ function OverviewSection() {
  */
 function ScenariosSection() {
   return (
-    <section id="scenarios" className="scroll-mt-32 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="scenarios"
+      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
           <motion.div
@@ -571,7 +563,7 @@ function ScenariosSection() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-white px-2 py-0.5 text-xs font-medium text-slate-600 border border-slate-200"
+                        className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600"
                       >
                         {tag}
                       </span>
@@ -603,7 +595,7 @@ function PricingSection() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PRICING_ITEMS.map((item, index) => (
             <GlassCard key={item.name} delay={index * 0.1} className="flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="mb-4 flex items-center gap-3">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                   <item.icon className="h-5 w-5" />
                 </span>
@@ -612,7 +604,7 @@ function PricingSection() {
                   <span className="text-sm font-semibold text-[#0055ff]">{item.price}</span>
                 </div>
               </div>
-              <p className="text-sm leading-relaxed text-slate-500 mb-5">{item.description}</p>
+              <p className="mb-5 text-sm leading-relaxed text-slate-500">{item.description}</p>
               <div className="mt-auto space-y-2.5 border-t border-slate-200 pt-5">
                 {item.features.map((feat) => (
                   <div key={feat} className="flex items-center gap-2 text-sm">
@@ -634,7 +626,7 @@ function PricingSection() {
  */
 function ModelsSection() {
   return (
-    <section id="models" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section id="models" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Models"
@@ -703,7 +695,10 @@ function AdvantagesSection() {
  */
 function ProductsSection() {
   return (
-    <section id="products" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="products"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Ecosystem"
@@ -718,7 +713,9 @@ function ProductsSection() {
                 <item.icon className="h-6 w-6" />
               </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
               {item.tags && item.tags.length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
@@ -744,7 +741,10 @@ function ProductsSection() {
  */
 function CTASection() {
   return (
-    <section id="cta" className="scroll-mt-20 bg-[#0055ff] py-16 md:py-24 text-center relative overflow-hidden">
+    <section
+      id="cta"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+    >
       <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -764,10 +764,20 @@ function CTASection() {
             按量调用零门槛起步，专业技术团队全程支持，助您快速构建 AI 原生应用。
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-xl px-8 py-3 font-medium text-[#0055ff]">
+            <Button
+              href="/contact"
+              color="white"
+              variant="erlieSolid"
+              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+            >
               立即接入 API
             </Button>
-            <Button href="/demo" variant="erlieOutline" color="white" className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+            <Button
+              href="/demo"
+              variant="erlieOutline"
+              color="white"
+              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
+            >
               预约技术咨询
             </Button>
           </div>

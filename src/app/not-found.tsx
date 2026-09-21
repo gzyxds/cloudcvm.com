@@ -10,14 +10,19 @@ import {
   ArrowRightIcon,
 } from '@heroicons/react/24/outline'
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { Button } from '@/components/ui/Button'
+import { Container } from '@/components/ui/Container'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 
 const suggestions = [
   { name: '返回首页', description: '回到 CloudCVM 官网首页', href: '/', icon: HomeIcon },
-  { name: '产品中心', description: '浏览云计算与 AI 产品', href: '/ecs/', icon: MagnifyingGlassIcon },
+  {
+    name: '产品中心',
+    description: '浏览云计算与 AI 产品',
+    href: '/ecs/',
+    icon: MagnifyingGlassIcon,
+  },
   { name: '联系我们', description: '获取专业技术支持', href: '/contact/', icon: EnvelopeIcon },
 ]
 
@@ -48,7 +53,7 @@ export default function NotFound() {
                 backgroundSize: '48px 48px',
               }}
             />
-            <div className="absolute left-1/2 top-0 h-[40rem] w-[80rem] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(56,96,244,0.06),transparent)]" />
+            <div className="absolute top-0 left-1/2 h-[40rem] w-[80rem] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(56,96,244,0.06),transparent)]" />
           </div>
 
           <Container className="relative">
@@ -60,10 +65,10 @@ export default function NotFound() {
                 transition={{ duration: 0.5 }}
                 className="relative inline-block"
               >
-                <span className="text-[8rem] font-bold leading-none tracking-tighter text-brand-100 sm:text-[10rem] lg:text-[12rem]">
+                <span className="text-[8rem] leading-none font-bold tracking-tighter text-brand-100 sm:text-[10rem] lg:text-[12rem]">
                   404
                 </span>
-                <span className="absolute inset-0 flex items-center justify-center text-[8rem] font-bold leading-none tracking-tighter text-brand-500 sm:text-[10rem] lg:text-[12rem]">
+                <span className="absolute inset-0 flex items-center justify-center text-[8rem] leading-none font-bold tracking-tighter text-brand-500 sm:text-[10rem] lg:text-[12rem]">
                   404
                 </span>
               </motion.div>

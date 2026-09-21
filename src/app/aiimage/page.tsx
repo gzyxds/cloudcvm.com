@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -25,8 +26,8 @@ import {
   SwatchIcon,
   UserIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 图标组件类型定义
@@ -119,25 +120,29 @@ const SCENARIO_ITEMS: CommonCardItem[] = [
   {
     icon: PaintBrushIcon,
     title: '创作中心',
-    description: '选择图片或视频模型，设置尺寸、张数、时长等参数，可上传最多 4 张示例图，支持提示词一键润色。',
+    description:
+      '选择图片或视频模型，设置尺寸、张数、时长等参数，可上传最多 4 张示例图，支持提示词一键润色。',
     tags: ['文生图', '图生图', '批量生成'],
   },
   {
     icon: ChatBubbleLeftRightIcon,
     title: '对话创作',
-    description: '先与文字模型以 SSE 流式沟通风格方案，确认设计卡后再扣费出图 / 出视频，创作方向更可控。',
+    description:
+      '先与文字模型以 SSE 流式沟通风格方案，确认设计卡后再扣费出图 / 出视频，创作方向更可控。',
     tags: ['SSE 流式', '设计卡', '风格方案'],
   },
   {
     icon: BoltIcon,
     title: '进度同步',
-    description: '本站 WebSocket 实时推送生成进度，进程重启后可恢复未完成任务，长任务无需守着等待。',
+    description:
+      '本站 WebSocket 实时推送生成进度，进程重启后可恢复未完成任务，长任务无需守着等待。',
     tags: ['WebSocket', '实时推送', '任务恢复'],
   },
   {
     icon: CircleStackIcon,
     title: '结果落盘',
-    description: '生成成功后写入默认储存桶并以公开地址展示；可配置保存天数、到期自动清理，已投稿广场的作品永久保留。',
+    description:
+      '生成成功后写入默认储存桶并以公开地址展示；可配置保存天数、到期自动清理，已投稿广场的作品永久保留。',
     tags: ['公开地址', '自动清理', '永久保留'],
   },
   {
@@ -149,7 +154,8 @@ const SCENARIO_ITEMS: CommonCardItem[] = [
   {
     icon: LightBulbIcon,
     title: '广场与收藏',
-    description: '任务记录参数与计费折叠查看；收藏 / 投稿广场后可通过「同款创作」预填创作页，降低二次创作成本。',
+    description:
+      '任务记录参数与计费折叠查看；收藏 / 投稿广场后可通过「同款创作」预填创作页，降低二次创作成本。',
     tags: ['任务记录', '同款创作', '收藏投稿'],
   },
 ]
@@ -162,21 +168,29 @@ const PRICING_ITEMS = [
     name: '在线创作计费',
     icon: BoltIcon,
     price: '按量扣积分',
-    description: '图片按基价 × 张数 × 尺寸系数计费；视频 / 文字按单价 × 次数（视频可按时长），积分余额 / 单价 / 扣费支持最多四位小数。',
-    features: ['图片：基价 × 张数 × 尺寸系数', '视频 / 文字：单价 × 次数', '各类型独立积分单价', '无需最低消费'],
+    description:
+      '图片按基价 × 张数 × 尺寸系数计费；视频 / 文字按单价 × 次数（视频可按时长），积分余额 / 单价 / 扣费支持最多四位小数。',
+    features: [
+      '图片：基价 × 张数 × 尺寸系数',
+      '视频 / 文字：单价 × 次数',
+      '各类型独立积分单价',
+      '无需最低消费',
+    ],
   },
   {
     name: '套餐订阅',
     icon: ShieldCheckIcon,
     price: '积分包 / 折扣',
-    description: '套餐可编排积分包、折扣、固定单价、免费额度、尺寸系数与模型白名单；用户在线开通套餐，一人同时仅一个套餐生效。',
+    description:
+      '套餐可编排积分包、折扣、固定单价、免费额度、尺寸系数与模型白名单；用户在线开通套餐，一人同时仅一个套餐生效。',
     features: ['积分包与折扣', '固定单价与免费额度', '尺寸系数与模型白名单', '在线开通'],
   },
   {
     name: '在线充值',
     icon: CircleStackIcon,
     price: '支付宝 / 微信 / QQ',
-    description: '支持档位或自定义数量在线充积分；易支付 V1/V2（支付宝 / 微信 / QQ），管理员可查单、手工补单。',
+    description:
+      '支持档位或自定义数量在线充积分；易支付 V1/V2（支付宝 / 微信 / QQ），管理员可查单、手工补单。',
     features: ['档位或自定义数量充值', '易支付 V1/V2', '管理员查单', '手工补单'],
   },
 ]
@@ -290,70 +304,40 @@ const WORKFLOW_ITEMS: CommonCardItem[] = [
   {
     icon: UserIcon,
     title: '注册 / 登录',
-    description: '落地页免登录即可了解平台；注册支持验证码、短信 / 邮箱、聚合登录与实名认证，登录后进入创作首页 / 个人工作台。',
+    description:
+      '落地页免登录即可了解平台；注册支持验证码、短信 / 邮箱、聚合登录与实名认证，登录后进入创作首页 / 个人工作台。',
   },
   {
     icon: CircleStackIcon,
     title: '开通套餐或充值积分',
-    description: '在线开通套餐或按档位 / 自定义数量充值；图片按基价 × 张数 × 尺寸系数，视频 / 文字按单价 × 次数（视频可按时长）。',
+    description:
+      '在线开通套餐或按档位 / 自定义数量充值；图片按基价 × 张数 × 尺寸系数，视频 / 文字按单价 × 次数（视频可按时长）。',
   },
   {
     icon: PaintBrushIcon,
     title: '创作中心 / 对话创作',
-    description: '在创作中心选择图片或视频模型生成；也可先与文字模型沟通风格方案，确认设计卡后再扣费出图 / 出视频。',
+    description:
+      '在创作中心选择图片或视频模型生成；也可先与文字模型沟通风格方案，确认设计卡后再扣费出图 / 出视频。',
   },
   {
     icon: BoltIcon,
     title: '结果入库 · 进度推送',
-    description: '结果写入默认储存桶并以公开地址展示；WebSocket 实时推送进度，出图成功 / 失败可通过八爪鱼渠道提醒。',
+    description:
+      '结果写入默认储存桶并以公开地址展示；WebSocket 实时推送进度，出图成功 / 失败可通过八爪鱼渠道提醒。',
   },
   {
     icon: Squares2X2Icon,
     title: '任务记录 · 广场再创作',
-    description: '任务记录查看参数与计费；收藏 / 投稿广场后可通过「同款创作」预填创作页，降低二次创作成本。',
+    description:
+      '任务记录查看参数与计费；收藏 / 投稿广场后可通过「同款创作」预填创作页，降低二次创作成本。',
   },
   {
     icon: CodeBracketIcon,
     title: '开放密钥接入自有系统',
-    description: '（可选）个人中心创建开放密钥，兼容 OpenAI 风格接口，扣费走账号积分，对接第三方或同系统渠道。',
+    description:
+      '（可选）个人中心创建开放密钥，兼容 OpenAI 风格接口，扣费走账号积分，对接第三方或同系统渠道。',
   },
 ]
-
-/**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
 
 /**
  * 动画卡片组件
@@ -431,9 +415,9 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -443,7 +427,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -484,8 +468,8 @@ function HeroSection() {
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-[#eff6ff] to-slate-50">
       {/* 背景光晕装饰 */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#0055ff]/10 blur-3xl" />
-        <div className="absolute -left-24 bottom-[-30%] h-72 w-72 rounded-full bg-sky-300/20 blur-3xl" />
+        <div className="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-[#0055ff]/10 blur-3xl" />
+        <div className="absolute bottom-[-30%] -left-24 h-72 w-72 rounded-full bg-sky-300/20 blur-3xl" />
       </div>
 
       <Container className="relative z-10 w-full pt-20 pb-14 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-24">
@@ -497,7 +481,7 @@ function HeroSection() {
         >
           {/* 左列：文案区 */}
           <div>
-            <span className="inline-flex max-w-full items-start gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[12px] font-semibold leading-snug text-[#0055ff] shadow-sm sm:text-[13px]">
+            <span className="inline-flex max-w-full items-start gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-[12px] leading-snug font-semibold text-[#0055ff] shadow-sm sm:text-[13px]">
               <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#0055ff] shadow-[0_0_0_4px_rgba(0,85,255,0.16)]" />
               AI 图像 · 视频 · 音乐 · 对话 一站式创作与商业运营平台
             </span>
@@ -511,17 +495,27 @@ function HeroSection() {
             </h1>
 
             <p className="mt-6 max-w-[560px] text-base leading-relaxed text-slate-500 sm:text-lg">
-              智言 AI 作图是集 AI 图像 / 视频 / 音乐 / 对话创作于一体的多模态创作平台。
-              支持智能体与 Skills、可视化工作流、积分商业化、分站加盟、QQ 机器人触达与开放 API，
+              智言 AI 作图是集 AI 图像 / 视频 / 音乐 / 对话创作于一体的多模态创作平台。 支持智能体与
+              Skills、可视化工作流、积分商业化、分站加盟、QQ 机器人触达与开放 API，
               帮助创作者、站长与企业轻松创作并规模化变现。
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-              <Button href="/demo" color="blue" variant="erlieSolid" className="w-full rounded-lg sm:w-auto">
+              <Button
+                href="/demo"
+                color="blue"
+                variant="erlieSolid"
+                className="w-full rounded-lg sm:w-auto"
+              >
                 立即开始创作
                 <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Button>
-              <Button href="/demo" variant="erlieOutline" color="slate" className="w-full rounded-lg sm:w-auto">
+              <Button
+                href="/demo"
+                variant="erlieOutline"
+                color="slate"
+                className="w-full rounded-lg sm:w-auto"
+              >
                 <PlayIcon className="mr-2 h-4 w-4" />
                 购买源码
               </Button>
@@ -576,7 +570,7 @@ function HeroSection() {
                     <p className="text-xs text-slate-500">今日生成任务</p>
                     <p className="mt-1 text-lg font-extrabold tracking-tight text-slate-900 sm:text-[21px]">
                       1,284
-                      <em className="ml-1.5 rounded bg-green-50 px-1.5 py-0.5 align-middle text-[11.5px] font-bold not-italic text-green-600">
+                      <em className="ml-1.5 rounded bg-green-50 px-1.5 py-0.5 align-middle text-[11.5px] font-bold text-green-600 not-italic">
                         +32.5%
                       </em>
                     </p>
@@ -585,7 +579,7 @@ function HeroSection() {
                     <p className="text-xs text-slate-500">平均生成耗时</p>
                     <p className="mt-1 text-lg font-extrabold tracking-tight text-[#0055ff] sm:text-[21px]">
                       6.8s
-                      <em className="ml-1.5 rounded bg-[#eff6ff] px-1.5 py-0.5 align-middle text-[11.5px] font-bold not-italic text-[#0055ff]">
+                      <em className="ml-1.5 rounded bg-[#eff6ff] px-1.5 py-0.5 align-middle text-[11.5px] font-bold text-[#0055ff] not-italic">
                         稳定
                       </em>
                     </p>
@@ -593,14 +587,19 @@ function HeroSection() {
                 </div>
 
                 <div className="mt-3.5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-dashed border-slate-300 px-3 py-2.5 sm:px-4 sm:py-3">
-                  <span className="text-xs font-semibold text-slate-500 sm:text-[12.5px]">覆盖创作模态</span>
+                  <span className="text-xs font-semibold text-slate-500 sm:text-[12.5px]">
+                    覆盖创作模态
+                  </span>
                   <div className="flex flex-wrap gap-2">
                     {channelPills.map((pill) => (
                       <span
                         key={pill.name}
                         className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-xs font-semibold text-slate-600 sm:px-2.5 sm:py-1"
                       >
-                        <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: pill.color }} />
+                        <span
+                          className="h-1.5 w-1.5 rounded-full"
+                          style={{ backgroundColor: pill.color }}
+                        />
                         {pill.name}
                       </span>
                     ))}
@@ -625,8 +624,12 @@ function HeroSection() {
                         <span className="truncate text-[11px] text-slate-400">{row.id}</span>
                       </div>
                       <div className="ml-auto shrink-0 text-right leading-tight">
-                        <b className="block text-[13.5px] font-semibold text-slate-800">{row.status}</b>
-                        <span className="text-[11px] font-semibold text-green-600">{row.detail}</span>
+                        <b className="block text-[13.5px] font-semibold text-slate-800">
+                          {row.status}
+                        </b>
+                        <span className="text-[11px] font-semibold text-green-600">
+                          {row.detail}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -660,7 +663,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-[#0055ff]/20"
+          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
@@ -668,7 +671,8 @@ function OverviewSection() {
                 一套底座 · 两条角色入口 · 六块核心能力
               </h3>
               <p className="mt-4 text-base leading-relaxed text-white/80">
-                从在线创作到开放 API，形成可运营、可对接的完整闭环。管理员统一配置模型渠道、积分套餐与支付，
+                从在线创作到开放
+                API，形成可运营、可对接的完整闭环。管理员统一配置模型渠道、积分套餐与支付，
                 普通用户通过个人工作台、创作中心与素材广场完成创作，落地页免登录即可了解平台能力。
               </p>
             </div>
@@ -676,19 +680,24 @@ function OverviewSection() {
               <p className="text-sm font-semibold text-[#eff6ff]">角色与核心能力</p>
               <ul className="mt-4 space-y-3 text-sm text-white/90">
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 管理员：运营仪表盘 / 模型渠道 / 支付与储存
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 管理员：运营仪表盘 /
+                  模型渠道 / 支付与储存
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 普通用户：工作台 / 创作中心 / 素材广场
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 普通用户：工作台 /
+                  创作中心 / 素材广场
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> AI 创作：文生图 / 图生图 / 文生视频
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> AI 创作：文生图 /
+                  图生图 / 文生视频
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 积分套餐：按量计费 / 套餐编排 / 在线充值
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 积分套餐：按量计费 /
+                  套餐编排 / 在线充值
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 开放 API：OpenAI 风格 / 同系统对接
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 开放 API：OpenAI 风格 /
+                  同系统对接
                 </li>
               </ul>
             </div>
@@ -702,9 +711,13 @@ function OverviewSection() {
               <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                 <item.icon className="h-6 w-6" />
               </span>
-              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">{item.eyebrow}</span>
+              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">
+                {item.eyebrow}
+              </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
             </GlassCard>
           ))}
         </div>
@@ -718,7 +731,10 @@ function OverviewSection() {
  */
 function ScenariosSection() {
   return (
-    <section id="scenarios" className="scroll-mt-32 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="scenarios"
+      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
           <motion.div
@@ -738,14 +754,16 @@ function ScenariosSection() {
               进度同步与消息提醒保障体验，结果落盘与广场收藏沉淀作品资产。
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
-              {['创作中心', '对话创作', '任务记录', '素材广场', '积分套餐', '开放 API'].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-sm font-medium text-slate-600"
-                >
-                  {tag}
-                </span>
-              ))}
+              {['创作中心', '对话创作', '任务记录', '素材广场', '积分套餐', '开放 API'].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-sm font-medium text-slate-600"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
             </div>
           </motion.div>
 
@@ -762,7 +780,7 @@ function ScenariosSection() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md bg-white px-2 py-0.5 text-xs font-medium text-slate-600 border border-slate-200"
+                        className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600"
                       >
                         {tag}
                       </span>
@@ -794,7 +812,7 @@ function PricingSection() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PRICING_ITEMS.map((item, index) => (
             <GlassCard key={item.name} delay={index * 0.1} className="flex flex-col">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="mb-4 flex items-center gap-3">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                   <item.icon className="h-5 w-5" />
                 </span>
@@ -803,7 +821,7 @@ function PricingSection() {
                   <span className="text-sm font-semibold text-[#0055ff]">{item.price}</span>
                 </div>
               </div>
-              <p className="text-sm leading-relaxed text-slate-500 mb-5">{item.description}</p>
+              <p className="mb-5 text-sm leading-relaxed text-slate-500">{item.description}</p>
               <div className="mt-auto space-y-2.5 border-t border-slate-200 pt-5">
                 {item.features.map((feat) => (
                   <div key={feat} className="flex items-center gap-2 text-sm">
@@ -825,7 +843,7 @@ function PricingSection() {
  */
 function ModelsSection() {
   return (
-    <section id="models" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section id="models" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Models"
@@ -868,7 +886,8 @@ function ArchitectureSection() {
     {
       icon: CodeBracketIcon,
       title: '前端',
-      description: 'Vue3 + Vben Admin + Ant Design Vue，Hash 路由，管理端与用户端同 SPA 按角色分流。',
+      description:
+        'Vue3 + Vben Admin + Ant Design Vue，Hash 路由，管理端与用户端同 SPA 按角色分流。',
       tags: ['Vue3', 'Vben Admin', 'Ant Design Vue'],
     },
     {
@@ -898,7 +917,10 @@ function ArchitectureSection() {
   ]
 
   return (
-    <section id="architecture" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="architecture"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Architecture"
@@ -913,7 +935,9 @@ function ArchitectureSection() {
                 <item.icon className="h-6 w-6" />
               </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {item.tags.map((tag) => (
                   <span
@@ -966,7 +990,10 @@ function AdvantagesSection() {
  */
 function ProductsSection() {
   return (
-    <section id="products" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="products"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="OpenAPI"
@@ -981,7 +1008,9 @@ function ProductsSection() {
                 <item.icon className="h-6 w-6" />
               </span>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
               {item.tags && item.tags.length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
@@ -1007,7 +1036,10 @@ function ProductsSection() {
  */
 function CTASection() {
   return (
-    <section id="cta" className="scroll-mt-20 bg-[#0055ff] py-16 md:py-24 text-center relative overflow-hidden">
+    <section
+      id="cta"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+    >
       <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1023,14 +1055,24 @@ function CTASection() {
             一套底座，两条角色入口，六块核心能力
           </h2>
           <p className="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
-            从在线创作到开放 API，形成可运营、可对接的完整闭环。
-            注册 / 登录后进入创作中心即可开始创作，专业技术团队全程支持您的 AI 作图平台落地。
+            从在线创作到开放 API，形成可运营、可对接的完整闭环。 注册 /
+            登录后进入创作中心即可开始创作，专业技术团队全程支持您的 AI 作图平台落地。
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-xl px-8 py-3 font-medium text-[#0055ff]">
+            <Button
+              href="/contact"
+              color="white"
+              variant="erlieSolid"
+              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+            >
               立即开始创作
             </Button>
-            <Button href="/demo" variant="erlieOutline" color="white" className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+            <Button
+              href="/demo"
+              variant="erlieOutline"
+              color="white"
+              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
+            >
               预约技术咨询
             </Button>
           </div>
@@ -1065,7 +1107,9 @@ function WorkflowSection() {
                 </span>
               </div>
               <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                {item.description}
+              </p>
             </GlassCard>
           ))}
         </div>

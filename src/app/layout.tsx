@@ -2,8 +2,8 @@ import { type Metadata } from 'next'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
-import Top from '@/components/common/Top'
-import Analytics from '@/components/Analytics'
+import FloatingToolbar from '@/components/layout/FloatingToolbar'
+import Analytics from '@/components/analytics/Analytics'
 import { seoConfig } from '@/config/seo.config'
 
 /**
@@ -52,42 +52,22 @@ export const metadata: Metadata = {
       { url: '/images/logos/icon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.ico',
-    apple: [
-      { url: '/images/logos/icon.svg', type: 'image/svg+xml' },
-    ],
+    apple: [{ url: '/images/logos/icon.svg', type: 'image/svg+xml' }],
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="zh-CN"
-      className={clsx(
-        'h-full scroll-smooth bg-white antialiased'
-      )}
-    >
+    <html lang="zh-CN" className={clsx('h-full scroll-smooth bg-white antialiased')}>
       <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#3860F4" />
         {/* 搜索引擎验证 */}
         {seoConfig.verification.google && (
-          <meta
-            name="google-site-verification"
-            content={seoConfig.verification.google}
-          />
+          <meta name="google-site-verification" content={seoConfig.verification.google} />
         )}
         {seoConfig.verification.baidu && (
-          <meta
-            name="baidu-site-verification"
-            content={seoConfig.verification.baidu}
-          />
+          <meta name="baidu-site-verification" content={seoConfig.verification.baidu} />
         )}
         {/* JSON-LD 结构化数据 */}
         <script
@@ -112,14 +92,7 @@ export default function RootLayout({
                 contactOption: 'TollFree',
                 areaServed: 'CN',
               },
-              knowsAbout: [
-                'Cloud Computing',
-                '云服务器',
-                'CDN',
-                'SSL证书',
-                'AI系统',
-                '人工智能',
-              ],
+              knowsAbout: ['Cloud Computing', '云服务器', 'CDN', 'SSL证书', 'AI系统', '人工智能'],
             }),
           }}
         />
@@ -127,7 +100,7 @@ export default function RootLayout({
       <body className="flex h-full flex-col">
         <Analytics />
         {children}
-        <Top />
+        <FloatingToolbar />
       </body>
     </html>
   )

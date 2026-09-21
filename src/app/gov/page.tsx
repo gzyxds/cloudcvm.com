@@ -1,5 +1,6 @@
 'use client'
 
+import { useActiveSection } from '@/hooks/useActiveSection'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
@@ -17,8 +18,8 @@ import {
   ShieldCheckIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
+import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 
 /**
  * 图标组件类型定义
@@ -61,31 +62,36 @@ const OVERVIEW_ITEMS: CommonCardItem[] = [
     icon: BuildingLibraryIcon,
     eyebrow: '自主可控',
     title: '平台自主研发全面可控',
-    description: '云平台核心技术自主研发，产品体系完备，提供安全、可靠、弹性、按需供给的云计算框架和服务。',
+    description:
+      '云平台核心技术自主研发，产品体系完备，提供安全、可靠、弹性、按需供给的云计算框架和服务。',
   },
   {
     icon: ShieldCheckIcon,
     eyebrow: '安全合规',
     title: '政务级安全防护',
-    description: '满足等保三级要求，数据加密存储与传输，全程操作审计，保障政务数据安全不丢失、业务不中断。',
+    description:
+      '满足等保三级要求，数据加密存储与传输，全程操作审计，保障政务数据安全不丢失、业务不中断。',
   },
   {
     icon: ArrowPathIcon,
     eyebrow: '弹性',
     title: '快速部署弹性扩展',
-    description: '打破传统建设周期长的瓶颈，分钟级完成资源交付，灵活应对疫情等突发事件带来的业务冲击。',
+    description:
+      '打破传统建设周期长的瓶颈，分钟级完成资源交付，灵活应对疫情等突发事件带来的业务冲击。',
   },
   {
     icon: WrenchScrewdriverIcon,
     eyebrow: '专业运维',
     title: '智能化运维管理',
-    description: '全天候对 IT 基础设施运行状态监控告警，实施智能化专业运维，建立统一的服务监管与安全保障体系。',
+    description:
+      '全天候对 IT 基础设施运行状态监控告警，实施智能化专业运维，建立统一的服务监管与安全保障体系。',
   },
   {
     icon: GlobeAltIcon,
     eyebrow: '数据共享',
     title: '隐私计算数据开放',
-    description: '依托安全屋提供合规化数据在线共享方案，实现数据所有权与使用权分离，打破部门数据孤岛。',
+    description:
+      '依托安全屋提供合规化数据在线共享方案，实现数据所有权与使用权分离，打破部门数据孤岛。',
   },
 ]
 
@@ -96,22 +102,26 @@ const CHALLENGE_ITEMS: CommonCardItem[] = [
   {
     icon: ArrowPathIcon,
     title: '建设周期长',
-    description: '传统建设方式周期长，动辄一年甚至几年，后期扩容受初期规划限制，无法满足政务应用快速部署需求。',
+    description:
+      '传统建设方式周期长，动辄一年甚至几年，后期扩容受初期规划限制，无法满足政务应用快速部署需求。',
   },
   {
     icon: WrenchScrewdriverIcon,
     title: '运维专业度低',
-    description: '各部门独立建设数据机房，重复建设严重，能耗高且缺少专业化运维，不易建立统一的服务监管和安全保障体系。',
+    description:
+      '各部门独立建设数据机房，重复建设严重，能耗高且缺少专业化运维，不易建立统一的服务监管和安全保障体系。',
   },
   {
     icon: LockClosedIcon,
     title: '安全性要求高',
-    description: '政务数据不能丢失，重点应用业务不能中断；政务数据安全等级高，备份存储也需高安全防护。',
+    description:
+      '政务数据不能丢失，重点应用业务不能中断；政务数据安全等级高，备份存储也需高安全防护。',
   },
   {
     icon: BuildingLibraryIcon,
     title: '业务拓展压力大',
-    description: '各部门分散建设形成跨部门烟囱，安全合规性参差不齐，传统架构兼容性差且无法满足国产化逐步替代要求。',
+    description:
+      '各部门分散建设形成跨部门烟囱，安全合规性参差不齐，传统架构兼容性差且无法满足国产化逐步替代要求。',
   },
 ]
 
@@ -151,7 +161,8 @@ const ADVANTAGE_ITEMS: CommonCardItem[] = [
 const ARCHITECTURE_POINTS = [
   {
     label: '接入层',
-    description: '统一政务门户与 API 网关，提供身份认证、权限管理、访问控制能力，保障各委办局安全接入。',
+    description:
+      '统一政务门户与 API 网关，提供身份认证、权限管理、访问控制能力，保障各委办局安全接入。',
   },
   {
     label: '应用层',
@@ -182,7 +193,8 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: CpuChipIcon,
     title: '弹性云服务器 ECS',
-    description: '承载政务应用与业务系统，支持国产化芯片与操作系统，满足信创要求，保障政务业务稳定运行。',
+    description:
+      '承载政务应用与业务系统，支持国产化芯片与操作系统，满足信创要求，保障政务业务稳定运行。',
     tags: ['国产化适配', '弹性计算'],
   },
   {
@@ -194,7 +206,8 @@ const PRODUCT_ITEMS: CommonCardItem[] = [
   {
     icon: CloudIcon,
     title: '对象存储 OSS',
-    description: '存储政务文件、档案与影像资料，支持高持久性与归档分层，满足政务数据长期保存合规要求。',
+    description:
+      '存储政务文件、档案与影像资料，支持高持久性与归档分层，满足政务数据长期保存合规要求。',
     tags: ['归档分层', '高持久性'],
   },
   {
@@ -236,12 +249,14 @@ const CAPABILITY_ITEMS: CommonCardItem[] = [
   {
     icon: BuildingLibraryIcon,
     title: '政务云',
-    description: '用于承载各级政务部门开展公共服务、社会管理的业务信息系统，满足跨部门业务协同、数据共享的需要。',
+    description:
+      '用于承载各级政务部门开展公共服务、社会管理的业务信息系统，满足跨部门业务协同、数据共享的需要。',
   },
   {
     icon: GlobeAltIcon,
     title: '政府数据开放',
-    description: '以数据沙箱、加密技术、安全多方计算等隐私计算技术，构建数据共享环境和数据开放生态。',
+    description:
+      '以数据沙箱、加密技术、安全多方计算等隐私计算技术，构建数据共享环境和数据开放生态。',
   },
   {
     icon: AcademicCapIcon,
@@ -251,46 +266,10 @@ const CAPABILITY_ITEMS: CommonCardItem[] = [
   {
     icon: WrenchScrewdriverIcon,
     title: '智慧运维',
-    description: '通过智能化的数据采集、异常检测与智能告警能力，简化运维管理操作，提升业务健康状况。',
+    description:
+      '通过智能化的数据采集、异常检测与智能告警能力，简化运维管理操作，提升业务健康状况。',
   },
 ]
-
-/**
- * 自定义 Hook：监听滚动以更新当前激活的导航项
- * @param sectionIds - 需要监听的 section id 数组
- */
-function useActiveSection(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0] ?? '')
-
-  useEffect(() => {
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((section): section is HTMLElement => section !== null)
-
-    if (sections.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio)[0]
-
-        if (visibleEntry) {
-          setActiveSection(visibleEntry.target.id)
-        }
-      },
-      {
-        rootMargin: '-30% 0px -55% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      }
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [sectionIds])
-
-  return activeSection
-}
 
 /**
  * 动画卡片组件 - 实现玻璃拟态与微交互
@@ -376,9 +355,9 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
-        <div className="-mb-px flex justify-start sm:justify-center overflow-x-auto scrollbar-hide">
+        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
             const isActive = item.id === activeSection
             return (
@@ -388,7 +367,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300'
+                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -427,11 +406,21 @@ function HeroSection() {
           <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             为政府行业提供自主可控、安全合规的云上部署方案，覆盖政务云、数据共享、智慧城市与国产化替代全场景，助力数字政府建设。
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-4 sm:flex-wrap">
-            <Button href="/contact" color="blue" variant="erlieSolid" className="rounded-lg w-full sm:w-auto">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Button
+              href="/contact"
+              color="blue"
+              variant="erlieSolid"
+              className="w-full rounded-lg sm:w-auto"
+            >
               获取定制方案
             </Button>
-            <Button href="#overview" variant="erlieOutline" color="slate" className="rounded-lg w-full sm:w-auto">
+            <Button
+              href="#overview"
+              variant="erlieOutline"
+              color="slate"
+              className="w-full rounded-lg sm:w-auto"
+            >
               查看方案详情
             </Button>
           </div>
@@ -461,7 +450,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white sm:p-8 lg:p-10 shadow-xl shadow-[#0055ff]/20"
+          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_300px] lg:gap-12">
             <div>
@@ -520,7 +509,10 @@ function OverviewSection() {
  */
 function ChallengesSection() {
   return (
-    <section id="challenges" className="scroll-mt-32 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="challenges"
+      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
           <motion.div
@@ -556,12 +548,8 @@ function ChallengesSection() {
                 <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-[#0055ff] shadow-sm">
                   <item.icon className="h-5 w-5" />
                 </span>
-                <h3 className="text-base font-semibold text-slate-900">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                  {item.description}
-                </p>
+                <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.description}</p>
               </GlassCard>
             ))}
           </div>
@@ -592,9 +580,7 @@ function AdvantagesSection() {
                 <item.icon className="h-7 w-7" />
               </span>
               <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-slate-500">
-                {item.description}
-              </p>
+              <p className="mt-3 text-base leading-relaxed text-slate-500">{item.description}</p>
             </GlassCard>
           ))}
         </div>
@@ -609,7 +595,10 @@ function AdvantagesSection() {
  */
 function ArchitectureSection() {
   return (
-    <section id="architecture" className="scroll-mt-20 bg-white py-16 md:py-24 border-y border-slate-200">
+    <section
+      id="architecture"
+      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Architecture Design"
@@ -622,9 +611,7 @@ function ArchitectureSection() {
             {ARCHITECTURE_POINTS.map((point, index) => (
               <GlassCard key={point.label} delay={index * 0.1} className="bg-slate-50/50">
                 <h3 className="text-base font-bold text-[#0055ff]">{point.label}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                  {point.description}
-                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{point.description}</p>
               </GlassCard>
             ))}
           </div>
@@ -635,7 +622,7 @@ function ArchitectureSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-4 rounded-2xl bg-slate-900 p-6 sm:p-8 shadow-2xl"
+            className="flex flex-col gap-4 rounded-2xl bg-slate-900 p-6 shadow-2xl sm:p-8"
           >
             <div className="flex h-14 items-center justify-center rounded-xl bg-white font-bold text-slate-900 shadow-sm">
               政务应用层
@@ -722,7 +709,7 @@ function ProductsSection() {
  */
 function CapabilitySection() {
   return (
-    <section className="bg-white py-16 md:py-24 border-t border-slate-200">
+    <section className="border-t border-slate-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Scenario Solutions"
@@ -732,15 +719,17 @@ function CapabilitySection() {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CAPABILITY_ITEMS.map((item, index) => (
-            <GlassCard key={item.title} delay={index * 0.1} className="flex items-start gap-4 p-5 bg-slate-50/50">
+            <GlassCard
+              key={item.title}
+              delay={index * 0.1}
+              className="flex items-start gap-4 bg-slate-50/50 p-5"
+            >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
                 <item.icon className="h-6 w-6" />
               </span>
               <div className="min-w-0">
                 <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                  {item.description}
-                </p>
+                <p className="mt-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
               </div>
             </GlassCard>
           ))}
@@ -756,7 +745,10 @@ function CapabilitySection() {
  */
 function CTASection() {
   return (
-    <section id="cta" className="scroll-mt-20 bg-[#0055ff] py-16 md:py-24 text-center relative overflow-hidden">
+    <section
+      id="cta"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+    >
       <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -775,10 +767,20 @@ function CTASection() {
             联系我们的政务方案顾问，获取专属架构规划与测试资源，助力数字政府建设。
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button href="/contact" color="white" variant="erlieSolid" className="rounded-xl px-8 py-3 font-medium text-[#0055ff]">
+            <Button
+              href="/contact"
+              color="white"
+              variant="erlieSolid"
+              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+            >
               联系专属顾问
             </Button>
-            <Button href="/demo" variant="erlieOutline" color="white" className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10">
+            <Button
+              href="/demo"
+              variant="erlieOutline"
+              color="white"
+              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
+            >
               预约产品演示
             </Button>
           </div>

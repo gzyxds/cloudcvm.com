@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { SiteShell } from '@/components/layout/SiteShell'
 
 // ==================== 金融行业解决方案页面 SEO 元数据配置 ====================
 export const metadata: Metadata = {
@@ -36,16 +35,6 @@ export const metadata: Metadata = {
  * 提供统一的导航栏、页脚和SEO配置
  * @param children - 子组件内容
  */
-export default function FinanceLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900">
-      <Header />
-      <main className="flex-grow">{children}</main>
-      <Footer />
-    </div>
-  )
+export default function FinanceLayout({ children }: { children: React.ReactNode }) {
+  return <SiteShell>{children}</SiteShell>
 }

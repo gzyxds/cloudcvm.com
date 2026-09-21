@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 import { seoConfig } from './seo.config'
 
 /**
@@ -11,8 +11,7 @@ export function generateSitemap(): MetadataRoute.Sitemap {
 
   // 使用配置文件中的页面路径
   const routes = seoConfig.pages.map((page) => {
-    const normalizedPath =
-      page.path === '/' ? '/' : `${page.path.replace(/\/$/, '')}/`
+    const normalizedPath = page.path === '/' ? '/' : `${page.path.replace(/\/$/, '')}/`
     return {
       url: `${baseUrl}${normalizedPath}`,
       lastModified,
