@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cloudcvm",
+  "compatibility_date": "2026-09-22",
+  "assets": {
+    // 纯静态导出站点：out/ 直接作为 Workers 静态资产发布，不需要 Worker 脚本
+    "directory": "./out",
+    "not_found_handling": "404-page",
+  },
+}

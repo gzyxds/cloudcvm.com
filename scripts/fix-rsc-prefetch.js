@@ -3,10 +3,12 @@
 /**
  * 修复 Next.js 16 静态导出的 RSC 预取路径错位（上游 bug：vercel/next.js#85374）
  *
- * 现象：构建把负载写成 out/<route>/__next.<seg>/__PAGE__.txt，
+ * 现象（仅 Windows 本地构建）：构建把负载写成 out/<route>/__next.<seg>/__PAGE__.txt，
  *      客户端预取却请求 <route>/__next.<seg>.__PAGE__.txt → 404，预取失效
  *      （导航本身不受影响：点击时会回退到 <route>/index.txt）
- * 处理：按客户端期望的文件名复制一份负载。上游修复后可删除本脚本与 postbuild 钩子。
+ * 处理：按客户端期望的文件名复制一份负载。
+ * 说明：Linux（CI / Cloudflare 构建）产出的 out/ 没有该嵌套目录，本脚本自动跳过；
+ *      它的作用是让「Windows 本地构建出的静态产物」与生产行为一致。
  *
  * 用法：
  *   node scripts/fix-rsc-prefetch.js            # 由 package.json 的 postbuild 自动执行
@@ -43,7 +45,7 @@ const jobs = []
 collect(outDir, jobs)
 
 if (jobs.length === 0) {
-  console.log('[skip] out/ 下没有 __next.<seg>/__PAGE__.txt（上游可能已修复，可考虑移除本脚本）')
+  console.log('[skip] 未发现需要修复的 __next.<seg>/__PAGE__.txt（Linux/CI 构建无此目录布局，属正常）')
   process.exit(0)
 }
 
