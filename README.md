@@ -53,61 +53,49 @@
 
 ```
 cloudcvm.com/
-├── .next/                  # Next.js 构建输出目录
-├── .trae/                  # Trae AI 配置目录
-│   └── rules/             # 项目开发规则
-├── public/                # 静态资源目录
-│   ├── favicon.ico        # 网站图标
-│   └── images/           # 公共图片资源
-├── src/                   # 源代码目录
-│   ├── app/              # Next.js 16 App Router 页面
-│   │   ├── (auth)/       # 路由组：认证相关页面
-│   │   │   ├── login/    # 登录页面
-│   │   │   │   └── page.tsx
-│   │   │   ├── register/ # 注册页面
-│   │   │   │   └── page.tsx
-│   │   │   └── layout.tsx # 认证布局
-│   │   ├── about/        # 关于页面
-│   │   │   └── page.tsx
-│   │   ├── globals.css   # 全局样式
-│   │   ├── layout.tsx    # 根布局
-│   │   ├── page.tsx      # 首页
-│   │   └── not-found.tsx # 404 页面
-│   ├── components/       # 组件目录
-│   │   ├── common/       # 通用组件
-│   │   │   ├── Button.tsx    # 可复用按钮组件
-│   │   │   ├── Container.tsx # 响应式容器组件
-│   │   │   ├── Fields.tsx    # 表单字段组件
-│   │   │   ├── Logo.tsx      # 品牌Logo组件
-│   │   │   ├── NavLink.tsx   # 导航链接组件
-│   │   │   └── SlimLayout.tsx # 简洁布局组件
-│   │   ├── layout/       # 布局组件
-│   │   │   ├── Footer.tsx    # 页脚导航
-│   │   │   └── Header.tsx    # 响应式导航栏
-│   │   └── sections/     # 页面区块组件
-│   │       ├── CallToAction.tsx      # 行动号召区块
-│   │       ├── Faqs.tsx             # 常见问题
-│   │       ├── Hero.tsx             # 首页英雄区块
-│   │       ├── Pricing.tsx          # 价格展示
-│   │       ├── PrimaryFeatures.tsx  # 主要功能特性
-│   │       ├── SecondaryFeatures.tsx # 次要功能特性
-│   │       └── Testimonials.tsx     # 用户评价
-│   ├── images/           # 图片资源
-│   │   ├── avatars/      # 用户头像
-│   │   ├── logos/        # 品牌和合作伙伴Logo
-│   │   ├── screenshots/  # 产品截图
-│   │   └── background-*.jpg # 背景图片
-│   └── styles/           # 样式文件
-│       └── tailwind.css  # Tailwind CSS 主样式文件
-├── .eslintrc.json        # ESLint 配置
-├── .gitignore           # Git 忽略文件
-├── next.config.js       # Next.js 配置
-├── package.json         # 项目依赖和脚本
-├── postcss.config.js    # PostCSS 配置
-├── prettier.config.js   # Prettier 代码格式化配置
-├── README.md           # 项目文档
-├── tailwind.config.js  # Tailwind CSS 配置
-└── tsconfig.json       # TypeScript 配置
+├── .github/workflows/ci.yml        # CI：npm ci → typecheck → lint → build → validate-seo
+├── .husky/                         # pre-commit 钩子（lint-staged：eslint --fix + prettier --write）
+├── public/                         # 静态资源（直接映射到站点根目录）
+│   ├── images/                     # 图片（以 WebP 为主；联系人二维码/Logo 等保留原格式）
+│   ├── videos/                     # 首页轮播视频（4 个 mp4）
+│   └── favicon.ico / favicon.png / manifest.json
+├── scripts/                        # 工具脚本（被 ESLint 忽略）
+│   ├── optimize-images.js          # PNG/JPG → WebP（两道闸门：变大即丢弃 / 收益<15% 丢弃）
+│   ├── update-image-refs.js        # 改写代码中的图片引用（含 .css 的 url()）
+│   ├── cleanup-originals.js        # 删除原图（先反查引用再删）
+│   ├── validate-seo.js             # 校验 out/ 的 robots.txt / sitemap.xml
+│   ├── generate-ico.js             # 由 favicon.png 生成 favicon.ico
+│   ├── serve-out.js                # 本地预览静态产物 out/（:8099）
+│   └── fix-rsc-prefetch.js         # postbuild：修 Windows 本地构建的 RSC 预取路径
+├── src/
+│   ├── app/                        # App Router：48 个路由页 + 21 个 layout
+│   │   ├── layout.tsx              # 根布局（全局 metadata / JSON-LD / 主题色）
+│   │   ├── page.tsx                # 首页
+│   │   ├── error.tsx / not-found.tsx
+│   │   ├── robots.ts / sitemap.ts  # robots.txt / sitemap.xml 生成器
+│   │   └── <route>/page.tsx        # 各业务页（ecs、ai、cdn、retail、human、ssl …）
+│   ├── components/                 # 51 个组件，按职责分层
+│   │   ├── ui/         (4)         # Button、Container、Logo、SectionHeader
+│   │   ├── layout/     (7)         # SiteShell、Header、Footer、MegaMenu、MobileMenu …
+│   │   ├── sections/  (33)         # 页面区块：home/(9)、shared/(13)、ai/(10+data)
+│   │   ├── effects/    (1)         # PixelBlast（three.js，仅 /human 用，dynamic + ssr:false）
+│   │   ├── analytics/  (1)         # Analytics
+│   │   ├── carousel/   (1)         # VideoCarousel
+│   │   └── css/        (4)         # CSS Module（存量冻结，新样式走 Tailwind）
+│   ├── config/                     # seo / robots / sitemap 配置
+│   ├── data/                       # navigation.ts（导航数据）
+│   ├── hooks/                      # useActiveSection、useDebouncedHover
+│   ├── images/                     # 少量经模块导入的图（avatars、screenshots）
+│   ├── lib/                        # format.ts、utils.ts
+│   ├── styles/tailwind.css         # 全站 Design Token 源（brand 色阶、radius、shadow、keyframes）
+│   └── types/                      # product.ts、css.d.ts
+├── 开发文档/                        # 项目文档（长期记忆 / 技术文档 / 规范与优化记录）
+├── next.config.js                  # output:'export' / images.unoptimized / trailingSlash
+├── wrangler.jsonc                  # Cloudflare Workers 部署（out/ 作为静态资产）
+├── eslint.config.mjs               # ESLint 9 flat config
+├── postcss.config.js / prettier.config.js / tsconfig.json
+├── AGENTS.md / CLAUDE.md           # Next 16 自动生成，指向版本匹配的官方文档
+└── out/ / .next/                   # 构建产物（git 忽略）
 ```
 
 ## 🚀 快速开始
@@ -157,37 +145,22 @@ npm run lint
 
 ### 主要页面
 
-1. **首页 (`/`)**: 展示产品特性、价格、客户评价等完整营销内容
-2. **登录页面 (`/login`)**: 用户登录界面
-3. **注册页面 (`/register`)**: 用户注册界面，包含完整的表单验证
+全站 48 个静态页面，按业务线划分：
+
+1. **首页 (`/`)**: 活动轮播 → 云服务器 Hero → 产品标签页 → 价格 → 解决方案 → 案例 → FAQ → 页脚
+2. **云计算产品页**: `/ecs`、`/host`、`/server`、`/windows`、`/cdn`、`/ssl`、`/gpu`、`/lighthouse`
+3. **AI 产品页**: `/ai`、`/chat`、`/human`、`/work`、`/paper`、`/video` 等
+4. **行业解决方案页**: `/ecommerce`、`/retail`、`/finance`、`/game`、`/gov`、`/mobile`
+
+> 页面 SEO metadata 分散在各 `layout.tsx`；新增页面时不要丢。
 
 ### 核心组件
 
-#### Hero 组件
-
-- 展示主要价值主张
-- 包含行动号召按钮
-- 显示合作伙伴 Logo
-
-#### PrimaryFeatures 组件
-
-- 展示产品的主要功能特性
-- 响应式网格布局
-
-#### Pricing 组件
-
-- 展示不同的价格方案
-- 支持月付/年付切换
-
-#### Testimonials 组件
-
-- 客户评价和推荐
-- 头像和评价内容展示
-
-#### Faqs 组件
-
-- 常见问题解答
-- 可折叠的问答列表
+- **首页区块** `sections/home/`：Hero、Leftright、Rightleft、Price、PrimaryFeatures、TwoColumnShowcase、Testimonials、Zone、LogoClouds
+- **跨页共享区块** `sections/shared/`：ServiceTabs、PriceCard、Faqs、Scenario、Solution、Advantage、BentoGrids、CapabilityGrid 等
+- **AI 专区区块** `sections/ai/`：AiHeroSection、AiScene、HotProducts、AiSolutionSection、ProductsSection 等
+- **布局组件** `layout/`：SiteShell（14 个 layout 用的通用外壳）、Header + MegaMenu/MobileMenu、Footer
+- **基础组件** `ui/`：Button、Container、Logo、SectionHeader
 
 ## 📊 代码质量分析
 
@@ -203,11 +176,10 @@ npm run lint
 
 ### 🔍 发现的问题和改进建议
 
-#### 1. 配置文件缺失
+#### 1. Tailwind v4 主题配置位置
 
-- **问题**：缺少 `tailwind.config.js` 配置文件
-- **影响**：无法自定义 Tailwind CSS 主题和扩展
-- **建议**：创建 `tailwind.config.js` 文件，配置自定义主题
+- **说明**：项目使用 Tailwind CSS **v4**，主题 token（brand 色阶、radius、shadow、keyframes）直接定义在
+  `src/styles/tailwind.css` 的 `@theme` 段——**没有也不需要 `tailwind.config.js`**（v4 起配置文件不再必需）
 
 #### 2. 代码格式化问题
 
@@ -229,9 +201,7 @@ npm run lint
 
 #### 5. 错误处理机制
 
-- **问题**：缺少全局错误边界和错误处理
-- **影响**：用户体验和调试困难
-- **建议**：添加 `error.tsx` 和全局错误处理机制
+- **现状**：已有 `src/app/error.tsx`（错误边界）与 `src/app/not-found.tsx`（404 页），静态导出产物中同时生成 `out/404.html`
 
 ## 🔧 自定义指南
 
@@ -253,11 +223,11 @@ npm run lint
 
 2. **替换 Logo**
 
-   更新 `src/components/Logo.tsx` 组件中的 Logo 内容
+   更新 `src/components/ui/Logo.tsx` 组件中的 Logo 内容
 
 3. **修改主题色彩**
 
-   在 Tailwind CSS 配置中自定义颜色方案
+   编辑 `src/styles/tailwind.css` 的 `@theme` 段（全站 Design Token 的唯一定义处）
 
 ### 组件开发规范
 
@@ -315,13 +285,15 @@ git commit -m "refactor(components): 优化按钮组件结构"
 
 ### 1. 图片优化
 
-```bash
-# 安装图片优化工具
-npm install --save-dev imagemin imagemin-webp
+项目自带图片流水线（`scripts/`），新增图片后按序执行：
 
-# 转换图片为 WebP 格式
-npx imagemin src/images/**/*.{jpg,png} --out-dir=src/images/optimized --plugin=webp
+```bash
+npm run images:optimize            # PNG/JPG → WebP（转完更大或收益 <15% 会自动丢弃）
+node scripts/update-image-refs.js  # 改写代码引用（含 .css 的 url()）
+node scripts/cleanup-originals.js  # 删除原图（先反查引用再删）
 ```
+
+> ⚠️ 静态导出下 `next/image` 只是普通 `<img>`（`images.unoptimized: true`），图片优化必须在构建前完成。
 
 ### 2. 代码分割
 

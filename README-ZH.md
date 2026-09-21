@@ -51,14 +51,14 @@ cloudcvm.com/
 │   │   ├── page.tsx         # 首页
 │   │   ├── robots.ts        # Robots.txt 配置
 │   │   └── sitemap.ts       # Sitemap 配置
-│   ├── components/          # 通用组件
-│   │   ├── ai/              # AI 相关组件
-│   │   ├── carousel/        # 轮播图组件
-│   │   ├── common/          # 通用组件
-│   │   ├── css/             # CSS 模块
-│   │   ├── Header.tsx       # 页头组件
-│   │   ├── Footer.tsx       # 页脚组件
-│   │   └── ...              # 其他组件
+│   ├── components/          # 通用组件（按职责分层，共 51 个）
+│   │   ├── ui/              # 基础组件（Button、Container、Logo、SectionHeader）
+│   │   ├── layout/          # 布局组件（SiteShell、Header、Footer、MegaMenu、MobileMenu…）
+│   │   ├── sections/        # 页面区块（home / shared / ai）
+│   │   ├── effects/         # PixelBlast（three.js，仅 /human 用）
+│   │   ├── carousel/        # VideoCarousel
+│   │   ├── css/             # CSS Module（存量冻结，新样式走 Tailwind）
+│   │   └── ...              # analytics 等
 │   ├── config/              # 配置文件
 │   ├── images/              # 图片资源
 │   └── styles/              # 全局样式
