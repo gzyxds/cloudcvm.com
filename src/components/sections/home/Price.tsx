@@ -84,18 +84,20 @@ const CardFooter = memo(function CardFooter({
   price,
   unit,
   originalPrice,
-  priceColor = 'text-[#1d2129]',
+  priceColor = 'text-neutral-900',
   infoBox,
   buttons,
 }: CardFooterProps) {
   return (
     <div className="mt-auto px-6 py-5">
-      <div className="mb-4 rounded-md bg-[#f7f8fa] px-3 py-2 text-xs text-[#4e5969]">{infoBox}</div>
+      <div className="mb-4 rounded-md bg-neutral-50 px-3 py-2 text-xs text-neutral-500">
+        {infoBox}
+      </div>
       <div className="mb-2 flex items-baseline gap-1">
         <span className={clsx('text-3xl font-bold', priceColor)}>¥{price}</span>
-        <span className="text-sm text-[#86909c]">{unit}</span>
+        <span className="text-sm text-neutral-500">{unit}</span>
       </div>
-      <div className="mb-5 text-xs text-[#86909c] line-through">日常价：{originalPrice} 元</div>
+      <div className="mb-5 text-xs text-neutral-500 line-through">日常价：{originalPrice} 元</div>
       <div className="flex gap-3">{buttons}</div>
     </div>
   )
@@ -104,11 +106,7 @@ const CardFooter = memo(function CardFooter({
 /**
  * 基础卡片组件 - Bento Grid 风格的卡片布局
  *
- * 设计规范参考：
- * - 边框：默认 #E2E8F0
- * - 阴影：Hover shadow-lg
- * - 圆角：rounded-lg (8px)
- * - 字体颜色：#1d2129 (Primary), #4e5969 (Secondary)
+ * 使用 neutral 边框和文字、rounded-lg 卡片及悬停阴影。
  */
 const Card = memo(function Card({
   title,
@@ -125,13 +123,13 @@ const Card = memo(function Card({
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.4 }}
       className={clsx(
-        'group relative flex h-full flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300',
+        'group relative flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white transition-all duration-300',
         featured ? 'shadow-md' : 'hover:-translate-y-1 hover:shadow-xl',
         className
       )}
     >
       {badge && (
-        <div className="absolute top-0 left-0 z-10 rounded-br-lg bg-[#1664ff] px-3 py-1 text-xs font-medium text-white shadow-sm">
+        <div className="absolute top-0 left-0 z-10 rounded-br-lg bg-brand-500 px-3 py-1 text-xs font-medium text-white shadow-sm">
           {badge}
         </div>
       )}
@@ -142,13 +140,13 @@ const Card = memo(function Card({
             'relative px-6 pt-10 pb-6',
             topBgColor ||
               (featured
-                ? 'bg-gradient-to-br from-[#eff6ff] to-white'
-                : 'bg-gradient-to-br from-[#f7f8fa] to-white')
+                ? 'bg-gradient-to-br from-brand-50 to-white'
+                : 'bg-gradient-to-br from-neutral-50 to-white')
           )}
         >
-          <h3 className="text-xl font-bold text-[#1d2129]">{title}</h3>
+          <h3 className="text-xl font-bold text-neutral-900">{title}</h3>
           {/* 装饰性背景元素 */}
-          <div className="absolute top-0 right-0 h-24 w-24 translate-x-8 -translate-y-8 rounded-full bg-gradient-to-br from-[#1664ff]/5 to-transparent blur-2xl" />
+          <div className="absolute top-0 right-0 h-24 w-24 translate-x-8 -translate-y-8 rounded-full bg-gradient-to-br from-brand-500/5 to-transparent blur-2xl" />
         </div>
       )}
       <div className="flex flex-1 flex-col">{children}</div>
@@ -171,12 +169,12 @@ interface SpecRowProps {
  * 规格行组件 - 展示配置项的标签和值
  */
 const SpecRow = ({ label, value, icon: Icon, highlight = false }: SpecRowProps) => (
-  <div className="flex items-center justify-between border-b border-[#f2f3f5] px-6 py-3 text-sm transition-colors group-hover:bg-[#fcfcfd] last:border-b-0">
+  <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-3 text-sm transition-colors group-hover:bg-neutral-50 last:border-b-0">
     <div className="flex items-center gap-2">
-      {Icon && <Icon className="h-4 w-4 text-[#86909c]" />}
-      <span className="text-[#86909c]">{label}</span>
+      {Icon && <Icon className="h-4 w-4 text-neutral-500" />}
+      <span className="text-neutral-500">{label}</span>
     </div>
-    <span className={clsx('font-medium', highlight ? 'text-[#1664ff]' : 'text-[#1d2129]')}>
+    <span className={clsx('font-medium', highlight ? 'text-brand-500' : 'text-neutral-900')}>
       {value}
     </span>
   </div>
@@ -380,7 +378,7 @@ const lightServerPlans: LightServerPlan[] = [
 const ServerCard = memo(function ServerCard({ plan }: ServerCardProps) {
   return (
     <Card title={plan.name} featured={plan.featured} badge={plan.featured ? '热销推荐' : undefined}>
-      <p className="border-b border-[#f2f3f5] px-6 py-4 text-sm leading-relaxed text-[#4e5969]">
+      <p className="border-b border-neutral-200 px-6 py-4 text-sm leading-relaxed text-neutral-500">
         {plan.description}
       </p>
       <SpecRow label="系统" value={plan.os} />
@@ -394,7 +392,7 @@ const ServerCard = memo(function ServerCard({ plan }: ServerCardProps) {
         originalPrice={plan.originalPrice}
         infoBox={
           <div className="flex items-center gap-2">
-            <ShieldCheckIcon className="h-4 w-4 text-[#1664ff]" />
+            <ShieldCheckIcon className="h-4 w-4 text-brand-500" />
             <span>BGP智能路由+精品网混合接入</span>
           </div>
         }
@@ -402,14 +400,14 @@ const ServerCard = memo(function ServerCard({ plan }: ServerCardProps) {
           <>
             <a
               href={LIGHT_CART_URL}
-              className="flex-1 rounded-md border border-[#e5e6eb] bg-white py-2 text-center text-sm font-medium text-[#1d2129] transition-all hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+              className="flex-1 rounded-md border border-neutral-200 bg-white py-2 text-center text-sm font-medium text-neutral-900 transition-all hover:bg-neutral-50 hover:text-brand-500"
               aria-label="加入购物车"
             >
               加购
             </a>
             <a
               href={LIGHT_CART_URL}
-              className="flex-1 rounded-md bg-[#1664ff] py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
+              className="flex-1 rounded-md bg-brand-500 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-brand-600 hover:shadow-md"
               aria-label="立即购买"
             >
               购买
@@ -430,10 +428,10 @@ const LightServerCard = memo(function LightServerCard({ server }: LightServerCar
       title={server.name}
       featured={server.featured}
       badge={server.badge}
-      topBgColor={server.featured ? 'bg-gradient-to-br from-[#e8f3ff] to-white' : undefined}
+      topBgColor={server.featured ? 'bg-gradient-to-br from-brand-50 to-white' : undefined}
     >
-      <div className="border-b border-[#f2f3f5] px-6 py-4">
-        <p className="text-sm leading-relaxed text-[#4e5969]">{server.config}</p>
+      <div className="border-b border-neutral-200 px-6 py-4">
+        <p className="text-sm leading-relaxed text-neutral-500">{server.config}</p>
       </div>
       <SpecRow label="配置" value={server.specs} />
       <SpecRow label="地域" value={server.location} />
@@ -442,10 +440,10 @@ const LightServerCard = memo(function LightServerCard({ server }: LightServerCar
         price={server.price}
         unit={server.unit}
         originalPrice={server.originalPrice}
-        priceColor="text-[#1664ff]"
+        priceColor="text-brand-500"
         infoBox={
           <div className="flex items-center gap-2">
-            <SparklesIcon className="h-4 w-4 text-[#1664ff]" />
+            <SparklesIcon className="h-4 w-4 text-brand-500" />
             <span>{server.discount} 限1个人</span>
           </div>
         }
@@ -453,14 +451,14 @@ const LightServerCard = memo(function LightServerCard({ server }: LightServerCar
           <>
             <a
               href={ECS_CART_URL}
-              className="flex-1 rounded-md bg-[#1664ff] py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
+              className="flex-1 rounded-md bg-brand-500 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:bg-brand-600 hover:shadow-md"
               aria-label="立即购买"
             >
               立即抢购
             </a>
             <a
               href={ECS_CART_URL}
-              className="flex-1 rounded-md border border-[#e5e6eb] bg-white py-2 text-center text-sm font-medium text-[#1d2129] transition-all hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+              className="flex-1 rounded-md border border-neutral-200 bg-white py-2 text-center text-sm font-medium text-neutral-900 transition-all hover:bg-neutral-50 hover:text-brand-500"
               aria-label="找相似"
             >
               找相似
@@ -479,7 +477,7 @@ const LightServerCard = memo(function LightServerCard({ server }: LightServerCar
 export function Price() {
   return (
     <div
-      className="relative min-h-screen overflow-hidden bg-[#F8FAFC] pb-16"
+      className="relative min-h-screen overflow-hidden bg-neutral-50 pb-16"
       style={{
         backgroundImage: 'url(/images/background/background-2.webp)',
         backgroundSize: 'cover',
@@ -496,18 +494,16 @@ export function Price() {
           className="py-12 sm:py-16"
         >
           <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-2">
-              <BoltIcon className="h-4 w-4 text-[#0055ff]" />
-              <span className="text-sm font-semibold tracking-widest text-[#64748B] uppercase">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-4 py-2">
+              <BoltIcon className="h-4 w-4 text-brand-500" />
+              <span className="text-sm font-semibold tracking-widest text-neutral-500 uppercase">
                 限时优惠
               </span>
             </div>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl">
-              高性价比轻量应用服务器
-            </h1>
-            <p className="text-lg leading-relaxed text-[#64748B] sm:text-xl">
+            <h1 className="section-title-lg mb-4">高性价比轻量应用服务器</h1>
+            <p className="section-desc-lg">
               低至{' '}
-              <span className="inline-flex items-center rounded-lg bg-[#0055ff] px-2 py-1 text-sm font-bold tracking-widest text-white uppercase">
+              <span className="inline-flex items-center rounded-lg bg-brand-500 px-2 py-1 text-sm font-bold tracking-widest text-white uppercase">
                 0.8折
               </span>{' '}
               助您快速实现大模型训练与推理，轻松搭建 AI 应用
@@ -519,15 +515,10 @@ export function Price() {
         <section className="mt-2" aria-labelledby="server-plans-title">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2
-                id="server-plans-title"
-                className="text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl"
-              >
+              <h2 id="server-plans-title" className="section-title">
                 轻量应用服务器
               </h2>
-              <p className="mt-1 text-base leading-relaxed text-[#64748B] sm:text-lg">
-                轻量业务部署与稳定在线，覆盖主流系统与常用规格
-              </p>
+              <p className="section-desc">轻量业务部署与稳定在线，覆盖主流系统与常用规格</p>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -548,21 +539,16 @@ export function Price() {
         >
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <div className="mb-2 inline-flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-white px-4 py-2">
-                <SparklesIcon className="h-4 w-4 text-[#0055ff]" />
-                <span className="text-sm font-semibold tracking-widest text-[#64748B] uppercase">
+              <div className="mb-2 inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-4 py-2">
+                <SparklesIcon className="h-4 w-4 text-brand-500" />
+                <span className="text-sm font-semibold tracking-widest text-neutral-500 uppercase">
                   每日两场（10:00、15:00）
                 </span>
               </div>
-              <h2
-                id="flash-sale-title"
-                className="text-4xl font-bold tracking-tight text-[#0F172A] md:text-5xl"
-              >
+              <h2 id="flash-sale-title" className="section-title">
                 企业精选 · 限时特惠
               </h2>
-              <p className="mt-2 text-base text-[#64748B] md:text-lg">
-                限时优惠，数量有限，先到先得
-              </p>
+              <p className="section-desc">限时优惠，数量有限，先到先得</p>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">

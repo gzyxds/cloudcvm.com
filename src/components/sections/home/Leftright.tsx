@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useRef, useCallback, useEffect, useMemo, memo } from 'react'
+import { useState, useCallback, useMemo, memo } from 'react'
 import { useDebouncedHover } from '@/hooks/useDebouncedHover'
 import { Container } from '@/components/ui/Container'
 import type { Variants } from 'framer-motion'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
@@ -188,22 +188,6 @@ const solutionsData: SolutionCategory[] = [
 /* ------------------------------------------------------------------ */
 /*  动画变体                                                          */
 /* ------------------------------------------------------------------ */
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.05,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.15,
-    },
-  },
-}
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -364,7 +348,7 @@ export function Leftright() {
 
   return (
     <section
-      className="relative overflow-x-hidden bg-scroll py-6 sm:bg-fixed sm:py-20 lg:py-24"
+      className="section-y relative overflow-x-hidden bg-scroll sm:bg-fixed"
       style={{
         backgroundImage: 'url(/images/background/background-4.webp)',
         backgroundSize: 'cover',
@@ -375,13 +359,10 @@ export function Leftright() {
       <Container className="relative z-10">
         {/* 顶部标题 — 仅桌面端显示 */}
         <div className="hidden text-center sm:mb-14 sm:block lg:mb-20">
-          <h2
-            id="solutions-section-title"
-            className="mb-4 text-4xl leading-tight font-bold tracking-tight text-neutral-900 lg:text-5xl"
-          >
+          <h2 id="solutions-section-title" className="section-title-lg mb-4 leading-tight">
             成熟行业实践，释放云上数字生产力
           </h2>
-          <p className="mx-auto max-w-2xl text-sm leading-relaxed text-neutral-500 sm:text-lg">
+          <p className="section-desc mx-auto max-w-2xl">
             汇聚各行业数字化转型成功经验，提供场景化解决方案，助力企业降本增效，加速业务创新
           </p>
         </div>
@@ -458,7 +439,7 @@ export function Leftright() {
           <a
             href="#"
             className={clsx(
-              'group inline-flex items-center rounded-full border px-6 py-3 text-sm font-medium shadow-sm',
+              'group inline-flex items-center rounded-md border px-6 py-3 text-sm font-medium shadow-sm',
               'min-h-[48px]',
               'border-neutral-200 bg-white text-neutral-900',
               'hover:border-brand-500 hover:text-brand-500 hover:shadow-md',

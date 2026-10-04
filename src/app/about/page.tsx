@@ -1,7 +1,7 @@
 'use client'
 
 import { useActiveSection } from '@/hooks/useActiveSection'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArchiveBoxIcon,

@@ -50,16 +50,12 @@ export default function Customer() {
     customers.find((customer) => customer.id === activeCustomer) || customers[0]
 
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="section-y bg-white">
       <Container>
         {/* 标题区域 */}
-        <div className="mb-16 text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            客户案例
-          </h2>
-          <p className="mt-6 text-xl text-gray-500">
-            云服务助力全球知名企业数字化转型，赋能业务成功
-          </p>
+        <div className="mb-12 text-center">
+          <h2 className="section-title-xl">客户案例</h2>
+          <p className="section-desc-lg">云服务助力全球知名企业数字化转型，赋能业务成功</p>
         </div>
 
         {/* 主要内容区域 */}
@@ -74,10 +70,10 @@ export default function Customer() {
                     key={customer.id}
                     onClick={() => setActiveCustomer(customer.id)}
                     className={clsx(
-                      'flex-shrink-0 rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-200 outline-none focus:ring-2 focus:ring-gray-200',
+                      'flex-shrink-0 rounded-md border px-4 py-2 text-sm font-medium transition-all duration-200 outline-none focus:ring-2 focus:ring-brand-200',
                       activeCustomer === customer.id
-                        ? 'border-[#0055ff] bg-[#0055ff] text-white'
-                        : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:bg-gray-50'
+                        ? 'border-brand-500 bg-brand-500 text-white'
+                        : 'border-neutral-200 bg-white text-neutral-500 hover:border-neutral-300 hover:bg-neutral-50'
                     )}
                   >
                     {index + 1}. {customer.name}
@@ -87,14 +83,14 @@ export default function Customer() {
             </div>
 
             {/* 移动端：当前选中客户的详细信息 */}
-            <div className="mb-6 block rounded-md border border-gray-200 bg-gray-50 p-6 lg:hidden">
+            <div className="mb-6 block rounded-lg border border-neutral-200 bg-neutral-50 p-6 lg:hidden">
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="text-xl font-bold text-gray-900">{currentCustomer.name}</h3>
-                <span className="text-lg font-medium text-[#0055ff]">
+                <h3 className="text-xl font-bold text-neutral-900">{currentCustomer.name}</h3>
+                <span className="text-lg font-medium text-brand-500">
                   {customers.findIndex((c) => c.id === activeCustomer) + 1}
                 </span>
               </div>
-              <p className="text-base leading-relaxed text-gray-500">
+              <p className="text-base leading-relaxed text-neutral-500">
                 {currentCustomer.description}
               </p>
             </div>
@@ -106,10 +102,10 @@ export default function Customer() {
                   key={customer.id}
                   onClick={() => setActiveCustomer(customer.id)}
                   className={clsx(
-                    'group w-full flex-1 rounded-md border text-left transition-all duration-300 outline-none focus:ring-2 focus:ring-gray-200',
+                    'group w-full flex-1 rounded-lg border text-left transition-all duration-300 outline-none focus:ring-2 focus:ring-brand-200',
                     activeCustomer === customer.id
-                      ? 'border-transparent bg-gray-50 p-8'
-                      : 'border-gray-200 bg-white p-6 hover:border-gray-300 hover:bg-gray-50'
+                      ? 'border-brand-200 bg-brand-50 p-8'
+                      : 'border-neutral-200 bg-white p-6 hover:border-brand-200 hover:bg-neutral-50'
                   )}
                 >
                   <div className="flex w-full items-center justify-between">
@@ -117,8 +113,8 @@ export default function Customer() {
                       className={clsx(
                         'text-xl font-bold transition-colors duration-200',
                         activeCustomer === customer.id
-                          ? 'text-[#0055ff]'
-                          : 'text-gray-900 group-hover:text-[#0055ff]'
+                          ? 'text-brand-500'
+                          : 'text-neutral-900 group-hover:text-brand-500'
                       )}
                     >
                       {customer.name}
@@ -127,8 +123,8 @@ export default function Customer() {
                       className={clsx(
                         'text-lg font-medium transition-colors duration-200',
                         activeCustomer === customer.id
-                          ? 'text-[#0055ff]/60'
-                          : 'text-gray-400 group-hover:text-[#0055ff]/40'
+                          ? 'text-brand-500/60'
+                          : 'text-neutral-400 group-hover:text-brand-500/40'
                       )}
                     >
                       0{index + 1}
@@ -142,7 +138,7 @@ export default function Customer() {
                         : 'mt-0 grid-rows-[0fr] opacity-0'
                     )}
                   >
-                    <p className="overflow-hidden text-base leading-relaxed text-gray-500">
+                    <p className="overflow-hidden text-base leading-relaxed text-neutral-500">
                       {customer.description}
                     </p>
                   </div>
@@ -153,8 +149,8 @@ export default function Customer() {
 
           {/* 右侧：展示图片 */}
           <div className="order-1 w-full lg:order-2">
-            <div className="relative h-[250px] overflow-hidden rounded-md border border-gray-200 bg-white p-2 sm:h-[300px] md:h-[350px] lg:h-[500px]">
-              <div className="relative h-full w-full overflow-hidden rounded-xl bg-gray-50">
+            <div className="relative h-[250px] overflow-hidden rounded-lg border border-neutral-200 bg-white p-2 sm:h-[300px] md:h-[350px] lg:h-[500px]">
+              <div className="relative h-full w-full overflow-hidden rounded-md bg-neutral-50">
                 <Image
                   src={currentCustomer.image}
                   alt={`${currentCustomer.name}案例展示`}

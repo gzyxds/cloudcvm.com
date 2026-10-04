@@ -83,10 +83,10 @@
   transition: all 0.3s ease;
   width: 160px;
   height: 80px;
-  border: 2px solid #e5e7eb;
-  border-radius: 0;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-md);
   padding: 12px;
-  background-color: #ffffff;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,8 +94,8 @@
 
 .logoItem:hover {
   transform: scale(1.02);
-  border-color: #d1d5db;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-brand-200);
+  box-shadow: var(--shadow-md);
 }
 
 /* 图片样式优化 */

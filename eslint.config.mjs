@@ -36,6 +36,8 @@ export default defineConfig([
   // globalIgnores 会覆盖 eslint-config-next 的默认忽略项，故需连默认项一起列出
   globalIgnores([
     '.next/**',
+    // 本地 Next 构建产物备份；仅排除此目录，不影响 src 的全量检查
+    '.next-stale-bak/**',
     'out/**',
     'build/**',
     'next-env.d.ts',

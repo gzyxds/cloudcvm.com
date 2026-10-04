@@ -159,10 +159,10 @@ function SolutionCard({ card }: { card: SolutionCard }) {
       href={card.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex h-full flex-col overflow-hidden rounded-md border border-[#E5E6EB] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[0_8px_24px_rgba(29,33,41,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664ff] focus-visible:ring-offset-2 active:scale-[0.98]"
+      className="group flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 active:scale-[0.98]"
     >
       {/* 图片区域 - 采用百分比高度自适应 */}
-      <div className="relative h-[45%] flex-shrink-0 overflow-hidden bg-[#F7F8FA]">
+      <div className="relative h-[45%] flex-shrink-0 overflow-hidden bg-neutral-50">
         <Image
           src={card.image}
           alt={card.title}
@@ -179,21 +179,21 @@ function SolutionCard({ card }: { card: SolutionCard }) {
       <div className="flex min-h-0 flex-1 flex-col p-5 sm:p-6">
         {/* 图标 */}
         <div className="mb-4 flex-shrink-0">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#E8F3FF] text-[#1664ff] transition-colors duration-300 group-hover:bg-[#1664ff] group-hover:text-white sm:h-12 sm:w-12">
+          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-50 text-brand-500 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white sm:h-12 sm:w-12">
             <IconComponent className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={2} />
           </div>
         </div>
 
         {/* 标题区域 */}
         <article className="mb-3 flex-shrink-0">
-          <h3 className="line-clamp-1 text-lg leading-tight font-bold text-[#1d2129] transition-colors group-hover:text-[#1664ff] sm:text-xl">
+          <h3 className="line-clamp-1 text-lg leading-tight font-bold text-neutral-900 transition-colors group-hover:text-brand-500 sm:text-xl">
             {card.title}
           </h3>
-          <p className="mt-1.5 text-sm font-medium text-[#1664ff] opacity-80">{card.subtitle}</p>
+          <p className="mt-1.5 text-sm font-medium text-brand-500 opacity-80">{card.subtitle}</p>
         </article>
 
         {/* 描述 - 限制行数以统一卡片视觉高度 */}
-        <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-[#4e5969] sm:line-clamp-4">
+        <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-neutral-500 sm:line-clamp-4">
           {card.description}
         </p>
       </div>
@@ -327,7 +327,7 @@ export function Scenario() {
 
   return (
     <section
-      className="relative overflow-hidden bg-[#F7F8FA] py-16 sm:py-20 lg:py-28"
+      className="section-y relative overflow-hidden bg-neutral-50"
       aria-labelledby="scenario-heading"
     >
       <Container>
@@ -336,7 +336,7 @@ export function Scenario() {
           id="scenario-heading"
           {...animationProps}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-8 text-2xl leading-tight font-bold text-[#1d2129] sm:mb-10 sm:text-3xl lg:mb-14 lg:text-4xl"
+          className="section-title-lg mb-8 leading-tight sm:mb-10 lg:mb-14"
         >
           行业领先的场景化解决方案
         </motion.h2>
@@ -363,7 +363,7 @@ export function Scenario() {
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-[#E5E6EB] bg-white text-[#4e5969] shadow-sm transition-all hover:bg-[#F7F8FA] hover:text-[#1664ff] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664ff] active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10 md:h-12 md:w-12"
+              className="flex h-12 w-12 items-center justify-center rounded-md border border-neutral-200 bg-white text-neutral-500 shadow-sm transition-all hover:bg-neutral-50 hover:text-brand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10 md:h-12 md:w-12"
               aria-label="上一页"
             >
               <ChevronLeftIcon className="h-6 w-6 sm:h-5 sm:w-5 md:h-6 md:w-6" />
@@ -383,8 +383,8 @@ export function Scenario() {
                   <span
                     className={`absolute rounded-full transition-all duration-300 ease-out ${
                       index === currentIndex
-                        ? 'h-2 w-6 bg-[#1664ff] sm:w-8'
-                        : 'h-2 w-2 bg-[#C9CDD4] group-hover:bg-[#86909C]'
+                        ? 'h-2 w-6 bg-brand-500 sm:w-8'
+                        : 'h-2 w-2 bg-neutral-300 group-hover:bg-neutral-500'
                     }`}
                   />
                 </button>
@@ -394,7 +394,7 @@ export function Scenario() {
             <button
               onClick={handleNext}
               disabled={currentIndex >= maxIndex}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-[#E5E6EB] bg-white text-[#4e5969] shadow-sm transition-all hover:bg-[#F7F8FA] hover:text-[#1664ff] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664ff] active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10 md:h-12 md:w-12"
+              className="flex h-12 w-12 items-center justify-center rounded-md border border-neutral-200 bg-white text-neutral-500 shadow-sm transition-all hover:bg-neutral-50 hover:text-brand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 sm:h-10 sm:w-10 md:h-12 md:w-12"
               aria-label="下一页"
             >
               <ChevronRightIcon className="h-6 w-6 sm:h-5 sm:w-5 md:h-6 md:w-6" />

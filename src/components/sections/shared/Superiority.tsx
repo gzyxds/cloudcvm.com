@@ -978,8 +978,6 @@ export function Superiority({
   /** 标签按钮引用（移动端横向滚动时定位激活项） */
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({})
 
-  const activeTab = superiorTabs.find((tab) => tab.id === activeTabId) ?? superiorTabs[0]
-
   /** 切换标签后，移动端将激活标签滚动到可视区域居中 */
   useEffect(() => {
     // 仅在移动端横向滚动场景下执行，避免桌面端误触发页面滚动

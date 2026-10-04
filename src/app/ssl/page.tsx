@@ -1,11 +1,9 @@
 import { formatPriceWithDecimals } from '@/lib/format'
 import { type Metadata } from 'next'
-import Image from 'next/image'
 import {
   CloudArrowUpIcon,
   LockClosedIcon,
   ServerIcon,
-  CpuChipIcon,
   ChartBarIcon,
   DocumentTextIcon,
   ArrowsPointingOutIcon,
@@ -14,13 +12,11 @@ import {
   EyeSlashIcon,
   GlobeAltIcon,
 } from '@heroicons/react/20/solid'
-import clsx from 'clsx'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { VideoCarousel } from '@/components/carousel/VideoCarousel'
 import { Container } from '@/components/ui/Container'
 
-import screenshotContacts from '@/images/screenshots/achievements.png'
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
 import { Solution } from '@/components/sections/shared/Solution' // 解决方案
@@ -212,24 +208,6 @@ export const metadata: Metadata = {
   ],
 }
 
-// SSL证书核心特性配置
-const sslFeatures = [
-  {
-    name: '数据加密',
-    description: '采用256位SSL加密技术，确保网站数据传输过程中的安全性，防止数据被窃取或篡改。',
-    icon: LockClosedIcon,
-  },
-  {
-    name: '身份验证',
-    description: '通过权威CA机构验证网站身份，提升用户信任度，显示绿色地址栏和安全锁标识。',
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: '兼容性保障',
-    description: '支持99.9%的浏览器和移动设备，确保所有用户都能安全访问您的网站，提升用户体验。',
-    icon: ChartBarIcon,
-  },
-]
 // Leftright 组件的特性数据
 const leftRightFeatures = [
   {

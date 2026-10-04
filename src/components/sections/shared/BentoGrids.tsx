@@ -118,7 +118,7 @@ function AccordionFeatureCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-md border border-neutral-200 bg-white/80 backdrop-blur-md transition-[flex] duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-200/50',
+        'group relative cursor-pointer overflow-hidden rounded-lg border border-neutral-200 bg-white/80 backdrop-blur-md transition-[flex] duration-500 ease-in-out hover:shadow-lg hover:shadow-neutral-200/50',
         isExpanded ? 'flex-[2.5]' : 'flex-[1.2]'
       )}
       onMouseEnter={onToggle}
@@ -142,7 +142,7 @@ function AccordionFeatureCard({
               isExpanded ? 'opacity-100' : 'opacity-80'
             )}
           >
-            <div className="flex h-8 w-8 items-center justify-center border border-neutral-200 transition-colors duration-200 hover:border-[#0055ff]">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md border border-neutral-200 transition-colors duration-200 hover:border-brand-500">
               <ArrowRightIcon className="h-4 w-4 text-neutral-500" />
             </div>
           </div>
@@ -154,7 +154,7 @@ function AccordionFeatureCard({
           <div className="mb-4">
             <span
               className={clsx(
-                'inline-flex items-center border border-neutral-200 bg-white px-3 py-1 text-[11px] font-medium tracking-widest uppercase',
+                'inline-flex items-center rounded-md border border-neutral-200 bg-white px-3 py-1 text-[11px] font-medium tracking-widest uppercase',
                 isExpanded ? 'border-brand-500/20 bg-brand-50 text-brand-500' : 'text-neutral-500'
               )}
             >
@@ -209,7 +209,7 @@ function MobileFeatureCard({ feature }: { feature: FeatureCard }) {
   const IconComponent = feature.icon
 
   return (
-    <div className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-md border border-neutral-200 bg-white/80 backdrop-blur-md transition-all hover:shadow-lg hover:shadow-slate-200/50 sm:h-[280px]">
+    <div className="xs:h-[220px] group relative h-[180px] overflow-hidden rounded-lg border border-neutral-200 bg-white/80 backdrop-blur-md transition-all hover:shadow-lg hover:shadow-neutral-200/50 sm:h-[280px]">
       {/* 内容区域 */}
       <div className="relative flex h-full flex-col p-3 sm:p-4">
         {/* 标题和图标 */}
@@ -220,7 +220,7 @@ function MobileFeatureCard({ feature }: { feature: FeatureCard }) {
 
         {/* 分类标签 */}
         <div className="mb-2">
-          <span className="inline-flex items-center border border-neutral-200 bg-white px-2 py-0.5 text-[10px] font-medium tracking-widest text-neutral-500 uppercase sm:text-xs">
+          <span className="inline-flex items-center rounded-md border border-neutral-200 bg-white px-2 py-0.5 text-[10px] font-medium tracking-widest text-neutral-500 uppercase sm:text-xs">
             {feature.category}
           </span>
         </div>
@@ -273,17 +273,15 @@ export default function BentoGrids() {
     <section
       id="features"
       aria-label="产品特性"
-      className="relative overflow-hidden bg-gradient-to-b from-neutral-50 to-[#e0e7ff]/50 py-12 sm:py-16 lg:py-24"
+      className="section-y relative overflow-hidden bg-gradient-to-b from-neutral-50 to-brand-100/50"
     >
       <Container className="relative">
         {/* 标题区域 */}
-        <div className="mb-4 text-left sm:mb-6 md:mb-10 lg:mb-16">
+        <div className="mb-4 text-left sm:mb-6 md:mb-10 lg:mb-12">
           <h2 className="text-xs/6 font-semibold tracking-widest text-brand-500 uppercase sm:text-sm/6 md:text-base/7">
             更快部署
           </h2>
-          <p className="mt-1 max-w-lg text-2xl font-semibold tracking-tight text-pretty text-neutral-900 sm:mt-2 sm:text-3xl md:text-4xl lg:text-5xl">
-            部署应用所需的一切
-          </p>
+          <p className="section-title-lg mt-1 max-w-lg text-pretty sm:mt-2">部署应用所需的一切</p>
         </div>
 
         {/* PC端手风琴布局 - 隐藏在移动端 */}

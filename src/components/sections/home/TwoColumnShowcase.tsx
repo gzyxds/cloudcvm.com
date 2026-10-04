@@ -195,9 +195,9 @@ const CATEGORIES: SceneCategory[] = [
  */
 function ImagePreview({ imageUrl, title }: { imageUrl: string; title: string }) {
   return (
-    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm sm:aspect-auto sm:h-[400px] lg:h-[520px]">
+    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm sm:aspect-auto sm:h-[400px] lg:h-[520px]">
       {/* 骨架屏 */}
-      <div className="absolute inset-0 z-0 animate-pulse bg-slate-100" />
+      <div className="absolute inset-0 z-0 animate-pulse bg-neutral-100" />
 
       {/* 图片（区块在页面中部，保持默认 lazy；上方已有骨架占位） */}
       <Image
@@ -246,7 +246,7 @@ export default function TwoColumnShowcase() {
 
   return (
     <section
-      className="bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-28"
+      className="section-y bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: 'url("/images/background/background-6.webp")' }}
     >
       <Container>
@@ -258,16 +258,14 @@ export default function TwoColumnShowcase() {
           transition={{ duration: 0.5 }}
           className="mx-auto mb-10 max-w-3xl text-center sm:mb-16"
         >
-          <h2 className="mb-3 text-2xl font-bold tracking-tight text-slate-900 sm:mb-4 sm:text-4xl lg:text-5xl">
-            大模型应用场景
-          </h2>
-          <p className="text-sm leading-relaxed text-slate-500 sm:text-lg lg:text-xl">
+          <h2 className="section-title-lg mb-3 sm:mb-4">大模型应用场景</h2>
+          <p className="section-desc">
             基于先进的自研架构，为您提供全方位的云端基础设施服务，助力业务快速实现数字化转型。
           </p>
         </motion.div>
 
         {/* Tab 导航栏 */}
-        <div className="scrollbar-hide mb-6 overflow-x-auto border-b border-slate-200 sm:mb-10 lg:mb-14">
+        <div className="scrollbar-hide mb-6 overflow-x-auto border-b border-neutral-200 sm:mb-10 lg:mb-14">
           <div className="flex min-w-full sm:min-w-0">
             {CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat.id
@@ -279,13 +277,13 @@ export default function TwoColumnShowcase() {
                   onMouseLeave={handleTabLeave}
                   className={clsx(
                     'relative flex min-h-[44px] flex-1 items-center justify-center gap-1.5 px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:gap-2 sm:px-6 sm:py-4 sm:text-base',
-                    isActive ? 'text-brand-500' : 'text-slate-500 hover:text-slate-900'
+                    isActive ? 'text-brand-500' : 'text-neutral-500 hover:text-neutral-900'
                   )}
                 >
                   <cat.icon
                     className={clsx(
                       'h-4 w-4 shrink-0 transition-colors sm:h-5 sm:w-5',
-                      isActive ? 'text-brand-500' : 'text-slate-400'
+                      isActive ? 'text-brand-500' : 'text-neutral-400'
                     )}
                   />
                   <span>{cat.label}</span>
@@ -322,7 +320,7 @@ export default function TwoColumnShowcase() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.05 }}
                       className={clsx(
-                        'border-b border-[#E2E8F0] transition-all duration-300 last:border-0',
+                        'border-b border-neutral-200 transition-all duration-300 last:border-0',
                         isOpen ? 'pb-4 sm:pb-5' : 'pb-3 sm:pb-4'
                       )}
                     >
@@ -335,7 +333,7 @@ export default function TwoColumnShowcase() {
                             'text-base transition-colors duration-300 sm:text-lg lg:text-xl',
                             isOpen
                               ? 'font-semibold text-brand-500'
-                              : 'font-medium text-slate-900 group-hover:text-brand-500'
+                              : 'font-medium text-neutral-900 group-hover:text-brand-500'
                           )}
                         >
                           {item.title}
@@ -343,7 +341,9 @@ export default function TwoColumnShowcase() {
                         <div
                           className={clsx(
                             'transition-transform duration-300',
-                            isOpen ? 'text-brand-500' : 'text-slate-400 group-hover:text-slate-500'
+                            isOpen
+                              ? 'text-brand-500'
+                              : 'text-neutral-400 group-hover:text-neutral-500'
                           )}
                         >
                           {isOpen ? (
@@ -363,7 +363,7 @@ export default function TwoColumnShowcase() {
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                             className="overflow-hidden"
                           >
-                            <p className="mb-4 text-sm leading-relaxed text-slate-500 sm:mb-5 sm:text-[15px] lg:text-base">
+                            <p className="mb-4 text-sm leading-relaxed text-neutral-500 sm:mb-5 sm:text-[15px] lg:text-base">
                               {item.description}
                             </p>
 

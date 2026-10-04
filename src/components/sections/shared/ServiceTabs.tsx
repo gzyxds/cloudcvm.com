@@ -752,9 +752,10 @@ export default function ServiceTabs() {
 
   return (
     <section
-      className="relative overflow-hidden py-6 pt-20 pb-20 sm:py-8 lg:py-10"
+      className="section-y relative overflow-hidden"
       style={{
-        backgroundImage: 'linear-gradient(135deg, #f0f4ff 0%, #ffffff 50%, #f0f4ff 100%)',
+        backgroundImage:
+          'linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-white) 50%, var(--color-brand-50) 100%)',
         backgroundSize: '100% 100%',
         backgroundPosition: 'center center',
       }}
@@ -768,12 +769,10 @@ export default function ServiceTabs() {
         {/* 标题区域 */}
         <div className="mb-6 flex flex-col border-b border-neutral-200 pb-4 sm:mb-8 sm:flex-row sm:items-start sm:justify-between lg:mb-10">
           <div className="flex-1">
-            <h2 className="mb-1 text-2xl leading-tight font-bold tracking-tight text-neutral-900 sm:mb-1.5 sm:text-3xl lg:text-4xl">
+            <h2 className="section-title mb-1 leading-tight sm:mb-1.5">
               自主研发，安全可靠的云服务
             </h2>
-            <p className="text-xs leading-relaxed text-neutral-500 sm:text-sm">
-              12年技术沉淀，100+款产品与服务，持续创新
-            </p>
+            <p className="section-desc">12年技术沉淀，100+款产品与服务，持续创新</p>
           </div>
           <div className="mt-4 hidden flex-row items-center gap-6 sm:mt-0 lg:flex">
             <LinkWithArrow href="https://console.cloudcvm.com/cart/goodsList.htm">
@@ -830,7 +829,7 @@ export default function ServiceTabs() {
 
           {/* 桌面端 Tab - Segmented Control 风格 */}
           <div className="hidden sm:block">
-            <div className="inline-flex w-full rounded-lg border border-neutral-200 bg-neutral-50 p-0.5">
+            <div className="inline-flex w-full rounded-md border border-neutral-200 bg-neutral-50 p-0.5">
               {serviceTabs.map((tab, index) => {
                 const isActive = activeTab === index
                 return (
@@ -888,7 +887,7 @@ export default function ServiceTabs() {
               {/* 左侧区域 */}
               <div className="flex w-full flex-shrink-0 flex-col gap-4 sm:gap-5 lg:w-[320px] xl:w-[360px]">
                 {/* 上方 Banner */}
-                <article className="group relative flex min-h-[220px] w-full flex-1 flex-col justify-between overflow-hidden rounded-md border border-neutral-200 bg-white p-5 transition-all duration-300 hover:border-brand-300 hover:shadow-md sm:min-h-[260px] sm:p-6">
+                <article className="group relative flex min-h-[220px] w-full flex-1 flex-col justify-between overflow-hidden rounded-lg border border-neutral-200 bg-white p-5 transition-all duration-300 hover:border-brand-300 hover:shadow-md sm:min-h-[260px] sm:p-6">
                   <div className="relative z-10 flex h-full flex-col">
                     <div className="flex-1">
                       <div className="mb-4 flex flex-col gap-3">
@@ -922,7 +921,7 @@ export default function ServiceTabs() {
                         href={banner.link}
                         target="_blank"
                         rel="noopener"
-                        className="btn btn-primary mt-6 w-full rounded-lg bg-brand-500 py-3 text-center font-medium text-white shadow-md transition-all duration-200 outline-none hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                        className="btn btn-primary mt-6 w-full rounded-md bg-brand-500 py-3 text-center font-medium text-white shadow-md transition-all duration-200 outline-none hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                       >
                         {banner.buttonText}
                       </a>
@@ -933,7 +932,7 @@ export default function ServiceTabs() {
                 {/* 下方 Banner */}
                 <article
                   className={clsx(
-                    'group flex min-h-[80px] w-full flex-col justify-center rounded-md border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-300 hover:shadow-md',
+                    'group flex min-h-[80px] w-full flex-col justify-center rounded-lg border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-300 hover:shadow-md',
                     secondaryBanner.link && 'cursor-pointer'
                   )}
                 >
@@ -979,11 +978,11 @@ export default function ServiceTabs() {
               </div>
 
               {/* 右侧网格区域 */}
-              <div className="flex-1 rounded-md border border-neutral-200 bg-neutral-50 p-4 sm:p-5 lg:p-6">
+              <div className="flex-1 rounded-lg border border-neutral-200 bg-neutral-50 p-4 sm:p-5 lg:p-6">
                 <div className="grid h-full w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
                   {products.map((product, idx) => {
                     const content = (
-                      <article className="group relative flex h-full cursor-pointer flex-col justify-start rounded-md border border-neutral-200 bg-white p-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-brand-500 focus-within:ring-inset hover:border-brand-500/30 hover:shadow-md">
+                      <article className="group relative flex h-full cursor-pointer flex-col justify-start rounded-lg border border-neutral-200 bg-white p-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-brand-500 focus-within:ring-inset hover:border-brand-500/30 hover:shadow-md">
                         <div className="w-full">
                           <div className="mb-3 flex items-center justify-between">
                             <h4 className="line-clamp-1 flex-1 text-base font-semibold tracking-tight text-neutral-900 transition-colors group-hover:text-brand-500 sm:text-lg">

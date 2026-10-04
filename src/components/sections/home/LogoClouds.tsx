@@ -104,31 +104,25 @@ export default function LogoClouds() {
       <div className={`flex space-x-8 md:space-x-16 ${animationClass}`}>
         {/* 第一组logo */}
         {logos.map((logo, index) => (
-          <div
-            key={`${rowKey}-first-${index}`}
-            className={`flex-shrink-0 ${styles.logoItem} rounded-md border border-slate-200 bg-white/80 backdrop-blur transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg`}
-          >
+          <div key={`${rowKey}-first-${index}`} className={styles.logoItem}>
             <Image
               alt={logo.alt}
               src={logo.src}
               width={158}
               height={48}
-              className={`${styles.logoImage} object-contain`}
+              className={styles.logoImage}
             />
           </div>
         ))}
         {/* 第二组logo（用于无缝循环） */}
         {logos.map((logo, index) => (
-          <div
-            key={`${rowKey}-second-${index}`}
-            className={`flex-shrink-0 ${styles.logoItem} rounded-md border border-slate-200 bg-white/80 backdrop-blur transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg`}
-          >
+          <div key={`${rowKey}-second-${index}`} className={styles.logoItem}>
             <Image
               alt={logo.alt}
               src={logo.src}
               width={158}
               height={48}
-              className={`${styles.logoImage} object-contain`}
+              className={styles.logoImage}
             />
           </div>
         ))}
@@ -137,20 +131,18 @@ export default function LogoClouds() {
   )
 
   return (
-    <div className="relative overflow-hidden bg-white py-24 sm:py-32">
+    <div className="section-y relative overflow-hidden bg-white">
       {/* 背景装饰 */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] [background-size:16px_16px] opacity-30" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--color-neutral-200)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] [background-size:16px_16px] opacity-30" />
 
       <Container className="relative z-10">
         {/* 头部标题介绍 */}
         <div id="logoclouds-title" className="relative z-20 mx-auto max-w-2xl pb-16 text-center">
-          <h2 className="text-base font-semibold tracking-wide text-[#0055ff] uppercase">
+          <h2 className="text-base font-semibold tracking-wide text-brand-500 uppercase">
             合作伙伴
           </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-[#0f172a] sm:text-4xl">
-            深受全球创新团队信赖
-          </p>
-          <p className="mt-6 text-lg leading-8 text-[#475569]">
+          <p className="section-title-lg mt-2">深受全球创新团队信赖</p>
+          <p className="section-desc-lg">
             从初创公司到行业巨头，我们与 500+
             全球知名企业建立了稳固的合作关系，共同构建稳定、高效的云端未来。
           </p>

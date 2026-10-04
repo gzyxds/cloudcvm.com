@@ -1,22 +1,18 @@
 import { formatPriceWithDecimals } from '@/lib/format'
 import { type Metadata } from 'next'
-import Image from 'next/image'
 import {
   CloudArrowUpIcon,
   LockClosedIcon,
   ServerIcon,
   ChartBarIcon,
-  DocumentTextIcon,
   ArrowsPointingOutIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/20/solid'
-import clsx from 'clsx'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { VideoCarousel } from '@/components/carousel/VideoCarousel'
 import { Container } from '@/components/ui/Container'
 
-import screenshotContacts from '@/images/screenshots/achievements.png'
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
 import { Solution } from '@/components/sections/shared/Solution' // 解决方案
@@ -207,26 +203,6 @@ export const metadata: Metadata = {
     '性能优化',
   ],
 }
-
-// CDN 内容分发网络核心特性配置
-const cdnFeatures = [
-  {
-    name: '全球加速',
-    description:
-      '覆盖全球的边缘节点，智能路由技术确保用户就近访问，大幅提升网站访问速度和用户体验。',
-    icon: ChartBarIcon,
-  },
-  {
-    name: '高可用保障',
-    description: '99.9% 的服务可用性保障，多节点冗余备份，自动故障切换，确保内容分发服务稳定可靠。',
-    icon: DocumentTextIcon,
-  },
-  {
-    name: '安全防护',
-    description: '提供DDoS防护、防盗链、访问控制等多重安全机制，全方位保护您的内容资源安全。',
-    icon: LockClosedIcon,
-  },
-]
 
 // Leftright 组件的特性数据
 const leftRightFeatures = [

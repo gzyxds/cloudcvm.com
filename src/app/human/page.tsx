@@ -15,8 +15,6 @@ import {
   FaceSmileIcon,
   SparklesIcon,
   RocketLaunchIcon,
-  AcademicCapIcon,
-  MegaphoneIcon,
   TvIcon,
   VideoCameraIcon,
   PencilIcon,
@@ -28,7 +26,6 @@ import { Button } from '@/components/ui/Button'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { AiScene } from '@/components/sections/ai/AiScene'
-import { Menu, MenuButton } from '@headlessui/react'
 import dynamic from 'next/dynamic'
 
 // three.js + postprocessing 约 200KB(gzip)，仅本页用作装饰背景。
@@ -74,46 +71,6 @@ const advantages: Advantage[] = [
     stats: '5分钟',
     unit: '快速接入',
     icon: RocketLaunchIcon,
-  },
-]
-
-// 应用场景配置数据
-interface Scenario {
-  id: string
-  name: string
-  description: string
-  features: string[]
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}
-
-const scenarios: Scenario[] = [
-  {
-    id: 'live-streaming',
-    name: '带货视频',
-    description: '数字人主播，24小时不间断直播带货',
-    features: ['品牌代言', '内容创作', '社交互动'],
-    icon: TvIcon,
-  },
-  {
-    id: 'digital-employee',
-    name: '数字员工',
-    description: '智能客服助手，提供专业咨询服务',
-    features: ['智能问答', '情感识别', '多语言支持'],
-    icon: UserGroupIcon,
-  },
-  {
-    id: 'content-creation',
-    name: '内容创作',
-    description: 'AI驱动的内容生成和创意制作',
-    features: ['脚本生成', '视频制作', '多媒体输出'],
-    icon: AcademicCapIcon,
-  },
-  {
-    id: 'virtual-broadcast',
-    name: '虚拟直播',
-    description: '虚拟主播直播，降低运营成本',
-    features: ['实时互动', '自动回复', '数据分析'],
-    icon: MegaphoneIcon,
   },
 ]
 
@@ -471,7 +428,7 @@ function DemoSection(): JSX.Element {
               </div>
 
               <div className="space-y-3 sm:space-y-4">
-                {demoAccounts.map((account, index) => (
+                {demoAccounts.map((account) => (
                   <div
                     key={account.title}
                     className="flex flex-col justify-between bg-gray-50 p-3 sm:flex-row sm:items-center"

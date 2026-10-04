@@ -315,7 +315,7 @@ export function Faqs() {
   }
 
   return (
-    <section className="bg-white py-20 sm:py-24 lg:py-28">
+    <section className="section-y bg-white">
       {/* JSON-LD 结构化数据 */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
 
@@ -325,12 +325,8 @@ export function Faqs() {
           <span className="inline-flex items-center rounded-md bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-brand-600/20 ring-inset">
             常见问题
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            快速找到您需要的答案
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-gray-500">
-            如果还有其他问题，请随时联系我们的客服团队
-          </p>
+          <h2 className="section-title-lg mt-4">快速找到您需要的答案</h2>
+          <p className="section-desc">如果还有其他问题，请随时联系我们的客服团队</p>
         </div>
 
         {/* ─────── 分类标签 ─────── */}

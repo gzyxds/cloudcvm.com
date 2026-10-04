@@ -1,6 +1,6 @@
 import type { StaticImageData } from 'next/image'
 import Image from 'next/image'
-import { User, MessageSquare } from 'lucide-react'
+import { MessageSquare } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import avatar1 from '@/images/avatars/avatar-1.png'
 import avatar2 from '@/images/avatars/avatar-2.png'
@@ -116,26 +116,22 @@ const getColumnReviews = (index: number): Testimonial[] => {
 }
 
 const gradients = [
-  'bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-900/10 dark:to-indigo-900/10',
-  'bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-purple-900/10 dark:to-pink-900/10',
-  'bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-900/10 dark:to-emerald-900/10',
-  'bg-gradient-to-br from-orange-50/50 to-amber-50/50 dark:from-orange-900/10 dark:to-amber-900/10',
-  'bg-gradient-to-br from-cyan-50/50 to-sky-50/50 dark:from-cyan-900/10 dark:to-sky-900/10',
-  'bg-gradient-to-br from-rose-50/50 to-red-50/50 dark:from-rose-900/10 dark:to-red-900/10',
+  'bg-gradient-to-br from-brand-50/60 to-neutral-50/70 dark:from-brand-900/10 dark:to-neutral-900/10',
+  'bg-gradient-to-br from-neutral-50/70 to-brand-50/40 dark:from-neutral-900/10 dark:to-brand-900/10',
+  'bg-gradient-to-br from-brand-100/30 to-neutral-50/70 dark:from-brand-900/10 dark:to-neutral-900/10',
+  'bg-gradient-to-br from-neutral-100/40 to-brand-50/50 dark:from-neutral-900/10 dark:to-brand-900/10',
+  'bg-gradient-to-br from-brand-50/40 to-neutral-100/40 dark:from-brand-900/10 dark:to-neutral-900/10',
+  'bg-gradient-to-br from-neutral-50/70 to-brand-100/30 dark:from-neutral-900/10 dark:to-brand-900/10',
 ]
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-16 md:py-24 dark:bg-gray-950">
+    <section className="section-y bg-white dark:bg-neutral-950">
       <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="text-base/7 font-semibold text-indigo-600">客户评价</h2>
-          <p className="mt-2 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
-            我们已经与数千位优秀客户合作
-          </p>
-          <p className="mt-6 text-lg text-gray-500 dark:text-gray-400">
-            听听来自社区的真实反馈，见证 CloudCVM 如何提升工作效率
-          </p>
+          <h2 className="text-base/7 font-semibold text-brand-500">客户评价</h2>
+          <p className="section-title-lg mt-2">我们已经与数千位优秀客户合作</p>
+          <p className="section-desc">听听来自社区的真实反馈，见证 CloudCVM 如何提升工作效率</p>
         </div>
 
         <div className="mask-gradient relative grid h-[800px] grid-cols-1 gap-6 overflow-hidden md:grid-cols-2 lg:grid-cols-3">
@@ -148,19 +144,19 @@ export default function Testimonials() {
               <div
                 key={`col1-${index}`}
                 className={cn(
-                  'break-inside-avoid rounded-md border border-gray-100 p-8 transition-transform duration-300 hover:scale-[1.02] dark:border-gray-800',
+                  'break-inside-avoid rounded-lg border border-neutral-100 p-8 transition-transform duration-300 hover:scale-[1.02] dark:border-neutral-800',
                   gradients[index % gradients.length]
                 )}
               >
                 {/* 评价内容 */}
-                <p className="mb-8 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-8 text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
                   &quot;{review.body}&quot;
                 </p>
 
                 {/* 用户信息 */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-100 shadow-sm dark:border-gray-700">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-neutral-100 shadow-sm dark:border-neutral-700">
                       <Image
                         src={review.author.imageUrl}
                         alt={review.author.name}
@@ -169,17 +165,17 @@ export default function Testimonials() {
                       />
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-gray-900 dark:text-white">
+                      <div className="text-sm font-medium text-neutral-900 dark:text-white">
                         {review.author.name}
                       </div>
-                      <div className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                      <div className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">
                         @{review.author.handle}
                       </div>
                     </div>
                   </div>
 
                   {/* 装饰性图标 */}
-                  <MessageSquare className="h-5 w-5 text-gray-200 dark:text-gray-800" />
+                  <MessageSquare className="h-5 w-5 text-neutral-200 dark:text-neutral-800" />
                 </div>
               </div>
             ))}
@@ -194,19 +190,19 @@ export default function Testimonials() {
               <div
                 key={`col2-${index}`}
                 className={cn(
-                  'break-inside-avoid rounded-md border border-gray-100 p-8 transition-transform duration-300 hover:scale-[1.02] dark:border-gray-800',
+                  'break-inside-avoid rounded-lg border border-neutral-100 p-8 transition-transform duration-300 hover:scale-[1.02] dark:border-neutral-800',
                   gradients[(index + 2) % gradients.length]
                 )}
               >
                 {/* 评价内容 */}
-                <p className="mb-8 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-8 text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
                   &quot;{review.body}&quot;
                 </p>
 
                 {/* 用户信息 */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-100 shadow-sm dark:border-gray-700">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-neutral-100 shadow-sm dark:border-neutral-700">
                       <Image
                         src={review.author.imageUrl}
                         alt={review.author.name}
@@ -215,17 +211,17 @@ export default function Testimonials() {
                       />
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-gray-900 dark:text-white">
+                      <div className="text-sm font-medium text-neutral-900 dark:text-white">
                         {review.author.name}
                       </div>
-                      <div className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                      <div className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">
                         @{review.author.handle}
                       </div>
                     </div>
                   </div>
 
                   {/* 装饰性图标 */}
-                  <MessageSquare className="h-5 w-5 text-gray-200 dark:text-gray-800" />
+                  <MessageSquare className="h-5 w-5 text-neutral-200 dark:text-neutral-800" />
                 </div>
               </div>
             ))}
@@ -240,19 +236,19 @@ export default function Testimonials() {
               <div
                 key={`col3-${index}`}
                 className={cn(
-                  'break-inside-avoid rounded-md border border-gray-100 p-8 transition-transform duration-300 hover:scale-[1.02] dark:border-gray-800',
+                  'break-inside-avoid rounded-lg border border-neutral-100 p-8 transition-transform duration-300 hover:scale-[1.02] dark:border-neutral-800',
                   gradients[(index + 4) % gradients.length]
                 )}
               >
                 {/* 评价内容 */}
-                <p className="mb-8 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-8 text-base leading-relaxed text-neutral-600 dark:text-neutral-300">
                   &quot;{review.body}&quot;
                 </p>
 
                 {/* 用户信息 */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-gray-100 shadow-sm dark:border-gray-700">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-neutral-100 shadow-sm dark:border-neutral-700">
                       <Image
                         src={review.author.imageUrl}
                         alt={review.author.name}
@@ -261,17 +257,17 @@ export default function Testimonials() {
                       />
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-gray-900 dark:text-white">
+                      <div className="text-sm font-medium text-neutral-900 dark:text-white">
                         {review.author.name}
                       </div>
-                      <div className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                      <div className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">
                         @{review.author.handle}
                       </div>
                     </div>
                   </div>
 
                   {/* 装饰性图标 */}
-                  <MessageSquare className="h-5 w-5 text-gray-200 dark:text-gray-800" />
+                  <MessageSquare className="h-5 w-5 text-neutral-200 dark:text-neutral-800" />
                 </div>
               </div>
             ))}

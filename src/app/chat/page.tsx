@@ -7,14 +7,12 @@ import { AiScene } from '@/components/sections/ai/AiScene'
 import {
   ChatBubbleLeftRightIcon,
   CpuChipIcon,
-  UserGroupIcon,
   SpeakerWaveIcon,
   FaceSmileIcon,
   SparklesIcon,
   RocketLaunchIcon,
   AcademicCapIcon,
   MegaphoneIcon,
-  TvIcon,
   UsersIcon,
   MicrophoneIcon,
   PencilIcon,
@@ -36,24 +34,6 @@ export const metadata: Metadata = {
 
 // ==================== 数据类型定义 ====================
 
-// 产品优势数据接口
-interface Advantage {
-  title: string
-  description: string
-  stats: string
-  unit: string
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}
-
-// 应用场景数据接口
-interface Scenario {
-  id: string
-  name: string
-  description: string
-  features: string[]
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}
-
 // 功能特色卡片接口
 interface FeatureCard {
   id: number
@@ -73,69 +53,6 @@ interface DemoAccount {
 }
 
 // ==================== 静态数据配置 ====================
-// 产品优势数据
-const advantages: Advantage[] = [
-  {
-    title: '数字分身训练数据',
-    description: '基于深度学习的数字人训练数据集，包含多种表情、动作和语音样本',
-    stats: '10万+',
-    unit: '训练样本',
-    icon: FaceSmileIcon,
-  },
-  {
-    title: '声音复刻训练数据',
-    description: '高质量音频数据集，支持多语言、多音色的声音克隆和合成',
-    stats: '50万+',
-    unit: '音频片段',
-    icon: SpeakerWaveIcon,
-  },
-  {
-    title: '数字人整体效果',
-    description: '逼真的数字人形象，支持实时表情同步和自然动作生成',
-    stats: '99%',
-    unit: '相似度',
-    icon: SparklesIcon,
-  },
-  {
-    title: '集成接入方式',
-    description: '提供完整的API接口和SDK，支持快速集成到各种应用场景',
-    stats: '5分钟',
-    unit: '快速接入',
-    icon: RocketLaunchIcon,
-  },
-]
-
-// 应用场景数据
-const scenarios: Scenario[] = [
-  {
-    id: 'live-streaming',
-    name: '带货视频',
-    description: '数字人主播，24小时不间断直播带货',
-    features: ['品牌代言', '内容创作', '社交互动'],
-    icon: TvIcon,
-  },
-  {
-    id: 'digital-employee',
-    name: '数字员工',
-    description: '智能客服助手，提供专业咨询服务',
-    features: ['智能问答', '情感识别', '多语言支持'],
-    icon: UserGroupIcon,
-  },
-  {
-    id: 'content-creation',
-    name: '内容创作',
-    description: 'AI驱动的内容生成和创意制作',
-    features: ['脚本生成', '视频制作', '多媒体输出'],
-    icon: AcademicCapIcon,
-  },
-  {
-    id: 'virtual-broadcast',
-    name: '虚拟直播',
-    description: '虚拟主播直播，降低运营成本',
-    features: ['实时互动', '自动回复', '数据分析'],
-    icon: MegaphoneIcon,
-  },
-]
 
 // 功能特色数据
 const featureCards: FeatureCard[] = [
@@ -424,7 +341,7 @@ function DemoSection(): JSX.Element {
               </div>
 
               <div className="space-y-3 sm:space-y-4">
-                {demoAccounts.map((account, index) => (
+                {demoAccounts.map((account) => (
                   <div
                     key={account.title}
                     className="flex flex-col justify-between bg-gray-50 p-3 sm:flex-row sm:items-center"

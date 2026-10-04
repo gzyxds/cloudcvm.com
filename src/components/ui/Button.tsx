@@ -69,21 +69,6 @@ const variantStyles = {
 
 type ButtonVariant = 'solid' | 'outline' | 'primary' | 'primaryOutline' | 'glass'
 
-type ColorForVariant<V extends ButtonVariant> = V extends 'solid'
-  ? keyof typeof variantStyles.solid
-  : V extends 'outline'
-    ? keyof typeof variantStyles.outline
-    : V extends 'primary'
-      ? keyof typeof variantStyles.primary
-      : V extends 'primaryOutline'
-        ? keyof typeof variantStyles.primaryOutline
-        : V extends 'glass'
-          ? keyof typeof variantStyles.glass
-          : never
-
-// Support legacy erlieSolid / erlieOutline variants
-type LegacyVariant = 'erlieSolid' | 'erlieOutline'
-
 type ButtonProps = (
   | { variant?: 'solid'; color?: keyof typeof variantStyles.solid }
   | { variant: 'outline'; color?: keyof typeof variantStyles.outline }

@@ -4,22 +4,16 @@ import { useState } from 'react'
 import type { ComponentType } from 'react'
 import Image from 'next/image'
 import {
-  ArrowTrendingUpIcon,
-  BanknotesIcon,
   BoltIcon,
   BuildingStorefrontIcon,
-  ChartBarIcon,
   CloudArrowUpIcon,
   CpuChipIcon,
   GlobeAltIcon,
-  PhoneIcon,
   ShieldCheckIcon,
   ShoppingCartIcon,
   UserGroupIcon,
-  UsersIcon,
   CreditCardIcon,
   DevicePhoneMobileIcon,
-  QrCodeIcon,
   ChevronRightIcon,
   ArrowRightIcon,
   ChatBubbleLeftRightIcon,
@@ -42,7 +36,6 @@ import {
   ServerIcon,
   CircleStackIcon,
   ClockIcon,
-  ScaleIcon,
   CloudIcon,
   QueueListIcon,
   CodeBracketIcon,
@@ -57,71 +50,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
-import clsx from 'clsx'
 import { motion } from 'framer-motion'
-
-/**
- * 行业趋势项接口定义
- */
-interface TrendItem {
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  description: string
-  span?: string // 用于Bento Grid的跨度控制
-}
-
-/**
- * 场景项接口定义
- */
-interface ScenarioItem {
-  title: string
-  description: string
-  details: string[]
-  image: string
-}
-
-/**
- * 产品特征项接口定义
- */
-interface FeatureItem {
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  description: string
-}
-
-/**
- * 场景解决方案接口
- */
-interface ScenarioSolution {
-  title: string
-  description: string
-  features: string[]
-  stats?: {
-    label: string
-    value: string
-  }[]
-}
-
-/**
- * 技术优势数据接口
- */
-interface TechAdvantage {
-  title: string
-  value: string
-  description: string
-  icon: React.ComponentType<{ className?: string }>
-}
-
-/**
- * 客户评价接口
- */
-interface Testimonial {
-  name: string
-  role: string
-  company: string
-  content: string
-  rating: number
-}
 
 /**
  * Hero 区域组件 - 零售行业解决方案
@@ -379,7 +308,7 @@ function TrendsSection() {
           >
             {/* 移动端和桌面端：垂直导航 */}
             <div className="flex flex-col gap-1 px-1 sm:gap-2 sm:px-2 lg:gap-2 lg:px-0 lg:pr-0">
-              {Object.values(solutions).map((feature, idx) => {
+              {Object.values(solutions).map((feature) => {
                 const isActive = feature.id === activeTab
                 const IconComponent = feature.icon
                 return (

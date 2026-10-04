@@ -1,23 +1,18 @@
 import { formatPriceWithDecimals } from '@/lib/format'
 import { type Metadata } from 'next'
-import Image from 'next/image'
 import {
   CloudArrowUpIcon,
   LockClosedIcon,
   ServerIcon,
-  CpuChipIcon,
   ChartBarIcon,
-  DocumentTextIcon,
   ArrowsPointingOutIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/20/solid'
-import clsx from 'clsx'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { VideoCarousel } from '@/components/carousel/VideoCarousel'
 import { Container } from '@/components/ui/Container'
 
-import screenshotContacts from '@/images/screenshots/achievements.png'
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
 import { Solution } from '@/components/sections/shared/Solution' // 解决方案
@@ -206,27 +201,6 @@ export const metadata: Metadata = {
     '便捷管理',
   ],
 }
-
-// 独立物理服务器核心特性配置
-const bareMetalFeatures = [
-  {
-    name: '专属硬件',
-    description: '提供完全独占的物理服务器资源，无虚拟化开销，确保最佳性能表现和资源利用率。',
-    icon: ChartBarIcon,
-  },
-  {
-    name: '高性能架构',
-    description:
-      '企业级硬件配置，99.9% 的硬件可用性保障，专业运维团队7x24小时监控，确保业务稳定运行。',
-    icon: DocumentTextIcon,
-  },
-  {
-    name: '安全防护',
-    description:
-      '物理级安全隔离，包括硬件防火墙、访问控制、数据加密和安全审计，全方位保护您的数据安全。',
-    icon: LockClosedIcon,
-  },
-]
 
 // Leftright 组件的特性数据
 const leftRightFeatures = [

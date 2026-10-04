@@ -30,7 +30,7 @@
     --route-active-shadow: color-mix(in srgb, var(--acc) 24%, transparent);
     --route-active-dash: color-mix(in srgb, var(--acc) 28%, transparent);
     position: relative;
-    padding: 126px 0 150px;
+    padding: 112px 0;
     overflow: clip;
     background: var(--canvas);
     color: var(--ink);
@@ -58,7 +58,7 @@
     gap: 18px;
     margin: 0;
     color: var(--ink);
-    font-size: 34px;
+    font-size: 36px;
     font-weight: 680;
     letter-spacing: -0.025em;
     line-height: 1.25;
@@ -592,7 +592,7 @@
 
 @media (max-width: 820px) {
     .journey {
-        padding: 72px 0 88px;
+        padding: 64px 0;
     }
 
     .layout {
@@ -737,7 +737,7 @@
 @media (max-width: 760px) {
     .heading h2 {
         gap: 10px;
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .heading h2::before,

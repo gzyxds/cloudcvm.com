@@ -1,23 +1,18 @@
 import { formatPriceWithDecimals } from '@/lib/format'
 import { type Metadata } from 'next'
-import Image from 'next/image'
 import {
   CloudArrowUpIcon,
   LockClosedIcon,
   ServerIcon,
-  CpuChipIcon,
   ChartBarIcon,
-  DocumentTextIcon,
   ArrowsPointingOutIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/20/solid'
-import clsx from 'clsx'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { VideoCarousel } from '@/components/carousel/VideoCarousel'
 import { Container } from '@/components/ui/Container'
 
-import screenshotContacts from '@/images/screenshots/achievements.png'
 // === 页面组件导入 - 按功能分类排序 ===
 // === 解决方案与产品展示 ===
 import { Solution } from '@/components/sections/shared/Solution' // 解决方案
@@ -214,27 +209,6 @@ export const metadata: Metadata = {
     '便捷管理',
   ],
 }
-
-// ECS 云计算服务核心特性配置
-const ecsFeatures = [
-  {
-    name: '弹性伸缩',
-    description:
-      '根据业务需求自动调整计算资源，支持秒级扩容和缩容，确保应用性能的同时优化成本控制。',
-    icon: ChartBarIcon,
-  },
-  {
-    name: '高可用架构',
-    description: '多可用区部署，99.95% 的服务可用性保障，自动故障转移和负载均衡，确保业务连续性。',
-    icon: DocumentTextIcon,
-  },
-  {
-    name: '安全防护',
-    description:
-      '企业级安全防护体系，包括网络隔离、访问控制、数据加密和安全审计，全方位保护您的数据安全。',
-    icon: LockClosedIcon,
-  },
-]
 
 // Leftright 组件的特性数据
 const leftRightFeatures = [

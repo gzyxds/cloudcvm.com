@@ -215,8 +215,8 @@ const EXPERIENCE_HREF = 'https://www.gmlart.cn'
 
 /**
  * 大模型融合云平台能力展示组件
- * 严格复刻参考设计「AI 应用」能力模块（腾讯云 tpm-portal-capability）：
- * 头部左对齐、Tab 蓝色下划线、毛玻璃左文右图卡片、直角渐变按钮
+ * 「AI 应用」能力模块：
+ * 头部左对齐、Tab 品牌色下划线、毛玻璃左文右图卡片、圆角品牌按钮
  */
 export function Rightleft() {
   const [activeId, setActiveId] = useState<string>(capabilities[0].id)
@@ -232,12 +232,12 @@ export function Rightleft() {
   }
 
   return (
-    <section className="overflow-hidden bg-white py-[60px]">
+    <section className="section-y overflow-hidden bg-white">
       <Container>
         {/* 头部：左对齐，标签 + 标题 */}
         <div>
-          <span className="text-xs leading-5 font-medium text-[#a7a7a7]">AI 应用</span>
-          <h2 className="mt-2 text-[32px] leading-10 font-medium text-black lg:text-[36px] lg:leading-[44px]">
+          <span className="text-xs leading-5 font-medium text-neutral-500">AI 应用</span>
+          <h2 className="section-title mt-2 leading-10 lg:leading-[44px]">
             大模型融合云平台，领航数字未来
           </h2>
         </div>
@@ -256,7 +256,7 @@ export function Rightleft() {
                 aria-pressed={isActive}
                 className={clsx(
                   'group relative flex shrink-0 items-center gap-2 px-4 py-[13px] text-sm leading-[22px] font-medium transition-colors duration-300',
-                  isActive ? 'text-transparent' : 'text-[rgba(0,0,0,0.9)]'
+                  isActive ? 'text-brand-500' : 'text-neutral-900'
                 )}
               >
                 <Icon
@@ -264,13 +264,13 @@ export function Rightleft() {
                   aria-hidden
                   className={clsx(
                     'h-5 w-5 transition-colors duration-300',
-                    isActive ? 'text-[#0052d9]' : 'text-[#8A97B5] group-hover:text-[#0052d9]'
+                    isActive ? 'text-brand-500' : 'text-neutral-400 group-hover:text-brand-500'
                   )}
                 />
                 <span
                   className={clsx(
                     'whitespace-nowrap transition-all duration-300',
-                    isActive ? 'text-[#0052d9]' : 'group-hover:text-[#0052d9]'
+                    isActive ? 'text-brand-500' : 'group-hover:text-brand-500'
                   )}
                 >
                   {item.name}
@@ -279,7 +279,7 @@ export function Rightleft() {
                 <span
                   aria-hidden
                   className={clsx(
-                    'absolute bottom-0 left-0 h-[2px] bg-[#0052d9] transition-all duration-300',
+                    'absolute bottom-0 left-0 h-[2px] bg-brand-500 transition-all duration-300',
                     isActive ? 'w-full' : 'w-0'
                   )}
                 />
@@ -290,21 +290,21 @@ export function Rightleft() {
 
         {/* 能力卡片：桌面左文右图，移动端上图下文 */}
         <div className="mt-4">
-          <div className="flex flex-col-reverse overflow-hidden bg-white/85 backdrop-blur-[10px] lg:min-h-[462px] lg:flex-row lg:pt-8">
+          <div className="flex flex-col-reverse overflow-hidden rounded-xl border border-neutral-200 bg-white/85 backdrop-blur-[10px] lg:min-h-[462px] lg:flex-row lg:pt-8">
             {/* 左侧文字内容（桌面 48%） */}
             <div
               key={`label-${active.id}`}
               className="flex w-full animate-fade-in flex-col p-5 lg:w-[48%] lg:shrink-0 lg:pr-0 lg:pb-8"
             >
-              <h3 className="text-lg leading-[26px] font-medium text-[#091221] lg:text-[28px] lg:leading-9">
+              <h3 className="text-lg leading-[26px] font-medium text-neutral-900 lg:text-[28px] lg:leading-9">
                 {active.title}
               </h3>
-              <p className="mt-2 line-clamp-2 text-xs leading-5 text-[#4b5b76] lg:text-sm lg:leading-[22px]">
+              <p className="mt-2 line-clamp-2 text-xs leading-5 text-neutral-500 lg:text-sm lg:leading-[22px]">
                 {active.description}
               </p>
 
               {/* 分隔线：仅移动端显示 */}
-              <div aria-hidden className="mt-4 mb-4 h-px bg-[#E4EAF6] lg:hidden" />
+              <div aria-hidden className="mt-4 mb-4 h-px bg-neutral-200 lg:hidden" />
 
               {/* 智言AI 分类：产品网格；其余分类：特性列表 */}
               {active.products ? (
@@ -313,16 +313,16 @@ export function Rightleft() {
                     <Link
                       key={product.name}
                       href={product.href}
-                      className="group flex items-start gap-2.5 rounded-sm border border-[#E4EAF6] bg-[#F8FAFC] p-3 transition-colors duration-300 hover:border-[#0052d9]/40 hover:bg-white"
+                      className="group flex items-start gap-2.5 rounded-lg border border-neutral-200 bg-neutral-50 p-3 transition-colors duration-300 hover:border-brand-200 hover:bg-white"
                     >
-                      <span className="mt-0.5 shrink-0 rounded bg-[#EAF1FF] px-1.5 py-0.5 text-[10px] leading-4 font-medium text-[#0052d9]">
+                      <span className="mt-0.5 shrink-0 rounded bg-brand-50 px-1.5 py-0.5 text-[10px] leading-4 font-medium text-brand-500">
                         {product.tag}
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-sm leading-[22px] font-medium text-[#333] transition-colors duration-300 group-hover:text-[#0052d9]">
+                        <span className="block text-sm leading-[22px] font-medium text-neutral-900 transition-colors duration-300 group-hover:text-brand-500">
                           {product.name}
                         </span>
-                        <span className="mt-0.5 line-clamp-2 block text-xs leading-5 text-[#4b5b76]">
+                        <span className="mt-0.5 line-clamp-2 block text-xs leading-5 text-neutral-500">
                           {product.description}
                         </span>
                       </span>
@@ -336,13 +336,13 @@ export function Rightleft() {
                       <Check
                         strokeWidth={2}
                         aria-hidden
-                        className="mt-0.5 h-4 w-4 shrink-0 text-[#0074e8]"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-brand-500"
                       />
                       <div className="ml-2.5 lg:ml-3">
-                        <h4 className="text-sm leading-[22px] font-medium text-[#333]">
+                        <h4 className="text-sm leading-[22px] font-medium text-neutral-900">
                           {feature.title}
                         </h4>
-                        <p className="mt-1 line-clamp-2 text-xs leading-5 text-[#4b5b76] lg:text-sm lg:leading-[22px]">
+                        <p className="mt-1 line-clamp-2 text-xs leading-5 text-neutral-500 lg:text-sm lg:leading-[22px]">
                           {feature.description}
                         </p>
                       </div>
@@ -364,7 +364,7 @@ export function Rightleft() {
                       '--capability-btn-my': '50%',
                     } as CSSProperties
                   }
-                  className="group relative inline-flex h-9 w-1/2 min-w-0 items-center justify-center overflow-hidden rounded-sm bg-gradient-to-r from-[#0059eb] to-[#2677ff] text-sm leading-[22px] font-normal text-white lg:w-auto lg:min-w-[160px]"
+                  className="group relative inline-flex h-9 w-1/2 min-w-0 items-center justify-center overflow-hidden rounded-md bg-gradient-to-r from-brand-500 to-brand-600 text-sm leading-[22px] font-normal text-white lg:w-auto lg:min-w-[160px]"
                 >
                   {/* 鼠标跟随光效 */}
                   <span
@@ -379,7 +379,7 @@ export function Rightleft() {
                 </Link>
                 <Link
                   href={active.detailHref}
-                  className="group inline-flex h-9 w-1/2 items-center justify-center gap-1 rounded-sm text-sm leading-[22px] font-normal whitespace-nowrap text-[rgba(0,0,0,0.9)] transition-colors duration-300 hover:text-[#0052d9] lg:w-auto lg:justify-start lg:gap-1.5"
+                  className="group inline-flex h-9 w-1/2 items-center justify-center gap-1 rounded-md text-sm leading-[22px] font-normal whitespace-nowrap text-neutral-900 transition-colors duration-300 hover:text-brand-500 lg:w-auto lg:justify-start lg:gap-1.5"
                 >
                   查看详情
                   <ArrowRight
@@ -393,7 +393,7 @@ export function Rightleft() {
             {/* 右侧媒体区域（移动端在上，高 240px） */}
             <div
               key={`media-${active.id}`}
-              className="relative h-[240px] w-full shrink-0 animate-fade-in overflow-hidden bg-[#EAF1FF] lg:ml-8 lg:h-auto lg:flex-1"
+              className="relative h-[240px] w-full shrink-0 animate-fade-in overflow-hidden bg-brand-50 lg:ml-8 lg:h-auto lg:flex-1"
             >
               {/* 图片缩小居中显示，四周留出浅蓝背景 */}
               <div className="absolute inset-3 sm:inset-4 lg:inset-6">

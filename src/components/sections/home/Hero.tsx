@@ -62,7 +62,10 @@ function AnimatedGrid() {
         {/* 仅保留一个光晕，节省性能 */}
         <div
           className="absolute -top-40 right-0 h-[300px] w-[300px] rounded-full blur-[100px]"
-          style={{ background: 'radial-gradient(circle, rgba(0,85,255,0.04) 0%, transparent 70%)' }}
+          style={{
+            background:
+              'radial-gradient(circle, color-mix(in srgb, var(--color-brand-500) 4%, transparent) 0%, transparent 70%)',
+          }}
         />
       </div>
     </div>
@@ -75,7 +78,8 @@ function GridPattern() {
     <div
       className="absolute inset-0"
       style={{
-        backgroundImage: 'radial-gradient(circle, rgba(0,85,255,0.07) 1px, transparent 1px)',
+        backgroundImage:
+          'radial-gradient(circle, color-mix(in srgb, var(--color-brand-500) 7%, transparent) 1px, transparent 1px)',
         backgroundSize: 'clamp(32px, 5vw, 48px) clamp(32px, 5vw, 48px)',
       }}
     />
@@ -88,15 +92,24 @@ function GlowOrbs() {
     <>
       <div
         className="absolute -top-60 left-0 h-[600px] w-[600px] rounded-full blur-[150px]"
-        style={{ background: 'radial-gradient(circle, rgba(0,85,255,0.05) 0%, transparent 70%)' }}
+        style={{
+          background:
+            'radial-gradient(circle, color-mix(in srgb, var(--color-brand-500) 5%, transparent) 0%, transparent 70%)',
+        }}
       />
       <div
         className="absolute right-0 -bottom-40 h-[500px] w-[500px] rounded-full blur-[140px]"
-        style={{ background: 'radial-gradient(circle, rgba(0,85,255,0.04) 0%, transparent 70%)' }}
+        style={{
+          background:
+            'radial-gradient(circle, color-mix(in srgb, var(--color-brand-500) 4%, transparent) 0%, transparent 70%)',
+        }}
       />
       <div
         className="absolute top-1/3 right-[15%] h-[400px] w-[400px] rounded-full blur-[120px]"
-        style={{ background: 'radial-gradient(circle, rgba(0,85,255,0.03) 0%, transparent 70%)' }}
+        style={{
+          background:
+            'radial-gradient(circle, color-mix(in srgb, var(--color-brand-500) 3%, transparent) 0%, transparent 70%)',
+        }}
       />
     </>
   )
@@ -137,8 +150,8 @@ function CloudVisualization() {
   ]
 
   const typeColors: Record<string, string> = {
-    compute: 'border-primary-200 bg-primary-50/60',
-    network: 'border-slate-200 bg-slate-50/60',
+    compute: 'border-brand-200 bg-brand-50/60',
+    network: 'border-neutral-200 bg-neutral-50/60',
     storage: 'border-amber-200 bg-amber-50/60',
     security: 'border-emerald-200 bg-emerald-50/60',
   }
@@ -159,20 +172,20 @@ function CloudVisualization() {
               transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
               className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
             >
-              <div className="relative flex h-24 w-24 items-center justify-center rounded-md border-2 border-primary-300/50 bg-white/90 shadow-xl shadow-primary-500/8 backdrop-blur-sm">
+              <div className="relative flex h-24 w-24 items-center justify-center rounded-md border-2 border-brand-300/50 bg-white/90 shadow-xl shadow-brand-500/8 backdrop-blur-sm">
                 <motion.div
                   animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.15, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute inset-0 rounded-2xl border-2 border-primary-300/30"
+                  className="absolute inset-0 rounded-xl border-2 border-brand-300/30"
                 />
                 <motion.div
                   animate={{ scale: [1, 1.08, 1], opacity: [0.7, 0.3, 0.7] }}
                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                  className="absolute -inset-1 rounded-2xl border border-primary-200/40"
+                  className="absolute -inset-1 rounded-xl border border-brand-200/40"
                 />
                 <div className="relative flex flex-col items-center">
-                  <Zap className="h-7 w-7 text-primary-500" strokeWidth={1.5} />
-                  <span className="mt-1 font-mono text-[10px] font-bold tracking-wider text-primary-500">
+                  <Zap className="h-7 w-7 text-brand-500" strokeWidth={1.5} />
+                  <span className="mt-1 font-mono text-[10px] font-bold tracking-wider text-brand-500">
                     CLOUDCVM
                   </span>
                 </div>
@@ -205,7 +218,7 @@ function CloudVisualization() {
                     transition={{ duration: 2, repeat: Infinity, delay: node.id * 0.3 }}
                     className="absolute -top-1 -right-1 h-3 w-3 rounded-full border-2 border-white bg-emerald-400 shadow-sm"
                   />
-                  <span className="font-mono text-xs font-semibold tracking-tight text-slate-600">
+                  <span className="font-mono text-xs font-semibold tracking-tight text-neutral-600">
                     {node.label}
                   </span>
                 </motion.div>
@@ -221,9 +234,18 @@ function CloudVisualization() {
             >
               <defs>
                 <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(0,85,255,0.06)" />
-                  <stop offset="50%" stopColor="rgba(0,85,255,0.15)" />
-                  <stop offset="100%" stopColor="rgba(0,85,255,0.06)" />
+                  <stop
+                    offset="0%"
+                    stopColor="color-mix(in srgb, var(--color-brand-500) 6%, transparent)"
+                  />
+                  <stop
+                    offset="50%"
+                    stopColor="color-mix(in srgb, var(--color-brand-500) 15%, transparent)"
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="color-mix(in srgb, var(--color-brand-500) 6%, transparent)"
+                  />
                 </linearGradient>
               </defs>
               {connections.map(([from, to], i) => {
@@ -246,7 +268,7 @@ function CloudVisualization() {
                     />
                     <motion.circle
                       r={3}
-                      fill="rgba(0,85,255,0.45)"
+                      fill="color-mix(in srgb, var(--color-brand-500) 45%, transparent)"
                       initial={{ cx: x1, cy: y1, opacity: 0 }}
                       animate={{ cx: [x1, x2, x1], cy: [y1, y2, y1], opacity: [0, 0.9, 0] }}
                       transition={{
@@ -291,7 +313,7 @@ export default function Hero() {
           <motion.div {...fadeUp(0.1)} className="hidden sm:block">
             <a
               href="#"
-              className="group inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white/70 px-4 py-1.5 text-sm font-medium text-slate-500 backdrop-blur-sm transition-all hover:border-primary-200 hover:bg-primary-50/50 hover:text-primary-600 focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="group inline-flex items-center gap-2.5 rounded-full border border-neutral-200 bg-white/70 px-4 py-1.5 text-sm font-medium text-neutral-500 backdrop-blur-sm transition-all hover:border-brand-200 hover:bg-brand-50/50 hover:text-brand-600 focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               <span className="relative flex h-2 w-2 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -299,18 +321,15 @@ export default function Hero() {
               </span>
               最新动态
               <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-              <span className="text-slate-400 group-hover:text-slate-500">v2.0 全新上线</span>
+              <span className="text-neutral-400 group-hover:text-neutral-500">v2.0 全新上线</span>
             </a>
           </motion.div>
 
           {/* 主标题 */}
-          <motion.h1
-            {...fadeUp(0.2)}
-            className="mt-6 font-display text-3xl font-extrabold tracking-tight text-balance text-slate-900 sm:mt-8 sm:text-4xl lg:text-5xl xl:text-6xl"
-          >
+          <motion.h1 {...fadeUp(0.2)} className="hero-title mt-6 font-display sm:mt-8">
             <span className="block text-[0.85em]">
               新一代
-              <span className="relative ml-2 inline-block text-primary-500 sm:ml-3">
+              <span className="relative ml-2 inline-block text-brand-500 sm:ml-3">
                 云服务器
                 <svg
                   className="absolute -bottom-1 left-0 w-full sm:-bottom-1.5"
@@ -320,7 +339,7 @@ export default function Hero() {
                 >
                   <path
                     d="M0 5 Q 45 0, 90 5 T 180 5"
-                    stroke="rgba(0,85,255,0.3)"
+                    stroke="color-mix(in srgb, var(--color-brand-500) 30%, transparent)"
                     strokeWidth="3.5"
                     strokeLinecap="round"
                   />
@@ -328,14 +347,11 @@ export default function Hero() {
               </span>
             </span>
             <br />
-            <span className="block text-slate-700">弹性伸缩，按需付费</span>
+            <span className="block text-neutral-700">弹性伸缩，按需付费</span>
           </motion.h1>
 
           {/* 描述 */}
-          <motion.p
-            {...fadeUp(0.35)}
-            className="mt-5 max-w-xl text-sm/[1.7] text-slate-500 sm:mt-7 sm:text-lg/[1.7]"
-          >
+          <motion.p {...fadeUp(0.35)} className="hero-desc max-w-xl">
             安全稳定、可弹性伸缩的云计算服务。支持秒级部署，提供超强算力，
             助力企业数字化转型，让业务快速响应市场变化。
           </motion.p>
@@ -347,7 +363,7 @@ export default function Hero() {
           >
             <a
               href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=103&spg_id=147"
-              className="group inline-flex items-center justify-center gap-2 rounded-md bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-primary-500/20 transition-all hover:bg-primary-600 hover:shadow-md hover:shadow-primary-500/25 focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] sm:px-6"
+              className="group inline-flex items-center justify-center gap-2 rounded-md bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-brand-500/20 transition-all hover:bg-brand-600 hover:shadow-md hover:shadow-brand-500/25 focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] sm:px-6"
             >
               开始使用
               <ArrowRight
@@ -357,7 +373,7 @@ export default function Hero() {
             </a>
             <a
               href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=103&spg_id=147"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] sm:px-6"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-neutral-200 bg-white px-5 py-2.5 text-sm font-semibold text-neutral-700 transition-all hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] sm:px-6"
             >
               了解详情
               <ChevronRight className="h-4 w-4" strokeWidth={2} />
@@ -369,24 +385,27 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="mt-9 grid grid-cols-3 gap-3 border-t border-slate-100 pt-6 sm:mt-11 sm:flex sm:flex-wrap sm:items-center sm:gap-7 sm:pt-8"
+            className="mt-9 grid grid-cols-3 gap-3 border-t border-neutral-100 pt-6 sm:mt-11 sm:flex sm:flex-wrap sm:items-center sm:gap-7 sm:pt-8"
           >
             {trustMetrics.map((metric, i) => (
               <div key={metric.label} className="flex items-center gap-2 sm:gap-3">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary-50 sm:h-10 sm:w-10 sm:rounded-xl">
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-50 sm:h-10 sm:w-10 sm:rounded-xl">
                   <metric.icon
-                    className="h-3 w-3 text-primary-500 sm:h-4.5 sm:w-4.5"
+                    className="h-3 w-3 text-brand-500 sm:h-4.5 sm:w-4.5"
                     strokeWidth={1.5}
                   />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-sm font-bold tracking-tight text-slate-900 tabular-nums sm:text-lg">
+                  <div className="text-sm font-bold tracking-tight text-neutral-900 tabular-nums sm:text-lg">
                     {metric.value}
                   </div>
-                  <div className="text-[11px] text-slate-400 sm:text-xs">{metric.label}</div>
+                  <div className="text-[11px] text-neutral-400 sm:text-xs">{metric.label}</div>
                 </div>
                 {i < trustMetrics.length - 1 && (
-                  <div className="ml-2 hidden h-8 w-px bg-slate-100 sm:block" aria-hidden="true" />
+                  <div
+                    className="ml-2 hidden h-8 w-px bg-neutral-100 sm:block"
+                    aria-hidden="true"
+                  />
                 )}
               </div>
             ))}

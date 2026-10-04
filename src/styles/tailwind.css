@@ -341,3 +341,77 @@
     @apply border border-white/30 bg-white/80 text-neutral-800 backdrop-blur-xl hover:bg-white/95 hover:shadow-md;
   }
 }
+
+/* ================================================================
+   Design Style Guide — 全站统一档位（页面 / 区块直接复用）
+   ----------------------------------------------------------------
+   视觉基调：现代工业科技风 + 便当盒布局，默认白天模式。
+   使用约定（改这里一处，全站生效）：
+   - 主色     brand-500 #3860f4 —— 只用于操作、强调、激活态
+   - 中性色   neutral-900 标题 / neutral-500 正文 / neutral-400 辅助
+              neutral-200 边框 / neutral-50 页面底 / white 卡片
+   - 圆角     控件 rounded-md(8px) · 卡片 rounded-lg(12px)
+              大面板 rounded-xl(16px) · 徽标 rounded-full
+   - 阴影     默认无或 shadow-sm，hover 才升到 shadow-md；避免层层投影
+   - 禁止     业务组件里写十六进制色值；颜色/尺寸一律走令牌或下面的档位类
+   例外：促销/折扣等业务强调色、图片上的白色文字遮罩、SVG 素材、动态数据值。
+   ================================================================ */
+
+@layer components {
+  /* ---- 区块纵向节奏（两档，按楼层疏密） ---- */
+  /* 标准内容楼层 */
+  .section-y {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  /* 紧凑型楼层：Logo 墙 / 横幅 / 区域条等 */
+  .section-y-sm {
+    @apply py-14 sm:py-16 lg:py-20;
+  }
+
+  /* ---- 区块标题：按层级分三档 ----
+     注意：统一档位 ≠ 全站同一个尺寸。不同楼层按重要程度选不同档，
+     层级越高越大；不要把所有楼层都套成同一档。 */
+  /* 超大区块标题（如客户案例等整屏展示） */
+  .section-title-xl {
+    @apply text-4xl font-bold tracking-tight text-balance text-neutral-900 sm:text-5xl lg:text-6xl dark:text-white;
+  }
+
+  /* 重点区块标题（多数全宽展示楼层） */
+  .section-title-lg {
+    @apply text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl dark:text-white;
+  }
+
+  /* 标准区块标题（信息密度较高的楼层：Tab、能力网格等） */
+  .section-title {
+    @apply text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl dark:text-white;
+  }
+
+  /* ---- 区块描述（两档，跟标题层级走） ---- */
+  .section-desc {
+    @apply mt-4 text-sm leading-relaxed text-neutral-500 sm:text-base dark:text-neutral-400;
+  }
+
+  .section-desc-lg {
+    @apply mt-5 text-base leading-relaxed text-neutral-500 sm:text-lg lg:text-xl dark:text-neutral-400;
+  }
+
+  /* 居中标题区容器（徽标 + 标题 + 描述） */
+  .section-head {
+    @apply mx-auto max-w-2xl text-center;
+  }
+
+  /* ---- Hero 主标题（首屏 h1，仅 Hero 使用） ---- */
+  .hero-title {
+    @apply text-3xl font-extrabold tracking-tight text-balance text-neutral-900 sm:text-4xl lg:text-5xl xl:text-6xl dark:text-white;
+  }
+
+  .hero-desc {
+    @apply mt-6 text-base leading-relaxed text-neutral-500 sm:text-lg dark:text-neutral-400;
+  }
+
+  /* ---- 卡片标题（楼层内 h3） ---- */
+  .card-title {
+    @apply text-base font-semibold tracking-tight text-neutral-900 sm:text-lg;
+  }
+}

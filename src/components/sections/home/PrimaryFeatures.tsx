@@ -392,14 +392,14 @@ function CardBody({ feature }: { feature: Feature }) {
       <div className="mt-auto grid grid-cols-2 gap-x-8">
         <a
           href="/chat"
-          className="group flex h-[48px] items-center justify-between rounded-[10px] bg-brand-500 px-4 text-white shadow-sm transition-all duration-300 hover:bg-brand-600 hover:shadow-md lg:h-[52px] lg:px-6"
+          className="group flex h-[48px] items-center justify-between rounded-md bg-brand-500 px-4 text-white shadow-sm transition-all duration-300 hover:bg-brand-600 hover:shadow-md lg:h-[52px] lg:px-6"
         >
           <span className="text-sm font-semibold tracking-wide">立即咨询</span>
           <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </a>
         <a
           href={`/${feature.id}`}
-          className="group flex h-[48px] items-center justify-between rounded-[10px] border border-neutral-200 bg-white px-4 text-neutral-900 transition-all duration-300 hover:border-brand-500 hover:text-brand-500 lg:h-[52px] lg:px-6"
+          className="group flex h-[48px] items-center justify-between rounded-md border border-neutral-200 bg-white px-4 text-neutral-900 transition-all duration-300 hover:border-brand-500 hover:text-brand-500 lg:h-[52px] lg:px-6"
         >
           <span className="text-sm font-semibold tracking-wide">了解详情</span>
           <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -460,7 +460,7 @@ function DesktopSolutionCard({
   return (
     <div
       className={clsx(
-        'relative min-w-0 cursor-pointer overflow-hidden rounded-[18px] transition-all duration-500 ease-out',
+        'relative min-w-0 cursor-pointer overflow-hidden rounded-xl transition-all duration-500 ease-out',
         isExpanded ? 'flex-[7]' : 'flex-[2]'
       )}
       onMouseEnter={onMouseEnter}
@@ -472,7 +472,7 @@ function DesktopSolutionCard({
           isExpanded ? 'opacity-100' : 'pointer-events-none opacity-0'
         )}
       >
-        <div className="relative flex h-full flex-col overflow-hidden rounded-[18px] border border-neutral-200 bg-white px-12 py-9">
+        <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white px-12 py-9">
           {/* Background image with subtle overlay */}
           <div
             className="absolute inset-0 bg-cover bg-center opacity-[0.06]"
@@ -487,7 +487,7 @@ function DesktopSolutionCard({
       {/* Small Overlay Layer */}
       <div
         className={clsx(
-          'absolute inset-0 z-10 flex flex-col overflow-hidden rounded-[18px] transition-opacity duration-500',
+          'absolute inset-0 z-10 flex flex-col overflow-hidden rounded-xl transition-opacity duration-500',
           isExpanded ? 'pointer-events-none opacity-0' : 'opacity-100'
         )}
       >
@@ -518,7 +518,7 @@ function DesktopSolutionCard({
 
 function MobileSolutionCard({ feature }: { feature: Feature }) {
   return (
-    <div className="overflow-hidden rounded-[18px] border border-neutral-200 bg-white">
+    <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
       {/* Gradient header strip with bg image */}
       <div className="relative flex items-center gap-3 overflow-hidden px-5 py-5">
         <div
@@ -562,15 +562,13 @@ export function PrimaryFeatures() {
 
   return (
     <section
-      className="relative overflow-hidden bg-cover bg-center bg-no-repeat pt-12 pb-10 lg:pt-[88px] lg:pb-[60px]"
+      className="section-y relative overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: 'url("/images/background/background-1.webp")' }}
     >
       <Container className="relative z-10">
         {/* ── Header ── */}
         <div className="flex items-end justify-between">
-          <h2 className="text-xl font-semibold tracking-tight text-neutral-900 sm:text-2xl lg:text-[32px]">
-            深入行业与场景，加速企业数智化转型
-          </h2>
+          <h2 className="section-title">深入行业与场景，加速企业数智化转型</h2>
           <div className="hidden items-center text-sm font-medium tracking-wide text-neutral-900 sm:flex">
             <a
               href="/new"
@@ -590,7 +588,7 @@ export function PrimaryFeatures() {
         </div>
 
         {/* ── Subtitle ── */}
-        <p className="mt-2 mb-6 text-sm leading-relaxed tracking-wide text-neutral-500 lg:mb-[50px] lg:text-base">
+        <p className="section-desc mb-6 tracking-wide lg:mb-[50px]">
           应需而为，推动创新技术与场景应用深度融合
         </p>
 
@@ -620,7 +618,7 @@ export function PrimaryFeatures() {
           {/* "View More" vertical link */}
           <a
             href="/new"
-            className="group relative flex h-[479px] w-[73px] flex-shrink-0 cursor-pointer items-center justify-center rounded-[18px] bg-neutral-100 text-sm transition-colors duration-300 hover:bg-neutral-200"
+            className="group relative flex h-[479px] w-[73px] flex-shrink-0 cursor-pointer items-center justify-center rounded-xl bg-neutral-100 text-sm transition-colors duration-300 hover:bg-neutral-200"
           >
             <span className="w-[20px] text-center leading-relaxed text-neutral-500 transition-colors group-hover:text-brand-500">
               查看更多

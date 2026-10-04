@@ -110,9 +110,9 @@ function SolutionCard({
   return (
     <div
       className={clsx(
-        'group relative cursor-pointer overflow-hidden rounded-md border transition-[flex] duration-500 ease-in-out',
-        // 边框样式：默认 slate-200，Hover时变为主题色/30
-        'border-neutral-200 hover:border-brand-300 hover:shadow-lg hover:shadow-slate-200/50',
+        'group relative cursor-pointer overflow-hidden rounded-lg border transition-[flex] duration-500 ease-in-out',
+        // 边框样式：默认 neutral-200，Hover时变为主题色/30
+        'border-neutral-200 hover:border-brand-300 hover:shadow-lg hover:shadow-neutral-200/50',
         // 背景样式：白色
         'bg-white',
         // 展开状态下的宽度占比
@@ -212,7 +212,7 @@ function SolutionCard({
  */
 function MobileSolutionCard({ solution }: { solution: SolutionCard }) {
   return (
-    <div className="group relative aspect-[16/9] w-[85vw] max-w-[340px] flex-shrink-0 snap-start overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 sm:w-[40vw] sm:max-w-none">
+    <div className="group relative aspect-[16/9] w-[85vw] max-w-[340px] flex-shrink-0 snap-start overflow-hidden rounded-lg border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-300 hover:shadow-lg hover:shadow-neutral-200/50 sm:w-[40vw] sm:max-w-none">
       {/* 背景图片 - 移动端完整显示 */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-500 group-hover:scale-105"
@@ -278,16 +278,16 @@ export function Solution() {
     <section
       id="solutions"
       aria-label="业务解决方案"
-      className="relative overflow-hidden bg-cover bg-fixed bg-center bg-no-repeat py-12 sm:py-16 lg:py-24"
+      className="section-y relative overflow-hidden bg-cover bg-fixed bg-center bg-no-repeat"
       style={{ backgroundImage: 'url("/images/background/background-2.webp")' }}
     >
       <Container className="relative">
         {/* 标题区域 */}
-        <div className="mb-4 text-left sm:mb-6 md:mb-10 lg:mb-16">
-          <h2 className="mb-2 font-display text-lg font-bold tracking-tight text-slate-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
+        <div className="mb-4 text-left sm:mb-6 md:mb-10 lg:mb-12">
+          <h2 className="section-title-lg mb-2 font-display sm:mb-4">
             为不同业务场景提供安全且高效的解决方案
           </h2>
-          <p className="max-w-2xl text-base text-slate-600 sm:text-lg">
+          <p className="section-desc max-w-2xl">
             基于优刻云强大的基础设施，为您提供一站式行业解决方案，助力业务快速创新。
           </p>
         </div>

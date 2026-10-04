@@ -12,7 +12,6 @@ import {
 } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { useState } from 'react'
 
 /**
  * 常见问题数据

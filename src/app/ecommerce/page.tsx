@@ -1,10 +1,6 @@
 'use client'
 import { useState } from 'react'
-import Image from 'next/image'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {
-  CloudArrowUpIcon,
   CpuChipIcon,
   ChartBarIcon,
   DocumentTextIcon,
@@ -28,7 +24,6 @@ import {
   TruckIcon,
   ArrowPathIcon,
   AcademicCapIcon,
-  ShieldCheckIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/20/solid'
 
@@ -648,8 +643,6 @@ const ecommerceSlides = [
 ]
 
 export default function EcommercePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   return (
     <>
       <Header />

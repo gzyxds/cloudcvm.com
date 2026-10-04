@@ -74,7 +74,8 @@ function DotMatrixMap() {
         className="absolute inset-0"
         aria-hidden="true"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(100,116,139,0.16) 1px, transparent 1px)',
+          backgroundImage:
+            'radial-gradient(circle, color-mix(in srgb, var(--color-neutral-500) 16%, transparent) 1px, transparent 1px)',
           backgroundSize: '14px 14px',
         }}
       />
@@ -89,7 +90,7 @@ function DotMatrixMap() {
             <div className="flex flex-col items-center">
               <span
                 className={clsx(
-                  'z-10 rounded-full bg-white px-2.5 py-0.5 text-[10px] font-semibold whitespace-nowrap text-slate-700 shadow-sm ring-1 ring-slate-200 sm:px-3 sm:py-1 sm:text-xs dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700',
+                  'z-10 rounded-full bg-white px-2.5 py-0.5 text-[10px] font-semibold whitespace-nowrap text-neutral-700 shadow-sm ring-1 ring-neutral-200 sm:px-3 sm:py-1 sm:text-xs dark:bg-neutral-800 dark:text-neutral-200 dark:ring-neutral-700',
                   region.featured ? 'inline-flex' : 'hidden sm:inline-flex'
                 )}
               >
@@ -97,7 +98,7 @@ function DotMatrixMap() {
               </span>
               <span className="relative z-0 mt-1 flex h-2.5 w-2.5 sm:h-3 sm:w-3">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-20" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-500 ring-2 ring-white sm:h-3 sm:w-3 dark:ring-slate-900" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-500 ring-2 ring-white sm:h-3 sm:w-3 dark:ring-neutral-900" />
               </span>
             </div>
           </div>
@@ -124,10 +125,10 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
     >
-      <div className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
+      <div className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl dark:text-white">
         {stat.value}
       </div>
-      <div className="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400">
+      <div className="mt-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
         {stat.label}
       </div>
     </motion.div>
@@ -148,26 +149,24 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
  */
 export default function Zone() {
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-10 sm:py-12 lg:py-14 dark:bg-slate-950">
+    <section className="section-y-sm relative overflow-hidden bg-neutral-50 dark:bg-neutral-950">
       <Container>
         {/* ─────── 顶部：标题（左） + CTA（右），构成 F 型视觉起点 ─────── */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-500/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
               <GlobeAltIcon className="h-3.5 w-3.5" />
               全球基础设施
             </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
-              遍布全球的云计算基础设施
-            </h2>
-            <p className="mt-3 text-base leading-relaxed text-slate-500 sm:text-lg dark:text-slate-400">
+            <h2 className="section-title-lg mt-4">遍布全球的云计算基础设施</h2>
+            <p className="section-desc">
               覆盖亚洲、欧洲、北美、大洋洲等核心区域，以稳定、弹性、合规的云底座，
               为企业业务出海与全球化部署提供坚实支撑。
             </p>
           </div>
           <a
             href="/about"
-            className="group inline-flex w-full shrink-0 items-center justify-center gap-2 self-start rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:border-brand-300 hover:text-brand-600 sm:w-auto sm:justify-start dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+            className="group inline-flex w-full shrink-0 items-center justify-center gap-2 self-start rounded-md border border-neutral-200 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 shadow-sm transition-colors hover:border-brand-300 hover:text-brand-600 sm:w-auto sm:justify-start dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
           >
             了解全球基础设施
             <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -187,7 +186,7 @@ export default function Zone() {
           <div className="relative">
             <DotMatrixMap />
             <div className="mt-3">
-              <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+              <div className="flex items-center gap-2 text-xs text-neutral-400 dark:text-neutral-500">
                 <span className="h-2 w-2 rounded-full bg-brand-500" />
                 节点覆盖 {regionLabels.length} 个大区
               </div>
@@ -196,7 +195,7 @@ export default function Zone() {
                 {regionLabels.map((region) => (
                   <span
                     key={region.name}
-                    className="rounded-full bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-500 ring-1 ring-slate-100 sm:px-3 sm:text-xs dark:bg-slate-800/60 dark:text-slate-300 dark:ring-slate-700"
+                    className="rounded-full bg-neutral-50 px-2.5 py-1 text-[11px] font-medium text-neutral-500 ring-1 ring-neutral-100 sm:px-3 sm:text-xs dark:bg-neutral-800/60 dark:text-neutral-300 dark:ring-neutral-700"
                   >
                     {region.name}
                   </span>

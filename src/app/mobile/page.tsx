@@ -1,14 +1,10 @@
 'use client'
 
 import { useActiveSection } from '@/hooks/useActiveSection'
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowPathIcon,
-  ArrowsRightLeftIcon,
-  BanknotesIcon,
   BoltIcon,
-  BuildingLibraryIcon,
   ChartBarIcon,
   CircleStackIcon,
   CloudIcon,

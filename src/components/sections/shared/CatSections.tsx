@@ -48,7 +48,7 @@ export default function CatSections() {
   const [showQRCode, setShowQRCode] = useState(false)
 
   return (
-    <section className="bg-[url('/images/background/background-5.webp')] bg-cover bg-center bg-no-repeat py-16 sm:py-20 lg:py-24">
+    <section className="section-y bg-[url('/images/background/background-5.webp')] bg-cover bg-center bg-no-repeat">
       <Container>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <ServiceCard
