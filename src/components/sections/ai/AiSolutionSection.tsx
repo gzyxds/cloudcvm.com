@@ -110,23 +110,23 @@ function ServiceCard({ service }: { service: ServiceItem }) {
   const IconComponent = service.icon
 
   return (
-    <div className="group flex h-full transform flex-col overflow-hidden rounded-md border border-gray-100 bg-white transition-all duration-300 hover:-translate-y-1 dark:border-gray-700 dark:bg-gray-800">
+    <div className="group flex h-full transform flex-col overflow-hidden rounded-md border border-neutral-100 bg-white transition-all duration-300 hover:-translate-y-1 dark:border-neutral-700 dark:bg-neutral-800">
       <div className="p-5">
         <div className="mb-3 flex items-center">
-          <div className="mr-3 flex h-10 w-10 items-center justify-center bg-gray-100 dark:bg-gray-700">
+          <div className="mr-3 flex h-10 w-10 items-center justify-center bg-neutral-100 dark:bg-neutral-700">
             <IconComponent
-              className="h-6 w-6 text-blue-600 dark:text-blue-400"
+              className="h-6 w-6 text-brand-500 dark:text-brand-400"
               aria-hidden="true"
             />
           </div>
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{service.title}</h3>
+          <h3 className="text-lg font-bold text-neutral-900 dark:text-white">{service.title}</h3>
         </div>
-        <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+        <p className="mb-4 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
           {service.description}
         </p>
         <a
           href={service.href}
-          className="group inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400"
+          className="group inline-flex items-center text-sm font-medium text-brand-500 dark:text-brand-400"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -172,9 +172,9 @@ const serviceFeatures = [
  */
 function ServiceFeatures() {
   return (
-    <footer className="border-t border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <footer className="border-t border-neutral-100 bg-white dark:border-neutral-800 dark:bg-neutral-950">
       {/* 服务特点展示 */}
-      <div className="border-b border-gray-100 dark:border-gray-800">
+      <div className="border-b border-neutral-100 dark:border-neutral-800">
         <Container className="py-6 sm:py-8">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
             {serviceFeatures.map((feature, index) => {
@@ -184,14 +184,14 @@ function ServiceFeatures() {
                   key={index}
                   className="flex flex-col items-center gap-2 text-center sm:flex-row sm:items-start sm:gap-4 sm:text-left"
                 >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-gray-100 sm:h-12 sm:w-12 dark:bg-gray-700">
-                    <IconComponent className="h-6 w-6 text-blue-500 sm:h-8 sm:w-8 dark:text-blue-400" />
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-neutral-100 sm:h-12 sm:w-12 dark:bg-neutral-700">
+                    <IconComponent className="h-6 w-6 text-brand-500 sm:h-8 sm:w-8 dark:text-brand-400" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-sm leading-tight font-medium text-gray-900 sm:text-base dark:text-white">
+                    <h3 className="text-sm leading-tight font-medium text-neutral-900 sm:text-base dark:text-white">
                       {feature.title}
                     </h3>
-                    <p className="mt-1 text-xs leading-relaxed text-gray-500 sm:text-sm dark:text-gray-400">
+                    <p className="mt-1 text-xs leading-relaxed text-neutral-500 sm:text-sm dark:text-neutral-400">
                       {feature.description}
                     </p>
                   </div>
@@ -228,16 +228,16 @@ export default function AiSolutionSection() {
       {/* 服务特点展示 */}
       <ServiceFeatures />
 
-      <section className="relative w-full overflow-hidden bg-gray-50 py-24 dark:bg-gray-900">
+      <section className="relative w-full overflow-hidden bg-neutral-50 py-24 dark:bg-neutral-950">
         {/* 背景装饰 */}
-        <div className="absolute top-0 left-1/2 -z-10 h-[300px] w-[130%] -translate-x-1/2 rounded-b-[100%] bg-gradient-to-b from-blue-50/50 to-transparent blur-xl dark:from-blue-900/20 dark:to-transparent"></div>
+        <div className="absolute top-0 left-1/2 -z-10 h-[300px] w-[130%] -translate-x-1/2 rounded-b-[100%] bg-gradient-to-b from-brand-50/50 to-transparent blur-xl dark:from-brand-800/20 dark:to-transparent"></div>
 
         {/* 标题区域 */}
         <Container className="relative text-center">
-          <h2 className="mb-4 text-3xl font-bold text-blue-600 sm:text-4xl lg:text-5xl dark:text-blue-400">
+          <h2 className="mb-4 text-3xl font-bold text-brand-500 sm:text-4xl lg:text-5xl dark:text-brand-400">
             艺创AI企业解决方案·用AI为企业赋能
           </h2>
-          <p className="mx-auto mb-12 max-w-4xl text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+          <p className="mx-auto mb-12 max-w-4xl text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
             {typingText}
           </p>
         </Container>

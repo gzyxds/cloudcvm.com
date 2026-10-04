@@ -78,7 +78,7 @@ export function ProductFeaturesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
-          className="mx-auto mt-16 rounded-2xl bg-gray-50 px-6 py-16 sm:mt-20 sm:px-16 lg:mt-24"
+          className="mx-auto mt-16 rounded-2xl bg-neutral-50 px-6 py-16 sm:mt-20 sm:px-16 lg:mt-24"
         >
           <div className="mx-auto grid max-w-sm grid-cols-1 gap-x-8 gap-y-10 sm:max-w-none lg:grid-cols-4">
             {features.map((feature, index) => (
@@ -92,14 +92,14 @@ export function ProductFeaturesSection() {
               >
                 <div className="sm:shrink-0">
                   <div className="flow-root">
-                    <div className="mx-auto inline-flex size-16 items-center justify-center rounded-xl bg-white text-brand-500 shadow-sm ring-1 ring-gray-200/60">
+                    <div className="mx-auto inline-flex size-16 items-center justify-center rounded-xl bg-white text-brand-500 shadow-sm ring-1 ring-neutral-200/60">
                       <feature.icon aria-hidden="true" className="size-8" />
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 sm:mt-0 sm:ml-6 lg:mt-6 lg:ml-0">
-                  <h3 className="text-base font-semibold text-gray-900">{feature.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                  <h3 className="text-base font-semibold text-neutral-900">{feature.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-500">
                     {feature.description}
                   </p>
                 </div>

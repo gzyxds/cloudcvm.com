@@ -75,7 +75,7 @@ export function AIProductsSection() {
             <Link
               key={product.name}
               href={product.href}
-              className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 hover:border-brand-200 hover:shadow-md"
+              className="group relative flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-200 hover:border-brand-200 hover:shadow-md"
             >
               {/* 卡片头部：图标 + 名称 */}
               <div className="flex items-start gap-4">
@@ -83,15 +83,15 @@ export function AIProductsSection() {
                   <product.icon aria-hidden="true" className="size-6" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-base font-semibold text-gray-900 transition-colors group-hover:text-brand-600">
+                  <h3 className="text-base font-semibold text-neutral-900 transition-colors group-hover:text-brand-600">
                     {product.name}
                   </h3>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-gray-500">
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-neutral-500">
                     {product.description}
                   </p>
                 </div>
                 {/* 悬停箭头 */}
-                <ArrowRightIcon className="mt-1 size-5 shrink-0 text-gray-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-brand-500" />
+                <ArrowRightIcon className="mt-1 size-5 shrink-0 text-neutral-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-brand-500" />
               </div>
 
               {/* 特性标签 */}
@@ -100,7 +100,7 @@ export function AIProductsSection() {
                   {product.features.map((feature) => (
                     <span
                       key={feature}
-                      className="inline-flex items-center rounded-md bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-600 ring-1 ring-gray-200 transition-colors ring-inset group-hover:bg-brand-50 group-hover:text-brand-600 group-hover:ring-brand-200"
+                      className="inline-flex items-center rounded-md bg-neutral-50 px-2.5 py-1 text-xs font-medium text-neutral-600 ring-1 ring-neutral-200 transition-colors ring-inset group-hover:bg-brand-50 group-hover:text-brand-600 group-hover:ring-brand-200"
                     >
                       {feature}
                     </span>

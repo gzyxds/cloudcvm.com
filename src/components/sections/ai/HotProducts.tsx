@@ -287,7 +287,7 @@ export default function HotProducts() {
         <motion.div
           key={scenario}
           className={`${className} ${
-            isActive ? 'text-[#0055ff]' : 'text-gray-600 hover:text-gray-900'
+            isActive ? 'text-brand-500' : 'text-neutral-600 hover:text-neutral-900'
           }`}
           onClick={() => handleScenarioChange(scenario)}
           aria-label={`切换到${scenarioConfig[scenario].title}场景`}
@@ -297,13 +297,13 @@ export default function HotProducts() {
         >
           <TabIcon
             className={`transition-colors duration-300 ${
-              isActive ? 'text-[#0055ff]' : 'text-gray-500'
+              isActive ? 'text-brand-500' : 'text-neutral-500'
             }`}
           />
           <span>{scenarioConfig[scenario].title}</span>
           {isActive && (
             <motion.div
-              className="absolute right-0 bottom-0 left-0 h-0.5 rounded-full bg-[#0055ff]"
+              className="absolute right-0 bottom-0 left-0 h-0.5 rounded-full bg-brand-500"
               layoutId={layoutId}
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
@@ -329,7 +329,7 @@ export default function HotProducts() {
       return (
         <div
           onClick={() => scrollTo(direction)}
-          className={`absolute ${position} top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 text-gray-400 shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:text-[#0055ff] hover:shadow-lg active:scale-95 sm:p-2.5 md:p-3`}
+          className={`absolute ${position} top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 text-neutral-400 shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:text-brand-500 hover:shadow-lg active:scale-95 sm:p-2.5 md:p-3`}
           aria-label={`向${direction === 'left' ? '左' : '右'}滚动`}
         >
           <Icon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
@@ -344,23 +344,23 @@ export default function HotProducts() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.8 }}
-      className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/50 py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20"
+      className="relative overflow-hidden bg-gradient-to-br from-neutral-50 via-brand-50/30 to-brand-50/50 py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20"
       data-monitor-comp-id="c854860"
     >
       {/* 背景装饰元素 */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 blur-3xl sm:-top-40 sm:-right-40 sm:h-80 sm:w-80"></div>
-        <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-gradient-to-tr from-indigo-400/10 to-pink-400/10 blur-3xl sm:-bottom-40 sm:-left-40 sm:h-80 sm:w-80"></div>
+        <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-gradient-to-br from-brand-400/10 to-purple-400/10 blur-3xl sm:-top-40 sm:-right-40 sm:h-80 sm:w-80"></div>
+        <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-gradient-to-tr from-brand-400/10 to-pink-400/10 blur-3xl sm:-bottom-40 sm:-left-40 sm:h-80 sm:w-80"></div>
       </div>
 
       <Container>
         {/* 页面标题区域 */}
         <div className="mb-6 text-center sm:mb-8 md:mb-10 lg:mb-12">
-          <h2 className="mb-2 text-xl font-bold tracking-tight text-gray-900 sm:mb-3 sm:text-2xl md:mb-4 md:text-3xl lg:mb-6 lg:text-4xl xl:text-5xl">
+          <h2 className="mb-2 text-xl font-bold tracking-tight text-neutral-900 sm:mb-3 sm:text-2xl md:mb-4 md:text-3xl lg:mb-6 lg:text-4xl xl:text-5xl">
             热门产品
           </h2>
-          <div className="mx-auto mb-3 h-0.5 w-12 bg-[#0055ff] sm:mb-4 sm:h-0.5 sm:w-14 md:h-1 md:w-16"></div>
-          <p className="mx-auto max-w-3xl px-2 text-sm leading-relaxed text-gray-600 sm:px-4 sm:text-base md:text-lg lg:text-xl">
+          <div className="mx-auto mb-3 h-0.5 w-12 bg-brand-500 sm:mb-4 sm:h-0.5 sm:w-14 md:h-1 md:w-16"></div>
+          <p className="mx-auto max-w-3xl px-2 text-sm leading-relaxed text-neutral-600 sm:px-4 sm:text-base md:text-lg lg:text-xl">
             丰富的应用场景和解决方案，满足多种业务需求
           </p>
         </div>
@@ -398,7 +398,7 @@ export default function HotProducts() {
                   <motion.div
                     key={scenario}
                     className={`relative flex flex-shrink-0 cursor-pointer items-center space-x-1.5 px-2 py-2 text-xs font-medium tracking-wide whitespace-nowrap transition-all duration-300 sm:px-3 sm:py-3 sm:text-sm ${
-                      isActive ? 'text-[#0055ff]' : 'text-gray-600 hover:text-gray-900'
+                      isActive ? 'text-brand-500' : 'text-neutral-600 hover:text-neutral-900'
                     }`}
                     onClick={() => handleScenarioChange(scenario)}
                     aria-label={`切换到${scenarioConfig[scenario].title}场景`}
@@ -408,13 +408,13 @@ export default function HotProducts() {
                   >
                     <TabIcon
                       className={`h-3.5 w-3.5 transition-colors duration-300 sm:h-4 sm:w-4 ${
-                        isActive ? 'text-[#0055ff]' : 'text-gray-500'
+                        isActive ? 'text-brand-500' : 'text-neutral-500'
                       }`}
                     />
                     <span>{scenarioConfig[scenario].title}</span>
                     {isActive && (
                       <motion.div
-                        className="absolute right-0 bottom-0 left-0 h-0.5 rounded-full bg-[#0055ff]"
+                        className="absolute right-0 bottom-0 left-0 h-0.5 rounded-full bg-brand-500"
                         layoutId="activeMobileTab"
                         initial={{ opacity: 0, scaleX: 0 }}
                         animate={{ opacity: 1, scaleX: 1 }}
@@ -448,24 +448,24 @@ export default function HotProducts() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-col overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm lg:flex-row"
+            className="flex flex-col overflow-hidden rounded-md border border-neutral-200 bg-white shadow-sm lg:flex-row"
           >
             {/* 左侧内容区域 */}
             <div className="flex min-h-[300px] w-full flex-col justify-between p-3 sm:min-h-[350px] sm:p-4 md:p-6 lg:w-1/2 lg:p-8 xl:p-10">
               {/* 产品标题区域 */}
               <div className="mb-4 sm:mb-6">
                 <motion.span
-                  className="mb-3 inline-flex items-center rounded-full border border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50 px-2 py-1 text-xs font-semibold text-blue-700 shadow-sm sm:mb-4 sm:px-3 sm:py-1.5 sm:text-sm"
+                  className="mb-3 inline-flex items-center rounded-full border border-brand-100 bg-gradient-to-r from-brand-50 to-brand-50 px-2 py-1 text-xs font-semibold text-brand-600 shadow-sm sm:mb-4 sm:px-3 sm:py-1.5 sm:text-sm"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <IconComponent className="mr-1 h-3 w-3 text-blue-600 sm:mr-2 sm:h-4 sm:w-4" />
+                  <IconComponent className="mr-1 h-3 w-3 text-brand-500 sm:mr-2 sm:h-4 sm:w-4" />
                   {currentScenario.subtitle}
                 </motion.span>
 
                 <motion.h3
-                  className="mb-3 text-xl leading-tight font-bold tracking-tight text-gray-900 sm:mb-4 sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl"
+                  className="mb-3 text-xl leading-tight font-bold tracking-tight text-neutral-900 sm:mb-4 sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
@@ -474,7 +474,7 @@ export default function HotProducts() {
                 </motion.h3>
 
                 <motion.p
-                  className="text-sm leading-relaxed font-medium text-gray-600 sm:text-base lg:text-lg"
+                  className="text-sm leading-relaxed font-medium text-neutral-600 sm:text-base lg:text-lg"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
@@ -486,12 +486,12 @@ export default function HotProducts() {
               {/* 功能特性列表 */}
               <div className="mb-4 sm:mb-5">
                 <motion.h4
-                  className="mb-2 flex items-center text-base font-bold text-gray-900 sm:mb-3 sm:text-lg"
+                  className="mb-2 flex items-center text-base font-bold text-neutral-900 sm:mb-3 sm:text-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.3 }}
                 >
-                  <div className="mr-2 h-4 w-1 rounded-full bg-gradient-to-b from-blue-600 to-indigo-600 sm:mr-3 sm:h-6"></div>
+                  <div className="mr-2 h-4 w-1 rounded-full bg-gradient-to-b from-brand-500 to-brand-600 sm:mr-3 sm:h-6"></div>
                   核心功能特性
                 </motion.h4>
 
@@ -501,21 +501,21 @@ export default function HotProducts() {
                     return (
                       <motion.div
                         key={index}
-                        className="group flex items-start space-x-2 rounded-lg border border-transparent p-2 transition-all duration-300 hover:border-blue-100 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 sm:space-x-2.5 sm:p-2.5"
+                        className="group flex items-start space-x-2 rounded-lg border border-transparent p-2 transition-all duration-300 hover:border-brand-100 hover:bg-gradient-to-r hover:from-brand-50 hover:to-brand-50 sm:space-x-2.5 sm:p-2.5"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 + index * 0.1 }}
                       >
                         <div className="mt-0.5 flex-shrink-0">
-                          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-blue-100 to-indigo-100 transition-colors duration-300 group-hover:from-blue-200 group-hover:to-indigo-200 sm:h-7 sm:w-7">
-                            <FeatureIcon className="h-3 w-3 text-blue-600 sm:h-3.5 sm:w-3.5" />
+                          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-brand-100 to-brand-100 transition-colors duration-300 group-hover:from-brand-200 group-hover:to-brand-200 sm:h-7 sm:w-7">
+                            <FeatureIcon className="h-3 w-3 text-brand-500 sm:h-3.5 sm:w-3.5" />
                           </div>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h5 className="mb-0.5 text-xs leading-tight font-semibold text-gray-900 transition-colors duration-300 group-hover:text-blue-900 sm:text-xs">
+                          <h5 className="mb-0.5 text-xs leading-tight font-semibold text-neutral-900 transition-colors duration-300 group-hover:text-brand-800 sm:text-xs">
                             {feature.title}
                           </h5>
-                          <p className="line-clamp-2 text-xs leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-gray-700">
+                          <p className="line-clamp-2 text-xs leading-relaxed text-neutral-600 transition-colors duration-300 group-hover:text-neutral-700">
                             {feature.description}
                           </p>
                         </div>
@@ -533,7 +533,7 @@ export default function HotProducts() {
                 transition={{ duration: 0.4, delay: 0.9 }}
               >
                 <motion.button
-                  className="group flex flex-1 items-center justify-center rounded-lg bg-blue-600 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
+                  className="group flex flex-1 items-center justify-center rounded-lg bg-brand-500 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-colors duration-200 hover:bg-brand-600 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
                   onClick={() => {
                     handleConsultNow()
                     trackEvent('PrimaryAction', currentScenario.title)
@@ -548,7 +548,7 @@ export default function HotProducts() {
                 </motion.button>
 
                 <motion.button
-                  className="group flex flex-1 items-center justify-center rounded-lg border border-blue-600 bg-white px-4 py-1.5 text-xs font-medium text-blue-600 shadow-sm transition-colors duration-200 hover:bg-blue-50 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
+                  className="group flex flex-1 items-center justify-center rounded-lg border border-brand-500 bg-white px-4 py-1.5 text-xs font-medium text-brand-500 shadow-sm transition-colors duration-200 hover:bg-brand-50 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
                   onClick={() => {
                     handleViewDetails()
                     trackEvent('SecondaryAction', currentScenario.title)
@@ -565,13 +565,13 @@ export default function HotProducts() {
             </div>
 
             {/* 右侧图片区域 */}
-            <div className="relative flex w-full items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50/50 p-4 sm:p-6 lg:w-1/2 lg:p-8">
+            <div className="relative flex w-full items-center justify-center bg-gradient-to-br from-neutral-50 to-brand-50/50 p-4 sm:p-6 lg:w-1/2 lg:p-8">
               <div className="relative mx-auto w-full max-w-lg lg:max-w-xl xl:max-w-2xl">
                 {imageError ? (
-                  <div className="flex h-64 w-full items-center justify-center rounded-lg bg-gray-100">
-                    <div className="text-center text-gray-500">
-                      <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-lg bg-gray-200">
-                        <IconComponent className="h-8 w-8 text-gray-400" />
+                  <div className="flex h-64 w-full items-center justify-center rounded-lg bg-neutral-100">
+                    <div className="text-center text-neutral-500">
+                      <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-lg bg-neutral-200">
+                        <IconComponent className="h-8 w-8 text-neutral-400" />
                       </div>
                       <p className="text-sm">{currentScenario.imageAlt}</p>
                     </div>
@@ -605,7 +605,7 @@ export default function HotProducts() {
           onClick={handleCloseQRCodeModal}
         >
           {/* 背景遮罩 */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 bg-neutral-950/60 backdrop-blur-sm"></div>
 
           {/* 模态框内容 */}
           <motion.div
@@ -613,22 +613,24 @@ export default function HotProducts() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 10 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="relative mx-4 w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-xl ring-1 ring-gray-200/70"
+            className="relative mx-4 w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-xl ring-1 ring-neutral-200/70"
             onClick={(e) => e.stopPropagation()}
           >
             {/* 关闭按钮 */}
             <button
               onClick={handleCloseQRCodeModal}
-              className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100/80 transition-all duration-200 hover:scale-105 hover:bg-gray-200"
+              className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-neutral-100/80 transition-all duration-200 hover:scale-105 hover:bg-neutral-200"
               aria-label="关闭"
             >
-              <X className="h-4 w-4 text-gray-700" />
+              <X className="h-4 w-4 text-neutral-700" />
             </button>
 
             {/* 内容区域 */}
             <div className="p-8 text-center">
-              <h3 className="mb-2 text-lg font-semibold text-gray-900">产品详情咨询</h3>
-              <p className="mb-6 text-sm text-gray-600">扫描二维码添加客服微信，获取详细产品信息</p>
+              <h3 className="mb-2 text-lg font-semibold text-neutral-900">产品详情咨询</h3>
+              <p className="mb-6 text-sm text-neutral-600">
+                扫描二维码添加客服微信，获取详细产品信息
+              </p>
 
               {/* 二维码 */}
               <div className="mb-4 flex justify-center">
@@ -638,13 +640,13 @@ export default function HotProducts() {
                     alt="客服二维码"
                     width={192}
                     height={192}
-                    className="h-48 w-48 border border-gray-200 object-contain shadow-lg"
+                    className="h-48 w-48 border border-neutral-200 object-contain shadow-lg"
                   />
                 </div>
               </div>
 
               {/* 提示文字 */}
-              <p className="text-xs text-gray-500">长按二维码保存到相册</p>
+              <p className="text-xs text-neutral-500">长按二维码保存到相册</p>
             </div>
           </motion.div>
         </motion.div>

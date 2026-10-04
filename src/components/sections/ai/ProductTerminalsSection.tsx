@@ -67,7 +67,7 @@ const productTerminals: ProductTerminal[] = [
  */
 export function ProductTerminalsSection() {
   return (
-    <section className="bg-gray-50 py-24 sm:py-32">
+    <section className="bg-neutral-50 py-24 sm:py-32">
       <Container>
         {/* 标题区域 */}
         <SectionHeader
@@ -81,7 +81,7 @@ export function ProductTerminalsSection() {
           {productTerminals.map((terminal) => (
             <div
               key={terminal.name}
-              className="group rounded-xl border border-gray-200 bg-white p-6 transition-all duration-200 hover:border-brand-200 hover:shadow-md"
+              className="group rounded-xl border border-neutral-200 bg-white p-6 transition-all duration-200 hover:border-brand-200 hover:shadow-md"
             >
               {/* 头部：图标 + 名称 + 状态 */}
               <div className="flex items-start justify-between">
@@ -89,7 +89,7 @@ export function ProductTerminalsSection() {
                   <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-colors group-hover:bg-brand-500 group-hover:text-white">
                     <terminal.icon aria-hidden="true" className="size-5" />
                   </div>
-                  <h3 className="text-sm font-semibold text-gray-900">{terminal.name}</h3>
+                  <h3 className="text-sm font-semibold text-neutral-900">{terminal.name}</h3>
                 </div>
                 <span
                   className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium ${
@@ -103,7 +103,9 @@ export function ProductTerminalsSection() {
               </div>
 
               {/* 描述 */}
-              <p className="mt-4 text-sm leading-relaxed text-gray-500">{terminal.description}</p>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-500">
+                {terminal.description}
+              </p>
             </div>
           ))}
         </div>

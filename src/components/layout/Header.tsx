@@ -70,12 +70,18 @@ const leftGroups = navGroups.filter((group) => (group.desktop.side ?? 'left') ==
 const rightGroups = navGroups.filter((group) => group.desktop.side === 'right')
 
 /**
- * 由常驻断点推导响应式显隐类。
- * lg 为最低档：桌面导航容器本身在 <lg 隐藏，故无需额外类；
- * xl / 2xl 需显式声明「从该断点起才显示」。
+ * 常驻断点 → 响应式显隐类。
+ *
+ * 注意：必须写成完整静态字面量，不可用 `hidden ${bp}:block` 之类的模板字符串拼接。
+ * Tailwind 在构建期按源码字面量提取类名，运行时拼接的 `2xl:block` 扫描不到，
+ * 会导致产物缺少 `.2xl\:block` 规则、菜单被 `hidden` 永久隐藏（线上事故根因）。
+ *
+ * lg 为最低档：桌面导航容器本身在 <lg 隐藏，故无需额外类。
  */
-function visibilityClass(shownFrom: Breakpoint): string | undefined {
-  return shownFrom === 'lg' ? undefined : `hidden ${shownFrom}:block`
+const VISIBILITY_CLASS: Record<Breakpoint, string | undefined> = {
+  lg: undefined,
+  xl: 'hidden xl:block',
+  '2xl': 'hidden 2xl:block',
 }
 
 /** 渲染分组角标（桌面端尺寸；移动端由 MobileMenu 自行渲染） */
@@ -100,7 +106,7 @@ function toNavMenuConfig(group: NavGroup): NavMenuConfig {
     kind: 'mega',
     label: group.label,
     badge: renderNavBadge(group.badge),
-    wrapClass: visibilityClass(desktop.shownFrom),
+    wrapClass: VISIBILITY_CLASS[desktop.shownFrom],
     options: {
       categories: group.categories,
       quickTags: desktop.quickTags,

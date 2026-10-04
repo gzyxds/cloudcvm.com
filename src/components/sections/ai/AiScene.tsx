@@ -339,27 +339,27 @@ export const AiScene = memo(function AiScene() {
   }, [])
 
   return (
-    <section className="w-full bg-[#f5f6f7] py-16 md:py-24 dark:bg-gray-900">
+    <section className="w-full bg-neutral-50 py-16 md:py-24 dark:bg-neutral-950">
       <Container>
         {/* 顶部标题 */}
         <div className="mb-10 text-center md:mb-14">
-          <h2 className="mb-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl dark:text-white">
+          <h2 className="mb-3 text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl dark:text-white">
             全场景 AI 解决方案
           </h2>
-          <p className="mx-auto max-w-2xl text-base text-gray-500 sm:text-lg dark:text-gray-400">
+          <p className="mx-auto max-w-2xl text-base text-neutral-500 sm:text-lg dark:text-neutral-400">
             赋能企业与个人的超级智能体平台，助力业务数智化升级
           </p>
         </div>
 
         {/* 主体卡片容器 */}
-        <div className="flex min-h-[580px] flex-col overflow-hidden rounded-md border border-gray-200 bg-white lg:flex-row dark:border-gray-700 dark:bg-gray-800">
+        <div className="flex min-h-[580px] flex-col overflow-hidden rounded-md border border-neutral-200 bg-white lg:flex-row dark:border-neutral-700 dark:bg-neutral-800">
           {/* 左侧导航 */}
-          <nav className="w-full shrink-0 border-b border-gray-200 bg-gray-50 lg:w-[240px] lg:border-r lg:border-b-0 xl:w-[280px] dark:border-gray-700 dark:bg-gray-800/60">
+          <nav className="w-full shrink-0 border-b border-neutral-200 bg-neutral-50 lg:w-[240px] lg:border-r lg:border-b-0 xl:w-[280px] dark:border-neutral-700 dark:bg-neutral-800/60">
             {/* 移动端横向滚动 */}
             <div className="no-scrollbar overflow-x-auto lg:overflow-y-auto">
               {/* 移动端滚动阴影 */}
-              <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-6 bg-gradient-to-r from-gray-50 to-transparent lg:hidden dark:from-gray-800/60" />
-              <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-6 bg-gradient-to-l from-gray-50 to-transparent lg:hidden dark:from-gray-800/60" />
+              <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-6 bg-gradient-to-r from-neutral-50 to-transparent lg:hidden dark:from-neutral-800/60" />
+              <div className="pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-6 bg-gradient-to-l from-neutral-50 to-transparent lg:hidden dark:from-neutral-800/60" />
 
               <div className="flex min-w-max p-0 lg:min-w-0 lg:flex-col">
                 {tabs.map((t, idx) => (
@@ -371,8 +371,8 @@ export const AiScene = memo(function AiScene() {
                     className={clsx(
                       'relative flex min-w-[110px] items-center gap-3 border-r-2 border-transparent px-5 py-4 text-left transition-colors duration-200 outline-none lg:min-w-0 lg:border-r-0 lg:border-l-[3px]',
                       active === idx
-                        ? 'border-blue-600 bg-white font-semibold text-blue-600 dark:border-blue-400 dark:bg-gray-800 dark:text-blue-400'
-                        : 'text-gray-600 hover:bg-gray-100/60 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700/40 dark:hover:text-gray-200'
+                        ? 'border-brand-500 bg-white font-semibold text-brand-500 dark:border-brand-400 dark:bg-neutral-800 dark:text-brand-400'
+                        : 'text-neutral-600 hover:bg-neutral-100/60 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-700/40 dark:hover:text-neutral-200'
                     )}
                   >
                     <t.icon className="h-5 w-5 shrink-0" />
@@ -401,37 +401,37 @@ export const AiScene = memo(function AiScene() {
                 className="flex h-full flex-col"
               >
                 {/* 分类标题 */}
-                <div className="border-b border-gray-100 px-6 pt-6 pb-4 lg:px-8 lg:pt-8 dark:border-gray-700">
-                  <h3 className="text-lg font-bold text-gray-900 lg:text-xl dark:text-white">
+                <div className="border-b border-neutral-100 px-6 pt-6 pb-4 lg:px-8 lg:pt-8 dark:border-neutral-700">
+                  <h3 className="text-lg font-bold text-neutral-900 lg:text-xl dark:text-white">
                     {currentTab.title}
                   </h3>
                 </div>
 
                 {/* 功能卡片网格 */}
-                <div className="grid flex-1 grid-cols-1 gap-px bg-gray-100 sm:grid-cols-2 dark:bg-gray-700">
+                <div className="grid flex-1 grid-cols-1 gap-px bg-neutral-100 sm:grid-cols-2 dark:bg-neutral-700">
                   {currentTab.features.map((f, i) => (
                     <motion.div
                       key={`${active}-${i}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: Math.min(i * 0.03, 0.15), duration: 0.2 }}
-                      className="group dark:hover:bg-gray-750 flex gap-4 bg-white p-5 transition-colors duration-150 hover:bg-gray-50 lg:p-6 dark:bg-gray-800"
+                      className="group flex gap-4 bg-white p-5 transition-colors duration-150 hover:bg-neutral-50 lg:p-6 dark:bg-neutral-800 dark:hover:bg-neutral-800"
                     >
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600 transition-colors duration-200 group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-900/30 dark:text-blue-400">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand-50 text-brand-500 transition-colors duration-200 group-hover:bg-brand-500 group-hover:text-white dark:bg-brand-800/30 dark:text-brand-400">
                         <f.icon className="h-4 w-4 lg:h-5 lg:w-5" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="mb-1 text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 lg:text-base dark:text-white dark:group-hover:text-blue-400">
+                        <h4 className="mb-1 text-sm font-semibold text-neutral-900 transition-colors group-hover:text-brand-500 lg:text-base dark:text-white dark:group-hover:text-brand-400">
                           {f.title}
                         </h4>
-                        <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-gray-500 lg:text-sm dark:text-gray-400">
+                        <p className="mb-3 line-clamp-2 text-xs leading-relaxed text-neutral-500 lg:text-sm dark:text-neutral-400">
                           {f.desc}
                         </p>
                         <a
                           href={f.action.href}
                           target={f.action.href.startsWith('http') ? '_blank' : undefined}
                           rel={f.action.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="inline-flex items-center text-xs font-medium text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                          className="inline-flex items-center text-xs font-medium text-brand-500 transition-colors hover:text-brand-600 dark:text-brand-400 dark:hover:text-brand-300"
                         >
                           {f.action.label}
                           <ArrowRightIcon className="ml-1 h-3 w-3" />
@@ -442,17 +442,17 @@ export const AiScene = memo(function AiScene() {
                 </div>
 
                 {/* 底部操作栏 */}
-                <div className="flex flex-col items-stretch gap-3 border-t border-gray-100 bg-gray-50/50 px-6 py-4 sm:flex-row sm:items-center lg:px-8 lg:py-5 dark:border-gray-700 dark:bg-gray-800/50">
+                <div className="flex flex-col items-stretch gap-3 border-t border-neutral-100 bg-neutral-50/50 px-6 py-4 sm:flex-row sm:items-center lg:px-8 lg:py-5 dark:border-neutral-700 dark:bg-neutral-800/50">
                   <button
                     onClick={() => openQrModal('solution')}
-                    className="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
+                    className="inline-flex items-center justify-center rounded-md bg-brand-500 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
                   >
                     了解方案详情
                     <ArrowRightIcon className="ml-2 h-4 w-4" />
                   </button>
                   <button
                     onClick={() => openQrModal('consult')}
-                    className="inline-flex items-center justify-center rounded-md border border-gray-200 px-6 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
+                    className="inline-flex items-center justify-center rounded-md border border-neutral-200 px-6 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
                   >
                     联系售前咨询
                     <ChatBubbleLeftRightIcon className="ml-2 h-4 w-4" />

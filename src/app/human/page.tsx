@@ -120,7 +120,7 @@ function HeroSection(): JSX.Element {
   ]
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50 py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 dark:from-gray-900 dark:via-gray-900 dark:to-blue-950">
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-50 py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 dark:from-neutral-950 dark:via-neutral-950 dark:to-brand-900">
       {/* PixelBlast 动态背景效果 */}
       <div className="absolute inset-0 opacity-30">
         <PixelBlast
@@ -141,13 +141,13 @@ function HeroSection(): JSX.Element {
 
       {/* 背景装饰效果 */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/4 h-48 w-48 bg-[#0055ff]/8 opacity-40 blur-3xl sm:h-64 sm:w-64 md:h-80 md:w-80"></div>
-        <div className="absolute bottom-1/4 left-1/4 h-32 w-32 bg-[#0055ff]/6 opacity-30 blur-3xl sm:h-48 sm:w-48 md:h-64 md:w-64"></div>
+        <div className="absolute top-1/4 right-1/4 h-48 w-48 bg-brand-500/8 opacity-40 blur-3xl sm:h-64 sm:w-64 md:h-80 md:w-80"></div>
+        <div className="absolute bottom-1/4 left-1/4 h-32 w-32 bg-brand-500/6 opacity-30 blur-3xl sm:h-48 sm:w-48 md:h-64 md:w-64"></div>
         <div className="absolute top-6 left-6 opacity-20 sm:top-8 sm:left-8 md:top-10 md:left-10">
           <div className="flex space-x-1 sm:space-x-2">
-            <div className="h-1.5 w-1.5 rounded-sm bg-[#0055ff]/40 sm:h-2 sm:w-2"></div>
-            <div className="h-1.5 w-1.5 rounded-sm bg-[#0055ff]/30 sm:h-2 sm:w-2"></div>
-            <div className="h-1.5 w-1.5 rounded-sm bg-[#0055ff]/40 sm:h-2 sm:w-2"></div>
+            <div className="h-1.5 w-1.5 rounded-sm bg-brand-500/40 sm:h-2 sm:w-2"></div>
+            <div className="h-1.5 w-1.5 rounded-sm bg-brand-500/30 sm:h-2 sm:w-2"></div>
+            <div className="h-1.5 w-1.5 rounded-sm bg-brand-500/40 sm:h-2 sm:w-2"></div>
           </div>
         </div>
       </div>
@@ -158,25 +158,25 @@ function HeroSection(): JSX.Element {
           <div className="space-y-4 text-center sm:space-y-6 lg:text-left">
             <div className="space-y-3 sm:space-y-4">
               {/* 品牌标识 */}
-              <div className="mb-2 inline-flex items-center rounded-md border border-[#0055ff]/20 bg-[#0055ff]/10 px-3 py-1.5 text-xs font-medium text-[#0055ff] sm:px-4 sm:py-2 sm:text-sm">
+              <div className="mb-2 inline-flex items-center rounded-md border border-brand-500/20 bg-brand-500/10 px-3 py-1.5 text-xs font-medium text-brand-500 sm:px-4 sm:py-2 sm:text-sm">
                 <BoltIcon className="mr-1.5 h-3 w-3 sm:mr-2 sm:h-4 sm:w-4" />
                 虚拟数字人
               </div>
 
               {/* 主标题 */}
               <h1 className="text-3xl leading-tight font-bold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                <span className="mb-1 block text-[#0055ff] sm:mb-2">数字分身</span>
-                <span className="text-xl leading-tight font-semibold text-gray-900 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl dark:text-white">
+                <span className="mb-1 block text-brand-500 sm:mb-2">数字分身</span>
+                <span className="text-xl leading-tight font-semibold text-neutral-900 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl dark:text-white">
                   赋能企业智能化转型
                 </span>
               </h1>
             </div>
             {/* 描述文本 */}
             <div className="space-y-2 sm:space-y-3">
-              <p className="mx-auto max-w-2xl text-base leading-relaxed text-gray-600 sm:text-lg lg:mx-0 dark:text-gray-300">
+              <p className="mx-auto max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg lg:mx-0 dark:text-neutral-300">
                 基于先进的AI技术，提供高度拟真的数字人解决方案，助力企业数字化转型
               </p>
-              <p className="mx-auto max-w-xl text-sm text-gray-500 sm:text-base lg:mx-0 dark:text-gray-400">
+              <p className="mx-auto max-w-xl text-sm text-neutral-500 sm:text-base lg:mx-0 dark:text-neutral-400">
                 一次购买，永久免费更新
               </p>
             </div>
@@ -187,7 +187,7 @@ function HeroSection(): JSX.Element {
                 <a
                   key={feature.name}
                   href={feature.href}
-                  className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1.5 text-xs font-medium text-gray-900 transition-all duration-200 hover:border-gray-300 hover:bg-gray-100 sm:px-3 sm:py-2 sm:text-sm"
+                  className="rounded-md border border-neutral-200 bg-neutral-50 px-2 py-1.5 text-xs font-medium text-neutral-900 transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-100 sm:px-3 sm:py-2 sm:text-sm"
                   aria-label={feature.name}
                 >
                   {feature.name}
@@ -226,14 +226,14 @@ function HeroSection(): JSX.Element {
 
           {/* 右侧展示区域 */}
           <div className="relative mt-8 sm:mt-10 lg:mt-0">
-            <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-[#0055ff]/10 to-[#0066ff]/10 opacity-50 blur-xl sm:-inset-3 md:-inset-4"></div>
-            <div className="group relative rounded-md border border-gray-200/50 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:p-6 md:p-8 lg:p-10 dark:border-gray-700/50 dark:bg-gray-800/80">
+            <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-brand-500/10 to-brand-500/10 opacity-50 blur-xl sm:-inset-3 md:-inset-4"></div>
+            <div className="group relative rounded-md border border-neutral-200/50 bg-white/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:p-6 md:p-8 lg:p-10 dark:border-neutral-700/50 dark:bg-neutral-800/80">
               {/* 顶部标签区域 */}
               <div className="mb-6 flex flex-wrap gap-1.5 sm:mb-8 sm:gap-2 md:mb-10 md:gap-3">
                 {features.slice(0, 4).map((feature, index) => (
                   <span
                     key={feature.name}
-                    className="cursor-pointer rounded-md border border-[#0055ff]/20 bg-[#0055ff]/10 px-2 py-1.5 text-xs font-medium text-[#0055ff] transition-colors hover:bg-[#0055ff]/20 sm:px-3 sm:py-2 sm:text-sm md:px-4"
+                    className="cursor-pointer rounded-md border border-brand-500/20 bg-brand-500/10 px-2 py-1.5 text-xs font-medium text-brand-500 transition-colors hover:bg-brand-500/20 sm:px-3 sm:py-2 sm:text-sm md:px-4"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {feature.name}
@@ -245,22 +245,22 @@ function HeroSection(): JSX.Element {
                 {cards.map((card, index) => (
                   <div
                     key={card.title}
-                    className="group/card rounded-md border border-gray-200/50 bg-gray-50/80 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg sm:p-4 md:p-5 lg:p-7 dark:border-gray-600/50 dark:bg-gray-700/50"
+                    className="group/card rounded-md border border-neutral-200/50 bg-neutral-50/80 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-lg sm:p-4 md:p-5 lg:p-7 dark:border-neutral-600/50 dark:bg-neutral-700/50"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* 图标区域 */}
-                    <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg border border-[#0055ff]/20 bg-gradient-to-br from-[#0055ff]/10 to-[#0066ff]/10 transition-all duration-300 group-hover/card:scale-110 group-hover/card:border-[#0055ff]/40 sm:mb-3 sm:h-10 sm:w-10 md:mb-5 md:h-12 md:w-12">
+                    <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg border border-brand-500/20 bg-gradient-to-br from-brand-500/10 to-brand-500/10 transition-all duration-300 group-hover/card:scale-110 group-hover/card:border-brand-500/40 sm:mb-3 sm:h-10 sm:w-10 md:mb-5 md:h-12 md:w-12">
                       <card.icon
-                        className="h-4 w-4 text-[#0055ff] transition-colors group-hover/card:text-[#0066ff] sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
+                        className="h-4 w-4 text-brand-500 transition-colors group-hover/card:text-brand-500 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
                         aria-hidden="true"
                       />
                     </div>
                     {/* 内容区域 */}
                     <div className="space-y-1 sm:space-y-2 md:space-y-3">
-                      <h4 className="text-xs leading-tight font-bold text-gray-900 sm:text-sm md:text-base lg:text-lg dark:text-white">
+                      <h4 className="text-xs leading-tight font-bold text-neutral-900 sm:text-sm md:text-base lg:text-lg dark:text-white">
                         {card.title}
                       </h4>
-                      <p className="text-xs leading-relaxed text-gray-600 sm:text-sm dark:text-gray-400">
+                      <p className="text-xs leading-relaxed text-neutral-600 sm:text-sm dark:text-neutral-400">
                         {card.description}
                       </p>
                     </div>
@@ -279,23 +279,23 @@ function HeroSection(): JSX.Element {
 function AdvantagesSection(): JSX.Element {
   // 渐变色配置
   const gradientColors = [
-    'from-blue-600 to-blue-700',
-    'from-blue-500 to-blue-600',
-    'from-blue-400 to-blue-500',
-    'from-blue-700 to-blue-800',
+    'from-brand-500 to-brand-600',
+    'from-brand-500 to-brand-500',
+    'from-brand-400 to-brand-500',
+    'from-brand-600 to-brand-700',
   ]
-  const bulletColors = ['bg-blue-600', 'bg-blue-500', 'bg-blue-400', 'bg-blue-700']
+  const bulletColors = ['bg-brand-500', 'bg-brand-500', 'bg-brand-400', 'bg-brand-600']
 
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-24 dark:bg-gray-900">
+    <section className="bg-white py-16 sm:py-20 lg:py-24 dark:bg-neutral-950">
       <Container>
         {/* 标题区域 */}
         <div className="mb-12 text-center sm:mb-16 lg:mb-20">
-          <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 sm:mb-6 sm:text-3xl md:text-4xl dark:text-white">
+          <h2 className="mb-4 text-2xl font-bold tracking-tight text-neutral-900 sm:mb-6 sm:text-3xl md:text-4xl dark:text-white">
             产品优势
           </h2>
-          <div className="mx-auto mb-4 h-0.5 w-12 bg-blue-600 sm:mb-6 sm:h-1 sm:w-16"></div>
-          <p className="mx-auto max-w-2xl px-4 text-base leading-relaxed text-gray-600 sm:text-lg dark:text-gray-300">
+          <div className="mx-auto mb-4 h-0.5 w-12 bg-brand-500 sm:mb-6 sm:h-1 sm:w-16"></div>
+          <p className="mx-auto max-w-2xl px-4 text-base leading-relaxed text-neutral-600 sm:text-lg dark:text-neutral-300">
             多维度产品优势，助力企业数字化升级
           </p>
         </div>
@@ -305,7 +305,7 @@ function AdvantagesSection(): JSX.Element {
             return (
               <div
                 key={advantage.title}
-                className="group overflow-hidden border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800"
+                className="group overflow-hidden border border-neutral-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:border-neutral-700 dark:bg-neutral-800"
               >
                 {/* 数据展示区域 */}
                 <div
@@ -328,7 +328,7 @@ function AdvantagesSection(): JSX.Element {
                 </div>
                 {/* 内容区域 */}
                 <div className="p-6 sm:p-8">
-                  <h4 className="mb-4 text-sm font-semibold text-gray-900 sm:mb-6 sm:text-base dark:text-white">
+                  <h4 className="mb-4 text-sm font-semibold text-neutral-900 sm:mb-6 sm:text-base dark:text-white">
                     {advantage.description.split('，')[0]}
                   </h4>
                   <ul className="space-y-3 sm:space-y-4">
@@ -340,7 +340,7 @@ function AdvantagesSection(): JSX.Element {
                           <div
                             className={`h-1.5 w-1.5 sm:h-2 sm:w-2 ${bulletColors[index % 4]} mt-1.5 mr-2 flex-shrink-0 sm:mt-2 sm:mr-3`}
                           ></div>
-                          <span className="text-xs leading-relaxed text-gray-600 sm:text-sm dark:text-gray-300">
+                          <span className="text-xs leading-relaxed text-neutral-600 sm:text-sm dark:text-neutral-300">
                             {feature.trim()}
                           </span>
                         </li>
@@ -396,33 +396,33 @@ function DemoSection(): JSX.Element {
   ]
 
   return (
-    <section className="relative overflow-hidden bg-gray-50 py-16 sm:py-20">
+    <section className="relative overflow-hidden bg-neutral-50 py-16 sm:py-20">
       {/* 背景装饰元素 */}
       <div className="pointer-events-none absolute top-0 left-0 h-full w-full opacity-20 sm:opacity-30">
-        <div className="absolute top-10 left-10 h-32 w-32 bg-blue-100 blur-2xl sm:h-40 sm:w-40 sm:blur-3xl"></div>
-        <div className="absolute right-10 bottom-10 h-48 w-48 bg-indigo-100 blur-2xl sm:h-60 sm:w-60 sm:blur-3xl"></div>
+        <div className="absolute top-10 left-10 h-32 w-32 bg-brand-100 blur-2xl sm:h-40 sm:w-40 sm:blur-3xl"></div>
+        <div className="absolute right-10 bottom-10 h-48 w-48 bg-brand-100 blur-2xl sm:h-60 sm:w-60 sm:blur-3xl"></div>
       </div>
       <Container className="relative z-10">
         <div className="flex flex-col items-center gap-8 sm:gap-12 lg:flex-row">
           {/* 左侧内容 */}
           <div className="order-2 w-full lg:order-1 lg:w-1/2">
-            <div className="mb-4 inline-flex items-center bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 sm:mb-6 sm:text-sm">
-              <span className="mr-2 h-1.5 w-1.5 bg-blue-600"></span>
+            <div className="mb-4 inline-flex items-center bg-brand-100 px-3 py-1.5 text-xs font-medium text-brand-600 sm:mb-6 sm:text-sm">
+              <span className="mr-2 h-1.5 w-1.5 bg-brand-500"></span>
               在线演示
             </div>
-            <h2 className="mb-4 text-2xl leading-tight font-bold text-gray-900 sm:mb-6 sm:text-3xl">
+            <h2 className="mb-4 text-2xl leading-tight font-bold text-neutral-900 sm:mb-6 sm:text-3xl">
               AI数字人SaaS系统2.0
               <br className="hidden sm:block" />
               演示中心
             </h2>
-            <p className="mb-6 text-base leading-relaxed text-gray-600 sm:mb-8 sm:text-lg">
+            <p className="mb-6 text-base leading-relaxed text-neutral-600 sm:mb-8 sm:text-lg">
               通过我们的在线演示系统，您可以亲身体验AI数字人的强大功能和直观界面，无需安装，即刻体验。
             </p>
 
             <div className="mb-6 bg-white p-4 shadow-lg sm:mb-8 sm:p-6">
               <div className="mb-3 flex items-center sm:mb-4">
-                <div className="mr-2 flex h-8 w-8 items-center justify-center bg-blue-50 sm:mr-3 sm:h-10 sm:w-10">
-                  <PlayIcon className="h-4 w-4 text-blue-600 sm:h-5 sm:w-5" />
+                <div className="mr-2 flex h-8 w-8 items-center justify-center bg-brand-50 sm:mr-3 sm:h-10 sm:w-10">
+                  <PlayIcon className="h-4 w-4 text-brand-500 sm:h-5 sm:w-5" />
                 </div>
                 <h3 className="text-base font-medium sm:text-lg">演示账号信息</h3>
               </div>
@@ -431,29 +431,29 @@ function DemoSection(): JSX.Element {
                 {demoAccounts.map((account) => (
                   <div
                     key={account.title}
-                    className="flex flex-col justify-between bg-gray-50 p-3 sm:flex-row sm:items-center"
+                    className="flex flex-col justify-between bg-neutral-50 p-3 sm:flex-row sm:items-center"
                   >
                     <div className="mb-2 sm:mb-0">
-                      <p className="text-xs font-medium text-gray-900 sm:text-sm">
+                      <p className="text-xs font-medium text-neutral-900 sm:text-sm">
                         {account.title}
                       </p>
-                      <p className="text-xs break-all text-blue-600 sm:break-normal">
+                      <p className="text-xs break-all text-brand-500 sm:break-normal">
                         {account.url}
                       </p>
                     </div>
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">账号:</span>
+                        <span className="mr-1 text-xs text-neutral-500 sm:mr-2">账号:</span>
                         <span className="text-xs font-medium">{account.username}</span>
                       </div>
                       <div className="flex items-center">
-                        <span className="mr-1 text-xs text-gray-500 sm:mr-2">密码:</span>
+                        <span className="mr-1 text-xs text-neutral-500 sm:mr-2">密码:</span>
                         <span className="text-xs font-medium">{account.password}</span>
                       </div>
                       <Button
                         href={account.url}
                         variant="outline"
-                        className="mt-2 h-7 border-blue-600 text-xs text-blue-600 hover:bg-blue-50 sm:mt-0 sm:h-8"
+                        className="mt-2 h-7 border-brand-500 text-xs text-brand-500 hover:bg-brand-50 sm:mt-0 sm:h-8"
                       >
                         访问
                       </Button>
@@ -465,14 +465,14 @@ function DemoSection(): JSX.Element {
 
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
-                className="h-auto min-h-[44px] rounded-none bg-blue-600 px-6 py-3 text-sm font-medium text-white hover:bg-blue-700 sm:min-h-[48px] sm:px-8 sm:text-base"
+                className="h-auto min-h-[44px] rounded-none bg-brand-500 px-6 py-3 text-sm font-medium text-white hover:bg-brand-600 sm:min-h-[48px] sm:px-8 sm:text-base"
                 href="#"
               >
                 申请专属演示
               </Button>
               <Button
                 variant="outline"
-                className="h-auto min-h-[44px] rounded-none border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:min-h-[48px] sm:px-8 sm:text-base"
+                className="h-auto min-h-[44px] rounded-none border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-700 hover:bg-neutral-50 sm:min-h-[48px] sm:px-8 sm:text-base"
                 href="#"
               >
                 联系客服
@@ -497,8 +497,10 @@ function DemoSection(): JSX.Element {
                 />
                 <div className="mt-3 flex items-center justify-between sm:mt-4">
                   <div>
-                    <h4 className="text-xs font-medium text-gray-900 sm:text-sm">数字人管理平台</h4>
-                    <p className="text-xs text-gray-500">一站式管理您的所有数字人资产</p>
+                    <h4 className="text-xs font-medium text-neutral-900 sm:text-sm">
+                      数字人管理平台
+                    </h4>
+                    <p className="text-xs text-neutral-500">一站式管理您的所有数字人资产</p>
                   </div>
                   <div className="flex space-x-1 sm:space-x-2">
                     <div className="h-1.5 w-1.5 bg-red-500 sm:h-2 sm:w-2"></div>
@@ -509,7 +511,7 @@ function DemoSection(): JSX.Element {
               </div>
 
               {/* 装饰元素 */}
-              <div className="absolute -top-3 -left-3 transform bg-gradient-to-br from-blue-600 to-blue-700 p-3 shadow-lg transition-transform duration-300 hover:scale-105 sm:-top-6 sm:-left-6 sm:p-4">
+              <div className="absolute -top-3 -left-3 transform bg-gradient-to-br from-brand-500 to-brand-600 p-3 shadow-lg transition-transform duration-300 hover:scale-105 sm:-top-6 sm:-left-6 sm:p-4">
                 <div className="flex items-center space-x-3">
                   <div className="flex h-8 w-8 items-center justify-center bg-white/20 backdrop-blur-sm sm:h-10 sm:w-10">
                     <svg
@@ -530,7 +532,7 @@ function DemoSection(): JSX.Element {
                     <p className="text-sm font-medium tracking-wide text-white sm:text-base">
                       在线演示
                     </p>
-                    <p className="text-xs text-blue-100/90 sm:text-sm">实时体验</p>
+                    <p className="text-xs text-brand-100/90 sm:text-sm">实时体验</p>
                   </div>
                 </div>
               </div>
@@ -619,25 +621,25 @@ function ScenariosSection(): JSX.Element {
       <Container>
         {/* 标题区域 - 参考demo页面设计 */}
         <div className="mb-20 text-center">
-          <div className="mb-6 inline-flex items-center rounded-full bg-blue-50 px-4 py-2">
-            <span className="mr-2 h-2 w-2 rounded-full bg-blue-600"></span>
-            <span className="text-sm font-medium text-blue-700">场景应用</span>
+          <div className="mb-6 inline-flex items-center rounded-full bg-brand-50 px-4 py-2">
+            <span className="mr-2 h-2 w-2 rounded-full bg-brand-500"></span>
+            <span className="text-sm font-medium text-brand-600">场景应用</span>
           </div>
-          <h2 className="mb-6 text-4xl font-bold tracking-tight text-gray-900">应用场景</h2>
-          <div className="mx-auto mb-6 h-0.5 w-20 bg-blue-600"></div>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">
+          <h2 className="mb-6 text-4xl font-bold tracking-tight text-neutral-900">应用场景</h2>
+          <div className="mx-auto mb-6 h-0.5 w-20 bg-brand-500"></div>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-neutral-600">
             丰富的应用场景和解决方案，满足多种业务需求
           </p>
         </div>
 
         {/* 场景标签导航 - 现代化简约风格 - 优化移动端滚动 */}
         <div className="mb-16 flex justify-center">
-          <div className="scrollbar-hide inline-flex max-w-full overflow-x-auto bg-gray-50 p-1.5 shadow-sm">
+          <div className="scrollbar-hide inline-flex max-w-full overflow-x-auto bg-neutral-50 p-1.5 shadow-sm">
             <button
               className={`relative min-w-[100px] px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'virtualIP'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-700 hover:bg-white hover:text-gray-900'
+                  ? 'bg-brand-500 text-white shadow-md'
+                  : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
               }`}
               onClick={() => setActiveScenario('virtualIP')}
             >
@@ -646,14 +648,14 @@ function ScenariosSection(): JSX.Element {
                 带货视频
               </span>
               {activeScenario === 'virtualIP' && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-600"></div>
               )}
             </button>
             <button
               className={`relative min-w-[100px] px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'digitalEmployee'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-700 hover:bg-white hover:text-gray-900'
+                  ? 'bg-brand-500 text-white shadow-md'
+                  : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
               }`}
               onClick={() => setActiveScenario('digitalEmployee')}
             >
@@ -662,14 +664,14 @@ function ScenariosSection(): JSX.Element {
                 数字员工
               </span>
               {activeScenario === 'digitalEmployee' && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-600"></div>
               )}
             </button>
             <button
               className={`relative min-w-[100px] px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'contentCreation'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-700 hover:bg-white hover:text-gray-900'
+                  ? 'bg-brand-500 text-white shadow-md'
+                  : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
               }`}
               onClick={() => setActiveScenario('contentCreation')}
             >
@@ -678,14 +680,14 @@ function ScenariosSection(): JSX.Element {
                 内容创作
               </span>
               {activeScenario === 'contentCreation' && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-600"></div>
               )}
             </button>
             <button
               className={`relative min-w-[100px] px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'virtualLive'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-700 hover:bg-white hover:text-gray-900'
+                  ? 'bg-brand-500 text-white shadow-md'
+                  : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
               }`}
               onClick={() => setActiveScenario('virtualLive')}
             >
@@ -694,7 +696,7 @@ function ScenariosSection(): JSX.Element {
                 虚拟直播
               </span>
               {activeScenario === 'virtualLive' && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-600"></div>
               )}
             </button>
           </div>
@@ -709,15 +711,15 @@ function ScenariosSection(): JSX.Element {
             }`}
           >
             <div>
-              <div className="mb-4 inline-flex items-center rounded-full bg-blue-50 px-3 py-1">
-                <span className="text-xs font-medium text-blue-600">
+              <div className="mb-4 inline-flex items-center rounded-full bg-brand-50 px-3 py-1">
+                <span className="text-xs font-medium text-brand-500">
                   {currentScenario.subtitle}
                 </span>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-gray-900 sm:mb-4 sm:text-3xl">
+              <h3 className="mb-3 text-2xl font-bold text-neutral-900 sm:mb-4 sm:text-3xl">
                 {currentScenario.title}
               </h3>
-              <p className="text-base leading-relaxed text-gray-600 sm:text-lg">
+              <p className="text-base leading-relaxed text-neutral-600 sm:text-lg">
                 {currentScenario.description}
               </p>
             </div>
@@ -727,10 +729,10 @@ function ScenariosSection(): JSX.Element {
               {currentScenario.features.map(
                 (feature: { name: string; desc: string }, index: number) => (
                   <div key={index} className="flex items-center space-x-3">
-                    <div className="h-2 w-2 flex-shrink-0 rounded-full bg-blue-600"></div>
+                    <div className="h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></div>
                     <div>
-                      <span className="font-medium text-gray-900">{feature.name}</span>
-                      <span className="ml-2 text-gray-500">- {feature.desc}</span>
+                      <span className="font-medium text-neutral-900">{feature.name}</span>
+                      <span className="ml-2 text-neutral-500">- {feature.desc}</span>
                     </div>
                   </div>
                 )
@@ -740,7 +742,7 @@ function ScenariosSection(): JSX.Element {
             {/* 按钮组 - 优化移动端按钮大小 */}
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
-                className="flex h-auto min-h-[44px] items-center justify-center rounded-none bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-200 hover:bg-blue-700 sm:min-h-[48px] sm:px-8 sm:py-3 sm:text-base"
+                className="flex h-auto min-h-[44px] items-center justify-center rounded-none bg-brand-500 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-200 hover:bg-brand-600 sm:min-h-[48px] sm:px-8 sm:py-3 sm:text-base"
                 onClick={() => (window.location.href = '/demo')}
               >
                 <PlayIcon className="mr-2 h-4 w-4" />
@@ -748,7 +750,7 @@ function ScenariosSection(): JSX.Element {
               </Button>
               <Button
                 variant="outline"
-                className="flex h-auto min-h-[44px] items-center justify-center rounded-none border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 sm:min-h-[48px] sm:px-8 sm:py-3 sm:text-base"
+                className="flex h-auto min-h-[44px] items-center justify-center rounded-none border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-700 hover:bg-neutral-50 sm:min-h-[48px] sm:px-8 sm:py-3 sm:text-base"
                 href="#"
               >
                 <UserGroupIcon className="mr-2 h-4 w-4" />
@@ -763,7 +765,7 @@ function ScenariosSection(): JSX.Element {
               activeScenario === 'digitalEmployee' ? 'order-1 lg:order-2' : ''
             }`}
           >
-            <div className="rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:rounded-3xl sm:p-8">
+            <div className="rounded-xl bg-gradient-to-br from-brand-50 to-brand-50 p-4 sm:rounded-3xl sm:p-8">
               <video
                 src={currentScenario.videoUrl}
                 className="w-full rounded-2xl shadow-lg"
@@ -779,17 +781,17 @@ function ScenariosSection(): JSX.Element {
             </div>
             {/* 悬浮标签 */}
             <div
-              className={`absolute rounded-md border border-gray-100 bg-white p-4 shadow-lg ${
+              className={`absolute rounded-md border border-neutral-100 bg-white p-4 shadow-lg ${
                 activeScenario === 'digitalEmployee' ? '-top-4 -left-4' : '-top-4 -right-4'
               }`}
             >
               <div className="flex items-center space-x-3">
-                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-blue-50">
-                  <currentScenario.icon className="h-6 w-6 text-blue-600" />
+                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-brand-50">
+                  <currentScenario.icon className="h-6 w-6 text-brand-500" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900">{currentScenario.tagText}</p>
-                  <p className="text-sm text-gray-500">{currentScenario.tagDesc}</p>
+                  <p className="font-semibold text-neutral-900">{currentScenario.tagText}</p>
+                  <p className="text-sm text-neutral-500">{currentScenario.tagDesc}</p>
                 </div>
               </div>
             </div>
@@ -885,8 +887,10 @@ function CoreFeaturesSection(): JSX.Element {
       <Container>
         {/* 标题区域 */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">核心功能</h2>
-          <p className="mt-4 text-lg leading-8 text-gray-600">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+            核心功能
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-neutral-600">
             强大的AI技术能力，为您提供全方位的数字人解决方案
           </p>
         </div>
@@ -904,22 +908,22 @@ function CoreFeaturesSection(): JSX.Element {
                 {/* 内容区域 */}
                 <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="mb-6 flex items-center space-x-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500">
                       <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">{feature.name}</h3>
+                    <h3 className="text-2xl font-bold text-neutral-900">{feature.name}</h3>
                   </div>
 
-                  <p className="mb-8 text-lg leading-8 text-gray-600">{feature.description}</p>
+                  <p className="mb-8 text-lg leading-8 text-neutral-600">{feature.description}</p>
 
                   {/* 特性列表 */}
                   <div className="mb-8 space-y-4">
                     {feature.stats.map((stat) => (
                       <div key={stat.label} className="flex items-start space-x-3">
-                        <div className="mt-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-600"></div>
+                        <div className="mt-3 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500"></div>
                         <div>
-                          <dt className="font-semibold text-gray-900">{stat.label}</dt>
-                          <dd className="text-gray-600">{stat.value}</dd>
+                          <dt className="font-semibold text-neutral-900">{stat.label}</dt>
+                          <dd className="text-neutral-600">{stat.value}</dd>
                         </div>
                       </div>
                     ))}
@@ -970,7 +974,7 @@ function CoreFeaturesSection(): JSX.Element {
                 <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                   <div className="relative">
                     {feature.videoUrl ? (
-                      <div className="aspect-video overflow-hidden rounded-lg bg-gray-100">
+                      <div className="aspect-video overflow-hidden rounded-lg bg-neutral-100">
                         <video
                           src={feature.videoUrl}
                           controls
@@ -983,7 +987,7 @@ function CoreFeaturesSection(): JSX.Element {
                         </video>
                       </div>
                     ) : (
-                      <div className="aspect-video overflow-hidden rounded-lg bg-gray-100">
+                      <div className="aspect-video overflow-hidden rounded-lg bg-neutral-100">
                         <Image
                           src={feature.image}
                           alt={`${feature.name}功能演示`}
@@ -1004,7 +1008,7 @@ function CoreFeaturesSection(): JSX.Element {
         <div className="mt-12 text-center sm:mt-16">
           <a
             href="#features"
-            className="inline-flex items-center rounded-md border border-gray-300 px-6 py-3 text-sm font-medium text-gray-700 transition-colors hover:border-gray-400 hover:text-gray-900"
+            className="inline-flex items-center rounded-md border border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900"
           >
             探索更多功能
             <ChevronRightIcon className="ml-2 h-4 w-4" />
@@ -1029,17 +1033,17 @@ export default function DigitalHumanPage(): JSX.Element {
         <AiScene />
 
         {/* 接入流程 Section */}
-        <section className="bg-[#F8FAFC] py-16 md:py-24">
+        <section className="bg-neutral-50 py-16 md:py-24">
           <Container>
             {/* 标题区域 */}
             <div className="mb-12 text-center md:mb-16">
-              <div className="mb-4 inline-flex items-center rounded-sm border border-[#E2E8F0] bg-[#eff6ff] px-3 py-1">
-                <span className="font-mono text-xs font-semibold text-[#0055ff]">快速部署</span>
+              <div className="mb-4 inline-flex items-center rounded-sm border border-neutral-200 bg-brand-50 px-3 py-1">
+                <span className="font-mono text-xs font-semibold text-brand-500">快速部署</span>
               </div>
-              <h2 className="mb-4 font-sans text-2xl font-bold text-[#0F172A] md:text-3xl">
+              <h2 className="mb-4 font-sans text-2xl font-bold text-neutral-950 md:text-3xl">
                 接入流程
               </h2>
-              <p className="mx-auto mb-8 max-w-2xl font-sans text-base font-medium text-[#64748B] md:text-lg">
+              <p className="mx-auto mb-8 max-w-2xl font-sans text-base font-medium text-neutral-500 md:text-lg">
                 标准化服务流程，助您快速完成数字人系统部署
               </p>
               <Button
@@ -1054,88 +1058,88 @@ export default function DigitalHumanPage(): JSX.Element {
             {/* 流程步骤 */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
               {/* 步骤1：需求沟通 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-lg md:p-8">
                 {/* 序号水印 */}
-                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-neutral-50 select-none md:text-9xl">
                   01
                 </div>
                 <div className="relative z-10">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
-                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-neutral-50 transition-colors duration-300 group-hover:bg-brand-500 md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-brand-500 transition-colors duration-300 group-hover:text-white md:text-lg">
                       01
                     </span>
                   </div>
-                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                  <h3 className="mb-2 font-sans text-lg font-bold text-neutral-950 md:mb-3 md:text-xl">
                     需求沟通
                   </h3>
-                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
-                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-neutral-200 transition-colors duration-300 group-hover:bg-brand-500/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-neutral-500">
                     提供产品信息，沟通数字人类型、使用场景和交付形式
                   </p>
                 </div>
               </div>
 
               {/* 步骤2：确认合作 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-lg md:p-8">
                 {/* 序号水印 */}
-                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-neutral-50 select-none md:text-9xl">
                   02
                 </div>
                 <div className="relative z-10">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
-                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-neutral-50 transition-colors duration-300 group-hover:bg-brand-500 md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-brand-500 transition-colors duration-300 group-hover:text-white md:text-lg">
                       02
                     </span>
                   </div>
-                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                  <h3 className="mb-2 font-sans text-lg font-bold text-neutral-950 md:mb-3 md:text-xl">
                     确认合作
                   </h3>
-                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
-                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-neutral-200 transition-colors duration-300 group-hover:bg-brand-500/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-neutral-500">
                     通过控制台直接下单，或线下沟通商务合作
                   </p>
                 </div>
               </div>
 
               {/* 步骤3：资产制作 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-lg md:p-8">
                 {/* 序号水印 */}
-                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-neutral-50 select-none md:text-9xl">
                   03
                 </div>
                 <div className="relative z-10">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
-                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-neutral-50 transition-colors duration-300 group-hover:bg-brand-500 md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-brand-500 transition-colors duration-300 group-hover:text-white md:text-lg">
                       03
                     </span>
                   </div>
-                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                  <h3 className="mb-2 font-sans text-lg font-bold text-neutral-950 md:mb-3 md:text-xl">
                     资产制作
                   </h3>
-                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
-                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-neutral-200 transition-colors duration-300 group-hover:bg-brand-500/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-neutral-500">
                     采集数据，制作数字人形象和声音资产
                   </p>
                 </div>
               </div>
 
               {/* 步骤4：正式上线 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-lg md:p-8">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-lg md:p-8">
                 {/* 序号水印 */}
-                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-[#F8FAFC] select-none md:text-9xl">
+                <div className="pointer-events-none absolute -top-4 -right-4 font-mono text-7xl font-bold text-neutral-50 select-none md:text-9xl">
                   04
                 </div>
                 <div className="relative z-10">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-[#F8FAFC] transition-colors duration-300 group-hover:bg-[#0055ff] md:mb-6 md:h-12 md:w-12">
-                    <span className="font-mono text-base font-bold text-[#0055ff] transition-colors duration-300 group-hover:text-white md:text-lg">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm bg-neutral-50 transition-colors duration-300 group-hover:bg-brand-500 md:mb-6 md:h-12 md:w-12">
+                    <span className="font-mono text-base font-bold text-brand-500 transition-colors duration-300 group-hover:text-white md:text-lg">
                       04
                     </span>
                   </div>
-                  <h3 className="mb-2 font-sans text-lg font-bold text-[#0F172A] md:mb-3 md:text-xl">
+                  <h3 className="mb-2 font-sans text-lg font-bold text-neutral-950 md:mb-3 md:text-xl">
                     正式上线
                   </h3>
-                  <div className="mb-3 h-1 w-8 rounded-sm bg-[#E2E8F0] transition-colors duration-300 group-hover:bg-[#0055ff]/30 md:mb-4"></div>
-                  <p className="font-sans text-sm leading-relaxed text-[#64748B]">
+                  <div className="mb-3 h-1 w-8 rounded-sm bg-neutral-200 transition-colors duration-300 group-hover:bg-brand-500/30 md:mb-4"></div>
+                  <p className="font-sans text-sm leading-relaxed text-neutral-500">
                     数字人上线，调用接口驱动或通过平台直接使用
                   </p>
                 </div>
@@ -1148,7 +1152,7 @@ export default function DigitalHumanPage(): JSX.Element {
         <section className="py-12 sm:py-16 lg:py-24">
           <Container>
             <div className="mx-auto max-w-[1800px] px-1 sm:px-2 lg:px-4">
-              <div className="relative overflow-hidden rounded-md border border-gray-200 bg-white">
+              <div className="relative overflow-hidden rounded-md border border-neutral-200 bg-white">
                 {/* 装饰元素 - 仅在大屏显示 */}
                 <div className="absolute top-0 right-0 hidden h-full w-1/2 lg:block">
                   <svg
@@ -1168,21 +1172,21 @@ export default function DigitalHumanPage(): JSX.Element {
                   {/* 左侧内容 */}
                   <div className="relative z-10 p-6 sm:p-8 lg:col-span-3 lg:p-12">
                     <div className="max-w-xl">
-                      <h3 className="mb-4 text-xl leading-tight font-bold text-gray-900 sm:text-2xl lg:text-3xl">
+                      <h3 className="mb-4 text-xl leading-tight font-bold text-neutral-900 sm:text-2xl lg:text-3xl">
                         准备好开启您的
-                        <span className="text-blue-600">AI数字人之旅</span>
+                        <span className="text-brand-500">AI数字人之旅</span>
                         了吗？
                       </h3>
-                      <p className="mb-6 text-sm leading-relaxed text-gray-600 sm:text-base">
+                      <p className="mb-6 text-sm leading-relaxed text-neutral-600 sm:text-base">
                         专为企业主、个人博主打造短视频IP的数字人源码系统，支持真人声音+形象克隆，一键合成知识付费、课程、带货、形象宣传、行业干货等口播视频。基于SaaS多开模式的架构设计，支持无限OEM贴牌开通站点。版本免费迭代升级+售后技术支撑，让你无后顾之忧！
                       </p>
 
                       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                         <div className="flex items-start">
-                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
+                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -1194,17 +1198,17 @@ export default function DigitalHumanPage(): JSX.Element {
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                            <h4 className="text-sm font-medium text-neutral-900 sm:text-base">
                               高清还原
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">100%真实感官体验</p>
+                            <p className="text-xs text-neutral-500 sm:text-sm">100%真实感官体验</p>
                           </div>
                         </div>
                         <div className="flex items-start">
-                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
+                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -1216,17 +1220,17 @@ export default function DigitalHumanPage(): JSX.Element {
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                            <h4 className="text-sm font-medium text-neutral-900 sm:text-base">
                               专业服务
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">7×24小时技术支持</p>
+                            <p className="text-xs text-neutral-500 sm:text-sm">7×24小时技术支持</p>
                           </div>
                         </div>
                         <div className="flex items-start">
-                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
+                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -1238,17 +1242,17 @@ export default function DigitalHumanPage(): JSX.Element {
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                            <h4 className="text-sm font-medium text-neutral-900 sm:text-base">
                               数据安全
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">企业级安全保障</p>
+                            <p className="text-xs text-neutral-500 sm:text-sm">企业级安全保障</p>
                           </div>
                         </div>
                         <div className="flex items-start">
-                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-blue-50">
+                          <div className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -1260,21 +1264,21 @@ export default function DigitalHumanPage(): JSX.Element {
                             </svg>
                           </div>
                           <div>
-                            <h4 className="text-sm font-medium text-gray-900 sm:text-base">
+                            <h4 className="text-sm font-medium text-neutral-900 sm:text-base">
                               持续更新
                             </h4>
-                            <p className="text-xs text-gray-500 sm:text-sm">定期功能迭代升级</p>
+                            <p className="text-xs text-neutral-500 sm:text-sm">定期功能迭代升级</p>
                           </div>
                         </div>
                       </div>
 
                       <div className="flex flex-col gap-3 sm:flex-row">
-                        <Button className="w-full rounded-none bg-blue-600 px-6 py-3 font-bold text-white shadow-lg hover:bg-blue-700 sm:w-auto sm:py-4">
+                        <Button className="w-full rounded-none bg-brand-500 px-6 py-3 font-bold text-white shadow-lg hover:bg-brand-600 sm:w-auto sm:py-4">
                           立即体验
                         </Button>
                         <Button
                           variant="outline"
-                          className="w-full rounded-none border-blue-600 px-6 py-3 text-blue-600 hover:bg-blue-50 sm:w-auto sm:py-4"
+                          className="w-full rounded-none border-brand-500 px-6 py-3 text-brand-500 hover:bg-brand-50 sm:w-auto sm:py-4"
                         >
                           咨询价格
                         </Button>
@@ -1288,11 +1292,11 @@ export default function DigitalHumanPage(): JSX.Element {
                     <div className="p-6 lg:hidden">
                       <div className="grid grid-cols-2 gap-3">
                         {/* AI数字人 */}
-                        <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
-                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
+                        <div className="flex flex-col items-center justify-center rounded-lg bg-neutral-50 p-4 shadow-sm">
+                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1305,18 +1309,18 @@ export default function DigitalHumanPage(): JSX.Element {
                               />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
+                          <h4 className="text-center text-sm font-medium text-neutral-900">
                             AI数字人
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">双版本支持</p>
+                          <p className="mt-1 text-center text-xs text-neutral-500">双版本支持</p>
                         </div>
 
                         {/* 私有部署 */}
-                        <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
-                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
+                        <div className="flex flex-col items-center justify-center rounded-lg bg-neutral-50 p-4 shadow-sm">
+                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1329,18 +1333,18 @@ export default function DigitalHumanPage(): JSX.Element {
                               />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
+                          <h4 className="text-center text-sm font-medium text-neutral-900">
                             私有部署
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">安全可控</p>
+                          <p className="mt-1 text-center text-xs text-neutral-500">安全可控</p>
                         </div>
 
                         {/* 专业团队 */}
-                        <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
-                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
+                        <div className="flex flex-col items-center justify-center rounded-lg bg-neutral-50 p-4 shadow-sm">
+                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1353,18 +1357,18 @@ export default function DigitalHumanPage(): JSX.Element {
                               />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
+                          <h4 className="text-center text-sm font-medium text-neutral-900">
                             专业团队
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">一对一支持</p>
+                          <p className="mt-1 text-center text-xs text-neutral-500">一对一支持</p>
                         </div>
 
                         {/* 开源方案 */}
-                        <div className="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-4 shadow-sm">
-                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-blue-50">
+                        <div className="flex flex-col items-center justify-center rounded-lg bg-neutral-50 p-4 shadow-sm">
+                          <div className="mb-2 flex h-8 w-8 items-center justify-center bg-brand-50">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 text-blue-600"
+                              className="h-5 w-5 text-brand-500"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1377,10 +1381,10 @@ export default function DigitalHumanPage(): JSX.Element {
                               />
                             </svg>
                           </div>
-                          <h4 className="text-center text-sm font-medium text-gray-900">
+                          <h4 className="text-center text-sm font-medium text-neutral-900">
                             开源方案
                           </h4>
-                          <p className="mt-1 text-center text-xs text-gray-500">灵活定制</p>
+                          <p className="mt-1 text-center text-xs text-neutral-500">灵活定制</p>
                         </div>
                       </div>
                     </div>
@@ -1388,14 +1392,14 @@ export default function DigitalHumanPage(): JSX.Element {
                     {/* 桌面端显示 */}
                     <div className="absolute inset-0 hidden lg:block">
                       <div className="flex h-full w-full items-center p-6">
-                        <div className="h-full w-full bg-gray-50 p-4 shadow-lg">
+                        <div className="h-full w-full bg-neutral-50 p-4 shadow-lg">
                           <div className="grid h-full grid-cols-2 gap-4">
                             {/* AI数字人 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
-                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
+                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-brand-50">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
+                                  className="h-6 w-6 text-brand-500"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -1408,18 +1412,18 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">AI数字人</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
+                              <h4 className="text-lg font-medium text-neutral-900">AI数字人</h4>
+                              <p className="mt-1 text-center text-sm text-neutral-500">
                                 PHP/Java双版本支持
                               </p>
                             </div>
 
                             {/* 私有部署 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
-                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
+                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-brand-50">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
+                                  className="h-6 w-6 text-brand-500"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -1432,18 +1436,18 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">私有部署</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
+                              <h4 className="text-lg font-medium text-neutral-900">私有部署</h4>
+                              <p className="mt-1 text-center text-sm text-neutral-500">
                                 安全可控的私有化部署
                               </p>
                             </div>
 
                             {/* 专业团队 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
-                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
+                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-brand-50">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
+                                  className="h-6 w-6 text-brand-500"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -1456,18 +1460,18 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">专业团队</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
+                              <h4 className="text-lg font-medium text-neutral-900">专业团队</h4>
+                              <p className="mt-1 text-center text-sm text-neutral-500">
                                 一对一技术支持
                               </p>
                             </div>
 
                             {/* 开源方案 */}
                             <div className="flex flex-col items-center justify-center bg-white p-3 shadow-sm">
-                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-blue-50">
+                              <div className="mb-2 flex h-10 w-10 items-center justify-center bg-brand-50">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
-                                  className="h-6 w-6 text-blue-600"
+                                  className="h-6 w-6 text-brand-500"
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -1480,8 +1484,8 @@ export default function DigitalHumanPage(): JSX.Element {
                                   />
                                 </svg>
                               </div>
-                              <h4 className="text-lg font-medium text-gray-900">开源方案</h4>
-                              <p className="mt-1 text-center text-sm text-gray-500">
+                              <h4 className="text-lg font-medium text-neutral-900">开源方案</h4>
+                              <p className="mt-1 text-center text-sm text-neutral-500">
                                 灵活定制，售后无忧
                               </p>
                             </div>

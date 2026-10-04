@@ -319,13 +319,17 @@ const statusConfig = {
     icon: CheckCircle2,
     className: 'bg-emerald-50 text-emerald-700 border-emerald-200',
   },
-  new: { label: '最新', icon: AlertCircle, className: 'bg-blue-50 text-blue-700 border-blue-200' },
+  new: {
+    label: '最新',
+    icon: AlertCircle,
+    className: 'bg-brand-50 text-brand-600 border-brand-200',
+  },
   beta: { label: 'Beta', icon: Clock, className: 'bg-amber-50 text-amber-700 border-amber-200' },
 }
 
 /** 演示类型标签配置 */
 const demoTypeConfig = {
-  frontend: { label: '前台', className: 'bg-slate-100 text-slate-600' },
+  frontend: { label: '前台', className: 'bg-neutral-100 text-neutral-600' },
   admin: { label: '管理端', className: 'bg-violet-50 text-violet-600' },
   mobile: { label: '移动端', className: 'bg-sky-50 text-sky-600' },
 }
@@ -364,12 +368,12 @@ function CredentialRow({
 }) {
   const copied = copiedKey === copyKey
   return (
-    <div className="flex items-center justify-between gap-2 rounded border border-slate-200 bg-slate-50 px-3 py-2">
-      <span className="w-10 flex-none text-xs text-slate-400">{label}</span>
-      <span className="min-w-0 flex-1 truncate font-mono text-xs text-slate-700">{value}</span>
+    <div className="flex items-center justify-between gap-2 rounded border border-neutral-200 bg-neutral-50 px-3 py-2">
+      <span className="w-10 flex-none text-xs text-neutral-400">{label}</span>
+      <span className="min-w-0 flex-1 truncate font-mono text-xs text-neutral-700">{value}</span>
       <button
         onClick={() => onCopy(value, copyKey)}
-        className="flex-none text-slate-400 transition-colors hover:text-brand-500"
+        className="flex-none text-neutral-400 transition-colors hover:text-brand-500"
         title="复制"
       >
         {copied ? (
@@ -402,19 +406,19 @@ function DemoCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.07 }}
-      className="flex flex-col rounded-md border border-slate-200 bg-white transition-shadow duration-200 hover:shadow-md"
+      className="flex flex-col rounded-md border border-neutral-200 bg-white transition-shadow duration-200 hover:shadow-md"
     >
       {/* 卡片头部 */}
-      <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-neutral-100 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className={`rounded px-1.5 py-0.5 text-[11px] font-medium ${typeConf.className}`}>
             {typeConf.label}
           </span>
-          <h3 className="text-sm font-semibold text-slate-800">{demo.title}</h3>
+          <h3 className="text-sm font-semibold text-neutral-800">{demo.title}</h3>
         </div>
         <div className="flex gap-1">
-          <span className="h-2 w-2 rounded-full bg-slate-200" />
-          <span className="h-2 w-2 rounded-full bg-slate-300" />
+          <span className="h-2 w-2 rounded-full bg-neutral-200" />
+          <span className="h-2 w-2 rounded-full bg-neutral-300" />
           <span className="h-2 w-2 rounded-full bg-brand-500" />
         </div>
       </div>
@@ -423,7 +427,7 @@ function DemoCard({
       <div className="flex flex-1 flex-col gap-4 p-4">
         {/* 二维码 */}
         <div className="flex justify-center">
-          <div className="relative rounded-lg border border-slate-200 bg-white p-2.5 shadow-sm">
+          <div className="relative rounded-lg border border-neutral-200 bg-white p-2.5 shadow-sm">
             <Image
               src={demo.qrcode}
               alt={`${demo.title}二维码`}
@@ -439,8 +443,8 @@ function DemoCard({
         </div>
 
         {/* 访问地址 */}
-        <div className="rounded border border-slate-200 bg-slate-50 px-3 py-2">
-          <div className="mb-1 text-[11px] text-slate-400">访问地址</div>
+        <div className="rounded border border-neutral-200 bg-neutral-50 px-3 py-2">
+          <div className="mb-1 text-[11px] text-neutral-400">访问地址</div>
           <a
             href={demo.url}
             target="_blank"
@@ -485,7 +489,7 @@ function DemoCard({
             href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=61&spg_id=20"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center gap-1.5 rounded border border-slate-200 bg-white py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50"
+            className="flex flex-1 items-center justify-center gap-1.5 rounded border border-neutral-200 bg-white py-2 text-xs font-semibold text-neutral-600 transition-colors hover:bg-neutral-50"
           >
             立即购买
           </a>
@@ -515,11 +519,11 @@ function NavItem({
       className={`group flex w-full items-center gap-3 rounded px-3 py-2.5 text-left transition-all duration-150 ${
         active
           ? 'bg-brand-50 text-brand-600'
-          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900'
       }`}
     >
       <Icon
-        className={`h-4 w-4 flex-none transition-colors ${active ? 'text-brand-500' : 'text-slate-400 group-hover:text-slate-600'}`}
+        className={`h-4 w-4 flex-none transition-colors ${active ? 'text-brand-500' : 'text-neutral-400 group-hover:text-neutral-600'}`}
       />
       <span className="min-w-0 flex-1 truncate text-sm font-medium">{product.name}</span>
       {active && <ChevronRight className="h-3.5 w-3.5 flex-none text-brand-400" />}
@@ -564,36 +568,36 @@ const Demonstrate: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fafc]">
+    <div className="min-h-screen bg-neutral-50">
       {/* ── 页面顶部 Hero ─────────────────────────────── */}
-      <header className="border-b border-slate-200 bg-white">
+      <header className="border-b border-neutral-200 bg-white">
         <Container>
           <div className="flex flex-col gap-1 py-10 md:flex-row md:items-end md:justify-between">
             <div>
               {/* 面包屑 */}
-              <nav className="mb-3 flex items-center gap-1.5 text-xs text-slate-400">
+              <nav className="mb-3 flex items-center gap-1.5 text-xs text-neutral-400">
                 <span>控制台</span>
                 <ChevronRight className="h-3 w-3" />
-                <span className="text-slate-600">系统演示</span>
+                <span className="text-neutral-600">系统演示</span>
               </nav>
-              <h1 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              <h1 className="text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
                 产品演示中心
               </h1>
-              <p className="mt-1.5 text-sm text-slate-500">
+              <p className="mt-1.5 text-sm text-neutral-500">
                 在线体验各类AI SaaS产品，无需安装，即刻试用
               </p>
             </div>
             {/* 顶部徽标行 */}
-            <div className="flex flex-wrap gap-3 text-xs text-slate-500">
-              <span className="flex items-center gap-1.5 rounded border border-slate-200 bg-white px-3 py-1.5">
+            <div className="flex flex-wrap gap-3 text-xs text-neutral-500">
+              <span className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-3 py-1.5">
                 <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
                 安全隔离环境
               </span>
-              <span className="flex items-center gap-1.5 rounded border border-slate-200 bg-white px-3 py-1.5">
+              <span className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-3 py-1.5">
                 <Layers className="h-3.5 w-3.5 text-brand-500" />
                 {demoProducts.length} 套系统
               </span>
-              <span className="flex items-center gap-1.5 rounded border border-slate-200 bg-white px-3 py-1.5">
+              <span className="flex items-center gap-1.5 rounded border border-neutral-200 bg-white px-3 py-1.5">
                 <Cpu className="h-3.5 w-3.5 text-violet-500" />
                 AI 驱动
               </span>
@@ -603,10 +607,10 @@ const Demonstrate: React.FC = () => {
       </header>
 
       {/* ── 移动端产品切换（lg 以下显示） ────────────────── */}
-      <div className="border-b border-slate-100 bg-white lg:hidden">
+      <div className="border-b border-neutral-100 bg-white lg:hidden">
         <Container>
           <div className="scrollbar-hide flex items-center gap-2 overflow-x-auto py-3">
-            <span className="flex-none text-xs text-slate-400">产品:</span>
+            <span className="flex-none text-xs text-neutral-400">产品:</span>
             {demoProducts.map((p) => (
               <button
                 key={p.id}
@@ -614,7 +618,7 @@ const Demonstrate: React.FC = () => {
                 className={`flex-none rounded-full px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
                   activeId === p.id
                     ? 'bg-brand-500 text-white'
-                    : 'bg-slate-100 text-slate-600 active:bg-slate-200'
+                    : 'bg-neutral-100 text-neutral-600 active:bg-neutral-200'
                 }`}
               >
                 {p.name}
@@ -630,26 +634,26 @@ const Demonstrate: React.FC = () => {
           <div className="flex gap-5 lg:items-stretch">
             {/* ── 左侧导航栏 ──────────────────────────────── */}
             <aside className="hidden w-60 flex-none lg:block xl:w-64">
-              <div className="flex h-full flex-col rounded-md border border-slate-200 bg-white shadow-sm">
+              <div className="flex h-full flex-col rounded-md border border-neutral-200 bg-white shadow-sm">
                 {/* 搜索框 */}
-                <div className="flex-none border-b border-slate-100 p-3">
+                <div className="flex-none border-b border-neutral-100 p-3">
                   <label className="relative flex items-center">
                     <span className="absolute left-3 flex items-center">
-                      <Search className="h-3.5 w-3.5 text-slate-400" />
+                      <Search className="h-3.5 w-3.5 text-neutral-400" />
                     </span>
                     <input
                       type="text"
                       placeholder="搜索产品..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full rounded border border-slate-200 bg-slate-50 py-2 pr-3 pl-8 text-xs text-slate-700 placeholder-slate-400 transition-all outline-none focus:border-brand-400 focus:bg-white focus:shadow-[0_0_0_3px_rgba(0,85,255,0.08)]"
+                      className="w-full rounded border border-neutral-200 bg-neutral-50 py-2 pr-3 pl-8 text-xs text-neutral-700 placeholder-neutral-400 transition-all outline-none focus:border-brand-400 focus:bg-white focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--color-brand-500)_8%,transparent)]"
                     />
                   </label>
                 </div>
 
                 {/* 分类筛选 */}
-                <div className="flex-none border-b border-slate-100 p-3">
-                  <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
+                <div className="flex-none border-b border-neutral-100 p-3">
+                  <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-neutral-400 uppercase">
                     <Tag className="h-3 w-3" />
                     分类筛选
                   </div>
@@ -661,7 +665,7 @@ const Demonstrate: React.FC = () => {
                         className={`rounded px-2 py-1 text-xs font-medium transition-colors ${
                           activeCategory === cat
                             ? 'bg-brand-500 text-white'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                            : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
                         }`}
                       >
                         {cat}
@@ -673,7 +677,7 @@ const Demonstrate: React.FC = () => {
                 {/* 产品列表 — 撑满剩余高度，内容溢出可滚 */}
                 <nav className="flex-1 overflow-y-auto p-2">
                   {filteredProducts.length === 0 ? (
-                    <p className="py-6 text-center text-xs text-slate-400">无匹配产品</p>
+                    <p className="py-6 text-center text-xs text-neutral-400">无匹配产品</p>
                   ) : (
                     <ul className="space-y-0.5">
                       {filteredProducts.map((product) => (
@@ -702,16 +706,16 @@ const Demonstrate: React.FC = () => {
                   transition={{ duration: 0.25 }}
                 >
                   {/* 产品信息头部卡片 */}
-                  <div className="mb-5 rounded-lg border border-slate-200 bg-white px-5 py-4 shadow-sm">
+                  <div className="mb-5 rounded-lg border border-neutral-200 bg-white px-5 py-4 shadow-sm">
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div className="flex items-center gap-3">
                         {/* 图标 */}
-                        <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-slate-200 bg-slate-50">
+                        <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50">
                           <activeProduct.icon className="h-5 w-5 text-brand-500" />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h2 className="text-base font-bold text-slate-900">
+                            <h2 className="text-base font-bold text-neutral-900">
                               {activeProduct.name}
                             </h2>
                             {/* 状态徽标 */}
@@ -727,11 +731,13 @@ const Demonstrate: React.FC = () => {
                                 </span>
                               )
                             })()}
-                            <span className="rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 font-mono text-[11px] text-slate-500">
+                            <span className="rounded border border-neutral-200 bg-neutral-50 px-1.5 py-0.5 font-mono text-[11px] text-neutral-500">
                               {activeProduct.version}
                             </span>
                           </div>
-                          <p className="mt-0.5 text-xs text-slate-400">{activeProduct.category}</p>
+                          <p className="mt-0.5 text-xs text-neutral-400">
+                            {activeProduct.category}
+                          </p>
                         </div>
                       </div>
 
@@ -739,7 +745,7 @@ const Demonstrate: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => openModal('demo')}
-                          className="rounded border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50"
+                          className="rounded border border-neutral-200 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-600 transition-colors hover:bg-neutral-50"
                         >
                           申请专属演示
                         </button>
@@ -753,12 +759,12 @@ const Demonstrate: React.FC = () => {
                     </div>
 
                     {/* 描述 */}
-                    <p className="mt-3 border-t border-slate-100 pt-3 text-sm leading-relaxed text-slate-500">
+                    <p className="mt-3 border-t border-neutral-100 pt-3 text-sm leading-relaxed text-neutral-500">
                       {activeProduct.description}
                     </p>
 
                     {/* 演示环境说明条 */}
-                    <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-1 text-xs text-slate-400">
+                    <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-1 text-xs text-neutral-400">
                       <span className="flex items-center gap-1.5">
                         <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
                         演示数据实时重置
@@ -776,13 +782,13 @@ const Demonstrate: React.FC = () => {
 
                   {/* 演示站点卡片列表 */}
                   <div className="mb-4 flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-slate-700">
+                    <h3 className="text-sm font-semibold text-neutral-700">
                       演示站点
-                      <span className="ml-2 rounded bg-slate-100 px-1.5 py-0.5 text-xs font-normal text-slate-500">
+                      <span className="ml-2 rounded bg-neutral-100 px-1.5 py-0.5 text-xs font-normal text-neutral-500">
                         {activeProduct.demos.length} 个
                       </span>
                     </h3>
-                    <span className="text-xs text-slate-400">扫码或点击进入演示</span>
+                    <span className="text-xs text-neutral-400">扫码或点击进入演示</span>
                   </div>
 
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -810,7 +816,7 @@ const Demonstrate: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 backdrop-blur-sm"
             onClick={() => setShowQRModal(false)}
           >
             <motion.div
@@ -818,24 +824,24 @@ const Demonstrate: React.FC = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative w-80 rounded-md border border-slate-200 bg-white shadow-xl"
+              className="relative w-80 rounded-md border border-neutral-200 bg-white shadow-xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* 弹窗头部 */}
-              <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-                <h3 className="text-sm font-semibold text-slate-900">
+              <div className="flex items-center justify-between border-b border-neutral-100 px-5 py-4">
+                <h3 className="text-sm font-semibold text-neutral-900">
                   {modalType === 'demo' ? '申请专属演示' : '联系技术顾问'}
                 </h3>
                 <button
                   onClick={() => setShowQRModal(false)}
-                  className="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                  className="rounded p-1 text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600"
                 >
                   <X className="h-4 w-4" />
                 </button>
               </div>
               {/* 弹窗内容 */}
               <div className="flex flex-col items-center gap-4 px-5 py-6">
-                <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-3">
                   <Image
                     src="/images/contact/weixin.png"
                     alt="联系二维码"
@@ -845,7 +851,7 @@ const Demonstrate: React.FC = () => {
                     unoptimized
                   />
                 </div>
-                <p className="text-center text-sm text-slate-500">
+                <p className="text-center text-sm text-neutral-500">
                   {modalType === 'demo'
                     ? '扫描二维码，联系我们申请专属演示环境'
                     : '扫描二维码，获取一对一技术顾问支持'}
