@@ -5,16 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Dialog, DialogPanel } from '@headlessui/react'
-import {
-  Bars3Icon,
-  XMarkIcon,
-  UserPlusIcon,
-  UserIcon,
-  BeakerIcon,
-  SparklesIcon,
-  GlobeAltIcon,
-  SquaresPlusIcon,
-} from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, UserPlusIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Logo } from '@/components/ui/Logo'
 import type {
@@ -34,85 +25,12 @@ import {
   primaryButton,
 } from '@/components/layout/navStyles'
 import {
-  productCategories,
-  aiAppCategories,
-  aiSolutionCategories,
-  enterpriseCategories,
-  companyCategories,
-  docsCategories,
-  commonFooterActions,
-  productQuickTags,
-  GOODS_LIST_URL,
-  aiQuickTags,
-  enterpriseQuickTags,
-  mobileMenuSections,
+  navGroups,
+  isLinkCurrent,
+  type Breakpoint,
+  type NavBadge,
+  type NavGroup,
 } from '@/data/navigation'
-
-/**
- * lg(1024-1279) 与 xl(1280-1535) 下隐藏左侧靠后的 MegaMenu，
- * 统一收进「更多」下拉，避免窗口缩小时菜单栏被挤压、错位。
- */
-const overflowCategoriesLg: MegaMenuCategory[] = [
-  {
-    id: 'more-lg',
-    name: '更多导航',
-    icon: SquaresPlusIcon,
-    items: [
-      {
-        name: '人工智能与应用',
-        description: 'AI 能力与智能服务',
-        href: '/ai',
-        icon: BeakerIcon,
-      },
-      {
-        name: 'AI解决方案',
-        description: '行业场景化解决方案',
-        href: '/ai',
-        icon: SparklesIcon,
-      },
-      {
-        name: '企业解决方案',
-        description: '企业级产品矩阵',
-        href: '/ecommerce',
-        icon: GlobeAltIcon,
-      },
-      {
-        name: '关于我们',
-        description: '了解公司与服务',
-        href: '/about',
-        icon: UserIcon,
-      },
-    ],
-  },
-]
-
-const overflowCategoriesXl: MegaMenuCategory[] = [
-  {
-    id: 'more-xl',
-    name: '更多导航',
-    icon: SquaresPlusIcon,
-    items: [
-      {
-        name: 'AI解决方案',
-        description: '行业场景化解决方案',
-        href: '/ai',
-        icon: SparklesIcon,
-      },
-      {
-        name: '企业解决方案',
-        description: '企业级产品矩阵',
-        href: '/ecommerce',
-        icon: GlobeAltIcon,
-      },
-      {
-        name: '关于我们',
-        description: '了解公司与服务',
-        href: '/about',
-        icon: UserIcon,
-      },
-    ],
-  },
-]
 
 /* ─────────────────────── 导航面板配置类型 ─────────────────────── */
 
@@ -121,9 +39,7 @@ interface MegaMenuOptions {
   quickTags?: QuickTag[]
   footerActions?: FooterAction[]
   showSearch?: boolean
-  searchPlaceholder?: string
   viewAllHref?: string
-  tipText?: string
 }
 
 interface MoreMenuOptions {
@@ -142,106 +58,95 @@ interface NavMenuConfig {
   options: MegaMenuOptions | MoreMenuOptions
 }
 
+/* ─────────────────────── 由 navGroups 派生桌面导航 ─────────────────────── */
+
+/** 断点由窄到宽，用于比较「谁先常驻」 */
+const BREAKPOINT_ORDER: Breakpoint[] = ['lg', 'xl', '2xl']
+
+/** 桌面端左侧主导航分组（右侧辅助区分组单独渲染） */
+const leftGroups = navGroups.filter((group) => (group.desktop.side ?? 'left') === 'left')
+
+/** 桌面端右侧辅助区分组（文档中心等） */
+const rightGroups = navGroups.filter((group) => group.desktop.side === 'right')
+
 /**
- * 左侧导航配置（顺序即渲染顺序；电商云直链穿插于产品与人工智能之间）
- * 与右侧配置共同描述导航栏全部下拉菜单，面板渲染与 hover 管理统一
- * 在 Header 中进行，保证同一时刻只有一个下拉面板。
+ * 由常驻断点推导响应式显隐类。
+ * lg 为最低档：桌面导航容器本身在 <lg 隐藏，故无需额外类；
+ * xl / 2xl 需显式声明「从该断点起才显示」。
+ */
+function visibilityClass(shownFrom: Breakpoint): string | undefined {
+  return shownFrom === 'lg' ? undefined : `hidden ${shownFrom}:block`
+}
+
+/** 渲染分组角标（桌面端尺寸；移动端由 MobileMenu 自行渲染） */
+function renderNavBadge(badge?: NavBadge): React.ReactNode {
+  if (!badge) return undefined
+  return (
+    <span
+      className={`rounded-full px-1.5 py-0.5 text-xs font-bold ${
+        badge.className ?? 'bg-brand-500 text-white'
+      }`}
+    >
+      {badge.text}
+    </span>
+  )
+}
+
+/** 分组 → 桌面端导航配置 */
+function toNavMenuConfig(group: NavGroup): NavMenuConfig {
+  const { desktop } = group
+  return {
+    id: group.id,
+    kind: 'mega',
+    label: group.label,
+    badge: renderNavBadge(group.badge),
+    wrapClass: visibilityClass(desktop.shownFrom),
+    options: {
+      categories: group.categories,
+      quickTags: desktop.quickTags,
+      footerActions: desktop.footerActions,
+      showSearch: desktop.showSearch,
+      viewAllHref: desktop.viewAllHref,
+    },
+  }
+}
+
+/**
+ * 生成某个断点下的「更多」菜单：收纳所有在该断点尚未常驻的左侧顶级菜单，
+ * 顺序与顶级菜单一致。lg 档收纳 xl/2xl 才常驻的菜单，xl 档收纳 2xl 才
+ * 常驻的菜单——与顶级菜单的显隐类天然互补。
+ */
+function buildOverflowMenu(at: 'lg' | 'xl', wrapClass: string): NavMenuConfig {
+  const limit = BREAKPOINT_ORDER.indexOf(at)
+  const items: MegaMenuItem[] = leftGroups.flatMap((group) => {
+    const { overflow, shownFrom } = group.desktop
+    if (!overflow) return []
+    if (BREAKPOINT_ORDER.indexOf(shownFrom) <= limit) return []
+    return [
+      {
+        name: group.label,
+        description: overflow.description,
+        href: overflow.href,
+        icon: overflow.icon,
+      },
+    ]
+  })
+  return { id: `more-${at}`, kind: 'more', label: '更多', wrapClass, options: { items } }
+}
+
+/**
+ * 左侧导航配置：顶级菜单 + 两个响应式「更多」菜单。
+ * 与右侧配置共同描述导航栏全部下拉菜单，面板渲染与 hover 管理统一在
+ * Header 中进行，保证同一时刻只有一个下拉面板。
  */
 const leftMenuConfigs: NavMenuConfig[] = [
-  {
-    id: 'product',
-    kind: 'mega',
-    label: '产品与服务',
-    badge: (
-      <span className="rounded-full bg-brand-500 px-1.5 py-0.5 text-xs leading-none font-bold text-white">
-        NEW
-      </span>
-    ),
-    options: {
-      categories: productCategories,
-      quickTags: productQuickTags,
-      footerActions: commonFooterActions,
-      viewAllHref: GOODS_LIST_URL,
-    },
-  },
-  {
-    id: 'ai-app',
-    kind: 'mega',
-    label: '人工智能与应用',
-    wrapClass: 'hidden xl:block',
-    badge: (
-      <span className="rounded-full bg-brand-500/10 px-1.5 py-0.5 text-xs font-bold text-brand-500">
-        AI系统
-      </span>
-    ),
-    options: {
-      categories: aiAppCategories,
-      quickTags: aiQuickTags,
-      footerActions: commonFooterActions,
-    },
-  },
-  {
-    id: 'ai-solution',
-    kind: 'mega',
-    label: 'AI解决方案',
-    wrapClass: 'hidden 2xl:block',
-    options: {
-      categories: aiSolutionCategories,
-      quickTags: aiQuickTags,
-      footerActions: commonFooterActions,
-      viewAllHref: '/ai',
-    },
-  },
-  {
-    id: 'enterprise',
-    kind: 'mega',
-    label: '企业解决方案',
-    wrapClass: 'hidden 2xl:block',
-    options: {
-      categories: enterpriseCategories,
-      quickTags: enterpriseQuickTags,
-      footerActions: commonFooterActions,
-    },
-  },
-  {
-    id: 'company',
-    kind: 'mega',
-    label: '关于我们',
-    wrapClass: 'hidden 2xl:block',
-    options: {
-      categories: companyCategories,
-      footerActions: commonFooterActions,
-    },
-  },
-  {
-    id: 'more-lg',
-    kind: 'more',
-    label: '更多',
-    wrapClass: 'hidden lg:block xl:hidden',
-    options: { items: overflowCategoriesLg[0].items },
-  },
-  {
-    id: 'more-xl',
-    kind: 'more',
-    label: '更多',
-    wrapClass: 'hidden xl:block 2xl:hidden',
-    options: { items: overflowCategoriesXl[0].items },
-  },
+  ...leftGroups.map(toNavMenuConfig),
+  buildOverflowMenu('lg', 'hidden lg:block xl:hidden'),
+  buildOverflowMenu('xl', 'hidden xl:block 2xl:hidden'),
 ]
 
 /** 右侧导航配置（文档中心等） */
-const rightMenuConfigs: NavMenuConfig[] = [
-  {
-    id: 'docs',
-    kind: 'mega',
-    label: '文档中心',
-    options: {
-      categories: docsCategories,
-      showSearch: false,
-      viewAllHref: GOODS_LIST_URL,
-    },
-  },
-]
+const rightMenuConfigs: NavMenuConfig[] = rightGroups.map(toNavMenuConfig)
 
 const allMenuConfigs = [...leftMenuConfigs, ...rightMenuConfigs]
 
@@ -255,12 +160,6 @@ function categoryMatches(categories: MegaMenuCategory[], pathname: string): bool
       (item) => item.href === pathname || pathname.startsWith(`${item.href}/`)
     )
   )
-}
-
-/** 直链菜单的当前页判断（首页除外，避免 '/' 误伤所有路径） */
-function isLinkCurrent(href: string, pathname: string): boolean {
-  if (href === '/') return pathname === '/'
-  return href === pathname || pathname.startsWith(`${href}/`)
 }
 
 /**
@@ -299,25 +198,21 @@ export function Header(): JSX.Element {
   /** 双路 hover 状态：仅当两路都 false 才允许关闭 */
   const hoverRef = useRef({ trigger: false, panel: false })
 
-  const productMenuActive = categoryMatches(productCategories, pathname)
-  const aiAppMenuActive = categoryMatches(aiAppCategories, pathname)
-  const aiSolutionMenuActive = categoryMatches(aiSolutionCategories, pathname)
-  const enterpriseMenuActive = categoryMatches(enterpriseCategories, pathname)
-  const companyMenuActive = categoryMatches(companyCategories, pathname)
-  const docsMenuActive = categoryMatches(docsCategories, pathname)
-
   const newLinkActive = isLinkCurrent('/new', pathname)
   const eccloudLinkActive = isLinkCurrent('/eccloud', pathname)
 
-  /** id → 当前路由是否命中该分组（触发按钮高亮用） */
-  const menuCurrentMap: Record<string, boolean> = {
-    product: productMenuActive,
-    'ai-app': aiAppMenuActive,
-    'ai-solution': aiSolutionMenuActive,
-    enterprise: enterpriseMenuActive,
-    company: companyMenuActive,
-    docs: docsMenuActive,
-  }
+  /**
+   * id → 当前路由是否命中该分组（触发按钮高亮用）。
+   * 由配置派生，新增顶级菜单后无需再手动补一行映射。
+   */
+  const menuCurrentMap: Record<string, boolean> = Object.fromEntries(
+    allMenuConfigs
+      .filter((menu) => menu.kind === 'mega')
+      .map((menu) => [
+        menu.id,
+        categoryMatches((menu.options as MegaMenuOptions).categories, pathname),
+      ])
+  )
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0)
@@ -637,9 +532,7 @@ export function Header(): JSX.Element {
                 quickTags={(activeMenu.options as MegaMenuOptions).quickTags}
                 footerActions={(activeMenu.options as MegaMenuOptions).footerActions}
                 showSearch={(activeMenu.options as MegaMenuOptions).showSearch}
-                searchPlaceholder={(activeMenu.options as MegaMenuOptions).searchPlaceholder}
                 viewAllHref={(activeMenu.options as MegaMenuOptions).viewAllHref}
-                tipText={(activeMenu.options as MegaMenuOptions).tipText}
                 onNavigate={closeMenu}
               />
             </div>
@@ -706,7 +599,7 @@ export function Header(): JSX.Element {
 
           {/* 移动端菜单内容区域：新版 MobileMenu 统一渲染分区、直链与账号操作 */}
           <div className="mt-4 flow-root">
-            <MobileMenu sections={mobileMenuSections} onNavigate={() => setMobileMenuOpen(false)} />
+            <MobileMenu sections={navGroups} onNavigate={() => setMobileMenuOpen(false)} />
           </div>
         </DialogPanel>
       </Dialog>

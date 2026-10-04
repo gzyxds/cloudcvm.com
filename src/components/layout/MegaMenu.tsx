@@ -42,7 +42,6 @@ export interface MegaMenuItem {
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>
   tag?: string
   badgeType?: 'hot' | 'new' | 'beta' | 'default'
-  index?: number
 }
 
 export interface MegaMenuCategory {
@@ -70,14 +69,7 @@ export interface MegaMenuPanelProps {
   quickTags?: QuickTag[]
   footerActions?: FooterAction[]
   showSearch?: boolean
-  searchPlaceholder?: string
-  defaultActiveCategory?: string
   viewAllHref?: string
-  /**
-   * 底部提示文案，默认不显示（传非空字符串才显示提示条）
-   * @default ''
-   */
-  tipText?: string
   /** 点击面板内任一导航入口后的回调（由 Header 负责关闭统一面板） */
   onNavigate?: () => void
 }
@@ -109,15 +101,10 @@ export function MegaMenuPanel({
   quickTags,
   footerActions,
   showSearch = true,
-  searchPlaceholder = '搜索产品名称',
-  defaultActiveCategory,
   viewAllHref,
-  tipText = '',
   onNavigate,
 }: MegaMenuPanelProps): React.ReactElement {
-  const [activeCategoryId, setActiveCategoryId] = useState<string>(
-    defaultActiveCategory || categories[0]?.id || ''
-  )
+  const [activeCategoryId, setActiveCategoryId] = useState<string>(categories[0]?.id || '')
   const [searchQuery, setSearchQuery] = useState('')
   const [debouncedQuery, setDebouncedQuery] = useState('')
 
@@ -206,7 +193,7 @@ export function MegaMenuPanel({
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder={searchPlaceholder}
+                      placeholder="搜索产品名称"
                       className={searchInput}
                     />
                   </div>
@@ -358,13 +345,6 @@ export function MegaMenuPanel({
           )}
         </div>
       </div>
-
-      {/* ── 底部提示（固定在面板底部，不滚动；tipText 为空时不显示） ── */}
-      {tipText && (
-        <div className="border-t border-neutral-100 py-3">
-          <p className="text-xs text-neutral-500">{tipText}</p>
-        </div>
-      )}
     </div>
   )
 }

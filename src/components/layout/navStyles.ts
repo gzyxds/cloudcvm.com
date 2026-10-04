@@ -26,10 +26,6 @@ export const navLinkBase = `${navTriggerBase} ${navTriggerIdle}`
 /** 顶部分隔线（仅布局，外边距由使用处按需补充） */
 export const navDividerBase = 'h-5 w-px shrink-0 bg-neutral-200'
 
-/** 下拉面板基础外观 */
-export const popoverPanelBase =
-  'fixed z-50 origin-top overflow-visible bg-white shadow-panel transition-[opacity,transform] duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0'
-
 /** 三段式面板公共容器 */
 export const megaPanelContainer = 'mx-auto max-w-[1720px] px-8 2xl:px-16'
 export const megaPanelScroll = 'max-h-[calc(100vh-62px-60px)] min-h-[480px] overflow-y-auto'
@@ -97,7 +93,3 @@ export const mobileSecondaryButton =
 /** 移动端主要按钮 */
 export const mobilePrimaryButton =
   'flex flex-1 items-center justify-center gap-x-2 rounded-md bg-brand-500 px-4 py-2.5 text-base font-medium text-white transition-colors hover:bg-brand-600'
-
-/** 移动端紧凑主按钮 */
-export const compactPrimaryButton =
-  'flex items-center justify-center gap-x-1.5 rounded-md bg-brand-500 px-2.5 py-2 text-xs font-medium text-white transition-colors hover:bg-brand-600'

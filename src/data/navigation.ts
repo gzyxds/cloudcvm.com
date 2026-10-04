@@ -39,6 +39,15 @@ import type { MegaMenuCategory, FooterAction, QuickTag } from '@/components/layo
 export const GOODS_LIST_URL = 'https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50'
 
 /**
+ * 直链菜单的「当前页」判断（首页除外，避免 '/' 误伤所有路径）。
+ * Header 与 MobileMenu 共用同一实现，避免两处逻辑漂移。
+ */
+export function isLinkCurrent(href: string, pathname: string): boolean {
+  if (href === '/') return pathname === '/'
+  return href === pathname || pathname.startsWith(`${href}/`)
+}
+
+/**
  * 导航分类设计约定
  * - 每类 2~5 项：避免“分类下只有一个产品”造成左侧与中间区域大面积空白的突兀感；
  * - 分类语义互斥、命名简洁成对；
@@ -109,7 +118,6 @@ export const productCategories: MegaMenuCategory[] = [
         badgeType: 'hot',
         tag: 'HOT',
         icon: ServerIcon,
-        index: 0,
       },
       {
         id: 'gpu',
@@ -119,7 +127,6 @@ export const productCategories: MegaMenuCategory[] = [
         badgeType: 'hot',
         tag: 'HOT',
         icon: CpuChipIcon,
-        index: 1,
       },
       {
         id: 'lighthouse',
@@ -127,7 +134,6 @@ export const productCategories: MegaMenuCategory[] = [
         description: '面向轻量应用场景的云服务器，精选镜像一键部署',
         href: '/lighthouse',
         icon: SparklesIcon,
-        index: 2,
       },
       {
         id: 'cbm',
@@ -135,7 +141,6 @@ export const productCategories: MegaMenuCategory[] = [
         description: '独享物理资源，兼具云端弹性与裸机性能',
         href: '/cbm',
         icon: RectangleGroupIcon,
-        index: 3,
       },
     ],
   },
@@ -166,7 +171,6 @@ export const productCategories: MegaMenuCategory[] = [
         description: '便捷安全的远程办公，随时随地云端工作',
         href: '/windows',
         icon: ComputerDesktopIcon,
-        index: 1,
       },
       {
         id: 'host',
@@ -174,7 +178,6 @@ export const productCategories: MegaMenuCategory[] = [
         description: '简单易用的建站服务，快速搭建企业官网',
         href: '/host',
         icon: GlobeAltIcon,
-        index: 2,
       },
     ],
   },
@@ -214,7 +217,6 @@ export const productCategories: MegaMenuCategory[] = [
         description: '快速、稳定、智能、可靠的内容加速服务',
         href: '/cdn',
         icon: SquaresPlusIcon,
-        index: 1,
       },
       {
         id: 'ssl',
@@ -222,7 +224,6 @@ export const productCategories: MegaMenuCategory[] = [
         description: '专业域名服务，安全、省心、可信赖',
         href: '/ssl',
         icon: ShieldCheckIcon,
-        index: 2,
       },
     ],
   },
@@ -274,7 +275,6 @@ export const aiAppCategories: MegaMenuCategory[] = [
         badgeType: 'hot',
         tag: 'HOT',
         icon: CursorArrowRaysIcon,
-        index: 1,
       },
       {
         id: 'work',
@@ -282,7 +282,6 @@ export const aiAppCategories: MegaMenuCategory[] = [
         description: '企业级智能知识管理，提升办公效率',
         href: '/work',
         icon: FingerPrintIcon,
-        index: 2,
       },
       {
         id: 'ai-model',
@@ -290,7 +289,6 @@ export const aiAppCategories: MegaMenuCategory[] = [
         description: '多模型AI大模型网关，一站式API接入',
         href: '/token',
         icon: SparklesIcon,
-        index: 3,
       },
     ],
   },
@@ -342,7 +340,6 @@ export const aiAppCategories: MegaMenuCategory[] = [
         description: 'AI虚拟数字人服务，打造专属IP形象',
         href: '/human',
         icon: ChartPieIcon,
-        index: 1,
       },
       {
         id: 'aiimage',
@@ -350,7 +347,6 @@ export const aiAppCategories: MegaMenuCategory[] = [
         description: 'AI图片视频创作平台，文生图图生视频智能创作',
         href: '/aiimage',
         icon: PhotoIcon,
-        index: 2,
       },
       {
         id: 'demo',
@@ -358,7 +354,6 @@ export const aiAppCategories: MegaMenuCategory[] = [
         description: '在线体验AI产品，直观感受智能能力',
         href: '/demo',
         icon: PlayCircleIcon,
-        index: 3,
       },
     ],
   },
@@ -406,7 +401,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: 'AI图像生成系统，文生图图生图智能创作',
         href: '/banana',
         icon: PhotoIcon,
-        index: 1,
       },
       {
         id: 'jmdraw',
@@ -414,7 +408,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: 'AI绘画生成系统，释放创意无限可能',
         href: '/jmdraw',
         icon: SparklesIcon,
-        index: 2,
       },
     ],
   },
@@ -466,7 +459,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: 'AI视频生成系统，文字描述一键生成视频',
         href: '/jimeng',
         icon: VideoCameraIcon,
-        index: 1,
       },
       {
         id: 'sora',
@@ -474,7 +466,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: 'AI视频创作系统，文本描述生成高质量视频',
         href: '/sora',
         icon: VideoCameraIcon,
-        index: 2,
       },
       {
         id: 'music',
@@ -482,7 +473,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: 'AI智能音乐生成，自定义风格旋律创作',
         href: '/music',
         icon: MusicalNoteIcon,
-        index: 3,
       },
     ],
   },
@@ -527,7 +517,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: '智能演示文稿制作，一键生成精美幻灯片',
         href: '/ppt',
         icon: PresentationChartBarIcon,
-        index: 1,
       },
       {
         id: 'resume',
@@ -535,7 +524,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: '智能简历生成系统，助力职业发展',
         href: '/resume',
         icon: DocumentDuplicateIcon,
-        index: 2,
       },
       {
         id: 'xhs',
@@ -543,7 +531,6 @@ export const aiSolutionCategories: MegaMenuCategory[] = [
         description: '热门内容创作工具，提升社交媒体影响力',
         href: '/xhs',
         icon: DocumentTextIcon,
-        index: 3,
       },
     ],
   },
@@ -583,7 +570,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '全场景电商云方案，智能高效运营',
         href: '/ecommerce',
         icon: ChartPieIcon,
-        index: 1,
       },
       {
         id: 'retail',
@@ -591,7 +577,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '零售行业数字化方案，线上线下融合',
         href: '/retail',
         icon: SquaresPlusIcon,
-        index: 2,
       },
     ],
   },
@@ -622,7 +607,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '低延迟高防护游戏云，畅玩无忧',
         href: '/game',
         icon: GlobeAltIcon,
-        index: 1,
       },
       {
         id: 'video',
@@ -630,7 +614,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '视频行业专属方案，海量数据高效处理',
         href: '/video',
         icon: PlayCircleIcon,
-        index: 2,
       },
     ],
   },
@@ -661,7 +644,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '安全合规金融云方案，稳定可靠',
         href: '/finance',
         icon: BanknotesIcon,
-        index: 1,
       },
       {
         id: 'gov',
@@ -669,7 +651,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '数字政府场景化方案，安全合规',
         href: '/gov',
         icon: ShieldCheckIcon,
-        index: 2,
       },
     ],
   },
@@ -700,7 +681,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '移动应用云上部署，弹性扩展高可用',
         href: '/mobile',
         icon: DevicePhoneMobileIcon,
-        index: 1,
       },
       {
         id: 'cms',
@@ -708,7 +688,6 @@ export const enterpriseCategories: MegaMenuCategory[] = [
         description: '内容管理系统上云，高效管理数字内容',
         href: '/cms',
         icon: DocumentTextIcon,
-        index: 2,
       },
     ],
   },
@@ -747,7 +726,6 @@ export const companyCategories: MegaMenuCategory[] = [
         description: '了解公司历史与文化',
         href: '/about',
         icon: UserIcon,
-        index: 1,
       },
       {
         id: 'contact',
@@ -755,7 +733,6 @@ export const companyCategories: MegaMenuCategory[] = [
         description: '售前咨询与商务合作联系方式',
         href: '/contact',
         icon: PhoneIcon,
-        index: 2,
       },
     ],
   },
@@ -786,7 +763,6 @@ export const companyCategories: MegaMenuCategory[] = [
         description: '获取专业技术帮助',
         href: '/support',
         icon: PhoneIcon,
-        index: 1,
       },
       {
         id: 'agent',
@@ -794,7 +770,6 @@ export const companyCategories: MegaMenuCategory[] = [
         description: '合作伙伴计划，携手共拓商业新机遇',
         href: '/agent',
         icon: DocumentTextIcon,
-        index: 2,
       },
     ],
   },
@@ -841,7 +816,6 @@ export const docsCategories: MegaMenuCategory[] = [
         description: '5分钟快速部署首个云服务器',
         href: '/quickstart',
         icon: PlayCircleIcon,
-        index: 1,
       },
       {
         id: 'help',
@@ -849,7 +823,6 @@ export const docsCategories: MegaMenuCategory[] = [
         description: '快速入门指南、常见问题与操作教程',
         href: '/help',
         icon: PhoneIcon,
-        index: 2,
       },
     ],
   },
@@ -887,7 +860,6 @@ export const docsCategories: MegaMenuCategory[] = [
         description: '完整的API参考与示例',
         href: '/api',
         icon: DocumentTextIcon,
-        index: 1,
       },
       {
         id: 'sdk',
@@ -895,7 +867,6 @@ export const docsCategories: MegaMenuCategory[] = [
         description: '多语言SDK使用指南与开发集成',
         href: '/sdk',
         icon: CommandLineIcon,
-        index: 2,
       },
     ],
   },
@@ -939,55 +910,124 @@ export const enterpriseQuickTags: QuickTag[] = [
   { name: '移动方案', href: '/mobile' },
 ]
 
-/* ─────────────────────── 移动端菜单配置 ─────────────────────── */
+/* ─────────────────────── 顶级菜单分组（全站唯一数据源） ─────────────────────── */
 
-export interface MobileMenuSection {
-  label: string
-  /** 移动端一级手风琴标题前置的小图标（可省略） */
-  icon?: MegaMenuCategory['icon']
-  categories: MegaMenuCategory[]
-  showFooter?: boolean
-  /** 分区标题角标（与桌面端触发按钮角标对齐，如 AI系统） */
-  badge?: { text: string; className?: string }
+/** 桌面端响应式断点 */
+export type Breakpoint = 'lg' | 'xl' | '2xl'
+
+/** 分组角标 */
+export interface NavBadge {
+  text: string
+  /**
+   * 角标的强调类（底色 / 文字色 / 行高）。
+   * 缺省为品牌实底白字 `bg-brand-500 text-white`。
+   */
+  className?: string
+}
+
+/** 分组在桌面端的呈现配置（移动端不使用） */
+export interface NavGroupDesktop {
+  /** 从哪个断点起常驻；低于该断点会被收进「更多」 */
+  shownFrom: Breakpoint
+  /** 桌面端排布位置：左侧主导航（默认）或右侧辅助区 */
+  side?: 'left' | 'right'
+  /** 被收进「更多」时的呈现；常驻菜单无需提供 */
+  overflow?: { description: string; href: string; icon?: MegaMenuCategory['icon'] }
+  quickTags?: QuickTag[]
+  footerActions?: FooterAction[]
+  showSearch?: boolean
+  viewAllHref?: string
 }
 
 /**
- * 移动端菜单分区配置
+ * 顶级菜单分组 —— 全站导航的唯一数据源。
  *
- * 从现有的 MegaMenuCategory 数据派生，保证桌面端 MegaMenu
- * 和移动端 Disclosure 使用同一份产品数据，避免数据不同步。
+ * 桌面端（Header 的 MegaMenu 与「更多」）和移动端（MobileMenu）都从这里
+ * 派生：分组名、图标、角标、顺序只维护这一份，改名 / 换图标 / 改角标不会
+ * 再出现两处失配，新增分组也不必逐个补桌面与移动两套配置。
  */
-export const mobileMenuSections: MobileMenuSection[] = [
+export interface NavGroup {
+  id: string
+  label: string
+  icon?: MegaMenuCategory['icon']
+  badge?: NavBadge
+  categories: MegaMenuCategory[]
+  desktop: NavGroupDesktop
+}
+
+export const navGroups: NavGroup[] = [
   {
+    id: 'product',
     label: '产品与服务',
     icon: SquaresPlusIcon,
+    badge: { text: 'NEW', className: 'bg-brand-500 text-white leading-none' },
     categories: productCategories,
-    badge: { text: 'NEW' },
+    desktop: {
+      shownFrom: 'lg',
+      quickTags: productQuickTags,
+      footerActions: commonFooterActions,
+      viewAllHref: GOODS_LIST_URL,
+    },
   },
   {
+    id: 'ai-app',
     label: '人工智能与应用',
     icon: BeakerIcon,
-    categories: aiAppCategories,
     badge: { text: 'AI系统', className: 'bg-brand-500/10 text-brand-500' },
+    categories: aiAppCategories,
+    desktop: {
+      shownFrom: 'xl',
+      overflow: { description: 'AI 能力与智能服务', href: '/ai', icon: BeakerIcon },
+      quickTags: aiQuickTags,
+      footerActions: commonFooterActions,
+    },
   },
   {
+    id: 'ai-solution',
     label: 'AI解决方案',
     icon: SparklesIcon,
     categories: aiSolutionCategories,
+    desktop: {
+      shownFrom: '2xl',
+      overflow: { description: '行业场景化解决方案', href: '/ai', icon: SparklesIcon },
+      quickTags: aiQuickTags,
+      footerActions: commonFooterActions,
+      viewAllHref: '/ai',
+    },
   },
   {
+    id: 'enterprise',
     label: '企业解决方案',
     icon: GlobeAltIcon,
     categories: enterpriseCategories,
+    desktop: {
+      shownFrom: '2xl',
+      overflow: { description: '企业级产品矩阵', href: '/ecommerce', icon: GlobeAltIcon },
+      quickTags: enterpriseQuickTags,
+      footerActions: commonFooterActions,
+    },
   },
   {
+    id: 'company',
     label: '关于我们',
     icon: UserIcon,
     categories: companyCategories,
+    desktop: {
+      shownFrom: '2xl',
+      overflow: { description: '了解公司与服务', href: '/about', icon: UserIcon },
+      footerActions: commonFooterActions,
+    },
   },
   {
+    id: 'docs',
     label: '文档中心',
     icon: PlayCircleIcon,
     categories: docsCategories,
+    desktop: {
+      shownFrom: 'lg',
+      side: 'right',
+      showSearch: false,
+      viewAllHref: GOODS_LIST_URL,
+    },
   },
 ]

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { ArrowLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { ComputerDesktopIcon, UserIcon } from '@heroicons/react/24/outline'
 import type { MegaMenuItem, MegaMenuCategory } from '@/components/layout/MegaMenu'
-import type { MobileMenuSection } from '@/data/navigation'
+import { isLinkCurrent, type NavGroup } from '@/data/navigation'
 import {
   badgeStyles,
   mobilePrimaryButton,
@@ -36,12 +36,6 @@ function mergeFeaturedItems(category: MegaMenuCategory): MegaMenuItem[] {
     }
   }
   return items
-}
-
-/** 直链菜单的当前页判断（首页除外，避免 '/' 误伤所有路径） */
-function isLinkCurrent(href: string, pathname: string): boolean {
-  if (href === '/') return pathname === '/'
-  return href === pathname || pathname.startsWith(`${href}/`)
 }
 
 /* ─────────────────────── 产品行（右栏） ─────────────────────── */
@@ -96,7 +90,7 @@ const MobileProductRow = React.memo(function MobileProductRow({
 
 export interface MobileMenuProps {
   /** 菜单分区配置（从 navigation.ts 导入） */
-  sections: MobileMenuSection[]
+  sections: NavGroup[]
   /** 菜单内任意导航触发后的回调（Header 用它关闭抽屉） */
   onNavigate?: () => void
 }
@@ -115,7 +109,7 @@ export const MobileMenu = React.memo(function MobileMenu({
 }: MobileMenuProps) {
   const pathname = usePathname()
   /** 当前展开的分区（null = 一级列表） */
-  const [activeSection, setActiveSection] = useState<MobileMenuSection | null>(null)
+  const [activeSection, setActiveSection] = useState<NavGroup | null>(null)
   /** 二级左侧当前选中的分类 id */
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null)
 
@@ -124,7 +118,7 @@ export const MobileMenu = React.memo(function MobileMenu({
       activeSection.categories[0])
     : null
 
-  const openSection = (section: MobileMenuSection) => {
+  const openSection = (section: NavGroup) => {
     setActiveSection(section)
     setActiveCategoryId(section.categories[0]?.id ?? null)
   }
@@ -216,7 +210,7 @@ export const MobileMenu = React.memo(function MobileMenu({
       <div className="space-y-0.5">
         {sections.map((section) => (
           <button
-            key={section.label}
+            key={section.id}
             type="button"
             onClick={() => openSection(section)}
             className="group flex w-full items-center justify-between rounded-md py-2 pr-1 pl-2 text-left transition-colors hover:bg-neutral-50 active:bg-brand-50"

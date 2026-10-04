@@ -977,17 +977,33 @@ export function Superiority({
 
   /** 标签按钮引用（移动端横向滚动时定位激活项） */
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  /** 标签栏滚动容器（移动端为横向滚动容器，桌面端不可滚动） */
+  const tabBarRef = useRef<HTMLDivElement | null>(null)
+  /** 上一次的激活标签：用于跳过首次挂载 */
+  const prevTabIdRef = useRef(activeTabId)
 
-  /** 切换标签后，移动端将激活标签滚动到可视区域居中 */
+  /**
+   * 切换标签后，把激活标签横向滚动到标签栏中间。
+   *
+   * 两个约束（此前踩过的坑）：
+   * 1. 只滚动标签栏自身，不能用 scrollIntoView —— 它会连带滚动所有可滚动
+   *    祖先（含整个页面），导致刚进入页面就被拉到本区块：移动端从菜单点进
+   *    /ecs 等页面时不会停在头部，而是直接停在「产品优势」；
+   * 2. 跳过首次挂载，只有用户真正切换标签时才滚动。
+   */
   useEffect(() => {
-    // 仅在移动端横向滚动场景下执行，避免桌面端误触发页面滚动
-    if (!window.matchMedia('(max-width: 768px)').matches) {
-      return
-    }
+    if (prevTabIdRef.current === activeTabId) return
+    prevTabIdRef.current = activeTabId
+
+    const container = tabBarRef.current
     const activeEl = tabRefs.current[activeTabId]
-    if (activeEl) {
-      activeEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-    }
+    if (!container || !activeEl) return
+
+    const containerRect = container.getBoundingClientRect()
+    const activeRect = activeEl.getBoundingClientRect()
+    const delta =
+      activeRect.left - containerRect.left - (containerRect.width - activeRect.width) / 2
+    container.scrollTo({ left: Math.max(0, container.scrollLeft + delta), behavior: 'smooth' })
   }, [activeTabId])
 
   /** 切换标签：重置分组展开状态为全部展开 */
@@ -1036,7 +1052,7 @@ export function Superiority({
           </div>
 
           {/* ── 分类标签栏 ── */}
-          <div className={styles.tabBar} role="tablist" aria-label="产品分类">
+          <div ref={tabBarRef} className={styles.tabBar} role="tablist" aria-label="产品分类">
             <div className={styles.tabBarInner}>
               {superiorTabs.map((tab) => {
                 const isActive = tab.id === activeTabId
