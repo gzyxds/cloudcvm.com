@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
+import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
 
 /** 服务卡片属性 */
 interface ServiceCardProps {
@@ -75,20 +76,11 @@ export default function CatSections() {
 
           {/* 免费体验横幅 */}
           <div className="relative col-span-1 overflow-hidden rounded-xl bg-brand-600 sm:col-span-2 lg:col-span-3">
-            {/* 视频背景（移动端隐藏） */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
+            {/* 视频背景（移动端隐藏；进入视口才加载播放） */}
+            <BackgroundVideo
+              src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4"
               className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
-            >
-              <source
-                src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4"
-                type="video/mp4"
-              />
-            </video>
+            />
             {/* 暗色叠加层 */}
             <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
             <div className="relative flex flex-col justify-between gap-6 px-6 py-8 sm:flex-row sm:items-center lg:px-10 lg:py-10">

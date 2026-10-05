@@ -51,6 +51,14 @@
 3. **按证据改边界**：先缩小全站工具栏和移动菜单客户端负担，再处理首页楼层、长页面、AI 跑马灯与优势区；每一步保留截图、关键交互、SEO HTML 回归。
 4. **收敛设计规范**：动效降级、媒体可见性、品牌 token 与代码注释同步更新；回填每条台账的“实测前/后数据、处理 PR/提交、结果与风险”。
 
+## 处理记录（2026-10-05 首次实施）
+
+- **P-01 已实施**（`src/components/carousel/VideoCarousel.tsx`）：「移动端 CSS 隐藏仍播放」修复为桌面断点门控——`CarouselImage` 新增 `matchMedia('(min-width: 1024px)')` 状态（与视频的 `lg:block` 断点一致），仅桌面端写入 `src` 并 `play()`；移动端（lg 以下）永不写入 src、永不下载，仅显示 Image。产物实测：375px 视口 4 个轮播视频均无 src、网络面板 0 个 mp4 请求；1280px 下 src 全部写入且数据就绪（readyState 4）。自动播放未启动属预览 tab 隐藏被 Chrome 拦截的环境限制（与 §13.19-B 同款），非代码缺陷。
+- **P-05 已实施**：新增共享组件 `src/components/ui/BackgroundVideo.tsx`（IntersectionObserver：进视口才写 src 并播放、出视口暂停，rootMargin 200px；隐藏断点下不参与交叉计算 → 不下载），替换 `CatSections` / `Faqs` / `about` 三处 `hidden sm:block` 的 autoPlay 横幅视频，及 `human` 主演示视频；`work` / `human` 功能卡视频改手动播放（去 autoPlay/muted，`preload="none"` + poster）；`human` 场景视频去 autoPlay/muted（保留 controls，preload="metadata"——无 poster 可用）。产物实测（375px）：横幅/演示/功能卡视频 0 下载，场景视频仅 metadata 范围请求（206 Partial Content）。
+- **P-11 已实施**（同文件）：`slides` 排序前先 `[...]` 展开复制，不再原地改写模块级 `defaultSlides` 或调用方传入的数组。
+- **验证**：`tsc --noEmit` 0 error；`npm run lint` 0 error（43 条既有 warning）；改动文件 `prettier --check` 通过；`npm run build` 52 静态页 + postbuild RSC 修复正常。
+- **待视觉确认**：预览 tab 隐藏时 Chrome 冻结 IntersectionObserver（探针实测不回调），「滚动进入视口才加载播放」的浏览器端行为需在可见面板/真机目视确认（预期：横幅/演示视频滚入视口约 200px 前开始加载并自动播放，滚出暂停）。
+
 ## 五、依据与排除项
 
 - 技能规则文件：`vercel-react-best-practices/rules/{bundle-conditional,bundle-dynamic-imports,server-serialization,rerender-memo,rendering-content-visibility,rendering-resource-hints,js-batch-dom-css,js-tosorted-immutable}.md`。标“类比”或“补充”的事项**不是**该规则直接定义的违规。

@@ -638,11 +638,13 @@ function CoreFeaturesSection(): JSX.Element {
                   <div className="relative">
                     {feature.videoUrl ? (
                       <div className="aspect-video overflow-hidden bg-neutral-100">
+                        {/* 手动播放（controls）：autoPlay/muted 是为自动播放准备的，移除后由用户决定播放；
+                            有 poster 时 preload="none"，点击播放前完全不下载视频字节 */}
                         <video
                           src={feature.videoUrl}
                           controls
-                          autoPlay
-                          muted
+                          preload="none"
+                          poster={feature.image}
                           loop
                           className="h-full w-full object-cover"
                         >

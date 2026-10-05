@@ -14,6 +14,7 @@ import {
   ChevronDownIcon,
 } from '@heroicons/react/24/outline'
 import { Container } from '@/components/ui/Container'
+import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
 
 /* ─────────────────────── 类型定义 ─────────────────────── */
 
@@ -431,20 +432,11 @@ export function Faqs() {
           className="mt-16 sm:mt-20"
         >
           <div className="relative overflow-hidden rounded-xl bg-brand-600">
-            {/* 视频背景（移动端隐藏） */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
+            {/* 视频背景（移动端隐藏；进入视口才加载播放） */}
+            <BackgroundVideo
+              src="https://qcloudimg.tencent-cloud.cn/raw/29ff9f1992ee646ba2e623007beb3e97.mp4"
               className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
-            >
-              <source
-                src="https://qcloudimg.tencent-cloud.cn/raw/29ff9f1992ee646ba2e623007beb3e97.mp4"
-                type="video/mp4"
-              />
-            </video>
+            />
             {/* 暗色叠加层 */}
             <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
             <div className="relative flex flex-col justify-between gap-6 px-6 py-8 sm:flex-row sm:items-center lg:px-10 lg:py-10">

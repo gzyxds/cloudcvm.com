@@ -219,22 +219,33 @@ const CarouselImage = memo(
     forceImageMode?: boolean
   }) => {
     const videoRef = useRef<HTMLVideoElement>(null)
+    // 视频仅在 lg（1024px）及以上启用：与下方 video 的 `lg:block` / Image 的 `lg:hidden` 断点一致。
+    // 移动端若照旧渲染 src 并 play()，视频只是被 CSS 隐藏，仍会下载与解码，白白耗流量耗电。
+    const [videoEnabled, setVideoEnabled] = useState(false)
 
-    // 只播放当前可见项，避免多个视频同时解码占用 GPU/带宽
+    useEffect(() => {
+      const mq = window.matchMedia('(min-width: 1024px)')
+      const update = () => setVideoEnabled(mq.matches)
+      update()
+      mq.addEventListener('change', update)
+      return () => mq.removeEventListener('change', update)
+    }, [])
+
+    // 只播放当前可见项，避免多个视频同时解码占用 GPU/带宽；移动端（视频被 CSS 隐藏）不播放
     useEffect(() => {
       const video = videoRef.current
       if (!video) return
-      if (isActive) {
+      if (isActive && videoEnabled) {
         video.play().catch(() => {})
       } else {
         video.pause()
       }
-    }, [isActive])
+    }, [isActive, videoEnabled])
 
     // 首屏直接输出 <video>（静态导入），但不在解析阶段下载视频字节：
-    // 去掉 autoPlay 属性 + preload 固定 metadata，由挂载后的 play() 触发加载。
-    // 首屏显示 poster（与视频首帧同图，且已被 priority 预加载），
-    // 视频字节仍保持「hydration 之后才开始下载」，不抢占首屏资源。
+    // 首次渲染不带 src（videoEnabled 初始为 false，SSR/客户端一致），首屏显示 poster
+    // （与视频首帧同图，且已被 priority 预加载）；桌面端挂载后写入 src 并由 play() 触发
+    // 下载，移动端（lg 以下）永不写入 src、永不下载，仅显示 Image。
     const videoProps = {
       loop: true,
       muted: true,
@@ -249,10 +260,10 @@ const CarouselImage = memo(
       >
         {slide.videoPath && slide.imagePath && !forceImageMode ? (
           <>
-            {/* PC端：视频 */}
+            {/* PC端：视频（lg 以下不写入 src，完全避免移动端下载） */}
             <video
               ref={videoRef}
-              src={slide.videoPath}
+              {...(videoEnabled ? { src: slide.videoPath } : {})}
               {...videoProps}
               className="absolute inset-0 hidden h-full w-full object-cover lg:block"
             />
@@ -269,7 +280,7 @@ const CarouselImage = memo(
         ) : slide.videoPath && !forceImageMode ? (
           <video
             ref={videoRef}
-            src={slide.videoPath}
+            {...(videoEnabled ? { src: slide.videoPath } : {})}
             {...videoProps}
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -390,10 +401,14 @@ const Carousel = memo(function Carousel({
   customSlides,
   forceImageMode = false,
 }: CarouselProps) {
-  // 统一数据源：customSlides 兼容旧调用方，按 order 排序（缺失时按原顺序）
+  // 统一数据源：customSlides 兼容旧调用方，按 order 排序（缺失时按原顺序）。
+  // 先展开复制再排序：defaultSlides 是模块级常量，propSlides/customSlides 可能来自调用方，
+  // 原地 sort 会改写外部数组（调用方数据被污染、重复渲染时被反复重排）。
   const slides = useMemo(
     () =>
-      (customSlides || propSlides || defaultSlides).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
+      [...(customSlides || propSlides || defaultSlides)].sort(
+        (a, b) => (a.order ?? 0) - (b.order ?? 0)
+      ),
     [customSlides, propSlides]
   )
   // 高度解析：height 对象/字符串优先于 heightClass

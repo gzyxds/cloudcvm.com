@@ -23,6 +23,7 @@ import {
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
+import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { AiScene } from '@/components/sections/ai/AiScene'
@@ -483,17 +484,11 @@ function DemoSection(): JSX.Element {
           {/* 右侧内容 */}
           <div className="order-1 flex w-full justify-center lg:order-2 lg:w-1/2">
             <div className="relative w-full max-w-md lg:max-w-none">
-              {/* 主要演示视频 */}
+              {/* 主要演示视频（进入视口才加载播放，离开视口暂停） */}
               <div className="bg-white p-4 shadow-lg sm:p-6">
-                <video
+                <BackgroundVideo
                   src="https://portal.volccdn.com/obj/volcfe-scm/wanyou/static/media/virtual-digit.ed88f4c6.mp4"
                   className="h-auto w-full"
-                  preload="metadata"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls={false}
                 />
                 <div className="mt-3 flex items-center justify-between sm:mt-4">
                   <div>
@@ -766,14 +761,13 @@ function ScenariosSection(): JSX.Element {
             }`}
           >
             <div className="rounded-xl bg-gradient-to-br from-brand-50 to-brand-50 p-4 sm:rounded-3xl sm:p-8">
+              {/* 手动播放（controls）：autoPlay/muted 是为自动播放准备的，移除后由用户决定播放 */}
               <video
                 src={currentScenario.videoUrl}
                 className="w-full rounded-2xl shadow-lg"
                 preload="metadata"
                 playsInline
                 controls
-                autoPlay
-                muted
                 loop
               >
                 您的浏览器不支持 video 标签。
@@ -975,11 +969,13 @@ function CoreFeaturesSection(): JSX.Element {
                   <div className="relative">
                     {feature.videoUrl ? (
                       <div className="aspect-video overflow-hidden rounded-lg bg-neutral-100">
+                        {/* 手动播放（controls）：autoPlay/muted 是为自动播放准备的，移除后由用户决定播放；
+                            有 poster 时 preload="none"，点击播放前完全不下载视频字节 */}
                         <video
                           src={feature.videoUrl}
                           controls
-                          autoPlay
-                          muted
+                          preload="none"
+                          poster={feature.image}
                           loop
                           className="h-full w-full object-cover"
                         >
