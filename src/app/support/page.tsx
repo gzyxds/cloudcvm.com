@@ -106,7 +106,7 @@ function HeroBanner() {
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: 'radial-gradient(circle, #3860F4 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, var(--color-brand-500) 1px, transparent 1px)',
             backgroundSize: '48px 48px',
           }}
         />

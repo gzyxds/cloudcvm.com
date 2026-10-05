@@ -36,7 +36,7 @@ export default function JimengPage() {
           badgeText="即梦AI 2.0 发布"
           heroTitle={
             <>
-              打造您的 <span className="text-[#0055ff]">专属 AI 视频</span>
+              打造您的 <span className="text-brand-500">专属 AI 视频</span>
             </>
           }
           heroDesc={

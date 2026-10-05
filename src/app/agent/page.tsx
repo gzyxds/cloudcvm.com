@@ -166,7 +166,7 @@ const faqs = [
  */
 function HeroBanner() {
   return (
-    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-neutral-50 pt-16 sm:pt-0">
       {/* 背景图片 */}
       <div className="absolute inset-0 z-0 bg-[url('/images/solutions/agent.webp')] bg-cover bg-center bg-no-repeat opacity-20" />
 
@@ -177,15 +177,15 @@ function HeroBanner() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="inline-flex h-7 items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3 text-xs font-semibold text-[#0055ff]">
+          <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-brand-50 px-3 text-xs font-semibold text-brand-500">
             合作伙伴 / 5-7折优惠 / 7x24技术支持
           </span>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-tight">
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl lg:leading-tight">
             代理合作
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
+          <p className="mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             加入优刻云代理合作伙伴计划，享受{' '}
-            <span className="font-semibold text-[#0055ff]">5-7折优惠价格</span>
+            <span className="font-semibold text-brand-500">5-7折优惠价格</span>
             ，获得全方位销售支持和技术支持，共同开拓云计算市场，实现互利共赢。
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
@@ -223,10 +223,10 @@ function AgentAdvantagesSection() {
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-start">
           {/* 左侧招募信息 */}
           <div className="lg:sticky lg:top-24">
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               诚招代理合作伙伴
             </h2>
-            <p className="mb-8 text-lg leading-relaxed text-slate-600">
+            <p className="mb-8 text-lg leading-relaxed text-neutral-600">
               主题云面向全国诚招代理合作伙伴，我们提供优质的云计算产品和服务，
               丰厚的代理返佣政策，完善的技术支持和营销支持体系，
               助力合作伙伴快速开拓市场，实现共同发展。
@@ -240,10 +240,10 @@ function AgentAdvantagesSection() {
                 { icon: MegaphoneIcon, text: '全方位营销支持和培训支持' },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center">
-                  <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-[#0055ff]">
+                  <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-lg bg-brand-50 text-brand-500">
                     <item.icon className="h-5 w-5" />
                   </div>
-                  <span className="text-slate-700">{item.text}</span>
+                  <span className="text-neutral-700">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -252,12 +252,12 @@ function AgentAdvantagesSection() {
               <Button
                 variant="solid"
                 color="blue"
-                className="rounded-md bg-[#0055ff] hover:bg-[#0043cc]"
+                className="rounded-md bg-brand-500 hover:bg-brand-600"
               >
                 <Link href="/contact" className="flex items-center">
                   <span className="mr-3">立即申请代理</span>
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white">
-                    <ArrowRightIcon className="h-3 w-3 text-[#0055ff]" />
+                    <ArrowRightIcon className="h-3 w-3 text-brand-500" />
                   </span>
                 </Link>
               </Button>
@@ -275,21 +275,23 @@ function AgentAdvantagesSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative overflow-hidden rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   {/* 选中时的背景渐变 */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   <div className="relative z-10">
                     {/* 图标 */}
-                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-[#0055ff] transition-colors group-hover:bg-[#0055ff] group-hover:text-white">
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-colors group-hover:bg-brand-500 group-hover:text-white">
                       <Icon className="h-6 w-6" />
                     </div>
 
                     {/* 内容 */}
-                    <h4 className="mb-2 text-lg font-semibold text-slate-900">{advantage.title}</h4>
-                    <p className="mb-2 font-medium text-slate-700">{advantage.description}</p>
-                    <p className="text-sm leading-relaxed text-slate-500">
+                    <h4 className="mb-2 text-lg font-semibold text-neutral-900">
+                      {advantage.title}
+                    </h4>
+                    <p className="mb-2 font-medium text-neutral-700">{advantage.description}</p>
+                    <p className="text-sm leading-relaxed text-neutral-500">
                       {advantage.subDescription}
                     </p>
                   </div>
@@ -308,13 +310,13 @@ function AgentAdvantagesSection() {
  */
 function AgentSupportSection() {
   return (
-    <div className="bg-slate-50 py-16 sm:py-24">
+    <div className="bg-neutral-50 py-16 sm:py-24">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
             全方位代理支持
           </h2>
-          <div className="mx-auto mt-4 max-w-4xl text-lg text-slate-600">
+          <div className="mx-auto mt-4 max-w-4xl text-lg text-neutral-600">
             我们为代理合作伙伴提供全方位的支持服务，包括培训支持、市场支持、销售支持和技术支持，
             助力合作伙伴快速成长，实现业务目标。
           </div>
@@ -330,21 +332,23 @@ function AgentSupportSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+                className="group relative overflow-hidden rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/30 hover:shadow-xl hover:shadow-neutral-200/50"
               >
                 {/* 悬停时的背景装饰 */}
-                <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-[#0055ff]/5 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100"></div>
+                <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-brand-500/5 opacity-0 transition-all duration-500 group-hover:scale-150 group-hover:opacity-100"></div>
 
                 <div className="relative z-10">
                   {/* 图标 */}
-                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-slate-50 text-slate-600 transition-colors group-hover:bg-[#0055ff] group-hover:text-white">
+                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-neutral-50 text-neutral-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
                     <Icon className="h-6 w-6" />
                   </div>
 
                   {/* 内容 */}
-                  <h4 className="mb-3 text-lg font-semibold text-slate-900">{support.title}</h4>
-                  <p className="mb-2 font-medium text-slate-700">{support.description}</p>
-                  <p className="text-sm leading-relaxed text-slate-500">{support.subDescription}</p>
+                  <h4 className="mb-3 text-lg font-semibold text-neutral-900">{support.title}</h4>
+                  <p className="mb-2 font-medium text-neutral-700">{support.description}</p>
+                  <p className="text-sm leading-relaxed text-neutral-500">
+                    {support.subDescription}
+                  </p>
                 </div>
               </motion.div>
             )
@@ -363,8 +367,10 @@ function JoinConditionsSection() {
     <div className="bg-white py-16 sm:py-24">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">加入条件</h2>
-          <div className="mx-auto mt-4 max-w-4xl text-lg text-slate-600">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+            加入条件
+          </h2>
+          <div className="mx-auto mt-4 max-w-4xl text-lg text-neutral-600">
             我们欢迎具备一定资质和服务能力的企业加入我们的代理合作伙伴计划，
             共同为客户提供优质的云计算服务。
           </div>
@@ -380,17 +386,17 @@ function JoinConditionsSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group flex flex-col items-center rounded-md border border-slate-100 bg-slate-50/50 p-8 text-center transition-all duration-300 hover:border-[#0055ff]/20 hover:bg-white hover:shadow-lg hover:shadow-blue-500/5"
+                className="group flex flex-col items-center rounded-md border border-neutral-100 bg-neutral-50/50 p-8 text-center transition-all duration-300 hover:border-brand-500/20 hover:bg-white hover:shadow-lg hover:shadow-brand-500/5"
               >
                 {/* 图标 */}
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition-colors group-hover:bg-[#0055ff] group-hover:ring-[#0055ff]">
-                  <Icon className="h-8 w-8 text-[#0055ff] transition-colors group-hover:text-white" />
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-neutral-200 transition-colors group-hover:bg-brand-500 group-hover:ring-brand-500">
+                  <Icon className="h-8 w-8 text-brand-500 transition-colors group-hover:text-white" />
                 </div>
 
                 {/* 内容 */}
-                <h4 className="mb-4 text-xl font-semibold text-slate-900">{condition.title}</h4>
-                <p className="mb-3 font-medium text-slate-700">{condition.description}</p>
-                <p className="leading-relaxed text-slate-500">{condition.subDescription}</p>
+                <h4 className="mb-4 text-xl font-semibold text-neutral-900">{condition.title}</h4>
+                <p className="mb-3 font-medium text-neutral-700">{condition.description}</p>
+                <p className="leading-relaxed text-neutral-500">{condition.subDescription}</p>
               </motion.div>
             )
           })}
@@ -405,11 +411,13 @@ function JoinConditionsSection() {
  */
 function PromotionProcessSection() {
   return (
-    <div className="bg-slate-50 py-16 sm:py-24">
+    <div className="bg-neutral-50 py-16 sm:py-24">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">推广流程</h2>
-          <div className="mx-auto mt-4 max-w-4xl text-lg text-slate-600">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+            推广流程
+          </h2>
+          <div className="mx-auto mt-4 max-w-4xl text-lg text-neutral-600">
             简单四步，轻松成为主题云代理合作伙伴，开启您的云计算代理业务。
           </div>
         </div>
@@ -418,28 +426,28 @@ function PromotionProcessSection() {
           {promotionSteps.map((step, index) => (
             <div
               key={step.step}
-              className="group relative flex flex-col rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg"
+              className="group relative flex flex-col rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg"
             >
               {/* 连接线 (仅在桌面端显示，且不是最后一个) */}
               {index < promotionSteps.length - 1 && (
-                <div className="absolute top-12 -right-4 hidden h-0.5 w-8 bg-slate-200 group-hover:bg-[#0055ff]/30 lg:block" />
+                <div className="absolute top-12 -right-4 hidden h-0.5 w-8 bg-neutral-200 group-hover:bg-brand-500/30 lg:block" />
               )}
 
               {/* 步骤图标 */}
-              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-lg font-bold text-slate-600 transition-colors group-hover:bg-[#0055ff] group-hover:text-white">
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-100 text-lg font-bold text-neutral-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
                 {step.step}
               </div>
 
               {/* 步骤内容 */}
               <div className="mb-6 flex-1">
-                <h5 className="mb-3 text-lg font-semibold text-slate-900">{step.title}</h5>
-                <p className="mb-4 text-sm leading-relaxed text-slate-500">{step.description}</p>
+                <h5 className="mb-3 text-lg font-semibold text-neutral-900">{step.title}</h5>
+                <p className="mb-4 text-sm leading-relaxed text-neutral-500">{step.description}</p>
               </div>
 
               {/* 操作按钮 */}
               <Button
                 variant="outline"
-                className="w-full rounded-md border-slate-200 text-slate-600 hover:border-[#0055ff] hover:text-[#0055ff]"
+                className="w-full rounded-md border-neutral-200 text-neutral-600 hover:border-brand-500 hover:text-brand-500"
               >
                 {step.action}
               </Button>
@@ -467,8 +475,10 @@ function FAQSection() {
     <div className="bg-white py-16 sm:py-24">
       <Container>
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">常见问题</h2>
-          <div className="mx-auto mt-4 max-w-4xl text-lg text-slate-600">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+            常见问题
+          </h2>
+          <div className="mx-auto mt-4 max-w-4xl text-lg text-neutral-600">
             解答您在代理合作过程中可能遇到的常见问题，帮助您更好地了解我们的合作模式。
           </div>
         </div>
@@ -477,15 +487,15 @@ function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-md border border-slate-200 bg-slate-50/50 transition-colors hover:bg-white hover:shadow-md"
+              className="overflow-hidden rounded-md border border-neutral-200 bg-neutral-50/50 transition-colors hover:bg-white hover:shadow-md"
             >
               <button
                 onClick={() => toggleItem(index)}
                 className="flex w-full items-center justify-between px-6 py-4 text-left"
               >
-                <h3 className="text-lg font-medium text-slate-900">{faq.question}</h3>
+                <h3 className="text-lg font-medium text-neutral-900">{faq.question}</h3>
                 <ChevronDownIcon
-                  className={`h-5 w-5 text-slate-500 transition-transform duration-200 ${
+                  className={`h-5 w-5 text-neutral-500 transition-transform duration-200 ${
                     openItems.includes(index) ? 'rotate-180' : ''
                   }`}
                 />
@@ -500,7 +510,7 @@ function FAQSection() {
                     transition={{ duration: 0.2 }}
                   >
                     <div className="px-6 pb-4">
-                      <div className="leading-relaxed text-slate-600">
+                      <div className="leading-relaxed text-neutral-600">
                         {faq.answer.split('\n').map((line, i) => (
                           <p key={i} className="mb-1 last:mb-0">
                             {line}

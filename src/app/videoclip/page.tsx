@@ -34,7 +34,7 @@ export default function VideoclipPage() {
           badgeText="AI音乐 发布"
           heroTitle={
             <>
-              一键生成 <span className="text-[#0055ff]">混剪视频</span>
+              一键生成 <span className="text-brand-500">混剪视频</span>
             </>
           }
           heroDesc={

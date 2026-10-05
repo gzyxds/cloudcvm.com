@@ -34,7 +34,7 @@ export default function DramaPage() {
           badgeText="AI 短剧小说创作 2.0 发布"
           heroTitle={
             <>
-              打造您的<span className="text-[#0055ff]">专属爆款短剧</span>
+              打造您的<span className="text-brand-500">专属爆款短剧</span>
             </>
           }
           heroDesc={

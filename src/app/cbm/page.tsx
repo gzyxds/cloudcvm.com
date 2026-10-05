@@ -307,9 +307,9 @@ function GlassCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-      className={`group relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 ${className}`}
+      className={`group relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-neutral-200/50 ${className}`}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="relative z-10 h-full">{children}</div>
     </motion.div>
   )
@@ -337,18 +337,18 @@ function SectionHeader({
       transition={{ duration: 0.5 }}
       className={align === 'center' ? 'text-center' : ''}
     >
-      <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-[#0055ff]">
+      <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
         {eyebrow}
       </span>
       <h2
-        className={`mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl ${
+        className={`mt-4 text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl ${
           align === 'center' ? 'mx-auto max-w-2xl' : ''
         }`}
       >
         {title}
       </h2>
       <p
-        className={`mt-4 text-base leading-relaxed text-slate-500 sm:text-lg ${
+        className={`mt-4 text-base leading-relaxed text-neutral-500 sm:text-lg ${
           align === 'center' ? 'mx-auto max-w-3xl' : ''
         }`}
       >
@@ -365,7 +365,7 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
+    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
         <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
@@ -376,8 +376,8 @@ function SectionNav() {
                 href={`#${item.id}`}
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
-                    ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
+                    ? 'border-brand-500 text-brand-500'
+                    : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900'
                 }`}
               >
                 {item.label}
@@ -395,7 +395,7 @@ function SectionNav() {
  */
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-neutral-50 pt-16 sm:pt-0">
       <div className="absolute inset-0 z-0 bg-[url('/images/solutions/cbm.webp')] bg-cover bg-center bg-no-repeat opacity-55" />
 
       <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
@@ -405,13 +405,13 @@ function HeroSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="inline-flex h-7 items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3 text-xs font-semibold text-[#0055ff]">
+          <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-brand-50 px-3 text-xs font-semibold text-brand-500">
             裸金属云服务器 / CBM / 物理性能·云上弹性
           </span>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-tight">
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl lg:leading-tight">
             裸金属云服务器 CBM
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
+          <p className="mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             兼具物理服务器性能与云服务器弹性的高性能计算实例。独占物理资源，无虚拟化损耗；分钟级交付，弹性伸缩。
             为高性能计算、大数据、核心数据库、游戏、金融等关键业务场景提供极致算力与安全合规保障。
           </p>
@@ -444,7 +444,7 @@ function HeroSection() {
  */
 function OverviewSection() {
   return (
-    <section id="overview" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="overview" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Product Features"
@@ -458,7 +458,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
+          className="mt-12 rounded-2xl bg-brand-500 p-6 text-white shadow-xl shadow-brand-500/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
@@ -471,7 +471,7 @@ function OverviewSection() {
               </p>
             </div>
             <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
-              <p className="text-sm font-semibold text-[#eff6ff]">与虚拟化云服务器对比</p>
+              <p className="text-sm font-semibold text-brand-50">与虚拟化云服务器对比</p>
               <ul className="mt-4 space-y-3 text-sm text-white/90">
                 <li className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 无虚拟化性能损耗
@@ -498,14 +498,14 @@ function OverviewSection() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {OVERVIEW_ITEMS.map((item, index) => (
             <GlassCard key={item.title} delay={index * 0.1} className="flex flex-col">
-              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
+              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50 text-brand-500">
                 <item.icon className="h-6 w-6" />
               </span>
-              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">
+              <span className="mb-2 block text-xs font-semibold text-brand-500">
                 {item.eyebrow}
               </span>
-              <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+              <h3 className="text-lg font-semibold text-neutral-900">{item.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
                 {item.description}
               </p>
             </GlassCard>
@@ -523,7 +523,7 @@ function ScenariosSection() {
   return (
     <section
       id="scenarios"
-      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+      className="scroll-mt-32 border-y border-neutral-200 bg-white py-16 md:py-24"
     >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
@@ -533,13 +533,13 @@ function ScenariosSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold text-[#0055ff]">
+            <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold text-brand-500">
               Scenarios
             </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               六大典型业务场景
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-slate-600">
+            <p className="mt-5 text-base leading-relaxed text-neutral-600">
               从高性能计算到核心数据库、从游戏业务到金融合规，裸金属云服务器为各类关键业务负载
               提供物理级的性能保障与安全隔离，满足最苛刻的算力需求。
             </p>
@@ -547,7 +547,7 @@ function ScenariosSection() {
               {['HPC', '大数据', '游戏', '金融', '数据库', 'AI/ML'].map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-sm font-medium text-slate-600"
+                  className="rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1.5 text-sm font-medium text-neutral-600"
                 >
                   {tag}
                 </span>
@@ -557,18 +557,18 @@ function ScenariosSection() {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SCENARIO_ITEMS.map((item, index) => (
-              <GlassCard key={item.title} delay={index * 0.1} className="bg-slate-50/50">
-                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-[#0055ff] shadow-sm">
+              <GlassCard key={item.title} delay={index * 0.1} className="bg-neutral-50/50">
+                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-brand-500 shadow-sm">
                   <item.icon className="h-5 w-5" />
                 </span>
-                <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.description}</p>
+                <h3 className="text-base font-semibold text-neutral-900">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-neutral-500">{item.description}</p>
                 {item.tags && item.tags.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md border border-slate-200 bg-white px-2 py-0.5 text-xs font-medium text-slate-600"
+                        className="rounded-md border border-neutral-200 bg-white px-2 py-0.5 text-xs font-medium text-neutral-600"
                       >
                         {tag}
                       </span>
@@ -589,7 +589,7 @@ function ScenariosSection() {
  */
 function PackagesSection() {
   return (
-    <section id="packages" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="packages" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Instance Specs"
@@ -601,35 +601,35 @@ function PackagesSection() {
           {PACKAGE_ITEMS.map((item, index) => (
             <GlassCard key={item.name} delay={index * 0.1} className="flex flex-col">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-bold text-slate-900">{item.name}</h3>
-                <span className="inline-flex items-center rounded-md bg-[#eff6ff] px-2 py-1 text-xs font-semibold text-[#0055ff]">
+                <h3 className="text-lg font-bold text-neutral-900">{item.name}</h3>
+                <span className="inline-flex items-center rounded-md bg-brand-50 px-2 py-1 text-xs font-semibold text-brand-500">
                   {item.price}
                 </span>
               </div>
-              <p className="mt-3 text-sm text-slate-500">{item.highlight}</p>
-              <div className="mt-5 space-y-3 border-t border-slate-200 pt-5 text-sm">
+              <p className="mt-3 text-sm text-neutral-500">{item.highlight}</p>
+              <div className="mt-5 space-y-3 border-t border-neutral-200 pt-5 text-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500">vCPU</span>
-                  <span className="font-mono font-semibold text-slate-900">{item.cpu}</span>
+                  <span className="text-neutral-500">vCPU</span>
+                  <span className="font-mono font-semibold text-neutral-900">{item.cpu}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500">内存</span>
-                  <span className="font-mono font-semibold text-slate-900">{item.memory}</span>
+                  <span className="text-neutral-500">内存</span>
+                  <span className="font-mono font-semibold text-neutral-900">{item.memory}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500">存储</span>
-                  <span className="font-mono font-semibold text-slate-900">{item.storage}</span>
+                  <span className="text-neutral-500">存储</span>
+                  <span className="font-mono font-semibold text-neutral-900">{item.storage}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500">网络</span>
-                  <span className="font-mono font-semibold text-slate-900">{item.network}</span>
+                  <span className="text-neutral-500">网络</span>
+                  <span className="font-mono font-semibold text-neutral-900">{item.network}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500">GPU</span>
-                  <span className="font-mono font-semibold text-slate-900">{item.gpu}</span>
+                  <span className="text-neutral-500">GPU</span>
+                  <span className="font-mono font-semibold text-neutral-900">{item.gpu}</span>
                 </div>
               </div>
-              <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-[#0055ff]">
+              <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-brand-500">
                 <span>查看规格详情</span>
                 <ArrowRightIcon className="h-4 w-4" />
               </div>
@@ -646,7 +646,7 @@ function PackagesSection() {
  */
 function OSSection() {
   return (
-    <section id="os" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
+    <section id="os" className="scroll-mt-20 border-y border-neutral-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Operating System"
@@ -656,18 +656,18 @@ function OSSection() {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {OS_ITEMS.map((item, index) => (
-            <GlassCard key={item.category} delay={index * 0.08} className="bg-slate-50/50">
+            <GlassCard key={item.category} delay={index * 0.08} className="bg-neutral-50/50">
               <div className="flex items-center gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-[#0055ff] shadow-sm">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-brand-500 shadow-sm">
                   <Squares2X2Icon className="h-5 w-5" />
                 </span>
-                <h3 className="text-base font-semibold text-slate-900">{item.category}</h3>
+                <h3 className="text-base font-semibold text-neutral-900">{item.category}</h3>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
                 {item.apps.map((app) => (
                   <span
                     key={app}
-                    className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700"
+                    className="rounded-md border border-neutral-200 bg-white px-2.5 py-1 text-xs font-medium text-neutral-700"
                   >
                     {app}
                   </span>
@@ -686,7 +686,7 @@ function OSSection() {
  */
 function AdvantagesSection() {
   return (
-    <section id="advantages" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="advantages" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Core Advantages"
@@ -697,11 +697,11 @@ function AdvantagesSection() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {ADVANTAGE_ITEMS.map((item, index) => (
             <GlassCard key={item.title} delay={index * 0.1}>
-              <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-[#0055ff]">
+              <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
                 <item.icon className="h-7 w-7" />
               </span>
-              <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-slate-500">{item.description}</p>
+              <h3 className="text-xl font-semibold text-neutral-900">{item.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-neutral-500">{item.description}</p>
             </GlassCard>
           ))}
         </div>
@@ -717,7 +717,7 @@ function ProductsSection() {
   return (
     <section
       id="products"
-      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+      className="scroll-mt-20 border-y border-neutral-200 bg-white py-16 md:py-24"
     >
       <Container>
         <SectionHeader
@@ -729,11 +729,11 @@ function ProductsSection() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCT_ITEMS.map((item, index) => (
             <GlassCard key={item.title} delay={index * 0.05} className="flex flex-col">
-              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
+              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50 text-brand-500">
                 <item.icon className="h-6 w-6" />
               </span>
-              <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+              <h3 className="text-lg font-semibold text-neutral-900">{item.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
                 {item.description}
               </p>
               {item.tags && item.tags.length > 0 && (
@@ -741,7 +741,7 @@ function ProductsSection() {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600"
+                      className="rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-600"
                     >
                       {tag}
                     </span>
@@ -763,7 +763,7 @@ function CTASection() {
   return (
     <section
       id="cta"
-      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+      className="relative scroll-mt-20 overflow-hidden bg-brand-500 py-16 text-center md:py-24"
     >
       <Container className="relative z-10">
         <motion.div
@@ -788,7 +788,7 @@ function CTASection() {
               href="/contact"
               color="white"
               variant="erlieSolid"
-              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+              className="rounded-xl px-8 py-3 font-medium text-brand-500"
             >
               立即选购实例
             </Button>
@@ -815,7 +815,7 @@ function CTASection() {
  */
 export default function CBMPage() {
   return (
-    <div className="bg-slate-50 font-sans selection:bg-[#0055ff]/20 selection:text-[#0055ff]">
+    <div className="bg-neutral-50 font-sans selection:bg-brand-500/20 selection:text-brand-500">
       <HeroSection />
       <SectionNav />
       <OverviewSection />

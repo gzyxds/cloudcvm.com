@@ -14,7 +14,7 @@
 .section {
     width: 100%;
     overflow: hidden;
-    background: #fff;
+    background: var(--color-white);
     position: relative;
 }
 
@@ -47,8 +47,8 @@
 @media (min-width: 2560px) {
     .section::before,
     .section::after {
-        -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-        mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+        -webkit-mask: linear-gradient(90deg, transparent, var(--color-neutral-950) 10%, var(--color-neutral-950) 90%, transparent);
+        mask: linear-gradient(90deg, transparent, var(--color-neutral-950) 10%, var(--color-neutral-950) 90%, transparent);
     }
 }
 
@@ -74,7 +74,7 @@
     font-size: 12px;
     line-height: 20px;
     font-weight: 500;
-    color: #a7a7a7;
+    color: var(--color-neutral-400);
 }
 
 .hdMain {
@@ -90,12 +90,12 @@
     font-size: 32px;
     line-height: 40px;
     font-weight: 500;
-    color: #000;
+    color: var(--color-neutral-950);
 }
 
 /* 标题渐变关键词（参考页 .linear） */
 .linear {
-    background: linear-gradient(90deg, #00a2ed 1.42%, #166cf7);
+    background: linear-gradient(90deg, #00a2ed 1.42%, var(--color-brand-500));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -107,7 +107,7 @@
     margin-top: 12px;
     font-size: 14px;
     line-height: 22px;
-    color: #6f7988;
+    color: var(--color-neutral-500);
 }
 
 /* ── 区块主体（tpm-portal-section__bd）── */
@@ -133,18 +133,18 @@
 
 /* 左右淡出遮罩（--has-next / --has-prev 组合） */
 .cardsWrapper.hasNext .swiper {
-    -webkit-mask: linear-gradient(90deg, #000 0, #000 95%, transparent);
-    mask: linear-gradient(90deg, #000 0, #000 95%, transparent);
+    -webkit-mask: linear-gradient(90deg, var(--color-neutral-950) 0, var(--color-neutral-950) 95%, transparent);
+    mask: linear-gradient(90deg, var(--color-neutral-950) 0, var(--color-neutral-950) 95%, transparent);
 }
 
 .cardsWrapper.hasPrev .swiper {
-    -webkit-mask: linear-gradient(90deg, transparent 0, #000 5%, #000);
-    mask: linear-gradient(90deg, transparent 0, #000 5%, #000);
+    -webkit-mask: linear-gradient(90deg, transparent 0, var(--color-neutral-950) 5%, var(--color-neutral-950));
+    mask: linear-gradient(90deg, transparent 0, var(--color-neutral-950) 5%, var(--color-neutral-950));
 }
 
 .cardsWrapper.hasNext.hasPrev .swiper {
-    -webkit-mask: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent);
-    mask: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent);
+    -webkit-mask: linear-gradient(90deg, transparent 0, var(--color-neutral-950) 5%, var(--color-neutral-950) 95%, transparent);
+    mask: linear-gradient(90deg, transparent 0, var(--color-neutral-950) 5%, var(--color-neutral-950) 95%, transparent);
 }
 
 .slide {
@@ -226,7 +226,7 @@
 }
 
 .cardWrap:hover .cardInner {
-    background: #fff;
+    background: var(--color-white);
 }
 
 /* ── 卡片内容（tpm-portal-introduce__card-header）── */
@@ -240,7 +240,7 @@
 .cardIcon {
     width: 16px;
     height: 16px;
-    color: #1b6ef7;
+    color: var(--color-brand-500);
 }
 
 .cardTitle {
@@ -248,7 +248,7 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 500;
-    color: #000;
+    color: var(--color-neutral-950);
 }
 
 /* 标题行（移动端：标题 + 指标值并排） */
@@ -266,14 +266,14 @@
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
-    color: #1b6ef7;
+    color: var(--color-brand-500);
     white-space: nowrap;
 }
 
 .cardDesc {
     font-size: 14px;
     font-weight: 400;
-    color: #6f7988;
+    color: var(--color-neutral-500);
     line-height: 22px;
     margin-top: 8px;
     word-wrap: break-word;
@@ -301,20 +301,20 @@
     justify-content: center;
     gap: 10px;
     overflow: hidden;
-    background: linear-gradient(135deg, #f2f7ff, #e5eeff);
+    background: linear-gradient(135deg, var(--color-brand-50), var(--color-brand-50));
 }
 
 .mediaValue {
     font-size: 36px;
     line-height: 44px;
     font-weight: 700;
-    color: #1b6ef7;
+    color: var(--color-brand-500);
 }
 
 .mediaLabel {
     font-size: 14px;
     line-height: 22px;
-    color: #6f7988;
+    color: var(--color-neutral-500);
     white-space: nowrap;
 }
 
@@ -349,11 +349,11 @@
     width: calc(50% - 8px);
     height: 36px;
     padding: 0 16px;
-    background: linear-gradient(90deg, #0059eb, #2677ff);
+    background: linear-gradient(90deg, var(--color-brand-600), var(--color-brand-500));
     font-size: 14px;
     line-height: 22px;
     font-weight: 400;
-    color: #fff;
+    color: var(--color-white);
     text-decoration: none;
     cursor: pointer;
     border: 0;
@@ -396,7 +396,7 @@
     height: 36px;
     padding: 0 15px;
     background: transparent;
-    border: 1px solid #e5e6eb;
+    border: 1px solid var(--color-neutral-200);
     box-sizing: border-box;
     font-size: 14px;
     line-height: 22px;
@@ -425,8 +425,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #fff;
-    border: 1px solid #dfe4ec;
+    background: var(--color-white);
+    border: 1px solid var(--color-neutral-200);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
     cursor: pointer;
     box-sizing: border-box;
@@ -500,7 +500,7 @@
 
 .mobileCard {
     box-sizing: border-box;
-    background: #fff;
+    background: var(--color-white);
     display: flex;
     flex-direction: column;
 }
@@ -522,8 +522,8 @@
     /* 导航 hover 态 */
     .navPrev:hover,
     .navNext:hover {
-        background: #f4f8ff;
-        border-color: #d5e4fc;
+        background: var(--color-brand-50);
+        border-color: var(--color-brand-100);
     }
 
     .navPrev:hover::before,
@@ -538,8 +538,8 @@
 
     /* 弱按钮 hover */
     .btnWeak:hover {
-        border-color: #0052d9;
-        color: #0052d9;
+        border-color: var(--color-brand-600);
+        color: var(--color-brand-600);
     }
 }
 
@@ -620,7 +620,7 @@
 /* ── ≤768px 移动端 ── */
 @media (max-width: 768px) {
     .section {
-        background: #fdfdfd;
+        background: var(--color-white);
         background-image: none !important;
     }
 
@@ -691,7 +691,7 @@
         flex: none;
         width: calc(50% - 6px);
         padding: 10px;
-        border: 1px solid #dfe4ec;
+        border: 1px solid var(--color-neutral-200);
     }
 
     /* 简化：移动端去掉大媒体区 */

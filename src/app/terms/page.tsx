@@ -142,14 +142,14 @@ const sections = [
 
 function SectionNav() {
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
+    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
         <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto">
           {sections.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="shrink-0 border-b-2 border-transparent px-4 py-3.5 text-sm font-medium text-slate-500 transition-colors hover:border-slate-300 hover:text-slate-900 sm:px-6"
+              className="shrink-0 border-b-2 border-transparent px-4 py-3.5 text-sm font-medium text-neutral-500 transition-colors hover:border-neutral-300 hover:text-neutral-900 sm:px-6"
             >
               {item.title}
             </a>
@@ -176,10 +176,10 @@ function HeroSection() {
           <span className="inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
             Terms of Service
           </span>
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
             服务条款
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-neutral-500 sm:text-lg">
             使用 CloudCVM 服务前，请仔细阅读并理解以下条款，它们规定了您与我们之间的权利义务。
           </p>
         </motion.div>
@@ -190,7 +190,7 @@ function HeroSection() {
 
 function ContentSection() {
   return (
-    <section className="bg-slate-50 py-16 md:py-24">
+    <section className="bg-neutral-50 py-16 md:py-24">
       <Container>
         <div>
           <div className="space-y-12">
@@ -204,11 +204,11 @@ function ContentSection() {
                 variants={fadeUp}
                 className="scroll-mt-28"
               >
-                <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                <h2 className="text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl">
                   <span className="mr-3 text-brand-500">{String(index + 1).padStart(2, '0')}</span>
                   {section.title}
                 </h2>
-                <div className="mt-4 text-sm leading-7 whitespace-pre-line text-slate-600 sm:text-base sm:leading-8">
+                <div className="mt-4 text-sm leading-7 whitespace-pre-line text-neutral-600 sm:text-base sm:leading-8">
                   {section.content}
                 </div>
               </motion.div>

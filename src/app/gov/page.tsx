@@ -291,9 +291,9 @@ function GlassCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-      className={`group relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50 ${className}`}
+      className={`group relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50 ${className}`}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="relative z-10 h-full">{children}</div>
     </motion.div>
   )
@@ -325,18 +325,18 @@ function SectionHeader({
       transition={{ duration: 0.5 }}
       className={align === 'center' ? 'text-center' : ''}
     >
-      <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-[#0055ff]">
+      <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
         {eyebrow}
       </span>
       <h2
-        className={`mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl ${
+        className={`mt-4 text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl ${
           align === 'center' ? 'mx-auto max-w-2xl' : ''
         }`}
       >
         {title}
       </h2>
       <p
-        className={`mt-4 text-base leading-relaxed text-slate-500 sm:text-lg ${
+        className={`mt-4 text-base leading-relaxed text-neutral-500 sm:text-lg ${
           align === 'center' ? 'mx-auto max-w-3xl' : ''
         }`}
       >
@@ -354,7 +354,7 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
+    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
         <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
@@ -365,8 +365,8 @@ function SectionNav() {
                 href={`#${item.id}`}
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
-                    ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
+                    ? 'border-brand-500 text-brand-500'
+                    : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900'
                 }`}
               >
                 {item.label}
@@ -385,7 +385,7 @@ function SectionNav() {
  */
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-neutral-50 pt-16 sm:pt-0">
       {/* 背景图片 */}
       <div className="absolute inset-0 z-0 bg-[url('/images/solutions/gov.png')] bg-cover bg-center bg-no-repeat opacity-20" />
 
@@ -396,13 +396,13 @@ function HeroSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="inline-flex h-7 items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3 text-xs font-semibold text-[#0055ff]">
+          <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-brand-50 px-3 text-xs font-semibold text-brand-500">
             政府行业 / 自主可控 / 安全合规
           </span>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-tight">
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl lg:leading-tight">
             政府行业云计算解决方案
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
+          <p className="mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             为政府行业提供自主可控、安全合规的云上部署方案，覆盖政务云、数据共享、智慧城市与国产化替代全场景，助力数字政府建设。
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
@@ -435,7 +435,7 @@ function HeroSection() {
  */
 function OverviewSection() {
   return (
-    <section id="overview" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="overview" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Solution Overview"
@@ -449,7 +449,7 @@ function OverviewSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 rounded-2xl bg-[#0055ff] p-6 text-white shadow-xl shadow-[#0055ff]/20 sm:p-8 lg:p-10"
+          className="mt-12 rounded-2xl bg-brand-500 p-6 text-white shadow-xl shadow-brand-500/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_300px] lg:gap-12">
             <div>
@@ -461,7 +461,7 @@ function OverviewSection() {
               </p>
             </div>
             <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
-              <p className="text-sm font-semibold text-[#eff6ff]">典型适用场景</p>
+              <p className="text-sm font-semibold text-brand-50">典型适用场景</p>
               <ul className="mt-4 space-y-3 text-sm text-white/90">
                 <li className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 政务云平台建设
@@ -484,14 +484,14 @@ function OverviewSection() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {OVERVIEW_ITEMS.map((item, index) => (
             <GlassCard key={item.title} delay={index * 0.1} className="flex flex-col">
-              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
+              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50 text-brand-500">
                 <item.icon className="h-6 w-6" />
               </span>
-              <span className="mb-2 block text-xs font-semibold text-[#0055ff]">
+              <span className="mb-2 block text-xs font-semibold text-brand-500">
                 {item.eyebrow}
               </span>
-              <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+              <h3 className="text-lg font-semibold text-neutral-900">{item.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
                 {item.description}
               </p>
             </GlassCard>
@@ -510,7 +510,7 @@ function ChallengesSection() {
   return (
     <section
       id="challenges"
-      className="scroll-mt-32 border-y border-slate-200 bg-white py-16 md:py-24"
+      className="scroll-mt-32 border-y border-neutral-200 bg-white py-16 md:py-24"
     >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
@@ -520,20 +520,20 @@ function ChallengesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold text-[#0055ff]">
+            <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold text-brand-500">
               Industry Challenges
             </span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               政府信息化的关键挑战
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-slate-600">
+            <p className="mt-5 text-base leading-relaxed text-neutral-600">
               从建设周期到安全合规，从运维能力到业务扩展，政府行业在上云过程中面临多维度挑战，需要一套整体解决方案。
             </p>
             <div className="mt-8 flex flex-wrap gap-2">
               {['建设周期', '运维能力', '安全合规', '国产替代', '数据共享'].map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-sm font-medium text-slate-600"
+                  className="rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1.5 text-sm font-medium text-neutral-600"
                 >
                   {tag}
                 </span>
@@ -543,12 +543,12 @@ function ChallengesSection() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {CHALLENGE_ITEMS.map((item, index) => (
-              <GlassCard key={item.title} delay={index * 0.1} className="bg-slate-50/50">
-                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-[#0055ff] shadow-sm">
+              <GlassCard key={item.title} delay={index * 0.1} className="bg-neutral-50/50">
+                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-brand-500 shadow-sm">
                   <item.icon className="h-5 w-5" />
                 </span>
-                <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">{item.description}</p>
+                <h3 className="text-base font-semibold text-neutral-900">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-neutral-500">{item.description}</p>
               </GlassCard>
             ))}
           </div>
@@ -564,7 +564,7 @@ function ChallengesSection() {
  */
 function AdvantagesSection() {
   return (
-    <section id="advantages" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="advantages" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Core Advantages"
@@ -575,11 +575,11 @@ function AdvantagesSection() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {ADVANTAGE_ITEMS.map((item, index) => (
             <GlassCard key={item.title} delay={index * 0.1}>
-              <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-[#0055ff]">
+              <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
                 <item.icon className="h-7 w-7" />
               </span>
-              <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-slate-500">{item.description}</p>
+              <h3 className="text-xl font-semibold text-neutral-900">{item.title}</h3>
+              <p className="mt-3 text-base leading-relaxed text-neutral-500">{item.description}</p>
             </GlassCard>
           ))}
         </div>
@@ -596,7 +596,7 @@ function ArchitectureSection() {
   return (
     <section
       id="architecture"
-      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+      className="scroll-mt-20 border-y border-neutral-200 bg-white py-16 md:py-24"
     >
       <Container>
         <SectionHeader
@@ -608,9 +608,9 @@ function ArchitectureSection() {
         <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1fr_400px] lg:gap-12">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ARCHITECTURE_POINTS.map((point, index) => (
-              <GlassCard key={point.label} delay={index * 0.1} className="bg-slate-50/50">
-                <h3 className="text-base font-bold text-[#0055ff]">{point.label}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">{point.description}</p>
+              <GlassCard key={point.label} delay={index * 0.1} className="bg-neutral-50/50">
+                <h3 className="text-base font-bold text-brand-500">{point.label}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-neutral-500">{point.description}</p>
               </GlassCard>
             ))}
           </div>
@@ -621,34 +621,34 @@ function ArchitectureSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col gap-4 rounded-2xl bg-slate-900 p-6 shadow-2xl sm:p-8"
+            className="flex flex-col gap-4 rounded-2xl bg-neutral-900 p-6 shadow-2xl sm:p-8"
           >
-            <div className="flex h-14 items-center justify-center rounded-xl bg-white font-bold text-slate-900 shadow-sm">
+            <div className="flex h-14 items-center justify-center rounded-xl bg-white font-bold text-neutral-900 shadow-sm">
               政务应用层
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <span className="flex h-12 items-center justify-center rounded-xl border border-slate-700 bg-slate-800 text-sm font-medium text-slate-300">
+              <span className="flex h-12 items-center justify-center rounded-xl border border-neutral-700 bg-neutral-800 text-sm font-medium text-neutral-300">
                 政务服务
               </span>
-              <span className="flex h-12 items-center justify-center rounded-xl border border-slate-700 bg-slate-800 text-sm font-medium text-slate-300">
+              <span className="flex h-12 items-center justify-center rounded-xl border border-neutral-700 bg-neutral-800 text-sm font-medium text-neutral-300">
                 协同办公
               </span>
             </div>
-            <div className="flex h-14 items-center justify-center rounded-xl bg-[#0055ff] font-bold text-white shadow-sm">
+            <div className="flex h-14 items-center justify-center rounded-xl bg-brand-500 font-bold text-white shadow-sm">
               数据共享层
             </div>
             <div className="grid grid-cols-3 gap-4">
-              <span className="flex h-12 items-center justify-center rounded-xl border border-slate-700 bg-slate-800 text-sm font-medium text-slate-300">
+              <span className="flex h-12 items-center justify-center rounded-xl border border-neutral-700 bg-neutral-800 text-sm font-medium text-neutral-300">
                 安全屋
               </span>
-              <span className="flex h-12 items-center justify-center rounded-xl border border-slate-700 bg-slate-800 text-sm font-medium text-slate-300">
+              <span className="flex h-12 items-center justify-center rounded-xl border border-neutral-700 bg-neutral-800 text-sm font-medium text-neutral-300">
                 数据沙箱
               </span>
-              <span className="flex h-12 items-center justify-center rounded-xl border border-slate-700 bg-slate-800 text-sm font-medium text-slate-300">
+              <span className="flex h-12 items-center justify-center rounded-xl border border-neutral-700 bg-neutral-800 text-sm font-medium text-neutral-300">
                 API
               </span>
             </div>
-            <div className="flex h-14 items-center justify-center rounded-xl border-2 border-dashed border-slate-700 bg-transparent text-sm font-bold text-slate-400">
+            <div className="flex h-14 items-center justify-center rounded-xl border-2 border-dashed border-neutral-700 bg-transparent text-sm font-bold text-neutral-400">
               安全 + 运维 + 监控
             </div>
           </motion.div>
@@ -664,7 +664,7 @@ function ArchitectureSection() {
  */
 function ProductsSection() {
   return (
-    <section id="products" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="products" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Recommended Products"
@@ -675,11 +675,11 @@ function ProductsSection() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PRODUCT_ITEMS.map((item, index) => (
             <GlassCard key={item.title} delay={index * 0.05} className="flex flex-col">
-              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
+              <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50 text-brand-500">
                 <item.icon className="h-6 w-6" />
               </span>
-              <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+              <h3 className="text-lg font-semibold text-neutral-900">{item.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
                 {item.description}
               </p>
               {item.tags && item.tags.length > 0 && (
@@ -687,7 +687,7 @@ function ProductsSection() {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600"
+                      className="rounded-md bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-600"
                     >
                       {tag}
                     </span>
@@ -708,7 +708,7 @@ function ProductsSection() {
  */
 function CapabilitySection() {
   return (
-    <section className="border-t border-slate-200 bg-white py-16 md:py-24">
+    <section className="border-t border-neutral-200 bg-white py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Scenario Solutions"
@@ -721,14 +721,14 @@ function CapabilitySection() {
             <GlassCard
               key={item.title}
               delay={index * 0.1}
-              className="flex items-start gap-4 bg-slate-50/50 p-5"
+              className="flex items-start gap-4 bg-neutral-50/50 p-5"
             >
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#eff6ff] text-[#0055ff]">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500">
                 <item.icon className="h-6 w-6" />
               </span>
               <div className="min-w-0">
-                <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+                <h3 className="text-base font-semibold text-neutral-900">{item.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-neutral-500">{item.description}</p>
               </div>
             </GlassCard>
           ))}
@@ -746,7 +746,7 @@ function CTASection() {
   return (
     <section
       id="cta"
-      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-16 text-center md:py-24"
+      className="relative scroll-mt-20 overflow-hidden bg-brand-500 py-16 text-center md:py-24"
     >
       <Container className="relative z-10">
         <motion.div
@@ -770,7 +770,7 @@ function CTASection() {
               href="/contact"
               color="white"
               variant="erlieSolid"
-              className="rounded-xl px-8 py-3 font-medium text-[#0055ff]"
+              className="rounded-xl px-8 py-3 font-medium text-brand-500"
             >
               联系专属顾问
             </Button>
@@ -798,7 +798,7 @@ function CTASection() {
  */
 export default function GovPage() {
   return (
-    <div className="bg-slate-50 font-sans selection:bg-[#0055ff]/20 selection:text-[#0055ff]">
+    <div className="bg-neutral-50 font-sans selection:bg-brand-500/20 selection:text-brand-500">
       <HeroSection />
       <SectionNav />
       <OverviewSection />

@@ -26,12 +26,12 @@ interface ServiceCardProps {
 /** 服务卡片子组件 */
 function ServiceCard({ icon: Icon, title, description, cta, onCtaClick }: ServiceCardProps) {
   return (
-    <div className="group flex flex-col rounded-xl bg-white p-6 ring-1 ring-black/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-black/[0.04] hover:ring-black/[0.10]">
+    <div className="group flex flex-col rounded-xl bg-white p-6 ring-1 ring-neutral-950/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-neutral-950/[0.04] hover:ring-neutral-950/[0.10]">
       <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-brand-500 text-white shadow-sm">
         <Icon className="size-5" />
       </div>
-      <h3 className="text-base font-semibold text-gray-900">{title}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-500">{description}</p>
+      <h3 className="text-base font-semibold text-neutral-900">{title}</h3>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">{description}</p>
       <button
         type="button"
         onClick={onCtaClick}
@@ -119,31 +119,31 @@ export default function CatSections() {
             className="fixed inset-0 z-[60] flex items-center justify-center p-4"
             onClick={() => setShowQRCode(false)}
           >
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-neutral-950/50" />
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-sm rounded-xl bg-white shadow-xl ring-1 ring-black/5"
+              className="relative w-full max-w-sm rounded-xl bg-white shadow-xl ring-1 ring-neutral-950/5"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 onClick={() => setShowQRCode(false)}
-                className="absolute top-4 right-4 flex size-8 items-center justify-center rounded-md text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                className="absolute top-4 right-4 flex size-8 items-center justify-center rounded-md text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-600"
                 aria-label="关闭"
               >
                 <XMarkIcon className="size-5" />
               </button>
 
               <div className="p-8 text-center">
-                <h3 className="text-xl font-bold text-gray-900">联系我们</h3>
-                <p className="mt-2 text-sm text-gray-500">扫描二维码获取更多信息</p>
+                <h3 className="text-xl font-bold text-neutral-900">联系我们</h3>
+                <p className="mt-2 text-sm text-neutral-500">扫描二维码获取更多信息</p>
 
                 <div className="mt-6 grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <div className="rounded-lg border border-gray-200 bg-gray-50 p-2">
+                    <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-2">
                       <Image
                         src="/images/contact/userhlc.png"
                         alt="客服二维码"
@@ -152,10 +152,10 @@ export default function CatSections() {
                         className="mx-auto h-auto w-full object-contain"
                       />
                     </div>
-                    <p className="mt-3 text-sm font-medium text-gray-600">客服微信</p>
+                    <p className="mt-3 text-sm font-medium text-neutral-600">客服微信</p>
                   </div>
                   <div className="text-center">
-                    <div className="rounded-lg border border-gray-200 bg-gray-50 p-2">
+                    <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-2">
                       <Image
                         src="/images/contact/gzh.png"
                         alt="公众号二维码"
@@ -164,10 +164,10 @@ export default function CatSections() {
                         className="mx-auto h-auto w-full object-contain"
                       />
                     </div>
-                    <p className="mt-3 text-sm font-medium text-gray-600">微信公众号</p>
+                    <p className="mt-3 text-sm font-medium text-neutral-600">微信公众号</p>
                   </div>
                 </div>
-                <p className="mt-4 text-xs text-gray-400">长按二维码保存到相册</p>
+                <p className="mt-4 text-xs text-neutral-400">长按二维码保存到相册</p>
               </div>
             </motion.div>
           </motion.div>

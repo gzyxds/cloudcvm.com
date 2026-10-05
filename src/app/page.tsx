@@ -26,7 +26,7 @@ import ServiceTabs from '@/components/sections/shared/ServiceTabs'
 
 // 骨架屏占位组件
 const SectionSkeleton = ({ height = 'h-[400px]' }: { height?: string }) => (
-  <div className={`${height} w-full animate-pulse rounded-xl bg-gray-50`} />
+  <div className={`${height} w-full animate-pulse rounded-xl bg-neutral-50`} />
 )
 
 // 中段内容组件

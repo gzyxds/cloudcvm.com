@@ -39,7 +39,7 @@ export default function NotFound() {
   }, [])
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900">
+    <div className="flex min-h-screen flex-col bg-neutral-50 font-sans text-neutral-900">
       <Header />
       <main className="flex flex-grow flex-col">
         {/* Hero 区域 */}
@@ -49,7 +49,8 @@ export default function NotFound() {
             <div
               className="absolute inset-0 opacity-[0.03]"
               style={{
-                backgroundImage: 'radial-gradient(circle, #3860F4 1px, transparent 1px)',
+                backgroundImage:
+                  'radial-gradient(circle, var(--color-brand-500) 1px, transparent 1px)',
                 backgroundSize: '48px 48px',
               }}
             />
@@ -77,7 +78,7 @@ export default function NotFound() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="mt-8 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+                className="mt-8 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl"
               >
                 抱歉，页面找不到了
               </motion.h1>
@@ -86,7 +87,7 @@ export default function NotFound() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-500 sm:text-lg"
+                className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-500 sm:text-lg"
               >
                 您访问的页面可能已被移除、名称已更改，或者暂时无法访问。
                 不妨试试下方的快捷入口，或返回首页继续浏览。
@@ -125,16 +126,16 @@ export default function NotFound() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-5 transition-all duration-300 hover:border-brand-300 hover:shadow-lg hover:shadow-slate-200/50"
+                    className="group flex items-center gap-4 rounded-lg border border-neutral-200 bg-white p-5 transition-all duration-300 hover:border-brand-300 hover:shadow-lg hover:shadow-neutral-200/50"
                   >
                     <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
                       <Icon className="h-6 w-6" />
                     </span>
                     <div className="min-w-0 flex-1 text-left">
-                      <h3 className="text-base font-semibold text-slate-900">{item.name}</h3>
-                      <p className="mt-1 text-sm text-slate-500">{item.description}</p>
+                      <h3 className="text-base font-semibold text-neutral-900">{item.name}</h3>
+                      <p className="mt-1 text-sm text-neutral-500">{item.description}</p>
                     </div>
-                    <ArrowRightIcon className="h-5 w-5 shrink-0 text-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-500" />
+                    <ArrowRightIcon className="h-5 w-5 shrink-0 text-neutral-300 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brand-500" />
                   </Link>
                 )
               })}

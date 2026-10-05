@@ -34,7 +34,7 @@ export default function SoraPage() {
           badgeText="Sora 视频生成引擎 2.0 发布"
           heroTitle={
             <>
-              打造您的 <span className="text-[#0055ff]">专属 AI 视频世界</span>
+              打造您的 <span className="text-brand-500">专属 AI 视频世界</span>
             </>
           }
           heroDesc={

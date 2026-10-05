@@ -34,7 +34,7 @@ export default function MusicPage() {
           badgeText="AI音乐 发布"
           heroTitle={
             <>
-              打造您的 <span className="text-[#0055ff]">专属 AI 音乐</span>
+              打造您的 <span className="text-brand-500">专属 AI 音乐</span>
             </>
           }
           heroDesc={

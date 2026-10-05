@@ -252,9 +252,9 @@ function ProductCard({ product }: { product: Product }) {
   }
 
   return (
-    <div className="group relative overflow-hidden border border-gray-200 bg-white shadow-sm">
+    <div className="group relative overflow-hidden border border-neutral-200 bg-white shadow-sm">
       {/* 产品图片区域 */}
-      <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
+      <div className="relative aspect-[16/9] overflow-hidden bg-neutral-100">
         <Image
           src={product.image}
           alt={product.title}
@@ -275,19 +275,21 @@ function ProductCard({ product }: { product: Product }) {
       <div className="p-6">
         {/* 产品标题和副标题 */}
         <div className="mb-3">
-          <h3 className="mb-1 line-clamp-2 text-lg font-semibold text-gray-900">{product.title}</h3>
-          <p className="text-sm font-medium text-blue-600">{product.subtitle}</p>
+          <h3 className="mb-1 line-clamp-2 text-lg font-semibold text-neutral-900">
+            {product.title}
+          </h3>
+          <p className="text-sm font-medium text-brand-500">{product.subtitle}</p>
         </div>
 
         {/* 产品描述 */}
-        <p className="mb-4 line-clamp-2 text-sm text-gray-600">{product.description}</p>
+        <p className="mb-4 line-clamp-2 text-sm text-neutral-600">{product.description}</p>
 
         {/* 产品特性标签 */}
         <div className="mb-4 flex flex-wrap gap-1">
           {product.features.slice(0, 3).map((feature, index) => (
             <span
               key={index}
-              className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700"
+              className="inline-flex items-center rounded-md bg-brand-50 px-2 py-1 text-xs font-medium text-brand-600"
             >
               {feature}
             </span>
@@ -297,8 +299,10 @@ function ProductCard({ product }: { product: Product }) {
         {/* 价格信息 */}
         <div className="mb-4">
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-gray-900">{formatPrice(product.price)}</span>
-            <span className="text-sm text-gray-500 line-through">
+            <span className="text-2xl font-bold text-neutral-900">
+              {formatPrice(product.price)}
+            </span>
+            <span className="text-sm text-neutral-500 line-through">
               {formatPrice(product.originalPrice)}
             </span>
           </div>
@@ -312,7 +316,7 @@ function ProductCard({ product }: { product: Product }) {
                 <svg
                   key={i}
                   className={`h-4 w-4 ${
-                    i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'
+                    i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-neutral-300'
                   }`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
@@ -321,23 +325,23 @@ function ProductCard({ product }: { product: Product }) {
                 </svg>
               ))}
             </div>
-            <span className="text-sm text-gray-600">{product.rating}</span>
+            <span className="text-sm text-neutral-600">{product.rating}</span>
           </div>
-          <span className="text-sm text-gray-500">已售{product.sales}套</span>
+          <span className="text-sm text-neutral-500">已售{product.sales}套</span>
         </div>
 
         {/* 操作按钮 */}
         <div className="flex gap-3">
           <button
             onClick={handleDemoClick}
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50"
           >
             <PlayIcon className="h-4 w-4" />
             在线演示
           </button>
           <button
             onClick={() => window.open(product.buyLink, '_blank')}
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-600"
           >
             <ShoppingCartIcon className="h-4 w-4" />
             立即购买
@@ -357,7 +361,7 @@ function ProductCard({ product }: { product: Product }) {
             onClick={handleCloseModal}
           >
             {/* 背景遮罩 */}
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            <div className="absolute inset-0 bg-neutral-950/50 backdrop-blur-sm"></div>
 
             {/* 模态框内容 */}
             <motion.div
@@ -371,16 +375,16 @@ function ProductCard({ product }: { product: Product }) {
               {/* 关闭按钮 */}
               <button
                 onClick={handleCloseModal}
-                className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center bg-gray-100 transition-colors hover:bg-gray-200"
+                className="absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center bg-neutral-100 transition-colors hover:bg-neutral-200"
                 aria-label="关闭"
               >
-                <XMarkIcon className="h-4 w-4 text-gray-600" />
+                <XMarkIcon className="h-4 w-4 text-neutral-600" />
               </button>
 
               {/* 内容区域 */}
               <div className="p-8 text-center">
-                <h3 className="mb-2 text-lg font-semibold text-gray-900">联系客服</h3>
-                <p className="mb-6 text-sm text-gray-600">扫描二维码添加客服微信获取详细演示</p>
+                <h3 className="mb-2 text-lg font-semibold text-neutral-900">联系客服</h3>
+                <p className="mb-6 text-sm text-neutral-600">扫描二维码添加客服微信获取详细演示</p>
 
                 {/* 二维码 */}
                 <div className="mb-4 flex justify-center">
@@ -390,14 +394,14 @@ function ProductCard({ product }: { product: Product }) {
                       alt="客服二维码"
                       width={192}
                       height={192}
-                      className="h-48 w-48 border border-gray-200 object-contain shadow-lg"
+                      className="h-48 w-48 border border-neutral-200 object-contain shadow-lg"
                       unoptimized
                     />
                   </div>
                 </div>
 
                 {/* 提示文字 */}
-                <p className="text-xs text-gray-500">长按二维码保存到相册</p>
+                <p className="text-xs text-neutral-500">长按二维码保存到相册</p>
               </div>
             </motion.div>
           </motion.div>
@@ -414,14 +418,14 @@ function ProductCard({ product }: { product: Product }) {
  */
 export function EcommerceProducts() {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-neutral-50">
       <Container className="py-16 sm:py-24">
         {/* 区域标题 */}
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
             真 · 开源产品
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-600">
             100%开源的电商系统解决方案，从单商户到多商户，从标准版到企业版，满足不同规模的业务需求
           </p>
         </div>
@@ -435,9 +439,9 @@ export function EcommerceProducts() {
 
         {/* 底部行动召唤 */}
         <div className="mt-16 text-center">
-          <div className="rounded-none border border-gray-200 bg-white p-8 shadow-sm">
-            <h3 className="mb-4 text-2xl font-bold text-gray-900">需要定制化商城解决方案？</h3>
-            <p className="mx-auto mb-6 max-w-xl text-gray-600">
+          <div className="rounded-none border border-neutral-200 bg-white p-8 shadow-sm">
+            <h3 className="mb-4 text-2xl font-bold text-neutral-900">需要定制化商城解决方案？</h3>
+            <p className="mx-auto mb-6 max-w-xl text-neutral-600">
               我们提供专业的技术支持和定制开发服务，帮助您快速搭建符合业务需求的电商平台
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">

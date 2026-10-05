@@ -193,14 +193,14 @@ const styles = {
   image: 'object-cover w-full h-full object-center will-change-transform',
   // Bento 风格：无圆角，边框优先，无阴影，Flex布局，字体优化，右对齐
   titleButton:
-    'group relative w-full flex items-center justify-start text-left transition-all duration-300 cursor-pointer py-5 pl-0 pr-2 rounded-none text-[15px] leading-[1.6] text-slate-600 font-sans',
+    'group relative w-full flex items-center justify-start text-left transition-all duration-300 cursor-pointer py-5 pl-0 pr-2 rounded-none text-[15px] leading-[1.6] text-neutral-600 font-sans',
   titleButtonActive: 'text-primary-500 font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
   indicator: 'h-2 transition-all duration-300',
   primaryButton:
     'btn px-6 py-2.5 lg:px-7 lg:py-3 text-sm bg-primary-500 hover:bg-primary-600 text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium',
   secondaryButton:
-    'btn px-6 py-2.5 lg:px-7 lg:py-3 bg-white text-slate-700 dark:text-slate-300 font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all duration-300 flex items-center justify-center text-sm',
+    'btn px-6 py-2.5 lg:px-7 lg:py-3 bg-white text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 flex items-center justify-center text-sm',
 }
 
 /**
@@ -295,7 +295,7 @@ const CarouselImage = memo(
           />
         ) : null}
         {/* 添加一个轻微的遮罩，确保文字可读性；可通过 showOverlay 关闭 */}
-        {showOverlay && <div className="absolute inset-0 bg-white/30 dark:bg-black/30" />}
+        {showOverlay && <div className="absolute inset-0 bg-white/30 dark:bg-neutral-950/30" />}
       </div>
     )
   }
@@ -345,7 +345,7 @@ const TitleButton = memo(
             className={`truncate transition-colors duration-300 ${
               isActive
                 ? 'text-primary-500'
-                : 'text-slate-600 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-slate-50'
+                : 'text-neutral-600 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-50'
             }`}
           >
             {slideItem.title}
@@ -556,7 +556,7 @@ const Carousel = memo(function Carousel({
     ? 'inline-flex items-center gap-2 text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors'
     : styles.primaryButton
   const secondaryBtnClass = textModeButton
-    ? 'inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors'
+    ? 'inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-neutral-700 transition-colors'
     : styles.secondaryButton
 
   return (
@@ -596,9 +596,9 @@ const Carousel = memo(function Carousel({
             {/* 左侧标题列表 - 移动端隐藏，PC端显示 */}
             <div className="hidden w-auto flex-shrink-0 lg:block">
               <div className="relative flex h-full min-w-[120px] flex-col justify-center space-y-0 py-6">
-                <div className="absolute top-0 right-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800" />
+                <div className="absolute top-0 right-0 bottom-0 w-px bg-neutral-200 dark:bg-neutral-800" />
                 <div className="mb-3 pr-4">
-                  <span className="inline-flex items-center rounded-full border border-slate-200 bg-white/50 px-3 py-1 font-mono text-[11px] tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-300">
+                  <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white/50 px-3 py-1 font-mono text-[11px] tracking-widest text-neutral-700 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/50 dark:text-neutral-300">
                     活动分类
                   </span>
                 </div>
@@ -622,21 +622,21 @@ const Carousel = memo(function Carousel({
             <div className="flex max-w-4xl flex-1 flex-col justify-center gap-5 px-0 py-6 sm:py-8 lg:ml-12 lg:py-0 2xl:ml-16 2xl:max-w-5xl">
               {currentSlide.subtitle && (
                 <div>
-                  <span className="inline-flex items-center rounded-full border border-slate-200 bg-white/60 px-3 py-1 font-mono text-[11px] tracking-widest text-slate-700 backdrop-blur-sm dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-300">
+                  <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white/60 px-3 py-1 font-mono text-[11px] tracking-widest text-neutral-700 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/50 dark:text-neutral-300">
                     {currentSlide.subtitle}
                   </span>
                 </div>
               )}
 
               <h1
-                className="font-display text-3xl leading-[1.05] font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl xl:text-6xl dark:text-white"
+                className="font-display text-3xl leading-[1.05] font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-5xl xl:text-6xl dark:text-white"
                 style={isDark ? { color: '#ffffff' } : undefined}
               >
                 {currentSlide.title}
               </h1>
 
               <p
-                className="max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base lg:text-lg dark:text-slate-300"
+                className="max-w-3xl text-sm leading-relaxed text-neutral-600 sm:text-base lg:text-lg dark:text-neutral-300"
                 style={isDark ? { color: 'rgba(255,255,255,0.85)' } : undefined}
               >
                 {currentSlide.description}
@@ -698,7 +698,7 @@ const Carousel = memo(function Carousel({
                   type="button"
                   onClick={() => setIsPlaying((prev) => !prev)}
                   aria-label={isPlaying ? '暂停自动播放' : '开始自动播放'}
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 p-2 text-slate-700 transition-colors hover:bg-white hover:text-primary-500"
+                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white/80 p-2 text-neutral-700 transition-colors hover:bg-white hover:text-primary-500"
                 >
                   {isPlaying ? (
                     <svg
@@ -732,7 +732,7 @@ const Carousel = memo(function Carousel({
               type="button"
               onClick={() => navigate('prev')}
               aria-label="上一张"
-              className="absolute top-1/2 left-3 z-20 hidden -translate-y-1/2 rounded-full border border-slate-300 bg-white/80 p-2 text-slate-700 transition-colors hover:bg-white hover:text-primary-500 lg:block"
+              className="absolute top-1/2 left-3 z-20 hidden -translate-y-1/2 rounded-full border border-neutral-300 bg-white/80 p-2 text-neutral-700 transition-colors hover:bg-white hover:text-primary-500 lg:block"
             >
               <svg
                 className="h-5 w-5"
@@ -753,7 +753,7 @@ const Carousel = memo(function Carousel({
               type="button"
               onClick={() => navigate('next')}
               aria-label="下一张"
-              className="absolute top-1/2 right-3 z-20 hidden -translate-y-1/2 rounded-full border border-slate-300 bg-white/80 p-2 text-slate-700 transition-colors hover:bg-white hover:text-primary-500 lg:block"
+              className="absolute top-1/2 right-3 z-20 hidden -translate-y-1/2 rounded-full border border-neutral-300 bg-white/80 p-2 text-neutral-700 transition-colors hover:bg-white hover:text-primary-500 lg:block"
             >
               <svg
                 className="h-5 w-5"
@@ -792,7 +792,7 @@ const Carousel = memo(function Carousel({
                     'group relative flex flex-col justify-center px-8 py-4 transition-all duration-200',
                     index === entryCards.length - 1
                       ? 'bg-gradient-to-br from-brand-400 via-brand-500 to-brand-600 hover:from-brand-300 hover:via-brand-400 hover:to-brand-500 lg:-mr-8'
-                      : 'hover:bg-[#F0F5FF]',
+                      : 'hover:bg-brand-50',
                     index < entryCards.length - 1 && 'border-r border-[#eee]'
                   )}
                   style={
@@ -805,7 +805,7 @@ const Carousel = memo(function Carousel({
                   <span
                     className={clsx(
                       'mb-1.5 inline-flex self-start text-sm font-medium tracking-wider',
-                      index === entryCards.length - 1 ? 'text-white' : 'text-[#0055ff]'
+                      index === entryCards.length - 1 ? 'text-white' : 'text-brand-500'
                     )}
                   >
                     {card.tag}
@@ -815,7 +815,7 @@ const Carousel = memo(function Carousel({
                   <p
                     className={clsx(
                       'mb-0.5 text-lg leading-snug font-medium',
-                      index === entryCards.length - 1 ? 'text-white' : 'text-[#0F172A]'
+                      index === entryCards.length - 1 ? 'text-white' : 'text-neutral-950'
                     )}
                   >
                     {card.title}
@@ -825,7 +825,7 @@ const Carousel = memo(function Carousel({
                   <p
                     className={clsx(
                       'text-sm leading-relaxed',
-                      index === entryCards.length - 1 ? 'text-blue-100' : 'text-[#8C8C8C]'
+                      index === entryCards.length - 1 ? 'text-brand-100' : 'text-neutral-400'
                     )}
                   >
                     {card.subtitle}
@@ -837,7 +837,7 @@ const Carousel = memo(function Carousel({
                       'absolute top-1/2 -translate-y-1/2 transition-colors duration-200',
                       index === entryCards.length - 1
                         ? 'text-white/80 group-hover:text-white'
-                        : 'right-5 text-[#D9D9D9] group-hover:text-[#0055ff]'
+                        : 'right-5 text-neutral-200 group-hover:text-brand-500'
                     )}
                     style={
                       index === entryCards.length - 1
@@ -881,13 +881,13 @@ const Carousel = memo(function Carousel({
                     index >= 2 && 'border-t border-[#eee]'
                   )}
                 >
-                  <span className="mb-0.5 inline-block text-xs font-medium tracking-wider text-[#0055ff]">
+                  <span className="mb-0.5 inline-block text-xs font-medium tracking-wider text-brand-500">
                     {card.tag}
                   </span>
-                  <p className="mb-0.5 text-sm leading-snug font-medium text-[#0F172A] transition-colors group-hover:text-[#0055ff]">
+                  <p className="mb-0.5 text-sm leading-snug font-medium text-neutral-950 transition-colors group-hover:text-brand-500">
                     {card.title}
                   </p>
-                  <p className="hidden text-xs leading-relaxed text-[#8C8C8C]">{card.subtitle}</p>
+                  <p className="hidden text-xs leading-relaxed text-neutral-400">{card.subtitle}</p>
                 </a>
               ))}
             </div>

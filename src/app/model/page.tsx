@@ -34,7 +34,7 @@ export default function ModelPage() {
           badgeText="电商试衣换装 2.0 发布"
           heroTitle={
             <>
-              AI 模特 <span className="text-[#0055ff]">多场景切换</span>
+              AI 模特 <span className="text-brand-500">多场景切换</span>
             </>
           }
           heroDesc={

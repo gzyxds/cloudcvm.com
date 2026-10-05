@@ -9,12 +9,12 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    background: #fff;
+    background: var(--color-white);
 }
 
 /* 背景装饰：项目品牌浅色渐变 */
 .sectionBg {
-    background: #f0f4ff;
+    background: var(--color-brand-50);
 }
 
 .inner {
@@ -32,7 +32,7 @@
     font-size: 12px;
     line-height: 20px;
     font-weight: 500;
-    color: #a7a7a7;
+    color: var(--color-neutral-400);
 }
 
 .hdMain {
@@ -48,12 +48,12 @@
     font-size: 32px;
     line-height: 40px;
     font-weight: 500;
-    color: #000;
+    color: var(--color-neutral-950);
 }
 
 /* 标题中的渐变关键词 */
 .linear {
-    color: #3860f4;
+    color: var(--color-brand-500);
 }
 
 .hdLink {
@@ -83,7 +83,7 @@
     width: 20px;
     height: 20px;
     position: relative;
-    background: #000;
+    background: var(--color-neutral-950);
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -189,7 +189,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    background: #3860f4;
+    background: var(--color-brand-500);
     transition:
         height 0.15s ease-in-out,
         width 0.15s ease-in-out 0.15s;
@@ -202,11 +202,11 @@
 }
 
 .tabItemActive .tabText {
-    color: #3860f4;
+    color: var(--color-brand-500);
 }
 
 .tabItemActive .tabIcon {
-    color: #3860f4;
+    color: var(--color-brand-500);
 }
 
 /* 激活/悬停时图标轻微弹入（近似参考页 motion 动效） */
@@ -243,7 +243,7 @@
 .contentHot {
     display: flex;
     width: 100%;
-    border: 1px solid #fff;
+    border: 1px solid var(--color-white);
     background: hsla(0, 0%, 100%, 0.8);
 }
 
@@ -260,7 +260,7 @@
 
 .listTitle {
     flex-shrink: 0;
-    color: #3860f4;
+    color: var(--color-brand-500);
     font-size: 18px;
     line-height: 26px;
     font-weight: 500;
@@ -272,7 +272,7 @@
     margin-left: 8px;
     padding-left: 8px;
     position: relative;
-    color: #4b5b76;
+    color: var(--color-neutral-600);
     font-size: 14px;
     line-height: 22px;
     white-space: nowrap;
@@ -303,7 +303,7 @@
     position: absolute;
     left: 16px;
     top: 0;
-    background: #e3e3e3;
+    background: var(--color-neutral-200);
     opacity: 1;
     transition: all 0.3s ease-in-out;
     pointer-events: none;
@@ -324,12 +324,12 @@
 .cardWrap:hover {
     z-index: 1;
     box-shadow:
-        0 0 0 1px #3860f4,
+        0 0 0 1px var(--color-brand-500),
         0 8px 24px 0 rgba(149, 157, 165, 0.2);
 }
 
 .cardWrap:hover .cardTitle {
-    color: #3052d8;
+    color: var(--color-brand-600);
 }
 
 .cardWrap:hover .cardArrow {
@@ -347,7 +347,7 @@
 }
 
 .cardWrap:hover .card {
-    background: #fff;
+    background: var(--color-white);
 }
 
 .cardLink {
@@ -380,7 +380,7 @@
     text-overflow: ellipsis;
     flex: 1;
     min-width: 0;
-    color: #000;
+    color: var(--color-neutral-950);
     font-size: 16px;
     line-height: 24px;
     font-weight: 500;
@@ -392,7 +392,7 @@
     margin-left: 8px;
     width: 16px;
     height: 16px;
-    color: #3052d8;
+    color: var(--color-brand-600);
     opacity: 0;
     transform: translateX(-4px);
     transition: all 0.3s ease-in-out;
@@ -406,7 +406,7 @@
 .cardDesc {
     width: 100%;
     margin-top: 8px;
-    color: #4b5b76;
+    color: var(--color-neutral-600);
     font-size: 14px;
     line-height: 22px;
     white-space: nowrap;
@@ -427,18 +427,18 @@
 .cardTag {
     display: inline-flex;
     align-items: center;
-    border: 1px solid #e5e8ed;
+    border: 1px solid var(--color-neutral-200);
     padding: 1px 7px;
-    color: #4b5b76;
+    color: var(--color-neutral-600);
     font-weight: 500;
     font-size: 12px;
     line-height: 18px;
-    background: #fff;
+    background: var(--color-white);
 }
 
 .cardTagAdvantage {
-    color: #3860f4;
-    border-color: #dce4fd;
+    color: var(--color-brand-500);
+    border-color: var(--color-brand-100);
 }
 
 .cardTagAdvantageIcon {
@@ -475,7 +475,7 @@
     top: 0;
     width: 50%;
     height: 100%;
-    background: linear-gradient(270deg, #fff, hsla(0, 0%, 100%, 0));
+    background: linear-gradient(270deg, var(--color-white), hsla(0, 0%, 100%, 0));
 }
 
 .cardBtnWrap::after {
@@ -485,7 +485,7 @@
     top: 0;
     width: 50%;
     height: 100%;
-    background: #fff;
+    background: var(--color-white);
 }
 
 .cardBtn {
@@ -494,9 +494,9 @@
     display: inline-flex;
     align-items: center;
     padding: 5px 11px;
-    border: 1px solid #d2d2d2;
-    background: #fff;
-    color: #000;
+    border: 1px solid var(--color-neutral-200);
+    background: var(--color-white);
+    color: var(--color-neutral-950);
     font-size: 14px;
     line-height: 22px;
     transition:
@@ -515,18 +515,18 @@
 .cardBtnIconSvg {
     width: 100%;
     height: 100%;
-    color: #3860f4;
+    color: var(--color-brand-500);
     transition: color 0.3s ease-in-out;
 }
 
 .cardBtn:hover {
-    color: #fff;
-    border-color: #3052d8;
-    background: #3052d8;
+    color: var(--color-white);
+    border-color: var(--color-brand-600);
+    background: var(--color-brand-600);
 }
 
 .cardBtn:hover .cardBtnIconSvg {
-    color: #fff;
+    color: var(--color-white);
 }
 
 .cardBtnText {
@@ -537,14 +537,14 @@
 .content {
     display: flex;
     width: 100%;
-    border: 1px solid #fff;
+    border: 1px solid var(--color-white);
     background: hsla(0, 0%, 100%, 0.8);
 }
 
 .recommends {
     flex-shrink: 0;
     width: 25%;
-    border-right: 1px solid #eee;
+    border-right: 1px solid var(--color-neutral-200);
 }
 
 .cards {
@@ -581,12 +581,12 @@
 .recommend:hover {
     z-index: 1;
     box-shadow:
-        0 0 0 1px #3860f4,
+        0 0 0 1px var(--color-brand-500),
         0 8px 24px 0 rgba(149, 157, 165, 0.2);
 }
 
 .recommend:hover .recommendInner {
-    background: #fff;
+    background: var(--color-white);
 }
 
 .recommendInner {
@@ -606,7 +606,7 @@
 .recommendSlognIcon {
     width: 16px;
     height: 16px;
-    color: #3860f4;
+    color: var(--color-brand-500);
     flex-shrink: 0;
 }
 
@@ -617,7 +617,7 @@
 
 .recommendSlognText {
     margin-left: 8px;
-    color: #000;
+    color: var(--color-neutral-950);
     font-size: 14px;
     line-height: 22px;
     font-weight: 500;
@@ -631,7 +631,7 @@
 
 .recommendTitle {
     margin-right: 8px;
-    color: #000;
+    color: var(--color-neutral-950);
     font-size: 18px;
     line-height: 26px;
     white-space: nowrap;
@@ -643,7 +643,7 @@
 
 .recommendDesc {
     margin-top: 8px;
-    color: #4b5b76;
+    color: var(--color-neutral-600);
     font-size: 14px;
     line-height: 22px;
     overflow-wrap: break-word;
@@ -667,13 +667,13 @@
 .recommendTag {
     display: inline-flex;
     align-items: center;
-    border: 1px solid #e5e8ed;
+    border: 1px solid var(--color-neutral-200);
     padding: 1px 7px;
-    color: #4b5b76;
+    color: var(--color-neutral-600);
     font-size: 12px;
     line-height: 18px;
     font-weight: 500;
-    background: #fff;
+    background: var(--color-white);
 }
 
 .recommendBtns {
@@ -688,7 +688,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--color-white);
     font-size: 14px;
     line-height: 22px;
     padding: 7px 16px;
@@ -696,7 +696,7 @@
 }
 
 .recommendBtnPrimary {
-    background: #3860f4;
+    background: var(--color-brand-500);
     position: relative;
     overflow: hidden;
 }
@@ -727,16 +727,16 @@
 }
 
 .recommendBtnWeak {
-    background: #fff;
-    border: 1px solid #c8d0dd;
-    color: #000;
+    background: var(--color-white);
+    border: 1px solid var(--color-neutral-300);
+    color: var(--color-neutral-950);
     padding: 7px;
     transition: all 0.3s ease-in-out;
 }
 
 .recommendBtnWeak:hover {
-    background: #fff;
-    color: #3860f4;
+    background: var(--color-white);
+    color: var(--color-brand-500);
     box-shadow: none;
 }
 
@@ -763,11 +763,11 @@
     }
 
     .tabItem:hover .tabText {
-        color: #3052d8;
+        color: var(--color-brand-600);
     }
 
     .tabItem:hover .tabIcon {
-        color: #3052d8;
+        color: var(--color-brand-600);
     }
 }
 
@@ -871,7 +871,7 @@
 @media (max-width: 768px) {
     .section {
         overflow: visible;
-        background: #fff !important;
+        background: var(--color-white) !important;
     }
 
     .inner {
@@ -972,8 +972,8 @@
     .contentHot {
         display: block;
         border: 0;
-        border-top: 1px solid #eee;
-        background: #f6f8fb;
+        border-top: 1px solid var(--color-neutral-200);
+        background: var(--color-neutral-50);
         padding: 12px 0;
     }
 
@@ -984,8 +984,8 @@
 
     .list {
         width: 100%;
-        border-bottom: 1px solid #eee;
-        background: #fff;
+        border-bottom: 1px solid var(--color-neutral-200);
+        background: var(--color-white);
     }
 
     .listHd {
@@ -997,7 +997,7 @@
     }
 
     .listTitle {
-        color: #000;
+        color: var(--color-neutral-950);
         font-size: 16px;
         line-height: 24px;
         font-weight: 500;
@@ -1020,8 +1020,8 @@
 
     .listContent {
         display: none;
-        border-top: 1px solid #eee;
-        background: #f6f8fb;
+        border-top: 1px solid var(--color-neutral-200);
+        background: var(--color-neutral-50);
         padding: 12px 0;
     }
 
@@ -1035,11 +1035,11 @@
     }
 
     .cardWrap:not(:first-child) .card {
-        border-top: 1px solid #eee;
+        border-top: 1px solid var(--color-neutral-200);
     }
 
     .card {
-        background: #fff;
+        background: var(--color-white);
         padding: 16px;
     }
 
@@ -1070,7 +1070,7 @@
     .recommends,
     .cards {
         width: 100%;
-        background: #fff;
+        background: var(--color-white);
     }
 
     .recommends {
@@ -1088,7 +1088,7 @@
     }
 
     .cardWrapGrid:not(:first-child) .card {
-        border-top: 1px solid #eee;
+        border-top: 1px solid var(--color-neutral-200);
     }
 
     .recommend {

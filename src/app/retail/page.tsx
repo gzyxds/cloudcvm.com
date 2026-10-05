@@ -47,9 +47,11 @@ import {
   UserGroupIcon as UsersGroupIcon,
   ChatBubbleLeftRightIcon as ChatIcon,
   ArrowUpCircleIcon,
+  RocketLaunchIcon,
 } from '@heroicons/react/24/outline'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
+import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
 import { motion } from 'framer-motion'
 
 /**
@@ -58,7 +60,7 @@ import { motion } from 'framer-motion'
  */
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+    <section className="relative flex min-h-[500px] w-full items-center overflow-hidden bg-neutral-50 pt-16 sm:pt-0">
       {/* 背景图片 */}
       <div className="absolute inset-0 z-0 bg-[url('/images/solutions/retail.png')] bg-cover bg-center bg-no-repeat opacity-20" />
 
@@ -69,13 +71,13 @@ function HeroSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="inline-flex h-7 items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3 text-xs font-semibold text-[#0055ff]">
+          <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-brand-50 px-3 text-xs font-semibold text-brand-500">
             零售行业 / 高并发 / 弹性扩容
           </span>
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl lg:leading-tight">
+          <h1 className="mt-6 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl lg:leading-tight">
             构建下一代智慧零售云平台
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
+          <p className="mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             为零售企业提供从基础设施到业务应用的全栈云解决方案，应对高并发大促，实现全渠道营销，数据驱动业务增长。
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-4">
@@ -229,7 +231,7 @@ function TrendsSection() {
       <div className="flex items-center justify-center">
         <Icon className="h-4 w-4 text-white sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
       </div>
-      <div className="text-xs leading-5 text-gray-300 sm:text-sm sm:leading-6 lg:text-base">
+      <div className="text-xs leading-5 text-neutral-300 sm:text-sm sm:leading-6 lg:text-base">
         <div className="mb-0.5 text-xs font-medium text-white sm:mb-1 sm:text-sm lg:text-base">
           {title}
         </div>
@@ -275,13 +277,13 @@ function TrendsSection() {
       {/* 顶部标题 */}
       <div className="mx-auto max-w-[1800px] px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
         <div className="text-center">
-          <span className="mb-5 inline-block text-xs font-semibold tracking-[0.2em] text-[#0055ff] uppercase sm:mb-6 sm:text-sm">
+          <span className="mb-5 inline-block text-xs font-semibold tracking-[0.2em] text-brand-500 uppercase sm:mb-6 sm:text-sm">
             新零售解决方案
           </span>
-          <h1 className="mb-5 text-2xl leading-tight font-bold tracking-tight text-gray-900 sm:mb-6 sm:text-3xl md:text-5xl lg:text-6xl">
+          <h1 className="mb-5 text-2xl leading-tight font-bold tracking-tight text-neutral-900 sm:mb-6 sm:text-3xl md:text-5xl lg:text-6xl">
             电商领域全行业解决方案
           </h1>
-          <p className="mx-auto max-w-2xl text-base leading-relaxed font-normal text-gray-600 sm:text-lg md:text-xl">
+          <p className="mx-auto max-w-2xl text-base leading-relaxed font-normal text-neutral-600 sm:text-lg md:text-xl">
             构建全领域多渠道线上线下智慧新零售体系
           </p>
         </div>
@@ -323,7 +325,7 @@ function TrendsSection() {
                       'lg:rounded-none', // 移动端和桌面端都不使用圆角
                       'whitespace-nowrap', // 防止文字换行
                       isActive
-                        ? 'bg-[linear-gradient(270deg,#0055FF_0%,rgba(0,85,255,0)_100%)] text-white'
+                        ? 'bg-[linear-gradient(270deg,var(--color-brand-500)_0%,rgba(0,85,255,0)_100%)] text-white'
                         : 'bg-white/5 hover:bg-white/10 lg:bg-transparent',
                     ].join(' ')}
                     style={{
@@ -348,7 +350,7 @@ function TrendsSection() {
 
           {/* 内容面板 - 移动端右侧，桌面端右侧 - 增强半透明遮罩和毛玻璃效果 */}
           <section
-            className="order-2 flex min-h-auto w-[65%] flex-1 flex-col justify-between rounded-none p-2 text-gray-300 sm:w-[68%] sm:p-4 lg:min-h-[450px] lg:w-[72%] lg:px-10 lg:py-6"
+            className="order-2 flex min-h-auto w-[65%] flex-1 flex-col justify-between rounded-none p-2 text-neutral-300 sm:w-[68%] sm:p-4 lg:min-h-[450px] lg:w-[72%] lg:px-10 lg:py-6"
             style={{
               background: 'rgba(0,0,0,.30)',
               backdropFilter: 'blur(15px)',
@@ -359,7 +361,7 @@ function TrendsSection() {
               <div className="mb-1 text-sm leading-tight font-bold tracking-wide text-white sm:mb-2 sm:text-lg lg:mb-3 lg:text-2xl xl:text-3xl">
                 {currentFeature.title}
               </div>
-              <div className="mb-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-[#0055ff] to-[#3388ff] sm:mb-3 sm:h-0.5 sm:w-16 lg:mb-4 lg:h-1 lg:w-24"></div>
+              <div className="mb-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-brand-500 to-brand-400 sm:mb-3 sm:h-0.5 sm:w-16 lg:mb-4 lg:h-1 lg:w-24"></div>
             </div>
 
             {/* 主要内容区域 - 响应式网格优化 */}
@@ -382,7 +384,7 @@ function TrendsSection() {
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-start sm:gap-3 lg:gap-4">
                 {/* 免费试用按钮 */}
                 <button
-                  className="flex min-h-[36px] items-center justify-center gap-1 bg-gradient-to-r from-[#0055ff] to-[#0043cc] px-3 py-2 text-xs font-medium text-white shadow-lg transition-all duration-200 hover:from-[#0043cc] hover:to-[#0033aa] hover:shadow-xl sm:min-h-[44px] sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm lg:px-8 lg:py-3 lg:text-base"
+                  className="flex min-h-[36px] items-center justify-center gap-1 bg-gradient-to-r from-brand-500 to-brand-600 px-3 py-2 text-xs font-medium text-white shadow-lg transition-all duration-200 hover:from-brand-600 hover:to-brand-800 hover:shadow-xl sm:min-h-[44px] sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm lg:px-8 lg:py-3 lg:text-base"
                   type="button"
                 >
                   免费试用
@@ -390,7 +392,7 @@ function TrendsSection() {
 
                 {/* 查看详情按钮 */}
                 <button
-                  className="flex min-h-[36px] items-center justify-center gap-1 border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 shadow-lg transition-all duration-200 hover:border-gray-400 hover:bg-gray-50 sm:min-h-[44px] sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm lg:px-8 lg:py-3 lg:text-base"
+                  className="flex min-h-[36px] items-center justify-center gap-1 border border-neutral-300 bg-white px-3 py-2 text-xs font-medium text-neutral-900 shadow-lg transition-all duration-200 hover:border-neutral-400 hover:bg-neutral-50 sm:min-h-[44px] sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm lg:px-8 lg:py-3 lg:text-base"
                   type="button"
                 >
                   查看详情
@@ -419,14 +421,14 @@ function CardList({ title, items }: { title: string; items: CardItem[] }) {
     <div className="relative h-full overflow-hidden rounded-lg bg-white p-0">
       {/* 标题区域 */}
       <div className="mb-2 pt-7 pl-10">
-        <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-        <div className="mt-2 h-1 w-10 bg-[#0055ff]"></div>
+        <h3 className="text-xl font-bold text-neutral-900">{title}</h3>
+        <div className="mt-2 h-1 w-10 bg-brand-500"></div>
       </div>
 
       {/* 装饰背景 - 右上角立方体效果模拟 */}
       <div className="pointer-events-none absolute top-0 right-0 h-48 w-48 opacity-10">
-        <div className="absolute top-4 right-4 h-32 w-32 rounded-full bg-gradient-to-br from-[#0055ff]/20 to-[#0055ff]/40 opacity-20 blur-2xl"></div>
-        <CloudArrowUpIcon className="absolute top-8 right-8 h-24 w-24 text-[#0055ff]/10" />
+        <div className="absolute top-4 right-4 h-32 w-32 rounded-full bg-gradient-to-br from-brand-500/20 to-brand-500/40 opacity-20 blur-2xl"></div>
+        <CloudArrowUpIcon className="absolute top-8 right-8 h-24 w-24 text-brand-500/10" />
       </div>
 
       {/* 列表内容 */}
@@ -437,11 +439,11 @@ function CardList({ title, items }: { title: string; items: CardItem[] }) {
             className="group flex items-start pt-10 pl-10 transition-all duration-300 hover:-translate-y-1"
           >
             <div className="mr-3 flex-shrink-0">
-              <item.icon className="h-8 w-8 text-[#0055ff]" />
+              <item.icon className="h-8 w-8 text-brand-500" />
             </div>
             <div className="flex-1">
-              <p className="mb-2.5 text-base font-bold text-slate-900">{item.title}</p>
-              <p className="text-sm leading-relaxed text-slate-500">{item.description}</p>
+              <p className="mb-2.5 text-base font-bold text-neutral-900">{item.title}</p>
+              <p className="text-sm leading-relaxed text-neutral-500">{item.description}</p>
             </div>
           </div>
         ))}
@@ -513,14 +515,14 @@ function ScenariosSection() {
   ]
 
   return (
-    <section className="bg-slate-100 py-20">
+    <section className="bg-neutral-100 py-20">
       <Container>
         {/* 顶部标题 */}
         <div className="mb-16 pt-8 text-center">
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-slate-900">
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-neutral-900">
             技术框架及技术亮点
           </h2>
-          <p className="mx-auto max-w-3xl text-base text-slate-600">
+          <p className="mx-auto max-w-3xl text-base text-neutral-600">
             系统采用高性能框架开发，保障系统整体性能，为品牌连锁企业商业拓展保驾护航
           </p>
         </div>
@@ -576,10 +578,10 @@ function FeaturesSection() {
     <section id="features" className="bg-white py-24">
       <Container>
         <div className="mb-16 text-center">
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-slate-900">
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-neutral-900">
             助力开发者，提速企业数字化
           </h2>
-          <p className="text-base text-slate-600">
+          <p className="text-base text-neutral-600">
             系统性能优越，开发技术先进，有效助力开发者，提速企业数字化
           </p>
         </div>
@@ -588,19 +590,19 @@ function FeaturesSection() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative h-[220px] overflow-hidden rounded-lg bg-slate-100 p-8"
+              className="group relative h-[220px] overflow-hidden rounded-lg bg-neutral-100 p-8"
             >
               {/* 内容区域 */}
               <div className="relative z-10">
-                <h3 className="mb-3 text-xl font-bold text-slate-900">{feature.title}</h3>
-                <div className="mb-4 h-1 w-8 bg-[#0055ff]"></div>
-                <p className="pr-10 text-sm leading-relaxed text-slate-500">
+                <h3 className="mb-3 text-xl font-bold text-neutral-900">{feature.title}</h3>
+                <div className="mb-4 h-1 w-8 bg-brand-500"></div>
+                <p className="pr-10 text-sm leading-relaxed text-neutral-500">
                   {feature.description}
                 </p>
               </div>
 
               {/* 悬浮时的装饰图标 */}
-              <div className="absolute right-6 bottom-6 translate-y-4 transform rounded-full bg-[#eff6ff] p-3 text-[#0055ff] opacity-0 shadow-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="absolute right-6 bottom-6 translate-y-4 transform rounded-full bg-brand-50 p-3 text-brand-500 opacity-0 shadow-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <feature.icon className="h-6 w-6" />
               </div>
             </div>
@@ -623,7 +625,7 @@ function StatsSection() {
   ]
 
   return (
-    <section className="border-b border-slate-200 bg-white py-12 sm:py-20">
+    <section className="border-b border-neutral-200 bg-white py-12 sm:py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -632,10 +634,10 @@ function StatsSection() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <span className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-[#0055ff]">
+          <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
             数据驱动增长
           </span>
-          <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+          <h2 className="mt-4 text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl">
             为零售业务提供高可靠基础设施保障
           </h2>
         </motion.div>
@@ -648,15 +650,15 @@ function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+              className="group relative overflow-hidden rounded-md border border-neutral-200 bg-white p-6 text-center transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="relative z-10">
-                <span className="text-3xl font-bold tracking-tight text-[#0055ff] sm:text-4xl">
+                <span className="text-3xl font-bold tracking-tight text-brand-500 sm:text-4xl">
                   {stat.value}
                 </span>
-                <h3 className="mt-2 text-base font-semibold text-slate-900">{stat.label}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-500">{stat.description}</p>
+                <h3 className="mt-2 text-base font-semibold text-neutral-900">{stat.label}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-neutral-500">{stat.description}</p>
               </div>
             </motion.div>
           ))}
@@ -704,30 +706,30 @@ function TestimonialsSection() {
   ]
 
   return (
-    <section className="bg-slate-100 py-24">
+    <section className="bg-neutral-100 py-24">
       <Container>
         <div className="mb-16 text-center">
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-slate-900">
+          <h2 className="mb-5 text-3xl font-bold tracking-tight text-neutral-900">
             全面售后服务，再无后顾之忧
           </h2>
-          <p className="text-base text-slate-600">两种授权模式可选，根据您的需求灵活选择</p>
+          <p className="text-base text-neutral-600">两种授权模式可选，根据您的需求灵活选择</p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex items-center rounded-lg border border-slate-100 bg-white p-8"
+              className="flex items-center rounded-lg border border-neutral-100 bg-white p-8"
             >
               {/* 图标区域 */}
-              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-[#eff6ff] text-[#0055ff]">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
                 <service.icon className="h-8 w-8" />
               </div>
 
               {/* 文本区域 */}
               <div className="ml-6">
-                <h3 className="mb-2 text-lg font-bold text-slate-900">{service.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-500">{service.description}</p>
+                <h3 className="mb-2 text-lg font-bold text-neutral-900">{service.title}</h3>
+                <p className="text-sm leading-relaxed text-neutral-500">{service.description}</p>
               </div>
             </div>
           ))}
@@ -738,39 +740,64 @@ function TestimonialsSection() {
 }
 
 /**
- * CTA Section - 优化配色为品牌蓝
+ * 行动号召区域（视频横幅卡片，参考 CatSections 免费体验横幅设计）
  */
 function CTASection() {
   return (
-    <section className="relative overflow-hidden bg-[#0055ff] py-24 text-center">
-      {/* 装饰背景：微弱的网格纹理 + 径向渐变遮罩 */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] bg-[size:40px_40px]"></div>
+    <section className="py-16 md:py-24">
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative overflow-hidden rounded-xl bg-brand-600"
+        >
+          {/* 视频背景（移动端隐藏；进入视口才加载播放） */}
+          <BackgroundVideo
+            src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4"
+            className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
+          />
+          {/* 暗色叠加层 */}
+          <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
 
-      {/* 装饰光晕 */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-[120px]"></div>
+          <div className="relative flex flex-col justify-between gap-6 px-6 py-8 sm:flex-row sm:items-center lg:px-10 lg:py-10">
+            {/* 左侧文案区 */}
+            <div className="flex-1">
+              <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-medium text-white">
+                <RocketLaunchIcon className="mr-1.5 size-4" />
+                限时优惠
+              </span>
+              <h2 className="mt-3 text-2xl font-bold text-white lg:text-3xl">
+                准备好开启零售数字化转型之旅了吗？
+              </h2>
+              <p className="mt-2 text-base text-brand-100">
+                立即联系我们的零售行业解决方案专家，获取为您量身定制的零售云方案
+              </p>
+            </div>
 
-      <Container className="relative z-10">
-        <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          准备好开启数字化转型之旅了吗？
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-[#eff6ff]">
-          立即联系我们的解决方案专家，获取为您量身定制的零售云方案。
-        </p>
-        <div className="mt-10 flex justify-center gap-4">
-          <Button
-            href="/contact"
-            color="white"
-            className="rounded-lg px-8 py-3 text-base font-semibold !text-[#0055ff] shadow-xl shadow-blue-900/10 transition-all hover:!bg-[#eff6ff] hover:!text-[#0043cc]"
-          >
-            联系销售
-          </Button>
-          <Button
-            href="/demo"
-            className="rounded-lg border border-white/30 bg-transparent px-8 py-3 text-base font-semibold text-white transition-all hover:bg-white/10"
-          >
-            预约演示
-          </Button>
-        </div>
+            {/* 右侧按钮区 */}
+            <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+              <Button
+                href="/contact"
+                color="white"
+                variant="erlieSolid"
+                className="rounded-md px-6 py-3 text-sm font-semibold text-brand-600 shadow-sm hover:bg-brand-50"
+              >
+                联系销售
+                <ArrowRightIcon className="ml-2 size-4" />
+              </Button>
+              <Button
+                href="/demo"
+                variant="erlieOutline"
+                color="white"
+                className="rounded-md border-white/40 px-6 py-3 text-sm font-semibold hover:bg-white/10"
+              >
+                预约演示
+              </Button>
+            </div>
+          </div>
+        </motion.div>
       </Container>
     </section>
   )
@@ -781,7 +808,7 @@ function CTASection() {
  */
 function ConsultSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#eef2ff] to-[#f5f7ff] py-20 lg:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 to-brand-50 py-20 lg:py-28">
       {/* 装饰背景图 */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-50"
@@ -796,8 +823,8 @@ function ConsultSection() {
         <div className="mx-auto">
           {/* 标题区域 */}
           <div className="mb-10">
-            <h2 className="mb-3 text-3xl font-medium text-slate-900">立即咨询</h2>
-            <p className="text-base text-slate-500">联系我们，竭诚为您提供数字化资讯服务</p>
+            <h2 className="mb-3 text-3xl font-medium text-neutral-900">立即咨询</h2>
+            <p className="text-base text-neutral-500">联系我们，竭诚为您提供数字化资讯服务</p>
           </div>
 
           {/* 内容卡片区域 */}
@@ -805,8 +832,8 @@ function ConsultSection() {
             {/* 微信联系卡片 */}
             <div className="flex flex-col items-center justify-between gap-8 rounded-md border border-white bg-white/60 p-8 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md sm:flex-row lg:p-10">
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="mb-2 text-2xl font-medium text-slate-900">微信联系</h3>
-                <p className="text-base text-slate-500">扫码添加企业客服了解更多优惠信息</p>
+                <h3 className="mb-2 text-2xl font-medium text-neutral-900">微信联系</h3>
+                <p className="text-base text-neutral-500">扫码添加企业客服了解更多优惠信息</p>
               </div>
               <div className="h-[150px] w-[150px] shrink-0 rounded-lg bg-white p-2 shadow-sm">
                 <Image
@@ -823,12 +850,12 @@ function ConsultSection() {
             {/* 合作咨询卡片 */}
             <div className="flex flex-col items-center justify-between gap-8 rounded-md border border-white bg-white/60 p-8 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md sm:flex-row lg:p-10">
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="mb-2 text-2xl font-medium text-slate-900">合作咨询</h3>
-                <p className="text-base text-slate-500">工作日：9:00—18:15</p>
+                <h3 className="mb-2 text-2xl font-medium text-neutral-900">合作咨询</h3>
+                <p className="text-base text-neutral-500">工作日：9:00—18:15</p>
               </div>
               <div className="text-center sm:text-right">
-                <span className="mb-2 block text-3xl font-medium text-slate-900">236749035</span>
-                <span className="text-base text-slate-500">联系QQ</span>
+                <span className="mb-2 block text-3xl font-medium text-neutral-900">236749035</span>
+                <span className="text-base text-neutral-500">联系QQ</span>
               </div>
             </div>
           </div>

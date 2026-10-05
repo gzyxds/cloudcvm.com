@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 
 export interface SiteShellProps {
   children: ReactNode
-  /** 页面背景，默认 `bg-slate-50`；需要纯白底时传 `bg-white` */
+  /** 页面背景，默认 `bg-neutral-50`；需要纯白底时传 `bg-white` */
   className?: string
 }
 
@@ -15,9 +15,9 @@ export interface SiteShellProps {
  * lighthouse / mobile / privacy / retail / terms / token 共 14 个 layout.tsx 中
  * 逐字重复，现收敛为单一组件，导航与页脚只打包一份。
  */
-export function SiteShell({ children, className = 'bg-slate-50' }: SiteShellProps) {
+export function SiteShell({ children, className = 'bg-neutral-50' }: SiteShellProps) {
   return (
-    <div className={`flex min-h-screen flex-col font-sans text-slate-900 ${className}`}>
+    <div className={`flex min-h-screen flex-col font-sans text-neutral-900 ${className}`}>
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />

@@ -37,7 +37,7 @@ export default function BananaPage() {
           badgeText="Nanobanana 香蕉绘画 2.0 发布"
           heroTitle={
             <>
-              打造您的 <span className="text-[#0055ff]">专属 AI 绘画世界</span>
+              打造您的 <span className="text-brand-500">专属 AI 绘画世界</span>
             </>
           }
           heroDesc={

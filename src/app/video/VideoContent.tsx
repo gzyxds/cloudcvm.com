@@ -110,7 +110,7 @@ interface FAQItem {
  */
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[460px] w-full items-center overflow-hidden bg-slate-50 pt-16 pb-12 sm:pt-20 sm:pb-14 lg:pt-24 lg:pb-16">
+    <section className="relative flex min-h-[460px] w-full items-center overflow-hidden bg-neutral-50 pt-16 pb-12 sm:pt-20 sm:pb-14 lg:pt-24 lg:pb-16">
       {/* 背景图片 */}
       <div className="absolute inset-0 z-0 bg-[url('/images/solutions/video.png')] bg-cover bg-center bg-no-repeat opacity-20" />
 
@@ -121,26 +121,26 @@ function HeroSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <h1 className="text-3xl font-bold tracking-tight text-[#0055ff] sm:text-4xl lg:text-5xl lg:leading-tight">
+          <h1 className="text-3xl font-bold tracking-tight text-brand-500 sm:text-4xl lg:text-5xl lg:leading-tight">
             国内外短剧平台
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg lg:text-xl lg:leading-relaxed">
+          <p className="mt-6 text-base leading-relaxed text-neutral-600 sm:text-lg lg:text-xl lg:leading-relaxed">
             全新升级，精心打造的旗舰版短剧系统。支持完善的投流功能、广告回传功能、自定义充值套餐等多维度营销数据，助力您的短剧事业腾飞。
           </p>
           <div className="mt-6 grid grid-cols-2 gap-4 text-sm sm:mt-8">
-            <div className="flex items-center text-slate-600">
+            <div className="flex items-center text-neutral-600">
               <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               750+上线案例
             </div>
-            <div className="flex items-center text-slate-600">
+            <div className="flex items-center text-neutral-600">
               <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               开源可二开
             </div>
-            <div className="flex items-center text-slate-600">
+            <div className="flex items-center text-neutral-600">
               <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               多端同步
             </div>
-            <div className="flex items-center text-slate-600">
+            <div className="flex items-center text-neutral-600">
               <CheckCircleIcon className="mr-2 h-5 w-5 text-green-500" aria-hidden="true" />
               广告回传
             </div>
@@ -199,7 +199,7 @@ function AdvantagesSection() {
       title: '多端同步',
       description:
         '具备微信小程序、微信公众号、APP、抖音小程序等多端应用，可根据自身发展需求自由选择。',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: SpeakerWaveIcon,
@@ -217,7 +217,7 @@ function AdvantagesSection() {
       icon: BoltIcon,
       title: '高性能技术',
       description: '采用分布式调度引擎，实现流畅视频播放，有效节约成本。',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ShieldCheckIcon,
@@ -228,15 +228,18 @@ function AdvantagesSection() {
   ]
 
   return (
-    <section id="advantages" className={clsx('scroll-mt-20 py-16', 'bg-slate-50')}>
+    <section id="advantages" className={clsx('scroll-mt-20 py-16', 'bg-neutral-50')}>
       <Container>
         <div className="text-center">
           <h2
-            className={clsx('mb-4 text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}
+            className={clsx(
+              'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
+              'text-neutral-900'
+            )}
           >
-            <StarIcon className="mr-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
+            <StarIcon className="mr-2 inline h-8 w-8 text-brand-500" aria-hidden="true" />
             产品优势
-            <StarIcon className="ml-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
+            <StarIcon className="ml-2 inline h-8 w-8 text-brand-500" aria-hidden="true" />
           </h2>
         </div>
 
@@ -250,23 +253,23 @@ function AdvantagesSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={clsx(
                 'group relative overflow-hidden rounded-xl border p-6 transition-all duration-300',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
+                'border-neutral-200 bg-white hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50'
               )}
             >
               {/* 选中时的背景渐变 */}
-              <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
               <div className="relative z-10 text-center">
                 <h3
                   className={clsx(
                     'mb-3 flex items-center justify-center text-lg font-semibold',
-                    'text-slate-900'
+                    'text-neutral-900'
                   )}
                 >
-                  <advantage.icon className="mr-2 h-6 w-6 text-[#0055ff]" aria-hidden="true" />
+                  <advantage.icon className="mr-2 h-6 w-6 text-brand-500" aria-hidden="true" />
                   {advantage.title}
                 </h3>
-                <p className={clsx('text-sm leading-relaxed', 'text-slate-600')}>
+                <p className={clsx('text-sm leading-relaxed', 'text-neutral-600')}>
                   {advantage.description}
                 </p>
               </div>
@@ -308,15 +311,18 @@ function DemoSection() {
       <Container>
         <div className="text-center">
           <h2
-            className={clsx('mb-4 text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}
+            className={clsx(
+              'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
+              'text-neutral-900'
+            )}
           >
             <ComputerDesktopIcon
-              className="mr-2 inline h-8 w-8 text-[#0055ff]"
+              className="mr-2 inline h-8 w-8 text-brand-500"
               aria-hidden="true"
             />
             产品演示
             <ComputerDesktopIcon
-              className="ml-2 inline h-8 w-8 text-[#0055ff]"
+              className="ml-2 inline h-8 w-8 text-brand-500"
               aria-hidden="true"
             />
           </h2>
@@ -332,10 +338,10 @@ function DemoSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={clsx(
                 'group overflow-hidden rounded-xl border transition-all duration-300',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
+                'border-neutral-200 bg-white hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50'
               )}
             >
-              <div className={clsx('relative aspect-video overflow-hidden', 'bg-slate-100')}>
+              <div className={clsx('relative aspect-video overflow-hidden', 'bg-neutral-100')}>
                 <Image
                   src={demo.image}
                   alt={demo.title}
@@ -345,10 +351,10 @@ function DemoSection() {
                 />
               </div>
               <div className="p-6">
-                <h3 className={clsx('mb-2 text-lg font-semibold', 'text-slate-900')}>
+                <h3 className={clsx('mb-2 text-lg font-semibold', 'text-neutral-900')}>
                   {demo.title}
                 </h3>
-                <p className={clsx('mb-4 text-sm', 'text-slate-600')}>{demo.description}</p>
+                <p className={clsx('mb-4 text-sm', 'text-neutral-600')}>{demo.description}</p>
                 <div className="flex items-center" role="img" aria-label={`评分 ${demo.rating} 分`}>
                   {[...Array(5)].map((_, i) => (
                     <StarIcon
@@ -356,10 +362,10 @@ function DemoSection() {
                       className={clsx(
                         'h-4 w-4',
                         i < Math.floor(demo.rating)
-                          ? 'text-[#0055ff]'
+                          ? 'text-brand-500'
                           : i < demo.rating
-                            ? 'text-[#0055ff]'
-                            : 'text-slate-300'
+                            ? 'text-brand-500'
+                            : 'text-neutral-300'
                       )}
                       aria-hidden="true"
                     />
@@ -383,212 +389,215 @@ function FeaturesSection() {
       icon: PlayCircleIcon,
       title: '多种格式播放',
       description: '支持mp4、m3u8、mov等',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CloudIcon,
       title: '独立云存储',
       description: 'SaaS子站点支持独立云存储',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ShareIcon,
       title: '分销体系',
       description: '支持分销商分销，二级分佣',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: DevicePhoneMobileIcon,
       title: '多端用户登录',
       description: '支持手机号、微信、账号密码',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: KeyIcon,
       title: '卡密兑换功能',
       description: '后台批量生成卡密，前端一键兑换',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ForwardIcon,
       title: '自动切换剧集',
       description: '自动切换下一集，无需滑动',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ClockIcon,
       title: '历史记录展示',
       description: '无痕记录用户的追剧历史，收藏记录',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CloudArrowUpIcon,
       title: '一键批量导入',
       description: '批量上传剧集到后台',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CreditCardIcon,
       title: '多种付费模式',
       description: '支持VIP套餐开通以及积分充值',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CurrencyDollarIcon,
       title: '批量设置价格',
       description: '快捷批量设置剧集价格',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: GiftIcon,
       title: '多种任务获积分',
       description: '分享获积分、广告获积分、绑定获积分',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: RocketLaunchIcon,
       title: '成品系统快速交付',
       description: '成品系统最快1天交付上线',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ArrowPathIcon,
       title: '一键更新',
       description: '系统功能升级只需一键更新',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CpuChipIcon,
       title: '高性能技术框架',
       description: '分布式调度引擎，解决系统性能问题',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: PhoneIcon,
       title: '手机号注册',
       description: '后台可调节开关的手机号注册功能，用于留资',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: UserGroupIcon,
       title: '分销商申请',
       description: '可在后台设置多种分销商等级，让用户付费开通',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: UsersIcon,
       title: '团队管理',
       description: '清晰明了查看自己的团队人员信息，以及充值信息',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: BanknotesIcon,
       title: '提现功能',
       description: '用户可自主申请提现，后台可设置最大最小提现额度以及频次',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: StarIcon,
       title: '积分管理',
       description: '后台可设置多种积分套餐，冲多少送多少等优惠活动',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CheckBadgeIcon,
       title: '任务体系',
       description: '绑定昵称、分享好友、激励广告、拉新注册等都可设置一定的积分赠送活动',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CreditCardIcon,
       title: '剧集扣费体系',
       description: '可免费观看一定集数之后进行付费',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: TagIcon,
       title: '一键设置价格',
       description: '不用再对每部剧进行一集一集价格设置，可批量设置VIP价格、免费集数等',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: LockClosedIcon,
       title: '付费解锁',
       description: '可设置付费解锁、看广告解锁等',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: BookmarkIcon,
       title: '追剧历史',
       description: '记录用户的追剧历史以及收藏记录',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ChartBarIcon,
       title: '数据埋点',
       description: '后台数据可统计哪部剧、哪一集播放量的数据',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: MegaphoneIcon,
       title: '广告功能',
       description: '具备激励广告、banner广告、插屏广告、原生广告等一键设置',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: FolderIcon,
       title: '媒资管理',
       description: '具备抖音、微信媒资管理功能，一键同步剧集',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ArrowTrendingUpIcon,
       title: '广告回传',
       description: '提供巨量、百度、腾讯等回传方式，让你投放数据一目了然',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: DevicePhoneMobileIcon,
       title: '小程序一键发布',
       description: '小程序可后台一键发布，无需代码编译',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: AdjustmentsHorizontalIcon,
       title: '自定义投流',
       description: '不同的投放链接具备不同的充值套餐',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: CalendarDaysIcon,
       title: '签到任务',
       description: '可每日签到、补签等活动',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: PresentationChartLineIcon,
       title: '数据分析',
       description: '用户行为分析、广告效果分析',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
     {
       icon: ShieldCheckIcon,
       title: '安全保障',
       description: '数据加密、防盗链、版权保护',
-      color: 'text-blue-600',
+      color: 'text-brand-500',
     },
   ]
 
   return (
-    <section id="features" className="scroll-mt-20 bg-slate-50 py-16">
+    <section id="features" className="scroll-mt-20 bg-neutral-50 py-16">
       <Container>
         <div className="text-center">
           <h2
-            className={clsx('mb-4 text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}
+            className={clsx(
+              'mb-4 text-3xl font-bold tracking-tight sm:text-4xl',
+              'text-neutral-900'
+            )}
           >
-            <CogIcon className="mr-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
+            <CogIcon className="mr-2 inline h-8 w-8 text-brand-500" aria-hidden="true" />
             系统特色功能
-            <CogIcon className="ml-2 inline h-8 w-8 text-[#0055ff]" aria-hidden="true" />
+            <CogIcon className="ml-2 inline h-8 w-8 text-brand-500" aria-hidden="true" />
           </h2>
         </div>
 
@@ -602,16 +611,16 @@ function FeaturesSection() {
               transition={{ duration: 0.5, delay: (index % 8) * 0.05 }}
               className={clsx(
                 'group relative rounded-xl border p-6 transition-all duration-300',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
+                'border-neutral-200 bg-white hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50'
               )}
             >
               <div className="mb-4">
-                <feature.icon className="h-8 w-8 text-[#0055ff]" aria-hidden="true" />
+                <feature.icon className="h-8 w-8 text-brand-500" aria-hidden="true" />
               </div>
-              <h3 className={clsx('mb-2 text-lg font-semibold', 'text-slate-900')}>
+              <h3 className={clsx('mb-2 text-lg font-semibold', 'text-neutral-900')}>
                 {feature.title}
               </h3>
-              <p className={clsx('text-sm leading-relaxed', 'text-slate-600')}>
+              <p className={clsx('text-sm leading-relaxed', 'text-neutral-600')}>
                 {feature.description}
               </p>
             </motion.div>
@@ -663,10 +672,10 @@ function FAQSection() {
     <section id="faq" className={clsx('scroll-mt-20 py-16', 'bg-white')}>
       <Container>
         <div className="text-center">
-          <h2 className={clsx('text-3xl font-bold tracking-tight sm:text-4xl', 'text-slate-900')}>
+          <h2 className={clsx('text-3xl font-bold tracking-tight sm:text-4xl', 'text-neutral-900')}>
             常见问题
           </h2>
-          <p className={clsx('mt-4 text-lg', 'text-slate-600')}>解答您关于短剧系统的疑问</p>
+          <p className={clsx('mt-4 text-lg', 'text-neutral-600')}>解答您关于短剧系统的疑问</p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2" role="list" aria-label="常见问题列表">
           {faqs.map((faq, index) => (
@@ -678,14 +687,14 @@ function FAQSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={clsx(
                 'rounded-xl border p-6 transition-all duration-300',
-                'border-slate-200 bg-white hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50'
+                'border-neutral-200 bg-white hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50'
               )}
               role="listitem"
             >
-              <h3 className={clsx('mb-3 text-lg font-semibold', 'text-slate-900')}>
+              <h3 className={clsx('mb-3 text-lg font-semibold', 'text-neutral-900')}>
                 {faq.question}
               </h3>
-              <p className={clsx('text-slate-600')}>{faq.answer}</p>
+              <p className={clsx('text-neutral-600')}>{faq.answer}</p>
             </motion.div>
           ))}
         </div>
@@ -701,7 +710,7 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
+    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
         <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
@@ -712,8 +721,8 @@ function SectionNav() {
                 href={`#${item.id}`}
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
-                    ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
+                    ? 'border-brand-500 text-brand-500'
+                    : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900'
                 }`}
               >
                 {item.label}

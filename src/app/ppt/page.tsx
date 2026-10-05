@@ -34,7 +34,7 @@ export default function PptPage() {
           badgeText="AI PPT 2.0 发布"
           heroTitle={
             <>
-              一键直出 <span className="text-[#0055ff]">幻灯片</span>
+              一键直出 <span className="text-brand-500">幻灯片</span>
             </>
           }
           heroDesc={

@@ -34,7 +34,7 @@ export default function XhsPage() {
           badgeText="小红书助手 2.0 发布"
           heroTitle={
             <>
-              打造您的 <span className="text-[#0055ff]">专属爆款笔记</span>
+              打造您的 <span className="text-brand-500">专属爆款笔记</span>
             </>
           }
           heroDesc={

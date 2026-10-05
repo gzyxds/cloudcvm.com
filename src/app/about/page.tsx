@@ -235,9 +235,9 @@ function GlassCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-      className={`group relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 ${className}`}
+      className={`group relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-neutral-200/50 ${className}`}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="relative z-10 h-full">{children}</div>
     </motion.div>
   )
@@ -265,18 +265,18 @@ function SectionHeader({
       transition={{ duration: 0.5 }}
       className={align === 'center' ? 'text-center' : ''}
     >
-      <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-[#eff6ff] px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
+      <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
         {eyebrow}
       </span>
       <h2
-        className={`mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl ${
+        className={`mt-4 text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl ${
           align === 'center' ? 'mx-auto max-w-2xl' : ''
         }`}
       >
         {title}
       </h2>
       <p
-        className={`mt-4 text-base leading-relaxed text-slate-500 sm:text-lg ${
+        className={`mt-4 text-base leading-relaxed text-neutral-500 sm:text-lg ${
           align === 'center' ? 'mx-auto max-w-3xl' : ''
         }`}
       >
@@ -296,7 +296,7 @@ function SectionNav() {
   const activeSection = useActiveSection(sectionIds)
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
+    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
         <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
@@ -308,7 +308,7 @@ function SectionNav() {
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
                     ? 'border-brand-500 text-brand-500'
-                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
+                    : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900'
                 }`}
               >
                 {item.label}
@@ -330,7 +330,7 @@ function SectionNav() {
  */
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[520px] w-full items-center overflow-hidden bg-slate-50 pt-16 sm:pt-0">
+    <section className="relative flex min-h-[520px] w-full items-center overflow-hidden bg-neutral-50 pt-16 sm:pt-0">
       {/* 背景图片 */}
       <div className="absolute inset-0 z-0 bg-[url('/images/solutions/about.webp')] bg-cover bg-center bg-no-repeat" />
       {/* 渐变覆盖 */}
@@ -343,13 +343,13 @@ function HeroSection() {
           transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
-          <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-[#eff6ff] px-3 text-xs font-semibold text-brand-500">
+          <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-brand-50 px-3 text-xs font-semibold text-brand-500">
             优刻云计算 · 与您共创算力未来
           </span>
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl lg:leading-tight">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl lg:leading-tight">
             优刻云计算
           </h1>
-          <p className="mt-4 text-lg font-medium text-slate-600 sm:text-xl">
+          <p className="mt-4 text-lg font-medium text-neutral-600 sm:text-xl">
             稳定 · 弹性 · 普惠的云计算服务
           </p>
           <p className="mt-2 text-base font-medium text-brand-500">
@@ -384,7 +384,7 @@ function HeroSection() {
  */
 function OverviewSection() {
   return (
-    <section id="overview" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="overview" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Company Profile"
@@ -411,7 +411,7 @@ function OverviewSection() {
               </p>
             </div>
             <div className="rounded-md border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
-              <p className="text-sm font-semibold text-[#eff6ff]">核心业务领域</p>
+              <p className="text-sm font-semibold text-brand-50">核心业务领域</p>
               <ul className="mt-4 space-y-3 text-sm text-white/90">
                 <li className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-green-400" /> 云计算基础服务
@@ -436,11 +436,11 @@ function OverviewSection() {
             const Icon = item.icon
             return (
               <GlassCard key={item.name} delay={index * 0.1} className="flex flex-col">
-                <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-[#eff6ff] text-brand-500">
+                <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50 text-brand-500">
                   <Icon className="h-6 w-6" />
                 </span>
-                <h3 className="text-lg font-semibold text-slate-900">{item.name}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                <h3 className="text-lg font-semibold text-neutral-900">{item.name}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
                   {item.description}
                 </p>
               </GlassCard>
@@ -457,7 +457,10 @@ function OverviewSection() {
  */
 function StatsSection() {
   return (
-    <section id="stats" className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24">
+    <section
+      id="stats"
+      className="scroll-mt-20 border-y border-neutral-200 bg-white py-16 md:py-24"
+    >
       <Container>
         <SectionHeader
           eyebrow="Company Stats"
@@ -470,11 +473,11 @@ function StatsSection() {
             const Icon = stat.icon
             return (
               <GlassCard key={stat.label} delay={index * 0.1} className="text-center">
-                <span className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-[#eff6ff] text-brand-500">
+                <span className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
                   <Icon className="h-7 w-7" />
                 </span>
-                <div className="text-3xl font-bold text-slate-900">{stat.value}</div>
-                <div className="mt-2 text-sm font-medium text-slate-500">{stat.label}</div>
+                <div className="text-3xl font-bold text-neutral-900">{stat.value}</div>
+                <div className="mt-2 text-sm font-medium text-neutral-500">{stat.label}</div>
               </GlassCard>
             )
           })}
@@ -489,7 +492,7 @@ function StatsSection() {
  */
 function ProductsSection() {
   return (
-    <section id="products" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="products" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Product Matrix"
@@ -507,12 +510,12 @@ function ProductsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group flex items-center gap-3 rounded-md border border-slate-200 bg-white p-4 transition-all duration-300 hover:border-brand-300 hover:shadow-sm sm:p-5"
+                className="group flex items-center gap-3 rounded-md border border-neutral-200 bg-white p-4 transition-all duration-300 hover:border-brand-300 hover:shadow-sm sm:p-5"
               >
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
                   <Icon className="h-5 w-5" />
                 </span>
-                <span className="text-sm font-semibold text-slate-900 transition-colors duration-300 group-hover:text-brand-500">
+                <span className="text-sm font-semibold text-neutral-900 transition-colors duration-300 group-hover:text-brand-500">
                   {product.name}
                 </span>
               </motion.div>
@@ -544,7 +547,7 @@ function TimelineSection() {
   return (
     <section
       id="timeline"
-      className="scroll-mt-20 border-y border-slate-200 bg-white py-16 md:py-24"
+      className="scroll-mt-20 border-y border-neutral-200 bg-white py-16 md:py-24"
     >
       <Container>
         <SectionHeader
@@ -555,7 +558,7 @@ function TimelineSection() {
 
         <div className="relative mt-16">
           {/* 中心分割线（桌面端） */}
-          <div className="absolute top-0 bottom-0 left-1/2 hidden w-px -translate-x-1/2 bg-slate-200 lg:block" />
+          <div className="absolute top-0 bottom-0 left-1/2 hidden w-px -translate-x-1/2 bg-neutral-200 lg:block" />
 
           <div className="relative space-y-12 lg:space-y-16">
             {MILESTONES.map((milestone, index) => {
@@ -575,8 +578,8 @@ function TimelineSection() {
 
                   {/* 内容卡片 */}
                   <div className={`lg:pr-12 ${isEven ? '' : 'lg:order-2 lg:pr-0 lg:pl-12'}`}>
-                    <div className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-brand-200 hover:shadow-lg hover:shadow-slate-200/50">
-                      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="group relative rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-200 hover:shadow-lg hover:shadow-neutral-200/50">
+                      <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       <div className="relative z-10">
                         {/* 移动端年份标记 */}
                         <div className="mb-3 flex items-center gap-3 lg:hidden">
@@ -588,10 +591,10 @@ function TimelineSection() {
                           </span>
                         </div>
                         {/* 桌面端年份标记 */}
-                        <h3 className="mb-2 text-lg font-semibold text-slate-900">
+                        <h3 className="mb-2 text-lg font-semibold text-neutral-900">
                           {milestone.title}
                         </h3>
-                        <p className="text-sm leading-relaxed text-slate-500">
+                        <p className="text-sm leading-relaxed text-neutral-500">
                           {milestone.description}
                         </p>
                       </div>
@@ -602,7 +605,7 @@ function TimelineSection() {
                   <div
                     className={`hidden lg:flex ${isEven ? 'lg:order-2 lg:pl-12' : 'lg:order-1 lg:pr-12'} h-full items-center`}
                   >
-                    <span className="font-mono text-3xl font-bold text-slate-200 lg:text-4xl">
+                    <span className="font-mono text-3xl font-bold text-neutral-200 lg:text-4xl">
                       {milestone.year}
                     </span>
                   </div>
@@ -621,7 +624,7 @@ function TimelineSection() {
  */
 function ReasonsSection() {
   return (
-    <section id="honors" className="scroll-mt-20 bg-slate-50 py-16 md:py-24">
+    <section id="honors" className="scroll-mt-20 bg-neutral-50 py-16 md:py-24">
       <Container>
         <SectionHeader
           eyebrow="Why CloudCVM"
@@ -647,8 +650,8 @@ function ReasonsSection() {
                 <span className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
                   <Icon className="h-6 w-6" />
                 </span>
-                <h3 className="text-base font-semibold text-slate-900">{reason.name}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-500">
+                <h3 className="text-base font-semibold text-neutral-900">{reason.name}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-neutral-500">
                   {reason.description}
                 </p>
               </GlassCard>
@@ -732,7 +735,7 @@ function CTASection() {
  */
 export default function AboutPage() {
   return (
-    <div className="bg-slate-50 font-sans selection:bg-brand-500/20 selection:text-brand-500">
+    <div className="bg-neutral-50 font-sans selection:bg-brand-500/20 selection:text-brand-500">
       <HeroSection />
       <SectionNav />
       <OverviewSection />

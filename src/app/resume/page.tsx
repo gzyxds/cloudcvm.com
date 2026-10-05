@@ -34,7 +34,7 @@ export default function ResumePage() {
           badgeText="AI简历 2.0 发布"
           heroTitle={
             <>
-              一键生成 <span className="text-[#0055ff]">智能分析</span>
+              一键生成 <span className="text-brand-500">智能分析</span>
             </>
           }
           heroDesc={

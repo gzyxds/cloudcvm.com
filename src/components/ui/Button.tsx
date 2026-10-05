@@ -35,22 +35,22 @@ const baseStyles = {
 const variantStyles = {
   solid: {
     slate:
-      'bg-slate-900 text-white hover:bg-slate-700 hover:text-slate-100 active:bg-slate-800 active:text-slate-300 focus-visible:outline-slate-900',
-    blue: 'bg-brand-500 text-white hover:text-slate-100 hover:bg-brand-600 active:bg-brand-700 active:text-blue-100 focus-visible:outline-brand-500',
+      'bg-neutral-900 text-white hover:bg-neutral-700 hover:text-neutral-100 active:bg-neutral-800 active:text-neutral-300 focus-visible:outline-neutral-900',
+    blue: 'bg-brand-500 text-white hover:text-neutral-100 hover:bg-brand-600 active:bg-brand-700 active:text-brand-100 focus-visible:outline-brand-500',
     white:
-      'bg-white text-slate-900 hover:bg-blue-50 active:bg-blue-200 active:text-slate-600 focus-visible:outline-white',
+      'bg-white text-neutral-900 hover:bg-brand-50 active:bg-brand-200 active:text-neutral-600 focus-visible:outline-white',
   },
   outline: {
     slate:
-      'ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-brand-500 focus-visible:ring-slate-300',
-    blue: 'ring-blue-200 text-blue-700 hover:text-blue-900 hover:ring-blue-300 active:bg-blue-50 active:text-blue-600 focus-visible:outline-brand-500 focus-visible:ring-blue-300',
+      'ring-neutral-200 text-neutral-700 hover:text-neutral-900 hover:ring-neutral-300 active:bg-neutral-100 active:text-neutral-600 focus-visible:outline-brand-500 focus-visible:ring-neutral-300',
+    blue: 'ring-brand-200 text-brand-600 hover:text-brand-800 hover:ring-brand-300 active:bg-brand-50 active:text-brand-500 focus-visible:outline-brand-500 focus-visible:ring-brand-300',
     white:
-      'ring-slate-700 text-white hover:ring-slate-500 active:ring-slate-700 active:text-slate-400 focus-visible:outline-white',
+      'ring-neutral-700 text-white hover:ring-neutral-500 active:ring-neutral-700 active:text-neutral-400 focus-visible:outline-white',
   },
   primary: {
     blue: 'bg-brand-500 text-white shadow-brand-500/20 hover:bg-brand-600 focus-visible:outline-brand-500',
     white:
-      'bg-white text-brand-500 shadow-slate-200/20 hover:bg-brand-50 focus-visible:outline-white',
+      'bg-white text-brand-500 shadow-neutral-200/20 hover:bg-brand-50 focus-visible:outline-white',
   },
   primaryOutline: {
     slate:

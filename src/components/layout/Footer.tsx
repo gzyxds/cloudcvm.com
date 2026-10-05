@@ -82,13 +82,13 @@ function AccordionSection({
   onToggle,
 }: AccordionSectionProps) {
   return (
-    <div className="border-b border-gray-200 md:border-none dark:border-gray-700">
+    <div className="border-b border-neutral-200 md:border-none dark:border-neutral-700">
       <button
         onClick={() => onToggle(sectionKey)}
         className="flex w-full items-center justify-between py-4 text-left md:pointer-events-none md:cursor-default"
         aria-expanded={isExpanded}
       >
-        <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">{title}</h3>
+        <h3 className="text-sm/6 font-semibold text-neutral-900 dark:text-white">{title}</h3>
         <svg
           className={`h-5 w-5 transform transition-transform duration-200 md:hidden ${
             isExpanded ? 'rotate-180' : ''
@@ -109,7 +109,7 @@ function AccordionSection({
           {items.map((item) => {
             const isInternal = item.href.startsWith('/')
             const linkClassName =
-              'block py-1 text-sm/6 text-gray-600 hover:text-gray-900 md:py-0 dark:text-gray-400 dark:hover:text-white'
+              'block py-1 text-sm/6 text-neutral-600 hover:text-neutral-900 md:py-0 dark:text-neutral-400 dark:hover:text-white'
 
             return (
               <li key={item.name}>
@@ -149,8 +149,8 @@ export function Footer() {
   return (
     <>
       {/* 全屏分割线 */}
-      <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
-      <footer className="bg-white dark:bg-gray-900">
+      <div className="w-full border-t border-neutral-200 dark:border-neutral-700"></div>
+      <footer className="bg-white dark:bg-neutral-950">
         <div className="mx-auto max-w-[1800px] px-6 pt-6 pb-4 sm:pt-10 lg:px-8 lg:pt-14">
           <div className="xl:grid xl:grid-cols-7 xl:gap-8">
             {/* 移动端手风琴布局，桌面端网格布局 */}
@@ -222,7 +222,9 @@ export function Footer() {
                         className="h-auto w-full"
                       />
                     </div>
-                    <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">微信公众号</p>
+                    <p className="mt-1.5 text-xs text-neutral-600 dark:text-neutral-400">
+                      微信公众号
+                    </p>
                   </div>
                   {/* 扫码加入社群二维码 */}
                   <div className="text-center">
@@ -235,7 +237,9 @@ export function Footer() {
                         className="h-auto w-full"
                       />
                     </div>
-                    <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">联系客服</p>
+                    <p className="mt-1.5 text-xs text-neutral-600 dark:text-neutral-400">
+                      联系客服
+                    </p>
                   </div>
                   {/* 微信小程序二维码 */}
                   <div className="text-center">
@@ -248,7 +252,9 @@ export function Footer() {
                         className="h-auto w-full"
                       />
                     </div>
-                    <p className="mt-1.5 text-xs text-gray-600 dark:text-gray-400">在线客服</p>
+                    <p className="mt-1.5 text-xs text-neutral-600 dark:text-neutral-400">
+                      在线客服
+                    </p>
                   </div>
                 </div>
               </div>
@@ -256,10 +262,10 @@ export function Footer() {
           </div>
 
           {/* 区域 */}
-          <div className="mt-6 border-t border-gray-900/10 pt-6 md:flex md:items-center md:justify-between dark:border-white/10">
+          <div className="mt-6 border-t border-neutral-900/10 pt-6 md:flex md:items-center md:justify-between dark:border-white/10">
             {/* 桌面端：标题和链接并排显示，与底部版权信息保持一致的布局 */}
             <div className="hidden md:flex md:items-center md:gap-x-6">
-              <h3 className="text-sm/6 font-semibold whitespace-nowrap text-gray-900 dark:text-white">
+              <h3 className="text-sm/6 font-semibold whitespace-nowrap text-neutral-900 dark:text-white">
                 友情链接：
               </h3>
               <div className="flex flex-wrap gap-x-6">
@@ -269,7 +275,7 @@ export function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm/6 whitespace-nowrap text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                    className="text-sm/6 whitespace-nowrap text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                   >
                     {item.name}
                   </a>
@@ -283,14 +289,16 @@ export function Footer() {
               <button
                 type="button"
                 onClick={() => toggleSection('friendlyLinks')}
-                className="flex w-full items-center justify-between py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="flex w-full items-center justify-between py-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                 aria-expanded={!!expandedSections['friendlyLinks']}
                 aria-controls="friendlyLinks-content"
                 aria-label="展开或收起友情链接"
               >
-                <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white">友情链接</h3>
+                <h3 className="text-sm/6 font-semibold text-neutral-900 dark:text-white">
+                  友情链接
+                </h3>
                 <svg
-                  className={`h-5 w-5 transform text-gray-500 transition-transform duration-200 dark:text-gray-400 ${
+                  className={`h-5 w-5 transform text-neutral-500 transition-transform duration-200 dark:text-neutral-400 ${
                     expandedSections['friendlyLinks'] ? 'rotate-180' : ''
                   }`}
                   fill="none"
@@ -321,7 +329,7 @@ export function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block py-1 text-sm/6 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                      className="block py-1 text-sm/6 text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                     >
                       {item.name}
                     </a>
@@ -332,14 +340,14 @@ export function Footer() {
           </div>
 
           {/* 底部版权信息 */}
-          <div className="mt-6 border-t border-gray-900/10 pt-6 md:flex md:items-center md:justify-between dark:border-white/10">
-            <p className="mt-6 text-sm/6 text-gray-600 md:order-1 md:mt-0 dark:text-gray-400">
+          <div className="mt-6 border-t border-neutral-900/10 pt-6 md:flex md:items-center md:justify-between dark:border-white/10">
+            <p className="mt-6 text-sm/6 text-neutral-600 md:order-1 md:mt-0 dark:text-neutral-400">
               &copy; {new Date().getFullYear()} 优刻云计算. All rights reserved.{' '}
               <a
                 href="https://beian.miit.gov.cn/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-900 dark:hover:text-white"
+                className="hover:text-neutral-900 dark:hover:text-white"
               >
                 赣ICP备2023002309号-3
               </a>
