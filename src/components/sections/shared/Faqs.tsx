@@ -2,17 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  ComputerDesktopIcon,
-  CreditCardIcon,
-  TruckIcon,
-  ShieldCheckIcon,
-  Cog6ToothIcon,
-  ChartBarIcon,
-  CommandLineIcon,
-  KeyIcon,
-  ChevronDownIcon,
-} from '@heroicons/react/24/outline'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { Container } from '@/components/ui/Container'
 import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
 
@@ -25,7 +15,6 @@ interface FAQ {
 
 interface FAQCategory {
   name: string
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   faqs: FAQ[]
 }
 
@@ -34,7 +23,6 @@ interface FAQCategory {
 const faqCategories: FAQCategory[] = [
   {
     name: '一般常见问题',
-    icon: ComputerDesktopIcon,
     faqs: [
       {
         question: '什么是 CVM 实例？',
@@ -65,12 +53,11 @@ const faqCategories: FAQCategory[] = [
   },
   {
     name: '计费',
-    icon: CreditCardIcon,
     faqs: [
       {
         question: 'CVM 的计费方式有哪些？',
         answer:
-          'CVM 提供灵活的计费方式：1）按量计费：按实际使用时长计费，适合短期或不规律使用；2）包年包月：预付费模式，适合长期稳定使用，价格更优惠；3）竞价实例：以较低价格使用空余计算资源，适合容错性强的应用；4）预留实例：通过预付费获得实例使用折扣。您可以根据业务特点选择最经济的计费方式。',
+          'CVM 提供灵活的计费方式：1、按量计费：按实际使用时长计费，适合短期或不规律使用；2、包年包月：预付费模式，适合长期稳定使用，价格更优惠；3、竞价实例：以较低价格使用空余计算资源，适合容错性强的应用；4、预留实例：通过预付费获得实例使用折扣。您可以根据业务特点选择最经济的计费方式。',
       },
       {
         question: '如何查看和管理费用？',
@@ -96,7 +83,6 @@ const faqCategories: FAQCategory[] = [
   },
   {
     name: '网络',
-    icon: TruckIcon,
     faqs: [
       {
         question: 'CVM 的网络性能如何？',
@@ -127,7 +113,6 @@ const faqCategories: FAQCategory[] = [
   },
   {
     name: '存储',
-    icon: ShieldCheckIcon,
     faqs: [
       {
         question: 'CVM 支持哪些存储类型？',
@@ -158,7 +143,6 @@ const faqCategories: FAQCategory[] = [
   },
   {
     name: '安全性',
-    icon: Cog6ToothIcon,
     faqs: [
       {
         question: 'CVM 的安全防护措施有哪些？',
@@ -189,7 +173,6 @@ const faqCategories: FAQCategory[] = [
   },
   {
     name: '性能与监控',
-    icon: ChartBarIcon,
     faqs: [
       {
         question: '如何监控 CVM 实例的运行状态？',
@@ -220,7 +203,6 @@ const faqCategories: FAQCategory[] = [
   },
   {
     name: 'API与开发工具',
-    icon: CommandLineIcon,
     faqs: [
       {
         question: '优刻云提供哪些 API 和管理工具？',
@@ -251,7 +233,6 @@ const faqCategories: FAQCategory[] = [
   },
   {
     name: '账号与权限',
-    icon: KeyIcon,
     faqs: [
       {
         question: '如何管理团队成员对不同资源的访问权限？',
@@ -304,7 +285,8 @@ const faqJsonLd = JSON.stringify({
 /**
  * Faqs 组件 - 常见问题区块
  *
- * 顶部分类标签 + 居中手风琴列表
+ * 文本式分类标签（激活态品牌色 + 下划线，位于全宽分割线上）
+ * + 无边框留白手风琴列表
  */
 export function Faqs() {
   const [activeTab, setActiveTab] = useState(0)
@@ -322,78 +304,71 @@ export function Faqs() {
 
       <Container>
         {/* ─────── 标题区 ─────── */}
-        <div className="text-center">
-          <span className="inline-flex items-center rounded-md bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-brand-600/20 ring-inset">
+        <div className="section-head">
+          <span className="inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 ring-1 ring-brand-600/20 ring-inset">
             常见问题
           </span>
           <h2 className="section-title-lg mt-4">快速找到您需要的答案</h2>
           <p className="section-desc">如果还有其他问题，请随时联系我们的客服团队</p>
         </div>
 
-        {/* ─────── 分类标签 ─────── */}
+        {/* ─────── 分类标签（文本式，激活态品牌色 + 底部下划线，参考图样式） ─────── */}
         <div className="mt-12 lg:mt-16">
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-            {faqCategories.map((category, idx) => {
-              const Icon = category.icon
-              const isActive = activeTab === idx
-              return (
-                <button
-                  key={category.name}
-                  onClick={() => {
-                    setActiveTab(idx)
-                    setOpenIndex(null)
-                  }}
-                  className={`flex items-center justify-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
-                    isActive
-                      ? 'bg-brand-500 text-white shadow-sm'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'
-                  }`}
-                >
-                  <Icon className="size-4" />
-                  <span>{category.name}</span>
-                </button>
-              )
-            })}
+          <div className="scrollbar-hide overflow-x-auto">
+            <div className="mx-auto flex w-max gap-6">
+              {faqCategories.map((category, idx) => {
+                const isActive = activeTab === idx
+                return (
+                  <button
+                    key={category.name}
+                    onClick={() => {
+                      setActiveTab(idx)
+                      setOpenIndex(null)
+                    }}
+                    className={`relative px-5 pt-2 pb-6 text-sm font-medium transition-colors duration-200 sm:text-base ${
+                      isActive ? 'text-brand-500' : 'text-neutral-500 hover:text-neutral-900'
+                    }`}
+                  >
+                    {category.name}
+                    {isActive && (
+                      <motion.span
+                        layoutId="faqs-tab-underline"
+                        className="absolute inset-x-0 bottom-0 h-0.5 bg-brand-500"
+                      />
+                    )}
+                  </button>
+                )
+              })}
+            </div>
           </div>
+          <div className="h-px bg-neutral-200" />
         </div>
 
-        {/* ─────── FAQ 手风琴列表 ─────── */}
+        {/* ─────── FAQ 手风琴列表（无边框留白行，参考图样式） ─────── */}
         <motion.div
           key={activeTab}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="mt-10"
+          className="mt-12 sm:mt-14"
         >
           {currentCategory && (
-            <div className="space-y-3">
+            <div>
               {currentCategory.faqs.map((faq, fi) => {
                 const isOpen = openIndex === fi
                 return (
-                  <div
-                    key={fi}
-                    className={`rounded-md border border-gray-200 transition-all duration-300 ${
-                      !isOpen ? 'hover:border-gray-300' : ''
-                    }`}
-                  >
+                  <div key={fi}>
                     <button
                       onClick={() => handleToggle(fi)}
-                      className="flex w-full items-center gap-4 px-5 py-4 text-left sm:px-6"
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-answer-${fi}`}
+                      className="group flex w-full items-center justify-between gap-4 py-6 text-left sm:py-7"
                     >
-                      <span className="flex flex-1 items-center gap-3">
-                        <span
-                          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors duration-300 ${
-                            isOpen ? 'bg-brand-500 text-white' : 'bg-gray-100 text-gray-400'
-                          }`}
-                        >
-                          {fi + 1}
-                        </span>
-                        <span className="text-sm font-medium text-gray-900 sm:text-base">
-                          {faq.question}
-                        </span>
+                      <span className="text-base font-medium text-neutral-900 transition-colors duration-200 group-hover:text-brand-500">
+                        {faq.question}
                       </span>
                       <ChevronDownIcon
-                        className={`size-5 shrink-0 text-gray-400 transition-transform duration-300 ${
+                        className={`size-5 shrink-0 text-neutral-400 transition-all duration-300 group-hover:text-brand-500 ${
                           isOpen ? 'rotate-180 text-brand-500' : ''
                         }`}
                       />
@@ -402,14 +377,15 @@ export function Faqs() {
                       {isOpen && (
                         <motion.div
                           key="content"
+                          id={`faq-answer-${fi}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease: 'easeInOut' }}
                           className="overflow-hidden"
                         >
-                          <div className="border-t border-gray-100 px-5 py-4 pl-14 sm:px-6 sm:pl-14">
-                            <p className="text-sm leading-relaxed text-gray-500 sm:text-base">
+                          <div className="pr-12 pb-6 sm:pb-7">
+                            <p className="text-sm leading-relaxed text-neutral-500 sm:text-base">
                               {faq.answer}
                             </p>
                           </div>
