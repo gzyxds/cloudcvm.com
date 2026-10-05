@@ -65,6 +65,7 @@
   - 待目视确认：预览面板合成器冻结（RAF/IntersectionObserver 探针实测零回调，与 P-01/P-05 同款环境限制），「滚出停 / 滚入重启 / 静态帧」需真机目视确认
   - 未做（设备能力项）：低端移动端跳过特效属视觉决策，待用户确认后另行处理
 - **P-13 已实施（语义令牌阶段）**：`tailwind.css` 新增 `--color-success/warning/danger`（#10b981/#f59e0b/#ef4444）与 `--color-ai-accent`（#4b14ff）；windows/server/contact/cdn/ssl 5 页 28 处状态色 hex → 令牌类（值不变，计算样式实测 rgb(16,185,129) 与原 #10B981 一致）；human 页 `<PixelBlast color>` 改传 `var(--color-ai-accent)`（组件运行时解析，解析失败回退组件内 DEFAULT_COLOR）。台账 P-13 原文中的 `#0055ff` 残留已在令牌收敛批次处理完毕。
+  - **第二批**：新增 `--color-tech-cyan`（#00a2ed，ProductTraits 标题渐变起点 var 化）；删除 tailwind.css 4 个 0 引用死工具类（glow-border / section-gradient-light / section-gradient-brand / card-interactive，携带 rgba(0,85,255) 旧品牌蓝与 #f8fafc/#eff6ff 旧值）。曾计划替换 red-500/emerald-500/amber-500（29 处），实测 **Tailwind v4 默认色板为 oklch 重调值、与 v3 hex 不等价**（red-500 ≈ rgb(251,44,54) vs danger #ef4444），非零视觉变化，搁置待决策。
 - **验证**：`tsc --noEmit` 0 error；`npm run lint` 0 error（43 条既有 warning）；改动文件 `prettier --check` 通过；`npm run build` 52 静态页 + postbuild RSC 修复正常。
 - **待视觉确认**：预览 tab 隐藏时 Chrome 冻结 IntersectionObserver（探针实测不回调），「滚动进入视口才加载播放」的浏览器端行为需在可见面板/真机目视确认（预期：横幅/演示视频滚入视口约 200px 前开始加载并自动播放，滚出暂停）。
 

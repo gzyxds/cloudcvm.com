@@ -10,7 +10,8 @@ import { Container } from '@/components/ui/Container'
  */
 export interface CarouselSlide {
   id: number
-  /** 排序权重；缺省视为 0，按原顺序排列（见下方 sort 的 `?? 0`） */
+  /** 排序权重；缺省视为 0，按数组原顺序排列（见下方 sort 的 `?? 0`）。
+   *  不需要自定义顺序时请不要写这个字段——写了就会覆盖数组顺序，容易被误当成"没生效"。 */
   order?: number
   title: string
   subtitle?: string
@@ -59,11 +60,14 @@ export type VideoCarouselProps = CarouselProps
 
 /**
  * 默认轮播图数据
+ * 展示顺序 = 本数组顺序（id 1→4），因此这里不再手工写 order。
+ * 之前 order 被写成 2/3/1/4，把 id=3 的「年终钜惠狂欢」提到了第一位，
+ * 导致展示顺序既不同于源码顺序，也和图片/视频的文件编号（carousel-2/5/7/9、
+ * VideoCarousel/1/2/3）对不上。需要置顶某一张时，再显式写 order 即可。
  */
 const defaultSlides: CarouselSlide[] = [
   {
     id: 1,
-    order: 2,
     title: '轻量服务器',
     subtitle: '优刻云计算',
     description:
@@ -78,7 +82,6 @@ const defaultSlides: CarouselSlide[] = [
   },
   {
     id: 2,
-    order: 3,
     title: '专属福利活动',
     subtitle: '优刻云计算',
     description:
@@ -93,7 +96,6 @@ const defaultSlides: CarouselSlide[] = [
   },
   {
     id: 3,
-    order: 1,
     title: '年终钜惠狂欢',
     subtitle: '智聚优刻云 年中钜惠狂欢',
     description: '智聚优刻云 年中钜惠狂欢 优惠商品与活动合集!',
@@ -107,7 +109,6 @@ const defaultSlides: CarouselSlide[] = [
   },
   {
     id: 4,
-    order: 4,
     title: '全球化部署',
     subtitle: '弹性伸缩服务',
     description:
@@ -160,14 +161,21 @@ const entryCards = [
  * height 对象形式支持的高度组合。
  * Tailwind 只会生成源码中出现过的完整类名，因此这里集中以字面量声明，
  * 运行时再按 { base, md, lg } 组合查表，避免动态拼接导致样式丢失。
+ * key 为去掉 `h-[` / `]` 后的原样值（含单位），必须与调用方写法完全一致，例如
+ * `{ base: 'h-[400px]', md: 'h-[450px]', lg: 'h-[550px]' }` → `'400px|450px|550px'`。
  */
 const HEIGHT_CLASS_MAP: Record<string, string> = {
-  '400|450|550': 'h-[400px] md:h-[450px] lg:h-[550px]',
-  '400|500|600': 'h-[400px] md:h-[500px] lg:h-[600px]',
+  '400px|450px|550px': 'h-[400px] md:h-[450px] lg:h-[550px]',
+  '400px|500px|600px': 'h-[400px] md:h-[500px] lg:h-[600px]',
 }
+
+/** 已告警过的 height 组合，避免开发环境每次渲染都刷同一条警告。 */
+const warnedHeightKeys = new Set<string>()
 
 /**
  * 将 height 对象解析为 Tailwind 高度类；无法匹配预设时回退到 heightClass。
+ * 注意：回退是静默的，调用方传入的尺寸会被忽略，因此开发环境会告警一次，
+ * 防止再次出现「传了 height 却按 heightClass 渲染」这类难以察觉的问题。
  */
 function resolveHeightClass(height: CarouselProps['height'], heightClass: string): string {
   if (typeof height === 'string' && height) return height
@@ -177,7 +185,17 @@ function resolveHeightClass(height: CarouselProps['height'], heightClass: string
       (height.md || '').replace(/^h-\[|\]$/g, ''),
       (height.lg || '').replace(/^h-\[|\]$/g, ''),
     ].join('|')
-    return HEIGHT_CLASS_MAP[key] || heightClass
+    const mapped = HEIGHT_CLASS_MAP[key]
+    if (mapped) return mapped
+
+    if (process.env.NODE_ENV !== 'production' && !warnedHeightKeys.has(key)) {
+      warnedHeightKeys.add(key)
+      console.warn(
+        `[VideoCarousel] height 组合 "${key}" 未在 HEIGHT_CLASS_MAP 登记，已回退到 heightClass="${heightClass}"；` +
+          '请在该表补充对应组合，否则传入的高度会被静默忽略。'
+      )
+    }
+    return heightClass
   }
   return heightClass
 }
@@ -190,17 +208,21 @@ const styles = {
   section: 'relative w-full overflow-hidden touch-pan-y',
   imageContainer:
     'absolute inset-0 flex items-center justify-center transition-opacity duration-700 ease-in-out',
-  image: 'object-cover w-full h-full object-center will-change-transform',
+  // 背景图只做 opacity 过渡（在父容器上），自身没有任何 transform 动画；
+  // 原来的 will-change-transform 会让 4 张满屏图各占一个合成层（约 4 屏显存），纯属浪费。
+  image: 'object-cover w-full h-full object-center',
   // Bento 风格：无圆角，边框优先，无阴影，Flex布局，字体优化，右对齐
   titleButton:
     'group relative w-full flex items-center justify-start text-left transition-all duration-300 cursor-pointer py-5 pl-0 pr-2 rounded-none text-[15px] leading-[1.6] text-neutral-600 font-sans',
+  // 选中态这里只改文字色；“选中背景”由标题外层 div 的 className 控制
   titleButtonActive: 'text-primary-500 font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
   indicator: 'h-2 transition-all duration-300',
+  // 两个 CTA 都用直角（覆盖 .btn 自带的 rounded-md），并把高度压小一档
   primaryButton:
-    'btn px-6 py-2.5 lg:px-7 lg:py-3 text-sm bg-primary-500 hover:bg-primary-600 text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium',
+    'btn rounded-none px-6 py-2 lg:px-7 lg:py-2.5 text-sm bg-primary-500 hover:bg-primary-600 text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium',
   secondaryButton:
-    'btn px-6 py-2.5 lg:px-7 lg:py-3 bg-white text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 flex items-center justify-center text-sm',
+    'btn rounded-none px-6 py-2 lg:px-7 lg:py-2.5 bg-white text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 flex items-center justify-center text-sm',
 }
 
 /**
@@ -244,8 +266,8 @@ const CarouselImage = memo(
 
     // 首屏直接输出 <video>（静态导入），但不在解析阶段下载视频字节：
     // 首次渲染不带 src（videoEnabled 初始为 false，SSR/客户端一致），首屏显示 poster
-    // （与视频首帧同图，且已被 priority 预加载）；桌面端挂载后写入 src 并由 play() 触发
-    // 下载，移动端（lg 以下）永不写入 src、永不下载，仅显示 Image。
+    // （与视频首帧同图）；桌面端挂载后写入 src 并由 play() 触发下载，
+    // 移动端（lg 以下）永不写入 src、永不下载，仅显示 Image。
     const videoProps = {
       loop: true,
       muted: true,
@@ -267,14 +289,15 @@ const CarouselImage = memo(
               {...videoProps}
               className="absolute inset-0 hidden h-full w-full object-cover lg:block"
             />
-            {/* 移动端：图片 */}
+            {/* 移动端：图片。lg 以上被 CSS 隐藏，但它与 <video> 的 poster 是同一个 URL
+                （videoProps.poster = slide.imagePath），所以这里的 preload 不会浪费流量，
+                反而顺带把桌面端的 poster 一起预加载了；lg 以下它就是可见的 LCP 图，同样需要立即加载。 */}
             <Image
               src={slide.imagePath}
               alt={slide.imageAlt}
               fill
               className={`${styles.image} lg:hidden`}
-              priority={isActive}
-              loading={isActive ? 'eager' : 'lazy'}
+              preload={isActive}
             />
           </>
         ) : slide.videoPath && !forceImageMode ? (
@@ -285,13 +308,14 @@ const CarouselImage = memo(
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : slide.imagePath ? (
+          // 纯图片轮播：激活项即首屏 LCP，用 preload 取代 Next 16 已弃用的 priority。
+          // 不传 loading：preload 已让激活项立即加载，其余项仍走默认的 lazy 分支。
           <Image
             src={slide.imagePath}
             alt={slide.imageAlt}
             fill
             className={styles.image}
-            priority={isActive}
-            loading={isActive ? 'eager' : 'lazy'}
+            preload={isActive}
           />
         ) : null}
         {/* 添加一个轻微的遮罩，确保文字可读性；可通过 showOverlay 关闭 */}
@@ -339,32 +363,43 @@ const TitleButton = memo(
           fontFeatureSettings: '"tnum"',
         }}
       >
-        {/* 文本内容 - Flex item - 右对齐 */}
-        <div className="min-w-0 flex-grow">
+        {/* 选中项自身就是一个"按钮"：白色从右向左渐变到透明（方向已翻转），
+            进度条内嵌在这个按钮的底边内部（绝对定位，不影响高度）。
+            px/py 对未选中项同样生效（只是没有背景色），所以切换时文字位置不跳动。 */}
+        <div
+          className={`relative min-w-0 flex-grow px-3 py-2.5 transition-colors duration-300 ${
+            isActive ? 'bg-gradient-to-l from-white/40 to-transparent dark:from-white/10' : ''
+          }`}
+        >
           <h3
             className={`truncate transition-colors duration-300 ${
               isActive
-                ? 'text-primary-500'
+                ? 'font-semibold text-primary-600 dark:text-primary-300'
                 : 'text-neutral-600 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-neutral-50'
             }`}
           >
             {slideItem.title}
           </h3>
-        </div>
 
-        {/* 竖向进度条指示器 - 覆盖在父容器边框上 */}
-        {isActive && showProgress && (
-          <div className="absolute top-0 right-0 bottom-0 w-px overflow-hidden">
-            <div
-              key={progressKey}
-              className="absolute top-0 left-0 w-full bg-primary-500"
-              style={{
-                height: '100%',
-                animation: isPlaying ? `verticalProgressBar ${interval}ms linear` : 'none',
-              }}
-            />
-          </div>
-        )}
+          {/* 按钮内部底边的 1px 进度条：蓝色填充按 interval 匀速走满，
+              一眼能看出"距下一张还有多久"。只有选中项需要它（其它项没有进度可言）。
+              动画走 transform: scaleX（配合 origin-left），只触发合成，不逐帧回流水；
+              不要改回 width 动画——那会让整个标题区在 8 秒里持续 layout。
+              动画名必须由 animate-progress-bar 类引用——只写内联 animation 的话，
+              dev 下 CSS 侧看不到引用关系，@keyframes 会被当成未使用符号删掉。 */}
+          {isActive && showProgress && (
+            <div className="absolute right-0 bottom-0 left-0 h-px overflow-hidden bg-neutral-300 dark:bg-neutral-700">
+              <div
+                key={progressKey}
+                className="h-full w-full origin-left animate-progress-bar bg-primary-500"
+                style={{
+                  animationDuration: `${interval}ms`,
+                  animationPlayState: isPlaying ? 'running' : 'paused',
+                }}
+              />
+            </div>
+          )}
+        </div>
       </button>
     )
   }
@@ -437,6 +472,9 @@ const Carousel = memo(function Carousel({
    */
   const navigate = useCallback(
     (direction: 'next' | 'prev' | number) => {
+      // 无数据时不导航：否则 total 为 0 会算出 NaN，进而让 slides[active] 变为 undefined
+      if (slides.length === 0) return
+
       setActive((prev) => {
         const total = slides.length
         if (typeof direction === 'number') {
@@ -492,6 +530,12 @@ const Carousel = memo(function Carousel({
     }
     prevPlayingRef.current = isPlaying
   }, [isPlaying])
+
+  // 数据源变化（例如调用方把 slides 换成更短的数组）后把 active 收敛回有效范围，
+  // 否则 slides[active] 为 undefined，下方的文案渲染会直接抛错
+  useEffect(() => {
+    setActive((prev) => (slides.length === 0 ? 0 : Math.min(prev, slides.length - 1)))
+  }, [slides.length])
 
   // 合并的定时器管理
   useEffect(() => {
@@ -551,6 +595,9 @@ const Carousel = memo(function Carousel({
   }, [navigate, minSwipeDistance])
 
   const currentSlide = slides[active]
+  // 没有可渲染的数据时直接退出，避免下方访问 currentSlide.* 抛错（空数组或索引越界）
+  if (!currentSlide) return null
+
   const isDark = theme === 'dark'
   const primaryBtnClass = textModeButton
     ? 'inline-flex items-center gap-2 text-sm font-medium text-primary-500 hover:text-primary-600 transition-colors'
@@ -558,6 +605,11 @@ const Carousel = memo(function Carousel({
   const secondaryBtnClass = textModeButton
     ? 'inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-neutral-700 transition-colors'
     : styles.secondaryButton
+  // 文案与链接同时存在才渲染次级按钮：否则会渲染出 href="#"、target="_blank" 的死链接
+  // （点击后新开一个空白标签页），如 /cdn、/ssl、/ecommerce 的数据即属此列
+  const hasSecondaryButton = Boolean(
+    currentSlide.secondaryButtonText && currentSlide.secondaryButtonHref
+  )
 
   return (
     <div className="relative">
@@ -648,7 +700,11 @@ const Carousel = memo(function Carousel({
                   href={currentSlide.primaryButtonHref || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={clsx(primaryBtnClass, 'max-w-[50%] flex-1 sm:max-w-none sm:flex-none')}
+                  className={clsx(
+                    primaryBtnClass,
+                    // 只有存在次级按钮时才平分宽度，否则单个按钮会被 max-w-[50%] 压成半宽
+                    hasSecondaryButton && 'max-w-[50%] flex-1 sm:max-w-none sm:flex-none'
+                  )}
                 >
                   <svg
                     className="mr-2 h-4 w-4 sm:h-5 sm:w-5"
@@ -666,30 +722,32 @@ const Carousel = memo(function Carousel({
                   {currentSlide.primaryButtonText}
                 </a>
 
-                <a
-                  href={currentSlide.secondaryButtonHref || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={clsx(
-                    secondaryBtnClass,
-                    'max-w-[50%] flex-1 sm:max-w-none sm:flex-none'
-                  )}
-                >
-                  <svg
-                    className="mr-2 h-4 w-4 sm:h-5 sm:w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                {hasSecondaryButton && (
+                  <a
+                    href={currentSlide.secondaryButtonHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={clsx(
+                      secondaryBtnClass,
+                      'max-w-[50%] flex-1 sm:max-w-none sm:flex-none'
+                    )}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                  {currentSlide.secondaryButtonText || '立即购买'}
-                </a>
+                    <svg
+                      className="mr-2 h-4 w-4 sm:h-5 sm:w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      />
+                    </svg>
+                    {currentSlide.secondaryButtonText}
+                  </a>
+                )}
               </div>
 
               {/* 播放/暂停按钮（可选，默认不显示） */}

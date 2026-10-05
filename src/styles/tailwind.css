@@ -114,6 +114,8 @@
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
   --color-ai-accent: #4b14ff;
+  /* 装饰科技青：ProductTraits 标题渐变的起点色（原为该文件内硬编码） */
+  --color-tech-cyan: #00a2ed;
 
   /* ================================================================
      Neutral Color Scale — Based on reference design palette
@@ -164,6 +166,11 @@
   --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
   --animate-slide-up: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   --animate-fade-in: fade-in 0.4s ease-out;
+  /* 轮播进度条：时长只是占位，组件会用内联 animation-duration 覆盖成真实的 interval。
+     这个令牌存在的意义是让 Tailwind 知道 progressBar 被引用了——
+     若只用内联 animation 引用动画名，CSS 侧看不到引用关系，
+     Turbopack/LightningCSS 会把 @keyframes 当成未使用符号整段删掉（dev 实测就是这样）。 */
+  --animate-progress-bar: progressBar 8s linear;
 
   @keyframes scan {
     0% {
@@ -219,21 +226,14 @@
     }
   }
 
+  /* 由 --animate-progress-bar 引用后才会进入产物（组件用 animate-progress-bar 类触发）。
+     用 transform: scaleX 而不是 width：只走合成器，避免 8 秒内持续触发 layout/paint。 */
   @keyframes progressBar {
     0% {
-      width: 0%;
+      transform: scaleX(0);
     }
     100% {
-      width: 100%;
-    }
-  }
-
-  @keyframes verticalProgressBar {
-    0% {
-      height: 0%;
-    }
-    100% {
-      height: 100%;
+      transform: scaleX(1);
     }
   }
 }
@@ -261,53 +261,12 @@
     @apply border border-white/30 bg-white/90 shadow-md backdrop-blur-2xl;
   }
 
-  /* ---- Glow Border — blue glow on hover ---- */
-  .glow-border {
-    @apply transition-all duration-300;
-    box-shadow: 0 0 0 0 rgba(0, 85, 255, 0);
-  }
-  .glow-border:hover {
-    box-shadow:
-      0 0 0 1px rgba(0, 85, 255, 0.15),
-      0 0 40px -12px rgba(0, 85, 255, 0.12);
-    border-color: rgba(0, 85, 255, 0.25);
-  }
-
-  /* ---- Standard section gradient backgrounds ---- */
-  .section-gradient-light {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
-  }
-
-  .section-gradient-brand {
-    background: linear-gradient(180deg, #ffffff 0%, #eff6ff 40%, #ffffff 100%);
-  }
-
   /* ---- Base card ---- */
   .card-base {
     background-color: white;
     border: 1px solid var(--color-neutral-200);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
-  }
-
-  .card-interactive {
-    background-color: white;
-    border: 1px solid var(--color-neutral-200);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-  }
-  .card-interactive:hover {
-    border-color: var(--color-brand-200);
-    box-shadow:
-      0 0 0 1px rgba(0, 85, 255, 0.08),
-      0 10px 25px -5px rgba(0, 0, 0, 0.06);
-  }
-  .card-interactive.is-active {
-    border-color: var(--color-brand-300);
-    box-shadow:
-      0 0 0 1px rgba(0, 85, 255, 0.12),
-      0 0 30px -8px rgba(0, 85, 255, 0.12);
   }
 
   /* ---- Bento card (sharp variant) ---- */
