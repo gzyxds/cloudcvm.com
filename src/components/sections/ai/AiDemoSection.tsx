@@ -13,9 +13,9 @@ export interface AiDemoAccount {
 }
 
 /**
- * 「在线演示」区块（paper / chat 共用）。
+ * 「在线演示」区块（work / paper / chat 共用）。
  *
- * 2026-10-05 自两页同模板内联实现收敛：账号数据、标题、描述、演示图与
+ * 2026-10-05 自三页同模板内联实现收敛：账号数据、标题、描述、演示图与
  * CTA 链接经 props 传入。原 chat 页演示图带 Next 16 已弃用的 `priority`，
  * 该图位于文字区之下（非 LCP），收敛时移除（同台账 P-07 决策）。
  */
@@ -27,6 +27,7 @@ export function AiDemoSection({
   imageCaption,
   applyHref,
   contactHref,
+  imageCardClassName = 'bg-white p-4 shadow-lg sm:p-6',
 }: {
   accounts: AiDemoAccount[]
   /** 标题行（如「艺创AI-论文创作」） */
@@ -36,6 +37,8 @@ export function AiDemoSection({
   imageCaption: { title: string; desc: string }
   applyHref: string
   contactHref: string
+  /** 演示图卡片外观（work 页传带边框变体） */
+  imageCardClassName?: string
 }): JSX.Element {
   return (
     <section className="relative overflow-hidden bg-neutral-50 py-16 sm:py-20">
@@ -126,7 +129,7 @@ export function AiDemoSection({
           <div className="order-1 flex w-full justify-center lg:order-2 lg:w-1/2">
             <div className="relative w-full max-w-md lg:max-w-none">
               {/* 主要演示图片 */}
-              <div className="bg-white p-4 shadow-lg sm:p-6">
+              <div className={imageCardClassName}>
                 <Image
                   src={image.src}
                   alt={image.alt}

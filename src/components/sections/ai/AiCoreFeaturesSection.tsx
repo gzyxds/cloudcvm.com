@@ -8,15 +8,18 @@ export interface AiCoreFeature {
   name: string
   description: string
   icon: ComponentType<SVGProps<SVGSVGElement>>
-  image: string
+  image?: string
+  videoUrl?: string
   stats: { label: string; value: string }[]
 }
 
 /**
- * 「核心功能」左右交替展示区块（paper / chat 共用）。
+ * 「核心功能」左右交替展示区块（work / paper / chat / human 共用）。
  *
- * 2026-10-05 自两页同模板内联实现收敛：功能数据经 props 传入。
- * 两页媒体框样式略异（chat 带边框+内边距），经 mediaClassName 保持原视觉。
+ * 2026-10-05 自四页同模板内联实现收敛：功能数据经 props 传入；
+ * 有 videoUrl 的功能项渲染手动播放视频（controls + preload="none" + poster，
+ * 点击播放前不下载视频字节），否则渲染图片。
+ * 媒体框样式略异（chat 带边框+内边距），经 mediaClassName 保持原视觉。
  */
 export function AiCoreFeaturesSection({
   features,
@@ -168,13 +171,26 @@ export function AiCoreFeaturesSection({
                     <div
                       className={`aspect-video overflow-hidden rounded-lg bg-neutral-100 ${mediaClassName}`}
                     >
-                      <Image
-                        src={feature.image}
-                        alt={`${feature.name}功能演示`}
-                        width={600}
-                        height={400}
-                        className="h-full w-full object-cover"
-                      />
+                      {feature.videoUrl ? (
+                        <video
+                          src={feature.videoUrl}
+                          controls
+                          preload="none"
+                          poster={feature.image}
+                          loop
+                          className="h-full w-full object-cover"
+                        >
+                          您的浏览器不支持视频播放。
+                        </video>
+                      ) : feature.image ? (
+                        <Image
+                          src={feature.image}
+                          alt={`${feature.name}功能演示`}
+                          width={600}
+                          height={400}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : null}
                     </div>
                   </div>
                 </div>

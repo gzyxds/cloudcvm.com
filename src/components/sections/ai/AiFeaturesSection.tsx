@@ -11,28 +11,30 @@ export interface AiFeatureCard {
 }
 
 /**
- * 「功能特色」区块（paper / chat 共用）。
+ * 「功能特色」区块（work / paper / chat 共用）。
  *
- * 2026-10-05 自两页逐字重复的内联实现收敛：两页模板唯一差异是卡片圆角
- * （paper rounded-xl / chat rounded-md），经 `roundedClass` 传入保持原视觉。
+ * 2026-10-05 自三页同模板内联实现收敛：标题/描述与卡片数据经 props 传入；
+ * 卡片圆角差异（rounded-xl / rounded-md）经 `roundedClass` 传入保持原视觉。
  */
 export function AiFeaturesSection({
   cards,
   roundedClass = 'rounded-md',
+  title = '功能特色',
+  description = '提供智能助手、内容创作、虚拟直播、AI对话等多维度的功能，满足不同行业的业务需求。',
 }: {
   cards: AiFeatureCard[]
   roundedClass?: 'rounded-xl' | 'rounded-md'
+  title?: string
+  description?: string
 }): JSX.Element {
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="mb-12 text-center lg:mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-            功能特色
+            {title}
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-neutral-600">
-            提供智能助手、内容创作、虚拟直播、AI对话等多维度的功能，满足不同行业的业务需求。
-          </p>
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-neutral-600">{description}</p>
         </div>
         <ul role="list" className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 xl:gap-x-8">
           {cards.map((feature) => {
