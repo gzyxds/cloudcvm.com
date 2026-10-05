@@ -130,22 +130,25 @@ function EcommerceFeatureTabs() {
   const currentFeature = ecommerceFeatures[activeTab as keyof typeof ecommerceFeatures]
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24" style={{ backgroundColor: '#F8FAFC' }}>
+    <section
+      className="py-12 sm:py-16 md:py-20 lg:py-24"
+      style={{ backgroundColor: 'var(--color-neutral-50)' }}
+    >
       <div className="mx-auto max-w-[1800px] px-3 lg:px-4">
         {/* 标题区域 */}
         <div className="mb-8 text-center sm:mb-12 md:mb-16 lg:mb-20">
-          <div className="mb-4 inline-block rounded-full border border-slate-200 bg-white px-3 py-2 sm:mb-6 sm:px-4 md:mb-8">
-            <span className="text-xs font-semibold tracking-wide text-[#0055ff] sm:text-sm">
+          <div className="mb-4 inline-block rounded-full border border-neutral-200 bg-white px-3 py-2 sm:mb-6 sm:px-4 md:mb-8">
+            <span className="text-xs font-semibold tracking-wide text-brand-500 sm:text-sm">
               电商系统功能展示
             </span>
           </div>
           <h2
             className="mb-3 px-2 text-2xl font-bold sm:mb-4 sm:text-3xl md:mb-6 md:text-4xl lg:text-5xl"
-            style={{ color: '#0055ff' }}
+            style={{ color: 'var(--color-brand-500)' }}
           >
             你可以用电商系统做什么？
           </h2>
-          <p className="mx-auto max-w-3xl px-2 text-base leading-relaxed text-slate-600 sm:text-lg md:text-xl">
+          <p className="mx-auto max-w-3xl px-2 text-base leading-relaxed text-neutral-600 sm:text-lg md:text-xl">
             探索电商系统在不同场景的强大应用，让智能电商平台为你的业务发展赋能
           </p>
         </div>
@@ -168,8 +171,8 @@ function EcommerceFeatureTabs() {
                     }}
                     className={`flex flex-shrink-0 touch-manipulation items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 ${
                       activeTab === feature.id
-                        ? 'bg-[#0055ff] text-white shadow-md'
-                        : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        ? 'bg-brand-500 text-white shadow-md'
+                        : 'border border-neutral-200 bg-white text-neutral-600 hover:bg-neutral-50'
                     }`}
                     style={{
                       WebkitTapHighlightColor: 'transparent',
@@ -195,8 +198,8 @@ function EcommerceFeatureTabs() {
                   onClick={() => setActiveTab(feature.id)}
                   className={`flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 lg:px-6 lg:py-3 lg:text-base ${
                     activeTab === feature.id
-                      ? 'bg-[#0055ff]/5 text-[#0055ff] ring-1 ring-[#0055ff]'
-                      : 'text-slate-600 hover:bg-[#0055ff]/5 hover:text-[#0055ff]'
+                      ? 'bg-brand-500/5 text-brand-500 ring-1 ring-brand-500'
+                      : 'text-neutral-600 hover:bg-brand-500/5 hover:text-brand-500'
                   }`}
                 >
                   <IconComponent className="h-4 w-4 lg:h-5 lg:w-5" />
@@ -210,17 +213,17 @@ function EcommerceFeatureTabs() {
         {/* 标签内容区域 */}
         <div className="grid grid-cols-1 gap-4">
           <div className="transition-all duration-300 ease-out">
-            <div className="flex min-h-[300px] flex-col items-center gap-6 rounded-md border border-slate-200 bg-white p-4 shadow-sm sm:min-h-[400px] sm:p-6 md:min-h-[500px] md:gap-8 md:p-8 lg:min-h-[600px] lg:flex-row lg:gap-12 lg:p-12 xl:gap-20">
+            <div className="flex min-h-[300px] flex-col items-center gap-6 rounded-md border border-neutral-200 bg-white p-4 shadow-sm sm:min-h-[400px] sm:p-6 md:min-h-[500px] md:gap-8 md:p-8 lg:min-h-[600px] lg:flex-row lg:gap-12 lg:p-12 xl:gap-20">
               {/* 左侧文字内容 */}
               <div className="order-2 flex w-full flex-col justify-center space-y-4 sm:space-y-6 md:space-y-8 lg:order-1 lg:w-2/5">
                 <h3
-                  className="text-lg leading-tight font-semibold text-slate-900 sm:text-xl md:text-2xl lg:text-3xl"
+                  className="text-lg leading-tight font-semibold text-neutral-900 sm:text-xl md:text-2xl lg:text-3xl"
                   style={{ lineHeight: '1.3' }}
                 >
                   {currentFeature.title}
                 </h3>
                 <p
-                  className="text-sm leading-relaxed text-slate-600 sm:text-base md:text-lg"
+                  className="text-sm leading-relaxed text-neutral-600 sm:text-base md:text-lg"
                   style={{ lineHeight: '1.6' }}
                 >
                   {currentFeature.description}
@@ -228,24 +231,24 @@ function EcommerceFeatureTabs() {
                 <div className="space-y-3 sm:space-y-4 md:space-y-6">
                   {currentFeature.features.map((item, index) => (
                     <div key={index} className="flex items-start gap-2 sm:gap-3 md:gap-4">
-                      <div className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-[#0055ff] sm:mt-2"></div>
+                      <div className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand-500 sm:mt-2"></div>
                       <span
-                        className="text-sm leading-relaxed text-slate-700 sm:text-base md:text-lg"
+                        className="text-sm leading-relaxed text-neutral-700 sm:text-base md:text-lg"
                         style={{ lineHeight: '1.6' }}
                       >
-                        <strong className="font-medium text-slate-900">{item.name}</strong>：
+                        <strong className="font-medium text-neutral-900">{item.name}</strong>：
                         {item.desc}
                       </span>
                     </div>
                   ))}
                 </div>
-                <div className="text-xs text-slate-500 sm:text-sm">
+                <div className="text-xs text-neutral-500 sm:text-sm">
                   相关服务：{currentFeature.model}
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-all duration-200 hover:bg-slate-50 hover:text-slate-900 sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
+                    className="inline-flex items-center justify-center rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-all duration-200 hover:bg-neutral-50 hover:text-neutral-900 sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
                   >
                     查看详情
                     <svg
@@ -264,7 +267,7 @@ function EcommerceFeatureTabs() {
                   </button>
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-lg bg-[#0055ff] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-[#0043cc] hover:shadow-lg hover:shadow-[#0055ff]/20 sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
+                    className="inline-flex items-center justify-center rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 sm:px-6 sm:py-3 md:px-8 md:py-4 md:text-base"
                   >
                     立即体验
                     <svg
@@ -287,16 +290,16 @@ function EcommerceFeatureTabs() {
               <div className="order-1 mt-6 hidden w-full items-center justify-center lg:order-2 lg:mt-0 lg:flex lg:w-3/5 lg:justify-end">
                 <div className="h-48 w-full max-w-xs sm:h-60 sm:max-w-md md:h-80 md:max-w-xl lg:h-[28rem] lg:max-w-2xl xl:h-[32rem] xl:max-w-3xl">
                   {/* 模拟界面容器 */}
-                  <div className="h-full w-full overflow-hidden rounded-md border border-slate-200 bg-white/80 shadow-lg backdrop-blur-sm">
+                  <div className="h-full w-full overflow-hidden rounded-md border border-neutral-200 bg-white/80 shadow-lg backdrop-blur-sm">
                     {/* 模拟界面头部 */}
-                    <div className="border-b border-slate-200 bg-slate-50 px-3 py-2 sm:px-4 sm:py-3">
+                    <div className="border-b border-neutral-200 bg-neutral-50 px-3 py-2 sm:px-4 sm:py-3">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
                           <div className="h-2 w-2 rounded-full bg-red-400 sm:h-3 sm:w-3"></div>
                           <div className="h-2 w-2 rounded-full bg-yellow-400 sm:h-3 sm:w-3"></div>
                           <div className="h-2 w-2 rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
                         </div>
-                        <div className="text-xs font-medium text-slate-500 sm:text-sm">
+                        <div className="text-xs font-medium text-neutral-500 sm:text-sm">
                           {currentFeature.model}
                         </div>
                       </div>
@@ -305,11 +308,11 @@ function EcommerceFeatureTabs() {
                     {/* 模拟界面内容 */}
                     <div className="space-y-3 p-3 sm:space-y-4 sm:p-4 md:space-y-6 md:p-6">
                       {/* 标题栏 */}
-                      <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                        <h4 className="text-sm font-semibold text-slate-800 sm:text-base md:text-lg">
+                      <div className="flex items-center justify-between border-b border-neutral-100 pb-2">
+                        <h4 className="text-sm font-semibold text-neutral-800 sm:text-base md:text-lg">
                           {currentFeature.name}
                         </h4>
-                        <div className="h-4 w-4 rounded bg-[#0055ff] sm:h-5 sm:w-5"></div>
+                        <div className="h-4 w-4 rounded bg-brand-500 sm:h-5 sm:w-5"></div>
                       </div>
 
                       {/* 功能模块 */}
@@ -317,11 +320,11 @@ function EcommerceFeatureTabs() {
                         {currentFeature.features.map((item, index) => (
                           <div
                             key={index}
-                            className="flex items-center justify-between rounded-lg bg-slate-50 p-2 sm:p-3"
+                            className="flex items-center justify-between rounded-lg bg-neutral-50 p-2 sm:p-3"
                           >
                             <div className="flex items-center space-x-2 sm:space-x-3">
-                              <div className="h-2 w-2 rounded-full bg-[#0055ff] sm:h-3 sm:w-3"></div>
-                              <span className="text-xs font-medium text-slate-700 sm:text-sm md:text-base">
+                              <div className="h-2 w-2 rounded-full bg-brand-500 sm:h-3 sm:w-3"></div>
+                              <span className="text-xs font-medium text-neutral-700 sm:text-sm md:text-base">
                                 {item.name}
                               </span>
                             </div>
@@ -333,12 +336,12 @@ function EcommerceFeatureTabs() {
                       </div>
 
                       {/* 状态栏 */}
-                      <div className="flex items-center justify-between border-t border-slate-100 pt-2 sm:pt-3">
+                      <div className="flex items-center justify-between border-t border-neutral-100 pt-2 sm:pt-3">
                         <div className="flex items-center space-x-1 sm:space-x-2">
                           <div className="h-2 w-2 animate-pulse rounded-full bg-green-400 sm:h-3 sm:w-3"></div>
-                          <span className="text-xs text-slate-600 sm:text-sm">运行中</span>
+                          <span className="text-xs text-neutral-600 sm:text-sm">运行中</span>
                         </div>
-                        <div className="text-xs text-slate-400 sm:text-sm">系统状态正常</div>
+                        <div className="text-xs text-neutral-400 sm:text-sm">系统状态正常</div>
                       </div>
                     </div>
                   </div>
@@ -665,10 +668,10 @@ export default function EcommercePage() {
         <section className="py-20">
           <Container>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
                 全方位电商解决方案
               </h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="mt-4 text-lg text-neutral-600">
                 多终端覆盖，全面功能支持，助力您的电商业务快速发展
               </p>
             </div>
@@ -676,13 +679,13 @@ export default function EcommercePage() {
               {coreFeatures.map((feature) => (
                 <div
                   key={feature.name}
-                  className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-4">
-                    <feature.icon className="h-8 w-8 text-[#0055ff]" aria-hidden="true" />
+                    <feature.icon className="h-8 w-8 text-brand-500" aria-hidden="true" />
                   </div>
-                  <h3 className="text-lg font-medium text-slate-900">{feature.name}</h3>
-                  <p className="mt-2 text-slate-600">{feature.description}</p>
+                  <h3 className="text-lg font-medium text-neutral-900">{feature.name}</h3>
+                  <p className="mt-2 text-neutral-600">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -690,13 +693,13 @@ export default function EcommercePage() {
         </section>
 
         {/* 系统功能 */}
-        <section className="bg-slate-50 py-20">
+        <section className="bg-neutral-50 py-20">
           <Container>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
                 系统功能加持，让运营更轻松
               </h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="mt-4 text-lg text-neutral-600">
                 追踪零售行业新趋势，跟进社交电商热门玩法，丰富营销功能加持
               </p>
             </div>
@@ -704,13 +707,13 @@ export default function EcommercePage() {
               {systemFeatures.map((feature) => (
                 <div
                   key={feature.title}
-                  className="group relative rounded-md border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-white p-8 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-6">
-                    <feature.icon className="h-10 w-10 text-[#0055ff]" aria-hidden="true" />
+                    <feature.icon className="h-10 w-10 text-brand-500" aria-hidden="true" />
                   </div>
-                  <h3 className="mb-3 text-xl font-medium text-slate-900">{feature.title}</h3>
-                  <p className="text-slate-600">{feature.description}</p>
+                  <h3 className="mb-3 text-xl font-medium text-neutral-900">{feature.title}</h3>
+                  <p className="text-neutral-600">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -721,8 +724,8 @@ export default function EcommercePage() {
         <section className="py-20">
           <Container>
             <div className="mx-auto mb-16 max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">全面功能支持</h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">全面功能支持</h2>
+              <p className="mt-4 text-lg text-neutral-600">
                 我们提供丰富多样的电商功能，满足您的各种业务需求
               </p>
             </div>
@@ -730,13 +733,13 @@ export default function EcommercePage() {
               {allFeatures.map((feature) => (
                 <div
                   key={feature.name}
-                  className="group relative rounded-md border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-neutral-50 p-6 transition-all duration-300 hover:border-brand-500/30 hover:bg-white hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-4">
-                    <feature.icon className="h-6 w-6 text-[#0055ff]" aria-hidden="true" />
+                    <feature.icon className="h-6 w-6 text-brand-500" aria-hidden="true" />
                   </div>
-                  <h3 className="mb-2 text-base font-medium text-slate-900">{feature.name}</h3>
-                  <p className="text-sm text-slate-600">{feature.description}</p>
+                  <h3 className="mb-2 text-base font-medium text-neutral-900">{feature.name}</h3>
+                  <p className="text-sm text-neutral-600">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -744,11 +747,13 @@ export default function EcommercePage() {
         </section>
 
         {/* 会员与分销系统 */}
-        <section className="bg-slate-50 py-20">
+        <section className="bg-neutral-50 py-20">
           <Container>
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">会员与分销系统</h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
+                会员与分销系统
+              </h2>
+              <p className="mt-4 text-lg text-neutral-600">
                 我们的会员与分销系统为您提供全面的客户关系管理和销售网络扩展解决方案，助力您的业务快速增长
               </p>
             </div>
@@ -756,13 +761,13 @@ export default function EcommercePage() {
               {membershipFeatures.map((feature) => (
                 <div
                   key={feature.name}
-                  className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-4">
-                    <feature.icon className="h-6 w-6 text-[#0055ff]" aria-hidden="true" />
+                    <feature.icon className="h-6 w-6 text-brand-500" aria-hidden="true" />
                   </div>
-                  <h3 className="mb-2 text-base font-medium text-slate-900">{feature.name}</h3>
-                  <p className="text-sm text-slate-600">{feature.description}</p>
+                  <h3 className="mb-2 text-base font-medium text-neutral-900">{feature.name}</h3>
+                  <p className="text-sm text-neutral-600">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -773,8 +778,8 @@ export default function EcommercePage() {
         <section className="py-20">
           <Container>
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">营销拓客工具</h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">营销拓客工具</h2>
+              <p className="mt-4 text-lg text-neutral-600">
                 多样化的营销工具，助力商家快速获客和提高销售转化率，为您的业务增长赋能
               </p>
             </div>
@@ -782,13 +787,13 @@ export default function EcommercePage() {
               {marketingTools.map((tool) => (
                 <div
                   key={tool.name}
-                  className="group relative rounded-md border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-neutral-50 p-6 transition-all duration-300 hover:border-brand-500/30 hover:bg-white hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-4">
-                    <tool.icon className="h-6 w-6 text-[#0055ff]" aria-hidden="true" />
+                    <tool.icon className="h-6 w-6 text-brand-500" aria-hidden="true" />
                   </div>
-                  <h3 className="mb-2 text-base font-medium text-slate-900">{tool.name}</h3>
-                  <p className="text-sm text-slate-600">{tool.description}</p>
+                  <h3 className="mb-2 text-base font-medium text-neutral-900">{tool.name}</h3>
+                  <p className="text-sm text-neutral-600">{tool.description}</p>
                 </div>
               ))}
             </div>
@@ -798,13 +803,13 @@ export default function EcommercePage() {
         {/* 电商系统核心功能展示 */}
         <EcommerceFeatureTabs />
         {/* 应用场景 */}
-        <section className="bg-slate-50 py-20">
+        <section className="bg-neutral-50 py-20">
           <Container>
             <div className="mx-auto mb-16 max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
                 满足多行业多场景应用需求
               </h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="mt-4 text-lg text-neutral-600">
                 支持多种行业类型，满足不同业务场景的个性化需求
               </p>
             </div>
@@ -812,13 +817,13 @@ export default function EcommercePage() {
               {applicationScenarios.map((scenario) => (
                 <div
                   key={scenario.title}
-                  className="group relative rounded-md border border-slate-200 bg-white p-6 text-center transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-white p-6 text-center transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-4 flex justify-center">
-                    <scenario.icon className="h-8 w-8 text-[#0055ff]" aria-hidden="true" />
+                    <scenario.icon className="h-8 w-8 text-brand-500" aria-hidden="true" />
                   </div>
-                  <h3 className="mb-2 text-lg font-medium text-slate-900">{scenario.title}</h3>
-                  <p className="text-sm text-slate-600">{scenario.description}</p>
+                  <h3 className="mb-2 text-lg font-medium text-neutral-900">{scenario.title}</h3>
+                  <p className="text-sm text-neutral-600">{scenario.description}</p>
                 </div>
               ))}
             </div>
@@ -829,10 +834,10 @@ export default function EcommercePage() {
         <section className="py-20">
           <Container>
             <div className="mx-auto mb-16 max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
                 采用最新前沿技术框架
               </h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="mt-4 text-lg text-neutral-600">
                 大势所趋，行业引领，使用成熟稳定的技术栈，保障系统可靠性和扩展性
               </p>
             </div>
@@ -840,15 +845,15 @@ export default function EcommercePage() {
               {techStack.map((tech, index) => (
                 <div
                   key={index}
-                  className="group relative rounded-md border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-neutral-50 p-6 transition-all duration-300 hover:border-brand-500/30 hover:bg-white hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-3">
-                    <span className="inline-block rounded-full border border-[#0055ff]/20 bg-[#0055ff]/5 px-3 py-1 text-xs font-medium text-[#0055ff]">
+                    <span className="inline-block rounded-full border border-brand-500/20 bg-brand-500/5 px-3 py-1 text-xs font-medium text-brand-500">
                       {tech.category}
                     </span>
                   </div>
-                  <h3 className="mb-2 text-lg font-medium text-slate-900">{tech.name}</h3>
-                  <p className="text-slate-600">{tech.description}</p>
+                  <h3 className="mb-2 text-lg font-medium text-neutral-900">{tech.name}</h3>
+                  <p className="text-neutral-600">{tech.description}</p>
                 </div>
               ))}
             </div>
@@ -856,13 +861,13 @@ export default function EcommercePage() {
         </section>
 
         {/* 二开优势 */}
-        <section className="bg-slate-50 py-20">
+        <section className="bg-neutral-50 py-20">
           <Container>
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
                 想你所想，让二开更简单
               </h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="mt-4 text-lg text-neutral-600">
                 从系统设计到技术实现，每一个细节都在考虑让二开更方便，减少重复造轮子
               </p>
             </div>
@@ -870,13 +875,13 @@ export default function EcommercePage() {
               {developmentAdvantages.map((advantage) => (
                 <div
                   key={advantage.name}
-                  className="group relative rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   <div className="mb-4">
-                    <advantage.icon className="h-6 w-6 text-[#0055ff]" aria-hidden="true" />
+                    <advantage.icon className="h-6 w-6 text-brand-500" aria-hidden="true" />
                   </div>
-                  <h3 className="mb-2 text-base font-medium text-slate-900">{advantage.name}</h3>
-                  <p className="text-sm text-slate-600">{advantage.description}</p>
+                  <h3 className="mb-2 text-base font-medium text-neutral-900">{advantage.name}</h3>
+                  <p className="text-sm text-neutral-600">{advantage.description}</p>
                 </div>
               ))}
             </div>
@@ -887,10 +892,10 @@ export default function EcommercePage() {
         <section className="py-20">
           <Container>
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="text-3xl font-semibold text-neutral-900 sm:text-4xl">
                 准备好开启您的电商之旅了吗？
               </h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="mt-4 text-lg text-neutral-600">
                 选择我们的新零售社交电商解决方案，让您的业务赢在起跑线上
               </p>
               <div className="mt-10 flex items-center justify-center gap-6">

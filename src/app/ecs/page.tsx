@@ -322,23 +322,25 @@ function ECSLeftrightSection() {
             <h2 className="mb-3 text-sm font-bold tracking-wide text-brand-600 uppercase">
               更快部署
             </h2>
-            <h3 className="mb-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h3 className="mb-6 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               云计算助力业务腾飞
             </h3>
-            <p className="mb-8 text-lg leading-relaxed text-gray-500">
+            <p className="mb-8 text-lg leading-relaxed text-neutral-500">
               借助云计算技术，轻松实现业务创新与数字化转型，提升企业竞争力。
             </p>
 
             <dl className="space-y-6">
               {leftRightFeatures.map((feature) => (
                 <div key={feature.name} className="group relative pl-10">
-                  <dt className="mb-1 block font-semibold text-gray-900">
+                  <dt className="mb-1 block font-semibold text-neutral-900">
                     <div className="absolute top-1 left-0 flex h-6 w-6 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white">
                       <feature.icon className="h-4 w-4" />
                     </div>
                     {feature.name}
                   </dt>
-                  <dd className="text-sm leading-relaxed text-gray-400">{feature.description}</dd>
+                  <dd className="text-sm leading-relaxed text-neutral-400">
+                    {feature.description}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -349,23 +351,23 @@ function ECSLeftrightSection() {
             {/* 装饰背景 */}
             <div className="absolute inset-0 -z-10 scale-105 rotate-3 transform rounded-2xl bg-gradient-to-tr from-brand-50 to-white opacity-50"></div>
 
-            <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl transition-shadow duration-500 hover:shadow-2xl">
+            <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl transition-shadow duration-500 hover:shadow-2xl">
               {/* 窗口头部 */}
-              <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50/50 px-4 py-3 backdrop-blur-sm">
+              <div className="flex items-center justify-between border-b border-neutral-100 bg-neutral-50/50 px-4 py-3 backdrop-blur-sm">
                 <div className="flex gap-2">
                   <div className="h-3 w-3 rounded-full border border-[#E0443E]/50 bg-[#FF5F56]"></div>
                   <div className="h-3 w-3 rounded-full border border-[#DEA123]/50 bg-[#FFBD2E]"></div>
                   <div className="h-3 w-3 rounded-full border border-[#1AAB29]/50 bg-[#27C93F]"></div>
                 </div>
-                <div className="font-mono text-[10px] text-gray-400">CONSOLE</div>
+                <div className="font-mono text-[10px] text-neutral-400">CONSOLE</div>
               </div>
 
               {/* 内容区域 */}
               <div className="p-6">
                 <div className="mb-6 flex items-center justify-between">
                   <div>
-                    <h4 className="text-lg font-bold text-gray-900">资源概览</h4>
-                    <p className="mt-1 text-xs text-gray-400">实时监控您的云端资产状态</p>
+                    <h4 className="text-lg font-bold text-neutral-900">资源概览</h4>
+                    <p className="mt-1 text-xs text-neutral-400">实时监控您的云端资产状态</p>
                   </div>
                   <span className="flex items-center gap-1.5 rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-600">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500"></span>
@@ -377,17 +379,21 @@ function ECSLeftrightSection() {
                   {leftRightFeatures.slice(0, 3).map((feature, idx) => (
                     <div
                       key={idx}
-                      className="group flex items-center gap-4 rounded-lg border border-gray-100 bg-gray-50/50 p-3 transition-all duration-300 hover:bg-white hover:shadow-md hover:ring-brand-500/30"
+                      className="group flex items-center gap-4 rounded-lg border border-neutral-100 bg-neutral-50/50 p-3 transition-all duration-300 hover:bg-white hover:shadow-md hover:ring-brand-500/30"
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-brand-600 transition-transform group-hover:scale-105">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-white text-brand-600 transition-transform group-hover:scale-105">
                         <feature.icon className="h-5 w-5" />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="mb-1 flex items-center justify-between">
-                          <span className="text-sm font-medium text-gray-900">{feature.name}</span>
-                          <span className="font-mono text-xs text-gray-400">{85 + idx * 5}%</span>
+                          <span className="text-sm font-medium text-neutral-900">
+                            {feature.name}
+                          </span>
+                          <span className="font-mono text-xs text-neutral-400">
+                            {85 + idx * 5}%
+                          </span>
                         </div>
-                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-200">
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-neutral-200">
                           <div
                             className="h-full rounded-full bg-brand-600 shadow-[0_0_10px_rgba(0,85,255,0.3)]"
                             style={{ width: `${85 + idx * 5}%` }}
@@ -399,7 +405,7 @@ function ECSLeftrightSection() {
                 </div>
 
                 {/* 底部状态栏 */}
-                <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-4 font-mono text-xs text-gray-400">
+                <div className="mt-6 flex items-center justify-between border-t border-neutral-100 pt-4 font-mono text-xs text-neutral-400">
                   <div className="flex gap-4">
                     <span>CPU: 24%</span>
                     <span>MEM: 4.2GB</span>
@@ -426,23 +432,23 @@ function ECSRightleftSection() {
             {/* 装饰背景 */}
             <div className="absolute inset-0 -z-10 scale-105 -rotate-3 transform rounded-2xl bg-gradient-to-tl from-brand-50 to-white opacity-50"></div>
 
-            <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl transition-shadow duration-500 hover:shadow-2xl">
+            <div className="relative overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl transition-shadow duration-500 hover:shadow-2xl">
               {/* 窗口头部 */}
-              <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50/50 px-4 py-3 backdrop-blur-sm">
+              <div className="flex items-center justify-between border-b border-neutral-100 bg-neutral-50/50 px-4 py-3 backdrop-blur-sm">
                 <div className="flex gap-2">
                   <div className="h-3 w-3 rounded-full border border-[#E0443E]/50 bg-[#FF5F56]"></div>
                   <div className="h-3 w-3 rounded-full border border-[#DEA123]/50 bg-[#FFBD2E]"></div>
                   <div className="h-3 w-3 rounded-full border border-[#1AAB29]/50 bg-[#27C93F]"></div>
                 </div>
-                <div className="font-mono text-[10px] text-gray-400">DEPLOY</div>
+                <div className="font-mono text-[10px] text-neutral-400">DEPLOY</div>
               </div>
 
               {/* 内容区域 - 部署列表 */}
               <div className="p-6">
                 <div className="mb-6 flex items-center justify-between">
                   <div>
-                    <h4 className="text-lg font-bold text-gray-900">部署中心</h4>
-                    <p className="mt-1 text-xs text-gray-400">自动化运维与持续集成</p>
+                    <h4 className="text-lg font-bold text-neutral-900">部署中心</h4>
+                    <p className="mt-1 text-xs text-neutral-400">自动化运维与持续集成</p>
                   </div>
                   <button className="rounded-lg bg-brand-600 px-3 py-1.5 text-xs text-white shadow-sm transition-colors hover:bg-brand-700 hover:shadow-md">
                     + 新建部署
@@ -453,7 +459,7 @@ function ECSRightleftSection() {
                   {rightLeftFeatures.slice(0, 3).map((feature, idx) => (
                     <div
                       key={idx}
-                      className="group flex items-start gap-4 rounded-lg border border-gray-100 bg-gray-50/50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md hover:ring-brand-500/30"
+                      className="group flex items-start gap-4 rounded-lg border border-neutral-100 bg-neutral-50/50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md hover:ring-brand-500/30"
                     >
                       <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 transition-transform group-hover:scale-110">
                         <svg
@@ -471,10 +477,14 @@ function ECSRightleftSection() {
                         </svg>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h5 className="mb-0.5 text-sm font-bold text-gray-900">{feature.name}</h5>
-                        <p className="line-clamp-1 text-xs text-gray-400">{feature.description}</p>
+                        <h5 className="mb-0.5 text-sm font-bold text-neutral-900">
+                          {feature.name}
+                        </h5>
+                        <p className="line-clamp-1 text-xs text-neutral-400">
+                          {feature.description}
+                        </p>
                       </div>
-                      <span className="rounded border border-gray-200 bg-white px-2 py-0.5 font-mono text-[10px] text-gray-400">
+                      <span className="rounded border border-neutral-200 bg-white px-2 py-0.5 font-mono text-[10px] text-neutral-400">
                         SUCCESS
                       </span>
                     </div>
@@ -482,7 +492,7 @@ function ECSRightleftSection() {
                 </div>
 
                 {/* 底部日志 */}
-                <div className="mt-6 rounded-lg border border-gray-200 bg-white p-3 font-mono text-[10px] leading-relaxed text-gray-400">
+                <div className="mt-6 rounded-lg border border-neutral-200 bg-white p-3 font-mono text-[10px] leading-relaxed text-neutral-400">
                   <p className="text-emerald-400">&gt; build success in 2.4s</p>
                   <p>&gt; deploying to production...</p>
                   <p className="animate-pulse">&gt; verifying health check...</p>
@@ -496,23 +506,25 @@ function ECSRightleftSection() {
             <h2 className="mb-3 text-sm font-bold tracking-wide text-brand-600 uppercase">
               高效运维
             </h2>
-            <h3 className="mb-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h3 className="mb-6 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               云计算为您的业务赋能
             </h3>
-            <p className="mb-8 text-lg leading-relaxed text-gray-500">
+            <p className="mb-8 text-lg leading-relaxed text-neutral-500">
               借助先进的云计算技术，轻松实现业务创新与数字化转型，大幅提升企业竞争力和运营效率。
             </p>
 
             <dl className="space-y-8">
               {rightLeftFeatures.map((feature) => (
                 <div key={feature.name} className="group relative pl-12">
-                  <dt className="mb-2 block text-lg font-bold text-gray-900">
+                  <dt className="mb-2 block text-lg font-bold text-neutral-900">
                     <div className="absolute top-1 left-0 flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600 shadow-sm transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white group-hover:shadow-md">
                       <feature.icon className="h-5 w-5" />
                     </div>
                     {feature.name}
                   </dt>
-                  <dd className="text-sm leading-relaxed text-gray-400">{feature.description}</dd>
+                  <dd className="text-sm leading-relaxed text-neutral-400">
+                    {feature.description}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -532,13 +544,13 @@ export default function Page() {
         <ECSVideoHero />
 
         {/* 产品展示区域 - Bento Grid 风格 */}
-        <section className="border-b border-gray-200 bg-white py-16 sm:py-24">
+        <section className="border-b border-neutral-200 bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
-              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
                 云服务器产品
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-neutral-600">
                 高性能、高可用的云服务器，满足您的各种业务需求
               </p>
             </div>
@@ -547,17 +559,17 @@ export default function Page() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-black/[0.04] hover:ring-brand-500/30"
+                  className="group relative flex flex-col overflow-hidden rounded-xl bg-white ring-1 ring-neutral-950/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-neutral-950/[0.04] hover:ring-brand-500/30"
                 >
                   {/* 悬停时的微弱背景渐变装饰 */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   {/* 产品头部 */}
-                  <div className="relative z-10 border-b border-gray-200 bg-gray-50/50 p-4">
+                  <div className="relative z-10 border-b border-neutral-200 bg-neutral-50/50 p-4">
                     <div className="mb-2 flex items-start justify-between">
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-900">{product.name}</h3>
-                        <p className="text-xs text-gray-400">{product.subtitle}</p>
+                        <h3 className="text-sm font-semibold text-neutral-900">{product.name}</h3>
+                        <p className="text-xs text-neutral-400">{product.subtitle}</p>
                       </div>
                       {product.isHot && (
                         <div className="flex items-center space-x-1">
@@ -581,42 +593,42 @@ export default function Page() {
                   {/* 产品规格 */}
                   <div className="relative z-10 flex-1 space-y-3 p-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">CPU</span>
-                      <span className="font-mono text-sm font-medium text-gray-900">
+                      <span className="text-sm text-neutral-400">CPU</span>
+                      <span className="font-mono text-sm font-medium text-neutral-900">
                         {product.specs.cpu}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">内存</span>
-                      <span className="font-mono text-sm font-medium text-gray-900">
+                      <span className="text-sm text-neutral-400">内存</span>
+                      <span className="font-mono text-sm font-medium text-neutral-900">
                         {product.specs.memory}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">存储</span>
-                      <span className="font-mono text-sm font-medium text-gray-900">
+                      <span className="text-sm text-neutral-400">存储</span>
+                      <span className="font-mono text-sm font-medium text-neutral-900">
                         {product.specs.storage}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">带宽</span>
-                      <span className="font-mono text-sm font-medium text-gray-900">
+                      <span className="text-sm text-neutral-400">带宽</span>
+                      <span className="font-mono text-sm font-medium text-neutral-900">
                         {product.specs.bandwidth}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">地域</span>
-                      <span className="text-sm text-gray-900">{product.regions.join('/')}</span>
+                      <span className="text-sm text-neutral-400">地域</span>
+                      <span className="text-sm text-neutral-900">{product.regions.join('/')}</span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">时长</span>
+                      <span className="text-sm text-neutral-400">时长</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-900">{product.duration}</span>
+                        <span className="text-sm text-neutral-900">{product.duration}</span>
                         <span className="border border-red-200 bg-red-50 px-1 py-0.5 font-mono text-[10px] text-red-600">
                           {product.discount}
                         </span>
@@ -624,13 +636,15 @@ export default function Page() {
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">数量</span>
+                      <span className="text-sm text-neutral-400">数量</span>
                       <div className="flex items-center gap-2">
-                        <button className="flex h-6 w-6 items-center justify-center rounded border border-gray-200 text-gray-400 transition-colors hover:border-brand-600 hover:bg-brand-50 hover:text-brand-600">
+                        <button className="flex h-6 w-6 items-center justify-center rounded border border-neutral-200 text-neutral-400 transition-colors hover:border-brand-600 hover:bg-brand-50 hover:text-brand-600">
                           −
                         </button>
-                        <span className="w-8 text-center font-mono text-sm text-gray-900">1</span>
-                        <button className="flex h-6 w-6 items-center justify-center rounded border border-gray-200 text-gray-400 transition-colors hover:border-brand-600 hover:bg-brand-50 hover:text-brand-600">
+                        <span className="w-8 text-center font-mono text-sm text-neutral-900">
+                          1
+                        </span>
+                        <button className="flex h-6 w-6 items-center justify-center rounded border border-neutral-200 text-neutral-400 transition-colors hover:border-brand-600 hover:bg-brand-50 hover:text-brand-600">
                           +
                         </button>
                       </div>
@@ -638,30 +652,30 @@ export default function Page() {
                   </div>
 
                   {/* 价格和折扣信息 */}
-                  <div className="relative z-10 border-t border-gray-100 p-4">
+                  <div className="relative z-10 border-t border-neutral-100 p-4">
                     {product.discount && (
                       <div className="mb-2 flex items-center gap-2">
                         <span className="border border-red-200 bg-red-50 px-2 py-1 font-mono text-xs text-red-600">
                           {product.discount}
                         </span>
-                        <span className="text-xs text-gray-400">限1个</span>
+                        <span className="text-xs text-neutral-400">限1个</span>
                       </div>
                     )}
 
                     <div className="mb-3">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-sm text-gray-400">活动价:</span>
+                        <span className="text-sm text-neutral-400">活动价:</span>
                         <span className="font-mono text-2xl font-bold text-red-600">
                           {product.currentPrice}
                         </span>
-                        <span className="text-sm text-gray-400">元</span>
-                        <span className="font-mono text-xs text-gray-400 line-through">
+                        <span className="text-sm text-neutral-400">元</span>
+                        <span className="font-mono text-xs text-neutral-400 line-through">
                           {formatPriceWithDecimals(product.originalPrice)}/月
                         </span>
                       </div>
                       <div className="mt-1 flex items-center gap-2">
-                        <span className="text-sm text-gray-400">日常价:</span>
-                        <span className="font-mono text-sm text-gray-400">
+                        <span className="text-sm text-neutral-400">日常价:</span>
+                        <span className="font-mono text-sm text-neutral-400">
                           {product.originalPrice} 元
                         </span>
                       </div>
@@ -697,28 +711,32 @@ export default function Page() {
         <ECSRightleftSection />
 
         {/* 产品优势卡片网格 - Bento Grid 风格 */}
-        <section className="border-b border-gray-200 bg-gray-50 py-16 sm:py-24">
+        <section className="border-b border-neutral-200 bg-neutral-50 py-16 sm:py-24">
           <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
-              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
                 产品优势
               </h2>
-              <p className="text-lg text-gray-600">专业云服务器，为您的业务提供全方位保障</p>
+              <p className="text-lg text-neutral-600">专业云服务器，为您的业务提供全方位保障</p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {productAdvantages.map((advantage) => (
                 <div
                   key={advantage.name}
-                  className="group relative flex h-full flex-col rounded-xl bg-white p-6 ring-1 ring-black/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-black/[0.04] hover:ring-brand-500/30"
+                  className="group relative flex h-full flex-col rounded-xl bg-white p-6 ring-1 ring-neutral-950/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-neutral-950/[0.04] hover:ring-brand-500/30"
                 >
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="relative z-10">
                     <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors duration-300 group-hover:bg-brand-600 group-hover:text-white">
                       <advantage.icon className="h-6 w-6" aria-hidden="true" />
                     </div>
-                    <h3 className="mb-3 text-lg font-semibold text-gray-900">{advantage.name}</h3>
-                    <p className="text-sm leading-relaxed text-gray-500">{advantage.description}</p>
+                    <h3 className="mb-3 text-lg font-semibold text-neutral-900">
+                      {advantage.name}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-neutral-500">
+                      {advantage.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -727,10 +745,10 @@ export default function Page() {
         </section>
 
         {/* 优势对比表格 - Bento Grid 风格 */}
-        <section className="border-b border-gray-200 bg-white py-16 sm:py-24">
+        <section className="border-b border-neutral-200 bg-white py-16 sm:py-24">
           <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
-              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
                 优势对比
               </h2>
             </div>
@@ -777,10 +795,10 @@ export default function Page() {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-black/[0.04] hover:ring-brand-500/30"
+                  className="group relative overflow-hidden rounded-xl bg-white ring-1 ring-neutral-950/[0.06] transition-all duration-300 hover:shadow-lg hover:shadow-neutral-950/[0.04] hover:ring-brand-500/30"
                 >
-                  <div className="border-b border-gray-200 bg-gray-50/50 px-4 py-3">
-                    <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                  <div className="border-b border-neutral-200 bg-neutral-50/50 px-4 py-3">
+                    <h3 className="text-lg font-semibold text-neutral-900">{item.title}</h3>
                   </div>
                   <div className="space-y-3 p-4">
                     <div className="border border-brand-600/20 bg-brand-50 px-3 py-3">
@@ -790,17 +808,17 @@ export default function Page() {
                       <div className="text-sm text-brand-600">{item.ours}</div>
                     </div>
                     <div className="flex space-x-3">
-                      <div className="flex-1 border border-gray-200 bg-gray-50 px-3 py-3">
-                        <div className="mb-1 text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                      <div className="flex-1 border border-neutral-200 bg-neutral-50 px-3 py-3">
+                        <div className="mb-1 text-[10px] font-semibold tracking-wider text-neutral-400 uppercase">
                           其他云
                         </div>
-                        <div className="text-xs text-gray-400">{item.other}</div>
+                        <div className="text-xs text-neutral-400">{item.other}</div>
                       </div>
-                      <div className="flex-1 border border-gray-200 bg-gray-50 px-3 py-3">
-                        <div className="mb-1 text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                      <div className="flex-1 border border-neutral-200 bg-neutral-50 px-3 py-3">
+                        <div className="mb-1 text-[10px] font-semibold tracking-wider text-neutral-400 uppercase">
                           传统服务器
                         </div>
-                        <div className="text-xs text-gray-400">{item.traditional}</div>
+                        <div className="text-xs text-neutral-400">{item.traditional}</div>
                       </div>
                     </div>
                   </div>
@@ -809,30 +827,30 @@ export default function Page() {
             </div>
 
             {/* PC端完整表格布局 */}
-            <div className="hidden overflow-hidden rounded-xl border border-gray-200 lg:block">
+            <div className="hidden overflow-hidden rounded-xl border border-neutral-200 lg:block">
               <table className="min-w-full">
-                <thead className="border-b border-gray-200 bg-gray-50">
+                <thead className="border-b border-neutral-200 bg-neutral-50">
                   <tr>
-                    <th className="w-40 border-b border-gray-200 px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                    <th className="w-40 border-b border-neutral-200 px-6 py-4 text-left text-sm font-semibold text-neutral-900">
                       对比项
                     </th>
-                    <th className="border-b border-gray-200 px-6 py-4 text-center text-sm font-semibold text-gray-900">
+                    <th className="border-b border-neutral-200 px-6 py-4 text-center text-sm font-semibold text-neutral-900">
                       其他云
                     </th>
                     <th className="border-b border-brand-600 bg-brand-600 px-6 py-4 text-center text-sm font-semibold text-white">
                       优刻云
                     </th>
-                    <th className="border-b border-gray-200 px-6 py-4 text-center text-sm font-semibold text-gray-900">
+                    <th className="border-b border-neutral-200 px-6 py-4 text-center text-sm font-semibold text-neutral-900">
                       传统服务器
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                <tbody className="divide-y divide-neutral-200 bg-white">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       存储模式
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-sm text-neutral-500">
                       亚马逊/阿里云：分布式存储
                       <br />
                       一线云主机厂商：存储阵列柜
@@ -842,79 +860,79 @@ export default function Page() {
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       分布式存储、SSD硬盘存储
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">单块硬盘存储</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">单块硬盘存储</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       购买灵活度
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">按需购买</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">按需购买</td>
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       按需购买
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">可选配置范围较小</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">可选配置范围较小</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       交付时间
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">几分钟至几小时</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">几分钟至几小时</td>
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       约5分钟
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">1-2天</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">1-2天</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       升级拓展
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">部分不支持减配</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">部分不支持减配</td>
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       按需弹性扩容、减配
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">扩展需停机，比较麻烦</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">扩展需停机，比较麻烦</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       控制面板
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">管理功能复杂</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">管理功能复杂</td>
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       功能强大又简单易用的控制面板平台，自助重装系统、
                       <br />
                       更换操作系统、自助软/硬重启，VNC远程、云防火墙等
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">无</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">无</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       数据备份
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">提供一个备份副本</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">提供一个备份副本</td>
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       智能化数据备份策略，支持定时备份和增量备份，确保您的数据安全无忧
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">需要手动备份</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">需要手动备份</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       攻击防护
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">部分提供免费防御</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">部分提供免费防御</td>
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       免费提供5G DDoS攻击防护，可增值服务抵御数百Gbps级流量攻击
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">没有免费防御</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">没有免费防御</td>
                   </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="border-r border-gray-200 px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr className="hover:bg-neutral-50">
+                    <td className="border-r border-neutral-200 px-6 py-4 text-sm font-medium text-neutral-900">
                       服务支持
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">仅支持工单</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">仅支持工单</td>
                     <td className="border-l border-brand-600 bg-brand-50 px-6 py-4 text-sm font-medium text-brand-600">
                       7×24小时全方位服务，5天无理由退款，百倍故障赔偿
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">仅支持工单</td>
+                    <td className="px-6 py-4 text-sm text-neutral-500">仅支持工单</td>
                   </tr>
                 </tbody>
               </table>

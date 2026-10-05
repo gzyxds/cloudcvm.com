@@ -250,11 +250,11 @@ const ecommerceProducts: readonly EcommerceProduct[] = [
 const getBadgeStyles = (type: ProductBadgeType): string => {
   const badgeStyles: Record<ProductBadgeType, string> = {
     recommended:
-      'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800',
+      'bg-brand-50 text-brand-700 border-brand-200 dark:bg-brand-900/30 dark:text-brand-300 dark:border-brand-800',
     popular:
       'bg-green-50 text-green-700 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
     overseas:
-      'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800',
+      'bg-brand-50 text-brand-600 border-brand-200 dark:bg-brand-800/30 dark:text-brand-300 dark:border-brand-700',
     europe:
       'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800',
   }
@@ -297,31 +297,31 @@ export default function EcommercePage() {
         {/* 英雄区块 - 展示产品主要价值主张 */}
         <section className="relative isolate overflow-hidden bg-white pt-20 pb-16 sm:py-20 md:py-24 lg:py-32">
           {/* 背景网格图案 - Simplified */}
-          <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+          <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,color-mix(in_srgb,var(--color-neutral-500)_4%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--color-neutral-500)_4%,transparent)_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
           <Container className="relative z-10">
             <div className="grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-20">
               {/* 左侧内容区 */}
               <div className="space-y-6 text-center lg:space-y-8 lg:text-left">
                 {/* 品牌标识 */}
-                <div className="inline-flex items-center rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] px-3 py-2 text-xs font-medium text-[#64748B] sm:px-4 sm:text-sm">
-                  <span className="mr-2 font-mono text-[#0055ff]">NEW</span>
-                  <span className="mx-2 h-3 w-px bg-[#E2E8F0]"></span>
+                <div className="inline-flex items-center rounded-sm border border-neutral-200 bg-neutral-50 px-3 py-2 text-xs font-medium text-neutral-500 sm:px-4 sm:text-sm">
+                  <span className="mr-2 font-mono text-brand-500">NEW</span>
+                  <span className="mx-2 h-3 w-px bg-neutral-200"></span>
                   <span>全新电商云服务上线</span>
                   <ChevronRightIcon className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
                 </div>
 
                 {/* 主标题 */}
                 <div className="space-y-3 sm:space-y-4">
-                  <h1 className="text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    <span className="text-[#0055ff]">电商云</span>
+                  <h1 className="text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                    <span className="text-brand-500">电商云</span>
                     <br />
                     助力跨境电商业务
                   </h1>
-                  <p className="mx-auto max-w-2xl text-base leading-7 text-[#64748B] sm:text-lg md:text-xl lg:mx-0 lg:leading-8">
+                  <p className="mx-auto max-w-2xl text-base leading-7 text-neutral-500 sm:text-lg md:text-xl lg:mx-0 lg:leading-8">
                     IP资源采购自各地优质本土运营商，一站式满足TK直播引流、海外应用访问、社媒养号等多样化业务需求。
                   </p>
-                  <p className="mx-auto max-w-xl font-mono text-sm leading-6 text-[#94A3B8] sm:text-base lg:mx-0 lg:leading-7">
+                  <p className="mx-auto max-w-xl font-mono text-sm leading-6 text-neutral-400 sm:text-base lg:mx-0 lg:leading-7">
                     &gt; 地域分布全球，提供固定、独立的纯净公网IP
                   </p>
                 </div>
@@ -330,25 +330,25 @@ export default function EcommercePage() {
                 <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:justify-start">
                   <a
                     href="#features"
-                    className="rounded-sm border border-[#E2E8F0] bg-white px-3 py-1.5 text-xs font-medium text-[#64748B] transition-all hover:border-[#0055ff] hover:text-[#0055ff] sm:px-4 sm:py-2 sm:text-sm"
+                    className="rounded-sm border border-neutral-200 bg-white px-3 py-1.5 text-xs font-medium text-neutral-500 transition-all hover:border-brand-500 hover:text-brand-500 sm:px-4 sm:py-2 sm:text-sm"
                   >
                     全球覆盖
                   </a>
                   <a
                     href="#security"
-                    className="rounded-sm border border-[#E2E8F0] bg-white px-3 py-1.5 text-xs font-medium text-[#64748B] transition-all hover:border-[#0055ff] hover:text-[#0055ff] sm:px-4 sm:py-2 sm:text-sm"
+                    className="rounded-sm border border-neutral-200 bg-white px-3 py-1.5 text-xs font-medium text-neutral-500 transition-all hover:border-brand-500 hover:text-brand-500 sm:px-4 sm:py-2 sm:text-sm"
                   >
                     安全隔离
                   </a>
                   <a
                     href="#management"
-                    className="rounded-sm border border-[#E2E8F0] bg-white px-3 py-1.5 text-xs font-medium text-[#64748B] transition-all hover:border-[#0055ff] hover:text-[#0055ff] sm:px-4 sm:py-2 sm:text-sm"
+                    className="rounded-sm border border-neutral-200 bg-white px-3 py-1.5 text-xs font-medium text-neutral-500 transition-all hover:border-brand-500 hover:text-brand-500 sm:px-4 sm:py-2 sm:text-sm"
                   >
                     统一管理
                   </a>
                   <a
                     href="#scaling"
-                    className="rounded-sm border border-[#E2E8F0] bg-white px-3 py-1.5 text-xs font-medium text-[#64748B] transition-all hover:border-[#0055ff] hover:text-[#0055ff] sm:px-4 sm:py-2 sm:text-sm"
+                    className="rounded-sm border border-neutral-200 bg-white px-3 py-1.5 text-xs font-medium text-neutral-500 transition-all hover:border-brand-500 hover:text-brand-500 sm:px-4 sm:py-2 sm:text-sm"
                   >
                     灵活扩展
                   </a>
@@ -358,13 +358,13 @@ export default function EcommercePage() {
                 <div className="flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
                   <a
                     href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=64&spg_id=62"
-                    className="group inline-flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#0043cc] hover:shadow-md sm:w-auto"
+                    className="group inline-flex w-full items-center justify-center rounded-sm bg-brand-500 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-600 hover:shadow-md sm:w-auto"
                   >
                     <span>立即购买</span>
                   </a>
                   <a
                     href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=64&spg_id=62"
-                    className="group inline-flex w-full items-center justify-center rounded-sm border border-[#E2E8F0] bg-white px-4 py-3 text-sm font-semibold text-[#64748B] transition-colors hover:border-[#0055ff]/30 hover:bg-[#F8FAFC] hover:text-[#0055ff] sm:w-auto"
+                    className="group inline-flex w-full items-center justify-center rounded-sm border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold text-neutral-500 transition-colors hover:border-brand-500/30 hover:bg-neutral-50 hover:text-brand-500 sm:w-auto"
                   >
                     <span>联系我们</span>
                     <span
@@ -379,16 +379,18 @@ export default function EcommercePage() {
 
               {/* 右侧展示区 - 现代化电商云仪表板预览 */}
               <div className="relative mt-8 lg:mt-0">
-                <div className="relative rounded-sm border border-[#E2E8F0] bg-white shadow-xl shadow-slate-200/50 transition-all duration-500">
+                <div className="relative rounded-sm border border-neutral-200 bg-white shadow-xl shadow-neutral-200/50 transition-all duration-500">
                   {/* 窗口控制栏 */}
-                  <div className="border-b border-[#E2E8F0] bg-[#F8FAFC] p-4">
+                  <div className="border-b border-neutral-200 bg-neutral-50 p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex space-x-2">
-                        <div className="h-3 w-3 bg-[#CBD5E1]"></div>
-                        <div className="h-3 w-3 bg-[#CBD5E1]"></div>
-                        <div className="h-3 w-3 bg-[#CBD5E1]"></div>
+                        <div className="h-3 w-3 bg-neutral-300"></div>
+                        <div className="h-3 w-3 bg-neutral-300"></div>
+                        <div className="h-3 w-3 bg-neutral-300"></div>
                       </div>
-                      <div className="font-mono text-xs text-[#94A3B8]">dashboard.cloudcvm.com</div>
+                      <div className="font-mono text-xs text-neutral-400">
+                        dashboard.cloudcvm.com
+                      </div>
                       <div className="w-6"></div>
                     </div>
                   </div>
@@ -401,41 +403,41 @@ export default function EcommercePage() {
                         <div className="font-mono text-lg font-bold text-green-700">12</div>
                         <div className="text-xs text-green-600">在线服务器</div>
                       </div>
-                      <div className="rounded-sm border border-blue-200 bg-blue-50/50 p-3 text-center">
-                        <div className="font-mono text-lg font-bold text-blue-700">8</div>
-                        <div className="text-xs text-blue-600">活跃店铺</div>
+                      <div className="rounded-sm border border-brand-200 bg-brand-50/50 p-3 text-center">
+                        <div className="font-mono text-lg font-bold text-brand-600">8</div>
+                        <div className="text-xs text-brand-500">活跃店铺</div>
                       </div>
                     </div>
 
                     {/* 地域分布 */}
                     <div className="mb-4">
-                      <h3 className="mb-2 text-sm font-medium text-[#0F172A]">地域分布</h3>
+                      <h3 className="mb-2 text-sm font-medium text-neutral-950">地域分布</h3>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs text-[#64748B]">US-EAST</span>
+                          <span className="font-mono text-xs text-neutral-500">US-EAST</span>
                           <div className="flex items-center">
-                            <div className="mr-2 h-1.5 w-12 rounded-sm bg-[#F1F5F9]">
-                              <div className="h-1.5 w-9 rounded-sm bg-[#0055ff]"></div>
+                            <div className="mr-2 h-1.5 w-12 rounded-sm bg-neutral-100">
+                              <div className="h-1.5 w-9 rounded-sm bg-brand-500"></div>
                             </div>
-                            <span className="font-mono text-xs text-[#0F172A]">75%</span>
+                            <span className="font-mono text-xs text-neutral-950">75%</span>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs text-[#64748B]">EUROPE</span>
+                          <span className="font-mono text-xs text-neutral-500">EUROPE</span>
                           <div className="flex items-center">
-                            <div className="mr-2 h-1.5 w-12 rounded-sm bg-[#F1F5F9]">
+                            <div className="mr-2 h-1.5 w-12 rounded-sm bg-neutral-100">
                               <div className="h-1.5 w-6 rounded-sm bg-green-600"></div>
                             </div>
-                            <span className="font-mono text-xs text-[#0F172A]">50%</span>
+                            <span className="font-mono text-xs text-neutral-950">50%</span>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs text-[#64748B]">APAC</span>
+                          <span className="font-mono text-xs text-neutral-500">APAC</span>
                           <div className="flex items-center">
-                            <div className="mr-2 h-1.5 w-12 rounded-sm bg-[#F1F5F9]">
-                              <div className="h-1.5 w-7 rounded-sm bg-blue-600"></div>
+                            <div className="mr-2 h-1.5 w-12 rounded-sm bg-neutral-100">
+                              <div className="h-1.5 w-7 rounded-sm bg-brand-500"></div>
                             </div>
-                            <span className="font-mono text-xs text-[#0F172A]">60%</span>
+                            <span className="font-mono text-xs text-neutral-950">60%</span>
                           </div>
                         </div>
                       </div>
@@ -443,19 +445,19 @@ export default function EcommercePage() {
 
                     {/* 实时监控 */}
                     <div className="mb-4">
-                      <h3 className="mb-2 text-sm font-medium text-[#0F172A]">实时监控</h3>
-                      <div className="h-16 rounded-sm border border-[#E2E8F0] bg-[#F8FAFC] p-2">
+                      <h3 className="mb-2 text-sm font-medium text-neutral-950">实时监控</h3>
+                      <div className="h-16 rounded-sm border border-neutral-200 bg-neutral-50 p-2">
                         <div className="flex h-full items-end justify-between gap-1">
                           {[60, 80, 40, 90, 70, 50, 85, 65].map((h, i) => (
                             <div
                               key={i}
-                              className="w-1 rounded-sm bg-[#0055ff]"
+                              className="w-1 rounded-sm bg-brand-500"
                               style={{ height: `${h}%` }}
                             ></div>
                           ))}
                         </div>
                       </div>
-                      <div className="mt-1 flex justify-between font-mono text-xs text-[#94A3B8]">
+                      <div className="mt-1 flex justify-between font-mono text-xs text-neutral-400">
                         <span>CPU</span>
                         <span>MEM</span>
                         <span>NET</span>
@@ -464,18 +466,18 @@ export default function EcommercePage() {
 
                     {/* 快速操作按钮 */}
                     <div className="flex space-x-2">
-                      <button className="flex-1 rounded-sm bg-[#0055ff] px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-[#0043cc]">
+                      <button className="flex-1 rounded-sm bg-brand-500 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-brand-600">
                         新建实例
                       </button>
-                      <button className="flex-1 rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-xs font-medium text-[#64748B] transition-colors hover:bg-[#F8FAFC] hover:text-[#0055ff]">
+                      <button className="flex-1 rounded-sm border border-neutral-200 bg-white px-3 py-2 text-xs font-medium text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-brand-500">
                         查看详情
                       </button>
                     </div>
                   </div>
 
                   {/* 底部状态栏 */}
-                  <div className="border-t border-[#E2E8F0] bg-[#F8FAFC] p-3">
-                    <div className="flex items-center justify-between font-mono text-xs text-[#94A3B8]">
+                  <div className="border-t border-neutral-200 bg-neutral-50 p-3">
+                    <div className="flex items-center justify-between font-mono text-xs text-neutral-400">
                       <span className="flex items-center gap-1">
                         <span className="block h-2 w-2 rounded-full bg-green-500"></span>
                         CONNECTED
@@ -492,11 +494,11 @@ export default function EcommercePage() {
         {/* 商品模块 */}
         <Container className="mt-32 sm:mt-56">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold text-[#0055ff]">热销产品</h2>
-            <p className="mt-2 text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl">
+            <h2 className="text-base font-semibold text-brand-500">热销产品</h2>
+            <p className="mt-2 text-4xl font-bold tracking-tight text-neutral-950 sm:text-5xl">
               电商云服务器推荐
             </p>
-            <p className="mt-6 text-lg leading-8 text-[#64748B]">
+            <p className="mt-6 text-lg leading-8 text-neutral-500">
               赋能服务商，IP资源采购自各地优质本土运营商，一站式满足TK直播合规推流、多店铺安全托管、社媒养号代运营等多样化业务需求
             </p>
           </div>
@@ -505,32 +507,32 @@ export default function EcommercePage() {
             {ecommerceProducts.map((product) => (
               <div
                 key={product.id}
-                className="group flex flex-col justify-between rounded-sm border border-[#E2E8F0] bg-white p-8 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                className="group flex flex-col justify-between rounded-sm border border-neutral-200 bg-white p-8 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
               >
                 <div>
                   <div className="flex items-center justify-between gap-x-4">
-                    <h3 className="text-lg font-semibold text-[#0F172A]">{product.name}</h3>
+                    <h3 className="text-lg font-semibold text-neutral-950">{product.name}</h3>
                     <p
                       className={`rounded-sm border px-2 py-0.5 font-mono text-xs font-semibold ${getBadgeStyles(product.badge.type)}`}
                     >
                       {product.badge.text}
                     </p>
                   </div>
-                  <p className="mt-4 text-sm leading-6 text-[#64748B]">{product.description}</p>
+                  <p className="mt-4 text-sm leading-6 text-neutral-500">{product.description}</p>
                   <p className="mt-6 flex items-baseline gap-x-1">
-                    <span className="font-sans text-4xl font-bold tracking-tight text-[#0F172A]">
+                    <span className="font-sans text-4xl font-bold tracking-tight text-neutral-950">
                       {product.currency}
                       {product.price}
                     </span>
-                    <span className="text-sm font-semibold text-[#64748B]">
+                    <span className="text-sm font-semibold text-neutral-500">
                       /{product.period === 'month' ? '月' : '年'}
                     </span>
                   </p>
-                  <ul className="mt-8 space-y-3 text-sm leading-6 text-[#64748B]">
+                  <ul className="mt-8 space-y-3 text-sm leading-6 text-neutral-500">
                     {product.features.map((feature, index) => (
                       <li key={index} className="flex gap-x-3">
                         <svg
-                          className="h-6 w-5 flex-none text-[#0055ff]"
+                          className="h-6 w-5 flex-none text-brand-500"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -550,12 +552,12 @@ export default function EcommercePage() {
                     href={product.purchaseLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-8 block w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#0043cc] hover:shadow-md"
+                    className="mt-8 block w-full rounded-sm bg-brand-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600 hover:shadow-md"
                   >
                     立即购买
                   </a>
                 ) : (
-                  <span className="mt-8 block w-full cursor-not-allowed rounded-sm bg-[#0055ff]/50 px-3 py-2 text-center text-sm font-semibold text-white">
+                  <span className="mt-8 block w-full cursor-not-allowed rounded-sm bg-brand-500/50 px-3 py-2 text-center text-sm font-semibold text-white">
                     暂时缺货
                   </span>
                 )}
@@ -565,14 +567,14 @@ export default function EcommercePage() {
 
           {/* 产品特色说明 */}
           <div className="mx-auto mt-16 max-w-2xl text-center">
-            <p className="font-mono text-sm leading-6 text-[#64748B]">
+            <p className="font-mono text-sm leading-6 text-neutral-500">
               &gt; 所有产品均支持弹性扩容、自动备份、7x24小时技术支持
             </p>
             <div className="mt-6 flex items-center justify-center gap-x-6">
-              <a href="#" className="text-sm font-semibold text-[#0055ff] hover:text-[#0043cc]">
+              <a href="#" className="text-sm font-semibold text-brand-500 hover:text-brand-600">
                 查看更多配置 <span aria-hidden="true">→</span>
               </a>
-              <a href="#" className="text-sm font-semibold text-[#0F172A] hover:text-[#64748B]">
+              <a href="#" className="text-sm font-semibold text-neutral-950 hover:text-neutral-500">
                 联系销售 <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -584,14 +586,14 @@ export default function EcommercePage() {
           <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               {/* 左侧大卡片 */}
-              <div className="group relative cursor-pointer overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/50 hover:shadow-lg lg:col-span-1">
+              <div className="group relative cursor-pointer overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/50 hover:shadow-lg lg:col-span-1">
                 <div
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{
                     backgroundImage: "url('/images/product/TikTok.webp')",
                   }}
                 />
-                <div className="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/50"></div>
+                <div className="absolute inset-0 bg-neutral-950/60 transition-colors duration-300 group-hover:bg-neutral-950/50"></div>
                 <div className="relative z-10 flex h-full min-h-[500px] flex-col justify-end p-6">
                   <div className="border-l-2 border-white pl-4">
                     <h3 className="mb-2 text-2xl font-bold text-white">海外网站及AI应用解锁</h3>
@@ -629,7 +631,7 @@ export default function EcommercePage() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="group relative cursor-pointer overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/50 hover:shadow-lg"
+                    className="group relative cursor-pointer overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/50 hover:shadow-lg"
                   >
                     <div
                       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -637,7 +639,7 @@ export default function EcommercePage() {
                         backgroundImage: `url('${item.img}')`,
                       }}
                     />
-                    <div className="absolute inset-0 bg-black/60 transition-colors duration-300 group-hover:bg-black/50"></div>
+                    <div className="absolute inset-0 bg-neutral-950/60 transition-colors duration-300 group-hover:bg-neutral-950/50"></div>
                     <div className="relative z-10 flex h-full min-h-[240px] flex-col justify-end p-5">
                       <div className="border-l-2 border-white pl-4">
                         <h3 className="mb-1 text-lg font-bold text-white">{item.title}</h3>
@@ -656,11 +658,11 @@ export default function EcommercePage() {
         {/* 特性展示区块 */}
         <Container className="mt-24 sm:mt-40">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold text-[#0055ff]">丰富线路</h2>
-            <p className="mt-1.5 text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl">
+            <h2 className="text-base font-semibold text-brand-500">丰富线路</h2>
+            <p className="mt-1.5 text-4xl font-bold tracking-tight text-neutral-950 sm:text-5xl">
               覆盖亚太、欧美、东南亚等地域
             </p>
-            <p className="mt-6 text-lg leading-8 text-[#64748B]">
+            <p className="mt-6 text-lg leading-8 text-neutral-500">
               提供系统化的电商平台防关联解决方案，从系统真实、网络稳定、团队协同等方面入手，致力于提升店铺安全和运营效率。
             </p>
           </div>
@@ -669,21 +671,21 @@ export default function EcommercePage() {
               {primaryFeatures.map((feature) => (
                 <div
                   key={feature.name}
-                  className="group flex h-full transform flex-col overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg"
+                  className="group flex h-full transform flex-col overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg"
                 >
                   <div className="p-5">
                     <div className="mb-3 flex items-center">
-                      <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-sm bg-[#0055ff]">
+                      <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-sm bg-brand-500">
                         <feature.icon aria-hidden="true" className="h-6 w-6 text-white" />
                       </div>
-                      <h3 className="text-lg font-bold text-[#0F172A]">{feature.name}</h3>
+                      <h3 className="text-lg font-bold text-neutral-950">{feature.name}</h3>
                     </div>
-                    <p className="mb-4 text-sm leading-relaxed text-[#64748B]">
+                    <p className="mb-4 text-sm leading-relaxed text-neutral-500">
                       {feature.description}
                     </p>
                     <a
                       href={feature.href}
-                      className="group inline-flex items-center text-sm font-medium text-[#0055ff]"
+                      className="group inline-flex items-center text-sm font-medium text-brand-500"
                     >
                       <span className="transition-all duration-300 group-hover:mr-1">了解更多</span>
                       <span
@@ -704,29 +706,31 @@ export default function EcommercePage() {
         <section className="overflow-hidden bg-white py-12 sm:py-20 lg:py-32">
           <Container>
             <div className="mx-auto mb-10 max-w-3xl sm:mb-16 sm:text-center">
-              <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-[#0F172A] sm:mb-4 sm:text-3xl lg:text-4xl">
-                电商云<span className="text-[#0055ff]">架构优势</span>
+              <h2 className="mb-3 text-2xl font-extrabold tracking-tight text-neutral-950 sm:mb-4 sm:text-3xl lg:text-4xl">
+                电商云<span className="text-brand-500">架构优势</span>
               </h2>
-              <p className="text-base leading-relaxed text-[#64748B] sm:text-lg lg:text-xl">
+              <p className="text-base leading-relaxed text-neutral-500 sm:text-lg lg:text-xl">
                 我们的解决方案能够帮助您快速拓展全球电商业务，获得更高的业务增长。
               </p>
             </div>
 
             <div className="mb-12 sm:mb-16">
-              <div className="overflow-hidden rounded-sm border border-[#E2E8F0] bg-white shadow-sm">
-                <div className="border-b border-[#E2E8F0] bg-[#F8FAFC] px-6 py-4 sm:px-8 sm:py-5">
+              <div className="overflow-hidden rounded-sm border border-neutral-200 bg-white shadow-sm">
+                <div className="border-b border-neutral-200 bg-neutral-50 px-6 py-4 sm:px-8 sm:py-5">
                   <div className="flex flex-wrap items-center justify-between gap-4">
-                    <h3 className="text-lg font-bold text-[#0F172A] sm:text-xl">电商云架构拓扑</h3>
+                    <h3 className="text-lg font-bold text-neutral-950 sm:text-xl">
+                      电商云架构拓扑
+                    </h3>
                     <div className="flex items-center gap-4 sm:gap-6">
                       <div className="flex items-center gap-2">
                         <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
-                        <span className="font-mono text-sm font-medium text-[#64748B]">
+                        <span className="font-mono text-sm font-medium text-neutral-500">
                           HEALTHY
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-sm bg-[#0055ff]"></div>
-                        <span className="font-mono text-sm font-medium text-[#64748B]">
+                        <div className="h-2 w-2 rounded-sm bg-brand-500"></div>
+                        <span className="font-mono text-sm font-medium text-neutral-500">
                           RUNNING
                         </span>
                       </div>
@@ -738,27 +742,27 @@ export default function EcommercePage() {
                   <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-3">
                     {/* 用户层 */}
                     <div className="space-y-4">
-                      <h4 className="flex items-center gap-2 text-sm font-bold text-[#0F172A] sm:text-base">
-                        <div className="h-1.5 w-1.5 rounded-sm bg-[#0055ff]"></div>
+                      <h4 className="flex items-center gap-2 text-sm font-bold text-neutral-950 sm:text-base">
+                        <div className="h-1.5 w-1.5 rounded-sm bg-brand-500"></div>
                         用户层
                       </h4>
                       <div className="space-y-3">
-                        <div className="group rounded-sm border border-blue-200 bg-blue-50/50 p-4 transition-colors hover:border-[#0055ff] sm:p-5">
+                        <div className="group rounded-sm border border-brand-200 bg-brand-50/50 p-4 transition-colors hover:border-brand-500 sm:p-5">
                           <div className="flex items-center gap-3">
-                            <div className="h-3 w-3 rounded-sm bg-[#0055ff]"></div>
-                            <span className="text-sm font-bold text-[#0F172A] group-hover:text-[#0055ff] sm:text-base">
+                            <div className="h-3 w-3 rounded-sm bg-brand-500"></div>
+                            <span className="text-sm font-bold text-neutral-950 group-hover:text-brand-500 sm:text-base">
                               全球用户
                             </span>
                           </div>
-                          <div className="mt-2.5 font-mono text-xs font-medium text-[#0055ff] sm:text-sm">
+                          <div className="mt-2.5 font-mono text-xs font-medium text-brand-500 sm:text-sm">
                             MULTI-REGION
                           </div>
                         </div>
-                        <div className="rounded-sm border border-[#E2E8F0] bg-white p-3 sm:p-4">
-                          <div className="text-xs font-bold text-[#0F172A] sm:text-sm">
+                        <div className="rounded-sm border border-neutral-200 bg-white p-3 sm:p-4">
+                          <div className="text-xs font-bold text-neutral-950 sm:text-sm">
                             CDN 加速
                           </div>
-                          <div className="mt-1.5 font-mono text-xs text-[#64748B]">
+                          <div className="mt-1.5 font-mono text-xs text-neutral-500">
                             SMART ROUTING
                           </div>
                         </div>
@@ -767,38 +771,38 @@ export default function EcommercePage() {
 
                     {/* 应用层 */}
                     <div className="space-y-4">
-                      <h4 className="flex items-center gap-2 text-sm font-bold text-[#0F172A] sm:text-base">
-                        <div className="h-1.5 w-1.5 rounded-sm bg-[#0055ff]"></div>
+                      <h4 className="flex items-center gap-2 text-sm font-bold text-neutral-950 sm:text-base">
+                        <div className="h-1.5 w-1.5 rounded-sm bg-brand-500"></div>
                         应用层
                       </h4>
                       <div className="space-y-3">
-                        <div className="group rounded-sm border border-blue-200 bg-blue-50/50 p-4 transition-colors hover:border-[#0055ff] sm:p-5">
+                        <div className="group rounded-sm border border-brand-200 bg-brand-50/50 p-4 transition-colors hover:border-brand-500 sm:p-5">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <div className="h-3 w-3 rounded-sm bg-[#0055ff]"></div>
-                              <span className="text-sm font-bold text-[#0F172A] group-hover:text-[#0055ff] sm:text-base">
+                              <div className="h-3 w-3 rounded-sm bg-brand-500"></div>
+                              <span className="text-sm font-bold text-neutral-950 group-hover:text-brand-500 sm:text-base">
                                 负载均衡
                               </span>
                             </div>
-                            <span className="font-mono text-xs font-extrabold text-[#0055ff] sm:text-sm">
+                            <span className="font-mono text-xs font-extrabold text-brand-500 sm:text-sm">
                               99.9%
                             </span>
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                          <div className="rounded-sm border border-[#E2E8F0] bg-white p-3">
-                            <div className="text-xs font-bold text-[#0F172A] sm:text-sm">
+                          <div className="rounded-sm border border-neutral-200 bg-white p-3">
+                            <div className="text-xs font-bold text-neutral-950 sm:text-sm">
                               Web 服务
                             </div>
-                            <div className="mt-1 font-mono text-xs text-[#0055ff]">
+                            <div className="mt-1 font-mono text-xs text-brand-500">
                               x3 INSTANCES
                             </div>
                           </div>
-                          <div className="rounded-sm border border-[#E2E8F0] bg-white p-3">
-                            <div className="text-xs font-bold text-[#0F172A] sm:text-sm">
+                          <div className="rounded-sm border border-neutral-200 bg-white p-3">
+                            <div className="text-xs font-bold text-neutral-950 sm:text-sm">
                               API 网关
                             </div>
-                            <div className="mt-1 font-mono text-xs text-[#0055ff]">HA</div>
+                            <div className="mt-1 font-mono text-xs text-brand-500">HA</div>
                           </div>
                         </div>
                       </div>
@@ -806,27 +810,29 @@ export default function EcommercePage() {
 
                     {/* 数据层 */}
                     <div className="space-y-4">
-                      <h4 className="flex items-center gap-2 text-sm font-bold text-[#0F172A] sm:text-base">
-                        <div className="h-1.5 w-1.5 rounded-sm bg-[#0055ff]"></div>
+                      <h4 className="flex items-center gap-2 text-sm font-bold text-neutral-950 sm:text-base">
+                        <div className="h-1.5 w-1.5 rounded-sm bg-brand-500"></div>
                         数据层
                       </h4>
                       <div className="space-y-3">
-                        <div className="group rounded-sm border border-blue-200 bg-blue-50/50 p-4 transition-colors hover:border-[#0055ff] sm:p-5">
+                        <div className="group rounded-sm border border-brand-200 bg-brand-50/50 p-4 transition-colors hover:border-brand-500 sm:p-5">
                           <div className="flex items-center gap-3">
-                            <div className="h-3 w-3 rounded-sm bg-[#0055ff]"></div>
-                            <span className="text-sm font-bold text-[#0F172A] group-hover:text-[#0055ff] sm:text-base">
+                            <div className="h-3 w-3 rounded-sm bg-brand-500"></div>
+                            <span className="text-sm font-bold text-neutral-950 group-hover:text-brand-500 sm:text-base">
                               主数据库
                             </span>
                           </div>
-                          <div className="mt-2.5 font-mono text-xs font-medium text-[#0055ff] sm:text-sm">
+                          <div className="mt-2.5 font-mono text-xs font-medium text-brand-500 sm:text-sm">
                             MySQL CLUSTER
                           </div>
                         </div>
-                        <div className="rounded-sm border border-[#E2E8F0] bg-white p-3 sm:p-4">
-                          <div className="text-xs font-bold text-[#0F172A] sm:text-sm">
+                        <div className="rounded-sm border border-neutral-200 bg-white p-3 sm:p-4">
+                          <div className="text-xs font-bold text-neutral-950 sm:text-sm">
                             Redis 缓存
                           </div>
-                          <div className="mt-1.5 font-mono text-xs text-[#64748B]">MEMORY OPT</div>
+                          <div className="mt-1.5 font-mono text-xs text-neutral-500">
+                            MEMORY OPT
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -842,12 +848,12 @@ export default function EcommercePage() {
                     ].map((metric, index) => (
                       <div
                         key={index}
-                        className="rounded-sm border border-[#E2E8F0] bg-white p-4 text-center transition-all hover:border-[#0055ff]/50 hover:shadow-md"
+                        className="rounded-sm border border-neutral-200 bg-white p-4 text-center transition-all hover:border-brand-500/50 hover:shadow-md"
                       >
-                        <div className="font-mono text-xl font-extrabold tracking-tight text-[#0055ff] sm:text-2xl lg:text-3xl">
+                        <div className="font-mono text-xl font-extrabold tracking-tight text-brand-500 sm:text-2xl lg:text-3xl">
                           {metric.value}
                         </div>
-                        <div className="mt-2 text-xs font-semibold tracking-widest text-[#64748B] uppercase sm:text-sm">
+                        <div className="mt-2 text-xs font-semibold tracking-widest text-neutral-500 uppercase sm:text-sm">
                           {metric.label}
                         </div>
                       </div>
@@ -863,21 +869,21 @@ export default function EcommercePage() {
                 {secondaryFeatures.map((feature) => (
                   <div
                     key={feature.name}
-                    className="group flex h-full transform flex-col overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all hover:border-[#0055ff]/30 hover:shadow-lg"
+                    className="group flex h-full transform flex-col overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all hover:border-brand-500/30 hover:shadow-lg"
                   >
                     <div className="p-6 sm:p-8">
                       <div className="mb-4 flex items-center gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-[#eff6ff] transition-colors group-hover:bg-[#0055ff] sm:h-14 sm:w-14">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-brand-50 transition-colors group-hover:bg-brand-500 sm:h-14 sm:w-14">
                           <feature.icon
-                            className="h-6 w-6 text-[#0055ff] transition-colors group-hover:text-white sm:h-7 sm:w-7"
+                            className="h-6 w-6 text-brand-500 transition-colors group-hover:text-white sm:h-7 sm:w-7"
                             aria-hidden="true"
                           />
                         </div>
-                        <h3 className="flex-1 text-lg font-bold text-[#0F172A] sm:text-xl">
+                        <h3 className="flex-1 text-lg font-bold text-neutral-950 sm:text-xl">
                           {feature.name}
                         </h3>
                       </div>
-                      <p className="text-sm leading-relaxed text-[#64748B] sm:text-[15px]">
+                      <p className="text-sm leading-relaxed text-neutral-500 sm:text-[15px]">
                         {feature.description}
                       </p>
                     </div>
@@ -891,19 +897,19 @@ export default function EcommercePage() {
         {/* 统计数据区块 */}
         <Container className="mt-32 sm:mt-56">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
-            <h2 className="text-base font-semibold text-[#0055ff]">安全高效防关联</h2>
-            <p className="mt-2 text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl">
+            <h2 className="text-base font-semibold text-brand-500">安全高效防关联</h2>
+            <p className="mt-2 text-4xl font-bold tracking-tight text-neutral-950 sm:text-5xl">
               值得信赖的电商云服务
             </p>
-            <p className="mt-6 text-lg leading-8 text-[#64748B]">
+            <p className="mt-6 text-lg leading-8 text-neutral-500">
               为全球电商卖家提供专业的防关联解决方案，助力业务安全稳定发展。
             </p>
           </div>
-          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 text-[#0F172A] sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+          <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 text-neutral-950 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.id} className="flex flex-col gap-y-3 border-l border-[#E2E8F0] pl-6">
-                <dt className="text-sm leading-6 text-[#64748B]">{stat.name}</dt>
-                <dd className="order-first font-mono text-3xl font-semibold tracking-tight text-[#0055ff]">
+              <div key={stat.id} className="flex flex-col gap-y-3 border-l border-neutral-200 pl-6">
+                <dt className="text-sm leading-6 text-neutral-500">{stat.name}</dt>
+                <dd className="order-first font-mono text-3xl font-semibold tracking-tight text-brand-500">
                   {stat.value}
                 </dd>
               </div>
@@ -914,24 +920,24 @@ export default function EcommercePage() {
         {/* 行动召唤区块 */}
         <div className="relative isolate mt-32 sm:mt-56">
           {/* Simple background instead of complex SVG */}
-          <div className="absolute inset-0 -z-10 bg-[#F8FAFC]"></div>
+          <div className="absolute inset-0 -z-10 bg-neutral-50"></div>
           <Container className="py-32 text-center sm:py-40">
-            <h2 className="text-4xl font-bold tracking-tight text-[#0F172A] sm:text-5xl">
+            <h2 className="text-4xl font-bold tracking-tight text-neutral-950 sm:text-5xl">
               提升您的电商业务效率，立即开始使用电商云
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-[#64748B]">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-neutral-500">
               专业的跨境电商解决方案，助力您的业务快速发展，获得更高的收益和更好的用户体验。
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#"
-                className="rounded-sm bg-[#0055ff] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#0043cc] hover:shadow-md"
+                className="rounded-sm bg-brand-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-brand-600 hover:shadow-md"
               >
                 立即开始
               </a>
               <a
                 href="#"
-                className="text-sm font-semibold text-[#0F172A] transition-colors hover:text-[#0055ff]"
+                className="text-sm font-semibold text-neutral-950 transition-colors hover:text-brand-500"
               >
                 了解更多 <span aria-hidden="true">→</span>
               </a>
@@ -943,12 +949,12 @@ export default function EcommercePage() {
             <div className="py-24 sm:pt-32 lg:py-40">
               <div className="lg:grid lg:grid-cols-12 lg:gap-8">
                 <div className="lg:col-span-5">
-                  <h2 className="text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">
+                  <h2 className="text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
                     常见问题
                   </h2>
-                  <p className="mt-4 text-base leading-7 text-[#64748B]">
+                  <p className="mt-4 text-base leading-7 text-neutral-500">
                     找不到您要的答案？请联系我们的{' '}
-                    <a href="#" className="font-semibold text-[#0055ff] hover:text-[#0043cc]">
+                    <a href="#" className="font-semibold text-brand-500 hover:text-brand-600">
                       客服团队
                     </a>{' '}
                     获取帮助。
@@ -979,8 +985,8 @@ export default function EcommercePage() {
                       },
                     ].map((faq, i) => (
                       <div key={i}>
-                        <dt className="text-base font-semibold text-[#0F172A]">{faq.q}</dt>
-                        <dd className="mt-2 text-base leading-7 text-[#64748B]">{faq.a}</dd>
+                        <dt className="text-base font-semibold text-neutral-950">{faq.q}</dt>
+                        <dd className="mt-2 text-base leading-7 text-neutral-500">{faq.a}</dd>
                       </div>
                     ))}
                   </dl>

@@ -162,22 +162,22 @@ const defaultReviews: Review[] = [
 /** 受信赖的技术展示条 */
 function ProductFeatures() {
   return (
-    <div className="border-y border-slate-100 bg-white py-12 dark:border-slate-800 dark:bg-slate-900">
+    <div className="border-y border-neutral-100 bg-white py-12 dark:border-neutral-800 dark:bg-neutral-900">
       <Container>
-        <p className="mb-8 text-center text-sm font-semibold tracking-wide text-slate-500 uppercase">
+        <p className="mb-8 text-center text-sm font-semibold tracking-wide text-neutral-500 uppercase">
           受信赖的 AI 图像生成技术
         </p>
         <div className="flex flex-wrap justify-center gap-8 opacity-50 grayscale transition-all duration-500 hover:grayscale-0 md:gap-16">
-          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-neutral-400">
             <SparklesIcon className="h-6 w-6" /> Gemini
           </div>
-          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-neutral-400">
             <SparklesIcon className="h-6 w-6" /> Stable Diffusion
           </div>
-          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-neutral-400">
             <SparklesIcon className="h-6 w-6" /> Midjourney
           </div>
-          <div className="flex items-center gap-2 text-xl font-bold text-slate-400">
+          <div className="flex items-center gap-2 text-xl font-bold text-neutral-400">
             <SparklesIcon className="h-6 w-6" /> DALL·E 3
           </div>
         </div>
@@ -189,16 +189,16 @@ function ProductFeatures() {
 /** 用户评价区域 */
 function LandingUserReviews({ reviews }: { reviews: Review[] }) {
   return (
-    <div className="bg-white py-24 dark:bg-slate-900">
+    <div className="bg-white py-24 dark:bg-neutral-900">
       <Container>
-        <h2 className="mb-16 text-center text-3xl font-bold text-slate-900 dark:text-white">
+        <h2 className="mb-16 text-center text-3xl font-bold text-neutral-900 dark:text-white">
           用户评价
         </h2>
         <div className="grid gap-8 md:grid-cols-3">
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="rounded-md border border-slate-200 bg-slate-50 p-8 transition-shadow duration-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800"
+              className="rounded-md border border-neutral-200 bg-neutral-50 p-8 transition-shadow duration-300 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800"
             >
               <div className="mb-4 flex gap-1 text-yellow-400">
                 {[...Array(5)].map((_, i) => (
@@ -207,12 +207,14 @@ function LandingUserReviews({ reviews }: { reviews: Review[] }) {
                   </svg>
                 ))}
               </div>
-              <p className="mb-6 text-slate-600 dark:text-slate-300">
+              <p className="mb-6 text-neutral-600 dark:text-neutral-300">
                 &ldquo;{review.content}&rdquo;
               </p>
               <div>
-                <div className="font-semibold text-slate-900 dark:text-white">{review.author}</div>
-                <div className="text-sm text-slate-500 dark:text-slate-400">{review.role}</div>
+                <div className="font-semibold text-neutral-900 dark:text-white">
+                  {review.author}
+                </div>
+                <div className="text-sm text-neutral-500 dark:text-neutral-400">{review.role}</div>
               </div>
             </div>
           ))}
@@ -253,44 +255,44 @@ export default function BananaProductPage({
   }
 
   return (
-    <div className="relative overflow-x-hidden font-sans text-slate-900 dark:bg-slate-900 dark:text-white">
+    <div className="relative overflow-x-hidden font-sans text-neutral-900 dark:bg-neutral-900 dark:text-white">
       {/* ===== Hero Section ===== */}
       <div className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-visible select-none">
-          <div className="absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-[#0055ff]/20 mix-blend-multiply blur-[80px] dark:bg-[#0055ff]/10 dark:mix-blend-normal" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] bg-[length:24px_24px]" />
-          <div className="absolute top-20 right-10 hidden h-32 w-32 animate-pulse rounded-full bg-gradient-to-br from-blue-400/30 to-transparent blur-2xl md:block" />
+          <div className="absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-brand-500/20 mix-blend-multiply blur-[80px] dark:bg-brand-500/10 dark:mix-blend-normal" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_srgb,var(--color-neutral-500)_7%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--color-neutral-500)_7%,transparent)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,var(--color-neutral-950)_70%,transparent_100%)] bg-[length:24px_24px]" />
+          <div className="absolute top-20 right-10 hidden h-32 w-32 animate-pulse rounded-full bg-gradient-to-br from-brand-400/30 to-transparent blur-2xl md:block" />
           <div className="absolute bottom-40 left-10 hidden h-24 w-24 animate-bounce rounded-full bg-gradient-to-tr from-purple-400/30 to-transparent blur-xl md:block" />
         </div>
 
         <Container className="relative z-10 text-center">
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-6">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 dark:border-slate-700 dark:bg-slate-800">
-              <span className="rounded bg-[#0055ff] px-1.5 py-0.5 text-[11px] font-bold tracking-wider text-white">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 dark:border-neutral-700 dark:bg-neutral-800">
+              <span className="rounded bg-brand-500 px-1.5 py-0.5 text-[11px] font-bold tracking-wider text-white">
                 NEW
               </span>
-              <span className="text-xs text-slate-600 dark:text-slate-300">{badgeText}</span>
+              <span className="text-xs text-neutral-600 dark:text-neutral-300">{badgeText}</span>
             </div>
 
-            <h1 className="text-4xl leading-tight font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
+            <h1 className="text-4xl leading-tight font-bold tracking-tight text-neutral-900 sm:text-5xl md:text-6xl lg:text-7xl dark:text-white">
               {heroTitle}
             </h1>
 
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-300">
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-neutral-600 sm:text-xl dark:text-neutral-300">
               {heroDesc}
             </p>
 
             <div className="mt-8 flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <Link
                 href="#"
-                className="group inline-flex items-center justify-center rounded-lg bg-[#0055ff] px-8 py-3.5 text-base font-medium text-white shadow-lg shadow-[#0055ff]/20 transition-all hover:bg-[#0043cc]"
+                className="group inline-flex items-center justify-center rounded-lg bg-brand-500 px-8 py-3.5 text-base font-medium text-white shadow-lg shadow-brand-500/20 transition-all hover:bg-brand-600"
               >
                 开始构建
                 <ArrowRightIcon className="ml-2 h-5 w-5" />
               </Link>
               <button
                 onClick={toDemo}
-                className="group inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-8 py-3.5 text-base font-medium text-slate-900 transition-all hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+                className="group inline-flex items-center justify-center rounded-lg border border-neutral-200 bg-white px-8 py-3.5 text-base font-medium text-neutral-900 transition-all hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
               >
                 查看案例
               </button>
@@ -302,8 +304,8 @@ export default function BananaProductPage({
       {/* ===== Demo Image ===== */}
       <div ref={demoContainerRef} id="__demo_container__" className="py-12 md:py-20">
         <Container>
-          <div className="relative mx-auto max-w-5xl rounded-md border border-slate-200/50 bg-slate-100/40 p-2 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-800/40">
-            <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-md border border-slate-200/50 bg-white/60 shadow-sm dark:border-slate-700/50 dark:bg-slate-800/60">
+          <div className="relative mx-auto max-w-5xl rounded-md border border-neutral-200/50 bg-neutral-100/40 p-2 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/40">
+            <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-md border border-neutral-200/50 bg-white/60 shadow-sm dark:border-neutral-700/50 dark:bg-neutral-800/60">
               {/* 首屏 Hero 图：12 个 AI 方案页共用，加 priority 消除 LCP 警告并提前加载 */}
               <Image
                 src={heroImage}
@@ -319,13 +321,13 @@ export default function BananaProductPage({
       </div>
 
       {/* ===== Features Grid ===== */}
-      <div className="bg-slate-50 py-16 md:py-24 dark:bg-slate-800/50">
+      <div className="bg-neutral-50 py-16 md:py-24 dark:bg-neutral-800/50">
         <Container>
           <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+            <h2 className="mb-4 text-3xl font-bold text-neutral-900 md:text-4xl dark:text-white">
               {featuresTitle}
             </h2>
-            <p className="text-lg text-slate-500 dark:text-slate-400">{featuresDesc}</p>
+            <p className="text-lg text-neutral-500 dark:text-neutral-400">{featuresDesc}</p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => {
@@ -333,15 +335,15 @@ export default function BananaProductPage({
               return (
                 <div
                   key={feature.title}
-                  className="group rounded-md border border-slate-200 bg-white p-8 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
+                  className="group rounded-md border border-neutral-200 bg-white p-8 transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
                 >
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110 dark:bg-blue-900/30 dark:text-blue-400">
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-transform duration-300 group-hover:scale-110 dark:bg-brand-800/30 dark:text-brand-400">
                     <FeatureIcon className="h-6 w-6" />
                   </div>
-                  <h3 className="mb-3 text-xl font-bold text-slate-900 dark:text-white">
+                  <h3 className="mb-3 text-xl font-bold text-neutral-900 dark:text-white">
                     {feature.title}
                   </h3>
-                  <p className="leading-relaxed text-slate-500 dark:text-slate-400">
+                  <p className="leading-relaxed text-neutral-500 dark:text-neutral-400">
                     {feature.desc}
                   </p>
                 </div>
@@ -357,7 +359,7 @@ export default function BananaProductPage({
           <div key={index} className="group">
             <div className="grid items-center gap-8 md:gap-12 lg:grid-cols-2">
               <div className={clsx('flex flex-col gap-4', { 'lg:order-last': index % 2 === 1 })}>
-                <div className="mb-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-[#eff6ff] px-3 py-1 text-xs font-medium text-[#0055ff]">
+                <div className="mb-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14"
@@ -378,7 +380,7 @@ export default function BananaProductPage({
                   核心功能
                 </div>
 
-                <h2 className="mb-3 text-2xl leading-tight font-semibold text-slate-900 md:text-3xl dark:text-white">
+                <h2 className="mb-3 text-2xl leading-tight font-semibold text-neutral-900 md:text-3xl dark:text-white">
                   {detail.title}
                 </h2>
 
@@ -390,13 +392,13 @@ export default function BananaProductPage({
                       style={{
                         background:
                           detail.activePoint === pIndex
-                            ? 'linear-gradient(to right, color-mix(in srgb, #0055ff, transparent 90%), transparent)'
+                            ? 'linear-gradient(to right, color-mix(in srgb, var(--color-brand-500), transparent 90%), transparent)'
                             : 'transparent',
                       }}
                       onMouseEnter={() => handlePointHover(index, pIndex)}
                     >
                       <div className="flex flex-col items-center gap-[2px] py-3 pl-3">
-                        <div className="relative mt-1 flex h-4 w-4 shrink-0 items-center justify-center text-[#0055ff]">
+                        <div className="relative mt-1 flex h-4 w-4 shrink-0 items-center justify-center text-brand-500">
                           {detail.activePoint === pIndex ? (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -431,10 +433,10 @@ export default function BananaProductPage({
                           )}
                         </div>
                         {pIndex < detail.points.length - 1 && (
-                          <div className="relative min-h-[16px] w-[2px] grow overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+                          <div className="relative min-h-[16px] w-[2px] grow overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800">
                             <div
                               className={clsx(
-                                'absolute top-0 left-0 w-full rounded-full bg-[#0055ff] transition-all duration-500 ease-out',
+                                'absolute top-0 left-0 w-full rounded-full bg-brand-500 transition-all duration-500 ease-out',
                                 {
                                   'h-full': detail.activePoint === pIndex,
                                   'h-0': detail.activePoint !== pIndex,
@@ -451,8 +453,8 @@ export default function BananaProductPage({
                             className={clsx(
                               'flex items-center gap-3 p-3 pl-0 text-base leading-normal font-medium transition-colors duration-300',
                               detail.activePoint === pIndex
-                                ? 'text-slate-900 dark:text-white'
-                                : 'text-slate-500 dark:text-slate-400'
+                                ? 'text-neutral-900 dark:text-white'
+                                : 'text-neutral-500 dark:text-neutral-400'
                             )}
                           >
                             {point.title}
@@ -466,7 +468,7 @@ export default function BananaProductPage({
                             <div className="overflow-hidden">
                               <div
                                 className={clsx(
-                                  '-translate-y-1 pt-0 pb-3 text-sm leading-relaxed text-slate-500 opacity-0 transition-all delay-75 duration-300 dark:text-slate-400',
+                                  '-translate-y-1 pt-0 pb-3 text-sm leading-relaxed text-neutral-500 opacity-0 transition-all delay-75 duration-300 dark:text-neutral-400',
                                   { 'translate-y-0 opacity-100': detail.activePoint === pIndex }
                                 )}
                               >
@@ -483,7 +485,7 @@ export default function BananaProductPage({
                 <div className="mt-2">
                   <Link
                     href="#"
-                    className="inline-flex items-center justify-center rounded-lg bg-[#0055ff] px-6 py-2.5 font-medium text-white shadow-md shadow-[#0055ff]/20 transition-all hover:bg-[#0043cc]"
+                    className="inline-flex items-center justify-center rounded-lg bg-brand-500 px-6 py-2.5 font-medium text-white shadow-md shadow-brand-500/20 transition-all hover:bg-brand-600"
                   >
                     立即体验
                     <ChevronRightIcon className="ml-1 h-5 w-5" />
@@ -492,8 +494,8 @@ export default function BananaProductPage({
               </div>
 
               <div className="relative h-full">
-                <div className="relative h-full rounded-md border border-slate-200/50 bg-slate-100/40 p-2 backdrop-blur-sm dark:border-slate-700/50 dark:bg-slate-800/40">
-                  <div className="relative flex h-full items-center justify-center overflow-hidden rounded-md border border-slate-200/50 bg-white/60 shadow-sm dark:border-slate-700/50 dark:bg-slate-800/60">
+                <div className="relative h-full rounded-md border border-neutral-200/50 bg-neutral-100/40 p-2 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/40">
+                  <div className="relative flex h-full items-center justify-center overflow-hidden rounded-md border border-neutral-200/50 bg-white/60 shadow-sm dark:border-neutral-700/50 dark:bg-neutral-800/60">
                     <Image
                       src={detail.image}
                       alt={detail.title}
@@ -501,7 +503,7 @@ export default function BananaProductPage({
                       height={720}
                       className="h-full w-full object-cover"
                     />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/5 to-transparent" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-neutral-950/5 to-transparent" />
                   </div>
                 </div>
               </div>
@@ -520,28 +522,28 @@ export default function BananaProductPage({
       <AiScene />
 
       {/* ===== CTA ===== */}
-      <section className="relative overflow-hidden bg-slate-50 py-24 dark:bg-slate-800/30">
+      <section className="relative overflow-hidden bg-neutral-50 py-24 dark:bg-neutral-800/30">
         <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
-          <div className="absolute top-[-10%] right-[-5%] h-[30%] w-[30%] rounded-full bg-blue-400/10 blur-[80px]" />
+          <div className="absolute top-[-10%] right-[-5%] h-[30%] w-[30%] rounded-full bg-brand-400/10 blur-[80px]" />
           <div className="absolute bottom-[-10%] left-[-5%] h-[30%] w-[30%] rounded-full bg-purple-400/10 blur-[80px]" />
         </div>
         <Container className="relative z-10 text-center">
-          <h2 className="mb-6 text-3xl font-bold text-slate-900 md:text-4xl dark:text-white">
+          <h2 className="mb-6 text-3xl font-bold text-neutral-900 md:text-4xl dark:text-white">
             {ctaTitle}
           </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-lg text-slate-500 dark:text-slate-400">
+          <p className="mx-auto mb-10 max-w-2xl text-lg text-neutral-500 dark:text-neutral-400">
             {ctaDesc}
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="#"
-              className="inline-flex items-center justify-center rounded-lg bg-[#0055ff] px-10 py-3 text-lg font-medium text-white shadow-lg transition-all hover:bg-[#0043cc]"
+              className="inline-flex items-center justify-center rounded-lg bg-brand-500 px-10 py-3 text-lg font-medium text-white shadow-lg transition-all hover:bg-brand-600"
             >
               免费试用
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-10 py-3 text-lg font-medium text-slate-900 shadow-sm transition-all hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+              className="inline-flex items-center justify-center rounded-lg border border-neutral-200 bg-white px-10 py-3 text-lg font-medium text-neutral-900 shadow-sm transition-all hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
             >
               联系商务
             </Link>

@@ -276,20 +276,20 @@ function LeftrightFeaturesMobile() {
     <div className="lg:hidden">
       <div className="mx-auto max-w-2xl">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-          <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">更快部署</h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
+          <h2 className="text-base/7 font-semibold text-brand-500 dark:text-brand-400">更快部署</h2>
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-neutral-900 sm:text-5xl dark:text-white">
             Windows云服务器
           </p>
-          <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
+          <p className="mt-6 text-lg/8 text-neutral-500 dark:text-neutral-300">
             专业的Windows云服务器解决方案，为您的企业应用提供稳定可靠的运行环境。
           </p>
-          <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
+          <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-neutral-500 lg:max-w-none dark:text-neutral-400">
             {leftRightFeatures.map((feature) => {
               const IconComponent = feature.icon
               return (
                 <div key={feature.name} className="relative pl-9">
-                  <dt className="inline font-semibold text-slate-900 dark:text-white">
-                    <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
+                  <dt className="inline font-semibold text-neutral-900 dark:text-white">
+                    <div className="absolute top-1 left-1 h-5 w-5 text-brand-500 dark:text-brand-400">
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
                         <IconComponent />
                       </svg>
@@ -303,7 +303,7 @@ function LeftrightFeaturesMobile() {
           </dl>
         </div>
         <div className="mt-16 sm:mt-20">
-          <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+          <div className="relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-neutral-700/50 dark:bg-white/10">
             {/* 移动端模拟界面头部 */}
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -311,17 +311,19 @@ function LeftrightFeaturesMobile() {
                 <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
                 <div className="h-2 w-2 rounded-full bg-green-400"></div>
               </div>
-              <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
+              <div className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
                 Windows Server
               </div>
             </div>
 
             {/* 移动端模拟界面标题栏 */}
-            <div className="mb-2 rounded-lg border border-slate-200/50 bg-slate-50/80 p-2 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-              <h3 className="mb-1 text-sm font-semibold text-slate-900 dark:text-white">
+            <div className="mb-2 rounded-lg border border-neutral-200/50 bg-neutral-50/80 p-2 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/50">
+              <h3 className="mb-1 text-sm font-semibold text-neutral-900 dark:text-white">
                 Windows云服务器控制台
               </h3>
-              <p className="text-xs text-slate-500 dark:text-gray-400">专业Windows服务器管理平台</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                专业Windows服务器管理平台
+              </p>
             </div>
 
             {/* 移动端模拟功能模块 */}
@@ -331,12 +333,12 @@ function LeftrightFeaturesMobile() {
                 return (
                   <div
                     key={feature.name}
-                    className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    className="rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-neutral-100/60 dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:hover:bg-neutral-700/40"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border border-brand-200/50 bg-brand-50 dark:border-brand-700/50 dark:bg-brand-800/50">
                         <svg
-                          className="h-3 w-3 text-[#0055ff] dark:text-blue-400"
+                          className="h-3 w-3 text-brand-500 dark:text-brand-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -345,13 +347,13 @@ function LeftrightFeaturesMobile() {
                         </svg>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-xs font-medium text-slate-900 dark:text-white">
+                        <h4 className="truncate text-xs font-medium text-neutral-900 dark:text-white">
                           {feature.name}
                         </h4>
                         <div className="mt-1">
-                          <div className="h-1 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
+                          <div className="h-1 w-full rounded-full bg-neutral-200/60 dark:bg-neutral-700/60">
                             <div
-                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 dark:bg-blue-400"
+                              className="h-1 rounded-full bg-brand-500 transition-all duration-1000 dark:bg-brand-400"
                               style={{ width: `${50 + index * 15}%` }}
                             ></div>
                           </div>
@@ -364,7 +366,7 @@ function LeftrightFeaturesMobile() {
             </div>
 
             {/* 移动端模拟状态栏 */}
-            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+            <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-[#10B981]"></div>
                 <span>服务器运行正常</span>
@@ -385,22 +387,22 @@ function LeftrightFeaturesDesktop() {
       <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
         <div className="px-6 lg:px-0 lg:pt-4 lg:pr-4">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-            <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
+            <h2 className="text-base/7 font-semibold text-brand-500 dark:text-brand-400">
               更快部署
             </h2>
-            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
+            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-neutral-900 sm:text-5xl dark:text-white">
               Windows云服务器
             </p>
-            <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
+            <p className="mt-6 text-lg/8 text-neutral-500 dark:text-neutral-300">
               专业的Windows云服务器解决方案，为您的企业应用提供稳定可靠的运行环境。
             </p>
-            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
+            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-neutral-500 lg:max-w-none dark:text-neutral-400">
               {leftRightFeatures.map((feature) => {
                 const IconComponent = feature.icon
                 return (
                   <div key={feature.name} className="relative pl-9">
-                    <dt className="inline font-semibold text-slate-900 dark:text-white">
-                      <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
+                    <dt className="inline font-semibold text-neutral-900 dark:text-white">
+                      <div className="absolute top-1 left-1 h-5 w-5 text-brand-500 dark:text-brand-400">
                         <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
                           <IconComponent />
                         </svg>
@@ -416,7 +418,7 @@ function LeftrightFeaturesDesktop() {
         </div>
         <div className="sm:px-6 lg:px-0">
           {/* 桌面端模拟界面 */}
-          <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+          <div className="relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-neutral-700/50 dark:bg-white/10">
             {/* 桌面端模拟界面头部 */}
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
@@ -424,17 +426,17 @@ function LeftrightFeaturesDesktop() {
                 <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
                 <div className="h-3 w-3 rounded-full bg-green-400"></div>
               </div>
-              <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
+              <div className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 Windows Server 2022 - 控制台
               </div>
             </div>
 
             {/* 桌面端模拟界面标题栏 */}
-            <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-              <h3 className="mb-1 text-base font-semibold text-slate-900 dark:text-white">
+            <div className="mb-3 rounded-lg border border-neutral-200/50 bg-neutral-50/80 p-3 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/50">
+              <h3 className="mb-1 text-base font-semibold text-neutral-900 dark:text-white">
                 Windows云服务器管理中心
               </h3>
-              <p className="text-sm text-slate-500 dark:text-gray-400">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">
                 企业级Windows服务器解决方案 - 稳定、安全、高效
               </p>
             </div>
@@ -446,13 +448,13 @@ function LeftrightFeaturesDesktop() {
                 return (
                   <div
                     key={feature.name}
-                    className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    className="group rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-neutral-100/60 dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:hover:bg-neutral-700/40"
                   >
                     <div className="flex items-start space-x-3">
                       <div className="flex-shrink-0">
-                        <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <div className="flex h-6 w-6 items-center justify-center rounded border border-brand-200/50 bg-brand-50 dark:border-brand-700/50 dark:bg-brand-800/50">
                           <svg
-                            className="h-4 w-4 text-[#0055ff] dark:text-blue-400"
+                            className="h-4 w-4 text-brand-500 dark:text-brand-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -462,16 +464,16 @@ function LeftrightFeaturesDesktop() {
                         </div>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                        <h4 className="truncate text-sm font-medium text-neutral-900 dark:text-white">
                           {feature.name}
                         </h4>
-                        <p className="mt-1 truncate text-xs text-slate-500 dark:text-gray-400">
+                        <p className="mt-1 truncate text-xs text-neutral-500 dark:text-neutral-400">
                           {feature.description.slice(0, 20)}...
                         </p>
                         <div className="mt-2">
-                          <div className="h-1 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
+                          <div className="h-1 w-full rounded-full bg-neutral-200/60 dark:bg-neutral-700/60">
                             <div
-                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                              className="h-1 rounded-full bg-brand-500 transition-all duration-1000 group-hover:w-full dark:bg-brand-400"
                               style={{ width: `${60 + index * 10}%` }}
                             ></div>
                           </div>
@@ -484,7 +486,7 @@ function LeftrightFeaturesDesktop() {
             </div>
 
             {/* 桌面端模拟状态栏 */}
-            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+            <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-4">
                 <span className="flex items-center space-x-1">
                   <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
@@ -513,7 +515,7 @@ function ECSLeftrightSection() {
     <section
       id="secondary-features"
       aria-label="Features for simplifying everyday business tasks"
-      className="overflow-hidden bg-white py-24 sm:py-32 dark:bg-gray-900"
+      className="overflow-hidden bg-white py-24 sm:py-32 dark:bg-neutral-950"
     >
       <Container className="md:px-6 lg:px-8">
         <LeftrightFeaturesMobile />
@@ -528,20 +530,20 @@ function RightleftFeaturesMobile() {
     <div className="lg:hidden">
       <div className="mx-auto max-w-2xl">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-          <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">更快部署</h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
+          <h2 className="text-base/7 font-semibold text-brand-500 dark:text-brand-400">更快部署</h2>
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-neutral-900 sm:text-5xl dark:text-white">
             Windows云服务器运维
           </p>
-          <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
+          <p className="mt-6 text-lg/8 text-neutral-500 dark:text-neutral-300">
             专业的Windows云服务器运维管理，提供全方位的监控、备份和安全保障服务。
           </p>
-          <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
+          <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-neutral-500 lg:max-w-none dark:text-neutral-400">
             {rightLeftFeatures.map((feature) => {
               const IconComponent = feature.icon
               return (
                 <div key={feature.name} className="relative pl-9">
-                  <dt className="inline font-semibold text-slate-900 dark:text-white">
-                    <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
+                  <dt className="inline font-semibold text-neutral-900 dark:text-white">
+                    <div className="absolute top-1 left-1 h-5 w-5 text-brand-500 dark:text-brand-400">
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
                         <IconComponent />
                       </svg>
@@ -555,7 +557,7 @@ function RightleftFeaturesMobile() {
           </dl>
         </div>
         <div className="mt-12 sm:mt-16">
-          <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+          <div className="relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-3 shadow-xl backdrop-blur-lg dark:border-neutral-700/50 dark:bg-white/10">
             {/* 移动端模拟界面头部 */}
             <div className="mb-3 flex items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -563,17 +565,17 @@ function RightleftFeaturesMobile() {
                 <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
                 <div className="h-2 w-2 rounded-full bg-green-400"></div>
               </div>
-              <div className="text-xs font-medium text-slate-700 dark:text-gray-300">
+              <div className="text-xs font-medium text-neutral-700 dark:text-neutral-300">
                 Windows运维管理
               </div>
             </div>
 
             {/* 移动端模拟界面标题栏 */}
-            <div className="mb-2 rounded-lg border border-slate-200/50 bg-slate-50/80 p-2 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-              <h3 className="mb-1 text-sm font-semibold text-slate-900 dark:text-white">
+            <div className="mb-2 rounded-lg border border-neutral-200/50 bg-neutral-50/80 p-2 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/50">
+              <h3 className="mb-1 text-sm font-semibold text-neutral-900 dark:text-white">
                 Windows云服务器运维
               </h3>
-              <p className="text-xs text-slate-500 dark:text-gray-400">专业运维管理平台</p>
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">专业运维管理平台</p>
             </div>
 
             {/* 移动端模拟功能模块 */}
@@ -583,12 +585,12 @@ function RightleftFeaturesMobile() {
                 return (
                   <div
                     key={feature.name}
-                    className="rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    className="rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-neutral-100/60 dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:hover:bg-neutral-700/40"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+                      <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border border-brand-200/50 bg-brand-50 dark:border-brand-700/50 dark:bg-brand-800/50">
                         <svg
-                          className="h-3 w-3 text-[#0055ff] dark:text-blue-400"
+                          className="h-3 w-3 text-brand-500 dark:text-brand-400"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -597,13 +599,13 @@ function RightleftFeaturesMobile() {
                         </svg>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-xs font-medium text-slate-900 dark:text-white">
+                        <h4 className="truncate text-xs font-medium text-neutral-900 dark:text-white">
                           {feature.name}
                         </h4>
                         <div className="mt-1">
-                          <div className="h-1 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
+                          <div className="h-1 w-full rounded-full bg-neutral-200/60 dark:bg-neutral-700/60">
                             <div
-                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 dark:bg-blue-400"
+                              className="h-1 rounded-full bg-brand-500 transition-all duration-1000 dark:bg-brand-400"
                               style={{ width: `${50 + index * 15}%` }}
                             ></div>
                           </div>
@@ -616,7 +618,7 @@ function RightleftFeaturesMobile() {
             </div>
 
             {/* 移动端模拟状态栏 */}
-            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+            <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-[#10B981]"></div>
                 <span>系统正常</span>
@@ -637,7 +639,7 @@ function RightleftFeaturesDesktop() {
       <div className="grid grid-cols-1 gap-x-16 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
         <div className="sm:px-6 lg:px-0 lg:pt-4 lg:pr-8">
           {/* 桌面端模拟界面 */}
-          <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-gray-700/50 dark:bg-white/10">
+          <div className="relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-4 shadow-xl backdrop-blur-lg dark:border-neutral-700/50 dark:bg-white/10">
             {/* 桌面端模拟界面头部 */}
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
@@ -645,17 +647,17 @@ function RightleftFeaturesDesktop() {
                 <div className="h-3 w-3 rounded-full bg-yellow-400"></div>
                 <div className="h-3 w-3 rounded-full bg-green-400"></div>
               </div>
-              <div className="text-sm font-medium text-slate-700 dark:text-gray-300">
+              <div className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                 云计算控制台
               </div>
             </div>
 
             {/* 桌面端模拟界面标题栏 */}
-            <div className="mb-3 rounded-lg border border-slate-200/50 bg-slate-50/80 p-3 backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/50">
-              <h3 className="mb-1 text-base font-semibold text-slate-900 dark:text-white">
+            <div className="mb-3 rounded-lg border border-neutral-200/50 bg-neutral-50/80 p-3 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/50">
+              <h3 className="mb-1 text-base font-semibold text-neutral-900 dark:text-white">
                 资源管理中心
               </h3>
-              <p className="text-sm text-slate-500 dark:text-gray-400">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">
                 实时监控和管理您的云计算资源
               </p>
             </div>
@@ -667,13 +669,13 @@ function RightleftFeaturesDesktop() {
                 return (
                   <div
                     key={feature.name}
-                    className="group rounded-lg border border-slate-200/30 bg-slate-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-slate-100/60 dark:border-gray-700/30 dark:bg-gray-800/30 dark:hover:bg-gray-700/40"
+                    className="group rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-3 backdrop-blur-sm transition-all duration-300 hover:bg-neutral-100/60 dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:hover:bg-neutral-700/40"
                   >
                     <div className="flex items-start space-x-3">
                       <div className="flex-shrink-0">
-                        <div className="flex h-6 w-6 items-center justify-center rounded border border-blue-200/50 bg-[#eff6ff] dark:border-blue-800/50 dark:bg-blue-900/50">
+                        <div className="flex h-6 w-6 items-center justify-center rounded border border-brand-200/50 bg-brand-50 dark:border-brand-700/50 dark:bg-brand-800/50">
                           <svg
-                            className="h-4 w-4 text-[#0055ff] dark:text-blue-400"
+                            className="h-4 w-4 text-brand-500 dark:text-brand-400"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -683,16 +685,16 @@ function RightleftFeaturesDesktop() {
                         </div>
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="truncate text-sm font-medium text-slate-900 dark:text-white">
+                        <h4 className="truncate text-sm font-medium text-neutral-900 dark:text-white">
                           {feature.name}
                         </h4>
-                        <p className="mt-1 truncate text-xs text-slate-500 dark:text-gray-400">
+                        <p className="mt-1 truncate text-xs text-neutral-500 dark:text-neutral-400">
                           {feature.description.slice(0, 20)}...
                         </p>
                         <div className="mt-2">
-                          <div className="h-1 w-full rounded-full bg-slate-200/60 dark:bg-gray-700/60">
+                          <div className="h-1 w-full rounded-full bg-neutral-200/60 dark:bg-neutral-700/60">
                             <div
-                              className="h-1 rounded-full bg-[#0055ff] transition-all duration-1000 group-hover:w-full dark:bg-blue-400"
+                              className="h-1 rounded-full bg-brand-500 transition-all duration-1000 group-hover:w-full dark:bg-brand-400"
                               style={{ width: `${60 + index * 10}%` }}
                             ></div>
                           </div>
@@ -705,7 +707,7 @@ function RightleftFeaturesDesktop() {
             </div>
 
             {/* 桌面端模拟状态栏 */}
-            <div className="flex items-center justify-between rounded-lg border border-slate-200/30 bg-slate-50/60 p-2 text-xs text-slate-600 backdrop-blur-sm dark:border-gray-700/30 dark:bg-gray-800/30 dark:text-gray-400">
+            <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-4">
                 <span className="flex items-center space-x-1">
                   <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
@@ -722,22 +724,22 @@ function RightleftFeaturesDesktop() {
         </div>
         <div className="px-6 lg:px-0 lg:pt-4 lg:pl-8">
           <div className="mx-auto max-w-2xl lg:mr-0 lg:ml-auto lg:max-w-lg">
-            <h2 className="text-base/7 font-semibold text-[#0055ff] dark:text-blue-400">
+            <h2 className="text-base/7 font-semibold text-brand-500 dark:text-brand-400">
               更快部署
             </h2>
-            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl dark:text-white">
+            <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-neutral-900 sm:text-5xl dark:text-white">
               Windows云服务器运维
             </p>
-            <p className="mt-6 text-lg/8 text-slate-500 dark:text-gray-300">
+            <p className="mt-6 text-lg/8 text-neutral-500 dark:text-neutral-300">
               专业的Windows云服务器运维管理，提供全方位的监控、备份和安全保障服务。
             </p>
-            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-slate-500 lg:max-w-none dark:text-gray-400">
+            <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-neutral-500 lg:max-w-none dark:text-neutral-400">
               {rightLeftFeatures.map((feature) => {
                 const IconComponent = feature.icon
                 return (
                   <div key={feature.name} className="relative pl-9">
-                    <dt className="inline font-semibold text-slate-900 dark:text-white">
-                      <div className="absolute top-1 left-1 h-5 w-5 text-[#0055ff] dark:text-blue-400">
+                    <dt className="inline font-semibold text-neutral-900 dark:text-white">
+                      <div className="absolute top-1 left-1 h-5 w-5 text-brand-500 dark:text-brand-400">
                         <svg className="h-5 w-5" fill="none" viewBox="0 0 36 36" aria-hidden="true">
                           <IconComponent />
                         </svg>
@@ -765,7 +767,7 @@ function ECSRightleftSection() {
     <section
       id="secondary-features"
       aria-label="Features for simplifying everyday business tasks"
-      className="overflow-hidden bg-white py-24 sm:py-32 dark:bg-gray-900"
+      className="overflow-hidden bg-white py-24 sm:py-32 dark:bg-neutral-950"
     >
       <Container className="md:px-6 lg:px-8">
         <RightleftFeaturesMobile />
@@ -787,16 +789,16 @@ export default function ECSPage() {
         <ECSVideoHero />
 
         {/* 云电脑专区 - 直接嵌入的代码 */}
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-neutral-50">
           {/* 页面标题 */}
-          <div className="border-b border-slate-200 bg-white">
+          <div className="border-b border-neutral-200 bg-white">
             <div className="mx-auto max-w-[1800px] px-4 pt-24 pb-6 sm:px-6 lg:px-8">
-              <h1 className="text-2xl font-bold tracking-tight text-slate-900">云电脑专区</h1>
-              <p className="mt-2 text-sm text-slate-500">
+              <h1 className="text-2xl font-bold tracking-tight text-neutral-900">云电脑专区</h1>
+              <p className="mt-2 text-sm text-neutral-500">
                 <span className="font-medium text-[#F59E0B]">4核4G起步</span>
                 ，新用户低至
                 <span className="font-medium text-[#F59E0B]">79元/年</span>
-                <span className="ml-2 cursor-pointer text-[#0055ff] underline hover:text-[#0043cc]">
+                <span className="ml-2 cursor-pointer text-brand-500 underline hover:text-brand-600">
                   活动规则&gt;
                 </span>
               </p>
@@ -809,18 +811,18 @@ export default function ECSPage() {
               {serverProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-md border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50"
                 >
                   {/* Hover Gradient Background */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   <div className="relative z-10 flex h-full flex-col">
                     {/* 产品标题和标签 */}
-                    <div className="border-b border-slate-100 p-6">
+                    <div className="border-b border-neutral-100 p-6">
                       <div className="mb-4 flex items-center justify-between">
-                        <h3 className="text-lg font-medium text-slate-900">{product.name}</h3>
+                        <h3 className="text-lg font-medium text-neutral-900">{product.name}</h3>
                         <svg
-                          className="h-5 w-5 text-slate-400"
+                          className="h-5 w-5 text-neutral-400"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -834,7 +836,7 @@ export default function ECSPage() {
                         </svg>
                       </div>
                       <div className="mb-2 flex items-center gap-2">
-                        <span className="text-xl font-bold tracking-tight text-slate-900">
+                        <span className="text-xl font-bold tracking-tight text-neutral-900">
                           {product.subtitle}
                         </span>
                         {product.isHot && (
@@ -843,12 +845,12 @@ export default function ECSPage() {
                           </span>
                         )}
                         {product.isRecommended && (
-                          <span className="rounded border border-blue-100 bg-[#eff6ff] px-2 py-0.5 text-xs text-[#0055ff]">
+                          <span className="rounded border border-brand-100 bg-brand-50 px-2 py-0.5 text-xs text-brand-500">
                             申请特惠
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm text-neutral-500">
                         建站、Web应用、电商网站等高性价比的选择
                       </p>
                     </div>
@@ -856,13 +858,13 @@ export default function ECSPage() {
                     {/* 产品规格信息 */}
                     <div className="flex-grow space-y-4 p-6">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-500">规格</span>
+                        <span className="text-sm text-neutral-500">规格</span>
                         <div className="flex items-center gap-1">
-                          <span className="font-mono text-sm font-medium text-slate-900">
+                          <span className="font-mono text-sm font-medium text-neutral-900">
                             {product.specs.cpu}
                           </span>
                           <svg
-                            className="h-4 w-4 text-slate-400"
+                            className="h-4 w-4 text-neutral-400"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -878,14 +880,16 @@ export default function ECSPage() {
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-500">地域</span>
-                        <span className="text-sm text-slate-900">{product.regions.join('/')}</span>
+                        <span className="text-sm text-neutral-500">地域</span>
+                        <span className="text-sm text-neutral-900">
+                          {product.regions.join('/')}
+                        </span>
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-500">时长</span>
+                        <span className="text-sm text-neutral-500">时长</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-slate-900">{product.duration}</span>
+                          <span className="text-sm text-neutral-900">{product.duration}</span>
                           <span className="rounded border border-red-100 bg-red-50 px-1.5 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
@@ -893,13 +897,13 @@ export default function ECSPage() {
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-slate-500">数量</span>
+                        <span className="text-sm text-neutral-500">数量</span>
                         <div className="flex items-center gap-2">
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-neutral-200 text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-neutral-900">
                             −
                           </button>
-                          <span className="w-8 text-center text-sm text-slate-900">1</span>
-                          <button className="flex h-6 w-6 items-center justify-center rounded border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
+                          <span className="w-8 text-center text-sm text-neutral-900">1</span>
+                          <button className="flex h-6 w-6 items-center justify-center rounded border border-neutral-200 text-neutral-500 transition-colors hover:bg-neutral-50 hover:text-neutral-900">
                             +
                           </button>
                         </div>
@@ -907,29 +911,29 @@ export default function ECSPage() {
                     </div>
 
                     {/* 价格和折扣信息 */}
-                    <div className="border-t border-slate-100 bg-slate-50/50 p-6">
+                    <div className="border-t border-neutral-100 bg-neutral-50/50 p-6">
                       {product.discount && (
                         <div className="mb-3 flex items-center gap-2">
                           <span className="rounded border border-red-100 bg-red-50 px-2 py-0.5 text-xs text-red-600">
                             {product.discount}
                           </span>
-                          <span className="text-xs text-slate-400">限1个</span>
+                          <span className="text-xs text-neutral-400">限1个</span>
                         </div>
                       )}
 
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
-                          <span className="text-sm text-slate-500">活动价:</span>
+                          <span className="text-sm text-neutral-500">活动价:</span>
                           <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
                             {product.currentPrice}
                           </span>
-                          <span className="text-sm text-slate-500">元</span>
-                          <span className="text-xs text-slate-400 line-through">
+                          <span className="text-sm text-neutral-500">元</span>
+                          <span className="text-xs text-neutral-400 line-through">
                             {formatPriceWithDecimals(product.originalPrice)}/月
                           </span>
                         </div>
                         <div className="mt-1 flex items-center gap-2">
-                          <span className="text-xs text-slate-400">
+                          <span className="text-xs text-neutral-400">
                             日常价: {product.originalPrice} 元
                           </span>
                         </div>
@@ -941,7 +945,7 @@ export default function ECSPage() {
                           href="https://console.cloudcvm.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-center text-sm font-medium text-slate-600 transition-all hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
+                          className="flex-1 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-center text-sm font-medium text-neutral-600 transition-all hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900"
                         >
                           加入购物车
                         </a>
@@ -949,7 +953,7 @@ export default function ECSPage() {
                           href="https://console.cloudcvm.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 rounded-lg bg-[#0055ff] px-3 py-2 text-center text-sm font-medium text-white transition-all hover:bg-[#0043cc] hover:shadow-md hover:shadow-blue-500/20"
+                          className="flex-1 rounded-lg bg-brand-500 px-3 py-2 text-center text-sm font-medium text-white transition-all hover:bg-brand-600 hover:shadow-md hover:shadow-brand-500/20"
                         >
                           立即购买
                         </a>

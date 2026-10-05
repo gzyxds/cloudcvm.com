@@ -104,11 +104,11 @@ function CMSHeroSection() {
   ]
 
   return (
-    <section className="relative isolate overflow-hidden bg-slate-50 py-10 sm:py-14 md:py-16">
+    <section className="relative isolate overflow-hidden bg-neutral-50 py-10 sm:py-14 md:py-16">
       {/* 背景装饰 */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 -z-10 h-96 w-96 bg-[#0055ff]/10 opacity-60 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 -z-10 h-80 w-80 bg-slate-200/30 opacity-40 blur-3xl"></div>
+        <div className="absolute top-0 right-0 -z-10 h-96 w-96 bg-brand-500/10 opacity-60 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 -z-10 h-80 w-80 bg-neutral-200/30 opacity-40 blur-3xl"></div>
       </div>
 
       <Container className="relative z-10">
@@ -121,7 +121,7 @@ function CMSHeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-flex items-center rounded-full border border-[#0055ff]/20 bg-[#eff6ff] px-4 py-1.5 text-xs font-semibold text-[#0055ff]">
+              <div className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-500">
                 <DocumentTextIcon className="mr-2 h-4 w-4" />
                 企业级CMS解决方案
               </div>
@@ -134,14 +134,14 @@ function CMSHeroSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
                 <br />
                 内容管理系统
               </h1>
-              <p className="text-lg leading-relaxed text-slate-600 sm:text-xl">
+              <p className="text-lg leading-relaxed text-neutral-600 sm:text-xl">
                 为企业提供专业的内容创作、管理、发布一体化解决方案
               </p>
-              <p className="text-base leading-relaxed text-slate-500">
+              <p className="text-base leading-relaxed text-neutral-500">
                 支持多站点管理、SEO优化、响应式设计，助力企业数字化转型
               </p>
             </motion.div>
@@ -157,7 +157,7 @@ function CMSHeroSection() {
                 <a
                   key={feature.name}
                   href={feature.href}
-                  className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-all hover:border-[#0055ff]/30 hover:bg-[#0055ff]/5 hover:text-[#0055ff]"
+                  className="rounded-lg border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-700 transition-all hover:border-brand-500/30 hover:bg-brand-500/5 hover:text-brand-500"
                 >
                   {feature.name}
                 </a>
@@ -199,16 +199,16 @@ function CMSHeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative mt-4 lg:mt-8"
           >
-            <div className="relative overflow-hidden rounded-md border border-slate-200 bg-white shadow-xl shadow-slate-200/50 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-300/60">
+            <div className="relative overflow-hidden rounded-md border border-neutral-200 bg-white shadow-xl shadow-neutral-200/50 transition-all duration-500 hover:shadow-2xl hover:shadow-neutral-300/60">
               {/* 窗口控制栏 */}
-              <div className="border-b border-slate-200 bg-slate-50/90 px-4 py-3 backdrop-blur-sm">
+              <div className="border-b border-neutral-200 bg-neutral-50/90 px-4 py-3 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-2">
                     <div className="h-2.5 w-2.5 rounded-full bg-red-400"></div>
                     <div className="h-2.5 w-2.5 rounded-full bg-yellow-400"></div>
                     <div className="h-2.5 w-2.5 rounded-full bg-green-400"></div>
                   </div>
-                  <div className="text-xs font-medium text-slate-700">CMS Dashboard</div>
+                  <div className="text-xs font-medium text-neutral-700">CMS Dashboard</div>
                   <div className="w-4"></div>
                 </div>
               </div>
@@ -217,50 +217,50 @@ function CMSHeroSection() {
               <div className="p-4 sm:p-5">
                 {/* 顶部状态栏 */}
                 <div className="mb-5 grid grid-cols-3 gap-3">
-                  <div className="rounded-xl bg-[#eff6ff] p-3 text-center transition-all hover:shadow-md">
-                    <div className="text-xl font-bold text-[#0055ff]">128</div>
-                    <div className="mt-1 text-xs text-slate-500">文章</div>
+                  <div className="rounded-xl bg-brand-50 p-3 text-center transition-all hover:shadow-md">
+                    <div className="text-xl font-bold text-brand-500">128</div>
+                    <div className="mt-1 text-xs text-neutral-500">文章</div>
                   </div>
                   <div className="rounded-xl bg-green-50 p-3 text-center transition-all hover:shadow-md">
                     <div className="text-xl font-bold text-green-600">45</div>
-                    <div className="mt-1 text-xs text-slate-500">页面</div>
+                    <div className="mt-1 text-xs text-neutral-500">页面</div>
                   </div>
                   <div className="rounded-xl bg-purple-50 p-3 text-center transition-all hover:shadow-md">
                     <div className="text-xl font-bold text-purple-600">89%</div>
-                    <div className="mt-1 text-xs text-slate-500">SEO评分</div>
+                    <div className="mt-1 text-xs text-neutral-500">SEO评分</div>
                   </div>
                 </div>
 
                 {/* 内容预览区 */}
                 <div className="space-y-3">
                   {/* 文章列表预览 */}
-                  <div className="rounded-md border border-slate-200 bg-white p-3.5 transition-all hover:border-slate-300 hover:shadow-md">
+                  <div className="rounded-md border border-neutral-200 bg-white p-3.5 transition-all hover:border-neutral-300 hover:shadow-md">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <div className="h-2 w-2 rounded-full bg-[#0055ff]"></div>
-                        <div className="h-2 w-20 rounded bg-slate-100"></div>
+                        <div className="h-2 w-2 rounded-full bg-brand-500"></div>
+                        <div className="h-2 w-20 rounded bg-neutral-100"></div>
                       </div>
-                      <div className="h-2 w-8 rounded bg-slate-100"></div>
+                      <div className="h-2 w-8 rounded bg-neutral-100"></div>
                     </div>
-                    <div className="mt-2.5 h-2 w-full rounded bg-slate-100"></div>
-                    <div className="mt-1.5 h-2 w-3/4 rounded bg-slate-100"></div>
+                    <div className="mt-2.5 h-2 w-full rounded bg-neutral-100"></div>
+                    <div className="mt-1.5 h-2 w-3/4 rounded bg-neutral-100"></div>
                   </div>
 
                   {/* 额外内容区域 */}
-                  <div className="rounded-md border border-slate-200 bg-slate-50 p-3.5 transition-all hover:border-slate-300 hover:shadow-md">
+                  <div className="rounded-md border border-neutral-200 bg-neutral-50 p-3.5 transition-all hover:border-neutral-300 hover:shadow-md">
                     <div className="flex items-center space-x-2">
                       <div className="h-2.5 w-2.5 rounded-full bg-orange-400"></div>
-                      <div className="h-2 w-16 rounded bg-slate-200"></div>
+                      <div className="h-2 w-16 rounded bg-neutral-200"></div>
                     </div>
                     <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-                      <div className="h-2 rounded bg-slate-200"></div>
-                      <div className="h-2 rounded bg-slate-200"></div>
+                      <div className="h-2 rounded bg-neutral-200"></div>
+                      <div className="h-2 rounded bg-neutral-200"></div>
                     </div>
                   </div>
 
                   {/* 统计数据预览 */}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-xl bg-gradient-to-r from-[#0055ff] to-[#0043cc] p-3 text-center shadow-md transition-all hover:shadow-lg">
+                    <div className="rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 p-3 text-center shadow-md transition-all hover:shadow-lg">
                       <div className="text-xs font-medium text-white/90">浏览量</div>
                       <div className="mt-1 text-lg font-bold text-white">2.4K</div>
                     </div>
@@ -272,10 +272,10 @@ function CMSHeroSection() {
 
                   {/* 快速操作按钮 */}
                   <div className="flex space-x-2.5">
-                    <button className="flex-1 rounded-xl bg-[#0055ff] px-4 py-2.5 text-xs font-medium text-white transition-all hover:bg-[#0043cc] hover:shadow-lg">
+                    <button className="flex-1 rounded-xl bg-brand-500 px-4 py-2.5 text-xs font-medium text-white transition-all hover:bg-brand-600 hover:shadow-lg">
                       新建
                     </button>
-                    <button className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-medium text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50">
+                    <button className="flex-1 rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-xs font-medium text-neutral-700 transition-all hover:border-neutral-300 hover:bg-neutral-50">
                       发布
                     </button>
                   </div>
@@ -283,8 +283,8 @@ function CMSHeroSection() {
               </div>
 
               {/* 底部状态栏 */}
-              <div className="border-t border-slate-200 bg-slate-50/90 px-4 py-2.5 backdrop-blur-sm">
-                <div className="flex items-center justify-between text-xs text-slate-500">
+              <div className="border-t border-neutral-200 bg-neutral-50/90 px-4 py-2.5 backdrop-blur-sm">
+                <div className="flex items-center justify-between text-xs text-neutral-500">
                   <span className="flex items-center gap-1.5">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500"></span>
                     已连接
@@ -347,10 +347,10 @@ function CMSFeaturesSection() {
     <section id="features" className="scroll-mt-20 bg-white py-10 sm:py-14 md:py-16">
       <Container>
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-5xl">
             核心功能特性
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
             全面的CMS功能模块，满足企业各类内容管理需求
           </p>
         </div>
@@ -360,27 +360,27 @@ function CMSFeaturesSection() {
             return (
               <div
                 key={feature.title}
-                className="group relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50 sm:p-8"
+                className="group relative overflow-hidden rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-500/30 hover:shadow-xl hover:shadow-neutral-200/50 sm:p-8"
               >
                 {/* 选中时的背景渐变 */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white to-[#eff6ff] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* 内容 */}
                 <div className="relative z-10">
                   <div className="mb-3 flex items-center gap-3">
-                    <feature.icon className="h-6 w-6 text-[#0055ff] sm:h-7 sm:w-7" />
-                    <h3 className="text-lg font-semibold text-slate-900 sm:text-xl">
+                    <feature.icon className="h-6 w-6 text-brand-500 sm:h-7 sm:w-7" />
+                    <h3 className="text-lg font-semibold text-neutral-900 sm:text-xl">
                       {feature.title}
                     </h3>
                   </div>
-                  <p className="text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
+                  <p className="text-sm leading-6 text-neutral-600 sm:text-base sm:leading-7">
                     {feature.description}
                   </p>
                 </div>
 
                 {/* 悬停效果箭头 */}
                 <div className="absolute right-4 bottom-4 opacity-0 transition-all duration-300 group-hover:opacity-100 sm:right-6 sm:bottom-6">
-                  <ArrowRightIcon className="h-4 w-4 text-[#0055ff] sm:h-5 sm:w-5" />
+                  <ArrowRightIcon className="h-4 w-4 text-brand-500 sm:h-5 sm:w-5" />
                 </div>
               </div>
             )
@@ -429,15 +429,15 @@ function CMSScenariosSection() {
   ]
 
   return (
-    <section id="content" className="scroll-mt-20 bg-slate-50 py-10 sm:py-14 lg:py-16">
+    <section id="content" className="scroll-mt-20 bg-neutral-50 py-10 sm:py-14 lg:py-16">
       <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1800px' }}>
         {/* 标题区域 */}
         <div className="mb-6 text-center sm:mb-8 md:mb-10">
-          <h2 className="mb-2 text-lg font-bold text-slate-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
+          <h2 className="mb-2 text-lg font-bold text-neutral-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
             应用场景解决方案
           </h2>
-          <div className="mx-auto mb-4 h-1 w-20 bg-[#0055ff] sm:mb-6"></div>
-          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-slate-600 sm:px-0 sm:text-lg">
+          <div className="mx-auto mb-4 h-1 w-20 bg-brand-500 sm:mb-6"></div>
+          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-neutral-600 sm:px-0 sm:text-lg">
             针对不同行业和业务场景，提供专业化的CMS解决方案，助力企业实现数字化转型
           </p>
         </div>
@@ -447,33 +447,33 @@ function CMSScenariosSection() {
           {scenarios.map((scenario) => (
             <div
               key={scenario.title}
-              className="relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-colors duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-md border border-neutral-200 bg-white p-6 transition-colors duration-300 hover:border-brand-500/30 hover:shadow-xl hover:shadow-neutral-200/50"
             >
               {/* 内容区域 */}
               <div className="relative z-10">
                 {/* 标题和标签 */}
                 <div className="mb-4">
-                  <div className="mb-3 inline-flex items-center rounded-md bg-[#eff6ff] px-3 py-1 text-xs font-medium text-[#0055ff]">
+                  <div className="mb-3 inline-flex items-center rounded-md bg-brand-50 px-3 py-1 text-xs font-medium text-brand-500">
                     <CheckCircleIcon className="mr-1 h-3 w-3" />
                     专业解决方案
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-900 sm:text-xl">
+                  <h3 className="text-lg font-semibold text-neutral-900 sm:text-xl">
                     {scenario.title}
                   </h3>
                 </div>
 
                 {/* 描述文本 */}
-                <p className="mb-4 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
+                <p className="mb-4 text-sm leading-6 text-neutral-600 sm:text-base sm:leading-7">
                   {scenario.description}
                 </p>
 
                 {/* 核心功能列表 */}
                 <div className="mb-6">
-                  <h4 className="mb-2 text-sm font-semibold text-slate-900">核心功能</h4>
+                  <h4 className="mb-2 text-sm font-semibold text-neutral-900">核心功能</h4>
                   <div className="space-y-2">
                     {scenario.features.map((feature) => (
-                      <div key={feature} className="flex items-center text-sm text-slate-600">
-                        <div className="mr-2 h-1.5 w-1.5 rounded-full bg-[#0055ff]" />
+                      <div key={feature} className="flex items-center text-sm text-neutral-600">
+                        <div className="mr-2 h-1.5 w-1.5 rounded-full bg-brand-500" />
                         {feature}
                       </div>
                     ))}
@@ -486,10 +486,10 @@ function CMSScenariosSection() {
                     {scenario.stats.map((stat) => (
                       <div
                         key={stat.label}
-                        className="rounded-lg border border-slate-100 bg-slate-50 p-2 text-center"
+                        className="rounded-lg border border-neutral-100 bg-neutral-50 p-2 text-center"
                       >
-                        <div className="text-lg font-bold text-[#0055ff]">{stat.value}</div>
-                        <div className="text-xs text-slate-500">{stat.label}</div>
+                        <div className="text-lg font-bold text-brand-500">{stat.value}</div>
+                        <div className="text-xs text-neutral-500">{stat.label}</div>
                       </div>
                     ))}
                   </div>
@@ -539,11 +539,11 @@ function CMSTechAdvantagesSection() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '1800px' }}>
         {/* 标题区域 */}
         <div className="mb-6 text-center sm:mb-8 md:mb-10">
-          <h2 className="mb-2 text-lg font-bold text-slate-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
+          <h2 className="mb-2 text-lg font-bold text-neutral-900 sm:mb-4 sm:text-xl md:text-3xl lg:text-5xl">
             技术优势数据
           </h2>
-          <div className="mx-auto mb-4 h-1 w-20 bg-[#0055ff] sm:mb-6"></div>
-          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-slate-600 sm:px-0 sm:text-lg">
+          <div className="mx-auto mb-4 h-1 w-20 bg-brand-500 sm:mb-6"></div>
+          <p className="mx-auto max-w-3xl px-4 text-base leading-relaxed text-neutral-600 sm:px-0 sm:text-lg">
             先进的技术架构和可靠的性能表现，为您的业务提供坚实保障
           </p>
         </div>
@@ -553,25 +553,25 @@ function CMSTechAdvantagesSection() {
           {techAdvantages.map((advantage) => (
             <div
               key={advantage.title}
-              className="relative overflow-hidden rounded-md border border-slate-200 bg-white p-8 transition-colors duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-md border border-neutral-200 bg-white p-8 transition-colors duration-300 hover:border-brand-500/30 hover:shadow-xl hover:shadow-neutral-200/50"
             >
               <div className="relative z-10">
                 {/* 图标 */}
                 <div className="mb-4 flex justify-center">
-                  <advantage.icon className="h-12 w-12 text-[#0055ff]" />
+                  <advantage.icon className="h-12 w-12 text-brand-500" />
                 </div>
                 {/* 数据值 */}
-                <div className="mb-4 text-center text-4xl font-bold text-[#0055ff]">
+                <div className="mb-4 text-center text-4xl font-bold text-brand-500">
                   {advantage.value}
                 </div>
 
                 {/* 标题 */}
-                <div className="mb-3 text-center text-xl font-semibold text-slate-900">
+                <div className="mb-3 text-center text-xl font-semibold text-neutral-900">
                   {advantage.title}
                 </div>
 
                 {/* 描述 */}
-                <div className="text-center text-sm leading-relaxed text-slate-600">
+                <div className="text-center text-sm leading-relaxed text-neutral-600">
                   {advantage.description}
                 </div>
               </div>
@@ -615,13 +615,13 @@ function CMSTestimonialsSection() {
   ]
 
   return (
-    <section className="bg-slate-50 py-10 sm:py-14 md:py-16">
+    <section className="bg-neutral-50 py-10 sm:py-14 md:py-16">
       <Container>
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-5xl">
             客户评价
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
             听听我们的客户怎么说
           </p>
         </div>
@@ -630,7 +630,7 @@ function CMSTestimonialsSection() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
-              className="relative overflow-hidden rounded-md border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-xl hover:shadow-slate-200/50"
+              className="relative overflow-hidden rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:border-brand-500/30 hover:shadow-xl hover:shadow-neutral-200/50"
             >
               <div className="mb-4 flex">
                 {[...Array(testimonial.rating)].map((_, i) => (
@@ -645,17 +645,17 @@ function CMSTestimonialsSection() {
                 ))}
               </div>
 
-              <blockquote className="mb-6 text-slate-700">
+              <blockquote className="mb-6 text-neutral-700">
                 &ldquo;{testimonial.content}&rdquo;
               </blockquote>
 
               <div className="flex items-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#eff6ff] text-[#0055ff]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-500">
                   <UserGroupIcon className="h-6 w-6" />
                 </div>
                 <div className="ml-3">
-                  <div className="font-semibold text-slate-900">{testimonial.name}</div>
-                  <div className="text-sm text-slate-600">
+                  <div className="font-semibold text-neutral-900">{testimonial.name}</div>
+                  <div className="text-sm text-neutral-600">
                     {testimonial.role} · {testimonial.company}
                   </div>
                 </div>
@@ -675,14 +675,14 @@ function CMSCTASection() {
   return (
     <section
       id="demo"
-      className="relative scroll-mt-20 overflow-hidden bg-[#0055ff] py-10 sm:py-14 md:py-16"
+      className="relative scroll-mt-20 overflow-hidden bg-brand-500 py-10 sm:py-14 md:py-16"
     >
       <Container className="relative z-10">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
             准备好开始了吗？
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-xl leading-8 text-blue-100">
+          <p className="mx-auto mt-6 max-w-2xl text-xl leading-8 text-brand-100">
             加入数千家企业的选择，使用优刻云计算 CMS构建更好的内容管理体验
           </p>
 
@@ -693,7 +693,7 @@ function CMSCTASection() {
               href="/contact"
               variant="erlieSolid"
               color="white"
-              className="group relative inline-flex w-full min-w-[160px] items-center justify-center rounded-xl px-8 py-3.5 text-base font-medium text-[#0055ff] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
+              className="group relative inline-flex w-full min-w-[160px] items-center justify-center rounded-xl px-8 py-3.5 text-base font-medium text-brand-500 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
             >
               <span className="relative z-10 flex items-center">
                 免费试用
@@ -717,10 +717,10 @@ function CMSCTASection() {
 
           {/* 信任标识 */}
           <div className="mt-8 flex flex-col items-center space-y-4">
-            <p className="text-sm text-blue-200">免费试用 30 天 · 无需信用卡 · 随时取消</p>
+            <p className="text-sm text-brand-200">免费试用 30 天 · 无需信用卡 · 随时取消</p>
 
             {/* 信任徽章 */}
-            <div className="flex items-center space-x-6 text-blue-200/80">
+            <div className="flex items-center space-x-6 text-brand-200/80">
               <div className="flex items-center space-x-2">
                 <CheckCircleIcon className="h-4 w-4" />
                 <span className="text-xs">SSL安全保护</span>
@@ -748,7 +748,7 @@ function SectionNav() {
   const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
 
   return (
-    <nav className="sticky top-14 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
+    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
       <Container>
         <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
           {SECTION_LINKS.map((item) => {
@@ -759,8 +759,8 @@ function SectionNav() {
                 href={`#${item.id}`}
                 className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
                   isActive
-                    ? 'border-[#0055ff] text-[#0055ff]'
-                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
+                    ? 'border-brand-500 text-brand-500'
+                    : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900'
                 }`}
               >
                 {item.label}

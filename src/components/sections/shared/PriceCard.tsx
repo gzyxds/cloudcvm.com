@@ -545,7 +545,7 @@ export default function PriceCard() {
   /**
    * 公共卡片容器样式
    */
-  const cardBase = `group relative block overflow-hidden rounded-xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50 cursor-pointer`
+  const cardBase = `group relative block overflow-hidden rounded-xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-neutral-200/50 cursor-pointer`
 
   /**
    * 热门活动精选区域
@@ -564,23 +564,23 @@ export default function PriceCard() {
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url('${largeCard.bg}')` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-brand-50/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
             <div className="relative z-10 flex h-full min-h-[170px] flex-col justify-center p-5 sm:min-h-[350px] sm:justify-between sm:p-8">
               <div>
-                <span className="mb-3 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-5 sm:px-4 sm:py-1.5 sm:text-sm">
+                <span className="mb-3 inline-block rounded-md bg-brand-500 px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-5 sm:px-4 sm:py-1.5 sm:text-sm">
                   {largeCard.tag}
                 </span>
-                <h3 className="mb-2 hidden text-lg leading-tight font-bold text-[#0F172A] sm:mb-3 sm:block sm:text-2xl">
+                <h3 className="mb-2 hidden text-lg leading-tight font-bold text-neutral-950 sm:mb-3 sm:block sm:text-2xl">
                   {largeCard.title}
                 </h3>
                 {largeCard.desc.map((line, i) => (
-                  <p key={i} className="text-sm leading-relaxed text-[#64748B] sm:text-base">
+                  <p key={i} className="text-sm leading-relaxed text-neutral-500 sm:text-base">
                     {line}
                   </p>
                 ))}
               </div>
-              <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1 sm:mt-6">
+              <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-500 transition-transform duration-300 group-hover:translate-x-1 sm:mt-6">
                 立即抢购 <span aria-hidden="true">→</span>
               </span>
             </div>
@@ -594,23 +594,23 @@ export default function PriceCard() {
                   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{ backgroundImage: `url('${card.bg}')` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-[#eff6ff]/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-brand-50/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 <div className="relative z-10 flex h-full min-h-[110px] flex-col justify-center p-4 sm:min-h-[168px] sm:justify-between sm:p-6">
                   <div>
-                    <span className="mb-2 inline-block rounded-md bg-[#0055ff] px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-4">
+                    <span className="mb-2 inline-block rounded-md bg-brand-500 px-3 py-1 text-xs font-semibold text-white shadow-sm sm:mb-4">
                       {card.tag}
                     </span>
-                    <h3 className="mb-1 hidden text-sm leading-snug font-bold text-[#0F172A] sm:mb-2 sm:block sm:text-lg">
+                    <h3 className="mb-1 hidden text-sm leading-snug font-bold text-neutral-950 sm:mb-2 sm:block sm:text-lg">
                       {card.title}
                     </h3>
                     {card.desc.map((line, i) => (
-                      <p key={i} className="text-xs leading-relaxed text-[#64748B] sm:text-sm">
+                      <p key={i} className="text-xs leading-relaxed text-neutral-500 sm:text-sm">
                         {line}
                       </p>
                     ))}
                   </div>
-                  <span className="mt-2 hidden items-center gap-1 text-sm font-medium text-[#0055ff] transition-transform duration-300 group-hover:translate-x-1 sm:mt-4 sm:inline-flex">
+                  <span className="mt-2 hidden items-center gap-1 text-sm font-medium text-brand-500 transition-transform duration-300 group-hover:translate-x-1 sm:mt-4 sm:inline-flex">
                     立即查看 <span aria-hidden="true">→</span>
                   </span>
                 </div>
@@ -622,8 +622,8 @@ export default function PriceCard() {
 
         {/* 云计算产品网格数据区域 */}
         <div className="mt-12 mb-6">
-          <h2 className="text-3xl font-bold text-[#0F172A]">轻量应用服务器</h2>
-          <p className="mt-1 text-[#64748B]">
+          <h2 className="text-3xl font-bold text-neutral-950">轻量应用服务器</h2>
+          <p className="mt-1 text-neutral-500">
             新用户首购专享，老用户续费同价，全场配置限购1次，更多优惠详见活动规则
           </p>
         </div>
@@ -631,7 +631,7 @@ export default function PriceCard() {
           {serverProducts.map((product) => (
             <div
               key={product.id}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-md border border-[#E2E8F0] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-md border border-neutral-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-500 hover:shadow-xl"
             >
               <div className="p-6">
                 <div className="mb-3 flex items-center gap-2">
@@ -641,7 +641,7 @@ export default function PriceCard() {
                     </span>
                   )}
                   {product.isRecommended && (
-                    <span className="rounded-sm bg-[#0055ff] px-2 py-1 text-xs font-medium text-white">
+                    <span className="rounded-sm bg-brand-500 px-2 py-1 text-xs font-medium text-white">
                       推荐
                     </span>
                   )}
@@ -652,16 +652,16 @@ export default function PriceCard() {
                   )}
                 </div>
 
-                <h3 className="mb-1 text-xl font-bold text-[#0F172A]">{product.name}</h3>
-                <p className="mb-4 text-sm text-[#64748B]">{product.subtitle}</p>
+                <h3 className="mb-1 text-xl font-bold text-neutral-950">{product.name}</h3>
+                <p className="mb-4 text-sm text-neutral-500">{product.subtitle}</p>
                 <div className="sr-only">
                   {product.activityNote && <span>活动说明：{product.activityNote}</span>}
                   {product.activityEndDate && <span>活动截止：{product.activityEndDate}</span>}
                 </div>
 
-                <div className="mb-4 divide-y divide-[#f2f3f5] overflow-hidden rounded-md border border-[#f2f3f5]">
-                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                <div className="mb-4 divide-y divide-neutral-50 overflow-hidden rounded-md border border-neutral-50">
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -674,10 +674,10 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-[#64748B]">CPU: {product.specs.cpu}</span>
+                    <span className="text-neutral-500">CPU: {product.specs.cpu}</span>
                   </div>
-                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -690,10 +690,10 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-[#64748B]">内存: {product.specs.memory}</span>
+                    <span className="text-neutral-500">内存: {product.specs.memory}</span>
                   </div>
-                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -706,10 +706,10 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-[#64748B]">存储: {product.specs.storage}</span>
+                    <span className="text-neutral-500">存储: {product.specs.storage}</span>
                   </div>
-                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -722,10 +722,10 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-[#64748B]">带宽: {product.specs.bandwidth}</span>
+                    <span className="text-neutral-500">带宽: {product.specs.bandwidth}</span>
                   </div>
-                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -738,10 +738,10 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-[#64748B]">地域: {product.regions.join('/')}</span>
+                    <span className="text-neutral-500">地域: {product.regions.join('/')}</span>
                   </div>
-                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -754,38 +754,38 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-[#64748B]">时长: {product.duration}</span>
+                    <span className="text-neutral-500">时长: {product.duration}</span>
                   </div>
                 </div>
 
                 <div className="mb-4">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-[#0055ff]">
+                    <span className="text-2xl font-bold text-brand-500">
                       ¥{product.currentPrice}
                     </span>
-                    <span className="text-sm text-[#64748B]">/ {product.duration}</span>
+                    <span className="text-sm text-neutral-500">/ {product.duration}</span>
                   </div>
                   <div className="mt-1 flex items-center gap-1">
-                    <span className="text-sm text-[#64748B]">日常价:</span>
-                    <span className="text-sm text-[#94A3B8] line-through">
+                    <span className="text-sm text-neutral-500">日常价:</span>
+                    <span className="text-sm text-neutral-400 line-through">
                       ¥{product.originalPrice}
                     </span>
                   </div>
                 </div>
 
                 {product.networkType && (
-                  <div className="mt-3 text-sm text-[#64748B]">
-                    网络: <span className="text-[#0F172A]">{product.networkType}</span>
+                  <div className="mt-3 text-sm text-neutral-500">
+                    网络: <span className="text-neutral-950">{product.networkType}</span>
                   </div>
                 )}
                 {product.ipConfig && (
-                  <div className="mt-2 text-sm text-[#64748B]">
-                    IP配置: <span className="text-[#0F172A]">{product.ipConfig}</span>
+                  <div className="mt-2 text-sm text-neutral-500">
+                    IP配置: <span className="text-neutral-950">{product.ipConfig}</span>
                   </div>
                 )}
                 {product.defense && (
-                  <div className="mt-2 text-sm text-[#64748B]">
-                    防御: <span className="text-[#0F172A]">{product.defense}</span>
+                  <div className="mt-2 text-sm text-neutral-500">
+                    防御: <span className="text-neutral-950">{product.defense}</span>
                   </div>
                 )}
                 {product.note && (
@@ -800,13 +800,13 @@ export default function PriceCard() {
                 <div className="mt-5 flex gap-2">
                   <button
                     onClick={() => handleAddToCart(product.id)}
-                    className="flex-1 rounded-md border border-[#e5e6eb] bg-white px-3 py-2 text-sm font-medium text-[#1d2129] transition-all hover:border-[#1664ff] hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+                    className="flex-1 rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm font-medium text-neutral-900 transition-all hover:border-brand-500 hover:bg-neutral-50 hover:text-brand-500"
                   >
                     加入购物车
                   </button>
                   <button
                     onClick={() => handleBuyNow(product.id)}
-                    className="flex-1 rounded-md bg-[#1664ff] px-3 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-[#4086ff] hover:shadow-md"
+                    className="flex-1 rounded-md bg-brand-500 px-3 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-brand-400 hover:shadow-md"
                   >
                     立即购买
                   </button>
@@ -820,19 +820,19 @@ export default function PriceCard() {
         {/* 活动推广卡片区域 */}
         <section className="mt-8" aria-labelledby="promotion-title">
           <div
-            className="relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-[#0055ff] bg-cover bg-center transition-colors duration-300"
+            className="relative overflow-hidden rounded-sm border border-neutral-200 bg-brand-500 bg-cover bg-center transition-colors duration-300"
             style={{
               backgroundImage: 'url("/images/carousel/HeaderCarousel.webp")',
             }}
           >
             {/* 半透明遮罩层 */}
-            <div className="absolute inset-0 bg-[#0055ff]/70"></div>
+            <div className="absolute inset-0 bg-brand-500/70"></div>
             {/* 内容容器 - 三栏布局 */}
             <div className="relative z-10 grid grid-cols-1 gap-4 p-6 sm:grid-cols-3 sm:items-center">
               {/* 左侧：活动信息区域 */}
               <div className="sm:col-span-1">
                 {/* 活动标签 */}
-                <div className="inline-flex items-center gap-1.5 rounded-sm bg-white px-3 py-1 text-sm font-medium text-[#0055ff]">
+                <div className="inline-flex items-center gap-1.5 rounded-sm bg-white px-3 py-1 text-sm font-medium text-brand-500">
                   <span>限时特惠</span>
                 </div>
 
@@ -857,7 +857,7 @@ export default function PriceCard() {
               {/* 右侧：行动按钮区域 */}
               <div className="flex items-center justify-end sm:col-span-1">
                 <button
-                  className="w-full rounded-sm border border-white bg-white px-6 py-3 text-base font-medium text-[#0055ff] shadow-sm hover:bg-white/90 focus:outline-none sm:w-auto sm:px-8"
+                  className="w-full rounded-sm border border-white bg-white px-6 py-3 text-base font-medium text-brand-500 shadow-sm hover:bg-white/90 focus:outline-none sm:w-auto sm:px-8"
                   aria-label="立即购买轻量应用服务器特惠套餐"
                 >
                   立即抢购
@@ -876,42 +876,42 @@ export default function PriceCard() {
               <div className="relative inline-block">
                 <h2
                   id="hot-activities-title"
-                  className="relative z-10 mb-2 text-2xl font-bold text-[#0055ff]"
+                  className="relative z-10 mb-2 text-2xl font-bold text-brand-500"
                 >
                   热门活动精选
                 </h2>
-                <div className="absolute bottom-1 left-0 h-3 w-full bg-[#0055ff]/10 opacity-60"></div>
+                <div className="absolute bottom-1 left-0 h-3 w-full bg-brand-500/10 opacity-60"></div>
               </div>
-              <p className="text-[#64748B]">汇聚当前最热门活动精选推荐</p>
+              <p className="text-neutral-500">汇聚当前最热门活动精选推荐</p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
               {/* 精选特惠 新老同享 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
                 <div className="relative p-5">
                   {/* 背景图形元素 - 使用绝对定位的蓝色立方体图形 */}
                   <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
                     <svg
                       viewBox="0 0 200 200"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-full w-full text-[#0055ff]"
+                      className="h-full w-full text-brand-500"
                     >
                       <path fill="currentColor" d="M40,40 L160,40 L160,160 L40,160 Z" />
                     </svg>
                   </div>
 
                   <div className="mb-3">
-                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                    <span className="inline-block rounded-sm bg-brand-500/10 px-3 py-1 text-sm font-medium text-brand-500">
                       精选特惠 新老同享
                     </span>
                   </div>
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-[#0F172A]">4核4G云服务器套餐</h3>
+                    <h3 className="text-lg font-semibold text-neutral-950">4核4G云服务器套餐</h3>
                     <div className="mt-2">
-                      <p className="text-sm text-[#64748B]">新老用户同价秒杀</p>
+                      <p className="text-sm text-neutral-500">新老用户同价秒杀</p>
                     </div>
                   </div>
-                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                  <button className="flex w-full items-center justify-center rounded-sm bg-brand-500 px-4 py-2 text-white transition-all duration-300 hover:bg-brand-600">
                     立即抢购
                     <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
                       →
@@ -921,14 +921,14 @@ export default function PriceCard() {
               </div>
 
               {/* 云计算产品热销榜 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
                 <div className="relative p-5">
                   {/* 背景图形元素 - 使用绝对定位的图表图形 */}
                   <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
                     <svg
                       viewBox="0 0 200 200"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-full w-full text-[#0055ff]"
+                      className="h-full w-full text-brand-500"
                     >
                       <path
                         fill="currentColor"
@@ -938,17 +938,17 @@ export default function PriceCard() {
                   </div>
 
                   <div className="mb-3">
-                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                    <span className="inline-block rounded-sm bg-brand-500/10 px-3 py-1 text-sm font-medium text-brand-500">
                       云计算产品热销榜
                     </span>
                   </div>
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-[#0F172A]">云服务器热销榜单</h3>
+                    <h3 className="text-lg font-semibold text-neutral-950">云服务器热销榜单</h3>
                     <div className="mt-2">
-                      <p className="text-sm text-[#64748B]">云服务器热销榜单上架</p>
+                      <p className="text-sm text-neutral-500">云服务器热销榜单上架</p>
                     </div>
                   </div>
-                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                  <button className="flex w-full items-center justify-center rounded-sm bg-brand-500 px-4 py-2 text-white transition-all duration-300 hover:bg-brand-600">
                     立即查看
                     <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
                       →
@@ -958,14 +958,14 @@ export default function PriceCard() {
               </div>
 
               {/* 文字识别品类季 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
                 <div className="relative p-5">
                   {/* 背景图形元素 - 使用绝对定位的文字图标 */}
                   <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
                     <svg
                       viewBox="0 0 200 200"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-full w-full text-[#0055ff]"
+                      className="h-full w-full text-brand-500"
                     >
                       <text x="50" y="120" fontSize="80" fontWeight="bold" fill="currentColor">
                         T
@@ -974,17 +974,17 @@ export default function PriceCard() {
                   </div>
 
                   <div className="mb-3">
-                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                    <span className="inline-block rounded-sm bg-brand-500/10 px-3 py-1 text-sm font-medium text-brand-500">
                       文字识别品类季
                     </span>
                   </div>
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-[#0F172A]">通用文字识别1元起</h3>
+                    <h3 className="text-lg font-semibold text-neutral-950">通用文字识别1元起</h3>
                     <div className="mt-2">
-                      <p className="text-sm text-[#64748B]">通用文字识别1元起</p>
+                      <p className="text-sm text-neutral-500">通用文字识别1元起</p>
                     </div>
                   </div>
-                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                  <button className="flex w-full items-center justify-center rounded-sm bg-brand-500 px-4 py-2 text-white transition-all duration-300 hover:bg-brand-600">
                     立即查看
                     <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
                       →
@@ -994,14 +994,14 @@ export default function PriceCard() {
               </div>
 
               {/* 语音技术品类季 */}
-              <div className="group relative overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+              <div className="group relative overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
                 <div className="relative p-5">
                   {/* 背景图形元素 - 使用绝对定位的声波图标 */}
                   <div className="absolute top-0 right-0 h-32 w-32 opacity-10">
                     <svg
                       viewBox="0 0 200 200"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-full w-full text-[#0055ff]"
+                      className="h-full w-full text-brand-500"
                     >
                       <path
                         fill="currentColor"
@@ -1013,17 +1013,17 @@ export default function PriceCard() {
                   </div>
 
                   <div className="mb-3">
-                    <span className="inline-block rounded-sm bg-[#0055ff]/10 px-3 py-1 text-sm font-medium text-[#0055ff]">
+                    <span className="inline-block rounded-sm bg-brand-500/10 px-3 py-1 text-sm font-medium text-brand-500">
                       语音技术品类季
                     </span>
                   </div>
                   <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-[#0F172A]">语音技术品类季</h3>
+                    <h3 className="text-lg font-semibold text-neutral-950">语音技术品类季</h3>
                     <div className="mt-2">
-                      <p className="text-sm text-[#64748B]">语音合成转换等多项功能</p>
+                      <p className="text-sm text-neutral-500">语音合成转换等多项功能</p>
                     </div>
                   </div>
-                  <button className="flex w-full items-center justify-center rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all duration-300 hover:bg-[#0043cc]">
+                  <button className="flex w-full items-center justify-center rounded-sm bg-brand-500 px-4 py-2 text-white transition-all duration-300 hover:bg-brand-600">
                     立即查看
                     <span className="ml-1 inline-block transition-transform duration-300 group-hover:translate-x-1">
                       →
@@ -1039,8 +1039,8 @@ export default function PriceCard() {
         <div className="mx-auto mt-8 max-w-[1800px] px-0 sm:px-1 lg:px-1">
           {/* 云挂机宝产品标题和描述 */}
           <div className="mb-6">
-            <h2 className="mb-2 text-2xl font-bold text-[#0055ff]">云挂机宝产品系列</h2>
-            <p className="text-[#64748B]">
+            <h2 className="mb-2 text-2xl font-bold text-brand-500">云挂机宝产品系列</h2>
+            <p className="text-neutral-500">
               高性能云挂机宝，静态内存绝不超开，稳定可靠的云端解决方案
             </p>
           </div>
@@ -1049,7 +1049,7 @@ export default function PriceCard() {
             {cloudVmProducts.map((product) => (
               <div
                 key={product.id}
-                className="group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+                className="group relative flex flex-col overflow-hidden rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500 hover:shadow-xl"
               >
                 {/* 产品标签 */}
                 <div className="mb-3 flex items-center gap-2">
@@ -1059,7 +1059,7 @@ export default function PriceCard() {
                     </span>
                   )}
                   {product.isRecommended && (
-                    <span className="rounded-sm bg-[#0055ff] px-2 py-1 text-xs font-medium text-white">
+                    <span className="rounded-sm bg-brand-500 px-2 py-1 text-xs font-medium text-white">
                       推荐
                     </span>
                   )}
@@ -1071,16 +1071,16 @@ export default function PriceCard() {
                 </div>
 
                 {/* 产品名称 */}
-                <h3 className="mb-2 text-xl font-bold text-[#0F172A]">{product.name}</h3>
-                <p className="mb-4 text-sm text-[#64748B]">
+                <h3 className="mb-2 text-xl font-bold text-neutral-950">{product.name}</h3>
+                <p className="mb-4 text-sm text-neutral-500">
                   {product.activityNote || product.subtitle}
                 </p>
 
                 {/* 产品规格 */}
-                <div className="mb-4 divide-y divide-[#f2f3f5] overflow-hidden rounded-md border border-[#f2f3f5]">
+                <div className="mb-4 divide-y divide-neutral-50 overflow-hidden rounded-md border border-neutral-50">
                   {/* CPU */}
-                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -1093,12 +1093,12 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-sm text-[#64748B]">CPU: {product.specs.cpu}</span>
+                    <span className="text-sm text-neutral-500">CPU: {product.specs.cpu}</span>
                   </div>
 
                   {/* 内存 */}
-                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -1111,12 +1111,12 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-sm text-[#64748B]">内存: {product.specs.memory}</span>
+                    <span className="text-sm text-neutral-500">内存: {product.specs.memory}</span>
                   </div>
 
                   {/* 带宽 */}
-                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -1129,12 +1129,14 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-sm text-[#64748B]">带宽: {product.specs.bandwidth}</span>
+                    <span className="text-sm text-neutral-500">
+                      带宽: {product.specs.bandwidth}
+                    </span>
                   </div>
 
                   {/* 存储 */}
-                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-[#fcfcfd]">
-                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-[#1664ff]">
+                  <div className="flex items-start gap-2 px-3 py-2 transition-colors group-hover:bg-white">
+                    <div className="mt-1 h-4 w-4 flex-shrink-0 text-brand-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
@@ -1147,22 +1149,22 @@ export default function PriceCard() {
                         />
                       </svg>
                     </div>
-                    <span className="text-sm text-[#64748B]">存储: {product.specs.storage}</span>
+                    <span className="text-sm text-neutral-500">存储: {product.specs.storage}</span>
                   </div>
                 </div>
 
                 {/* 价格信息 */}
                 <div className="mb-4">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-[#0055ff]">
+                    <span className="text-2xl font-bold text-brand-500">
                       ¥{product.currentPrice}
                     </span>
-                    <span className="text-sm text-[#64748B]">/ 月</span>
+                    <span className="text-sm text-neutral-500">/ 月</span>
                   </div>
                   {product.originalPrice && (
                     <div className="mt-1 flex items-center gap-1">
-                      <span className="text-sm text-[#64748B]">日常价:</span>
-                      <span className="text-sm text-[#94A3B8] line-through">
+                      <span className="text-sm text-neutral-500">日常价:</span>
+                      <span className="text-sm text-neutral-400 line-through">
                         ¥{product.originalPrice} / 月
                       </span>
                     </div>
@@ -1171,7 +1173,7 @@ export default function PriceCard() {
 
                 {/* 购买按钮 */}
                 <a href={product.linkUrl} className="block w-full">
-                  <button className="w-full rounded-md bg-[#1664ff] px-4 py-2 text-white shadow-sm transition-all duration-300 hover:bg-[#4086ff] hover:shadow-md">
+                  <button className="w-full rounded-md bg-brand-500 px-4 py-2 text-white shadow-sm transition-all duration-300 hover:bg-brand-400 hover:shadow-md">
                     立即购买
                   </button>
                 </a>
@@ -1184,15 +1186,15 @@ export default function PriceCard() {
         <div className="mx-auto mt-8 max-w-[1800px] px-0 sm:px-1 lg:px-1">
           {/* 热销产品标题和描述 */}
           <div className="mb-6">
-            <h2 className="mb-2 text-2xl font-bold text-[#0055ff]">热销产品推荐</h2>
-            <p className="text-[#64748B]">精选优质轻量应用服务器，助力您的业务快速发展</p>
+            <h2 className="mb-2 text-2xl font-bold text-brand-500">热销产品推荐</h2>
+            <p className="text-neutral-500">精选优质轻量应用服务器，助力您的业务快速发展</p>
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {promotionProducts.map((product) => (
               <div
                 key={product.id}
-                className="group relative flex flex-col overflow-hidden rounded-md border border-[#E2E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1664ff] hover:shadow-xl"
+                className="group relative flex flex-col overflow-hidden rounded-md border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500 hover:shadow-xl"
               >
                 {/* 产品标签 */}
                 <div className="mb-3 flex items-center gap-2">
@@ -1202,7 +1204,7 @@ export default function PriceCard() {
                     </span>
                   )}
                   {product.isRecommended && (
-                    <span className="rounded-sm bg-[#0055ff] px-2 py-1 text-xs font-medium text-white">
+                    <span className="rounded-sm bg-brand-500 px-2 py-1 text-xs font-medium text-white">
                       推荐
                     </span>
                   )}
@@ -1215,52 +1217,52 @@ export default function PriceCard() {
 
                 {/* 产品名称和副标题 */}
                 <div className="mb-4">
-                  <h3 className="mb-1 text-lg font-semibold text-[#0F172A]">{product.name}</h3>
-                  <p className="text-sm text-[#64748B]">{product.subtitle}</p>
+                  <h3 className="mb-1 text-lg font-semibold text-neutral-950">{product.name}</h3>
+                  <p className="text-sm text-neutral-500">{product.subtitle}</p>
                 </div>
 
                 {/* 产品规格 */}
-                <div className="mb-4 divide-y divide-[#f2f3f5] overflow-hidden rounded-md border border-[#f2f3f5]">
-                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <span className="text-[#64748B]">CPU/内存/带宽:</span>
-                    <span className="font-medium text-[#0F172A]">{product.specs.cpu}</span>
+                <div className="mb-4 divide-y divide-neutral-50 overflow-hidden rounded-md border border-neutral-50">
+                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <span className="text-neutral-500">CPU/内存/带宽:</span>
+                    <span className="font-medium text-neutral-950">{product.specs.cpu}</span>
                   </div>
-                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <span className="text-[#64748B]">存储:</span>
-                    <span className="font-medium text-[#0F172A]">{product.specs.storage}</span>
+                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <span className="text-neutral-500">存储:</span>
+                    <span className="font-medium text-neutral-950">{product.specs.storage}</span>
                   </div>
-                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                    <span className="text-[#64748B]">可用地域:</span>
-                    <span className="font-medium text-[#0F172A]">
+                  <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                    <span className="text-neutral-500">可用地域:</span>
+                    <span className="font-medium text-neutral-950">
                       {product.regions.slice(0, 2).join('、')}等
                     </span>
                   </div>
                   {/* 网络类型 - 条件渲染 */}
                   {product.networkType && (
-                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                      <span className="text-[#64748B]">网络类型:</span>
-                      <span className="font-medium text-[#0F172A]">{product.networkType}</span>
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                      <span className="text-neutral-500">网络类型:</span>
+                      <span className="font-medium text-neutral-950">{product.networkType}</span>
                     </div>
                   )}
                   {/* IP配置 - 条件渲染 */}
                   {product.ipConfig && (
-                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                      <span className="text-[#64748B]">IP配置:</span>
-                      <span className="font-medium text-[#0F172A]">{product.ipConfig}</span>
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                      <span className="text-neutral-500">IP配置:</span>
+                      <span className="font-medium text-neutral-950">{product.ipConfig}</span>
                     </div>
                   )}
                   {/* 防御配置 - 条件渲染 */}
                   {product.defense && (
-                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                      <span className="text-[#64748B]">防御配置:</span>
-                      <span className="font-medium text-[#0F172A]">{product.defense}</span>
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                      <span className="text-neutral-500">防御配置:</span>
+                      <span className="font-medium text-neutral-950">{product.defense}</span>
                     </div>
                   )}
                   {/* 注意事项 - 条件渲染 */}
                   {product.note && (
-                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-[#fcfcfd]">
-                      <span className="text-[#64748B]">注意事项:</span>
-                      <span className="font-medium text-[#0F172A]">{product.note}</span>
+                    <div className="flex items-center justify-between px-3 py-2 text-sm transition-colors group-hover:bg-white">
+                      <span className="text-neutral-500">注意事项:</span>
+                      <span className="font-medium text-neutral-950">{product.note}</span>
                     </div>
                   )}
                 </div>
@@ -1269,7 +1271,7 @@ export default function PriceCard() {
                 <div className="mb-6">
                   <div className="mb-1 flex items-baseline gap-2">
                     <span className="text-2xl font-bold text-red-600">¥{product.currentPrice}</span>
-                    <span className="text-sm text-[#94A3B8] line-through">
+                    <span className="text-sm text-neutral-400 line-through">
                       ¥{product.originalPrice}/{product.duration}
                     </span>
                   </div>
@@ -1278,13 +1280,13 @@ export default function PriceCard() {
                 {/* 操作按钮 */}
                 <div className="flex gap-2">
                   <button
-                    className="flex-1 rounded-md border border-[#e5e6eb] bg-white px-4 py-2 text-sm font-medium text-[#1d2129] transition-all hover:border-[#1664ff] hover:bg-[#f7f8fa] hover:text-[#1664ff]"
+                    className="flex-1 rounded-md border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-900 transition-all hover:border-brand-500 hover:bg-neutral-50 hover:text-brand-500"
                     onClick={() => handleAddToCart(product.id)}
                   >
                     加入购物车
                   </button>
                   <button
-                    className="flex-1 rounded-md bg-[#1664ff] px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:bg-[#4086ff] hover:shadow-md"
+                    className="flex-1 rounded-md bg-brand-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:bg-brand-400 hover:shadow-md"
                     onClick={() => handleBuyNow(product.id)}
                   >
                     立即购买
@@ -1300,10 +1302,10 @@ export default function PriceCard() {
         <section className="mt-1 py-16">
           <div className="mx-auto max-w-[1800px] px-0 sm:px-1 lg:px-1">
             {/* 轻量应用服务器特惠卡片 - 宽屏设计 */}
-            <div className="mx-auto w-full overflow-hidden rounded-sm border border-[#E2E8F0]">
+            <div className="mx-auto w-full overflow-hidden rounded-sm border border-neutral-200">
               <div className="flex flex-col lg:flex-row">
                 {/* 左侧：产品信息区域（蓝色背景） */}
-                <div className="bg-[#0055ff] p-4 text-white sm:p-6 lg:w-[40%] lg:p-8">
+                <div className="bg-brand-500 p-4 text-white sm:p-6 lg:w-[40%] lg:p-8">
                   <div className="flex h-full flex-col justify-center">
                     <div>
                       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -1325,20 +1327,22 @@ export default function PriceCard() {
                     <div className="w-full flex-1">
                       <div className="mb-4 grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-4 lg:mb-0">
                         <div className="text-center">
-                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">2</div>
-                          <div className="text-xs text-[#64748B] sm:text-sm">CPU核数</div>
+                          <div className="text-xl font-bold text-neutral-950 sm:text-2xl">2</div>
+                          <div className="text-xs text-neutral-500 sm:text-sm">CPU核数</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">2GB</div>
-                          <div className="text-xs text-[#64748B] sm:text-sm">内存</div>
+                          <div className="text-xl font-bold text-neutral-950 sm:text-2xl">2GB</div>
+                          <div className="text-xs text-neutral-500 sm:text-sm">内存</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">40GB</div>
-                          <div className="text-xs text-[#64748B] sm:text-sm">SSD存储</div>
+                          <div className="text-xl font-bold text-neutral-950 sm:text-2xl">40GB</div>
+                          <div className="text-xs text-neutral-500 sm:text-sm">SSD存储</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-xl font-bold text-[#0F172A] sm:text-2xl">3Mbps</div>
-                          <div className="text-xs text-[#64748B] sm:text-sm">带宽</div>
+                          <div className="text-xl font-bold text-neutral-950 sm:text-2xl">
+                            3Mbps
+                          </div>
+                          <div className="text-xs text-neutral-500 sm:text-sm">带宽</div>
                         </div>
                       </div>
                     </div>
@@ -1350,14 +1354,14 @@ export default function PriceCard() {
                           <span className="text-3xl font-bold text-orange-500 sm:text-4xl">38</span>
                           <span className="ml-1 text-sm text-orange-500">/月起</span>
                         </div>
-                        <p className="mt-1 text-xs text-[#94A3B8]">原价 ¥640/年</p>
+                        <p className="mt-1 text-xs text-neutral-400">原价 ¥640/年</p>
                       </div>
 
                       <div className="mt-4 flex w-full flex-col gap-2 sm:flex-row lg:w-auto">
-                        <button className="flex-1 rounded-sm bg-[#0055ff] px-4 py-2 text-white transition-all hover:bg-[#0043cc] sm:flex-none">
+                        <button className="flex-1 rounded-sm bg-brand-500 px-4 py-2 text-white transition-all hover:bg-brand-600 sm:flex-none">
                           立即购买
                         </button>
-                        <button className="flex-1 rounded-sm border border-[#E2E8F0] bg-white px-4 py-2 text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff] sm:flex-none">
+                        <button className="flex-1 rounded-sm border border-neutral-200 bg-white px-4 py-2 text-neutral-500 transition-all hover:border-brand-500/30 hover:text-brand-500 sm:flex-none">
                           加入购物车
                         </button>
                       </div>
@@ -1370,13 +1374,13 @@ export default function PriceCard() {
 
           {/* 优惠码卡片模块 */}
           <div className="mt-12 mb-6">
-            <h2 className="flex items-center gap-2 text-2xl font-bold text-[#0055ff]">
+            <h2 className="flex items-center gap-2 text-2xl font-bold text-brand-500">
               <span className="relative">
                 艺创AI-专属优惠码
-                <span className="absolute -bottom-1 left-0 h-1 w-full bg-[#0055ff]/20"></span>
+                <span className="absolute -bottom-1 left-0 h-1 w-full bg-brand-500/20"></span>
               </span>
               <svg
-                className="h-6 w-6 animate-bounce text-[#0055ff]"
+                className="h-6 w-6 animate-bounce text-brand-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -1389,25 +1393,25 @@ export default function PriceCard() {
                 />
               </svg>
             </h2>
-            <p className="mt-1 font-medium text-[#64748B]">
+            <p className="mt-1 font-medium text-neutral-500">
               限时可用，立即复制使用，一次购买，终身免费更新升级
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {/* 数字分身优惠码卡片 */}
-            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+            <div className="group overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
               <div className="p-5">
-                <h3 className="text-lg font-semibold text-[#0F172A]">数字分身</h3>
+                <h3 className="text-lg font-semibold text-neutral-950">数字分身</h3>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-2xl font-bold text-red-600">¥4,999</span>
-                  <span className="text-sm text-[#94A3B8] line-through">¥6,800</span>
+                  <span className="text-sm text-neutral-400 line-through">¥6,800</span>
                 </div>
                 <div className="mt-4">
-                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
-                    <code className="text-sm font-medium text-[#0F172A]">oXu3x1IZD</code>
+                  <div className="flex items-center justify-between rounded-sm bg-neutral-50 p-3">
+                    <code className="text-sm font-medium text-neutral-950">oXu3x1IZD</code>
                     <button
-                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      className="text-brand-500 hover:text-brand-600 focus:outline-none"
                       onClick={(e) => {
                         navigator.clipboard.writeText('oXu3x1IZD')
                         const btn = e.currentTarget
@@ -1424,13 +1428,13 @@ export default function PriceCard() {
                   <div className="mt-3 grid grid-cols-2 gap-2">
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                      className="w-full rounded-sm bg-brand-500 px-3 py-2 text-center text-white transition-all hover:bg-brand-600"
                     >
                       去使用
                     </a>
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                      className="w-full rounded-sm border border-neutral-200 bg-white px-3 py-2 text-center text-neutral-500 transition-all hover:border-brand-500/30 hover:text-brand-500"
                     >
                       立即购买
                     </a>
@@ -1440,18 +1444,18 @@ export default function PriceCard() {
             </div>
 
             {/* 企业知识库优惠码卡片 */}
-            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+            <div className="group overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
               <div className="p-5">
-                <h3 className="text-lg font-semibold text-[#0F172A]">企业知识库</h3>
+                <h3 className="text-lg font-semibold text-neutral-950">企业知识库</h3>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-2xl font-bold text-red-600">¥6,600</span>
-                  <span className="text-sm text-[#94A3B8] line-through">¥9,800</span>
+                  <span className="text-sm text-neutral-400 line-through">¥9,800</span>
                 </div>
                 <div className="mt-4">
-                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
-                    <code className="text-sm font-medium text-[#0F172A]">Ju9han9Z6</code>
+                  <div className="flex items-center justify-between rounded-sm bg-neutral-50 p-3">
+                    <code className="text-sm font-medium text-neutral-950">Ju9han9Z6</code>
                     <button
-                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      className="text-brand-500 hover:text-brand-600 focus:outline-none"
                       onClick={(e) => {
                         navigator.clipboard.writeText('Ju9han9Z6')
                         const btn = e.currentTarget
@@ -1468,13 +1472,13 @@ export default function PriceCard() {
                   <div className="mt-3 grid grid-cols-2 gap-2">
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                      className="w-full rounded-sm bg-brand-500 px-3 py-2 text-center text-white transition-all hover:bg-brand-600"
                     >
                       去使用
                     </a>
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                      className="w-full rounded-sm border border-neutral-200 bg-white px-3 py-2 text-center text-neutral-500 transition-all hover:border-brand-500/30 hover:text-brand-500"
                     >
                       立即购买
                     </a>
@@ -1484,18 +1488,18 @@ export default function PriceCard() {
             </div>
 
             {/* 聊天绘画优惠码卡片 */}
-            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+            <div className="group overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
               <div className="p-5">
-                <h3 className="text-lg font-semibold text-[#0F172A]">聊天绘画</h3>
+                <h3 className="text-lg font-semibold text-neutral-950">聊天绘画</h3>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-2xl font-bold text-red-600">¥2,999</span>
-                  <span className="text-sm text-[#94A3B8] line-through">¥3,800</span>
+                  <span className="text-sm text-neutral-400 line-through">¥3,800</span>
                 </div>
                 <div className="mt-4">
-                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
-                    <code className="text-sm font-medium text-[#0F172A]">4ZKgZfv9M</code>
+                  <div className="flex items-center justify-between rounded-sm bg-neutral-50 p-3">
+                    <code className="text-sm font-medium text-neutral-950">4ZKgZfv9M</code>
                     <button
-                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      className="text-brand-500 hover:text-brand-600 focus:outline-none"
                       onClick={(e) => {
                         navigator.clipboard.writeText('4ZKgZfv9M')
                         const btn = e.currentTarget
@@ -1512,13 +1516,13 @@ export default function PriceCard() {
                   <div className="mt-3 grid grid-cols-2 gap-2">
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                      className="w-full rounded-sm bg-brand-500 px-3 py-2 text-center text-white transition-all hover:bg-brand-600"
                     >
                       去使用
                     </a>
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                      className="w-full rounded-sm border border-neutral-200 bg-white px-3 py-2 text-center text-neutral-500 transition-all hover:border-brand-500/30 hover:text-brand-500"
                     >
                       立即购买
                     </a>
@@ -1528,18 +1532,18 @@ export default function PriceCard() {
             </div>
 
             {/* 论文写作优惠码卡片 */}
-            <div className="group overflow-hidden rounded-sm border border-[#E2E8F0] bg-white transition-all duration-300 hover:border-[#0055ff]/30 hover:shadow-lg hover:shadow-slate-200/50">
+            <div className="group overflow-hidden rounded-sm border border-neutral-200 bg-white transition-all duration-300 hover:border-brand-500/30 hover:shadow-lg hover:shadow-neutral-200/50">
               <div className="p-5">
-                <h3 className="text-lg font-semibold text-[#0F172A]">论文写作</h3>
+                <h3 className="text-lg font-semibold text-neutral-950">论文写作</h3>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="text-2xl font-bold text-red-600">¥3,200</span>
-                  <span className="text-sm text-[#94A3B8] line-through">¥4,698</span>
+                  <span className="text-sm text-neutral-400 line-through">¥4,698</span>
                 </div>
                 <div className="mt-4">
-                  <div className="flex items-center justify-between rounded-sm bg-[#F8FAFC] p-3">
-                    <code className="text-sm font-medium text-[#0F172A]">lbCG2L0Fq</code>
+                  <div className="flex items-center justify-between rounded-sm bg-neutral-50 p-3">
+                    <code className="text-sm font-medium text-neutral-950">lbCG2L0Fq</code>
                     <button
-                      className="text-[#0055ff] hover:text-[#0043cc] focus:outline-none"
+                      className="text-brand-500 hover:text-brand-600 focus:outline-none"
                       onClick={(e) => {
                         navigator.clipboard.writeText('lbCG2L0Fq')
                         const btn = e.currentTarget
@@ -1556,13 +1560,13 @@ export default function PriceCard() {
                   <div className="mt-3 grid grid-cols-2 gap-2">
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm bg-[#0055ff] px-3 py-2 text-center text-white transition-all hover:bg-[#0043cc]"
+                      className="w-full rounded-sm bg-brand-500 px-3 py-2 text-center text-white transition-all hover:bg-brand-600"
                     >
                       去使用
                     </a>
                     <a
                       href="https://console.cloudcvm.com/cart/goodsList.htm?fpg_id=50&spg_id=all"
-                      className="w-full rounded-sm border border-[#E2E8F0] bg-white px-3 py-2 text-center text-[#64748B] transition-all hover:border-[#0055ff]/30 hover:text-[#0055ff]"
+                      className="w-full rounded-sm border border-neutral-200 bg-white px-3 py-2 text-center text-neutral-500 transition-all hover:border-brand-500/30 hover:text-brand-500"
                     >
                       立即购买
                     </a>
