@@ -122,6 +122,10 @@
   --color-danger-600: #dc2626;
   --color-danger-700: #b91c1c;
   --color-ai-accent: #4b14ff;
+  /* 100/400 浅色阶：AI 紫卡片渐变与装饰光斑用（2026-10-05 收敛
+     work/chat/paper 直接使用的 purple-100/400/500 原始色板） */
+  --color-ai-accent-100: #d2c4ff;
+  --color-ai-accent-400: #815bff;
   /* 装饰科技青：ProductTraits 标题渐变的起点色（原为该文件内硬编码） */
   --color-tech-cyan: #00a2ed;
 
@@ -152,6 +156,10 @@
   --radius-2xl: 1.25rem;
   --radius-3xl: 1.5rem;
   --radius-4xl: 2rem;
+  /* 按钮专用圆角（微圆角，2026-10-05 用户确认）：
+     与 rounded-xl 解耦——按钮用 rounded-btn，卡片/大面板仍走 rounded-xl，
+     改这里一处全站按钮生效，不影响面板 */
+  --radius-btn: 0.5rem;
 
   /* ================================================================
      Shadows — Layered depth system
@@ -342,27 +350,6 @@
   .dark .corner-marker {
     @apply border-neutral-600;
   }
-
-  /* ---- Standard button base ---- */
-  .btn {
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50;
-  }
-
-  .btn-primary {
-    @apply border border-transparent bg-brand-500 text-white shadow-sm hover:bg-brand-600 hover:shadow-md;
-  }
-
-  .btn-secondary {
-    @apply border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:bg-neutral-50 hover:text-neutral-900;
-  }
-
-  .btn-ghost {
-    @apply bg-transparent text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900;
-  }
-
-  .btn-glass {
-    @apply border border-white/30 bg-white/80 text-neutral-800 backdrop-blur-xl hover:bg-white/95 hover:shadow-md;
-  }
 }
 
 /* ================================================================
@@ -373,8 +360,12 @@
    - 主色     brand-500 #3860f4 —— 只用于操作、强调、激活态
    - 中性色   neutral-900 标题 / neutral-500 正文 / neutral-400 辅助
               neutral-200 边框 / neutral-50 页面底 / white 卡片
-   - 圆角     控件 rounded-md(8px) · 卡片 rounded-lg(12px)
-              大面板 rounded-xl(16px) · 徽标 rounded-full
+   - 圆角     按钮 rounded-btn(8px 微圆角，令牌 --radius-btn，用户确认) ·
+              卡片 rounded-lg(12px) · 大面板 rounded-xl(16px) · 徽标 rounded-full
+   - 按钮     统一走 Button 组件（src/components/ui/Button.tsx）：
+              尺寸档位 sm(36px)/md(40px)/lg(44→52px)/xl(56px) 由 size 属性承载；
+              主按钮 solid+blue，次按钮 outline（品牌描边为 outline+blue），
+              字重一律 font-medium，hover 主按钮 bg-brand-600、次按钮 border-neutral-300+bg-neutral-50
    - 阴影     默认无或 shadow-sm，hover 才升到 shadow-md；避免层层投影
    - 禁止     业务组件里写十六进制色值；颜色/尺寸一律走令牌或下面的档位类
    例外：促销/折扣等业务强调色、图片上的白色文字遮罩、SVG 素材、动态数据值。

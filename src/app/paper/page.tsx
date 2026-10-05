@@ -214,7 +214,7 @@ function HeroSection(): JSX.Element {
           }}
         />
         <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-brand-500/[0.04] blur-3xl" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-purple-500/[0.03] blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-ai-accent/[0.03] blur-3xl" />
       </div>
 
       <Container className="relative z-10 pt-20 pb-16 sm:pt-28 sm:pb-24 lg:pt-36">
@@ -255,20 +255,20 @@ function HeroSection(): JSX.Element {
 
             {/* CTA 按钮 */}
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
-              <a
+              <Button
                 href="https://paper.gmlart.cn/"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-brand-600 hover:shadow-md"
+                variant="solid"
+                color="blue"
+                size="xl"
+                className="gap-2 shadow-sm hover:shadow-md"
               >
                 <PencilIcon className="h-4 w-4" />
                 立即开始创作
-              </a>
-              <a
-                href="https://paper.gmlart.cn/"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-700 transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-50"
-              >
+              </Button>
+              <Button href="https://paper.gmlart.cn/" variant="outline" size="xl" className="gap-2">
                 <PlayIcon className="h-4 w-4" />
                 观看演示
-              </a>
+              </Button>
             </div>
 
             {/* 信任指标 */}
@@ -334,7 +334,7 @@ function HeroSection(): JSX.Element {
               <div className="grid grid-cols-3 gap-3">
                 {[
                   { label: '大纲生成', g: 'from-brand-500 to-brand-400' },
-                  { label: '文献检索', g: 'from-purple-500 to-purple-400' },
+                  { label: '文献检索', g: 'from-ai-accent to-ai-accent-400' },
                   { label: '智能排版', g: 'from-brand-500 to-brand-400' },
                 ].map((item, i) => (
                   <div
@@ -565,7 +565,6 @@ export default function KnowledgeBasePage(): JSX.Element {
           featureCards={ctaFeatureCards}
           primaryHref="/demo"
           secondaryHref="/demo"
-          primaryButtonClassName="w-full rounded-xl bg-brand-500 px-6 py-3 font-bold text-white shadow-lg hover:bg-brand-600 sm:w-auto sm:py-4"
         />
         <FAQSection />
       </main>

@@ -220,11 +220,12 @@ const styles = {
   titleButtonActive: 'text-primary-500 font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
   indicator: 'h-2 transition-all duration-300',
-  // 两个 CTA 都用直角（覆盖 .btn 自带的 rounded-md），并把高度压小一档
+  // 两个 CTA 刻意保持直角（区别于全站按钮 rounded-xl 基准），并把高度压小一档；
+  // .btn 全局类已删除（2026-10-05），焦点/禁用态由下方显式类承载
   primaryButton:
-    'btn rounded-none px-6 py-2 lg:px-7 lg:py-2.5 text-sm bg-primary-500 hover:bg-primary-600 text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium',
+    'rounded-none px-6 py-2 lg:px-7 lg:py-2.5 text-sm bg-primary-500 hover:bg-primary-600 text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center font-medium focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
   secondaryButton:
-    'btn rounded-none px-6 py-2 lg:px-7 lg:py-2.5 bg-white text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 flex items-center justify-center text-sm',
+    'rounded-none px-6 py-2 lg:px-7 lg:py-2.5 bg-white text-neutral-700 dark:text-neutral-300 font-medium border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 flex items-center justify-center text-sm focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
 }
 
 /**

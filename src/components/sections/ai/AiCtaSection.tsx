@@ -21,8 +21,10 @@ export interface AiCtaFeatureCard {
  * 底部品牌 CTA 区块（work / paper / chat / human 四页共用，同模板）。
  *
  * 2026-10-05 自四页同模板内联实现收敛：标题/描述/左列要点/右侧四卡与
- * 按钮链接经 props 传入；视觉漂移（human 的圆角阴影卡片、按钮类）经
- * 四个 className props 保持原样。
+ * 按钮链接经 props 传入；视觉漂移（human 的圆角阴影卡片）经卡片
+ * className props 保持原样。按钮不再开放 className 逃生舱口——
+ * 2026-10-05 按钮档位统一后，主按钮 solid+blue+lg、次按钮 outline+blue+lg
+ * 由组件内单一配方承载（原 work 缺 shadow-lg 与 chat/paper/human 不一致，已归并）。
  */
 export function AiCtaSection({
   title,
@@ -33,8 +35,6 @@ export function AiCtaSection({
   secondaryHref,
   mobileCardClassName = 'flex flex-col items-center justify-center border border-neutral-200 bg-neutral-50 p-4',
   desktopCardClassName = 'flex flex-col items-center justify-center border border-neutral-200 bg-white p-3',
-  primaryButtonClassName = 'w-full bg-brand-500 px-6 py-3 font-bold text-white hover:bg-brand-600 sm:w-auto sm:py-4',
-  secondaryButtonClassName = 'w-full rounded-xl border-brand-500 px-6 py-3 text-brand-500 hover:bg-brand-50 sm:w-auto sm:py-4',
 }: {
   title: ReactNode
   description: ReactNode
@@ -47,8 +47,6 @@ export function AiCtaSection({
   secondaryHref?: string
   mobileCardClassName?: string
   desktopCardClassName?: string
-  primaryButtonClassName?: string
-  secondaryButtonClassName?: string
 }): JSX.Element {
   return (
     <section className="py-12 sm:py-16 lg:py-24">
@@ -110,23 +108,38 @@ export function AiCtaSection({
 
                   <div className="flex flex-col gap-3 sm:flex-row">
                     {primaryHref ? (
-                      <Button href={primaryHref} className={primaryButtonClassName}>
+                      <Button
+                        href={primaryHref}
+                        variant="solid"
+                        color="blue"
+                        size="lg"
+                        className="w-full shadow-lg sm:w-auto"
+                      >
                         立即体验
                       </Button>
                     ) : (
-                      <Button className={primaryButtonClassName}>立即体验</Button>
+                      <Button
+                        variant="solid"
+                        color="blue"
+                        size="lg"
+                        className="w-full shadow-lg sm:w-auto"
+                      >
+                        立即体验
+                      </Button>
                     )}
                     {secondaryHref ? (
                       <Button
                         href={secondaryHref}
                         target="_blank"
                         variant="outline"
-                        className={secondaryButtonClassName}
+                        color="blue"
+                        size="lg"
+                        className="w-full sm:w-auto"
                       >
                         咨询价格
                       </Button>
                     ) : (
-                      <Button variant="outline" className={secondaryButtonClassName}>
+                      <Button variant="outline" color="blue" size="lg" className="w-full sm:w-auto">
                         咨询价格
                       </Button>
                     )}

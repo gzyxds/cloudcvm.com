@@ -921,7 +921,7 @@ export default function ServiceTabs() {
                         href={banner.link}
                         target="_blank"
                         rel="noopener"
-                        className="btn btn-primary mt-6 w-full rounded-md bg-brand-500 py-3 text-center font-medium text-white shadow-md transition-all duration-200 outline-none hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                        className="mt-6 w-full rounded-xl bg-brand-500 py-3 text-center font-medium text-white shadow-md transition-all duration-200 outline-none hover:bg-brand-600 hover:shadow-lg hover:shadow-brand-500/20 focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                       >
                         {banner.buttonText}
                       </a>

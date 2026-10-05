@@ -204,7 +204,7 @@ function HeroSection(): JSX.Element {
       {/* 几何背景装饰 - 响应式尺寸优化 */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="xs:-top-32 xs:-right-32 xs:w-60 xs:h-60 animate-blob absolute -top-20 -right-20 h-40 w-40 rounded-full bg-brand-400 opacity-20 mix-blend-multiply blur-xl filter sm:-top-40 sm:-right-40 sm:h-80 sm:w-80"></div>
-        <div className="xs:-bottom-32 xs:-left-32 xs:w-60 xs:h-60 animate-blob animation-delay-2000 absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-purple-400 opacity-20 mix-blend-multiply blur-xl filter sm:-bottom-40 sm:-left-40 sm:h-80 sm:w-80"></div>
+        <div className="xs:-bottom-32 xs:-left-32 xs:w-60 xs:h-60 animate-blob animation-delay-2000 absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-ai-accent-400 opacity-20 mix-blend-multiply blur-xl filter sm:-bottom-40 sm:-left-40 sm:h-80 sm:w-80"></div>
         <div className="xs:w-60 xs:h-60 animate-blob animation-delay-4000 absolute top-1/2 left-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-brand-400 opacity-20 mix-blend-multiply blur-xl filter sm:h-80 sm:w-80"></div>
       </div>
 
@@ -277,7 +277,8 @@ function HeroSection(): JSX.Element {
                 href="#demo"
                 variant="solid"
                 color="blue"
-                className="xs:px-6 xs:py-3 xs:text-base min-h-[44px] touch-manipulation rounded-xl px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-4"
+                size="xl"
+                className="touch-manipulation shadow-sm hover:shadow-md"
               >
                 立即体验
               </Button>
@@ -286,7 +287,8 @@ function HeroSection(): JSX.Element {
                 target="_blank"
                 variant="outline"
                 color="slate"
-                className="xs:px-6 xs:py-3 xs:text-base min-h-[44px] touch-manipulation px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-4"
+                size="xl"
+                className="touch-manipulation"
               >
                 联系客服
               </Button>
@@ -413,7 +415,7 @@ function HeroSection(): JSX.Element {
                   </div>
 
                   {/* 语音合成功能卡片 */}
-                  <div className="xs:p-2.5 group touch-manipulation border border-purple-500 bg-gradient-to-br from-purple-500 to-purple-400 p-2 text-white transition-all duration-300 sm:p-3.5">
+                  <div className="xs:p-2.5 group touch-manipulation border border-ai-accent bg-gradient-to-br from-ai-accent to-ai-accent-400 p-2 text-white transition-all duration-300 sm:p-3.5">
                     <MicrophoneIcon
                       className="xs:w-4 xs:h-4 xs:mb-1.5 mb-1 h-3 w-3 transition-transform duration-300 group-hover:scale-110 sm:mb-2.5 sm:h-5 sm:w-5"
                       aria-hidden="true"
@@ -421,7 +423,7 @@ function HeroSection(): JSX.Element {
                     <h4 className="xs:text-xs mb-0.5 text-[10px] font-medium sm:mb-1.5 sm:text-sm">
                       语音合成
                     </h4>
-                    <p className="xs:text-xs xs:block hidden text-[9px] text-purple-100 opacity-80">
+                    <p className="xs:text-xs xs:block hidden text-[9px] text-ai-accent-100 opacity-80">
                       AI声音克隆
                     </p>
                   </div>

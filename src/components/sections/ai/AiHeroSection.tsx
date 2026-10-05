@@ -217,13 +217,13 @@ const AiHeroSection = ({ slides = defaultSlides }: { slides?: AiHeroSlide[] }) =
             <div className="flex flex-col justify-center gap-4 pt-4 sm:flex-row lg:justify-start">
               <Link
                 href="/demo"
-                className="flex w-full items-center justify-center rounded-xl bg-brand-500 px-8 py-4 text-center text-base font-semibold text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-brand-500/40 sm:w-auto"
+                className="flex w-full items-center justify-center rounded-btn bg-brand-500 px-8 py-4 text-center text-base font-semibold text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-brand-500/40 sm:w-auto"
               >
                 开始免费试用
               </Link>
               <Link
                 href="/contact"
-                className="flex w-full items-center justify-center rounded-xl border border-neutral-200 bg-white px-8 py-4 text-center text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-neutral-50 sm:w-auto dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 dark:hover:bg-neutral-800"
+                className="flex w-full items-center justify-center rounded-btn border border-neutral-200 bg-white px-8 py-4 text-center text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-neutral-50 sm:w-auto dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 dark:hover:bg-neutral-800"
               >
                 联系技术顾问
               </Link>

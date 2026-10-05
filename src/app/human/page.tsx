@@ -280,7 +280,8 @@ function HeroSection(): JSX.Element {
                 href="/demo"
                 variant="solid"
                 color="blue"
-                className="group w-full rounded-xl px-8 py-4 text-lg font-semibold sm:w-auto"
+                size="xl"
+                className="group w-full sm:w-auto"
               >
                 <span>立即体验</span>
                 <ChatBubbleLeftRightIcon
@@ -292,7 +293,8 @@ function HeroSection(): JSX.Element {
               <Button
                 href="#features"
                 variant="outline"
-                className="group w-full rounded-xl px-8 py-4 text-lg font-semibold sm:w-auto"
+                size="xl"
+                className="group w-full sm:w-auto"
               >
                 <span>了解更多</span>
                 <ChevronRightIcon
@@ -520,7 +522,8 @@ function DemoSection(): JSX.Element {
                       <Button
                         href={account.url}
                         variant="outline"
-                        className="mt-2 h-7 border-brand-500 text-xs text-brand-500 hover:bg-brand-50 sm:mt-0 sm:h-8"
+                        color="blue"
+                        className="mt-2 h-7 text-xs sm:mt-0 sm:h-8"
                       >
                         访问
                       </Button>
@@ -531,17 +534,10 @@ function DemoSection(): JSX.Element {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button
-                className="h-auto min-h-[44px] rounded-xl bg-brand-500 px-6 py-3 text-sm font-medium text-white hover:bg-brand-600 sm:min-h-[48px] sm:px-8 sm:text-base"
-                href="#"
-              >
+              <Button href="#" variant="solid" color="blue" size="lg">
                 申请专属演示
               </Button>
-              <Button
-                variant="outline"
-                className="h-auto min-h-[44px] rounded-xl border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-700 hover:bg-neutral-50 sm:min-h-[48px] sm:px-8 sm:text-base"
-                href="#"
-              >
+              <Button href="#" variant="outline" size="lg">
                 联系客服
               </Button>
             </div>
@@ -622,7 +618,7 @@ function WorkflowSection(): JSX.Element {
           <p className="mx-auto mb-8 max-w-2xl font-sans text-base font-medium text-neutral-500 md:text-lg">
             标准化服务流程，助您快速完成数字人系统部署
           </p>
-          <Button variant="solid" color="blue" href="https://v.cnai.art" target="_blank">
+          <Button variant="solid" color="blue" size="sm" href="https://v.cnai.art" target="_blank">
             立即接入
           </Button>
         </div>
@@ -752,7 +748,6 @@ export default function DigitalHumanPage(): JSX.Element {
           description="专为企业主、个人博主打造短视频IP的数字人源码系统，支持真人声音+形象克隆，一键合成知识付费、课程、带货、形象宣传、行业干货等口播视频。基于SaaS多开模式的架构设计，支持无限OEM贴牌开通站点。版本免费迭代升级+售后技术支撑，让你无后顾之忧！"
           checkItems={ctaCheckItems}
           featureCards={ctaFeatureCards}
-          primaryButtonClassName="w-full rounded-xl bg-brand-500 px-6 py-3 font-bold text-white shadow-lg hover:bg-brand-600 sm:w-auto sm:py-4"
           mobileCardClassName="flex flex-col items-center justify-center rounded-lg bg-neutral-50 p-4 shadow-sm"
           desktopCardClassName="flex flex-col items-center justify-center rounded-lg bg-white p-3 shadow-sm"
         />

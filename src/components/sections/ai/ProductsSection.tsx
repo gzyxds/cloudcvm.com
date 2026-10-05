@@ -130,7 +130,7 @@ function ProductCard({ product }: { product: Product }) {
               href={product.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm font-medium text-neutral-600 transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-100 hover:text-neutral-900 focus:ring-2 focus:ring-brand-500/20 focus:outline-none dark:border-neutral-600 dark:bg-neutral-700/50 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-btn border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-sm font-medium text-neutral-600 transition-all duration-200 hover:border-neutral-300 hover:bg-neutral-100 hover:text-neutral-900 focus:ring-2 focus:ring-brand-500/20 focus:outline-none dark:border-neutral-600 dark:bg-neutral-700/50 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
               aria-label={`查看${product.title}的在线演示`}
             >
               <PlayIcon className="h-4 w-4 transition-colors group-hover/btn:text-brand-500 dark:group-hover/btn:text-brand-400" />
@@ -141,7 +141,7 @@ function ProductCard({ product }: { product: Product }) {
               href={product.buyLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-500/20 transition-all duration-200 hover:from-brand-600 hover:to-brand-700 hover:shadow-lg hover:shadow-brand-500/30 focus:ring-2 focus:ring-brand-500/40 focus:outline-none active:scale-[0.98]"
+              className="group/btn inline-flex flex-1 items-center justify-center gap-2 rounded-btn bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-500/20 transition-all duration-200 hover:from-brand-600 hover:to-brand-700 hover:shadow-lg hover:shadow-brand-500/30 focus:ring-2 focus:ring-brand-500/40 focus:outline-none active:scale-[0.98]"
               aria-label={`购买${product.title}`}
             >
               <ShoppingCartIcon className="h-4 w-4 transition-transform group-hover/btn:scale-110" />

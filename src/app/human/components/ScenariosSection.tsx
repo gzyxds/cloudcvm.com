@@ -103,7 +103,7 @@ function ScenariosSection(): JSX.Element {
         <div className="mb-16 flex justify-center">
           <div className="scrollbar-hide inline-flex max-w-full overflow-x-auto bg-neutral-50 p-1.5 shadow-sm">
             <button
-              className={`relative min-w-[100px] rounded-xl px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
+              className={`relative min-w-[100px] rounded-btn px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'virtualIP'
                   ? 'bg-brand-500 text-white shadow-md'
                   : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
@@ -119,7 +119,7 @@ function ScenariosSection(): JSX.Element {
               )}
             </button>
             <button
-              className={`relative min-w-[100px] rounded-xl px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
+              className={`relative min-w-[100px] rounded-btn px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'digitalEmployee'
                   ? 'bg-brand-500 text-white shadow-md'
                   : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
@@ -135,7 +135,7 @@ function ScenariosSection(): JSX.Element {
               )}
             </button>
             <button
-              className={`relative min-w-[100px] rounded-xl px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
+              className={`relative min-w-[100px] rounded-btn px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'contentCreation'
                   ? 'bg-brand-500 text-white shadow-md'
                   : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
@@ -151,7 +151,7 @@ function ScenariosSection(): JSX.Element {
               )}
             </button>
             <button
-              className={`relative min-w-[100px] rounded-xl px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
+              className={`relative min-w-[100px] rounded-btn px-4 py-2 font-medium whitespace-nowrap transition-all duration-300 sm:min-w-[120px] sm:px-6 sm:py-3 ${
                 activeScenario === 'virtualLive'
                   ? 'bg-brand-500 text-white shadow-md'
                   : 'text-neutral-700 hover:bg-white hover:text-neutral-900'
@@ -209,17 +209,16 @@ function ScenariosSection(): JSX.Element {
             {/* 按钮组 - 优化移动端按钮大小 */}
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
-                className="flex h-auto min-h-[44px] items-center justify-center rounded-xl bg-brand-500 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-200 hover:bg-brand-600 sm:min-h-[48px] sm:px-8 sm:py-3 sm:text-base"
+                variant="solid"
+                color="blue"
+                size="lg"
+                className="shadow-lg"
                 onClick={() => (window.location.href = '/demo')}
               >
                 <PlayIcon className="mr-2 h-4 w-4" />
                 立即试用
               </Button>
-              <Button
-                variant="outline"
-                className="flex h-auto min-h-[44px] items-center justify-center rounded-xl border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-700 hover:bg-neutral-50 sm:min-h-[48px] sm:px-8 sm:py-3 sm:text-base"
-                href="#"
-              >
+              <Button variant="outline" size="lg" href="#">
                 <UserGroupIcon className="mr-2 h-4 w-4" />
                 购买授权
               </Button>

@@ -66,12 +66,12 @@ export function AiFeaturesSection({
 
                   {/* 操作按钮 */}
                   <div className="flex gap-3">
-                    <button className="flex-1 rounded-xl bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-brand-600">
+                    <Button variant="solid" color="blue" size="sm" className="flex-1">
                       立即体验
-                    </button>
-                    <button className="flex-1 rounded-xl border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-700 transition-colors duration-200 hover:border-neutral-400 hover:text-neutral-900">
+                    </Button>
+                    <Button variant="outline" size="sm" className="flex-1">
                       查看详情
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </li>
@@ -80,10 +80,7 @@ export function AiFeaturesSection({
         </ul>
 
         <div className="mt-12 text-center">
-          <Button
-            href="#"
-            className="rounded-xl bg-brand-500 px-8 py-3 font-medium text-white transition-colors duration-200 hover:bg-brand-600"
-          >
+          <Button href="#" variant="solid" color="blue" size="lg">
             探索更多功能
           </Button>
         </div>

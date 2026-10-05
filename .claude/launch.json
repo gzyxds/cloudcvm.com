@@ -9,6 +9,14 @@
       "autoPort": true
     },
     {
+      "name": "dev-alt",
+      "comment": "3000 被其他会话的 next dev 占用时用独立端口起本会话的 dev（Next 16.3 检测到同端口重复会直接退出）",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "-p", "3100"],
+      "port": 3100,
+      "autoPort": true
+    },
+    {
       "name": "static",
       "comment": "预览静态导出产物 out/（首屏/加载态问题必须验产物，dev 不走同一路径）",
       "runtimeExecutable": "node",

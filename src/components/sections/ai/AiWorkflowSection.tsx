@@ -28,7 +28,10 @@ export function AiWorkflowSection(): JSX.Element {
             <Button
               href="https://v.cnai.art"
               target="_blank"
-              className="mt-4 rounded-xl bg-brand-500 px-6 py-2 text-sm font-medium text-white hover:bg-brand-600"
+              variant="solid"
+              color="blue"
+              size="sm"
+              className="mt-4"
             >
               立即接入
             </Button>

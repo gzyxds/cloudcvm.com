@@ -78,12 +78,7 @@ export function AiCoreFeaturesSection({
 
                   {/* 操作按钮 */}
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                    <Button
-                      href="#"
-                      variant="solid"
-                      color="blue"
-                      className="flex items-center justify-center gap-2 px-4 py-3"
-                    >
+                    <Button href="#" variant="solid" color="blue" size="md" className="gap-2">
                       <svg
                         className="h-5 w-5"
                         fill="none"
@@ -99,12 +94,7 @@ export function AiCoreFeaturesSection({
                       </svg>
                       立即体验
                     </Button>
-                    <Button
-                      href="#"
-                      variant="outline"
-                      color="slate"
-                      className="flex items-center justify-center gap-2 px-4 py-3"
-                    >
+                    <Button href="#" variant="outline" color="slate" size="md" className="gap-2">
                       <svg
                         className="h-5 w-5"
                         fill="none"
@@ -120,12 +110,7 @@ export function AiCoreFeaturesSection({
                       </svg>
                       购买授权
                     </Button>
-                    <Button
-                      href="#"
-                      variant="outline"
-                      color="slate"
-                      className="flex items-center justify-center gap-2 px-4 py-3"
-                    >
+                    <Button href="#" variant="outline" color="slate" size="md" className="gap-2">
                       <svg
                         className="h-5 w-5"
                         fill="none"
@@ -141,12 +126,7 @@ export function AiCoreFeaturesSection({
                       </svg>
                       体验Demo
                     </Button>
-                    <Button
-                      href="#"
-                      variant="outline"
-                      color="slate"
-                      className="flex items-center justify-center gap-2 px-4 py-3"
-                    >
+                    <Button href="#" variant="outline" color="slate" size="md" className="gap-2">
                       <svg
                         className="h-5 w-5"
                         fill="none"
@@ -201,13 +181,10 @@ export function AiCoreFeaturesSection({
 
         {/* 底部CTA区域 */}
         <div className="mt-12 text-center sm:mt-16">
-          <a
-            href="#features"
-            className="inline-flex items-center rounded-xl border border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900"
-          >
+          <Button href="#features" variant="outline" size="lg">
             探索更多功能
             <ChevronRightIcon className="ml-2 h-4 w-4" />
-          </a>
+          </Button>
         </div>
       </Container>
     </section>

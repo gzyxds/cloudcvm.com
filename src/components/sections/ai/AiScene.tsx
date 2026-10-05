@@ -3,6 +3,7 @@
 import { useState, useCallback, memo } from 'react'
 import { useDebouncedHover } from '@/hooks/useDebouncedHover'
 import { Container } from '@/components/ui/Container'
+import { Button } from '@/components/ui/Button'
 import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
 import {
@@ -443,20 +444,25 @@ export const AiScene = memo(function AiScene() {
 
                 {/* 底部操作栏 */}
                 <div className="flex flex-col items-stretch gap-3 border-t border-neutral-100 bg-neutral-50/50 px-6 py-4 sm:flex-row sm:items-center lg:px-8 lg:py-5 dark:border-neutral-700 dark:bg-neutral-800/50">
-                  <button
+                  <Button
                     onClick={() => openQrModal('solution')}
-                    className="inline-flex items-center justify-center rounded-xl bg-brand-500 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
+                    variant="solid"
+                    color="blue"
+                    size="md"
+                    className="shadow-sm"
                   >
                     了解方案详情
                     <ArrowRightIcon className="ml-2 h-4 w-4" />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={() => openQrModal('consult')}
-                    className="inline-flex items-center justify-center rounded-xl border border-neutral-200 px-6 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+                    variant="outline"
+                    size="md"
+                    className="dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-neutral-500 dark:hover:bg-neutral-700 dark:hover:text-white"
                   >
                     联系售前咨询
                     <ChatBubbleLeftRightIcon className="ml-2 h-4 w-4" />
-                  </button>
+                  </Button>
                 </div>
               </motion.div>
             </AnimatePresence>

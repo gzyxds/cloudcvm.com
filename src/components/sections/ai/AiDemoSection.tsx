@@ -98,7 +98,8 @@ export function AiDemoSection({
                       <Button
                         href={account.url}
                         variant="outline"
-                        className="mt-2 h-7 border-brand-500 text-xs text-brand-500 hover:bg-brand-50 sm:mt-0 sm:h-8"
+                        color="blue"
+                        className="mt-2 h-7 text-xs sm:mt-0 sm:h-8"
                       >
                         访问
                       </Button>
@@ -109,17 +110,10 @@ export function AiDemoSection({
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <Button
-                className="h-auto min-h-[44px] rounded-xl bg-brand-500 px-6 py-3 text-sm font-medium text-white hover:bg-brand-600 sm:min-h-[48px] sm:px-8 sm:text-base"
-                href={applyHref}
-              >
+              <Button href={applyHref} variant="solid" color="blue" size="lg">
                 申请专属演示
               </Button>
-              <Button
-                variant="outline"
-                className="h-auto min-h-[44px] rounded-xl border-neutral-300 px-6 py-3 text-sm font-medium text-neutral-700 hover:bg-neutral-50 sm:min-h-[48px] sm:px-8 sm:text-base"
-                href={contactHref}
-              >
+              <Button href={contactHref} variant="outline" size="lg">
                 联系客服
               </Button>
             </div>
