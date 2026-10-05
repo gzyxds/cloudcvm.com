@@ -52,30 +52,18 @@
   animation-play-state: paused;
 }
 
-/* 响应式动画速度调整 */
-@media (max-width: 768px) {
-  .scrollContainer {
-    animation-duration: 20s;
-  }
-  .scrollContainerReverse {
-    animation-duration: 18s;
-  }
+/* 减弱动效降级：停掉循环滚动（Logo 内容本身仍完整可见） */
+@media (prefers-reduced-motion: reduce) {
+  .scrollContainer,
+  .scrollContainerReverse,
   .scrollContainerSlow {
-    animation-duration: 28s;
+    animation: none;
   }
 }
 
-@media (max-width: 480px) {
-  .scrollContainer {
-    animation-duration: 15s;
-  }
-  .scrollContainerReverse {
-    animation-duration: 13s;
-  }
-  .scrollContainerSlow {
-    animation-duration: 20s;
-  }
-}
+/* 说明（P-12）：原实现在小屏反而加快动画（≤480px 时 15s/13s/20s），
+   移动端为「活跃感」提高运动频次会耗电，已移除——全端统一 30s/25s/40s，
+   小屏视距更短、感知速度反而更合适 */
 
 /* Logo 项目样式 */
 .logoItem {

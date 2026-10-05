@@ -84,6 +84,10 @@ export default function LogoClouds() {
   // 扩充每行的数据，确保单次循环的宽度超过容器宽度 (1800px)
   // 每个Logo宽约160px+间距64px = 224px。1800/224 ≈ 8个。
   // 我们扩充到每组至少 10 个
+  // 注意（P-09 核查结论）：64 个节点是「无缝 -50% 循环 + 1800px 容器」下的最小配置，
+  // 不是冗余——-50% 位移要求条带 ≥ 2× 容器宽（≈3600px），且前后两半必须完全一致：
+  // 前两行 10 个/半（5×2，2240px）是 5 的整数倍里的最小可行值；第三行 4 张图只有
+  // ×3=12 个/半才 ≥1800px。少渲染一份就会出现右缘露白或接缝跳变。
   const logosRow1 = [...row1Base, ...row1Base]
   const logosRow2 = [...row2Base, ...row2Base]
   const logosRow3 = [...row3Base, ...row3Base, ...row3Base] // 4个 -> 12个

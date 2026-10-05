@@ -270,15 +270,19 @@ export default function Advantage() {
         let nextActive = 0
         let minDistance = Number.POSITIVE_INFINITY
 
-        panels.forEach((panel, index) => {
-          panel.style.removeProperty('--solution-card-scale')
-          panel.style.removeProperty('--solution-card-opacity')
-          const rect = panel.getBoundingClientRect()
+        // 先读后写（P-10）：rect 全部读完再统一移除变量，
+        // 避免「移除变量 → 读下一个 rect」交错触发强制样式重算
+        const rects = panels.map((panel) => panel.getBoundingClientRect())
+        rects.forEach((rect, index) => {
           const distance = Math.abs(rect.left + rect.width / 2 - centerX)
           if (distance < minDistance) {
             minDistance = distance
             nextActive = index
           }
+        })
+        panels.forEach((panel) => {
+          panel.style.removeProperty('--solution-card-scale')
+          panel.style.removeProperty('--solution-card-opacity')
         })
 
         if (nextActive !== activeIndexRef.current) {
@@ -292,44 +296,78 @@ export default function Advantage() {
       const activationLine = viewportHeight * 0.5
       let nextActive = 0
 
-      panels.forEach((panel, index) => {
+      /* 桌面：两遍式（P-10 js-batch-dom-css）。
+         原实现每个面板内「读 rect → 写 CSS 变量 → 下一个面板又读 rect」交错，
+         每次写入后紧跟的读取都会强制一次样式重算。改为第一遍集中读几何/样式快照，
+         第二遍只写，把样式重算压到每帧一次。 */
+
+      // 第一遍：只读
+      type PanelSnapshot = {
+        panel: HTMLElement
+        rect: DOMRect
+        nextRect: DOMRect | null
+        stickyTop: number
+        visual: HTMLElement | null
+        depth: number
+      }
+      const snapshots: PanelSnapshot[] = panels.map((panel, index) => {
         const rect = panel.getBoundingClientRect()
         if (rect.top <= activationLine) {
           nextActive = index
         }
-
-        if (reducedMotion) {
-          panel.style.removeProperty('--solution-card-scale')
-          panel.style.removeProperty('--solution-card-opacity')
-        } else {
-          const nextPanel = panels[index + 1]
-          const stickyTop = Number.parseFloat(window.getComputedStyle(panel).top) || 120
-          const stackProgress = nextPanel
-            ? clamp((stickyTop + 420 - nextPanel.getBoundingClientRect().top) / 390, 0, 1)
-            : 0
-          panel.style.setProperty('--solution-card-scale', (1 - stackProgress * 0.045).toFixed(4))
-          panel.style.setProperty('--solution-card-opacity', (1 - stackProgress * 0.12).toFixed(3))
-        }
-
         const visual = panel.querySelector<HTMLElement>('[data-advantage-depth]')
-        if (!visual) {
-          return
-        }
         if (reducedMotion) {
-          visual.style.removeProperty('--solution-depth-x')
-          visual.style.removeProperty('--solution-depth-y')
-          return
+          return { panel, rect, nextRect: null, stickyTop: 0, visual, depth: 0 }
         }
-        const depth = Number.parseFloat(visual.dataset.advantageDepth || '0')
-        const center = rect.top + rect.height / 2
+        const nextPanel = panels[index + 1]
+        const nextRect = nextPanel ? nextPanel.getBoundingClientRect() : null
+        const stickyTop = Number.parseFloat(window.getComputedStyle(panel).top) || 120
+        const depth = visual ? Number.parseFloat(visual.dataset.advantageDepth || '0') : 0
+        return { panel, rect, nextRect, stickyTop, visual, depth }
+      })
+
+      // 第二遍：只写
+      for (const snap of snapshots) {
+        if (reducedMotion) {
+          snap.panel.style.removeProperty('--solution-card-scale')
+          snap.panel.style.removeProperty('--solution-card-opacity')
+          if (snap.visual) {
+            snap.visual.style.removeProperty('--solution-depth-x')
+            snap.visual.style.removeProperty('--solution-depth-y')
+          }
+          continue
+        }
+
+        const stackProgress = snap.nextRect
+          ? clamp((snap.stickyTop + 420 - snap.nextRect.top) / 390, 0, 1)
+          : 0
+        snap.panel.style.setProperty(
+          '--solution-card-scale',
+          (1 - stackProgress * 0.045).toFixed(4)
+        )
+        snap.panel.style.setProperty(
+          '--solution-card-opacity',
+          (1 - stackProgress * 0.12).toFixed(3)
+        )
+
+        if (!snap.visual) {
+          continue
+        }
+        const center = snap.rect.top + snap.rect.height / 2
         const progress = clamp(
           (activationLine - center) / Math.max(viewportHeight * 0.78, 1),
           -1,
           1
         )
-        visual.style.setProperty('--solution-depth-x', `${(progress * depth * 0.35).toFixed(2)}px`)
-        visual.style.setProperty('--solution-depth-y', `${(progress * depth).toFixed(2)}px`)
-      })
+        snap.visual.style.setProperty(
+          '--solution-depth-x',
+          `${(progress * snap.depth * 0.35).toFixed(2)}px`
+        )
+        snap.visual.style.setProperty(
+          '--solution-depth-y',
+          `${(progress * snap.depth).toFixed(2)}px`
+        )
+      }
 
       if (nextActive !== activeIndexRef.current) {
         activeIndexRef.current = nextActive

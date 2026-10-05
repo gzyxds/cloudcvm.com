@@ -2,10 +2,10 @@
 
 import type { JSX } from 'react'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, UserPlusIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, UserPlusIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Logo } from '@/components/ui/Logo'
 import type {
@@ -15,7 +15,6 @@ import type {
   FooterAction,
 } from '@/components/layout/MegaMenu'
 import { MegaMenuPanel } from '@/components/layout/MegaMenu'
-import { MobileMenu } from '@/components/layout/MobileMenu'
 import {
   navTriggerBase,
   navTriggerIdle,
@@ -157,6 +156,16 @@ const rightMenuConfigs: NavMenuConfig[] = rightGroups.map(toNavMenuConfig)
 const allMenuConfigs = [...leftMenuConfigs, ...rightMenuConfigs]
 
 /**
+ * 移动端抽屉按需加载（P-04）：headlessui + MobileMenu 只在首次打开菜单时
+ * 才下载并挂载，桌面端用户永不下载。Header 侧保留打开按钮与展开状态，
+ * 抽屉挂载后由 headlessui Dialog 接管焦点陷阱与 Esc 关闭。
+ */
+const MobileMenuDrawer = dynamic(
+  () => import('./MobileMenuDrawer').then((mod) => mod.MobileMenuDrawer),
+  { ssr: false }
+)
+
+/**
  * 判断当前路由是否命中分类下的任一入口（含精选项）。
  * 命中后一级菜单保持高亮，帮助用户感知当前所在的分组。
  */
@@ -189,6 +198,8 @@ function categoryMatches(categories: MegaMenuCategory[], pathname: string): bool
 export function Header(): JSX.Element {
   // 移动端菜单开关状态
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
+  // 抽屉 chunk 是否已加载（首次点击汉堡按钮才置 true，触发按需下载）
+  const [menuLoaded, setMenuLoaded] = useState<boolean>(false)
   // 页面滚动后给固定头部加轻微阴影，与内容区分开
   const [scrolled, setScrolled] = useState(false)
   // 当前打开的统一面板 id（null = 全部关闭）
@@ -412,10 +423,12 @@ export function Header(): JSX.Element {
         <div className="flex h-[62px] items-center justify-between">
           {/* 左侧：Logo和桌面端导航菜单 */}
           <div className="flex items-center">
-            {/* 网站Logo */}
-            <Link href="/" className="flex items-center">
+            {/* 网站Logo：h-6（24px，较原 h-8 缩小 25%）；
+                负左边距把 Logo 拉近视口左缘（内边距 20/32px → 视觉约 8/16px），
+                右侧操作区仍沿用导航行原有内边距，左右互不牵动 */}
+            <Link href="/" className="-ml-3 flex items-center lg:-ml-4">
               <span className="sr-only">优刻云</span>
-              <Logo className="h-8 w-auto" />
+              <Logo className="h-6 w-auto" />
             </Link>
 
             {/* 桌面端导航菜单组 */}
@@ -465,7 +478,12 @@ export function Header(): JSX.Element {
           <div className="flex lg:hidden">
             <button
               type="button"
-              onClick={() => setMobileMenuOpen(true)}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu-drawer"
+              onClick={() => {
+                setMenuLoaded(true)
+                setMobileMenuOpen(true)
+              }}
               className="inline-flex items-center justify-center rounded-md p-2 text-neutral-700"
             >
               <span className="sr-only">打开主菜单</span>
@@ -583,32 +601,8 @@ export function Header(): JSX.Element {
         </div>
       )}
 
-      {/* 移动端侧边栏菜单 */}
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
-        <div className="fixed inset-0 z-[60] bg-neutral-950/50" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-[60] w-full overflow-y-auto bg-white p-5 shadow-panel sm:max-w-sm sm:ring-1 sm:ring-neutral-200">
-          {/* 移动端菜单头部：Logo和关闭按钮 */}
-          <div className="flex items-center justify-between border-b border-neutral-200 pb-4">
-            <Link href="/" className="flex items-center">
-              <span className="sr-only">优刻云</span>
-              <Logo className="h-8 w-auto" />
-            </Link>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(false)}
-              className="rounded-md p-2 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-800"
-            >
-              <span className="sr-only">关闭菜单</span>
-              <XMarkIcon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
-
-          {/* 移动端菜单内容区域：新版 MobileMenu 统一渲染分区、直链与账号操作 */}
-          <div className="mt-4 flow-root">
-            <MobileMenu sections={navGroups} onNavigate={() => setMobileMenuOpen(false)} />
-          </div>
-        </DialogPanel>
-      </Dialog>
+      {/* 移动端侧边栏菜单：首次打开才挂载（按需下载抽屉 chunk） */}
+      {menuLoaded && <MobileMenuDrawer open={mobileMenuOpen} onClose={setMobileMenuOpen} />}
     </header>
   )
 }

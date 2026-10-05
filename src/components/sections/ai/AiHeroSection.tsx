@@ -42,6 +42,58 @@ const sentences = [
 ]
 
 /**
+ * 打字机效果（P-09）。
+ * 独立成模块级子组件：逐字符状态更新只会重渲染这一个小节点，
+ * 不再连带整个 Hero（含双版本跑马灯与全部图片节点）每 50-100ms 重渲染一次。
+ */
+const Typewriter = () => {
+  const [typeWriterText, setTypeWriterText] = useState('')
+
+  useEffect(() => {
+    let isDeleting = false
+    let sentenceIndex = 0
+    let charIndex = 0
+    let timeoutId: NodeJS.Timeout
+
+    const type = () => {
+      const currentSentence = sentences[sentenceIndex]
+
+      if (isDeleting) {
+        setTypeWriterText(currentSentence.substring(0, charIndex - 1))
+        charIndex--
+      } else {
+        setTypeWriterText(currentSentence.substring(0, charIndex + 1))
+        charIndex++
+      }
+
+      let typeSpeed = isDeleting ? 50 : 100
+
+      if (!isDeleting && charIndex === currentSentence.length) {
+        typeSpeed = 2000 // 完成一句后暂停
+        isDeleting = true
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false
+        sentenceIndex = (sentenceIndex + 1) % sentences.length
+        typeSpeed = 500 // 开始新句前暂停
+      }
+
+      timeoutId = setTimeout(type, typeSpeed)
+    }
+
+    type()
+
+    return () => clearTimeout(timeoutId)
+  }, [])
+
+  return (
+    <p className="max-w-2xl text-base leading-relaxed font-medium text-neutral-500 sm:text-lg dark:text-neutral-400">
+      {typeWriterText}
+      <span className="ml-1 inline-block h-[1.2em] animate-blink border-r-2 border-brand-500 align-middle"></span>
+    </p>
+  )
+}
+
+/**
  * 简单的 Marquee 组件
  * 支持垂直和水平滚动
  */
@@ -88,9 +140,6 @@ const Marquee = ({
  * /ai 页面首屏区块
  */
 const AiHeroSection = ({ slides = defaultSlides }: { slides?: AiHeroSlide[] }) => {
-  // 打字机效果状态
-  const [typeWriterText, setTypeWriterText] = useState('')
-
   // 图片数据处理
   const marqueeImages = useMemo(() => {
     // 获取所有图片路径
@@ -108,76 +157,6 @@ const AiHeroSection = ({ slides = defaultSlides }: { slides?: AiHeroSlide[] }) =
       second: result.slice(mid),
     }
   }, [slides])
-
-  // 打字机效果逻辑
-  useEffect(() => {
-    let isDeleting = false
-    let sentenceIndex = 0
-    let charIndex = 0
-    let timeoutId: NodeJS.Timeout
-
-    const type = () => {
-      const currentSentence = sentences[sentenceIndex]
-
-      if (isDeleting) {
-        setTypeWriterText(currentSentence.substring(0, charIndex - 1))
-        charIndex--
-      } else {
-        setTypeWriterText(currentSentence.substring(0, charIndex + 1))
-        charIndex++
-      }
-
-      let typeSpeed = isDeleting ? 50 : 100
-
-      if (!isDeleting && charIndex === currentSentence.length) {
-        typeSpeed = 2000 // 完成一句后暂停
-        isDeleting = true
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false
-        sentenceIndex = (sentenceIndex + 1) % sentences.length
-        typeSpeed = 500 // 开始新句前暂停
-      }
-
-      timeoutId = setTimeout(type, typeSpeed)
-    }
-
-    type()
-
-    return () => clearTimeout(timeoutId)
-  }, [])
-
-  // 注入关键帧动画
-  useEffect(() => {
-    const styleId = 'marquee-animations'
-    if (!document.getElementById(styleId)) {
-      const style = document.createElement('style')
-      style.id = styleId
-      style.textContent = `
-        @keyframes marquee-vertical {
-          from { transform: translateY(0); }
-          to { transform: translateY(-50%); }
-        }
-        @keyframes marquee-horizontal {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .animate-marquee-vertical {
-          animation: marquee-vertical linear infinite;
-        }
-        .animate-marquee-horizontal {
-          animation: marquee-horizontal linear infinite;
-        }
-        .animate-blink {
-          animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-      `
-      document.head.appendChild(style)
-    }
-  }, [])
 
   // 特性列表
   const features = [
@@ -232,10 +211,7 @@ const AiHeroSection = ({ slides = defaultSlides }: { slides?: AiHeroSlide[] }) =
             </div>
 
             <div className="flex min-h-[3.5em] items-center justify-center sm:min-h-[1.75em] lg:justify-start">
-              <p className="max-w-2xl text-base leading-relaxed font-medium text-neutral-500 sm:text-lg dark:text-neutral-400">
-                {typeWriterText}
-                <span className="animate-blink ml-1 inline-block h-[1.2em] border-r-2 border-brand-500 align-middle"></span>
-              </p>
+              <Typewriter />
             </div>
 
             <div className="flex flex-col justify-center gap-4 pt-4 sm:flex-row lg:justify-start">

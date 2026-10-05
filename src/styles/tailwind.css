@@ -171,6 +171,12 @@
      若只用内联 animation 引用动画名，CSS 侧看不到引用关系，
      Turbopack/LightningCSS 会把 @keyframes 当成未使用符号整段删掉（dev 实测就是这样）。 */
   --animate-progress-bar: progressBar 8s linear;
+  /* /ai 首页 Hero 跑马灯与光标闪烁：原为 AiHeroSection 运行时往 document.head
+     注入的内联 <style>（组件挂载时执行 JS 注入 DOM），2026-10-05 收敛为令牌——
+     动画随构建产物下发、首帧即生效；时长/方向仍由组件内联 animationDuration/Direction 覆盖 */
+  --animate-marquee-horizontal: marquee-horizontal linear infinite;
+  --animate-marquee-vertical: marquee-vertical linear infinite;
+  --animate-blink: blink 1s step-end infinite;
 
   @keyframes scan {
     0% {
@@ -234,6 +240,46 @@
     }
     100% {
       transform: scaleX(1);
+    }
+  }
+
+  @keyframes marquee-horizontal {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/* 减弱动效降级：循环跑马灯与光标闪烁在 prefers-reduced-motion 下停止。
+   放在 @layer utilities 内以压过令牌生成的 animate-* 工具类（无层样式优先级低于 layered）。 */
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee-horizontal,
+    .animate-marquee-vertical,
+    .animate-blink {
+      animation: none;
     }
   }
 }

@@ -306,13 +306,15 @@ export default function BananaProductPage({
         <Container>
           <div className="relative mx-auto max-w-5xl rounded-md border border-neutral-200/50 bg-neutral-100/40 p-2 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/40">
             <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-md border border-neutral-200/50 bg-white/60 shadow-sm dark:border-neutral-700/50 dark:bg-neutral-800/60">
-              {/* 首屏 Hero 图：12 个 AI 方案页共用，加 priority 消除 LCP 警告并提前加载 */}
+              {/* Demo 展示图：位于文字 Hero 之下（LCP 元素是上方的 h1 标题，不是本图）。
+                  Next 16 已弃用 priority；此图不应预加载抢占首屏带宽，
+                  改为按视口懒加载（P-07） */}
               <Image
                 src={heroImage}
                 alt="产品展示"
                 width={1280}
                 height={720}
-                priority
+                loading="lazy"
                 className="h-full w-full object-contain"
               />
             </div>

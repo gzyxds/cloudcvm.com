@@ -66,6 +66,25 @@
   - 未做（设备能力项）：低端移动端跳过特效属视觉决策，待用户确认后另行处理
 - **P-13 已实施（语义令牌阶段）**：`tailwind.css` 新增 `--color-success/warning/danger`（#10b981/#f59e0b/#ef4444）与 `--color-ai-accent`（#4b14ff）；windows/server/contact/cdn/ssl 5 页 28 处状态色 hex → 令牌类（值不变，计算样式实测 rgb(16,185,129) 与原 #10B981 一致）；human 页 `<PixelBlast color>` 改传 `var(--color-ai-accent)`（组件运行时解析，解析失败回退组件内 DEFAULT_COLOR）。台账 P-13 原文中的 `#0055ff` 残留已在令牌收敛批次处理完毕。
   - **第二批**：新增 `--color-tech-cyan`（#00a2ed，ProductTraits 标题渐变起点 var 化）；删除 tailwind.css 4 个 0 引用死工具类（glow-border / section-gradient-light / section-gradient-brand / card-interactive，携带 rgba(0,85,255) 旧品牌蓝与 #f8fafc/#eff6ff 旧值）。曾计划替换 red-500/emerald-500/amber-500（29 处），实测 **Tailwind v4 默认色板为 oklch 重调值、与 v3 hex 不等价**（red-500 ≈ rgb(251,44,54) vs danger #ef4444），非零视觉变化，搁置待决策。
+- **P-03 已实施**（`src/components/layout/FloatingToolbar.tsx`）：
+  - 滚动监听加 `{ passive: true }`（该回调从不调用 `preventDefault`，交给合成器线程处理）
+  - 进出场动画从 framer-motion **全面改为纯 CSS 过渡**：按钮显隐用 `transition-all` + 逐项 delay 错峰；三个悬停气泡与二维码模态框改「常驻挂载 + visibility/opacity/transform 过渡 + `inert`/`aria-hidden` 门控」（抽取 `Bubble` 组件统一三处逐字重复的弹窗，355 行 → 结构去重）。visibility 离散过渡的「关时延迟隐藏、开时立即显示」行为与 AnimatePresence 一致，进出场动画保留
+  - 依据台账建议「或先评估 CSS 过渡的可行性」落地：弹窗本就按 hover 状态条件渲染、二维码图片本就不在 JS bundle；CSS 方案让 framer-motion **完全退出共享 chunk**（本文件是根布局图中唯一 framer-motion 消费者），且无按需 chunk 的首开延迟
+  - 产物验证：构建后首页 15 个 chunk 中 headlessui 0 个、FloatingToolbar 所在 chunk 不含 framer 标记；浏览器实测（移动视口）悬停气泡 `inert`/可见类切换正常、合成 scroll 事件驱动工具栏显隐正常（真实滚轮不派发 scroll 事件属面板冻结环境限制，与既有记录同源）
+- **P-04 已实施**（`src/components/layout/Header.tsx` + 新增 `src/components/layout/MobileMenuDrawer.tsx`）：
+  - 移动端 Dialog 抽屉整体拆为独立组件，经 `next/dynamic({ ssr: false })` + `menuLoaded` 门控：**首次点击汉堡按钮才下载** headlessui + MobileMenu chunk，桌面端用户永不下载；汉堡按钮补 `aria-expanded` / `aria-controls`，焦点陷阱与 Esc 由挂载后的 headlessui Dialog 接管；桌面端 MegaMenu 保持静态导入（不引入悬停延迟）
+  - 产物验证：构建后抽屉为独立 43KB chunk（无任何 HTML 直接引用，仅运行时按需加载）；浏览器实测点击汉堡 → 网络面板出现 MobileMenuDrawer dev chunk 请求 → Dialog `data-headlessui-state=open`、菜单内容完整渲染 → 关闭后 `aria-expanded=false`，全程控制台无错误
+  - 顺带清理：Header 移除 `Dialog/DialogPanel/MobileMenu/XMarkIcon` 静态导入；navStyles / MegaMenu 导出经全量核对无死代码（每个符号均有引用）
+- **P-07 已实施**：
+  - 「`wanxiang.webp` 1.6 MiB」实为**伪装成 .webp 的 PNG**（sharp/file 探测：PNG 字节，1672×941）——同目录共 4 个：`wanxiang` / `AI PPT` / `music-1` / `电商换装`（合计 6.05 MiB），全部是 BananaProductPage 的 heroImage（12 个 AI 方案页共用组件）。新增 `scripts/fix-fake-webp.js` 就地重编码为真 WebP（q80、保留尺寸、沿用「变大丢弃 / 收益<15% 丢弃」两道闸门）：wanxiang 1.60MiB→117KB（-92.8%）、AI PPT 1.33MiB→89KB（-93.4%）、music-1 1.34MiB→64KB（-95.4%）、电商换装 1.50MiB→107KB（-93.0%），**合计省 5.66 MiB**；文件名不变、代码引用零改动
+  - `BananaProductPage.tsx` 的 Demo 图移除已弃用的 `priority`（Next 16 起弃用）：该图位于文字 Hero 之下，LCP 元素是上方的 h1 标题而非本图，改 `loading="lazy"` 按视口加载、不再预加载与首屏抢带宽；原「首屏 Hero 图…消除 LCP 警告」注释同步更正
+  - 验证：tsc / eslint / prettier 通过；dev 服务器实测 wanxiang.webp 返回 200 / image/webp / 120,310 B（原 1,675,774 B）；浏览器确认 `<img loading="lazy">`、无 fetchpriority；懒加载触发与转换后视觉需真机目视（预览面板冻结 IO 不回调）
+- **P-08 已实施**（`src/app/about/page.tsx` 749 行、`src/app/aiimage/page.tsx` 1145 行）：
+  - 两页从**整页客户端组件转为 Server Component**（移除 `'use client'` 与 framer-motion 直接引用）：纯展示内容（文案/卡片/数据）构建期直出，不再进客户端 bundle。**产物验证：`grep` 构建 JS chunk，「让算力触手可及」「智言AI作图系统」等页面文案零命中**；页面仅引用 14 个 chunk，其中页面专属客户端代码只剩小岛
+  - 客户端依赖下沉为两个共享小岛：`ui/Reveal.tsx`（whileInView/animate 入场动画语义化封装，参数化 y/x/scale/delay/margin/animate，覆盖两页全部 7 类 motion 用法——含 aiimage 的 x:24/x:-20 水平滑入与 scale:0.98 放大入场）；`ui/SectionNav.tsx`（锚点导航 + useActiveSection，两页原各自内联的逐字重复实现收敛为一）
+  - 视觉行为不变：Reveal 初始态（opacity 0 + 位移）由服务端以内联样式写进 HTML，水合后 framer-motion 驱动到终态；`motion.a` 唯一一处（about 查看全部产品）改为 Reveal 包裹 `<a>` 并补 `h-full w-full` 保持网格拉伸
+  - 顺带发现 `useActiveSection` 内部已用 `join('|')` 字符串做依赖键，about 原 useMemo 稳定数组是冗余的（共享 SectionNav 不再带 useMemo）
+  - 验证：tsc / eslint / prettier / build 52 页全绿；浏览器实测 /about/（h1 + 5 锚点 + 37 个 Reveal 小岛、初始态内联 opacity:0 正确）与 /aiimage/（9 锚点 + 54 小岛 + 8 个 section 齐全）无控制台错误；冻结面板下动画停在初始态属环境限制，入场动画需真机目视确认
 - **验证**：`tsc --noEmit` 0 error；`npm run lint` 0 error（43 条既有 warning）；改动文件 `prettier --check` 通过；`npm run build` 52 静态页 + postbuild RSC 修复正常。
 - **待视觉确认**：预览 tab 隐藏时 Chrome 冻结 IntersectionObserver（探针实测不回调），「滚动进入视口才加载播放」的浏览器端行为需在可见面板/真机目视确认（预期：横幅/演示视频滚入视口约 200px 前开始加载并自动播放，滚出暂停）。
 

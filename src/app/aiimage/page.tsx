@@ -1,7 +1,4 @@
-'use client'
-
-import { useActiveSection } from '@/hooks/useActiveSection'
-import { motion } from 'framer-motion'
+import type { ComponentType, ReactNode } from 'react'
 import {
   ArrowRightIcon,
   BellIcon,
@@ -27,11 +24,13 @@ import {
 } from '@heroicons/react/24/outline'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
+import { Reveal } from '@/components/ui/Reveal'
+import { SectionNav } from '@/components/ui/SectionNav'
 
 /**
  * 图标组件类型定义
  */
-type IconComponent = React.ComponentType<{ className?: string }>
+type IconComponent = ComponentType<{ className?: string }>
 
 /**
  * 通用数据接口定义
@@ -346,21 +345,20 @@ function GlassCard({
   className = '',
   delay = 0,
 }: {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   delay?: number
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+    <Reveal
+      y={20}
+      delay={delay}
+      margin="-50px"
       className={`group relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-neutral-200/50 ${className}`}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="relative z-10 h-full">{children}</div>
-    </motion.div>
+    </Reveal>
   )
 }
 
@@ -379,13 +377,7 @@ function SectionHeader({
   align?: 'left' | 'center'
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={align === 'center' ? 'text-center' : ''}
-    >
+    <Reveal y={15} className={align === 'center' ? 'text-center' : ''}>
       <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
         {eyebrow}
       </span>
@@ -403,39 +395,7 @@ function SectionHeader({
       >
         {description}
       </p>
-    </motion.div>
-  )
-}
-
-/**
- * 页面锚点导航组件
- */
-function SectionNav() {
-  const activeSection = useActiveSection(SECTION_LINKS.map((item) => item.id))
-
-  return (
-    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
-      <Container>
-        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
-          {SECTION_LINKS.map((item) => {
-            const isActive = item.id === activeSection
-            return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
-                  isActive
-                    ? 'border-brand-500 text-brand-500'
-                    : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900'
-                }`}
-              >
-                {item.label}
-              </a>
-            )
-          })}
-        </div>
-      </Container>
-    </nav>
+    </Reveal>
   )
 }
 
@@ -472,10 +432,9 @@ function HeroSection() {
       </div>
 
       <Container className="relative z-10 w-full pt-20 pb-14 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <Reveal
+          animate
+          duration={0.6}
           className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14"
         >
           {/* 左列：文案区 */}
@@ -544,10 +503,12 @@ function HeroSection() {
 
           {/* 右列：创作任务中心（界面演示） */}
           <div className="relative mx-auto w-full max-w-[560px] lg:mx-0 lg:max-w-none">
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
+            <Reveal
+              x={24}
+              y={0}
+              animate
+              duration={0.6}
+              delay={0.15}
               className="rounded-2xl bg-gradient-to-br from-brand-500/40 via-transparent to-sky-400/40 p-px shadow-xl shadow-neutral-200/70"
             >
               <div className="rounded-[15px] bg-white p-4 sm:p-6">
@@ -634,10 +595,10 @@ function HeroSection() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
             <p className="mt-3 text-center text-[11.5px] text-neutral-400">以上为界面演示数据</p>
           </div>
-        </motion.div>
+        </Reveal>
       </Container>
     </section>
   )
@@ -657,11 +618,9 @@ function OverviewSection() {
         />
 
         {/* 核心介绍卡片 */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          y={0}
+          scale={0.98}
           className="mt-12 rounded-2xl bg-brand-500 p-6 text-white shadow-xl shadow-brand-500/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
@@ -701,7 +660,7 @@ function OverviewSection() {
               </ul>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* 平台特性卡片 Bento Grid */}
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -736,12 +695,7 @@ function ScenariosSection() {
     >
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[400px_1fr] lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <Reveal x={-20} y={0}>
             <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold text-brand-500">
               Creation
             </span>
@@ -764,7 +718,7 @@ function ScenariosSection() {
                 )
               )}
             </div>
-          </motion.div>
+          </Reveal>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SCENARIO_ITEMS.map((item, index) => (
@@ -1043,13 +997,7 @@ function CTASection() {
       className="relative scroll-mt-20 overflow-hidden bg-brand-500 py-16 text-center md:py-24"
     >
       <Container className="relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto max-w-3xl"
-        >
+        <Reveal className="mx-auto max-w-3xl">
           <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
             立即体验
           </span>
@@ -1078,7 +1026,7 @@ function CTASection() {
               预约技术咨询
             </Button>
           </div>
-        </motion.div>
+        </Reveal>
       </Container>
     </section>
   )
@@ -1130,7 +1078,7 @@ export default function AiImagePage() {
   return (
     <div className="bg-neutral-50 font-sans selection:bg-brand-500/20 selection:text-brand-500">
       <HeroSection />
-      <SectionNav />
+      <SectionNav links={SECTION_LINKS} />
       <OverviewSection />
       <ScenariosSection />
       <PricingSection />

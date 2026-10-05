@@ -1,8 +1,4 @@
-'use client'
-
-import { useActiveSection } from '@/hooks/useActiveSection'
-import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import type { ComponentType, ReactNode } from 'react'
 import {
   ArchiveBoxIcon,
   ArrowRightIcon,
@@ -30,11 +26,13 @@ import {
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
+import { Reveal } from '@/components/ui/Reveal'
+import { SectionNav } from '@/components/ui/SectionNav'
 
 /**
  * 通用数据类型定义
  */
-type IconComponent = React.ComponentType<{ className?: string }>
+type IconComponent = ComponentType<{ className?: string }>
 
 interface SectionLink {
   id: string
@@ -214,7 +212,7 @@ const REASONS: FeatureItem[] = [
 ]
 
 // ===================================================================
-// 通用 Hooks 与组件
+// 页面区块组件（Server Component；动画经 ui/Reveal 客户端小岛承载）
 // ===================================================================
 
 /**
@@ -225,21 +223,20 @@ function GlassCard({
   className = '',
   delay = 0,
 }: {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   delay?: number
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+    <Reveal
+      y={20}
+      delay={delay}
+      margin="-50px"
       className={`group relative overflow-hidden rounded-md border border-neutral-200 bg-white/80 p-6 backdrop-blur transition-all duration-300 hover:shadow-lg hover:shadow-neutral-200/50 ${className}`}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-white to-brand-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="relative z-10 h-full">{children}</div>
-    </motion.div>
+    </Reveal>
   )
 }
 
@@ -258,13 +255,7 @@ function SectionHeader({
   align?: 'left' | 'center'
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className={align === 'center' ? 'text-center' : ''}
-    >
+    <Reveal y={15} className={align === 'center' ? 'text-center' : ''}>
       <span className="inline-flex items-center rounded-full border border-brand-500/20 bg-brand-50 px-3.5 py-1 text-xs font-semibold tracking-wider text-brand-500">
         {eyebrow}
       </span>
@@ -282,48 +273,9 @@ function SectionHeader({
       >
         {description}
       </p>
-    </motion.div>
+    </Reveal>
   )
 }
-
-/**
- * 页面锚点导航组件
- */
-function SectionNav() {
-  // 使用 useMemo 稳定依赖引用，避免每次渲染生成新数组
-  // 导致 useActiveSection 内的 IntersectionObserver 反复重建
-  const sectionIds = useMemo(() => SECTION_LINKS.map((item) => item.id), [])
-  const activeSection = useActiveSection(sectionIds)
-
-  return (
-    <nav className="sticky top-14 z-40 border-b border-neutral-200 bg-white/90 shadow-sm backdrop-blur-md">
-      <Container>
-        <div className="scrollbar-hide -mb-px flex justify-start overflow-x-auto sm:justify-center">
-          {SECTION_LINKS.map((item) => {
-            const isActive = item.id === activeSection
-            return (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className={`shrink-0 border-b-2 px-4 py-3.5 text-sm font-medium transition-colors sm:px-6 sm:py-4 ${
-                  isActive
-                    ? 'border-brand-500 text-brand-500'
-                    : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-900'
-                }`}
-              >
-                {item.label}
-              </a>
-            )
-          })}
-        </div>
-      </Container>
-    </nav>
-  )
-}
-
-// ===================================================================
-// 页面区块组件
-// ===================================================================
 
 /**
  * Hero 区域
@@ -337,12 +289,7 @@ function HeroSection() {
       <div className="absolute inset-0 z-[1] bg-gradient-to-r from-white/70 via-white/20 to-transparent" />
 
       <Container className="relative z-10 w-full py-12 sm:py-20 lg:py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl"
-        >
+        <Reveal animate duration={0.6} className="max-w-3xl">
           <span className="inline-flex h-7 items-center rounded-full border border-brand-500/20 bg-brand-50 px-3 text-xs font-semibold text-brand-500">
             优刻云计算 · 与您共创算力未来
           </span>
@@ -373,7 +320,7 @@ function HeroSection() {
               了解更多 <span aria-hidden="true">→</span>
             </Button>
           </div>
-        </motion.div>
+        </Reveal>
       </Container>
     </section>
   )
@@ -393,11 +340,9 @@ function OverviewSection() {
         />
 
         {/* 核心介绍卡片 */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          y={0}
+          scale={0.98}
           className="mt-12 rounded-md bg-brand-500 p-6 text-white shadow-xl shadow-brand-500/20 sm:p-8 lg:p-10"
         >
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
@@ -428,7 +373,7 @@ function OverviewSection() {
               </ul>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* 公司特性卡片 */}
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -504,12 +449,11 @@ function ProductsSection() {
           {PRODUCTS.map((product, index) => {
             const Icon = product.icon
             return (
-              <motion.div
+              <Reveal
                 key={product.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                y={20}
+                delay={index * 0.05}
+                margin="-50px"
                 className="group flex items-center gap-3 rounded-md border border-neutral-200 bg-white p-4 transition-all duration-300 hover:border-brand-300 hover:shadow-sm sm:p-5"
               >
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
@@ -518,22 +462,20 @@ function ProductsSection() {
                 <span className="text-sm font-semibold text-neutral-900 transition-colors duration-300 group-hover:text-brand-500">
                   {product.name}
                 </span>
-              </motion.div>
+              </Reveal>
             )
           })}
 
           {/* 查看全部产品 */}
-          <motion.a
-            href="/ecs"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5, delay: PRODUCTS.length * 0.05 }}
-            className="group flex items-center justify-center gap-2 rounded-md border border-dashed border-brand-300 bg-brand-50/60 p-4 text-sm font-semibold text-brand-500 transition-colors duration-300 hover:bg-brand-500 hover:text-white sm:p-5"
-          >
-            <PlusIcon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-90" />
-            查看全部产品
-          </motion.a>
+          <Reveal y={20} delay={PRODUCTS.length * 0.05} margin="-50px">
+            <a
+              href="/ecs"
+              className="group flex h-full w-full items-center justify-center gap-2 rounded-md border border-dashed border-brand-300 bg-brand-50/60 p-4 text-sm font-semibold text-brand-500 transition-colors duration-300 hover:bg-brand-500 hover:text-white sm:p-5"
+            >
+              <PlusIcon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-90" />
+              查看全部产品
+            </a>
+          </Reveal>
         </div>
       </Container>
     </section>
@@ -565,12 +507,11 @@ function TimelineSection() {
               const isEven = index % 2 === 0
 
               return (
-                <motion.div
+                <Reveal
                   key={milestone.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  y={30}
+                  delay={index * 0.1}
+                  margin="-80px"
                   className="relative grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-center"
                 >
                   {/* 时间线圆点 */}
@@ -609,7 +550,7 @@ function TimelineSection() {
                       {milestone.year}
                     </span>
                   </div>
-                </motion.div>
+                </Reveal>
               )
             })}
           </div>
@@ -670,13 +611,7 @@ function CTASection() {
   return (
     <section className="py-16 md:py-24">
       <Container>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-xl bg-brand-600"
-        >
+        <Reveal className="relative overflow-hidden rounded-xl bg-brand-600">
           {/* 视频背景（移动端隐藏；进入视口才加载播放） */}
           <BackgroundVideo
             src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4"
@@ -721,23 +656,25 @@ function CTASection() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </Container>
     </section>
   )
 }
 
 /**
- * 关于我们页面主组件
+ * 关于我们页面主组件（Server Component）
  *
  * 采用现代科技风设计，GlassCard 玻璃拟态卡片与 Bento Grid 布局，
- * 配合 Framer Motion 滚动动画，全面适配多端响应式展示。
+ * 配合滚动入场动画（ui/Reveal 客户端小岛），全面适配多端响应式展示。
+ * 2026-10-05 起整页转为 Server Component：静态内容构建期直出，
+ * 客户端 JS 仅剩 Reveal 动画小岛、锚点导航与 CTA 背景视频（P-08）。
  */
 export default function AboutPage() {
   return (
     <div className="bg-neutral-50 font-sans selection:bg-brand-500/20 selection:text-brand-500">
       <HeroSection />
-      <SectionNav />
+      <SectionNav links={SECTION_LINKS} />
       <OverviewSection />
       <StatsSection />
       <ProductsSection />
