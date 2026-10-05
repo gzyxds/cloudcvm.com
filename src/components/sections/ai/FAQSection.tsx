@@ -135,13 +135,13 @@ export function FAQSection() {
             <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
               <a
                 href="mailto:contact@aitech.com"
-                className="inline-flex items-center justify-center bg-brand-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-600 sm:px-6 sm:py-3 sm:text-base"
+                className="inline-flex items-center justify-center rounded-xl bg-brand-500 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-600 sm:px-6 sm:py-3 sm:text-base"
               >
                 发送邮件咨询
               </a>
               <a
                 href="tel:+8610012345678"
-                className="inline-flex items-center justify-center border border-brand-500 bg-white px-4 py-2.5 text-sm font-medium text-brand-500 transition-colors hover:bg-brand-500/5 sm:px-6 sm:py-3 sm:text-base"
+                className="inline-flex items-center justify-center rounded-xl border border-brand-500 bg-white px-4 py-2.5 text-sm font-medium text-brand-500 transition-colors hover:bg-brand-500/5 sm:px-6 sm:py-3 sm:text-base"
               >
                 电话联系我们
               </a>

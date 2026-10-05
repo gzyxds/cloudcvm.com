@@ -184,8 +184,8 @@ const AiHeroSection = ({ slides = defaultSlides }: { slides?: AiHeroSlide[] }) =
             <div className="flex justify-center lg:justify-start">
               <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-3 py-1.5 shadow-sm backdrop-blur-sm transition-transform duration-300 hover:scale-105 md:px-4 dark:border-white/10 dark:bg-white/10">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500"></span>
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-success"></span>
                 </span>
                 <span className="text-xs font-medium text-neutral-600 md:text-sm dark:text-neutral-300">
                   企业知识库全新升级 v2.0
@@ -217,13 +217,13 @@ const AiHeroSection = ({ slides = defaultSlides }: { slides?: AiHeroSlide[] }) =
             <div className="flex flex-col justify-center gap-4 pt-4 sm:flex-row lg:justify-start">
               <Link
                 href="/demo"
-                className="flex w-full items-center justify-center rounded-full bg-brand-500 px-8 py-4 text-center text-base font-semibold text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-brand-500/40 sm:w-auto"
+                className="flex w-full items-center justify-center rounded-xl bg-brand-500 px-8 py-4 text-center text-base font-semibold text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-600 hover:shadow-brand-500/40 sm:w-auto"
               >
                 开始免费试用
               </Link>
               <Link
                 href="/contact"
-                className="flex w-full items-center justify-center rounded-full border border-neutral-200 bg-white px-8 py-4 text-center text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-neutral-50 sm:w-auto dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 dark:hover:bg-neutral-800"
+                className="flex w-full items-center justify-center rounded-xl border border-neutral-200 bg-white px-8 py-4 text-center text-base font-semibold text-neutral-700 transition-all duration-300 hover:bg-neutral-50 sm:w-auto dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-200 dark:hover:bg-neutral-800"
               >
                 联系技术顾问
               </Link>

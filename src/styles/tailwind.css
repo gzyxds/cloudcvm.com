@@ -113,6 +113,14 @@
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
+  /* 600/700 深色阶：状态徽章文字/描边对比度用（原 green/amber-700 等色板类，
+     2026-10-05 五页状态色统一时随语义令牌批次 3 引入） */
+  --color-success-600: #059669;
+  --color-success-700: #047857;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
   --color-ai-accent: #4b14ff;
   /* 装饰科技青：ProductTraits 标题渐变的起点色（原为该文件内硬编码） */
   --color-tech-cyan: #00a2ed;

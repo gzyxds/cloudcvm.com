@@ -90,6 +90,20 @@
   - 原注释「首屏以下组件 — 动态导入（用户滚动到才加载）」已更正为事实描述：dynamic() 的收益 = 并行下载 + 更细缓存粒度；真正「进入视口才挂载/下载」需显式视口条件（IntersectionObserver），**待基线实测确认哪些楼层值得后再引入**——不盲改，首屏稳定性优先
 - **验证**：`tsc --noEmit` 0 error；`npm run lint` 0 error（43 条既有 warning）；改动文件 `prettier --check` 通过；`npm run build` 52 静态页 + postbuild RSC 修复正常。
 - **待视觉确认**：预览 tab 隐藏时 Chrome 冻结 IntersectionObserver（探针实测不回调），「滚动进入视口才加载播放」的浏览器端行为需在可见面板/真机目视确认（预期：横幅/演示视频滚入视口约 200px 前开始加载并自动播放，滚出暂停）。
+- **ProductsSection 商品卡片：性能优化 + 一排 4 个**（`src/components/sections/ai/ProductsSection.tsx`，2026-10-05；P-08 Server 化 / P-09 content-visibility 模式应用，非台账原编号问题）：
+  - **Server 化**：移除 `'use client'` 与 framer-motion——26 张卡片构建期直出静态 HTML；入场动画收敛为 2 个 `Reveal` 小岛（标题 + 网格整体），从 26 个 `motion.div`（每张卡一个 IntersectionObserver）降为 1 个网格级观察器；演示/购买 `<button onClick={window.open}>` 改 `<a target="_blank" rel="noopener noreferrer">`（去掉 52 个行内处理器，无 JS 可跳转）
+  - **content-visibility（台账 P-09「独立长列表/楼层离屏布局绘制」场景）**：每张卡 `[content-visibility:auto]` + `[contain-intrinsic-size:560px] [contain-intrinsic-size:auto_560px]` 双重声明（先无 auto 回退、后 auto 记住实际高度，兼容旧浏览器）；浏览器实测离屏卡片以 560px 占位渲染（0 宽冻结面板下网格高 14959px ≈ 26×560），滚动估算误差由浏览器 scroll anchoring 兜底
+  - **网格一排 4 个**：`xl:grid-cols-4`（1/2/3/4 响应式递进；Image `sizes` 提示串原本即按 25vw 编写，无需改）
+  - **视觉调整（用户要求）**：桌面卡片间距 `lg:gap-8`→`lg:gap-5`（32→20px）；卡片去阴影（`shadow-sm` / `hover:shadow-xl`）；图片去悬停放大（`group-hover:scale-105`）；图片内间距 `p-4 sm:p-5`→`p-2.5 sm:p-3`，免费/折扣角标同步内移保持原视觉比例
+  - **产物验证**：构建 chunk grep「数字分身IP数字人SaaS系统」零命中（Header 导航数据的同名文案属既有内容，非卡片标记）；`out/ai/index.html` 含 26 个 `<article>` 与 `xl:grid-cols-4` / `lg:gap-5` / `content-visibility:auto` CSS 规则。浏览器 1440×900 实测：4 列轨道（325.25px × 4）+ gap 20px + 卡片无 box-shadow + 图片无 transform，控制台零错误。tsc / eslint / prettier 通过（全树 tsc 另报 paper/chat 页报错，属并发会话未完成的巨型页拆分改动，与本区块无关）
+  - **待真机目视**：Reveal 入场动画与 CV 滚动行为在冻结预览面板无法验证（IO 零回调环境限制，与既往记录同源）
+
+- **五页设计令牌统一：/ai/ /work/ /human/ /chat/ /paper/**（2026-10-05；P-13 设计系统一致性的执行，非台账原编号问题；状态色属语义令牌批次 3）：
+  - **圆角统一 rounded-xl（16px）**：主 CTA——/ai/ hero 胶囊按钮改 16px；/chat/ /paper/ hero 的任意值 `rounded-[10px]`（非令牌，4 处）→ `rounded-xl`；/work/ hero CTA 去 `xs:rounded-none`/`sm:rounded-xl` 响应式分化 → `rounded-xl`。直角按钮——CTA/Demo/场景区块 `rounded-none` 14 处、FAQ 区块 2 个无圆角按钮、work Features/CoreFeatures 3 个无圆角按钮、HotProducts/AiScene/AiFeatures/ProductsSection/AiCoreFeatures 等 8px/12px 小按钮 → 全部 `rounded-xl`。**Button 组件基座 5 个 variant `rounded-md`/`rounded-lg` → `rounded-xl`（全站按钮一次统一，用户确认）**；Header 主 CTA（原「直角设计」注释已更正）与移动端主/次按钮、mega 菜单 promo 按钮 → `rounded-xl`。hero 功能标签 chip 统一 `rounded-full`（work 的 `xs:rounded-none sm:rounded-lg` 分化移除）
+  - **状态色 → 语义令牌**：tailwind.css 新增 `--color-success/warning/danger-600/700` 深色阶（保徽章文字对比度，原 green/amber-700 色板类的同位替换）。在线指示点统一 `bg-success`（chat/paper 原 emerald-400/500、work/human 原 green-400、/ai/ hero 原 brand 蓝点，含 ping 层）。macOS 交通灯（3 处 9 点）`bg-red/yellow/green-500` → `bg-danger/warning/success`。终端状态徽章 `bg-green-50 text-green-700 ring-green-600/20` → `bg-success/10 text-success-700 ring-success-600/20`（amber 组同理 warning）。商品「免费」绿渐变 → 实心 `bg-success`、「折扣」红渐变 → `bg-danger`；「免费体验」`text-green-500` → `text-success`；评分星 `text-amber-400`/`text-yellow-400` → `text-warning`
+  - **装饰紫罗兰统一 purple**：work 紫卡 `from-purple-500 to-purple-600` → `to-purple-400`（border-purple-700→500）、paper「文献检索」卡 `from-violet-500 to-violet-400` → `from-purple-500 to-purple-400`（与 chat「AI绘画」卡一致）；paper hero 背景 blob `bg-violet-500/[0.03]` → `bg-purple-500/[0.03]`
+  - **保留例外**：AiScene 竖向 tab（border 指示条直角是刻意的 tab 模式）、HotProducts `to-pink-400/10` 等低透明装饰 blob、BananaProductPage 紫 blob（非五页范围）
+  - **验证**：tsc --noEmit 0 error、prettier 通过；dev 服务器五页逐一浏览器实测——操作按钮全部 16px、交通灯/在线点/徽章颜色 = 令牌值（rgb 级核对）、/chat/ /paper/ 紫卡为同一渐变、控制台零错误。视觉需真机目视复核（同既往环境限制）
 
 ## 五、依据与排除项
 

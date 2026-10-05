@@ -21,15 +21,15 @@ import clsx from 'clsx'
 
 const baseStyles = {
   solid:
-    'group inline-flex items-center justify-center py-2 px-4 text-sm font-semibold rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200',
+    'group inline-flex items-center justify-center py-2 px-4 text-sm font-semibold rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200',
   outline:
-    'group inline-flex ring-1 items-center justify-center py-2 px-4 text-sm rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200',
+    'group inline-flex ring-1 items-center justify-center py-2 px-4 text-sm rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200',
   primary:
-    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98]',
+    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98]',
   primaryOutline:
-    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-lg border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98]',
+    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-xl border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98]',
   glass:
-    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-lg backdrop-blur-xl border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98]',
+    'group inline-flex items-center justify-center py-3 px-8 text-[15px] font-medium rounded-xl backdrop-blur-xl border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98]',
 }
 
 const variantStyles = {

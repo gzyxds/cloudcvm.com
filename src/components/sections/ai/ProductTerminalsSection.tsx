@@ -94,8 +94,8 @@ export function ProductTerminalsSection() {
                 <span
                   className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-xs font-medium ${
                     terminal.status === '已上线'
-                      ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20 ring-inset'
-                      : 'bg-amber-50 text-amber-700 ring-1 ring-amber-600/20 ring-inset'
+                      ? 'bg-success/10 text-success-700 ring-1 ring-success-600/20 ring-inset'
+                      : 'bg-warning/10 text-warning-700 ring-1 ring-warning-600/20 ring-inset'
                   }`}
                 >
                   {terminal.status}

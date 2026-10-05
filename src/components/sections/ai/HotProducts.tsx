@@ -533,7 +533,7 @@ export default function HotProducts() {
                 transition={{ duration: 0.4, delay: 0.9 }}
               >
                 <motion.button
-                  className="group flex flex-1 items-center justify-center rounded-lg bg-brand-500 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-colors duration-200 hover:bg-brand-600 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
+                  className="group flex flex-1 items-center justify-center rounded-xl bg-brand-500 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-colors duration-200 hover:bg-brand-600 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
                   onClick={() => {
                     handleConsultNow()
                     trackEvent('PrimaryAction', currentScenario.title)
@@ -548,7 +548,7 @@ export default function HotProducts() {
                 </motion.button>
 
                 <motion.button
-                  className="group flex flex-1 items-center justify-center rounded-lg border border-brand-500 bg-white px-4 py-1.5 text-xs font-medium text-brand-500 shadow-sm transition-colors duration-200 hover:bg-brand-50 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
+                  className="group flex flex-1 items-center justify-center rounded-xl border border-brand-500 bg-white px-4 py-1.5 text-xs font-medium text-brand-500 shadow-sm transition-colors duration-200 hover:bg-brand-50 sm:flex-none sm:px-5 sm:py-2 sm:text-sm"
                   onClick={() => {
                     handleViewDetails()
                     trackEvent('SecondaryAction', currentScenario.title)

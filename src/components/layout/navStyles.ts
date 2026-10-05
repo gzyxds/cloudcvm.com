@@ -80,16 +80,16 @@ export const megaPromoIcon =
 export const megaPromoTitle = 'text-sm font-medium text-neutral-900'
 export const megaPromoDesc = 'mt-2 text-left text-xs leading-relaxed text-neutral-500'
 export const megaPromoLink =
-  'mt-3 flex w-full items-center justify-center gap-1 bg-brand-500 px-3 py-2 text-xs font-medium text-white transition-colors duration-150 group-hover/promo:bg-brand-600'
+  'mt-3 flex w-full items-center justify-center gap-1 rounded-xl bg-brand-500 px-3 py-2 text-xs font-medium text-white transition-colors duration-150 group-hover/promo:bg-brand-600'
 
-/** 主 CTA 按钮（直角设计，无圆角） */
+/** 主 CTA 按钮（2026-10-05 五页统一后全站按钮圆角基准 rounded-xl） */
 export const primaryButton =
-  'inline-flex items-center justify-center gap-2 bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-brand-600'
+  'inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors duration-150 hover:bg-brand-600'
 
 /** 移动端次要按钮 */
 export const mobileSecondaryButton =
-  'flex flex-1 items-center justify-center gap-x-2 rounded-md bg-neutral-100 px-4 py-2.5 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-200 hover:text-brand-600'
+  'flex flex-1 items-center justify-center gap-x-2 rounded-xl bg-neutral-100 px-4 py-2.5 text-base font-medium text-neutral-700 transition-colors hover:bg-neutral-200 hover:text-brand-600'
 
 /** 移动端主要按钮 */
 export const mobilePrimaryButton =
-  'flex flex-1 items-center justify-center gap-x-2 rounded-md bg-brand-500 px-4 py-2.5 text-base font-medium text-white transition-colors hover:bg-brand-600'
+  'flex flex-1 items-center justify-center gap-x-2 rounded-xl bg-brand-500 px-4 py-2.5 text-base font-medium text-white transition-colors hover:bg-brand-600'

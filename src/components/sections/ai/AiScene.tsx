@@ -445,14 +445,14 @@ export const AiScene = memo(function AiScene() {
                 <div className="flex flex-col items-stretch gap-3 border-t border-neutral-100 bg-neutral-50/50 px-6 py-4 sm:flex-row sm:items-center lg:px-8 lg:py-5 dark:border-neutral-700 dark:bg-neutral-800/50">
                   <button
                     onClick={() => openQrModal('solution')}
-                    className="inline-flex items-center justify-center rounded-md bg-brand-500 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
+                    className="inline-flex items-center justify-center rounded-xl bg-brand-500 px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-brand-600"
                   >
                     了解方案详情
                     <ArrowRightIcon className="ml-2 h-4 w-4" />
                   </button>
                   <button
                     onClick={() => openQrModal('consult')}
-                    className="inline-flex items-center justify-center rounded-md border border-neutral-200 px-6 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+                    className="inline-flex items-center justify-center rounded-xl border border-neutral-200 px-6 py-2.5 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900 dark:border-neutral-600 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
                   >
                     联系售前咨询
                     <ChatBubbleLeftRightIcon className="ml-2 h-4 w-4" />
