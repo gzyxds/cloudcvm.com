@@ -368,7 +368,7 @@ function LeftrightFeaturesMobile() {
             {/* 移动端模拟状态栏 */}
             <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#10B981]"></div>
+                <div className="h-1.5 w-1.5 rounded-full bg-success"></div>
                 <span>服务器运行正常</span>
               </div>
               <span>Windows Server 2022</span>
@@ -489,7 +489,7 @@ function LeftrightFeaturesDesktop() {
             <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-4">
                 <span className="flex items-center space-x-1">
-                  <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
+                  <div className="h-2 w-2 rounded-full bg-success"></div>
                   <span>系统正常</span>
                 </span>
                 <span>CPU: 15%</span>
@@ -620,7 +620,7 @@ function RightleftFeaturesMobile() {
             {/* 移动端模拟状态栏 */}
             <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#10B981]"></div>
+                <div className="h-1.5 w-1.5 rounded-full bg-success"></div>
                 <span>系统正常</span>
               </div>
               <span>刚刚更新</span>
@@ -710,7 +710,7 @@ function RightleftFeaturesDesktop() {
             <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-4">
                 <span className="flex items-center space-x-1">
-                  <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
+                  <div className="h-2 w-2 rounded-full bg-success"></div>
                   <span>系统正常</span>
                 </span>
                 <span>CPU: 45%</span>
@@ -795,9 +795,9 @@ export default function ECSPage() {
             <div className="mx-auto max-w-[1800px] px-4 pt-24 pb-6 sm:px-6 lg:px-8">
               <h1 className="text-2xl font-bold tracking-tight text-neutral-900">云电脑专区</h1>
               <p className="mt-2 text-sm text-neutral-500">
-                <span className="font-medium text-[#F59E0B]">4核4G起步</span>
+                <span className="font-medium text-warning">4核4G起步</span>
                 ，新用户低至
-                <span className="font-medium text-[#F59E0B]">79元/年</span>
+                <span className="font-medium text-warning">79元/年</span>
                 <span className="ml-2 cursor-pointer text-brand-500 underline hover:text-brand-600">
                   活动规则&gt;
                 </span>
@@ -924,7 +924,7 @@ export default function ECSPage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm text-neutral-500">活动价:</span>
-                          <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
+                          <span className="text-2xl font-bold tracking-tight text-danger">
                             {product.currentPrice}
                           </span>
                           <span className="text-sm text-neutral-500">元</span>

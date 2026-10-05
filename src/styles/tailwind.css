@@ -106,6 +106,16 @@
   --color-accent-500: var(--color-brand-500);
 
   /* ================================================================
+     Semantic Colors — 状态色（success/warning/danger）与 AI 特效强调色
+     success/warning/danger 取代散落的状态 hex（在线绿/强调橙/促销红）；
+     ai-accent 是 PixelBlast 特效紫的唯一来源（组件经 var() 解析读取）。
+     ================================================================ */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-ai-accent: #4b14ff;
+
+  /* ================================================================
      Neutral Color Scale — Based on reference design palette
      title: #1D273F, body: #50627F, remark: #C3CAD9
      border: #DDE3F2, bg: #F6F8FD / #ECF0FF

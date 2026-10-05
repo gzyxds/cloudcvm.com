@@ -17,6 +17,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
+import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 
@@ -670,57 +671,65 @@ function CMSTestimonialsSection() {
 
 /**
  * 行动转化CTA区域组件
+ * （视频横幅卡片，参考 CatSections 免费体验横幅设计）
  */
 function CMSCTASection() {
   return (
-    <section
-      id="demo"
-      className="relative scroll-mt-20 overflow-hidden bg-brand-500 py-10 sm:py-14 md:py-16"
-    >
-      <Container className="relative z-10">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            准备好开始了吗？
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-xl leading-8 text-brand-100">
-            加入数千家企业的选择，使用优刻云计算 CMS构建更好的内容管理体验
-          </p>
+    <section id="demo" className="scroll-mt-20 py-10 sm:py-14 md:py-16">
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative overflow-hidden rounded-xl bg-brand-600"
+        >
+          {/* 视频背景（移动端隐藏；进入视口才加载播放） */}
+          <BackgroundVideo
+            src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4"
+            className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
+          />
+          {/* 暗色叠加层 */}
+          <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
 
-          {/* 重新设计的按钮组 */}
-          <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-            {/* 主要按钮 - 免费试用 */}
-            <Button
-              href="/contact"
-              variant="erlieSolid"
-              color="white"
-              className="group relative inline-flex w-full min-w-[160px] items-center justify-center rounded-xl px-8 py-3.5 text-base font-medium text-brand-500 shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
-            >
-              <span className="relative z-10 flex items-center">
-                免费试用
-                <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Button>
+          <div className="relative px-6 py-8 lg:px-10 lg:py-10">
+            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+              {/* 左侧文案区 */}
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-white lg:text-3xl">准备好开始了吗？</h2>
+                <p className="mt-2 text-base text-brand-100">
+                  加入数千家企业的选择，使用优刻云计算 CMS构建更好的内容管理体验
+                </p>
+                <p className="mt-3 text-sm text-brand-100/80">
+                  免费试用 30 天 · 无需信用卡 · 随时取消
+                </p>
+              </div>
 
-            {/* 次要按钮 - 联系销售 */}
-            <Button
-              href="/demo"
-              variant="erlieOutline"
-              color="white"
-              className="group relative inline-flex w-full min-w-[160px] items-center justify-center rounded-xl border-white/30 bg-transparent px-8 py-3.5 text-base font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white/10 focus:ring-4 focus:ring-white/30 focus:outline-none sm:w-auto"
-            >
-              <span className="relative z-10 flex items-center">
-                联系销售
-                <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Button>
-          </div>
-
-          {/* 信任标识 */}
-          <div className="mt-8 flex flex-col items-center space-y-4">
-            <p className="text-sm text-brand-200">免费试用 30 天 · 无需信用卡 · 随时取消</p>
+              {/* 右侧按钮区 */}
+              <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+                <Button
+                  href="/contact"
+                  variant="erlieSolid"
+                  color="white"
+                  className="rounded-md px-6 py-3 text-sm font-semibold text-brand-600 shadow-sm hover:bg-brand-50"
+                >
+                  免费试用
+                  <ArrowRightIcon className="ml-2 size-4" />
+                </Button>
+                <Button
+                  href="/demo"
+                  variant="erlieOutline"
+                  color="white"
+                  className="rounded-md border-white/40 px-6 py-3 text-sm font-semibold hover:bg-white/10"
+                >
+                  联系销售
+                  <ArrowRightIcon className="ml-2 size-4" />
+                </Button>
+              </div>
+            </div>
 
             {/* 信任徽章 */}
-            <div className="flex items-center space-x-6 text-brand-200/80">
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/15 pt-6 text-brand-100/80">
               <div className="flex items-center space-x-2">
                 <CheckCircleIcon className="h-4 w-4" />
                 <span className="text-xs">SSL安全保护</span>
@@ -735,7 +744,7 @@ function CMSCTASection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   )

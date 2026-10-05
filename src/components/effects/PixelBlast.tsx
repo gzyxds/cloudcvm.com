@@ -90,6 +90,67 @@ interface ReinitConfig {
   noiseAmount: number
 }
 
+/** threeRef 持有的全部 WebGL 运行时状态 */
+interface ThreeState {
+  renderer: THREE.WebGLRenderer
+  scene: THREE.Scene
+  camera: THREE.OrthographicCamera
+  material: THREE.ShaderMaterial
+  clock: THREE.Clock
+  clickIx: number
+  uniforms: {
+    uResolution: { value: THREE.Vector2 }
+    uTime: { value: number }
+    uColor: { value: THREE.Color }
+    uClickPos: { value: THREE.Vector2[] }
+    uClickTimes: { value: Float32Array }
+    uShapeType: { value: number }
+    uPixelSize: { value: number }
+    uScale: { value: number }
+    uDensity: { value: number }
+    uPixelJitter: { value: number }
+    uEnableRipples: { value: number }
+    uRippleSpeed: { value: number }
+    uRippleThickness: { value: number }
+    uRippleIntensity: { value: number }
+    uEdgeFade: { value: number }
+  }
+  resizeObserver?: ResizeObserver
+  raf?: number
+  quad?: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>
+  timeOffset?: number
+  composer?: EffectComposer
+  touch?: ReturnType<typeof createTouchTexture>
+  liquidEffect?: Effect
+  /** 最近一次生效的 pixelSize（setSize 不捕获旧 prop 值） */
+  pixelSize: number
+}
+
+/**
+ * 全量释放 WebGL 资源（几何体 / 材质 / 后处理 / 渲染上下文 / 画布），幂等。
+ * 卸载路径经独立 effect 调用；prop 触发重建时在 mustReinit 分支开头调用。
+ */
+const disposeThree = (threeRef: React.MutableRefObject<ThreeState | null>) => {
+  const t = threeRef.current
+  if (!t) return
+  t.resizeObserver?.disconnect()
+  if (t.raf !== undefined) cancelAnimationFrame(t.raf)
+  t.raf = undefined
+  t.quad?.geometry.dispose()
+  t.material.dispose()
+  t.touch?.texture.dispose()
+  t.composer?.dispose()
+  t.renderer.dispose()
+  try {
+    // 立即释放浏览器侧上下文槽位，避免快速往返路由时累积到上下文上限
+    t.renderer.forceContextLoss()
+  } catch {
+    // 环境不支持强制丢失上下文时忽略
+  }
+  t.renderer.domElement.remove()
+  threeRef.current = null
+}
+
 const SHAPE_MAP: Record<PixelBlastVariant, number> = {
   square: 0,
   circle: 1,
@@ -379,10 +440,25 @@ const createLiquidEffect = (
   })
 }
 
+/**
+ * 解析「var(--令牌名)」形式的设计令牌颜色。
+ * THREE.Color 不能解析 var()，这里从 :root 计算样式取值；
+ * 令牌缺失时返回空串，由调用方回退到 DEFAULT_COLOR。
+ */
+const resolveCssVarColor = (color: string): string => {
+  const match = color.match(/^var\(\s*(--[a-zA-Z0-9-]+)\s*\)$/)
+  if (!match) return color
+  const value = getComputedStyle(document.documentElement).getPropertyValue(match[1]).trim()
+  return value || ''
+}
+
+/** WebGL 兜底色：与设计令牌 --color-ai-accent（tailwind.css）同值，令牌解析失败时使用 */
+const DEFAULT_COLOR = '#4b14ff'
+
 export default function PixelBlast({
   variant = 'diamond',
   pixelSize = 4,
-  color = '#4b14ff',
+  color = DEFAULT_COLOR,
   patternScale = 2,
   patternDensity = 1,
   pixelSizeJitter = 0,
@@ -401,41 +477,14 @@ export default function PixelBlast({
   className = '',
 }: PixelBlastProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
+  // 三态决定动画是否运行：标签页可见 / 容器在视口内 / 未开启减弱动效。
+  // 均由下方 effect 的监听器写入（visibilitychange / IntersectionObserver / matchMedia）。
   const visibilityRef = useRef({ visible: true })
+  const inViewRef = useRef(false)
+  const reducedMotionRef = useRef(false)
   const speedRef = useRef(speed)
 
-  const threeRef = useRef<{
-    renderer: THREE.WebGLRenderer
-    scene: THREE.Scene
-    camera: THREE.OrthographicCamera
-    material: THREE.ShaderMaterial
-    clock: THREE.Clock
-    clickIx: number
-    uniforms: {
-      uResolution: { value: THREE.Vector2 }
-      uTime: { value: number }
-      uColor: { value: THREE.Color }
-      uClickPos: { value: THREE.Vector2[] }
-      uClickTimes: { value: Float32Array }
-      uShapeType: { value: number }
-      uPixelSize: { value: number }
-      uScale: { value: number }
-      uDensity: { value: number }
-      uPixelJitter: { value: number }
-      uEnableRipples: { value: number }
-      uRippleSpeed: { value: number }
-      uRippleThickness: { value: number }
-      uRippleIntensity: { value: number }
-      uEdgeFade: { value: number }
-    }
-    resizeObserver?: ResizeObserver
-    raf?: number
-    quad?: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>
-    timeOffset?: number
-    composer?: EffectComposer
-    touch?: ReturnType<typeof createTouchTexture>
-    liquidEffect?: Effect
-  } | null>(null)
+  const threeRef = useRef<ThreeState | null>(null)
   const prevConfigRef = useRef<ReinitConfig | null>(null)
 
   useEffect(() => {
@@ -444,6 +493,129 @@ export default function PixelBlast({
 
     speedRef.current = speed
 
+    // 支持 var(--color-*) 形式的设计令牌（如 human 页传入的 --color-ai-accent）
+    const resolvedColor = resolveCssVarColor(color) || DEFAULT_COLOR
+
+    // —— 帧循环：统一从 threeRef 读取状态，任何 effect 运行 / 监听器都能安全重启 ——
+    const renderFrame = () => {
+      const t = threeRef.current
+      if (!t) return
+
+      t.uniforms.uTime.value = (t.timeOffset ?? 0) + t.clock.getElapsedTime() * speedRef.current
+
+      if (t.liquidEffect) {
+        const liqEffect = t.liquidEffect as Effect & { uniforms: Map<string, THREE.Uniform> }
+        const timeUniform = liqEffect.uniforms.get('uTime')
+        if (timeUniform) timeUniform.value = t.uniforms.uTime.value
+      }
+
+      if (t.composer) {
+        if (t.touch) t.touch.update()
+        t.composer.passes.forEach((p) => {
+          const pass = p as { effects?: Array<Effect & { uniforms: Map<string, THREE.Uniform> }> }
+          if (pass.effects) {
+            pass.effects.forEach((eff) => {
+              const timeUniform = eff.uniforms?.get('uTime')
+              if (timeUniform) timeUniform.value = t.uniforms.uTime.value
+            })
+          }
+        })
+        t.composer.render()
+      } else {
+        t.renderer.render(t.scene, t.camera)
+      }
+    }
+
+    const animate = () => {
+      const t = threeRef.current
+      if (!t) return
+      t.raf = undefined
+
+      // 标签页隐藏或滚出视口：不再排下一帧（停止 GPU/CPU 消耗），由监听器重启
+      if (!visibilityRef.current.visible || !inViewRef.current) return
+
+      renderFrame()
+
+      // prefers-reduced-motion：只渲染上面这一帧静态画面，不进入连续循环
+      if (!reducedMotionRef.current) t.raf = requestAnimationFrame(animate)
+    }
+
+    const startLoop = () => {
+      const t = threeRef.current
+      if (!t || t.raf !== undefined) return
+      if (visibilityRef.current.visible && inViewRef.current) animate()
+    }
+
+    const stopLoop = () => {
+      const t = threeRef.current
+      if (!t) return
+      if (t.raf !== undefined) cancelAnimationFrame(t.raf)
+      t.raf = undefined
+    }
+
+    // —— 指针交互：经 threeRef 读取，避免闭包捕获旧实例（依赖更新后仍可用）——
+    const mapToPixels = (e: PointerEvent) => {
+      const t = threeRef.current
+      if (!t) return { fx: 0, fy: 0, w: 1, h: 1 }
+      const rect = t.renderer.domElement.getBoundingClientRect()
+      const scaleX = t.renderer.domElement.width / rect.width
+      const scaleY = t.renderer.domElement.height / rect.height
+      const fx = (e.clientX - rect.left) * scaleX
+      const fy = (rect.height - (e.clientY - rect.top)) * scaleY
+      return { fx, fy, w: t.renderer.domElement.width, h: t.renderer.domElement.height }
+    }
+
+    const onPointerDown = (e: PointerEvent) => {
+      const t = threeRef.current
+      if (!t) return
+      const { fx, fy } = mapToPixels(e)
+      const ix = t.clickIx
+      t.uniforms.uClickPos.value[ix].set(fx, fy)
+      t.uniforms.uClickTimes.value[ix] = t.uniforms.uTime.value
+      t.clickIx = (ix + 1) % MAX_CLICKS
+    }
+
+    const onPointerMove = (e: PointerEvent) => {
+      const t = threeRef.current
+      if (!t) return
+      if (!t.touch) return
+      const { fx, fy, w, h } = mapToPixels(e)
+      t.touch.addTouch({ x: fx / w, y: fy / h })
+    }
+
+    const bindPointerListeners = () => {
+      const t = threeRef.current
+      if (!t) return
+      t.renderer.domElement.addEventListener('pointerdown', onPointerDown, { passive: true })
+      t.renderer.domElement.addEventListener('pointermove', onPointerMove, { passive: true })
+    }
+
+    const removePointerListeners = () => {
+      const t = threeRef.current
+      if (!t) return
+      t.renderer.domElement.removeEventListener('pointerdown', onPointerDown)
+      t.renderer.domElement.removeEventListener('pointermove', onPointerMove)
+    }
+
+    const onVisibilityChange = () => {
+      visibilityRef.current.visible = document.visibilityState === 'visible'
+      if (visibilityRef.current.visible) startLoop()
+      else stopLoop()
+    }
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const onMotionPreferenceChange = () => {
+      reducedMotionRef.current = motionQuery.matches
+      if (motionQuery.matches) {
+        // 切换为静态模式：停止循环并补渲一帧当前画面
+        stopLoop()
+        if (visibilityRef.current.visible && inViewRef.current) renderFrame()
+      } else {
+        startLoop()
+      }
+    }
+
+    // —— 只有 antialias/liquid/noiseAmount 变化才重建 GL 上下文，其余 prop 只同步 uniform ——
     const needsReinitKeys: (keyof ReinitConfig)[] = ['antialias', 'liquid', 'noiseAmount']
     const cfg: ReinitConfig = { antialias: true, liquid, noiseAmount }
     let mustReinit = false
@@ -458,245 +630,171 @@ export default function PixelBlast({
     }
 
     if (mustReinit) {
-      if (threeRef.current) {
-        const t = threeRef.current
-        t.resizeObserver?.disconnect()
-        if (t.raf !== undefined) cancelAnimationFrame(t.raf)
-        t.quad?.geometry.dispose()
-        t.material.dispose()
-        t.composer?.dispose()
-        t.renderer.dispose()
-        if (t.renderer.domElement.parentElement === container)
-          container.removeChild(t.renderer.domElement)
+      disposeThree(threeRef)
+
+      try {
+        const canvas = document.createElement('canvas')
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          antialias: true,
+          alpha: true,
+          powerPreference: 'high-performance',
+        })
+
+        renderer.domElement.style.width = '100%'
+        renderer.domElement.style.height = '100%'
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
+        container.appendChild(renderer.domElement)
+
+        if (transparent) renderer.setClearAlpha(0)
+        else renderer.setClearColor(0x000000, 1)
+
+        const uniforms = {
+          uResolution: { value: new THREE.Vector2(0, 0) },
+          uTime: { value: 0 },
+          uColor: { value: new THREE.Color(resolvedColor) },
+          uClickPos: {
+            value: Array.from({ length: MAX_CLICKS }, () => new THREE.Vector2(-1, -1)),
+          },
+          uClickTimes: { value: new Float32Array(MAX_CLICKS) },
+          uShapeType: { value: SHAPE_MAP[variant] ?? 0 },
+          uPixelSize: { value: pixelSize * renderer.getPixelRatio() },
+          uScale: { value: patternScale },
+          uDensity: { value: patternDensity },
+          uPixelJitter: { value: pixelSizeJitter },
+          uEnableRipples: { value: enableRipples ? 1 : 0 },
+          uRippleSpeed: { value: rippleSpeed },
+          uRippleThickness: { value: rippleThickness },
+          uRippleIntensity: { value: rippleIntensityScale },
+          uEdgeFade: { value: edgeFade },
+        }
+
+        const scene = new THREE.Scene()
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
+
+        const material = new THREE.ShaderMaterial({
+          vertexShader: VERTEX_SRC,
+          fragmentShader: FRAGMENT_SRC,
+          uniforms,
+          transparent: true,
+          depthTest: false,
+          depthWrite: false,
+          glslVersion: THREE.GLSL3,
+        })
+
+        const quadGeom = new THREE.PlaneGeometry(2, 2)
+        const quad = new THREE.Mesh(quadGeom, material)
+        scene.add(quad)
+
+        const clock = new THREE.Clock()
+
+        const setSize = () => {
+          const t = threeRef.current
+          const w = container.clientWidth || 1
+          const h = container.clientHeight || 1
+          renderer.setSize(w, h, false)
+          uniforms.uResolution.value.set(renderer.domElement.width, renderer.domElement.height)
+          if (t?.composer) t.composer.setSize(renderer.domElement.width, renderer.domElement.height)
+          uniforms.uPixelSize.value = (t?.pixelSize ?? pixelSize) * renderer.getPixelRatio()
+          // 静态模式（reduced-motion）没有循环，尺寸变化后手动补渲一帧
+          if (reducedMotionRef.current) renderFrame()
+        }
+
+        setSize()
+
+        const ro = new ResizeObserver(setSize)
+        ro.observe(container)
+
+        const randomFloat = (): number => {
+          if (typeof window !== 'undefined' && window.crypto?.getRandomValues) {
+            const u32 = new Uint32Array(1)
+            window.crypto.getRandomValues(u32)
+            return u32[0] / 0xffffffff
+          }
+          return Math.random()
+        }
+
+        const timeOffset = randomFloat() * 1000
+
+        let composer: EffectComposer | undefined
+        let touch: ReturnType<typeof createTouchTexture> | undefined
+        let liquidEffect: Effect | undefined
+
+        if (liquid) {
+          touch = createTouchTexture()
+          touch.radiusScale = liquidRadius
+          composer = new EffectComposer(renderer)
+          const renderPass = new RenderPass(scene, camera)
+          liquidEffect = createLiquidEffect(touch.texture, {
+            strength: liquidStrength,
+            freq: liquidWobbleSpeed,
+          })
+          const effectPass = new EffectPass(camera, liquidEffect)
+          effectPass.renderToScreen = true
+          composer.addPass(renderPass)
+          composer.addPass(effectPass)
+        }
+
+        if (noiseAmount > 0) {
+          if (!composer) {
+            composer = new EffectComposer(renderer)
+            composer.addPass(new RenderPass(scene, camera))
+          }
+
+          const noiseEffect = new Effect(
+            'NoiseEffect',
+            `uniform float uTime; uniform float uAmount; float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);} void mainUv(inout vec2 uv){} void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){ float n=hash(floor(uv*vec2(1920.0,1080.0))+floor(uTime*60.0)); float g=(n-0.5)*uAmount; outputColor=inputColor+vec4(vec3(g),0.0);} `,
+            {
+              uniforms: new Map<string, THREE.Uniform>([
+                ['uTime', new THREE.Uniform(0)],
+                ['uAmount', new THREE.Uniform(noiseAmount)],
+              ]),
+            }
+          )
+
+          const noisePass = new EffectPass(camera, noiseEffect)
+          noisePass.renderToScreen = true
+
+          if (composer && composer.passes.length > 0) {
+            composer.passes.forEach((p) => {
+              const pass = p as { renderToScreen?: boolean }
+              pass.renderToScreen = false
+            })
+          }
+
+          composer.addPass(noisePass)
+        }
+
+        if (composer) composer.setSize(renderer.domElement.width, renderer.domElement.height)
+
+        threeRef.current = {
+          renderer,
+          scene,
+          camera,
+          material,
+          clock,
+          clickIx: 0,
+          uniforms,
+          resizeObserver: ro,
+          raf: undefined,
+          quad,
+          timeOffset,
+          composer,
+          touch,
+          liquidEffect,
+          pixelSize,
+        }
+      } catch (err) {
+        // WebGL 不可用（无 GPU / 驱动禁用）时优雅降级：不渲染特效，页面其余部分不受影响
+        console.warn('[PixelBlast] WebGL 初始化失败，已跳过特效：', err)
         threeRef.current = null
       }
-
-      const canvas = document.createElement('canvas')
-      const renderer = new THREE.WebGLRenderer({
-        canvas,
-        antialias: true,
-        alpha: true,
-        powerPreference: 'high-performance',
-      })
-
-      renderer.domElement.style.width = '100%'
-      renderer.domElement.style.height = '100%'
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2))
-      container.appendChild(renderer.domElement)
-
-      if (transparent) renderer.setClearAlpha(0)
-      else renderer.setClearColor(0x000000, 1)
-
-      const uniforms = {
-        uResolution: { value: new THREE.Vector2(0, 0) },
-        uTime: { value: 0 },
-        uColor: { value: new THREE.Color(color) },
-        uClickPos: {
-          value: Array.from({ length: MAX_CLICKS }, () => new THREE.Vector2(-1, -1)),
-        },
-        uClickTimes: { value: new Float32Array(MAX_CLICKS) },
-        uShapeType: { value: SHAPE_MAP[variant] ?? 0 },
-        uPixelSize: { value: pixelSize * renderer.getPixelRatio() },
-        uScale: { value: patternScale },
-        uDensity: { value: patternDensity },
-        uPixelJitter: { value: pixelSizeJitter },
-        uEnableRipples: { value: enableRipples ? 1 : 0 },
-        uRippleSpeed: { value: rippleSpeed },
-        uRippleThickness: { value: rippleThickness },
-        uRippleIntensity: { value: rippleIntensityScale },
-        uEdgeFade: { value: edgeFade },
-      }
-
-      const scene = new THREE.Scene()
-      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
-
-      const material = new THREE.ShaderMaterial({
-        vertexShader: VERTEX_SRC,
-        fragmentShader: FRAGMENT_SRC,
-        uniforms,
-        transparent: true,
-        depthTest: false,
-        depthWrite: false,
-        glslVersion: THREE.GLSL3,
-      })
-
-      const quadGeom = new THREE.PlaneGeometry(2, 2)
-      const quad = new THREE.Mesh(quadGeom, material)
-      scene.add(quad)
-
-      const clock = new THREE.Clock()
-
-      const setSize = () => {
-        const w = container.clientWidth || 1
-        const h = container.clientHeight || 1
-        renderer.setSize(w, h, false)
-        uniforms.uResolution.value.set(renderer.domElement.width, renderer.domElement.height)
-        if (threeRef.current?.composer)
-          threeRef.current.composer.setSize(renderer.domElement.width, renderer.domElement.height)
-        uniforms.uPixelSize.value = pixelSize * renderer.getPixelRatio()
-      }
-
-      setSize()
-
-      const ro = new ResizeObserver(setSize)
-      ro.observe(container)
-
-      const randomFloat = (): number => {
-        if (typeof window !== 'undefined' && window.crypto?.getRandomValues) {
-          const u32 = new Uint32Array(1)
-          window.crypto.getRandomValues(u32)
-          return u32[0] / 0xffffffff
-        }
-        return Math.random()
-      }
-
-      const timeOffset = randomFloat() * 1000
-
-      let composer: EffectComposer | undefined
-      let touch: ReturnType<typeof createTouchTexture> | undefined
-      let liquidEffect: Effect | undefined
-
-      if (liquid) {
-        touch = createTouchTexture()
-        touch.radiusScale = liquidRadius
-        composer = new EffectComposer(renderer)
-        const renderPass = new RenderPass(scene, camera)
-        liquidEffect = createLiquidEffect(touch.texture, {
-          strength: liquidStrength,
-          freq: liquidWobbleSpeed,
-        })
-        const effectPass = new EffectPass(camera, liquidEffect)
-        effectPass.renderToScreen = true
-        composer.addPass(renderPass)
-        composer.addPass(effectPass)
-      }
-
-      if (noiseAmount > 0) {
-        if (!composer) {
-          composer = new EffectComposer(renderer)
-          composer.addPass(new RenderPass(scene, camera))
-        }
-
-        const noiseEffect = new Effect(
-          'NoiseEffect',
-          `uniform float uTime; uniform float uAmount; float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453);} void mainUv(inout vec2 uv){} void mainImage(const in vec4 inputColor,const in vec2 uv,out vec4 outputColor){ float n=hash(floor(uv*vec2(1920.0,1080.0))+floor(uTime*60.0)); float g=(n-0.5)*uAmount; outputColor=inputColor+vec4(vec3(g),0.0);} `,
-          {
-            uniforms: new Map<string, THREE.Uniform>([
-              ['uTime', new THREE.Uniform(0)],
-              ['uAmount', new THREE.Uniform(noiseAmount)],
-            ]),
-          }
-        )
-
-        const noisePass = new EffectPass(camera, noiseEffect)
-        noisePass.renderToScreen = true
-
-        if (composer && composer.passes.length > 0) {
-          composer.passes.forEach((p) => {
-            const pass = p as { renderToScreen?: boolean }
-            pass.renderToScreen = false
-          })
-        }
-
-        composer.addPass(noisePass)
-      }
-
-      if (composer) composer.setSize(renderer.domElement.width, renderer.domElement.height)
-
-      const mapToPixels = (e: PointerEvent) => {
-        const rect = renderer.domElement.getBoundingClientRect()
-        const scaleX = renderer.domElement.width / rect.width
-        const scaleY = renderer.domElement.height / rect.height
-        const fx = (e.clientX - rect.left) * scaleX
-        const fy = (rect.height - (e.clientY - rect.top)) * scaleY
-        return {
-          fx,
-          fy,
-          w: renderer.domElement.width,
-          h: renderer.domElement.height,
-        }
-      }
-
-      const onPointerDown = (e: PointerEvent) => {
-        const { fx, fy } = mapToPixels(e)
-        const ix = threeRef.current?.clickIx ?? 0
-        uniforms.uClickPos.value[ix].set(fx, fy)
-        uniforms.uClickTimes.value[ix] = uniforms.uTime.value
-        if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS
-      }
-
-      const onPointerMove = (e: PointerEvent) => {
-        if (!touch) return
-        const { fx, fy, w, h } = mapToPixels(e)
-        touch.addTouch({ x: fx / w, y: fy / h })
-      }
-
-      renderer.domElement.addEventListener('pointerdown', onPointerDown, {
-        passive: true,
-      })
-
-      renderer.domElement.addEventListener('pointermove', onPointerMove, {
-        passive: true,
-      })
-
-      let raf = 0
-
-      const animate = () => {
-        if (true && !visibilityRef.current.visible) {
-          raf = requestAnimationFrame(animate)
-          return
-        }
-
-        uniforms.uTime.value = timeOffset + clock.getElapsedTime() * speedRef.current
-
-        if (liquidEffect) {
-          const liqEffect = liquidEffect as Effect & { uniforms: Map<string, THREE.Uniform> }
-          const timeUniform = liqEffect.uniforms.get('uTime')
-          if (timeUniform) timeUniform.value = uniforms.uTime.value
-        }
-
-        if (composer) {
-          if (touch) touch.update()
-          composer.passes.forEach((p) => {
-            const pass = p as { effects?: Array<Effect & { uniforms: Map<string, THREE.Uniform> }> }
-            if (pass.effects) {
-              pass.effects.forEach((eff) => {
-                const timeUniform = eff.uniforms?.get('uTime')
-                if (timeUniform) timeUniform.value = uniforms.uTime.value
-              })
-            }
-          })
-          composer.render()
-        } else renderer.render(scene, camera)
-
-        raf = requestAnimationFrame(animate)
-      }
-
-      raf = requestAnimationFrame(animate)
-
-      threeRef.current = {
-        renderer,
-        scene,
-        camera,
-        material,
-        clock,
-        clickIx: 0,
-        uniforms,
-        resizeObserver: ro,
-        raf,
-        quad,
-        timeOffset,
-        composer,
-        touch,
-        liquidEffect,
-      }
-
-      prevConfigRef.current = cfg
     } else {
+      // —— 非重建分支：只同步 uniform / 渲染状态；循环与监听由下方统一重启 ——
       const t = threeRef.current
       if (!t) return
 
-      t.uniforms.uColor.value.set(color)
+      t.uniforms.uColor.value.set(resolvedColor)
       t.uniforms.uShapeType.value = SHAPE_MAP[variant] ?? 0
       t.uniforms.uPixelSize.value = pixelSize * t.renderer.getPixelRatio()
       t.uniforms.uScale.value = patternScale
@@ -708,6 +806,10 @@ export default function PixelBlast({
       t.uniforms.uRippleIntensity.value = rippleIntensityScale
       t.uniforms.uEdgeFade.value = edgeFade
 
+      // transparent 不触发重建，直接应用（此前依赖更新后不生效）
+      if (transparent) t.renderer.setClearAlpha(0)
+      else t.renderer.setClearColor(0x000000, 1)
+
       if (t.liquidEffect) {
         const liqEffect = t.liquidEffect as Effect & { uniforms: Map<string, THREE.Uniform> }
         const strengthUniform = liqEffect.uniforms.get('uStrength')
@@ -717,14 +819,47 @@ export default function PixelBlast({
       }
 
       if (t.touch) t.touch.radiusScale = liquidRadius
+
+      t.pixelSize = pixelSize
+
+      // 静态模式：uniform 更新后补渲一帧
+      if (reducedMotionRef.current) renderFrame()
     }
 
-    return () => {
-      if (threeRef.current) {
-        const t = threeRef.current
-        t.resizeObserver?.disconnect()
-        if (t.raf !== undefined) cancelAnimationFrame(t.raf)
+    const t = threeRef.current
+    if (!t) return
+
+    prevConfigRef.current = cfg
+
+    // —— 运行时状态统一重建：依赖更新后 RAF / ResizeObserver / 监听器全部正确重启 ——
+    t.resizeObserver?.observe(container)
+    bindPointerListeners()
+
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        inViewRef.current = entry.isIntersecting
+        if (entry.isIntersecting) startLoop()
+        else stopLoop()
       }
+    })
+    io.observe(container)
+
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    motionQuery.addEventListener('change', onMotionPreferenceChange)
+
+    visibilityRef.current.visible = document.visibilityState === 'visible'
+    inViewRef.current = false
+    reducedMotionRef.current = motionQuery.matches
+    // 离屏/隐藏/静态模式由 animate 内部判定；视口内则由 IO 的初始回调起播
+    startLoop()
+
+    return () => {
+      stopLoop()
+      t.resizeObserver?.disconnect()
+      removePointerListeners()
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+      motionQuery.removeEventListener('change', onMotionPreferenceChange)
+      io.disconnect()
     }
   }, [
     variant,
@@ -746,6 +881,14 @@ export default function PixelBlast({
     edgeFade,
     noiseAmount,
   ])
+
+  // 仅在组件真正卸载时释放 WebGL 资源。依赖更新走主 effect 的「停止-重建」路径，
+  // 避免每次 prop 变化都重建渲染上下文（mustReinit 只对 antialias/liquid/noiseAmount 生效）。
+  useEffect(() => {
+    return () => {
+      disposeThree(threeRef)
+    }
+  }, [threeRef])
 
   return (
     <div

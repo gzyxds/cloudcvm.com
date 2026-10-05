@@ -355,7 +355,7 @@ function FeaturesMobile() {
             <div className="flex flex-col space-y-2 rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-neutral-600/20 dark:bg-neutral-800/30 dark:text-neutral-300">
               <div className="flex items-center space-x-2 sm:space-x-4">
                 <span className="flex items-center space-x-1">
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-success sm:h-2 sm:w-2"></div>
                   <span>系统正常</span>
                 </span>
                 <span className="hidden sm:inline">CPU: 35%</span>
@@ -531,7 +531,7 @@ function FeaturesDesktop() {
             <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm sm:p-3 dark:border-neutral-600/20 dark:bg-neutral-800/30 dark:text-neutral-300">
               <div className="flex items-center space-x-2 sm:space-x-4">
                 <span className="flex items-center space-x-1">
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
+                  <div className="h-1.5 w-1.5 rounded-full bg-success sm:h-2 sm:w-2"></div>
                   <span>系统正常</span>
                 </span>
               </div>
@@ -655,7 +655,7 @@ function BareMetalRightleftSection() {
                 <div className="flex flex-col space-y-2 rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-neutral-600/20 dark:bg-neutral-800/30 dark:text-neutral-300">
                   <div className="flex items-center space-x-2 sm:space-x-4">
                     <span className="flex items-center space-x-1">
-                      <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
+                      <div className="h-1.5 w-1.5 rounded-full bg-success sm:h-2 sm:w-2"></div>
                       <span>系统正常</span>
                     </span>
                     <span className="hidden sm:inline">CPU: 35%</span>
@@ -695,9 +695,9 @@ export default function BareMetalPage() {
                 独立物理服务器专区
               </h1>
               <p className="mt-2 text-sm text-neutral-500">
-                <span className="font-medium text-[#F59E0B]">4核4G起步</span>
+                <span className="font-medium text-warning">4核4G起步</span>
                 ，新用户低至
-                <span className="font-medium text-[#F59E0B]">79元/年</span>
+                <span className="font-medium text-warning">79元/年</span>
                 <span className="ml-2 cursor-pointer text-brand-500 underline hover:text-brand-600">
                   活动规则&gt;
                 </span>
@@ -824,7 +824,7 @@ export default function BareMetalPage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm text-neutral-500">活动价:</span>
-                          <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
+                          <span className="text-2xl font-bold tracking-tight text-danger">
                             {product.currentPrice}
                           </span>
                           <span className="text-sm text-neutral-500">元</span>

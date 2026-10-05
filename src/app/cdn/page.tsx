@@ -371,7 +371,7 @@ function FeaturesMobile() {
             {/* 移动端模拟状态栏 */}
             <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-3 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-3">
-                <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
+                <div className="h-2 w-2 rounded-full bg-success"></div>
                 <span>CDN正常</span>
               </div>
               <span>刚刚更新</span>
@@ -491,7 +491,7 @@ function FeaturesDesktop() {
             <div className="flex items-center justify-between rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-3 text-xs text-neutral-600 backdrop-blur-sm dark:border-neutral-700/30 dark:bg-neutral-800/30 dark:text-neutral-400">
               <div className="flex items-center space-x-4">
                 <span className="flex items-center space-x-1">
-                  <div className="h-2 w-2 rounded-full bg-[#10B981]"></div>
+                  <div className="h-2 w-2 rounded-full bg-success"></div>
                   <span>CDN正常</span>
                 </span>
                 <span>带宽: 85%</span>
@@ -620,7 +620,7 @@ function CDNRightleftSection() {
                 <div className="flex flex-col space-y-2 rounded-lg border border-neutral-200/30 bg-neutral-50/60 p-2 text-xs text-neutral-600 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:p-3 dark:border-neutral-600/20 dark:bg-neutral-800/30 dark:text-neutral-300">
                   <div className="flex items-center space-x-2 sm:space-x-4">
                     <span className="flex items-center space-x-1">
-                      <div className="h-1.5 w-1.5 rounded-full bg-[#10B981] sm:h-2 sm:w-2"></div>
+                      <div className="h-1.5 w-1.5 rounded-full bg-success sm:h-2 sm:w-2"></div>
                       <span>CDN正常</span>
                     </span>
                     <span className="hidden sm:inline">带宽: 85%</span>
@@ -659,9 +659,9 @@ export default function CDNPage() {
             <div className="mb-4 pt-16 pb-8 text-left">
               <h1 className="mb-6 text-3xl font-bold text-neutral-900">CDN加速专区</h1>
               <p className="text-lg text-neutral-600">
-                <span className="font-medium text-[#F59E0B]">全球加速</span>
+                <span className="font-medium text-warning">全球加速</span>
                 ，新用户低至
-                <span className="font-medium text-[#F59E0B]">79元/年</span>
+                <span className="font-medium text-warning">79元/年</span>
                 <span className="ml-2 cursor-pointer text-brand-500 underline hover:text-brand-600">
                   活动规则&gt;
                 </span>
@@ -801,7 +801,7 @@ export default function CDNPage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm text-neutral-500">活动价:</span>
-                          <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
+                          <span className="text-2xl font-bold tracking-tight text-danger">
                             {product.currentPrice}
                           </span>
                           <span className="text-sm text-neutral-500">元</span>

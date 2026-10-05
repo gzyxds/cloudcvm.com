@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import {
   AcademicCapIcon,
   ArrowPathIcon,
+  ArrowRightIcon,
   ArrowsRightLeftIcon,
   BuildingLibraryIcon,
   CircleStackIcon,
@@ -13,12 +14,14 @@ import {
   GlobeAltIcon,
   KeyIcon,
   LockClosedIcon,
+  RocketLaunchIcon,
   ServerStackIcon,
   ShieldCheckIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
+import { BackgroundVideo } from '@/components/ui/BackgroundVideo'
 
 /**
  * 图标组件类型定义
@@ -741,47 +744,62 @@ function CapabilitySection() {
 /**
  * 行动号召区域组件
  * 引导用户咨询或预约演示
+ * （视频横幅卡片，参考 CatSections 免费体验横幅设计）
  */
 function CTASection() {
   return (
-    <section
-      id="cta"
-      className="relative scroll-mt-20 overflow-hidden bg-brand-500 py-16 text-center md:py-24"
-    >
-      <Container className="relative z-10">
+    <section id="cta" className="scroll-mt-20 py-16 md:py-24">
+      <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mx-auto max-w-3xl"
+          className="relative overflow-hidden rounded-xl bg-brand-600"
         >
-          <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
-            立即咨询
-          </span>
-          <h2 className="mt-6 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            为您的政府业务搭建安全可控的云底座
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-white/80 sm:text-lg">
-            联系我们的政务方案顾问，获取专属架构规划与测试资源，助力数字政府建设。
-          </p>
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button
-              href="/contact"
-              color="white"
-              variant="erlieSolid"
-              className="rounded-xl px-8 py-3 font-medium text-brand-500"
-            >
-              联系专属顾问
-            </Button>
-            <Button
-              href="/demo"
-              variant="erlieOutline"
-              color="white"
-              className="rounded-xl border-white/30 px-8 py-3 font-medium hover:bg-white/10"
-            >
-              预约产品演示
-            </Button>
+          {/* 视频背景（移动端隐藏；进入视口才加载播放） */}
+          <BackgroundVideo
+            src="https://qcloudimg.tencent-cloud.cn/raw/d9b1e0c770a35534d47c6562b6d4489d.mp4"
+            className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover sm:block"
+          />
+          {/* 暗色叠加层 */}
+          <div className="pointer-events-none absolute inset-0 hidden bg-brand-600/60 sm:block" />
+
+          <div className="relative flex flex-col justify-between gap-6 px-6 py-8 sm:flex-row sm:items-center lg:px-10 lg:py-10">
+            {/* 左侧文案区 */}
+            <div className="flex-1">
+              <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-medium text-white">
+                <RocketLaunchIcon className="mr-1.5 size-4" />
+                立即咨询
+              </span>
+              <h2 className="mt-3 text-2xl font-bold text-white lg:text-3xl">
+                为您的政府业务搭建安全可控的云底座
+              </h2>
+              <p className="mt-2 text-base text-brand-100">
+                联系我们的政务方案顾问，获取专属架构规划与测试资源，助力数字政府建设。
+              </p>
+            </div>
+
+            {/* 右侧按钮区 */}
+            <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+              <Button
+                href="/contact"
+                color="white"
+                variant="erlieSolid"
+                className="rounded-md px-6 py-3 text-sm font-semibold text-brand-600 shadow-sm hover:bg-brand-50"
+              >
+                联系专属顾问
+                <ArrowRightIcon className="ml-2 size-4" />
+              </Button>
+              <Button
+                href="/demo"
+                variant="erlieOutline"
+                color="white"
+                className="rounded-md border-white/40 px-6 py-3 text-sm font-semibold hover:bg-white/10"
+              >
+                预约产品演示
+              </Button>
+            </div>
           </div>
         </motion.div>
       </Container>

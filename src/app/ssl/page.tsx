@@ -962,9 +962,9 @@ export default function SSLPage() {
             <div className="mx-auto max-w-[1800px] px-4 pt-24 pb-6 sm:px-6 lg:px-8">
               <h1 className="text-2xl font-bold tracking-tight text-neutral-900">SSL证书专区</h1>
               <p className="mt-2 text-sm text-neutral-600">
-                <span className="font-medium text-[#F59E0B]">DV证书起步</span>
+                <span className="font-medium text-warning">DV证书起步</span>
                 ，新用户低至
-                <span className="font-medium text-[#F59E0B]">79元/年</span>
+                <span className="font-medium text-warning">79元/年</span>
                 <span className="ml-2 cursor-pointer text-brand-500 underline hover:text-brand-600">
                   活动规则&gt;
                 </span>
@@ -1097,7 +1097,7 @@ export default function SSLPage() {
                       <div className="mb-4">
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm text-neutral-500">活动价:</span>
-                          <span className="text-2xl font-bold tracking-tight text-[#EF4444]">
+                          <span className="text-2xl font-bold tracking-tight text-danger">
                             {product.currentPrice}
                           </span>
                           <span className="text-sm text-neutral-500">元</span>

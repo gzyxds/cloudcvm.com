@@ -278,10 +278,10 @@ function ContactInfoSection() {
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10B981] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#10B981]" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
                 </span>
-                <span className="text-xs font-medium text-[#10B981]">Active</span>
+                <span className="text-xs font-medium text-success">Active</span>
               </div>
             </div>
 
@@ -346,10 +346,10 @@ function ContactInfoSection() {
               </div>
               <div className="flex shrink-0 items-center gap-1.5">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10B981] opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#10B981]" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
                 </span>
-                <span className="text-xs font-medium text-[#10B981]">Online</span>
+                <span className="text-xs font-medium text-success">Online</span>
               </div>
             </div>
 

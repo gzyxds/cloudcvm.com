@@ -127,7 +127,7 @@ function HeroSection(): JSX.Element {
         <PixelBlast
           variant="diamond"
           pixelSize={3}
-          color="#4b14ff"
+          color="var(--color-ai-accent)"
           patternScale={2}
           patternDensity={1}
           enableRipples
