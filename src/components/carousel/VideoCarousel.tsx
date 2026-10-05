@@ -211,9 +211,11 @@ const styles = {
   // 背景图只做 opacity 过渡（在父容器上），自身没有任何 transform 动画；
   // 原来的 will-change-transform 会让 4 张满屏图各占一个合成层（约 4 屏显存），纯属浪费。
   image: 'object-cover w-full h-full object-center',
-  // Bento 风格：无圆角，边框优先，无阴影，Flex布局，字体优化，右对齐
+  // Bento 风格：无圆角，边框优先，无阴影，Flex布局，字体优化，右对齐。
+  // pr-0 / justify-end / text-right：标题块（白底 + 进度条）和文字都要一路顶到右侧那条
+  // 竖分割线，留右边距会让进度条右端比分割线短一截。
   titleButton:
-    'group relative w-full flex items-center justify-start text-left transition-all duration-300 cursor-pointer py-5 pl-0 pr-2 rounded-none text-[15px] leading-[1.6] text-neutral-600 font-sans',
+    'group relative w-full flex items-center justify-end text-right transition-all duration-300 cursor-pointer py-5 pl-0 pr-0 rounded-none text-[15px] leading-[1.6] text-neutral-600 font-sans',
   // 选中态这里只改文字色；“选中背景”由标题外层 div 的 className 控制
   titleButtonActive: 'text-primary-500 font-semibold',
   content: 'absolute inset-0 z-10 flex items-center',
