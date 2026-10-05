@@ -85,6 +85,9 @@
   - 视觉行为不变：Reveal 初始态（opacity 0 + 位移）由服务端以内联样式写进 HTML，水合后 framer-motion 驱动到终态；`motion.a` 唯一一处（about 查看全部产品）改为 Reveal 包裹 `<a>` 并补 `h-full w-full` 保持网格拉伸
   - 顺带发现 `useActiveSection` 内部已用 `join('|')` 字符串做依赖键，about 原 useMemo 稳定数组是冗余的（共享 SectionNav 不再带 useMemo）
   - 验证：tsc / eslint / prettier / build 52 页全绿；浏览器实测 /about/（h1 + 5 锚点 + 37 个 Reveal 小岛、初始态内联 opacity:0 正确）与 /aiimage/（9 锚点 + 54 小岛 + 8 个 section 齐全）无控制台错误；冻结面板下动画停在初始态属环境限制，入场动画需真机目视确认
+- **P-06 注释已更正（视口条件待基线）**（`src/app/page.tsx`）：
+  - 构建产物实测（2026-10-05）：首页 `out/index.html` 直接引用全部 **15 个 chunk**（含所有 dynamic 楼层）——运行期随页面加载即下载用于水合，**不因滚动触发**；各楼层内容（LogoClouds/Faqs/Zone/Testimonials 等）在构建期已完整渲染进 HTML，「滚动才加载」注释与实现不符
+  - 原注释「首屏以下组件 — 动态导入（用户滚动到才加载）」已更正为事实描述：dynamic() 的收益 = 并行下载 + 更细缓存粒度；真正「进入视口才挂载/下载」需显式视口条件（IntersectionObserver），**待基线实测确认哪些楼层值得后再引入**——不盲改，首屏稳定性优先
 - **验证**：`tsc --noEmit` 0 error；`npm run lint` 0 error（43 条既有 warning）；改动文件 `prettier --check` 通过；`npm run build` 52 静态页 + postbuild RSC 修复正常。
 - **待视觉确认**：预览 tab 隐藏时 Chrome 冻结 IntersectionObserver（探针实测不回调），「滚动进入视口才加载播放」的浏览器端行为需在可见面板/真机目视确认（预期：横幅/演示视频滚入视口约 200px 前开始加载并自动播放，滚出暂停）。
 
