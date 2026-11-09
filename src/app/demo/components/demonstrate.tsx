@@ -172,16 +172,16 @@ const demoProducts = [
     version: 'v2.0.0',
     demos: [
       {
-        title: '2.0管理后台',
+        title: 'AI数字人SaaS系统2.0',
         type: 'admin' as const,
-        url: 'https://java-demo.cnai.art/admin/',
+        url: 'https://01-saas.chatmoney.cn/admin',
         qrcode: '/images/contact/weixin.png',
-        credentials: { username: 'ava_demo', password: 'ava123' },
+        credentials: { username: 'admin', password: '123456' },
       },
       {
         title: '移动端',
         type: 'mobile' as const,
-        url: 'https://java.cnai.art/mobile',
+        url: 'https://01-saas.chatmoney.cn/mobile',
         qrcode: '/images/contact/weixin.png',
         credentials: { username: '自行注册', password: '自行注册' },
       },
