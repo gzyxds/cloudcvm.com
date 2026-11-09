@@ -244,39 +244,32 @@ const CarouselImage = memo(
     forceImageMode?: boolean
   }) => {
     const videoRef = useRef<HTMLVideoElement>(null)
-    // 视频仅在 lg（1024px）及以上启用：与下方 video 的 `lg:block` / Image 的 `lg:hidden` 断点一致。
-    // 移动端若照旧渲染 src 并 play()，视频只是被 CSS 隐藏，仍会下载与解码，白白耗流量耗电。
-    const [videoEnabled, setVideoEnabled] = useState(false)
 
-    useEffect(() => {
-      const mq = window.matchMedia('(min-width: 1024px)')
-      const update = () => setVideoEnabled(mq.matches)
-      update()
-      mq.addEventListener('change', update)
-      return () => mq.removeEventListener('change', update)
-    }, [])
-
-    // 只播放当前可见项，避免多个视频同时解码占用 GPU/带宽；移动端（视频被 CSS 隐藏）不播放
+    // 播放控制：只播放当前可见项，避免多个视频同时解码占用 GPU/带宽；
+    // 移动端（lg 以下）<source> 被 media 属性禁用、没有视频源，play() 会自然 reject，
+    // catch 吞掉即可，行为与原来一致。
     useEffect(() => {
       const video = videoRef.current
       if (!video) return
-      if (isActive && videoEnabled) {
+      if (isActive) {
         video.play().catch(() => {})
       } else {
         video.pause()
       }
-    }, [isActive, videoEnabled])
+    }, [isActive])
 
-    // 首屏直接输出 <video>（静态导入），但不在解析阶段下载视频字节：
-    // 首次渲染不带 src（videoEnabled 初始为 false，SSR/客户端一致），首屏显示 poster
-    // （与视频首帧同图）；桌面端挂载后写入 src 并由 play() 触发下载，
-    // 移动端（lg 以下）永不写入 src、永不下载，仅显示 Image。
+    // 桌面端（lg 及以上）现在解析 HTML 时就带 <source media="(min-width: 1024px)">，
+    // 首屏即开始下载视频字节，挂载后 play() 有数据可用。
+    // 这里刻意不设 poster：首帧解码完成前 poster 会一直显示（同一张图），
+    // 视觉上就是"先闪一下图片再切到视频"。去掉后，首帧前露出干净的页面底色，
+    // 首帧一到直接呈现视频画面。
+    // 移动端 source 失效，视频字节永不下载。
+    // 激活项 auto（尽快拿到首帧），其余项只取 metadata，避免 4 个视频同时整段下载。
     const videoProps = {
       loop: true,
       muted: true,
       playsInline: true,
-      preload: 'metadata' as const,
-      poster: slide.imagePath,
+      preload: (isActive ? 'auto' : 'metadata') as 'auto' | 'metadata',
     }
 
     return (
@@ -285,16 +278,17 @@ const CarouselImage = memo(
       >
         {slide.videoPath && slide.imagePath && !forceImageMode ? (
           <>
-            {/* PC端：视频（lg 以下不写入 src，完全避免移动端下载） */}
+            {/* PC端：视频。source 的 media 属性让浏览器在解析 HTML 时就决定下载（≥1024px），
+                移动端不下载；桌面端首屏即开始取视频字节，避免先闪图片再切视频 */}
             <video
               ref={videoRef}
-              {...(videoEnabled ? { src: slide.videoPath } : {})}
               {...videoProps}
               className="absolute inset-0 hidden h-full w-full object-cover lg:block"
-            />
-            {/* 移动端：图片。lg 以上被 CSS 隐藏，但它与 <video> 的 poster 是同一个 URL
-                （videoProps.poster = slide.imagePath），所以这里的 preload 不会浪费流量，
-                反而顺带把桌面端的 poster 一起预加载了；lg 以下它就是可见的 LCP 图，同样需要立即加载。 */}
+            >
+              <source src={slide.videoPath} type="video/mp4" media="(min-width: 1024px)" />
+            </video>
+            {/* 移动端：图片。lg 以上被 CSS 隐藏，不参与渲染；lg 以下它就是可见的 LCP 图，
+                激活项需要立即加载，故用 preload。桌面端视频不设 poster，首帧前是干净底色。 */}
             <Image
               src={slide.imagePath}
               alt={slide.imageAlt}
@@ -306,10 +300,11 @@ const CarouselImage = memo(
         ) : slide.videoPath && !forceImageMode ? (
           <video
             ref={videoRef}
-            {...(videoEnabled ? { src: slide.videoPath } : {})}
             {...videoProps}
             className="absolute inset-0 h-full w-full object-cover"
-          />
+          >
+            <source src={slide.videoPath} type="video/mp4" media="(min-width: 1024px)" />
+          </video>
         ) : slide.imagePath ? (
           // 纯图片轮播：激活项即首屏 LCP，用 preload 取代 Next 16 已弃用的 priority。
           // 不传 loading：preload 已让激活项立即加载，其余项仍走默认的 lazy 分支。
